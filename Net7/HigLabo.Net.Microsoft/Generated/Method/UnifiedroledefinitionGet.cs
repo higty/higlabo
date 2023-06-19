@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync()
+        public async ValueTask<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync()
         {
             var p = new UnifiedroledefinitionGetParameter();
             return await this.SendAsync<UnifiedroledefinitionGetParameter, UnifiedroledefinitionGetResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroledefinitionGetParameter();
             return await this.SendAsync<UnifiedroledefinitionGetParameter, UnifiedroledefinitionGetResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync(UnifiedroledefinitionGetParameter parameter)
+        public async ValueTask<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync(UnifiedroledefinitionGetParameter parameter)
         {
             return await this.SendAsync<UnifiedroledefinitionGetParameter, UnifiedroledefinitionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync(UnifiedroledefinitionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroledefinitionGetResponse> UnifiedroledefinitionGetAsync(UnifiedroledefinitionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroledefinitionGetParameter, UnifiedroledefinitionGetResponse>(parameter, cancellationToken);
         }

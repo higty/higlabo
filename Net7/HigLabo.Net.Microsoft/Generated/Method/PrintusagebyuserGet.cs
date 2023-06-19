@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync()
+        public async ValueTask<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync()
         {
             var p = new PrintusagebyUserGetParameter();
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrintusagebyUserGetParameter();
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter)
+        public async ValueTask<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter)
         {
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(parameter, cancellationToken);
         }

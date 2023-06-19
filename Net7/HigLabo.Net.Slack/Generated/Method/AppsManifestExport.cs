@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.export
         /// </summary>
-        public async Task<AppsManifestExportResponse> AppsManifestExportAsync(string? app_Id)
+        public async ValueTask<AppsManifestExportResponse> AppsManifestExportAsync(string? app_Id)
         {
             var p = new AppsManifestExportParameter();
             p.App_Id = app_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.export
         /// </summary>
-        public async Task<AppsManifestExportResponse> AppsManifestExportAsync(string? app_Id, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestExportResponse> AppsManifestExportAsync(string? app_Id, CancellationToken cancellationToken)
         {
             var p = new AppsManifestExportParameter();
             p.App_Id = app_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.export
         /// </summary>
-        public async Task<AppsManifestExportResponse> AppsManifestExportAsync(AppsManifestExportParameter parameter)
+        public async ValueTask<AppsManifestExportResponse> AppsManifestExportAsync(AppsManifestExportParameter parameter)
         {
             return await this.SendAsync<AppsManifestExportParameter, AppsManifestExportResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.export
         /// </summary>
-        public async Task<AppsManifestExportResponse> AppsManifestExportAsync(AppsManifestExportParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestExportResponse> AppsManifestExportAsync(AppsManifestExportParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsManifestExportParameter, AppsManifestExportResponse>(parameter, cancellationToken);
         }

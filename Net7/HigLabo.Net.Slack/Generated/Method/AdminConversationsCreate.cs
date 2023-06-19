@@ -23,7 +23,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.create
         /// </summary>
-        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool? is_Private, string? name)
+        public async ValueTask<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool? is_Private, string? name)
         {
             var p = new AdminConversationsCreateParameter();
             p.Is_Private = is_Private;
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.create
         /// </summary>
-        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool? is_Private, string? name, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool? is_Private, string? name, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsCreateParameter();
             p.Is_Private = is_Private;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.create
         /// </summary>
-        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(AdminConversationsCreateParameter parameter)
+        public async ValueTask<AdminConversationsCreateResponse> AdminConversationsCreateAsync(AdminConversationsCreateParameter parameter)
         {
             return await this.SendAsync<AdminConversationsCreateParameter, AdminConversationsCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.create
         /// </summary>
-        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(AdminConversationsCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsCreateResponse> AdminConversationsCreateAsync(AdminConversationsCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsCreateParameter, AdminConversationsCreateResponse>(parameter, cancellationToken);
         }

@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync()
+        public async ValueTask<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync()
         {
             var p = new PlannerbucketListTasksParameter();
             return await this.SendAsync<PlannerbucketListTasksParameter, PlannerbucketListTasksResponse>(p, CancellationToken.None);
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerbucketListTasksParameter();
             return await this.SendAsync<PlannerbucketListTasksParameter, PlannerbucketListTasksResponse>(p, cancellationToken);
@@ -102,14 +102,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(PlannerbucketListTasksParameter parameter)
+        public async ValueTask<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(PlannerbucketListTasksParameter parameter)
         {
             return await this.SendAsync<PlannerbucketListTasksParameter, PlannerbucketListTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(PlannerbucketListTasksParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(PlannerbucketListTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerbucketListTasksParameter, PlannerbucketListTasksResponse>(parameter, cancellationToken);
         }

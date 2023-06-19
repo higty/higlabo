@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync()
+        public async ValueTask<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync()
         {
             var p = new IdentityUserflowattributeAssignmentDeleteParameter();
             return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityUserflowattributeAssignmentDeleteParameter();
             return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(IdentityUserflowattributeAssignmentDeleteParameter parameter)
+        public async ValueTask<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(IdentityUserflowattributeAssignmentDeleteParameter parameter)
         {
             return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(IdentityUserflowattributeAssignmentDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(IdentityUserflowattributeAssignmentDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(parameter, cancellationToken);
         }

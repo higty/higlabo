@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-allchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListAllchannelsResponse> TeamListAllchannelsAsync()
+        public async ValueTask<TeamListAllchannelsResponse> TeamListAllchannelsAsync()
         {
             var p = new TeamListAllchannelsParameter();
             return await this.SendAsync<TeamListAllchannelsParameter, TeamListAllchannelsResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-allchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListAllchannelsResponse> TeamListAllchannelsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamListAllchannelsResponse> TeamListAllchannelsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamListAllchannelsParameter();
             return await this.SendAsync<TeamListAllchannelsParameter, TeamListAllchannelsResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-allchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListAllchannelsResponse> TeamListAllchannelsAsync(TeamListAllchannelsParameter parameter)
+        public async ValueTask<TeamListAllchannelsResponse> TeamListAllchannelsAsync(TeamListAllchannelsParameter parameter)
         {
             return await this.SendAsync<TeamListAllchannelsParameter, TeamListAllchannelsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-allchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListAllchannelsResponse> TeamListAllchannelsAsync(TeamListAllchannelsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamListAllchannelsResponse> TeamListAllchannelsAsync(TeamListAllchannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamListAllchannelsParameter, TeamListAllchannelsResponse>(parameter, cancellationToken);
         }

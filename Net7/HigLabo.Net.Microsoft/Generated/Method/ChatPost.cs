@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostResponse> ChatPostAsync()
+        public async ValueTask<ChatPostResponse> ChatPostAsync()
         {
             var p = new ChatPostParameter();
             return await this.SendAsync<ChatPostParameter, ChatPostResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostResponse> ChatPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatPostResponse> ChatPostAsync(CancellationToken cancellationToken)
         {
             var p = new ChatPostParameter();
             return await this.SendAsync<ChatPostParameter, ChatPostResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostResponse> ChatPostAsync(ChatPostParameter parameter)
+        public async ValueTask<ChatPostResponse> ChatPostAsync(ChatPostParameter parameter)
         {
             return await this.SendAsync<ChatPostParameter, ChatPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostResponse> ChatPostAsync(ChatPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatPostResponse> ChatPostAsync(ChatPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPostParameter, ChatPostResponse>(parameter, cancellationToken);
         }

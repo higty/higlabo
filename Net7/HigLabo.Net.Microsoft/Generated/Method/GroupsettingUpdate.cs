@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingUpdateResponse> GroupsettingUpdateAsync()
+        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync()
         {
             var p = new GroupsettingUpdateParameter();
             return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingUpdateResponse> GroupsettingUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new GroupsettingUpdateParameter();
             return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingUpdateResponse> GroupsettingUpdateAsync(GroupsettingUpdateParameter parameter)
+        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync(GroupsettingUpdateParameter parameter)
         {
             return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingUpdateResponse> GroupsettingUpdateAsync(GroupsettingUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync(GroupsettingUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(parameter, cancellationToken);
         }

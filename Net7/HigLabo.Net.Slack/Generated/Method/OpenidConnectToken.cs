@@ -24,7 +24,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/openid.connect.token
         /// </summary>
-        public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync()
+        public async ValueTask<OpenidConnectTokenResponse> OpenidConnectTokenAsync()
         {
             var p = new OpenidConnectTokenParameter();
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(p, CancellationToken.None);
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/openid.connect.token
         /// </summary>
-        public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenidConnectTokenResponse> OpenidConnectTokenAsync(CancellationToken cancellationToken)
         {
             var p = new OpenidConnectTokenParameter();
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(p, cancellationToken);
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/openid.connect.token
         /// </summary>
-        public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync(OpenidConnectTokenParameter parameter)
+        public async ValueTask<OpenidConnectTokenResponse> OpenidConnectTokenAsync(OpenidConnectTokenParameter parameter)
         {
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/openid.connect.token
         /// </summary>
-        public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync(OpenidConnectTokenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenidConnectTokenResponse> OpenidConnectTokenAsync(OpenidConnectTokenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(parameter, cancellationToken);
         }

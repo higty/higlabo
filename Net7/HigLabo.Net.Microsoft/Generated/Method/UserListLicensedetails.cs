@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-licensedetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListLicensedetailsResponse> UserListLicensedetailsAsync()
+        public async ValueTask<UserListLicensedetailsResponse> UserListLicensedetailsAsync()
         {
             var p = new UserListLicensedetailsParameter();
             return await this.SendAsync<UserListLicensedetailsParameter, UserListLicensedetailsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-licensedetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListLicensedetailsResponse> UserListLicensedetailsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListLicensedetailsResponse> UserListLicensedetailsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListLicensedetailsParameter();
             return await this.SendAsync<UserListLicensedetailsParameter, UserListLicensedetailsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-licensedetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListLicensedetailsResponse> UserListLicensedetailsAsync(UserListLicensedetailsParameter parameter)
+        public async ValueTask<UserListLicensedetailsResponse> UserListLicensedetailsAsync(UserListLicensedetailsParameter parameter)
         {
             return await this.SendAsync<UserListLicensedetailsParameter, UserListLicensedetailsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-licensedetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListLicensedetailsResponse> UserListLicensedetailsAsync(UserListLicensedetailsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListLicensedetailsResponse> UserListLicensedetailsAsync(UserListLicensedetailsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListLicensedetailsParameter, UserListLicensedetailsResponse>(parameter, cancellationToken);
         }

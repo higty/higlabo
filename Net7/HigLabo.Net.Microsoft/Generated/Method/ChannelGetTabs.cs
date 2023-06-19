@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync()
+        public async ValueTask<ChannelGetTabsResponse> ChannelGetTabsAsync()
         {
             var p = new ChannelGetTabsParameter();
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetTabsResponse> ChannelGetTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelGetTabsParameter();
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync(ChannelGetTabsParameter parameter)
+        public async ValueTask<ChannelGetTabsResponse> ChannelGetTabsAsync(ChannelGetTabsParameter parameter)
         {
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync(ChannelGetTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetTabsResponse> ChannelGetTabsAsync(ChannelGetTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(parameter, cancellationToken);
         }

@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.info
         /// </summary>
-        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string? team_Id)
+        public async ValueTask<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string? team_Id)
         {
             var p = new AdminTeamsSettingsInfoParameter();
             p.Team_Id = team_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.info
         /// </summary>
-        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsInfoParameter();
             p.Team_Id = team_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.info
         /// </summary>
-        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(AdminTeamsSettingsInfoParameter parameter)
+        public async ValueTask<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(AdminTeamsSettingsInfoParameter parameter)
         {
             return await this.SendAsync<AdminTeamsSettingsInfoParameter, AdminTeamsSettingsInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.info
         /// </summary>
-        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(AdminTeamsSettingsInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(AdminTeamsSettingsInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsSettingsInfoParameter, AdminTeamsSettingsInfoResponse>(parameter, cancellationToken);
         }

@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync()
+        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync()
         {
             var p = new LearningproviderListLearningContentsParameter();
             return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(CancellationToken cancellationToken)
         {
             var p = new LearningproviderListLearningContentsParameter();
             return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(LearningproviderListLearningContentsParameter parameter)
+        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(LearningproviderListLearningContentsParameter parameter)
         {
             return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(LearningproviderListLearningContentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(LearningproviderListLearningContentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(parameter, cancellationToken);
         }

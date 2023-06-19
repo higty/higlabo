@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync()
+        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync()
         {
             var p = new TimeoffrequestDeclineParameter();
             return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffrequestDeclineParameter();
             return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(TimeoffrequestDeclineParameter parameter)
+        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(TimeoffrequestDeclineParameter parameter)
         {
             return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(TimeoffrequestDeclineParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(TimeoffrequestDeclineParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(parameter, cancellationToken);
         }

@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-setverifiedpublisher?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync()
+        public async ValueTask<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync()
         {
             var p = new ApplicationSetverifiedpublisherParameter();
             return await this.SendAsync<ApplicationSetverifiedpublisherParameter, ApplicationSetverifiedpublisherResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-setverifiedpublisher?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationSetverifiedpublisherParameter();
             return await this.SendAsync<ApplicationSetverifiedpublisherParameter, ApplicationSetverifiedpublisherResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-setverifiedpublisher?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync(ApplicationSetverifiedpublisherParameter parameter)
+        public async ValueTask<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync(ApplicationSetverifiedpublisherParameter parameter)
         {
             return await this.SendAsync<ApplicationSetverifiedpublisherParameter, ApplicationSetverifiedpublisherResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-setverifiedpublisher?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync(ApplicationSetverifiedpublisherParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationSetverifiedpublisherResponse> ApplicationSetverifiedpublisherAsync(ApplicationSetverifiedpublisherParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationSetverifiedpublisherParameter, ApplicationSetverifiedpublisherResponse>(parameter, cancellationToken);
         }

@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListResponse> DirectoryroleListAsync()
+        public async ValueTask<DirectoryroleListResponse> DirectoryroleListAsync()
         {
             var p = new DirectoryroleListParameter();
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListResponse> DirectoryroleListAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleListResponse> DirectoryroleListAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryroleListParameter();
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListResponse> DirectoryroleListAsync(DirectoryroleListParameter parameter)
+        public async ValueTask<DirectoryroleListResponse> DirectoryroleListAsync(DirectoryroleListParameter parameter)
         {
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListResponse> DirectoryroleListAsync(DirectoryroleListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleListResponse> DirectoryroleListAsync(DirectoryroleListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(parameter, cancellationToken);
         }

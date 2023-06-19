@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostResponse> ChannelPostAsync()
+        public async ValueTask<ChannelPostResponse> ChannelPostAsync()
         {
             var p = new ChannelPostParameter();
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(p, CancellationToken.None);
@@ -101,7 +101,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostResponse> ChannelPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelPostResponse> ChannelPostAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelPostParameter();
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(p, cancellationToken);
@@ -109,14 +109,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostResponse> ChannelPostAsync(ChannelPostParameter parameter)
+        public async ValueTask<ChannelPostResponse> ChannelPostAsync(ChannelPostParameter parameter)
         {
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostResponse> ChannelPostAsync(ChannelPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelPostResponse> ChannelPostAsync(ChannelPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(parameter, cancellationToken);
         }

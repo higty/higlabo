@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.mark
         /// </summary>
-        public async Task<ConversationsMarkResponse> ConversationsMarkAsync(string? channel, string? ts)
+        public async ValueTask<ConversationsMarkResponse> ConversationsMarkAsync(string? channel, string? ts)
         {
             var p = new ConversationsMarkParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.mark
         /// </summary>
-        public async Task<ConversationsMarkResponse> ConversationsMarkAsync(string? channel, string? ts, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsMarkResponse> ConversationsMarkAsync(string? channel, string? ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsMarkParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.mark
         /// </summary>
-        public async Task<ConversationsMarkResponse> ConversationsMarkAsync(ConversationsMarkParameter parameter)
+        public async ValueTask<ConversationsMarkResponse> ConversationsMarkAsync(ConversationsMarkParameter parameter)
         {
             return await this.SendAsync<ConversationsMarkParameter, ConversationsMarkResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.mark
         /// </summary>
-        public async Task<ConversationsMarkResponse> ConversationsMarkAsync(ConversationsMarkParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsMarkResponse> ConversationsMarkAsync(ConversationsMarkParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsMarkParameter, ConversationsMarkResponse>(parameter, cancellationToken);
         }

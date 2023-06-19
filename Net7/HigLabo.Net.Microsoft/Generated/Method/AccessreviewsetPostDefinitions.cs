@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync()
+        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync()
         {
             var p = new AccessreviewsetPostDefinitionsParameter();
             return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewsetPostDefinitionsParameter();
             return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(AccessreviewsetPostDefinitionsParameter parameter)
+        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(AccessreviewsetPostDefinitionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(AccessreviewsetPostDefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(AccessreviewsetPostDefinitionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(parameter, cancellationToken);
         }

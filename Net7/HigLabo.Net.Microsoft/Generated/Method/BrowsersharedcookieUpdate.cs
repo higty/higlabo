@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync()
+        public async ValueTask<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync()
         {
             var p = new BrowsersharedcookieUpdateParameter();
             return await this.SendAsync<BrowsersharedcookieUpdateParameter, BrowsersharedcookieUpdateResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersharedcookieUpdateParameter();
             return await this.SendAsync<BrowsersharedcookieUpdateParameter, BrowsersharedcookieUpdateResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync(BrowsersharedcookieUpdateParameter parameter)
+        public async ValueTask<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync(BrowsersharedcookieUpdateParameter parameter)
         {
             return await this.SendAsync<BrowsersharedcookieUpdateParameter, BrowsersharedcookieUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync(BrowsersharedcookieUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersharedcookieUpdateResponse> BrowsersharedcookieUpdateAsync(BrowsersharedcookieUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersharedcookieUpdateParameter, BrowsersharedcookieUpdateResponse>(parameter, cancellationToken);
         }

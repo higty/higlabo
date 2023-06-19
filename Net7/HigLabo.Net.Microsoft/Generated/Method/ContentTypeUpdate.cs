@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUpdateResponse> ContentTypeUpdateAsync()
+        public async ValueTask<ContentTypeUpdateResponse> ContentTypeUpdateAsync()
         {
             var p = new ContentTypeUpdateParameter();
             return await this.SendAsync<ContentTypeUpdateParameter, ContentTypeUpdateResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUpdateResponse> ContentTypeUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeUpdateResponse> ContentTypeUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeUpdateParameter();
             return await this.SendAsync<ContentTypeUpdateParameter, ContentTypeUpdateResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUpdateResponse> ContentTypeUpdateAsync(ContentTypeUpdateParameter parameter)
+        public async ValueTask<ContentTypeUpdateResponse> ContentTypeUpdateAsync(ContentTypeUpdateParameter parameter)
         {
             return await this.SendAsync<ContentTypeUpdateParameter, ContentTypeUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUpdateResponse> ContentTypeUpdateAsync(ContentTypeUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeUpdateResponse> ContentTypeUpdateAsync(ContentTypeUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeUpdateParameter, ContentTypeUpdateResponse>(parameter, cancellationToken);
         }

@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync()
+        public async ValueTask<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync()
         {
             var p = new GrouplifecyclePolicyUpdateParameter();
             return await this.SendAsync<GrouplifecyclePolicyUpdateParameter, GrouplifecyclePolicyUpdateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new GrouplifecyclePolicyUpdateParameter();
             return await this.SendAsync<GrouplifecyclePolicyUpdateParameter, GrouplifecyclePolicyUpdateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync(GrouplifecyclePolicyUpdateParameter parameter)
+        public async ValueTask<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync(GrouplifecyclePolicyUpdateParameter parameter)
         {
             return await this.SendAsync<GrouplifecyclePolicyUpdateParameter, GrouplifecyclePolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync(GrouplifecyclePolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyUpdateResponse> GrouplifecyclePolicyUpdateAsync(GrouplifecyclePolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GrouplifecyclePolicyUpdateParameter, GrouplifecyclePolicyUpdateResponse>(parameter, cancellationToken);
         }

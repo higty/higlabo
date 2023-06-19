@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentioneventtype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync()
+        public async ValueTask<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync()
         {
             var p = new SecurityRetentioneventTypeGetParameter();
             return await this.SendAsync<SecurityRetentioneventTypeGetParameter, SecurityRetentioneventTypeGetResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentioneventtype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityRetentioneventTypeGetParameter();
             return await this.SendAsync<SecurityRetentioneventTypeGetParameter, SecurityRetentioneventTypeGetResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentioneventtype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync(SecurityRetentioneventTypeGetParameter parameter)
+        public async ValueTask<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync(SecurityRetentioneventTypeGetParameter parameter)
         {
             return await this.SendAsync<SecurityRetentioneventTypeGetParameter, SecurityRetentioneventTypeGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentioneventtype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync(SecurityRetentioneventTypeGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityRetentioneventTypeGetResponse> SecurityRetentioneventTypeGetAsync(SecurityRetentioneventTypeGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityRetentioneventTypeGetParameter, SecurityRetentioneventTypeGetResponse>(parameter, cancellationToken);
         }

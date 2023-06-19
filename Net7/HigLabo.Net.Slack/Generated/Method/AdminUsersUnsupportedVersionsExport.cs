@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.unsupportedVersions.export
         /// </summary>
-        public async Task<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync()
+        public async ValueTask<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync()
         {
             var p = new AdminUsersUnsupportedVersionsExportParameter();
             return await this.SendAsync<AdminUsersUnsupportedVersionsExportParameter, AdminUsersUnsupportedVersionsExportResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.unsupportedVersions.export
         /// </summary>
-        public async Task<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync(CancellationToken cancellationToken)
         {
             var p = new AdminUsersUnsupportedVersionsExportParameter();
             return await this.SendAsync<AdminUsersUnsupportedVersionsExportParameter, AdminUsersUnsupportedVersionsExportResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.unsupportedVersions.export
         /// </summary>
-        public async Task<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync(AdminUsersUnsupportedVersionsExportParameter parameter)
+        public async ValueTask<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync(AdminUsersUnsupportedVersionsExportParameter parameter)
         {
             return await this.SendAsync<AdminUsersUnsupportedVersionsExportParameter, AdminUsersUnsupportedVersionsExportResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.unsupportedVersions.export
         /// </summary>
-        public async Task<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync(AdminUsersUnsupportedVersionsExportParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersUnsupportedVersionsExportResponse> AdminUsersUnsupportedVersionsExportAsync(AdminUsersUnsupportedVersionsExportParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersUnsupportedVersionsExportParameter, AdminUsersUnsupportedVersionsExportResponse>(parameter, cancellationToken);
         }

@@ -35,7 +35,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<UsersConversationsResponse> UsersConversationsAsync()
+        public async ValueTask<UsersConversationsResponse> UsersConversationsAsync()
         {
             var p = new UsersConversationsParameter();
             return await this.SendAsync<UsersConversationsParameter, UsersConversationsResponse>(p, CancellationToken.None);
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<UsersConversationsResponse> UsersConversationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersConversationsResponse> UsersConversationsAsync(CancellationToken cancellationToken)
         {
             var p = new UsersConversationsParameter();
             return await this.SendAsync<UsersConversationsParameter, UsersConversationsResponse>(p, cancellationToken);
@@ -51,21 +51,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<UsersConversationsResponse> UsersConversationsAsync(UsersConversationsParameter parameter)
+        public async ValueTask<UsersConversationsResponse> UsersConversationsAsync(UsersConversationsParameter parameter)
         {
             return await this.SendAsync<UsersConversationsParameter, UsersConversationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<UsersConversationsResponse> UsersConversationsAsync(UsersConversationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersConversationsResponse> UsersConversationsAsync(UsersConversationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersConversationsParameter, UsersConversationsResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<List<UsersConversationsResponse>> UsersConversationsAsync(PagingContext<UsersConversationsResponse> context)
+        public async ValueTask<List<UsersConversationsResponse>> UsersConversationsAsync(PagingContext<UsersConversationsResponse> context)
         {
             var p = new UsersConversationsParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<List<UsersConversationsResponse>> UsersConversationsAsync(CancellationToken cancellationToken, PagingContext<UsersConversationsResponse> context)
+        public async ValueTask<List<UsersConversationsResponse>> UsersConversationsAsync(CancellationToken cancellationToken, PagingContext<UsersConversationsResponse> context)
         {
             var p = new UsersConversationsParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<List<UsersConversationsResponse>> UsersConversationsAsync(UsersConversationsParameter parameter, PagingContext<UsersConversationsResponse> context)
+        public async ValueTask<List<UsersConversationsResponse>> UsersConversationsAsync(UsersConversationsParameter parameter, PagingContext<UsersConversationsResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.conversations
         /// </summary>
-        public async Task<List<UsersConversationsResponse>> UsersConversationsAsync(UsersConversationsParameter parameter, PagingContext<UsersConversationsResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<UsersConversationsResponse>> UsersConversationsAsync(UsersConversationsParameter parameter, PagingContext<UsersConversationsResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

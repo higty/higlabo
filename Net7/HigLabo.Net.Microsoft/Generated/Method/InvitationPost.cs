@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<InvitationPostResponse> InvitationPostAsync()
+        public async ValueTask<InvitationPostResponse> InvitationPostAsync()
         {
             var p = new InvitationPostParameter();
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<InvitationPostResponse> InvitationPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<InvitationPostResponse> InvitationPostAsync(CancellationToken cancellationToken)
         {
             var p = new InvitationPostParameter();
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<InvitationPostResponse> InvitationPostAsync(InvitationPostParameter parameter)
+        public async ValueTask<InvitationPostResponse> InvitationPostAsync(InvitationPostParameter parameter)
         {
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<InvitationPostResponse> InvitationPostAsync(InvitationPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InvitationPostResponse> InvitationPostAsync(InvitationPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(parameter, cancellationToken);
         }

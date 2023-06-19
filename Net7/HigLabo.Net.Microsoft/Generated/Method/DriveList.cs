@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListResponse> DriveListAsync()
+        public async ValueTask<DriveListResponse> DriveListAsync()
         {
             var p = new DriveListParameter();
             return await this.SendAsync<DriveListParameter, DriveListResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListResponse> DriveListAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveListResponse> DriveListAsync(CancellationToken cancellationToken)
         {
             var p = new DriveListParameter();
             return await this.SendAsync<DriveListParameter, DriveListResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListResponse> DriveListAsync(DriveListParameter parameter)
+        public async ValueTask<DriveListResponse> DriveListAsync(DriveListParameter parameter)
         {
             return await this.SendAsync<DriveListParameter, DriveListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListResponse> DriveListAsync(DriveListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveListResponse> DriveListAsync(DriveListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveListParameter, DriveListResponse>(parameter, cancellationToken);
         }

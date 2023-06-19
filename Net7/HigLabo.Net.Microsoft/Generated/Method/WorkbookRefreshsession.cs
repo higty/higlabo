@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-refreshsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync()
+        public async ValueTask<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync()
         {
             var p = new WorkbookRefreshsessionParameter();
             return await this.SendAsync<WorkbookRefreshsessionParameter, WorkbookRefreshsessionResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-refreshsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookRefreshsessionParameter();
             return await this.SendAsync<WorkbookRefreshsessionParameter, WorkbookRefreshsessionResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-refreshsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync(WorkbookRefreshsessionParameter parameter)
+        public async ValueTask<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync(WorkbookRefreshsessionParameter parameter)
         {
             return await this.SendAsync<WorkbookRefreshsessionParameter, WorkbookRefreshsessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-refreshsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync(WorkbookRefreshsessionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookRefreshsessionResponse> WorkbookRefreshsessionAsync(WorkbookRefreshsessionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookRefreshsessionParameter, WorkbookRefreshsessionResponse>(parameter, cancellationToken);
         }

@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync()
+        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync()
         {
             var p = new SecurityEdiscoverysearchListAdditionalsourcesParameter();
             return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverysearchListAdditionalsourcesParameter();
             return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(SecurityEdiscoverysearchListAdditionalsourcesParameter parameter)
+        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(SecurityEdiscoverysearchListAdditionalsourcesParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(SecurityEdiscoverysearchListAdditionalsourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(SecurityEdiscoverysearchListAdditionalsourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(parameter, cancellationToken);
         }

@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-dismissreminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDismissreminderResponse> EventDismissreminderAsync()
+        public async ValueTask<EventDismissreminderResponse> EventDismissreminderAsync()
         {
             var p = new EventDismissreminderParameter();
             return await this.SendAsync<EventDismissreminderParameter, EventDismissreminderResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-dismissreminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDismissreminderResponse> EventDismissreminderAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventDismissreminderResponse> EventDismissreminderAsync(CancellationToken cancellationToken)
         {
             var p = new EventDismissreminderParameter();
             return await this.SendAsync<EventDismissreminderParameter, EventDismissreminderResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-dismissreminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDismissreminderResponse> EventDismissreminderAsync(EventDismissreminderParameter parameter)
+        public async ValueTask<EventDismissreminderResponse> EventDismissreminderAsync(EventDismissreminderParameter parameter)
         {
             return await this.SendAsync<EventDismissreminderParameter, EventDismissreminderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-dismissreminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDismissreminderResponse> EventDismissreminderAsync(EventDismissreminderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventDismissreminderResponse> EventDismissreminderAsync(EventDismissreminderParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventDismissreminderParameter, EventDismissreminderResponse>(parameter, cancellationToken);
         }

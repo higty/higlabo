@@ -133,7 +133,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-assignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync()
+        public async ValueTask<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync()
         {
             var p = new EducationclassPostAssignmentParameter();
             return await this.SendAsync<EducationclassPostAssignmentParameter, EducationclassPostAssignmentResponse>(p, CancellationToken.None);
@@ -141,7 +141,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-assignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassPostAssignmentParameter();
             return await this.SendAsync<EducationclassPostAssignmentParameter, EducationclassPostAssignmentResponse>(p, cancellationToken);
@@ -149,14 +149,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-assignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync(EducationclassPostAssignmentParameter parameter)
+        public async ValueTask<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync(EducationclassPostAssignmentParameter parameter)
         {
             return await this.SendAsync<EducationclassPostAssignmentParameter, EducationclassPostAssignmentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-assignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync(EducationclassPostAssignmentParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassPostAssignmentResponse> EducationclassPostAssignmentAsync(EducationclassPostAssignmentParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassPostAssignmentParameter, EducationclassPostAssignmentResponse>(parameter, cancellationToken);
         }

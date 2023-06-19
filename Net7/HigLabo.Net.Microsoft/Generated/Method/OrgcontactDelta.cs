@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactDeltaResponse> OrgcontactDeltaAsync()
+        public async ValueTask<OrgcontactDeltaResponse> OrgcontactDeltaAsync()
         {
             var p = new OrgcontactDeltaParameter();
             return await this.SendAsync<OrgcontactDeltaParameter, OrgcontactDeltaResponse>(p, CancellationToken.None);
@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactDeltaResponse> OrgcontactDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactDeltaResponse> OrgcontactDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new OrgcontactDeltaParameter();
             return await this.SendAsync<OrgcontactDeltaParameter, OrgcontactDeltaResponse>(p, cancellationToken);
@@ -94,14 +94,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactDeltaResponse> OrgcontactDeltaAsync(OrgcontactDeltaParameter parameter)
+        public async ValueTask<OrgcontactDeltaResponse> OrgcontactDeltaAsync(OrgcontactDeltaParameter parameter)
         {
             return await this.SendAsync<OrgcontactDeltaParameter, OrgcontactDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactDeltaResponse> OrgcontactDeltaAsync(OrgcontactDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactDeltaResponse> OrgcontactDeltaAsync(OrgcontactDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrgcontactDeltaParameter, OrgcontactDeltaResponse>(parameter, cancellationToken);
         }

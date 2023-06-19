@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync()
+        public async ValueTask<EventPostAttachmentsResponse> EventPostAttachmentsAsync()
         {
             var p = new EventPostAttachmentsParameter();
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventPostAttachmentsResponse> EventPostAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new EventPostAttachmentsParameter();
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync(EventPostAttachmentsParameter parameter)
+        public async ValueTask<EventPostAttachmentsResponse> EventPostAttachmentsAsync(EventPostAttachmentsParameter parameter)
         {
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync(EventPostAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventPostAttachmentsResponse> EventPostAttachmentsAsync(EventPostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(parameter, cancellationToken);
         }

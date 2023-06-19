@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync()
+        public async ValueTask<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync()
         {
             var p = new AttacksimulationRootListSimulationautomationsParameter();
             return await this.SendAsync<AttacksimulationRootListSimulationautomationsParameter, AttacksimulationRootListSimulationautomationsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync(CancellationToken cancellationToken)
         {
             var p = new AttacksimulationRootListSimulationautomationsParameter();
             return await this.SendAsync<AttacksimulationRootListSimulationautomationsParameter, AttacksimulationRootListSimulationautomationsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync(AttacksimulationRootListSimulationautomationsParameter parameter)
+        public async ValueTask<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync(AttacksimulationRootListSimulationautomationsParameter parameter)
         {
             return await this.SendAsync<AttacksimulationRootListSimulationautomationsParameter, AttacksimulationRootListSimulationautomationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync(AttacksimulationRootListSimulationautomationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AttacksimulationRootListSimulationautomationsResponse> AttacksimulationRootListSimulationautomationsAsync(AttacksimulationRootListSimulationautomationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AttacksimulationRootListSimulationautomationsParameter, AttacksimulationRootListSimulationautomationsResponse>(parameter, cancellationToken);
         }

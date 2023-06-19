@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderMoveResponse> MailfolderMoveAsync()
+        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync()
         {
             var p = new MailfolderMoveParameter();
             return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderMoveResponse> MailfolderMoveAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync(CancellationToken cancellationToken)
         {
             var p = new MailfolderMoveParameter();
             return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderMoveResponse> MailfolderMoveAsync(MailfolderMoveParameter parameter)
+        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync(MailfolderMoveParameter parameter)
         {
             return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderMoveResponse> MailfolderMoveAsync(MailfolderMoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync(MailfolderMoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(parameter, cancellationToken);
         }

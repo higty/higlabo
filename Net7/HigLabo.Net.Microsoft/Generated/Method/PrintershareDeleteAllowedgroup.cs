@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-allowedgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync()
+        public async ValueTask<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync()
         {
             var p = new PrintershareDeleteAllowedGroupParameter();
             return await this.SendAsync<PrintershareDeleteAllowedGroupParameter, PrintershareDeleteAllowedGroupResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-allowedgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync(CancellationToken cancellationToken)
         {
             var p = new PrintershareDeleteAllowedGroupParameter();
             return await this.SendAsync<PrintershareDeleteAllowedGroupParameter, PrintershareDeleteAllowedGroupResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-allowedgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync(PrintershareDeleteAllowedGroupParameter parameter)
+        public async ValueTask<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync(PrintershareDeleteAllowedGroupParameter parameter)
         {
             return await this.SendAsync<PrintershareDeleteAllowedGroupParameter, PrintershareDeleteAllowedGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-allowedgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync(PrintershareDeleteAllowedGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintershareDeleteAllowedGroupResponse> PrintershareDeleteAllowedGroupAsync(PrintershareDeleteAllowedGroupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintershareDeleteAllowedGroupParameter, PrintershareDeleteAllowedGroupResponse>(parameter, cancellationToken);
         }

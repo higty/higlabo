@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync()
+        public async ValueTask<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync()
         {
             var p = new ContentTypeListColumnsParameter();
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeListColumnsParameter();
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter)
+        public async ValueTask<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter)
         {
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(parameter, cancellationToken);
         }

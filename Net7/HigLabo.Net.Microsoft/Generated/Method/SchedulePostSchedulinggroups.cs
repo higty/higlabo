@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync()
+        public async ValueTask<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync()
         {
             var p = new SchedulePostSchedulingGroupsParameter();
             return await this.SendAsync<SchedulePostSchedulingGroupsParameter, SchedulePostSchedulingGroupsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new SchedulePostSchedulingGroupsParameter();
             return await this.SendAsync<SchedulePostSchedulingGroupsParameter, SchedulePostSchedulingGroupsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync(SchedulePostSchedulingGroupsParameter parameter)
+        public async ValueTask<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync(SchedulePostSchedulingGroupsParameter parameter)
         {
             return await this.SendAsync<SchedulePostSchedulingGroupsParameter, SchedulePostSchedulingGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync(SchedulePostSchedulingGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostSchedulingGroupsResponse> SchedulePostSchedulingGroupsAsync(SchedulePostSchedulingGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchedulePostSchedulingGroupsParameter, SchedulePostSchedulingGroupsResponse>(parameter, cancellationToken);
         }

@@ -36,7 +36,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(string? datastore)
+        public async ValueTask<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(string? datastore)
         {
             var p = new AppsDatastoreQueryParameter();
             p.Datastore = datastore;
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(string? datastore, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(string? datastore, CancellationToken cancellationToken)
         {
             var p = new AppsDatastoreQueryParameter();
             p.Datastore = datastore;
@@ -54,21 +54,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter)
+        public async ValueTask<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter)
         {
             return await this.SendAsync<AppsDatastoreQueryParameter, AppsDatastoreQueryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreQueryResponse> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsDatastoreQueryParameter, AppsDatastoreQueryResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context)
+        public async ValueTask<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context)
         {
             var p = new AppsDatastoreQueryParameter();
             p.Datastore = datastore;
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context, CancellationToken cancellationToken)
         {
             var p = new AppsDatastoreQueryParameter();
             p.Datastore = datastore;
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter, PagingContext<AppsDatastoreQueryResponse> context)
+        public async ValueTask<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter, PagingContext<AppsDatastoreQueryResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async Task<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter, PagingContext<AppsDatastoreQueryResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(AppsDatastoreQueryParameter parameter, PagingContext<AppsDatastoreQueryResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

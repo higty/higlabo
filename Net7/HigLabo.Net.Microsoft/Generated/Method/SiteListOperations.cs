@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListOperationsResponse> SiteListOperationsAsync()
+        public async ValueTask<SiteListOperationsResponse> SiteListOperationsAsync()
         {
             var p = new SiteListOperationsParameter();
             return await this.SendAsync<SiteListOperationsParameter, SiteListOperationsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListOperationsResponse> SiteListOperationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteListOperationsResponse> SiteListOperationsAsync(CancellationToken cancellationToken)
         {
             var p = new SiteListOperationsParameter();
             return await this.SendAsync<SiteListOperationsParameter, SiteListOperationsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListOperationsResponse> SiteListOperationsAsync(SiteListOperationsParameter parameter)
+        public async ValueTask<SiteListOperationsResponse> SiteListOperationsAsync(SiteListOperationsParameter parameter)
         {
             return await this.SendAsync<SiteListOperationsParameter, SiteListOperationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListOperationsResponse> SiteListOperationsAsync(SiteListOperationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteListOperationsResponse> SiteListOperationsAsync(SiteListOperationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListOperationsParameter, SiteListOperationsResponse>(parameter, cancellationToken);
         }

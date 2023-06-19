@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListCalendarviewResponse> GroupListCalendarviewAsync()
+        public async ValueTask<GroupListCalendarviewResponse> GroupListCalendarviewAsync()
         {
             var p = new GroupListCalendarviewParameter();
             return await this.SendAsync<GroupListCalendarviewParameter, GroupListCalendarviewResponse>(p, CancellationToken.None);
@@ -115,7 +115,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListCalendarviewResponse> GroupListCalendarviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListCalendarviewResponse> GroupListCalendarviewAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListCalendarviewParameter();
             return await this.SendAsync<GroupListCalendarviewParameter, GroupListCalendarviewResponse>(p, cancellationToken);
@@ -123,14 +123,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListCalendarviewResponse> GroupListCalendarviewAsync(GroupListCalendarviewParameter parameter)
+        public async ValueTask<GroupListCalendarviewResponse> GroupListCalendarviewAsync(GroupListCalendarviewParameter parameter)
         {
             return await this.SendAsync<GroupListCalendarviewParameter, GroupListCalendarviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListCalendarviewResponse> GroupListCalendarviewAsync(GroupListCalendarviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListCalendarviewResponse> GroupListCalendarviewAsync(GroupListCalendarviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListCalendarviewParameter, GroupListCalendarviewResponse>(parameter, cancellationToken);
         }

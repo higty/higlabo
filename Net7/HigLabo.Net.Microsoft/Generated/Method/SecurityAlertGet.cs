@@ -172,7 +172,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertGetResponse> SecurityAlertGetAsync()
+        public async ValueTask<SecurityAlertGetResponse> SecurityAlertGetAsync()
         {
             var p = new SecurityAlertGetParameter();
             return await this.SendAsync<SecurityAlertGetParameter, SecurityAlertGetResponse>(p, CancellationToken.None);
@@ -180,7 +180,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertGetResponse> SecurityAlertGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityAlertGetResponse> SecurityAlertGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityAlertGetParameter();
             return await this.SendAsync<SecurityAlertGetParameter, SecurityAlertGetResponse>(p, cancellationToken);
@@ -188,14 +188,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertGetResponse> SecurityAlertGetAsync(SecurityAlertGetParameter parameter)
+        public async ValueTask<SecurityAlertGetResponse> SecurityAlertGetAsync(SecurityAlertGetParameter parameter)
         {
             return await this.SendAsync<SecurityAlertGetParameter, SecurityAlertGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertGetResponse> SecurityAlertGetAsync(SecurityAlertGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityAlertGetResponse> SecurityAlertGetAsync(SecurityAlertGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityAlertGetParameter, SecurityAlertGetResponse>(parameter, cancellationToken);
         }

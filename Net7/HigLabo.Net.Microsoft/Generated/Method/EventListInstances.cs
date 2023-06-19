@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListInstancesResponse> EventListInstancesAsync()
+        public async ValueTask<EventListInstancesResponse> EventListInstancesAsync()
         {
             var p = new EventListInstancesParameter();
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(p, CancellationToken.None);
@@ -139,7 +139,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListInstancesResponse> EventListInstancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventListInstancesResponse> EventListInstancesAsync(CancellationToken cancellationToken)
         {
             var p = new EventListInstancesParameter();
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(p, cancellationToken);
@@ -147,14 +147,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListInstancesResponse> EventListInstancesAsync(EventListInstancesParameter parameter)
+        public async ValueTask<EventListInstancesResponse> EventListInstancesAsync(EventListInstancesParameter parameter)
         {
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListInstancesResponse> EventListInstancesAsync(EventListInstancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventListInstancesResponse> EventListInstancesAsync(EventListInstancesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(parameter, cancellationToken);
         }

@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync()
+        public async ValueTask<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync()
         {
             var p = new DataPolicyOperationGetParameter();
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(CancellationToken cancellationToken)
         {
             var p = new DataPolicyOperationGetParameter();
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(DataPolicyOperationGetParameter parameter)
+        public async ValueTask<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(DataPolicyOperationGetParameter parameter)
         {
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(DataPolicyOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(DataPolicyOperationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(parameter, cancellationToken);
         }

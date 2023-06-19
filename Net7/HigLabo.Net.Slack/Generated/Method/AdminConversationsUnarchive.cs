@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.unarchive
         /// </summary>
-        public async Task<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(string? channel_Id)
         {
             var p = new AdminConversationsUnarchiveParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.unarchive
         /// </summary>
-        public async Task<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsUnarchiveParameter();
             p.Channel_Id = channel_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.unarchive
         /// </summary>
-        public async Task<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(AdminConversationsUnarchiveParameter parameter)
+        public async ValueTask<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(AdminConversationsUnarchiveParameter parameter)
         {
             return await this.SendAsync<AdminConversationsUnarchiveParameter, AdminConversationsUnarchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.unarchive
         /// </summary>
-        public async Task<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(AdminConversationsUnarchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsUnarchiveResponse> AdminConversationsUnarchiveAsync(AdminConversationsUnarchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsUnarchiveParameter, AdminConversationsUnarchiveResponse>(parameter, cancellationToken);
         }

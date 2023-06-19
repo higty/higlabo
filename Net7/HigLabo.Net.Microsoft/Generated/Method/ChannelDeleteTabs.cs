@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync()
+        public async ValueTask<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync()
         {
             var p = new ChannelDeleteTabsParameter();
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelDeleteTabsParameter();
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(ChannelDeleteTabsParameter parameter)
+        public async ValueTask<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(ChannelDeleteTabsParameter parameter)
         {
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(ChannelDeleteTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(ChannelDeleteTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(parameter, cancellationToken);
         }

@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.all
         /// </summary>
-        public async Task<SearchAllResponse> SearchAllAsync(string? query)
+        public async ValueTask<SearchAllResponse> SearchAllAsync(string? query)
         {
             var p = new SearchAllParameter();
             p.Query = query;
@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.all
         /// </summary>
-        public async Task<SearchAllResponse> SearchAllAsync(string? query, CancellationToken cancellationToken)
+        public async ValueTask<SearchAllResponse> SearchAllAsync(string? query, CancellationToken cancellationToken)
         {
             var p = new SearchAllParameter();
             p.Query = query;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.all
         /// </summary>
-        public async Task<SearchAllResponse> SearchAllAsync(SearchAllParameter parameter)
+        public async ValueTask<SearchAllResponse> SearchAllAsync(SearchAllParameter parameter)
         {
             return await this.SendAsync<SearchAllParameter, SearchAllResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/search.all
         /// </summary>
-        public async Task<SearchAllResponse> SearchAllAsync(SearchAllParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SearchAllResponse> SearchAllAsync(SearchAllParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SearchAllParameter, SearchAllResponse>(parameter, cancellationToken);
         }

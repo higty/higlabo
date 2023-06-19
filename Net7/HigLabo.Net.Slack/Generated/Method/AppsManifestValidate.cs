@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.validate
         /// </summary>
-        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(string? manifest)
+        public async ValueTask<AppsManifestValidateResponse> AppsManifestValidateAsync(string? manifest)
         {
             var p = new AppsManifestValidateParameter();
             p.Manifest = manifest;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.validate
         /// </summary>
-        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(string? manifest, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestValidateResponse> AppsManifestValidateAsync(string? manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestValidateParameter();
             p.Manifest = manifest;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.validate
         /// </summary>
-        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(AppsManifestValidateParameter parameter)
+        public async ValueTask<AppsManifestValidateResponse> AppsManifestValidateAsync(AppsManifestValidateParameter parameter)
         {
             return await this.SendAsync<AppsManifestValidateParameter, AppsManifestValidateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.validate
         /// </summary>
-        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(AppsManifestValidateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestValidateResponse> AppsManifestValidateAsync(AppsManifestValidateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsManifestValidateParameter, AppsManifestValidateResponse>(parameter, cancellationToken);
         }

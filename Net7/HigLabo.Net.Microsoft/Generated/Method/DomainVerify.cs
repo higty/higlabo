@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-verify?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainVerifyResponse> DomainVerifyAsync()
+        public async ValueTask<DomainVerifyResponse> DomainVerifyAsync()
         {
             var p = new DomainVerifyParameter();
             return await this.SendAsync<DomainVerifyParameter, DomainVerifyResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-verify?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainVerifyResponse> DomainVerifyAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainVerifyResponse> DomainVerifyAsync(CancellationToken cancellationToken)
         {
             var p = new DomainVerifyParameter();
             return await this.SendAsync<DomainVerifyParameter, DomainVerifyResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-verify?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainVerifyResponse> DomainVerifyAsync(DomainVerifyParameter parameter)
+        public async ValueTask<DomainVerifyResponse> DomainVerifyAsync(DomainVerifyParameter parameter)
         {
             return await this.SendAsync<DomainVerifyParameter, DomainVerifyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-verify?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainVerifyResponse> DomainVerifyAsync(DomainVerifyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainVerifyResponse> DomainVerifyAsync(DomainVerifyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainVerifyParameter, DomainVerifyResponse>(parameter, cancellationToken);
         }

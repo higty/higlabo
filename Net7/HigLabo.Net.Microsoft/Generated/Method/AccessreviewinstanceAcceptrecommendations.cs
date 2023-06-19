@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync()
+        public async ValueTask<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync()
         {
             var p = new AccessreviewinstanceAcceptrecommendationsParameter();
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceAcceptrecommendationsParameter();
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(AccessreviewinstanceAcceptrecommendationsParameter parameter)
+        public async ValueTask<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(AccessreviewinstanceAcceptrecommendationsParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(AccessreviewinstanceAcceptrecommendationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(AccessreviewinstanceAcceptrecommendationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(parameter, cancellationToken);
         }

@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderDeltaResponse> MailfolderDeltaAsync()
+        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync()
         {
             var p = new MailfolderDeltaParameter();
             return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderDeltaResponse> MailfolderDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new MailfolderDeltaParameter();
             return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderDeltaResponse> MailfolderDeltaAsync(MailfolderDeltaParameter parameter)
+        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync(MailfolderDeltaParameter parameter)
         {
             return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderDeltaResponse> MailfolderDeltaAsync(MailfolderDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync(MailfolderDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(parameter, cancellationToken);
         }

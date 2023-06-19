@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync()
+        public async ValueTask<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync()
         {
             var p = new EmailauthenticationmethodUpdateParameter();
             return await this.SendAsync<EmailauthenticationmethodUpdateParameter, EmailauthenticationmethodUpdateResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new EmailauthenticationmethodUpdateParameter();
             return await this.SendAsync<EmailauthenticationmethodUpdateParameter, EmailauthenticationmethodUpdateResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync(EmailauthenticationmethodUpdateParameter parameter)
+        public async ValueTask<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync(EmailauthenticationmethodUpdateParameter parameter)
         {
             return await this.SendAsync<EmailauthenticationmethodUpdateParameter, EmailauthenticationmethodUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync(EmailauthenticationmethodUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmailauthenticationmethodUpdateResponse> EmailauthenticationmethodUpdateAsync(EmailauthenticationmethodUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EmailauthenticationmethodUpdateParameter, EmailauthenticationmethodUpdateResponse>(parameter, cancellationToken);
         }

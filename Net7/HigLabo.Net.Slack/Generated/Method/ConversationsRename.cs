@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.rename
         /// </summary>
-        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string? channel, string? name)
+        public async ValueTask<ConversationsRenameResponse> ConversationsRenameAsync(string? channel, string? name)
         {
             var p = new ConversationsRenameParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.rename
         /// </summary>
-        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string? channel, string? name, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsRenameResponse> ConversationsRenameAsync(string? channel, string? name, CancellationToken cancellationToken)
         {
             var p = new ConversationsRenameParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.rename
         /// </summary>
-        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(ConversationsRenameParameter parameter)
+        public async ValueTask<ConversationsRenameResponse> ConversationsRenameAsync(ConversationsRenameParameter parameter)
         {
             return await this.SendAsync<ConversationsRenameParameter, ConversationsRenameResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.rename
         /// </summary>
-        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(ConversationsRenameParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsRenameResponse> ConversationsRenameAsync(ConversationsRenameParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsRenameParameter, ConversationsRenameResponse>(parameter, cancellationToken);
         }

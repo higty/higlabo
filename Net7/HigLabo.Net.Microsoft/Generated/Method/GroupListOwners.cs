@@ -168,7 +168,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListOwnersResponse> GroupListOwnersAsync()
+        public async ValueTask<GroupListOwnersResponse> GroupListOwnersAsync()
         {
             var p = new GroupListOwnersParameter();
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(p, CancellationToken.None);
@@ -176,7 +176,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListOwnersResponse> GroupListOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListOwnersResponse> GroupListOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListOwnersParameter();
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(p, cancellationToken);
@@ -184,14 +184,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListOwnersResponse> GroupListOwnersAsync(GroupListOwnersParameter parameter)
+        public async ValueTask<GroupListOwnersResponse> GroupListOwnersAsync(GroupListOwnersParameter parameter)
         {
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListOwnersResponse> GroupListOwnersAsync(GroupListOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListOwnersResponse> GroupListOwnersAsync(GroupListOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(parameter, cancellationToken);
         }

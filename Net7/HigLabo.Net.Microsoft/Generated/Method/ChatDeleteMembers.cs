@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteMembersResponse> ChatDeleteMembersAsync()
+        public async ValueTask<ChatDeleteMembersResponse> ChatDeleteMembersAsync()
         {
             var p = new ChatDeleteMembersParameter();
             return await this.SendAsync<ChatDeleteMembersParameter, ChatDeleteMembersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteMembersResponse> ChatDeleteMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteMembersResponse> ChatDeleteMembersAsync(CancellationToken cancellationToken)
         {
             var p = new ChatDeleteMembersParameter();
             return await this.SendAsync<ChatDeleteMembersParameter, ChatDeleteMembersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteMembersResponse> ChatDeleteMembersAsync(ChatDeleteMembersParameter parameter)
+        public async ValueTask<ChatDeleteMembersResponse> ChatDeleteMembersAsync(ChatDeleteMembersParameter parameter)
         {
             return await this.SendAsync<ChatDeleteMembersParameter, ChatDeleteMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteMembersResponse> ChatDeleteMembersAsync(ChatDeleteMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteMembersResponse> ChatDeleteMembersAsync(ChatDeleteMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatDeleteMembersParameter, ChatDeleteMembersResponse>(parameter, cancellationToken);
         }

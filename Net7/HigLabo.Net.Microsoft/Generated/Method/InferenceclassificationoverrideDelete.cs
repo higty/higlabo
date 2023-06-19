@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync()
+        public async ValueTask<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync()
         {
             var p = new InferenceclassificationoverrideDeleteParameter();
             return await this.SendAsync<InferenceclassificationoverrideDeleteParameter, InferenceclassificationoverrideDeleteResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new InferenceclassificationoverrideDeleteParameter();
             return await this.SendAsync<InferenceclassificationoverrideDeleteParameter, InferenceclassificationoverrideDeleteResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync(InferenceclassificationoverrideDeleteParameter parameter)
+        public async ValueTask<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync(InferenceclassificationoverrideDeleteParameter parameter)
         {
             return await this.SendAsync<InferenceclassificationoverrideDeleteParameter, InferenceclassificationoverrideDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync(InferenceclassificationoverrideDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InferenceclassificationoverrideDeleteResponse> InferenceclassificationoverrideDeleteAsync(InferenceclassificationoverrideDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InferenceclassificationoverrideDeleteParameter, InferenceclassificationoverrideDeleteResponse>(parameter, cancellationToken);
         }

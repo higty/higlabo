@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync()
+        public async ValueTask<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync()
         {
             var p = new TokenissuancePolicyListAppliestoParameter();
             return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
             var p = new TokenissuancePolicyListAppliestoParameter();
             return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(TokenissuancePolicyListAppliestoParameter parameter)
+        public async ValueTask<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(TokenissuancePolicyListAppliestoParameter parameter)
         {
             return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(TokenissuancePolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(TokenissuancePolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(parameter, cancellationToken);
         }

@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync()
+        public async ValueTask<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync()
         {
             var p = new X509certificateauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationUpdateParameter, X509certificateauthenticationmethodConfigurationUpdateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new X509certificateauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationUpdateParameter, X509certificateauthenticationmethodConfigurationUpdateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync(X509certificateauthenticationmethodConfigurationUpdateParameter parameter)
+        public async ValueTask<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync(X509certificateauthenticationmethodConfigurationUpdateParameter parameter)
         {
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationUpdateParameter, X509certificateauthenticationmethodConfigurationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync(X509certificateauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<X509certificateauthenticationmethodConfigurationUpdateResponse> X509certificateauthenticationmethodConfigurationUpdateAsync(X509certificateauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationUpdateParameter, X509certificateauthenticationmethodConfigurationUpdateResponse>(parameter, cancellationToken);
         }

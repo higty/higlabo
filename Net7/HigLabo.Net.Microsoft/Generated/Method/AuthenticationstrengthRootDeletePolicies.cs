@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync()
+        public async ValueTask<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync()
         {
             var p = new AuthenticationstrengthRootDeletePoliciesParameter();
             return await this.SendAsync<AuthenticationstrengthRootDeletePoliciesParameter, AuthenticationstrengthRootDeletePoliciesResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationstrengthRootDeletePoliciesParameter();
             return await this.SendAsync<AuthenticationstrengthRootDeletePoliciesParameter, AuthenticationstrengthRootDeletePoliciesResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync(AuthenticationstrengthRootDeletePoliciesParameter parameter)
+        public async ValueTask<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync(AuthenticationstrengthRootDeletePoliciesParameter parameter)
         {
             return await this.SendAsync<AuthenticationstrengthRootDeletePoliciesParameter, AuthenticationstrengthRootDeletePoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync(AuthenticationstrengthRootDeletePoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthRootDeletePoliciesResponse> AuthenticationstrengthRootDeletePoliciesAsync(AuthenticationstrengthRootDeletePoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthRootDeletePoliciesParameter, AuthenticationstrengthRootDeletePoliciesResponse>(parameter, cancellationToken);
         }

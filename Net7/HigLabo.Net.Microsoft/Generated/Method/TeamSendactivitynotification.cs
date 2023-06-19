@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync()
+        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync()
         {
             var p = new TeamSendactivitynotificationParameter();
             return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(CancellationToken cancellationToken)
         {
             var p = new TeamSendactivitynotificationParameter();
             return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(TeamSendactivitynotificationParameter parameter)
+        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(TeamSendactivitynotificationParameter parameter)
         {
             return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(TeamSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(TeamSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(parameter, cancellationToken);
         }

@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/rtm.connect
         /// </summary>
-        public async Task<RtmConnectResponse> RtmConnectAsync()
+        public async ValueTask<RtmConnectResponse> RtmConnectAsync()
         {
             var p = new RtmConnectParameter();
             return await this.SendAsync<RtmConnectParameter, RtmConnectResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/rtm.connect
         /// </summary>
-        public async Task<RtmConnectResponse> RtmConnectAsync(CancellationToken cancellationToken)
+        public async ValueTask<RtmConnectResponse> RtmConnectAsync(CancellationToken cancellationToken)
         {
             var p = new RtmConnectParameter();
             return await this.SendAsync<RtmConnectParameter, RtmConnectResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/rtm.connect
         /// </summary>
-        public async Task<RtmConnectResponse> RtmConnectAsync(RtmConnectParameter parameter)
+        public async ValueTask<RtmConnectResponse> RtmConnectAsync(RtmConnectParameter parameter)
         {
             return await this.SendAsync<RtmConnectParameter, RtmConnectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/rtm.connect
         /// </summary>
-        public async Task<RtmConnectResponse> RtmConnectAsync(RtmConnectParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RtmConnectResponse> RtmConnectAsync(RtmConnectParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RtmConnectParameter, RtmConnectResponse>(parameter, cancellationToken);
         }

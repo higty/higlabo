@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.profile.get
         /// </summary>
-        public async Task<UsersProfileGetResponse> UsersProfileGetAsync()
+        public async ValueTask<UsersProfileGetResponse> UsersProfileGetAsync()
         {
             var p = new UsersProfileGetParameter();
             return await this.SendAsync<UsersProfileGetParameter, UsersProfileGetResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.profile.get
         /// </summary>
-        public async Task<UsersProfileGetResponse> UsersProfileGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersProfileGetResponse> UsersProfileGetAsync(CancellationToken cancellationToken)
         {
             var p = new UsersProfileGetParameter();
             return await this.SendAsync<UsersProfileGetParameter, UsersProfileGetResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.profile.get
         /// </summary>
-        public async Task<UsersProfileGetResponse> UsersProfileGetAsync(UsersProfileGetParameter parameter)
+        public async ValueTask<UsersProfileGetResponse> UsersProfileGetAsync(UsersProfileGetParameter parameter)
         {
             return await this.SendAsync<UsersProfileGetParameter, UsersProfileGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.profile.get
         /// </summary>
-        public async Task<UsersProfileGetResponse> UsersProfileGetAsync(UsersProfileGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersProfileGetResponse> UsersProfileGetAsync(UsersProfileGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersProfileGetParameter, UsersProfileGetResponse>(parameter, cancellationToken);
         }

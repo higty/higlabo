@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync()
+        public async ValueTask<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync()
         {
             var p = new ApplicationPostTokenissuancepoliciesParameter();
             return await this.SendAsync<ApplicationPostTokenissuancepoliciesParameter, ApplicationPostTokenissuancepoliciesResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationPostTokenissuancepoliciesParameter();
             return await this.SendAsync<ApplicationPostTokenissuancepoliciesParameter, ApplicationPostTokenissuancepoliciesResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync(ApplicationPostTokenissuancepoliciesParameter parameter)
+        public async ValueTask<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync(ApplicationPostTokenissuancepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationPostTokenissuancepoliciesParameter, ApplicationPostTokenissuancepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync(ApplicationPostTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostTokenissuancepoliciesResponse> ApplicationPostTokenissuancepoliciesAsync(ApplicationPostTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationPostTokenissuancepoliciesParameter, ApplicationPostTokenissuancepoliciesResponse>(parameter, cancellationToken);
         }

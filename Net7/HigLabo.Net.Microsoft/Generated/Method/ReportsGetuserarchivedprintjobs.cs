@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync()
+        public async ValueTask<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync()
         {
             var p = new ReportsGetUserarchivedprintjobsParameter();
             return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportsGetUserarchivedprintjobsParameter();
             return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(ReportsGetUserarchivedprintjobsParameter parameter)
+        public async ValueTask<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(ReportsGetUserarchivedprintjobsParameter parameter)
         {
             return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(ReportsGetUserarchivedprintjobsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(ReportsGetUserarchivedprintjobsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(parameter, cancellationToken);
         }

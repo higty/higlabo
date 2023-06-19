@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync()
+        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync()
         {
             var p = new AccesspackageDeleteIncompatibleAccesspackageParameter();
             return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageDeleteIncompatibleAccesspackageParameter();
             return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(AccesspackageDeleteIncompatibleAccesspackageParameter parameter)
+        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(AccesspackageDeleteIncompatibleAccesspackageParameter parameter)
         {
             return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(AccesspackageDeleteIncompatibleAccesspackageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(AccesspackageDeleteIncompatibleAccesspackageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(parameter, cancellationToken);
         }

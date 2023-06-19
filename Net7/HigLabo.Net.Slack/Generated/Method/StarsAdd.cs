@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.add
         /// </summary>
-        public async Task<StarsAddResponse> StarsAddAsync()
+        public async ValueTask<StarsAddResponse> StarsAddAsync()
         {
             var p = new StarsAddParameter();
             return await this.SendAsync<StarsAddParameter, StarsAddResponse>(p, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.add
         /// </summary>
-        public async Task<StarsAddResponse> StarsAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<StarsAddResponse> StarsAddAsync(CancellationToken cancellationToken)
         {
             var p = new StarsAddParameter();
             return await this.SendAsync<StarsAddParameter, StarsAddResponse>(p, cancellationToken);
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.add
         /// </summary>
-        public async Task<StarsAddResponse> StarsAddAsync(StarsAddParameter parameter)
+        public async ValueTask<StarsAddResponse> StarsAddAsync(StarsAddParameter parameter)
         {
             return await this.SendAsync<StarsAddParameter, StarsAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/stars.add
         /// </summary>
-        public async Task<StarsAddResponse> StarsAddAsync(StarsAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<StarsAddResponse> StarsAddAsync(StarsAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<StarsAddParameter, StarsAddResponse>(parameter, cancellationToken);
         }

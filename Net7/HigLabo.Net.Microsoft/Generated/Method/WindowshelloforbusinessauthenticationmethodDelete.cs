@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync()
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync()
         {
             var p = new WindowshelloforbusinessauthenticationmethodDeleteParameter();
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodDeleteParameter, WindowshelloforbusinessauthenticationmethodDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new WindowshelloforbusinessauthenticationmethodDeleteParameter();
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodDeleteParameter, WindowshelloforbusinessauthenticationmethodDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync(WindowshelloforbusinessauthenticationmethodDeleteParameter parameter)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync(WindowshelloforbusinessauthenticationmethodDeleteParameter parameter)
         {
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodDeleteParameter, WindowshelloforbusinessauthenticationmethodDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync(WindowshelloforbusinessauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodDeleteResponse> WindowshelloforbusinessauthenticationmethodDeleteAsync(WindowshelloforbusinessauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodDeleteParameter, WindowshelloforbusinessauthenticationmethodDeleteResponse>(parameter, cancellationToken);
         }

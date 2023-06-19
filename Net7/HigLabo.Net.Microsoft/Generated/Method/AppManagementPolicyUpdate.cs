@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync()
+        public async ValueTask<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync()
         {
             var p = new AppManagementPolicyUpdateParameter();
             return await this.SendAsync<AppManagementPolicyUpdateParameter, AppManagementPolicyUpdateResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AppManagementPolicyUpdateParameter();
             return await this.SendAsync<AppManagementPolicyUpdateParameter, AppManagementPolicyUpdateResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync(AppManagementPolicyUpdateParameter parameter)
+        public async ValueTask<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync(AppManagementPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AppManagementPolicyUpdateParameter, AppManagementPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync(AppManagementPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyUpdateResponse> AppManagementPolicyUpdateAsync(AppManagementPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyUpdateParameter, AppManagementPolicyUpdateResponse>(parameter, cancellationToken);
         }

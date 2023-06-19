@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.files
         /// </summary>
-        public async Task<SearchFilesResponse> SearchFilesAsync(string? query)
+        public async ValueTask<SearchFilesResponse> SearchFilesAsync(string? query)
         {
             var p = new SearchFilesParameter();
             p.Query = query;
@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.files
         /// </summary>
-        public async Task<SearchFilesResponse> SearchFilesAsync(string? query, CancellationToken cancellationToken)
+        public async ValueTask<SearchFilesResponse> SearchFilesAsync(string? query, CancellationToken cancellationToken)
         {
             var p = new SearchFilesParameter();
             p.Query = query;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.files
         /// </summary>
-        public async Task<SearchFilesResponse> SearchFilesAsync(SearchFilesParameter parameter)
+        public async ValueTask<SearchFilesResponse> SearchFilesAsync(SearchFilesParameter parameter)
         {
             return await this.SendAsync<SearchFilesParameter, SearchFilesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/search.files
         /// </summary>
-        public async Task<SearchFilesResponse> SearchFilesAsync(SearchFilesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SearchFilesResponse> SearchFilesAsync(SearchFilesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SearchFilesParameter, SearchFilesResponse>(parameter, cancellationToken);
         }

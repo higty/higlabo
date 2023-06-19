@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchResponse> ChannelPatchAsync()
+        public async ValueTask<ChannelPatchResponse> ChannelPatchAsync()
         {
             var p = new ChannelPatchParameter();
             return await this.SendAsync<ChannelPatchParameter, ChannelPatchResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchResponse> ChannelPatchAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelPatchResponse> ChannelPatchAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelPatchParameter();
             return await this.SendAsync<ChannelPatchParameter, ChannelPatchResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchResponse> ChannelPatchAsync(ChannelPatchParameter parameter)
+        public async ValueTask<ChannelPatchResponse> ChannelPatchAsync(ChannelPatchParameter parameter)
         {
             return await this.SendAsync<ChannelPatchParameter, ChannelPatchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchResponse> ChannelPatchAsync(ChannelPatchParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelPatchResponse> ChannelPatchAsync(ChannelPatchParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelPatchParameter, ChannelPatchResponse>(parameter, cancellationToken);
         }

@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync()
+        public async ValueTask<PlannerUserListTasksResponse> PlannerUserListTasksAsync()
         {
             var p = new PlannerUserListTasksParameter();
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(p, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerUserListTasksResponse> PlannerUserListTasksAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerUserListTasksParameter();
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(p, cancellationToken);
@@ -106,14 +106,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter)
+        public async ValueTask<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter)
         {
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, cancellationToken);
         }

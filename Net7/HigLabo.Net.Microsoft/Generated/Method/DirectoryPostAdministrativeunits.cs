@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-post-administrativeunits?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync()
+        public async ValueTask<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync()
         {
             var p = new DirectoryPostAdministrativeunitsParameter();
             return await this.SendAsync<DirectoryPostAdministrativeunitsParameter, DirectoryPostAdministrativeunitsResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-post-administrativeunits?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryPostAdministrativeunitsParameter();
             return await this.SendAsync<DirectoryPostAdministrativeunitsParameter, DirectoryPostAdministrativeunitsResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-post-administrativeunits?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync(DirectoryPostAdministrativeunitsParameter parameter)
+        public async ValueTask<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync(DirectoryPostAdministrativeunitsParameter parameter)
         {
             return await this.SendAsync<DirectoryPostAdministrativeunitsParameter, DirectoryPostAdministrativeunitsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-post-administrativeunits?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync(DirectoryPostAdministrativeunitsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryPostAdministrativeunitsResponse> DirectoryPostAdministrativeunitsAsync(DirectoryPostAdministrativeunitsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryPostAdministrativeunitsParameter, DirectoryPostAdministrativeunitsResponse>(parameter, cancellationToken);
         }

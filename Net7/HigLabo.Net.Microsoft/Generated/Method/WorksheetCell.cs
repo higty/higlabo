@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-cell?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCellResponse> WorksheetCellAsync()
+        public async ValueTask<WorksheetCellResponse> WorksheetCellAsync()
         {
             var p = new WorksheetCellParameter();
             return await this.SendAsync<WorksheetCellParameter, WorksheetCellResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-cell?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCellResponse> WorksheetCellAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetCellResponse> WorksheetCellAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetCellParameter();
             return await this.SendAsync<WorksheetCellParameter, WorksheetCellResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-cell?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCellResponse> WorksheetCellAsync(WorksheetCellParameter parameter)
+        public async ValueTask<WorksheetCellResponse> WorksheetCellAsync(WorksheetCellParameter parameter)
         {
             return await this.SendAsync<WorksheetCellParameter, WorksheetCellResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-cell?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCellResponse> WorksheetCellAsync(WorksheetCellParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetCellResponse> WorksheetCellAsync(WorksheetCellParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetCellParameter, WorksheetCellResponse>(parameter, cancellationToken);
         }

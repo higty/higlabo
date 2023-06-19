@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.archive
         /// </summary>
-        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string? channel)
+        public async ValueTask<ConversationsArchiveResponse> ConversationsArchiveAsync(string? channel)
         {
             var p = new ConversationsArchiveParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.archive
         /// </summary>
-        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsArchiveResponse> ConversationsArchiveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsArchiveParameter();
             p.Channel = channel;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.archive
         /// </summary>
-        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(ConversationsArchiveParameter parameter)
+        public async ValueTask<ConversationsArchiveResponse> ConversationsArchiveAsync(ConversationsArchiveParameter parameter)
         {
             return await this.SendAsync<ConversationsArchiveParameter, ConversationsArchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.archive
         /// </summary>
-        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(ConversationsArchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsArchiveResponse> ConversationsArchiveAsync(ConversationsArchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsArchiveParameter, ConversationsArchiveResponse>(parameter, cancellationToken);
         }

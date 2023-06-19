@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeclineResponse> EventDeclineAsync()
+        public async ValueTask<EventDeclineResponse> EventDeclineAsync()
         {
             var p = new EventDeclineParameter();
             return await this.SendAsync<EventDeclineParameter, EventDeclineResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeclineResponse> EventDeclineAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventDeclineResponse> EventDeclineAsync(CancellationToken cancellationToken)
         {
             var p = new EventDeclineParameter();
             return await this.SendAsync<EventDeclineParameter, EventDeclineResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeclineResponse> EventDeclineAsync(EventDeclineParameter parameter)
+        public async ValueTask<EventDeclineResponse> EventDeclineAsync(EventDeclineParameter parameter)
         {
             return await this.SendAsync<EventDeclineParameter, EventDeclineResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeclineResponse> EventDeclineAsync(EventDeclineParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventDeclineResponse> EventDeclineAsync(EventDeclineParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventDeclineParameter, EventDeclineResponse>(parameter, cancellationToken);
         }

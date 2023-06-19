@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRejectResponse> CallRejectAsync()
+        public async ValueTask<CallRejectResponse> CallRejectAsync()
         {
             var p = new CallRejectParameter();
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRejectResponse> CallRejectAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallRejectResponse> CallRejectAsync(CancellationToken cancellationToken)
         {
             var p = new CallRejectParameter();
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRejectResponse> CallRejectAsync(CallRejectParameter parameter)
+        public async ValueTask<CallRejectResponse> CallRejectAsync(CallRejectParameter parameter)
         {
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRejectResponse> CallRejectAsync(CallRejectParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallRejectResponse> CallRejectAsync(CallRejectParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(parameter, cancellationToken);
         }

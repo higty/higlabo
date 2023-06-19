@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-delete-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync()
+        public async ValueTask<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync()
         {
             var p = new InternetexplorermodeDeleteSitelistsParameter();
             return await this.SendAsync<InternetexplorermodeDeleteSitelistsParameter, InternetexplorermodeDeleteSitelistsResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-delete-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync(CancellationToken cancellationToken)
+        public async ValueTask<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync(CancellationToken cancellationToken)
         {
             var p = new InternetexplorermodeDeleteSitelistsParameter();
             return await this.SendAsync<InternetexplorermodeDeleteSitelistsParameter, InternetexplorermodeDeleteSitelistsResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-delete-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync(InternetexplorermodeDeleteSitelistsParameter parameter)
+        public async ValueTask<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync(InternetexplorermodeDeleteSitelistsParameter parameter)
         {
             return await this.SendAsync<InternetexplorermodeDeleteSitelistsParameter, InternetexplorermodeDeleteSitelistsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-delete-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync(InternetexplorermodeDeleteSitelistsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InternetexplorermodeDeleteSitelistsResponse> InternetexplorermodeDeleteSitelistsAsync(InternetexplorermodeDeleteSitelistsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InternetexplorermodeDeleteSitelistsParameter, InternetexplorermodeDeleteSitelistsResponse>(parameter, cancellationToken);
         }

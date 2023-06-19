@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync()
+        public async ValueTask<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync()
         {
             var p = new EventmessagePostAttachmentsParameter();
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new EventmessagePostAttachmentsParameter();
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(EventmessagePostAttachmentsParameter parameter)
+        public async ValueTask<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(EventmessagePostAttachmentsParameter parameter)
         {
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(EventmessagePostAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(EventmessagePostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(parameter, cancellationToken);
         }

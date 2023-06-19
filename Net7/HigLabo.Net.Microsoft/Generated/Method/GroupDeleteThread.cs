@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteThreadResponse> GroupDeleteThreadAsync()
+        public async ValueTask<GroupDeleteThreadResponse> GroupDeleteThreadAsync()
         {
             var p = new GroupDeleteThreadParameter();
             return await this.SendAsync<GroupDeleteThreadParameter, GroupDeleteThreadResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteThreadResponse> GroupDeleteThreadAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteThreadResponse> GroupDeleteThreadAsync(CancellationToken cancellationToken)
         {
             var p = new GroupDeleteThreadParameter();
             return await this.SendAsync<GroupDeleteThreadParameter, GroupDeleteThreadResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteThreadResponse> GroupDeleteThreadAsync(GroupDeleteThreadParameter parameter)
+        public async ValueTask<GroupDeleteThreadResponse> GroupDeleteThreadAsync(GroupDeleteThreadParameter parameter)
         {
             return await this.SendAsync<GroupDeleteThreadParameter, GroupDeleteThreadResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteThreadResponse> GroupDeleteThreadAsync(GroupDeleteThreadParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteThreadResponse> GroupDeleteThreadAsync(GroupDeleteThreadParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeleteThreadParameter, GroupDeleteThreadResponse>(parameter, cancellationToken);
         }

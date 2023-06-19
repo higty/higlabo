@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageDeleteResponse> PageDeleteAsync()
+        public async ValueTask<PageDeleteResponse> PageDeleteAsync()
         {
             var p = new PageDeleteParameter();
             return await this.SendAsync<PageDeleteParameter, PageDeleteResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageDeleteResponse> PageDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PageDeleteResponse> PageDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PageDeleteParameter();
             return await this.SendAsync<PageDeleteParameter, PageDeleteResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageDeleteResponse> PageDeleteAsync(PageDeleteParameter parameter)
+        public async ValueTask<PageDeleteResponse> PageDeleteAsync(PageDeleteParameter parameter)
         {
             return await this.SendAsync<PageDeleteParameter, PageDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageDeleteResponse> PageDeleteAsync(PageDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PageDeleteResponse> PageDeleteAsync(PageDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PageDeleteParameter, PageDeleteResponse>(parameter, cancellationToken);
         }

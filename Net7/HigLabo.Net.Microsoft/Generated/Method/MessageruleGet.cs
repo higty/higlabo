@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleGetResponse> MessageruleGetAsync()
+        public async ValueTask<MessageruleGetResponse> MessageruleGetAsync()
         {
             var p = new MessageruleGetParameter();
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleGetResponse> MessageruleGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageruleGetResponse> MessageruleGetAsync(CancellationToken cancellationToken)
         {
             var p = new MessageruleGetParameter();
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleGetResponse> MessageruleGetAsync(MessageruleGetParameter parameter)
+        public async ValueTask<MessageruleGetResponse> MessageruleGetAsync(MessageruleGetParameter parameter)
         {
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleGetResponse> MessageruleGetAsync(MessageruleGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageruleGetResponse> MessageruleGetAsync(MessageruleGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(parameter, cancellationToken);
         }

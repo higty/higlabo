@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync()
+        public async ValueTask<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync()
         {
             var p = new PhoneauthenticationmethodDeleteParameter();
             return await this.SendAsync<PhoneauthenticationmethodDeleteParameter, PhoneauthenticationmethodDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PhoneauthenticationmethodDeleteParameter();
             return await this.SendAsync<PhoneauthenticationmethodDeleteParameter, PhoneauthenticationmethodDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync(PhoneauthenticationmethodDeleteParameter parameter)
+        public async ValueTask<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync(PhoneauthenticationmethodDeleteParameter parameter)
         {
             return await this.SendAsync<PhoneauthenticationmethodDeleteParameter, PhoneauthenticationmethodDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync(PhoneauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodDeleteResponse> PhoneauthenticationmethodDeleteAsync(PhoneauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PhoneauthenticationmethodDeleteParameter, PhoneauthenticationmethodDeleteResponse>(parameter, cancellationToken);
         }

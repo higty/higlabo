@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantDeleteResponse> ParticipantDeleteAsync()
+        public async ValueTask<ParticipantDeleteResponse> ParticipantDeleteAsync()
         {
             var p = new ParticipantDeleteParameter();
             return await this.SendAsync<ParticipantDeleteParameter, ParticipantDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantDeleteResponse> ParticipantDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ParticipantDeleteResponse> ParticipantDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ParticipantDeleteParameter();
             return await this.SendAsync<ParticipantDeleteParameter, ParticipantDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantDeleteResponse> ParticipantDeleteAsync(ParticipantDeleteParameter parameter)
+        public async ValueTask<ParticipantDeleteResponse> ParticipantDeleteAsync(ParticipantDeleteParameter parameter)
         {
             return await this.SendAsync<ParticipantDeleteParameter, ParticipantDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantDeleteResponse> ParticipantDeleteAsync(ParticipantDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ParticipantDeleteResponse> ParticipantDeleteAsync(ParticipantDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ParticipantDeleteParameter, ParticipantDeleteResponse>(parameter, cancellationToken);
         }

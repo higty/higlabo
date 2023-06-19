@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync()
+        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync()
         {
             var p = new ColumndefinitionUpdateParameter();
             return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(p, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ColumndefinitionUpdateParameter();
             return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(p, cancellationToken);
@@ -106,14 +106,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(ColumndefinitionUpdateParameter parameter)
+        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(ColumndefinitionUpdateParameter parameter)
         {
             return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(ColumndefinitionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(ColumndefinitionUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(parameter, cancellationToken);
         }

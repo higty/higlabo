@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-internalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync()
+        public async ValueTask<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync()
         {
             var p = new ConnectedorganizationPostInternalsponsorsParameter();
             return await this.SendAsync<ConnectedorganizationPostInternalsponsorsParameter, ConnectedorganizationPostInternalsponsorsResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-internalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync(CancellationToken cancellationToken)
         {
             var p = new ConnectedorganizationPostInternalsponsorsParameter();
             return await this.SendAsync<ConnectedorganizationPostInternalsponsorsParameter, ConnectedorganizationPostInternalsponsorsResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-internalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync(ConnectedorganizationPostInternalsponsorsParameter parameter)
+        public async ValueTask<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync(ConnectedorganizationPostInternalsponsorsParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationPostInternalsponsorsParameter, ConnectedorganizationPostInternalsponsorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-internalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync(ConnectedorganizationPostInternalsponsorsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationPostInternalsponsorsResponse> ConnectedorganizationPostInternalsponsorsAsync(ConnectedorganizationPostInternalsponsorsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConnectedorganizationPostInternalsponsorsParameter, ConnectedorganizationPostInternalsponsorsResponse>(parameter, cancellationToken);
         }

@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync()
+        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync()
         {
             var p = new SecurityEdiscoverycaseGetParameter();
             return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseGetParameter();
             return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(SecurityEdiscoverycaseGetParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(SecurityEdiscoverycaseGetParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(SecurityEdiscoverycaseGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(SecurityEdiscoverycaseGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(parameter, cancellationToken);
         }

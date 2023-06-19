@@ -134,7 +134,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetConversationResponse> GroupGetConversationAsync()
+        public async ValueTask<GroupGetConversationResponse> GroupGetConversationAsync()
         {
             var p = new GroupGetConversationParameter();
             return await this.SendAsync<GroupGetConversationParameter, GroupGetConversationResponse>(p, CancellationToken.None);
@@ -142,7 +142,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetConversationResponse> GroupGetConversationAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupGetConversationResponse> GroupGetConversationAsync(CancellationToken cancellationToken)
         {
             var p = new GroupGetConversationParameter();
             return await this.SendAsync<GroupGetConversationParameter, GroupGetConversationResponse>(p, cancellationToken);
@@ -150,14 +150,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetConversationResponse> GroupGetConversationAsync(GroupGetConversationParameter parameter)
+        public async ValueTask<GroupGetConversationResponse> GroupGetConversationAsync(GroupGetConversationParameter parameter)
         {
             return await this.SendAsync<GroupGetConversationParameter, GroupGetConversationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetConversationResponse> GroupGetConversationAsync(GroupGetConversationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupGetConversationResponse> GroupGetConversationAsync(GroupGetConversationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupGetConversationParameter, GroupGetConversationResponse>(parameter, cancellationToken);
         }

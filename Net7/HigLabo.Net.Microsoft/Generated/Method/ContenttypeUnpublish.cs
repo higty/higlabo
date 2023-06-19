@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync()
+        public async ValueTask<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync()
         {
             var p = new ContentTypeUnpublishParameter();
             return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeUnpublishParameter();
             return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(ContentTypeUnpublishParameter parameter)
+        public async ValueTask<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(ContentTypeUnpublishParameter parameter)
         {
             return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(ContentTypeUnpublishParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(ContentTypeUnpublishParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(parameter, cancellationToken);
         }

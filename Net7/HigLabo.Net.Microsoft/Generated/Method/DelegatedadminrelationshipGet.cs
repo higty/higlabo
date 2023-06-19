@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync()
+        public async ValueTask<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync()
         {
             var p = new DelegatedadminrelationshipGetParameter();
             return await this.SendAsync<DelegatedadminrelationshipGetParameter, DelegatedadminrelationshipGetResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadminrelationshipGetParameter();
             return await this.SendAsync<DelegatedadminrelationshipGetParameter, DelegatedadminrelationshipGetResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync(DelegatedadminrelationshipGetParameter parameter)
+        public async ValueTask<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync(DelegatedadminrelationshipGetParameter parameter)
         {
             return await this.SendAsync<DelegatedadminrelationshipGetParameter, DelegatedadminrelationshipGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync(DelegatedadminrelationshipGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipGetResponse> DelegatedadminrelationshipGetAsync(DelegatedadminrelationshipGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminrelationshipGetParameter, DelegatedadminrelationshipGetResponse>(parameter, cancellationToken);
         }

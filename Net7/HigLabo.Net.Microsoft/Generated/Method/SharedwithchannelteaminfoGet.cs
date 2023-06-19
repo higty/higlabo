@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync()
+        public async ValueTask<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync()
         {
             var p = new SharedwithchannelteaminfoGetParameter();
             return await this.SendAsync<SharedwithchannelteaminfoGetParameter, SharedwithchannelteaminfoGetResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync(CancellationToken cancellationToken)
         {
             var p = new SharedwithchannelteaminfoGetParameter();
             return await this.SendAsync<SharedwithchannelteaminfoGetParameter, SharedwithchannelteaminfoGetResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync(SharedwithchannelteaminfoGetParameter parameter)
+        public async ValueTask<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync(SharedwithchannelteaminfoGetParameter parameter)
         {
             return await this.SendAsync<SharedwithchannelteaminfoGetParameter, SharedwithchannelteaminfoGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync(SharedwithchannelteaminfoGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoGetResponse> SharedwithchannelteaminfoGetAsync(SharedwithchannelteaminfoGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SharedwithchannelteaminfoGetParameter, SharedwithchannelteaminfoGetResponse>(parameter, cancellationToken);
         }

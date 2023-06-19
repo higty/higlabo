@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageForwardResponse> MessageForwardAsync()
+        public async ValueTask<MessageForwardResponse> MessageForwardAsync()
         {
             var p = new MessageForwardParameter();
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageForwardResponse> MessageForwardAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageForwardResponse> MessageForwardAsync(CancellationToken cancellationToken)
         {
             var p = new MessageForwardParameter();
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageForwardResponse> MessageForwardAsync(MessageForwardParameter parameter)
+        public async ValueTask<MessageForwardResponse> MessageForwardAsync(MessageForwardParameter parameter)
         {
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageForwardResponse> MessageForwardAsync(MessageForwardParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageForwardResponse> MessageForwardAsync(MessageForwardParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(parameter, cancellationToken);
         }

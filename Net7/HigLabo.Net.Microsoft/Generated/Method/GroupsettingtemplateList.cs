@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsettingtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync()
+        public async ValueTask<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync()
         {
             var p = new GroupsettingtemplateListParameter();
             return await this.SendAsync<GroupsettingtemplateListParameter, GroupsettingtemplateListResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsettingtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync(CancellationToken cancellationToken)
         {
             var p = new GroupsettingtemplateListParameter();
             return await this.SendAsync<GroupsettingtemplateListParameter, GroupsettingtemplateListResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsettingtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync(GroupsettingtemplateListParameter parameter)
+        public async ValueTask<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync(GroupsettingtemplateListParameter parameter)
         {
             return await this.SendAsync<GroupsettingtemplateListParameter, GroupsettingtemplateListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsettingtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync(GroupsettingtemplateListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupsettingtemplateListResponse> GroupsettingtemplateListAsync(GroupsettingtemplateListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupsettingtemplateListParameter, GroupsettingtemplateListResponse>(parameter, cancellationToken);
         }

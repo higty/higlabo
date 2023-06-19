@@ -128,7 +128,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationGetResponse> OrganizationGetAsync()
+        public async ValueTask<OrganizationGetResponse> OrganizationGetAsync()
         {
             var p = new OrganizationGetParameter();
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(p, CancellationToken.None);
@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationGetResponse> OrganizationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationGetResponse> OrganizationGetAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationGetParameter();
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(p, cancellationToken);
@@ -144,14 +144,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationGetResponse> OrganizationGetAsync(OrganizationGetParameter parameter)
+        public async ValueTask<OrganizationGetResponse> OrganizationGetAsync(OrganizationGetParameter parameter)
         {
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationGetResponse> OrganizationGetAsync(OrganizationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationGetResponse> OrganizationGetAsync(OrganizationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(parameter, cancellationToken);
         }

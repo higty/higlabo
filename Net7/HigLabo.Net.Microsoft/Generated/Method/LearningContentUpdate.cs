@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentUpdateResponse> LearningContentUpdateAsync()
+        public async ValueTask<LearningContentUpdateResponse> LearningContentUpdateAsync()
         {
             var p = new LearningContentUpdateParameter();
             return await this.SendAsync<LearningContentUpdateParameter, LearningContentUpdateResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentUpdateResponse> LearningContentUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningContentUpdateResponse> LearningContentUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new LearningContentUpdateParameter();
             return await this.SendAsync<LearningContentUpdateParameter, LearningContentUpdateResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentUpdateResponse> LearningContentUpdateAsync(LearningContentUpdateParameter parameter)
+        public async ValueTask<LearningContentUpdateResponse> LearningContentUpdateAsync(LearningContentUpdateParameter parameter)
         {
             return await this.SendAsync<LearningContentUpdateParameter, LearningContentUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentUpdateResponse> LearningContentUpdateAsync(LearningContentUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningContentUpdateResponse> LearningContentUpdateAsync(LearningContentUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LearningContentUpdateParameter, LearningContentUpdateResponse>(parameter, cancellationToken);
         }

@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addkey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddkeyResponse> ApplicationAddkeyAsync()
+        public async ValueTask<ApplicationAddkeyResponse> ApplicationAddkeyAsync()
         {
             var p = new ApplicationAddkeyParameter();
             return await this.SendAsync<ApplicationAddkeyParameter, ApplicationAddkeyResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addkey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddkeyResponse> ApplicationAddkeyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationAddkeyResponse> ApplicationAddkeyAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationAddkeyParameter();
             return await this.SendAsync<ApplicationAddkeyParameter, ApplicationAddkeyResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addkey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddkeyResponse> ApplicationAddkeyAsync(ApplicationAddkeyParameter parameter)
+        public async ValueTask<ApplicationAddkeyResponse> ApplicationAddkeyAsync(ApplicationAddkeyParameter parameter)
         {
             return await this.SendAsync<ApplicationAddkeyParameter, ApplicationAddkeyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addkey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddkeyResponse> ApplicationAddkeyAsync(ApplicationAddkeyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationAddkeyResponse> ApplicationAddkeyAsync(ApplicationAddkeyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationAddkeyParameter, ApplicationAddkeyResponse>(parameter, cancellationToken);
         }

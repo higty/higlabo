@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallPlaypromptResponse> CallPlaypromptAsync()
+        public async ValueTask<CallPlaypromptResponse> CallPlaypromptAsync()
         {
             var p = new CallPlaypromptParameter();
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallPlaypromptResponse> CallPlaypromptAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallPlaypromptResponse> CallPlaypromptAsync(CancellationToken cancellationToken)
         {
             var p = new CallPlaypromptParameter();
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallPlaypromptResponse> CallPlaypromptAsync(CallPlaypromptParameter parameter)
+        public async ValueTask<CallPlaypromptResponse> CallPlaypromptAsync(CallPlaypromptParameter parameter)
         {
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallPlaypromptResponse> CallPlaypromptAsync(CallPlaypromptParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallPlaypromptResponse> CallPlaypromptAsync(CallPlaypromptParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(parameter, cancellationToken);
         }

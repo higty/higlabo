@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyResponse> MessageReplyAsync()
+        public async ValueTask<MessageReplyResponse> MessageReplyAsync()
         {
             var p = new MessageReplyParameter();
             return await this.SendAsync<MessageReplyParameter, MessageReplyResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyResponse> MessageReplyAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageReplyResponse> MessageReplyAsync(CancellationToken cancellationToken)
         {
             var p = new MessageReplyParameter();
             return await this.SendAsync<MessageReplyParameter, MessageReplyResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyResponse> MessageReplyAsync(MessageReplyParameter parameter)
+        public async ValueTask<MessageReplyResponse> MessageReplyAsync(MessageReplyParameter parameter)
         {
             return await this.SendAsync<MessageReplyParameter, MessageReplyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyResponse> MessageReplyAsync(MessageReplyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageReplyResponse> MessageReplyAsync(MessageReplyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageReplyParameter, MessageReplyResponse>(parameter, cancellationToken);
         }

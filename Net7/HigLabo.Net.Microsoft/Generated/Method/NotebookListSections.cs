@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionsResponse> NotebookListSectionsAsync()
+        public async ValueTask<NotebookListSectionsResponse> NotebookListSectionsAsync()
         {
             var p = new NotebookListSectionsParameter();
             return await this.SendAsync<NotebookListSectionsParameter, NotebookListSectionsResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionsResponse> NotebookListSectionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookListSectionsResponse> NotebookListSectionsAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookListSectionsParameter();
             return await this.SendAsync<NotebookListSectionsParameter, NotebookListSectionsResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionsResponse> NotebookListSectionsAsync(NotebookListSectionsParameter parameter)
+        public async ValueTask<NotebookListSectionsResponse> NotebookListSectionsAsync(NotebookListSectionsParameter parameter)
         {
             return await this.SendAsync<NotebookListSectionsParameter, NotebookListSectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionsResponse> NotebookListSectionsAsync(NotebookListSectionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookListSectionsResponse> NotebookListSectionsAsync(NotebookListSectionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookListSectionsParameter, NotebookListSectionsResponse>(parameter, cancellationToken);
         }

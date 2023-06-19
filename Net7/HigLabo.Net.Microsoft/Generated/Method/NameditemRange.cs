@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemRangeResponse> NameditemRangeAsync()
+        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync()
         {
             var p = new NameditemRangeParameter();
             return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemRangeResponse> NameditemRangeAsync(CancellationToken cancellationToken)
+        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync(CancellationToken cancellationToken)
         {
             var p = new NameditemRangeParameter();
             return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemRangeResponse> NameditemRangeAsync(NameditemRangeParameter parameter)
+        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync(NameditemRangeParameter parameter)
         {
             return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemRangeResponse> NameditemRangeAsync(NameditemRangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync(NameditemRangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(parameter, cancellationToken);
         }

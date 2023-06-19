@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync()
+        public async ValueTask<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync()
         {
             var p = new ChatTeamsappinstallationUpgradeParameter();
             return await this.SendAsync<ChatTeamsappinstallationUpgradeParameter, ChatTeamsappinstallationUpgradeResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync(CancellationToken cancellationToken)
         {
             var p = new ChatTeamsappinstallationUpgradeParameter();
             return await this.SendAsync<ChatTeamsappinstallationUpgradeParameter, ChatTeamsappinstallationUpgradeResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync(ChatTeamsappinstallationUpgradeParameter parameter)
+        public async ValueTask<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync(ChatTeamsappinstallationUpgradeParameter parameter)
         {
             return await this.SendAsync<ChatTeamsappinstallationUpgradeParameter, ChatTeamsappinstallationUpgradeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync(ChatTeamsappinstallationUpgradeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatTeamsappinstallationUpgradeResponse> ChatTeamsappinstallationUpgradeAsync(ChatTeamsappinstallationUpgradeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatTeamsappinstallationUpgradeParameter, ChatTeamsappinstallationUpgradeResponse>(parameter, cancellationToken);
         }

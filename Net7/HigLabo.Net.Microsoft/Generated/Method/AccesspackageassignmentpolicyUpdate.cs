@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync()
+        public async ValueTask<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync()
         {
             var p = new AccesspackageAssignmentPolicyUpdateParameter();
             return await this.SendAsync<AccesspackageAssignmentPolicyUpdateParameter, AccesspackageAssignmentPolicyUpdateResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageAssignmentPolicyUpdateParameter();
             return await this.SendAsync<AccesspackageAssignmentPolicyUpdateParameter, AccesspackageAssignmentPolicyUpdateResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync(AccesspackageAssignmentPolicyUpdateParameter parameter)
+        public async ValueTask<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync(AccesspackageAssignmentPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentPolicyUpdateParameter, AccesspackageAssignmentPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync(AccesspackageAssignmentPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentPolicyUpdateResponse> AccesspackageAssignmentPolicyUpdateAsync(AccesspackageAssignmentPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageAssignmentPolicyUpdateParameter, AccesspackageAssignmentPolicyUpdateResponse>(parameter, cancellationToken);
         }

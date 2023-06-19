@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync()
+        public async ValueTask<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync()
         {
             var p = new TeamTeamsappinstallationUpgradeParameter();
             return await this.SendAsync<TeamTeamsappinstallationUpgradeParameter, TeamTeamsappinstallationUpgradeResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync(CancellationToken cancellationToken)
         {
             var p = new TeamTeamsappinstallationUpgradeParameter();
             return await this.SendAsync<TeamTeamsappinstallationUpgradeParameter, TeamTeamsappinstallationUpgradeResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync(TeamTeamsappinstallationUpgradeParameter parameter)
+        public async ValueTask<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync(TeamTeamsappinstallationUpgradeParameter parameter)
         {
             return await this.SendAsync<TeamTeamsappinstallationUpgradeParameter, TeamTeamsappinstallationUpgradeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync(TeamTeamsappinstallationUpgradeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamTeamsappinstallationUpgradeResponse> TeamTeamsappinstallationUpgradeAsync(TeamTeamsappinstallationUpgradeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamTeamsappinstallationUpgradeParameter, TeamTeamsappinstallationUpgradeResponse>(parameter, cancellationToken);
         }

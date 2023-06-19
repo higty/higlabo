@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync()
+        public async ValueTask<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync()
         {
             var p = new CalendarGroupListCalendarsParameter();
             return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(p, CancellationToken.None);
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGroupListCalendarsParameter();
             return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(p, cancellationToken);
@@ -102,14 +102,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CalendarGroupListCalendarsParameter parameter)
+        public async ValueTask<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CalendarGroupListCalendarsParameter parameter)
         {
             return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CalendarGroupListCalendarsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CalendarGroupListCalendarsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(parameter, cancellationToken);
         }

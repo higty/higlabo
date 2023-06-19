@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<FilesRemoteListResponse> FilesRemoteListAsync()
+        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync()
         {
             var p = new FilesRemoteListParameter();
             return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<FilesRemoteListResponse> FilesRemoteListAsync(CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(CancellationToken cancellationToken)
         {
             var p = new FilesRemoteListParameter();
             return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter)
+        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter)
         {
             return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<List<FilesRemoteListResponse>> FilesRemoteListAsync(PagingContext<FilesRemoteListResponse> context)
+        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(PagingContext<FilesRemoteListResponse> context)
         {
             var p = new FilesRemoteListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<List<FilesRemoteListResponse>> FilesRemoteListAsync(CancellationToken cancellationToken, PagingContext<FilesRemoteListResponse> context)
+        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(CancellationToken cancellationToken, PagingContext<FilesRemoteListResponse> context)
         {
             var p = new FilesRemoteListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context)
+        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async Task<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

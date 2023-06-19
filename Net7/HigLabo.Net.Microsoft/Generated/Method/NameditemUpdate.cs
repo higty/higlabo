@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemUpdateResponse> NameditemUpdateAsync()
+        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync()
         {
             var p = new NameditemUpdateParameter();
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemUpdateResponse> NameditemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new NameditemUpdateParameter();
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter)
+        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter)
         {
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(parameter, cancellationToken);
         }

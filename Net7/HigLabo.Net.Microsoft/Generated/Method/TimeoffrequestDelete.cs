@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync()
+        public async ValueTask<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync()
         {
             var p = new TimeoffrequestDeleteParameter();
             return await this.SendAsync<TimeoffrequestDeleteParameter, TimeoffrequestDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffrequestDeleteParameter();
             return await this.SendAsync<TimeoffrequestDeleteParameter, TimeoffrequestDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync(TimeoffrequestDeleteParameter parameter)
+        public async ValueTask<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync(TimeoffrequestDeleteParameter parameter)
         {
             return await this.SendAsync<TimeoffrequestDeleteParameter, TimeoffrequestDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync(TimeoffrequestDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestDeleteResponse> TimeoffrequestDeleteAsync(TimeoffrequestDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffrequestDeleteParameter, TimeoffrequestDeleteResponse>(parameter, cancellationToken);
         }

@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationUpdateResponse> OrganizationUpdateAsync()
+        public async ValueTask<OrganizationUpdateResponse> OrganizationUpdateAsync()
         {
             var p = new OrganizationUpdateParameter();
             return await this.SendAsync<OrganizationUpdateParameter, OrganizationUpdateResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationUpdateResponse> OrganizationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationUpdateResponse> OrganizationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationUpdateParameter();
             return await this.SendAsync<OrganizationUpdateParameter, OrganizationUpdateResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationUpdateResponse> OrganizationUpdateAsync(OrganizationUpdateParameter parameter)
+        public async ValueTask<OrganizationUpdateResponse> OrganizationUpdateAsync(OrganizationUpdateParameter parameter)
         {
             return await this.SendAsync<OrganizationUpdateParameter, OrganizationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationUpdateResponse> OrganizationUpdateAsync(OrganizationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationUpdateResponse> OrganizationUpdateAsync(OrganizationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationUpdateParameter, OrganizationUpdateResponse>(parameter, cancellationToken);
         }

@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync()
+        public async ValueTask<PresenceSetpresenceResponse> PresenceSetpresenceAsync()
         {
             var p = new PresenceSetpresenceParameter();
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync(CancellationToken cancellationToken)
+        public async ValueTask<PresenceSetpresenceResponse> PresenceSetpresenceAsync(CancellationToken cancellationToken)
         {
             var p = new PresenceSetpresenceParameter();
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync(PresenceSetpresenceParameter parameter)
+        public async ValueTask<PresenceSetpresenceResponse> PresenceSetpresenceAsync(PresenceSetpresenceParameter parameter)
         {
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync(PresenceSetpresenceParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PresenceSetpresenceResponse> PresenceSetpresenceAsync(PresenceSetpresenceParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(parameter, cancellationToken);
         }

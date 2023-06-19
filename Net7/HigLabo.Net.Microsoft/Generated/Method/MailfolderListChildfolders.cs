@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync()
+        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync()
         {
             var p = new MailfolderListChildfoldersParameter();
             return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(CancellationToken cancellationToken)
         {
             var p = new MailfolderListChildfoldersParameter();
             return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(MailfolderListChildfoldersParameter parameter)
+        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(MailfolderListChildfoldersParameter parameter)
         {
             return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(MailfolderListChildfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(MailfolderListChildfoldersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(parameter, cancellationToken);
         }

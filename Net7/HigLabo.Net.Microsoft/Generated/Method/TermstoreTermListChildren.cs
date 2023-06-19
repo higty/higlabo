@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync()
+        public async ValueTask<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync()
         {
             var p = new TermStoreTermListChildrenParameter();
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(CancellationToken cancellationToken)
+        public async ValueTask<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(CancellationToken cancellationToken)
         {
             var p = new TermStoreTermListChildrenParameter();
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter)
+        public async ValueTask<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter)
         {
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(parameter, cancellationToken);
         }

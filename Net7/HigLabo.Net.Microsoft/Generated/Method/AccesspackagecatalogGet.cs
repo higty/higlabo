@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync()
+        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync()
         {
             var p = new AccesspackagecatalogGetParameter();
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackagecatalogGetParameter();
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter)
+        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter)
         {
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(parameter, cancellationToken);
         }

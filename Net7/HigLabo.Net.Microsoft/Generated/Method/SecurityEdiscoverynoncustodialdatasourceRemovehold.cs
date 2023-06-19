@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync()
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync()
         {
             var p = new SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter();
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter, SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter();
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter, SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync(SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter parameter)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync(SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter, SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync(SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse> SecurityEdiscoverynoncustodialdatasourceRemoveholdAsync(SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceRemoveholdParameter, SecurityEdiscoverynoncustodialdatasourceRemoveholdResponse>(parameter, cancellationToken);
         }

@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync()
+        public async ValueTask<ContentTypeDeleteResponse> ContentTypeDeleteAsync()
         {
             var p = new ContentTypeDeleteParameter();
             return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeDeleteResponse> ContentTypeDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeDeleteParameter();
             return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync(ContentTypeDeleteParameter parameter)
+        public async ValueTask<ContentTypeDeleteResponse> ContentTypeDeleteAsync(ContentTypeDeleteParameter parameter)
         {
             return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync(ContentTypeDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeDeleteResponse> ContentTypeDeleteAsync(ContentTypeDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(parameter, cancellationToken);
         }

@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync()
+        public async ValueTask<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync()
         {
             var p = new ClaimsmappingPolicyListParameter();
             return await this.SendAsync<ClaimsmappingPolicyListParameter, ClaimsmappingPolicyListResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync(CancellationToken cancellationToken)
         {
             var p = new ClaimsmappingPolicyListParameter();
             return await this.SendAsync<ClaimsmappingPolicyListParameter, ClaimsmappingPolicyListResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync(ClaimsmappingPolicyListParameter parameter)
+        public async ValueTask<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync(ClaimsmappingPolicyListParameter parameter)
         {
             return await this.SendAsync<ClaimsmappingPolicyListParameter, ClaimsmappingPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync(ClaimsmappingPolicyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ClaimsmappingPolicyListResponse> ClaimsmappingPolicyListAsync(ClaimsmappingPolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ClaimsmappingPolicyListParameter, ClaimsmappingPolicyListResponse>(parameter, cancellationToken);
         }

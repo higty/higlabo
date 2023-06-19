@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync()
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync()
         {
             var p = new SecurityEdiscoverynoncustodialdatasourceReleaseParameter();
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceReleaseParameter, SecurityEdiscoverynoncustodialdatasourceReleaseResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverynoncustodialdatasourceReleaseParameter();
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceReleaseParameter, SecurityEdiscoverynoncustodialdatasourceReleaseResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync(SecurityEdiscoverynoncustodialdatasourceReleaseParameter parameter)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync(SecurityEdiscoverynoncustodialdatasourceReleaseParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceReleaseParameter, SecurityEdiscoverynoncustodialdatasourceReleaseResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync(SecurityEdiscoverynoncustodialdatasourceReleaseParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceReleaseResponse> SecurityEdiscoverynoncustodialdatasourceReleaseAsync(SecurityEdiscoverynoncustodialdatasourceReleaseParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceReleaseParameter, SecurityEdiscoverynoncustodialdatasourceReleaseResponse>(parameter, cancellationToken);
         }

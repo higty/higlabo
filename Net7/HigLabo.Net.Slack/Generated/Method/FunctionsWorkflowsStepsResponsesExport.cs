@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.responses.export
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(string? step_Id)
+        public async ValueTask<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(string? step_Id)
         {
             var p = new FunctionsWorkflowsStepsResponsesExportParameter();
             p.Step_Id = step_Id;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.responses.export
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(string? step_Id, CancellationToken cancellationToken)
+        public async ValueTask<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(string? step_Id, CancellationToken cancellationToken)
         {
             var p = new FunctionsWorkflowsStepsResponsesExportParameter();
             p.Step_Id = step_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.responses.export
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(FunctionsWorkflowsStepsResponsesExportParameter parameter)
+        public async ValueTask<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(FunctionsWorkflowsStepsResponsesExportParameter parameter)
         {
             return await this.SendAsync<FunctionsWorkflowsStepsResponsesExportParameter, FunctionsWorkflowsStepsResponsesExportResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.responses.export
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(FunctionsWorkflowsStepsResponsesExportParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FunctionsWorkflowsStepsResponsesExportResponse> FunctionsWorkflowsStepsResponsesExportAsync(FunctionsWorkflowsStepsResponsesExportParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FunctionsWorkflowsStepsResponsesExportParameter, FunctionsWorkflowsStepsResponsesExportResponse>(parameter, cancellationToken);
         }

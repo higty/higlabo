@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync()
+        public async ValueTask<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync()
         {
             var p = new CountrynamedLocationDeleteParameter();
             return await this.SendAsync<CountrynamedLocationDeleteParameter, CountrynamedLocationDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new CountrynamedLocationDeleteParameter();
             return await this.SendAsync<CountrynamedLocationDeleteParameter, CountrynamedLocationDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync(CountrynamedLocationDeleteParameter parameter)
+        public async ValueTask<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync(CountrynamedLocationDeleteParameter parameter)
         {
             return await this.SendAsync<CountrynamedLocationDeleteParameter, CountrynamedLocationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync(CountrynamedLocationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CountrynamedLocationDeleteResponse> CountrynamedLocationDeleteAsync(CountrynamedLocationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CountrynamedLocationDeleteParameter, CountrynamedLocationDeleteResponse>(parameter, cancellationToken);
         }

@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.meMessage
         /// </summary>
-        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(string? channel, string? text)
+        public async ValueTask<ChatMeMessageResponse> ChatMeMessageAsync(string? channel, string? text)
         {
             var p = new ChatMeMessageParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.meMessage
         /// </summary>
-        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(string? channel, string? text, CancellationToken cancellationToken)
+        public async ValueTask<ChatMeMessageResponse> ChatMeMessageAsync(string? channel, string? text, CancellationToken cancellationToken)
         {
             var p = new ChatMeMessageParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.meMessage
         /// </summary>
-        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(ChatMeMessageParameter parameter)
+        public async ValueTask<ChatMeMessageResponse> ChatMeMessageAsync(ChatMeMessageParameter parameter)
         {
             return await this.SendAsync<ChatMeMessageParameter, ChatMeMessageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.meMessage
         /// </summary>
-        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(ChatMeMessageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatMeMessageResponse> ChatMeMessageAsync(ChatMeMessageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatMeMessageParameter, ChatMeMessageResponse>(parameter, cancellationToken);
         }

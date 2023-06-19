@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/deletedteam-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync()
+        public async ValueTask<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync()
         {
             var p = new DeletedteamGetallmessagesParameter();
             return await this.SendAsync<DeletedteamGetallmessagesParameter, DeletedteamGetallmessagesResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/deletedteam-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync(CancellationToken cancellationToken)
         {
             var p = new DeletedteamGetallmessagesParameter();
             return await this.SendAsync<DeletedteamGetallmessagesParameter, DeletedteamGetallmessagesResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/deletedteam-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync(DeletedteamGetallmessagesParameter parameter)
+        public async ValueTask<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync(DeletedteamGetallmessagesParameter parameter)
         {
             return await this.SendAsync<DeletedteamGetallmessagesParameter, DeletedteamGetallmessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/deletedteam-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync(DeletedteamGetallmessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeletedteamGetallmessagesResponse> DeletedteamGetallmessagesAsync(DeletedteamGetallmessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeletedteamGetallmessagesParameter, DeletedteamGetallmessagesResponse>(parameter, cancellationToken);
         }

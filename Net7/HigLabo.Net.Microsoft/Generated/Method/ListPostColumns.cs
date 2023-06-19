@@ -115,7 +115,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListPostColumnsResponse> ListPostColumnsAsync()
+        public async ValueTask<ListPostColumnsResponse> ListPostColumnsAsync()
         {
             var p = new ListPostColumnsParameter();
             return await this.SendAsync<ListPostColumnsParameter, ListPostColumnsResponse>(p, CancellationToken.None);
@@ -123,7 +123,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListPostColumnsResponse> ListPostColumnsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListPostColumnsResponse> ListPostColumnsAsync(CancellationToken cancellationToken)
         {
             var p = new ListPostColumnsParameter();
             return await this.SendAsync<ListPostColumnsParameter, ListPostColumnsResponse>(p, cancellationToken);
@@ -131,14 +131,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListPostColumnsResponse> ListPostColumnsAsync(ListPostColumnsParameter parameter)
+        public async ValueTask<ListPostColumnsResponse> ListPostColumnsAsync(ListPostColumnsParameter parameter)
         {
             return await this.SendAsync<ListPostColumnsParameter, ListPostColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListPostColumnsResponse> ListPostColumnsAsync(ListPostColumnsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListPostColumnsResponse> ListPostColumnsAsync(ListPostColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListPostColumnsParameter, ListPostColumnsResponse>(parameter, cancellationToken);
         }

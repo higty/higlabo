@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkArchive
         /// </summary>
-        public async Task<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(string? channel_Ids)
+        public async ValueTask<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(string? channel_Ids)
         {
             var p = new AdminConversationsBulkArchiveParameter();
             p.Channel_Ids = channel_Ids;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkArchive
         /// </summary>
-        public async Task<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(string? channel_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(string? channel_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsBulkArchiveParameter();
             p.Channel_Ids = channel_Ids;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkArchive
         /// </summary>
-        public async Task<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(AdminConversationsBulkArchiveParameter parameter)
+        public async ValueTask<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(AdminConversationsBulkArchiveParameter parameter)
         {
             return await this.SendAsync<AdminConversationsBulkArchiveParameter, AdminConversationsBulkArchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkArchive
         /// </summary>
-        public async Task<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(AdminConversationsBulkArchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsBulkArchiveResponse> AdminConversationsBulkArchiveAsync(AdminConversationsBulkArchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsBulkArchiveParameter, AdminConversationsBulkArchiveResponse>(parameter, cancellationToken);
         }

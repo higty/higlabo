@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync()
+        public async ValueTask<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync()
         {
             var p = new BookingbusinessGetstaffavailabilityParameter();
             return await this.SendAsync<BookingbusinessGetstaffavailabilityParameter, BookingbusinessGetstaffavailabilityResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync(CancellationToken cancellationToken)
         {
             var p = new BookingbusinessGetstaffavailabilityParameter();
             return await this.SendAsync<BookingbusinessGetstaffavailabilityParameter, BookingbusinessGetstaffavailabilityResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync(BookingbusinessGetstaffavailabilityParameter parameter)
+        public async ValueTask<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync(BookingbusinessGetstaffavailabilityParameter parameter)
         {
             return await this.SendAsync<BookingbusinessGetstaffavailabilityParameter, BookingbusinessGetstaffavailabilityResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync(BookingbusinessGetstaffavailabilityParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingbusinessGetstaffavailabilityResponse> BookingbusinessGetstaffavailabilityAsync(BookingbusinessGetstaffavailabilityParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingbusinessGetstaffavailabilityParameter, BookingbusinessGetstaffavailabilityResponse>(parameter, cancellationToken);
         }

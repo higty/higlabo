@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setPurpose
         /// </summary>
-        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string? channel, string? purpose)
+        public async ValueTask<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string? channel, string? purpose)
         {
             var p = new ConversationsSetPurposeParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setPurpose
         /// </summary>
-        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string? channel, string? purpose, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string? channel, string? purpose, CancellationToken cancellationToken)
         {
             var p = new ConversationsSetPurposeParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setPurpose
         /// </summary>
-        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(ConversationsSetPurposeParameter parameter)
+        public async ValueTask<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(ConversationsSetPurposeParameter parameter)
         {
             return await this.SendAsync<ConversationsSetPurposeParameter, ConversationsSetPurposeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.setPurpose
         /// </summary>
-        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(ConversationsSetPurposeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(ConversationsSetPurposeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsSetPurposeParameter, ConversationsSetPurposeResponse>(parameter, cancellationToken);
         }

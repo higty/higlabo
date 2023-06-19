@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync()
+        public async ValueTask<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync()
         {
             var p = new PermissiongrantPolicyDeleteParameter();
             return await this.SendAsync<PermissiongrantPolicyDeleteParameter, PermissiongrantPolicyDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PermissiongrantPolicyDeleteParameter();
             return await this.SendAsync<PermissiongrantPolicyDeleteParameter, PermissiongrantPolicyDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync(PermissiongrantPolicyDeleteParameter parameter)
+        public async ValueTask<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync(PermissiongrantPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyDeleteParameter, PermissiongrantPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync(PermissiongrantPolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyDeleteResponse> PermissiongrantPolicyDeleteAsync(PermissiongrantPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissiongrantPolicyDeleteParameter, PermissiongrantPolicyDeleteResponse>(parameter, cancellationToken);
         }

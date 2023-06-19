@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteResponse> EducationclassDeleteAsync()
+        public async ValueTask<EducationclassDeleteResponse> EducationclassDeleteAsync()
         {
             var p = new EducationclassDeleteParameter();
             return await this.SendAsync<EducationclassDeleteParameter, EducationclassDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteResponse> EducationclassDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassDeleteResponse> EducationclassDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassDeleteParameter();
             return await this.SendAsync<EducationclassDeleteParameter, EducationclassDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteResponse> EducationclassDeleteAsync(EducationclassDeleteParameter parameter)
+        public async ValueTask<EducationclassDeleteResponse> EducationclassDeleteAsync(EducationclassDeleteParameter parameter)
         {
             return await this.SendAsync<EducationclassDeleteParameter, EducationclassDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteResponse> EducationclassDeleteAsync(EducationclassDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassDeleteResponse> EducationclassDeleteAsync(EducationclassDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassDeleteParameter, EducationclassDeleteResponse>(parameter, cancellationToken);
         }

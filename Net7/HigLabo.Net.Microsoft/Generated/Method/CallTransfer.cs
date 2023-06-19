@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallTransferResponse> CallTransferAsync()
+        public async ValueTask<CallTransferResponse> CallTransferAsync()
         {
             var p = new CallTransferParameter();
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallTransferResponse> CallTransferAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallTransferResponse> CallTransferAsync(CancellationToken cancellationToken)
         {
             var p = new CallTransferParameter();
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallTransferResponse> CallTransferAsync(CallTransferParameter parameter)
+        public async ValueTask<CallTransferResponse> CallTransferAsync(CallTransferParameter parameter)
         {
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallTransferResponse> CallTransferAsync(CallTransferParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallTransferResponse> CallTransferAsync(CallTransferParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(parameter, cancellationToken);
         }

@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermPostResponse> TermStoreTermPostAsync()
+        public async ValueTask<TermStoreTermPostResponse> TermStoreTermPostAsync()
         {
             var p = new TermStoreTermPostParameter();
             return await this.SendAsync<TermStoreTermPostParameter, TermStoreTermPostResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermPostResponse> TermStoreTermPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<TermStoreTermPostResponse> TermStoreTermPostAsync(CancellationToken cancellationToken)
         {
             var p = new TermStoreTermPostParameter();
             return await this.SendAsync<TermStoreTermPostParameter, TermStoreTermPostResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermPostResponse> TermStoreTermPostAsync(TermStoreTermPostParameter parameter)
+        public async ValueTask<TermStoreTermPostResponse> TermStoreTermPostAsync(TermStoreTermPostParameter parameter)
         {
             return await this.SendAsync<TermStoreTermPostParameter, TermStoreTermPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermPostResponse> TermStoreTermPostAsync(TermStoreTermPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TermStoreTermPostResponse> TermStoreTermPostAsync(TermStoreTermPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreTermPostParameter, TermStoreTermPostResponse>(parameter, cancellationToken);
         }

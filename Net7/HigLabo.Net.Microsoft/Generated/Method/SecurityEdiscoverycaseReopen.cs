@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync()
+        public async ValueTask<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync()
         {
             var p = new SecurityEdiscoverycaseReopenParameter();
             return await this.SendAsync<SecurityEdiscoverycaseReopenParameter, SecurityEdiscoverycaseReopenResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseReopenParameter();
             return await this.SendAsync<SecurityEdiscoverycaseReopenParameter, SecurityEdiscoverycaseReopenResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync(SecurityEdiscoverycaseReopenParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync(SecurityEdiscoverycaseReopenParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseReopenParameter, SecurityEdiscoverycaseReopenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync(SecurityEdiscoverycaseReopenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseReopenResponse> SecurityEdiscoverycaseReopenAsync(SecurityEdiscoverycaseReopenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseReopenParameter, SecurityEdiscoverycaseReopenResponse>(parameter, cancellationToken);
         }

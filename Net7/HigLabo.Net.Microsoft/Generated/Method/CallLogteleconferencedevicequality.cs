@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-logteleconferencedevicequality?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync()
+        public async ValueTask<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync()
         {
             var p = new CallLogteleconferencedevicequalityParameter();
             return await this.SendAsync<CallLogteleconferencedevicequalityParameter, CallLogteleconferencedevicequalityResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-logteleconferencedevicequality?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync(CancellationToken cancellationToken)
         {
             var p = new CallLogteleconferencedevicequalityParameter();
             return await this.SendAsync<CallLogteleconferencedevicequalityParameter, CallLogteleconferencedevicequalityResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-logteleconferencedevicequality?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync(CallLogteleconferencedevicequalityParameter parameter)
+        public async ValueTask<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync(CallLogteleconferencedevicequalityParameter parameter)
         {
             return await this.SendAsync<CallLogteleconferencedevicequalityParameter, CallLogteleconferencedevicequalityResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-logteleconferencedevicequality?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync(CallLogteleconferencedevicequalityParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallLogteleconferencedevicequalityResponse> CallLogteleconferencedevicequalityAsync(CallLogteleconferencedevicequalityParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallLogteleconferencedevicequalityParameter, CallLogteleconferencedevicequalityResponse>(parameter, cancellationToken);
         }

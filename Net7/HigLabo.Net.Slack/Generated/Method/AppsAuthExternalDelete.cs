@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.delete
         /// </summary>
-        public async Task<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync()
+        public async ValueTask<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync()
         {
             var p = new AppsAuthExternalDeleteParameter();
             return await this.SendAsync<AppsAuthExternalDeleteParameter, AppsAuthExternalDeleteResponse>(p, CancellationToken.None);
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.delete
         /// </summary>
-        public async Task<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AppsAuthExternalDeleteParameter();
             return await this.SendAsync<AppsAuthExternalDeleteParameter, AppsAuthExternalDeleteResponse>(p, cancellationToken);
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.delete
         /// </summary>
-        public async Task<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync(AppsAuthExternalDeleteParameter parameter)
+        public async ValueTask<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync(AppsAuthExternalDeleteParameter parameter)
         {
             return await this.SendAsync<AppsAuthExternalDeleteParameter, AppsAuthExternalDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.delete
         /// </summary>
-        public async Task<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync(AppsAuthExternalDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsAuthExternalDeleteResponse> AppsAuthExternalDeleteAsync(AppsAuthExternalDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsAuthExternalDeleteParameter, AppsAuthExternalDeleteResponse>(parameter, cancellationToken);
         }

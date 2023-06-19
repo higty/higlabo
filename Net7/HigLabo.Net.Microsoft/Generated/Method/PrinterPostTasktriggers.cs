@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync()
+        public async ValueTask<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync()
         {
             var p = new PrinterPostTasktriggersParameter();
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterPostTasktriggersParameter();
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(PrinterPostTasktriggersParameter parameter)
+        public async ValueTask<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(PrinterPostTasktriggersParameter parameter)
         {
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(PrinterPostTasktriggersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(PrinterPostTasktriggersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(parameter, cancellationToken);
         }

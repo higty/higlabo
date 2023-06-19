@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.test
         /// </summary>
-        public async Task<AuthTestResponse> AuthTestAsync()
+        public async ValueTask<AuthTestResponse> AuthTestAsync()
         {
             var p = new AuthTestParameter();
             return await this.SendAsync<AuthTestParameter, AuthTestResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.test
         /// </summary>
-        public async Task<AuthTestResponse> AuthTestAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthTestResponse> AuthTestAsync(CancellationToken cancellationToken)
         {
             var p = new AuthTestParameter();
             return await this.SendAsync<AuthTestParameter, AuthTestResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.test
         /// </summary>
-        public async Task<AuthTestResponse> AuthTestAsync(AuthTestParameter parameter)
+        public async ValueTask<AuthTestResponse> AuthTestAsync(AuthTestParameter parameter)
         {
             return await this.SendAsync<AuthTestParameter, AuthTestResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/auth.test
         /// </summary>
-        public async Task<AuthTestResponse> AuthTestAsync(AuthTestParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthTestResponse> AuthTestAsync(AuthTestParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthTestParameter, AuthTestResponse>(parameter, cancellationToken);
         }

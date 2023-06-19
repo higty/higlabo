@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync()
+        public async ValueTask<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync()
         {
             var p = new IdentityUserflowattributePostParameter();
             return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(p, CancellationToken.None);
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityUserflowattributePostParameter();
             return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(p, cancellationToken);
@@ -102,14 +102,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(IdentityUserflowattributePostParameter parameter)
+        public async ValueTask<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(IdentityUserflowattributePostParameter parameter)
         {
             return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(IdentityUserflowattributePostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(IdentityUserflowattributePostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(parameter, cancellationToken);
         }

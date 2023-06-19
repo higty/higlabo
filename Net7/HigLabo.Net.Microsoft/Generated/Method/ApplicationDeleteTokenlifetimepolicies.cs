@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync()
+        public async ValueTask<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync()
         {
             var p = new ApplicationDeleteTokenlifetimepoliciesParameter();
             return await this.SendAsync<ApplicationDeleteTokenlifetimepoliciesParameter, ApplicationDeleteTokenlifetimepoliciesResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationDeleteTokenlifetimepoliciesParameter();
             return await this.SendAsync<ApplicationDeleteTokenlifetimepoliciesParameter, ApplicationDeleteTokenlifetimepoliciesResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync(ApplicationDeleteTokenlifetimepoliciesParameter parameter)
+        public async ValueTask<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync(ApplicationDeleteTokenlifetimepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationDeleteTokenlifetimepoliciesParameter, ApplicationDeleteTokenlifetimepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync(ApplicationDeleteTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteTokenlifetimepoliciesResponse> ApplicationDeleteTokenlifetimepoliciesAsync(ApplicationDeleteTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationDeleteTokenlifetimepoliciesParameter, ApplicationDeleteTokenlifetimepoliciesResponse>(parameter, cancellationToken);
         }

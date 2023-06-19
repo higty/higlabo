@@ -130,7 +130,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemGetResponse> DriveitemGetAsync()
+        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync()
         {
             var p = new DriveitemGetParameter();
             return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(p, CancellationToken.None);
@@ -138,7 +138,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemGetResponse> DriveitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemGetParameter();
             return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(p, cancellationToken);
@@ -146,14 +146,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemGetResponse> DriveitemGetAsync(DriveitemGetParameter parameter)
+        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync(DriveitemGetParameter parameter)
         {
             return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemGetResponse> DriveitemGetAsync(DriveitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync(DriveitemGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(parameter, cancellationToken);
         }

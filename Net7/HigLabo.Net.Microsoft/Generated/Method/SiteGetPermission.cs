@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-get-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetPermissionResponse> SiteGetPermissionAsync()
+        public async ValueTask<SiteGetPermissionResponse> SiteGetPermissionAsync()
         {
             var p = new SiteGetPermissionParameter();
             return await this.SendAsync<SiteGetPermissionParameter, SiteGetPermissionResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-get-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetPermissionResponse> SiteGetPermissionAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteGetPermissionResponse> SiteGetPermissionAsync(CancellationToken cancellationToken)
         {
             var p = new SiteGetPermissionParameter();
             return await this.SendAsync<SiteGetPermissionParameter, SiteGetPermissionResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-get-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetPermissionResponse> SiteGetPermissionAsync(SiteGetPermissionParameter parameter)
+        public async ValueTask<SiteGetPermissionResponse> SiteGetPermissionAsync(SiteGetPermissionParameter parameter)
         {
             return await this.SendAsync<SiteGetPermissionParameter, SiteGetPermissionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-get-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetPermissionResponse> SiteGetPermissionAsync(SiteGetPermissionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteGetPermissionResponse> SiteGetPermissionAsync(SiteGetPermissionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteGetPermissionParameter, SiteGetPermissionResponse>(parameter, cancellationToken);
         }

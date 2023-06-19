@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync()
+        public async ValueTask<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync()
         {
             var p = new IdentityproviderbaseUpdateParameter();
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityproviderbaseUpdateParameter();
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(IdentityproviderbaseUpdateParameter parameter)
+        public async ValueTask<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(IdentityproviderbaseUpdateParameter parameter)
         {
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(IdentityproviderbaseUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(IdentityproviderbaseUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(parameter, cancellationToken);
         }

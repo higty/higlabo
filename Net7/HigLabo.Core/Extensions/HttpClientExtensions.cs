@@ -10,11 +10,11 @@ namespace HigLabo.Core
 {
     public static class HttpClientExtensions
     {
-        public static async Task<HttpResponseMessage> PostJsonAsync(this HttpClient client, String url, String json)
+        public static async ValueTask<HttpResponseMessage> PostJsonAsync(this HttpClient client, String url, String json)
         {
             return await client.PostAsync(url, new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(json))));
         }
-        public static async Task<HttpResponseMessage> PostFormAsync(this HttpClient client, String url, Dictionary<String, String> data)
+        public static async ValueTask<HttpResponseMessage> PostFormAsync(this HttpClient client, String url, Dictionary<String, String> data)
         {
             return await client.PostAsync(url, new FormUrlEncodedContent(data));
         }

@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync()
+        public async ValueTask<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync()
         {
             var p = new ExternalConnectorsExternalconnectionListParameter();
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsExternalconnectionListParameter();
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(parameter, cancellationToken);
         }

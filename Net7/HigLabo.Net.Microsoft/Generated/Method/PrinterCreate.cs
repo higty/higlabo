@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterCreateResponse> PrinterCreateAsync()
+        public async ValueTask<PrinterCreateResponse> PrinterCreateAsync()
         {
             var p = new PrinterCreateParameter();
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterCreateResponse> PrinterCreateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterCreateResponse> PrinterCreateAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterCreateParameter();
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterCreateResponse> PrinterCreateAsync(PrinterCreateParameter parameter)
+        public async ValueTask<PrinterCreateResponse> PrinterCreateAsync(PrinterCreateParameter parameter)
         {
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterCreateResponse> PrinterCreateAsync(PrinterCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterCreateResponse> PrinterCreateAsync(PrinterCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(parameter, cancellationToken);
         }

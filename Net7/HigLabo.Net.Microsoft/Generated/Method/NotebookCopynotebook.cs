@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-copynotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookCopynotebookResponse> NotebookCopynotebookAsync()
+        public async ValueTask<NotebookCopynotebookResponse> NotebookCopynotebookAsync()
         {
             var p = new NotebookCopynotebookParameter();
             return await this.SendAsync<NotebookCopynotebookParameter, NotebookCopynotebookResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-copynotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookCopynotebookResponse> NotebookCopynotebookAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookCopynotebookResponse> NotebookCopynotebookAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookCopynotebookParameter();
             return await this.SendAsync<NotebookCopynotebookParameter, NotebookCopynotebookResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-copynotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookCopynotebookResponse> NotebookCopynotebookAsync(NotebookCopynotebookParameter parameter)
+        public async ValueTask<NotebookCopynotebookResponse> NotebookCopynotebookAsync(NotebookCopynotebookParameter parameter)
         {
             return await this.SendAsync<NotebookCopynotebookParameter, NotebookCopynotebookResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-copynotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookCopynotebookResponse> NotebookCopynotebookAsync(NotebookCopynotebookParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookCopynotebookResponse> NotebookCopynotebookAsync(NotebookCopynotebookParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookCopynotebookParameter, NotebookCopynotebookResponse>(parameter, cancellationToken);
         }

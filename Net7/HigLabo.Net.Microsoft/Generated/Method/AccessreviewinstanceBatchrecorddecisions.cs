@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-batchrecorddecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync()
+        public async ValueTask<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync()
         {
             var p = new AccessreviewinstanceBatchrecorddecisionsParameter();
             return await this.SendAsync<AccessreviewinstanceBatchrecorddecisionsParameter, AccessreviewinstanceBatchrecorddecisionsResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-batchrecorddecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceBatchrecorddecisionsParameter();
             return await this.SendAsync<AccessreviewinstanceBatchrecorddecisionsParameter, AccessreviewinstanceBatchrecorddecisionsResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-batchrecorddecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync(AccessreviewinstanceBatchrecorddecisionsParameter parameter)
+        public async ValueTask<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync(AccessreviewinstanceBatchrecorddecisionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceBatchrecorddecisionsParameter, AccessreviewinstanceBatchrecorddecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-batchrecorddecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync(AccessreviewinstanceBatchrecorddecisionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceBatchrecorddecisionsResponse> AccessreviewinstanceBatchrecorddecisionsAsync(AccessreviewinstanceBatchrecorddecisionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceBatchrecorddecisionsParameter, AccessreviewinstanceBatchrecorddecisionsResponse>(parameter, cancellationToken);
         }

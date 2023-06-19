@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync()
+        public async ValueTask<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync()
         {
             var p = new AdministrativeunitDeleteMembersParameter();
             return await this.SendAsync<AdministrativeunitDeleteMembersParameter, AdministrativeunitDeleteMembersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync(CancellationToken cancellationToken)
         {
             var p = new AdministrativeunitDeleteMembersParameter();
             return await this.SendAsync<AdministrativeunitDeleteMembersParameter, AdministrativeunitDeleteMembersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync(AdministrativeunitDeleteMembersParameter parameter)
+        public async ValueTask<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync(AdministrativeunitDeleteMembersParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitDeleteMembersParameter, AdministrativeunitDeleteMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync(AdministrativeunitDeleteMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteMembersResponse> AdministrativeunitDeleteMembersAsync(AdministrativeunitDeleteMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdministrativeunitDeleteMembersParameter, AdministrativeunitDeleteMembersResponse>(parameter, cancellationToken);
         }

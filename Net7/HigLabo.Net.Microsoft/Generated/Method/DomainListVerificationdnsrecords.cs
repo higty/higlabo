@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-verificationdnsrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync()
+        public async ValueTask<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync()
         {
             var p = new DomainListVerificationdnsrecordsParameter();
             return await this.SendAsync<DomainListVerificationdnsrecordsParameter, DomainListVerificationdnsrecordsResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-verificationdnsrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync(CancellationToken cancellationToken)
         {
             var p = new DomainListVerificationdnsrecordsParameter();
             return await this.SendAsync<DomainListVerificationdnsrecordsParameter, DomainListVerificationdnsrecordsResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-verificationdnsrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync(DomainListVerificationdnsrecordsParameter parameter)
+        public async ValueTask<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync(DomainListVerificationdnsrecordsParameter parameter)
         {
             return await this.SendAsync<DomainListVerificationdnsrecordsParameter, DomainListVerificationdnsrecordsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-verificationdnsrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync(DomainListVerificationdnsrecordsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainListVerificationdnsrecordsResponse> DomainListVerificationdnsrecordsAsync(DomainListVerificationdnsrecordsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainListVerificationdnsrecordsParameter, DomainListVerificationdnsrecordsResponse>(parameter, cancellationToken);
         }

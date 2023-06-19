@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync()
+        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync()
         {
             var p = new RiskyserviceprincipalConfirmcompromisedParameter();
             return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyserviceprincipalConfirmcompromisedParameter();
             return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(RiskyserviceprincipalConfirmcompromisedParameter parameter)
+        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(RiskyserviceprincipalConfirmcompromisedParameter parameter)
         {
             return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(RiskyserviceprincipalConfirmcompromisedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(RiskyserviceprincipalConfirmcompromisedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(parameter, cancellationToken);
         }

@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync()
+        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync()
         {
             var p = new CalendarpermissionDeleteParameter();
             return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarpermissionDeleteParameter();
             return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CalendarpermissionDeleteParameter parameter)
+        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CalendarpermissionDeleteParameter parameter)
         {
             return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CalendarpermissionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CalendarpermissionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(parameter, cancellationToken);
         }

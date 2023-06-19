@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync()
+        public async ValueTask<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync()
         {
             var p = new AdminconsentrequestPolicyUpdateParameter();
             return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AdminconsentrequestPolicyUpdateParameter();
             return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(AdminconsentrequestPolicyUpdateParameter parameter)
+        public async ValueTask<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(AdminconsentrequestPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(AdminconsentrequestPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(AdminconsentrequestPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(parameter, cancellationToken);
         }

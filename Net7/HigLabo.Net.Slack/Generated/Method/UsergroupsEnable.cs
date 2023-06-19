@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.enable
         /// </summary>
-        public async Task<UsergroupsEnableResponse> UsergroupsEnableAsync(string? usergroup)
+        public async ValueTask<UsergroupsEnableResponse> UsergroupsEnableAsync(string? usergroup)
         {
             var p = new UsergroupsEnableParameter();
             p.Usergroup = usergroup;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.enable
         /// </summary>
-        public async Task<UsergroupsEnableResponse> UsergroupsEnableAsync(string? usergroup, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsEnableResponse> UsergroupsEnableAsync(string? usergroup, CancellationToken cancellationToken)
         {
             var p = new UsergroupsEnableParameter();
             p.Usergroup = usergroup;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.enable
         /// </summary>
-        public async Task<UsergroupsEnableResponse> UsergroupsEnableAsync(UsergroupsEnableParameter parameter)
+        public async ValueTask<UsergroupsEnableResponse> UsergroupsEnableAsync(UsergroupsEnableParameter parameter)
         {
             return await this.SendAsync<UsergroupsEnableParameter, UsergroupsEnableResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/usergroups.enable
         /// </summary>
-        public async Task<UsergroupsEnableResponse> UsergroupsEnableAsync(UsergroupsEnableParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsEnableResponse> UsergroupsEnableAsync(UsergroupsEnableParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsergroupsEnableParameter, UsergroupsEnableResponse>(parameter, cancellationToken);
         }

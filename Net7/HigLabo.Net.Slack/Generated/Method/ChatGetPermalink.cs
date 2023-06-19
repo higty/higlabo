@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.getPermalink
         /// </summary>
-        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string? channel, string? message_Ts)
+        public async ValueTask<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string? channel, string? message_Ts)
         {
             var p = new ChatGetPermalinkParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.getPermalink
         /// </summary>
-        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string? channel, string? message_Ts, CancellationToken cancellationToken)
+        public async ValueTask<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string? channel, string? message_Ts, CancellationToken cancellationToken)
         {
             var p = new ChatGetPermalinkParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.getPermalink
         /// </summary>
-        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(ChatGetPermalinkParameter parameter)
+        public async ValueTask<ChatGetPermalinkResponse> ChatGetPermalinkAsync(ChatGetPermalinkParameter parameter)
         {
             return await this.SendAsync<ChatGetPermalinkParameter, ChatGetPermalinkResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.getPermalink
         /// </summary>
-        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(ChatGetPermalinkParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatGetPermalinkResponse> ChatGetPermalinkAsync(ChatGetPermalinkParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatGetPermalinkParameter, ChatGetPermalinkResponse>(parameter, cancellationToken);
         }

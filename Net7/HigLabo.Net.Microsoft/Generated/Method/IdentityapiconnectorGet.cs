@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync()
+        public async ValueTask<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync()
         {
             var p = new IdentityapiConnectorGetParameter();
             return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityapiConnectorGetParameter();
             return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(IdentityapiConnectorGetParameter parameter)
+        public async ValueTask<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(IdentityapiConnectorGetParameter parameter)
         {
             return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(IdentityapiConnectorGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(IdentityapiConnectorGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(parameter, cancellationToken);
         }

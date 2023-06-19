@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync()
+        public async ValueTask<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync()
         {
             var p = new AdminRolesListAssignmentsParameter();
             return await this.SendAsync<AdminRolesListAssignmentsParameter, AdminRolesListAssignmentsResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new AdminRolesListAssignmentsParameter();
             return await this.SendAsync<AdminRolesListAssignmentsParameter, AdminRolesListAssignmentsResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter)
+        public async ValueTask<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter)
         {
             return await this.SendAsync<AdminRolesListAssignmentsParameter, AdminRolesListAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminRolesListAssignmentsResponse> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminRolesListAssignmentsParameter, AdminRolesListAssignmentsResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(PagingContext<AdminRolesListAssignmentsResponse> context)
+        public async ValueTask<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(PagingContext<AdminRolesListAssignmentsResponse> context)
         {
             var p = new AdminRolesListAssignmentsParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(CancellationToken cancellationToken, PagingContext<AdminRolesListAssignmentsResponse> context)
+        public async ValueTask<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(CancellationToken cancellationToken, PagingContext<AdminRolesListAssignmentsResponse> context)
         {
             var p = new AdminRolesListAssignmentsParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter, PagingContext<AdminRolesListAssignmentsResponse> context)
+        public async ValueTask<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter, PagingContext<AdminRolesListAssignmentsResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async Task<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter, PagingContext<AdminRolesListAssignmentsResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(AdminRolesListAssignmentsParameter parameter, PagingContext<AdminRolesListAssignmentsResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

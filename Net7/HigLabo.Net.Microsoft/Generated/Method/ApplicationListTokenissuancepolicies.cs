@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync()
+        public async ValueTask<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync()
         {
             var p = new ApplicationListTokenissuancepoliciesParameter();
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationListTokenissuancepoliciesParameter();
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(ApplicationListTokenissuancepoliciesParameter parameter)
+        public async ValueTask<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(ApplicationListTokenissuancepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(ApplicationListTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(ApplicationListTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(parameter, cancellationToken);
         }

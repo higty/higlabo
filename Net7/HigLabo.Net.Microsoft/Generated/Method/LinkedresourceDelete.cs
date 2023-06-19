@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync()
+        public async ValueTask<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync()
         {
             var p = new LinkedResourceDeleteParameter();
             return await this.SendAsync<LinkedResourceDeleteParameter, LinkedResourceDeleteResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new LinkedResourceDeleteParameter();
             return await this.SendAsync<LinkedResourceDeleteParameter, LinkedResourceDeleteResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync(LinkedResourceDeleteParameter parameter)
+        public async ValueTask<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync(LinkedResourceDeleteParameter parameter)
         {
             return await this.SendAsync<LinkedResourceDeleteParameter, LinkedResourceDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync(LinkedResourceDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LinkedResourceDeleteResponse> LinkedResourceDeleteAsync(LinkedResourceDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LinkedResourceDeleteParameter, LinkedResourceDeleteResponse>(parameter, cancellationToken);
         }

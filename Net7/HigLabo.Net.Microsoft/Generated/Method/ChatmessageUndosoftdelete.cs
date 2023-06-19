@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-undosoftdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync()
+        public async ValueTask<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync()
         {
             var p = new ChatmessageUndosoftdeleteParameter();
             return await this.SendAsync<ChatmessageUndosoftdeleteParameter, ChatmessageUndosoftdeleteResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-undosoftdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessageUndosoftdeleteParameter();
             return await this.SendAsync<ChatmessageUndosoftdeleteParameter, ChatmessageUndosoftdeleteResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-undosoftdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync(ChatmessageUndosoftdeleteParameter parameter)
+        public async ValueTask<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync(ChatmessageUndosoftdeleteParameter parameter)
         {
             return await this.SendAsync<ChatmessageUndosoftdeleteParameter, ChatmessageUndosoftdeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-undosoftdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync(ChatmessageUndosoftdeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageUndosoftdeleteResponse> ChatmessageUndosoftdeleteAsync(ChatmessageUndosoftdeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageUndosoftdeleteParameter, ChatmessageUndosoftdeleteResponse>(parameter, cancellationToken);
         }

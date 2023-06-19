@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestGetResponse> UserconsentrequestGetAsync()
+        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync()
         {
             var p = new UserconsentrequestGetParameter();
             return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestGetResponse> UserconsentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new UserconsentrequestGetParameter();
             return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestGetResponse> UserconsentrequestGetAsync(UserconsentrequestGetParameter parameter)
+        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync(UserconsentrequestGetParameter parameter)
         {
             return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestGetResponse> UserconsentrequestGetAsync(UserconsentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync(UserconsentrequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(parameter, cancellationToken);
         }

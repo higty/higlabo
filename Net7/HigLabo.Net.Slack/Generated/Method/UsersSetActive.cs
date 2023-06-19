@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setActive
         /// </summary>
-        public async Task<UsersSetActiveResponse> UsersSetActiveAsync()
+        public async ValueTask<UsersSetActiveResponse> UsersSetActiveAsync()
         {
             var p = new UsersSetActiveParameter();
             return await this.SendAsync<UsersSetActiveParameter, UsersSetActiveResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setActive
         /// </summary>
-        public async Task<UsersSetActiveResponse> UsersSetActiveAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersSetActiveResponse> UsersSetActiveAsync(CancellationToken cancellationToken)
         {
             var p = new UsersSetActiveParameter();
             return await this.SendAsync<UsersSetActiveParameter, UsersSetActiveResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setActive
         /// </summary>
-        public async Task<UsersSetActiveResponse> UsersSetActiveAsync(UsersSetActiveParameter parameter)
+        public async ValueTask<UsersSetActiveResponse> UsersSetActiveAsync(UsersSetActiveParameter parameter)
         {
             return await this.SendAsync<UsersSetActiveParameter, UsersSetActiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.setActive
         /// </summary>
-        public async Task<UsersSetActiveResponse> UsersSetActiveAsync(UsersSetActiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersSetActiveResponse> UsersSetActiveAsync(UsersSetActiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersSetActiveParameter, UsersSetActiveResponse>(parameter, cancellationToken);
         }

@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync()
+        public async ValueTask<SiteListContentTypesResponse> SiteListContentTypesAsync()
         {
             var p = new SiteListContentTypesParameter();
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteListContentTypesResponse> SiteListContentTypesAsync(CancellationToken cancellationToken)
         {
             var p = new SiteListContentTypesParameter();
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync(SiteListContentTypesParameter parameter)
+        public async ValueTask<SiteListContentTypesResponse> SiteListContentTypesAsync(SiteListContentTypesParameter parameter)
         {
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync(SiteListContentTypesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteListContentTypesResponse> SiteListContentTypesAsync(SiteListContentTypesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(parameter, cancellationToken);
         }

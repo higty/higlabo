@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync()
+        public async ValueTask<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync()
         {
             var p = new ReportRootGetemailappusageUsercountsParameter();
             return await this.SendAsync<ReportRootGetemailappusageUsercountsParameter, ReportRootGetemailappusageUsercountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetemailappusageUsercountsParameter();
             return await this.SendAsync<ReportRootGetemailappusageUsercountsParameter, ReportRootGetemailappusageUsercountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync(ReportRootGetemailappusageUsercountsParameter parameter)
+        public async ValueTask<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync(ReportRootGetemailappusageUsercountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetemailappusageUsercountsParameter, ReportRootGetemailappusageUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync(ReportRootGetemailappusageUsercountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetemailappusageUsercountsResponse> ReportRootGetemailappusageUsercountsAsync(ReportRootGetemailappusageUsercountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetemailappusageUsercountsParameter, ReportRootGetemailappusageUsercountsResponse>(parameter, cancellationToken);
         }

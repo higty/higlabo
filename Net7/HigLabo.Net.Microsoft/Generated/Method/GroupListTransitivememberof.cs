@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync()
+        public async ValueTask<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync()
         {
             var p = new GroupListTransitivememberofParameter();
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListTransitivememberofParameter();
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(GroupListTransitivememberofParameter parameter)
+        public async ValueTask<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(GroupListTransitivememberofParameter parameter)
         {
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(GroupListTransitivememberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(GroupListTransitivememberofParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(parameter, cancellationToken);
         }

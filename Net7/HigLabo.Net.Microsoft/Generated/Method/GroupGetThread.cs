@@ -137,7 +137,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetThreadResponse> GroupGetThreadAsync()
+        public async ValueTask<GroupGetThreadResponse> GroupGetThreadAsync()
         {
             var p = new GroupGetThreadParameter();
             return await this.SendAsync<GroupGetThreadParameter, GroupGetThreadResponse>(p, CancellationToken.None);
@@ -145,7 +145,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetThreadResponse> GroupGetThreadAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupGetThreadResponse> GroupGetThreadAsync(CancellationToken cancellationToken)
         {
             var p = new GroupGetThreadParameter();
             return await this.SendAsync<GroupGetThreadParameter, GroupGetThreadResponse>(p, cancellationToken);
@@ -153,14 +153,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetThreadResponse> GroupGetThreadAsync(GroupGetThreadParameter parameter)
+        public async ValueTask<GroupGetThreadResponse> GroupGetThreadAsync(GroupGetThreadParameter parameter)
         {
             return await this.SendAsync<GroupGetThreadParameter, GroupGetThreadResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetThreadResponse> GroupGetThreadAsync(GroupGetThreadParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupGetThreadResponse> GroupGetThreadAsync(GroupGetThreadParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupGetThreadParameter, GroupGetThreadResponse>(parameter, cancellationToken);
         }

@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync()
+        public async ValueTask<OnenotePostPagesResponse> OnenotePostPagesAsync()
         {
             var p = new OnenotePostPagesParameter();
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnenotePostPagesResponse> OnenotePostPagesAsync(CancellationToken cancellationToken)
         {
             var p = new OnenotePostPagesParameter();
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync(OnenotePostPagesParameter parameter)
+        public async ValueTask<OnenotePostPagesResponse> OnenotePostPagesAsync(OnenotePostPagesParameter parameter)
         {
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync(OnenotePostPagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnenotePostPagesResponse> OnenotePostPagesAsync(OnenotePostPagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskDeleteResponse> PlannertaskDeleteAsync()
+        public async ValueTask<PlannertaskDeleteResponse> PlannertaskDeleteAsync()
         {
             var p = new PlannertaskDeleteParameter();
             return await this.SendAsync<PlannertaskDeleteParameter, PlannertaskDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskDeleteResponse> PlannertaskDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannertaskDeleteResponse> PlannertaskDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PlannertaskDeleteParameter();
             return await this.SendAsync<PlannertaskDeleteParameter, PlannertaskDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskDeleteResponse> PlannertaskDeleteAsync(PlannertaskDeleteParameter parameter)
+        public async ValueTask<PlannertaskDeleteResponse> PlannertaskDeleteAsync(PlannertaskDeleteParameter parameter)
         {
             return await this.SendAsync<PlannertaskDeleteParameter, PlannertaskDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskDeleteResponse> PlannertaskDeleteAsync(PlannertaskDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannertaskDeleteResponse> PlannertaskDeleteAsync(PlannertaskDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannertaskDeleteParameter, PlannertaskDeleteResponse>(parameter, cancellationToken);
         }

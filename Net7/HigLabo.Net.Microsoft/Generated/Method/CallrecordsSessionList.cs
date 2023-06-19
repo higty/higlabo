@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync()
+        public async ValueTask<CallrecordsSessionListResponse> CallrecordsSessionListAsync()
         {
             var p = new CallrecordsSessionListParameter();
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CancellationToken cancellationToken)
         {
             var p = new CallrecordsSessionListParameter();
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CallrecordsSessionListParameter parameter)
+        public async ValueTask<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CallrecordsSessionListParameter parameter)
         {
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CallrecordsSessionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CallrecordsSessionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(parameter, cancellationToken);
         }

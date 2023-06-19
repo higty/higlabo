@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertUpdateResponse> AlertUpdateAsync()
+        public async ValueTask<AlertUpdateResponse> AlertUpdateAsync()
         {
             var p = new AlertUpdateParameter();
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertUpdateResponse> AlertUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AlertUpdateResponse> AlertUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AlertUpdateParameter();
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertUpdateResponse> AlertUpdateAsync(AlertUpdateParameter parameter)
+        public async ValueTask<AlertUpdateResponse> AlertUpdateAsync(AlertUpdateParameter parameter)
         {
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertUpdateResponse> AlertUpdateAsync(AlertUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AlertUpdateResponse> AlertUpdateAsync(AlertUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(parameter, cancellationToken);
         }

@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
-        public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync()
+        public async ValueTask<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync()
         {
             var p = new BitlockerListRecoverykeysParameter();
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
-        public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(CancellationToken cancellationToken)
+        public async ValueTask<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(CancellationToken cancellationToken)
         {
             var p = new BitlockerListRecoverykeysParameter();
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
-        public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(BitlockerListRecoverykeysParameter parameter)
+        public async ValueTask<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(BitlockerListRecoverykeysParameter parameter)
         {
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
-        public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(BitlockerListRecoverykeysParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(BitlockerListRecoverykeysParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(parameter, cancellationToken);
         }

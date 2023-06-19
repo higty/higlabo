@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync()
+        public async ValueTask<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync()
         {
             var p = new ServiceupdatemessageMarkunreadParameter();
             return await this.SendAsync<ServiceupdatemessageMarkunreadParameter, ServiceupdatemessageMarkunreadResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceupdatemessageMarkunreadParameter();
             return await this.SendAsync<ServiceupdatemessageMarkunreadParameter, ServiceupdatemessageMarkunreadResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync(ServiceupdatemessageMarkunreadParameter parameter)
+        public async ValueTask<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync(ServiceupdatemessageMarkunreadParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageMarkunreadParameter, ServiceupdatemessageMarkunreadResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync(ServiceupdatemessageMarkunreadParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageMarkunreadResponse> ServiceupdatemessageMarkunreadAsync(ServiceupdatemessageMarkunreadParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageMarkunreadParameter, ServiceupdatemessageMarkunreadResponse>(parameter, cancellationToken);
         }

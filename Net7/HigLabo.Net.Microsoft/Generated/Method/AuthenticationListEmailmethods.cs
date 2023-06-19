@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync()
+        public async ValueTask<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync()
         {
             var p = new AuthenticationListEmailmethodsParameter();
             return await this.SendAsync<AuthenticationListEmailmethodsParameter, AuthenticationListEmailmethodsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationListEmailmethodsParameter();
             return await this.SendAsync<AuthenticationListEmailmethodsParameter, AuthenticationListEmailmethodsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(AuthenticationListEmailmethodsParameter parameter)
+        public async ValueTask<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(AuthenticationListEmailmethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListEmailmethodsParameter, AuthenticationListEmailmethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(AuthenticationListEmailmethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(AuthenticationListEmailmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListEmailmethodsParameter, AuthenticationListEmailmethodsResponse>(parameter, cancellationToken);
         }

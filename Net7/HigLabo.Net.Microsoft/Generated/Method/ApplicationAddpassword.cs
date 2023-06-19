@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync()
+        public async ValueTask<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync()
         {
             var p = new ApplicationAddpasswordParameter();
             return await this.SendAsync<ApplicationAddpasswordParameter, ApplicationAddpasswordResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationAddpasswordParameter();
             return await this.SendAsync<ApplicationAddpasswordParameter, ApplicationAddpasswordResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync(ApplicationAddpasswordParameter parameter)
+        public async ValueTask<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync(ApplicationAddpasswordParameter parameter)
         {
             return await this.SendAsync<ApplicationAddpasswordParameter, ApplicationAddpasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync(ApplicationAddpasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationAddpasswordResponse> ApplicationAddpasswordAsync(ApplicationAddpasswordParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationAddpasswordParameter, ApplicationAddpasswordResponse>(parameter, cancellationToken);
         }

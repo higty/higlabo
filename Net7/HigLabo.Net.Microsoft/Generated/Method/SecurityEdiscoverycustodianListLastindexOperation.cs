@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync()
+        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync()
         {
             var p = new SecurityEdiscoverycustodianListLastindexOperationParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycustodianListLastindexOperationParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(SecurityEdiscoverycustodianListLastindexOperationParameter parameter)
+        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(SecurityEdiscoverycustodianListLastindexOperationParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(SecurityEdiscoverycustodianListLastindexOperationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(SecurityEdiscoverycustodianListLastindexOperationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(parameter, cancellationToken);
         }

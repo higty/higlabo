@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-buckets?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostBucketsResponse> PlannerPostBucketsAsync()
+        public async ValueTask<PlannerPostBucketsResponse> PlannerPostBucketsAsync()
         {
             var p = new PlannerPostBucketsParameter();
             return await this.SendAsync<PlannerPostBucketsParameter, PlannerPostBucketsResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-buckets?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostBucketsResponse> PlannerPostBucketsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerPostBucketsResponse> PlannerPostBucketsAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerPostBucketsParameter();
             return await this.SendAsync<PlannerPostBucketsParameter, PlannerPostBucketsResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-buckets?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostBucketsResponse> PlannerPostBucketsAsync(PlannerPostBucketsParameter parameter)
+        public async ValueTask<PlannerPostBucketsResponse> PlannerPostBucketsAsync(PlannerPostBucketsParameter parameter)
         {
             return await this.SendAsync<PlannerPostBucketsParameter, PlannerPostBucketsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-buckets?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostBucketsResponse> PlannerPostBucketsAsync(PlannerPostBucketsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerPostBucketsResponse> PlannerPostBucketsAsync(PlannerPostBucketsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerPostBucketsParameter, PlannerPostBucketsResponse>(parameter, cancellationToken);
         }

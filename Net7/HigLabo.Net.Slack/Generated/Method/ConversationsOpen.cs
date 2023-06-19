@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.open
         /// </summary>
-        public async Task<ConversationsOpenResponse> ConversationsOpenAsync()
+        public async ValueTask<ConversationsOpenResponse> ConversationsOpenAsync()
         {
             var p = new ConversationsOpenParameter();
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(p, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.open
         /// </summary>
-        public async Task<ConversationsOpenResponse> ConversationsOpenAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConversationsOpenResponse> ConversationsOpenAsync(CancellationToken cancellationToken)
         {
             var p = new ConversationsOpenParameter();
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(p, cancellationToken);
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.open
         /// </summary>
-        public async Task<ConversationsOpenResponse> ConversationsOpenAsync(ConversationsOpenParameter parameter)
+        public async ValueTask<ConversationsOpenResponse> ConversationsOpenAsync(ConversationsOpenParameter parameter)
         {
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.open
         /// </summary>
-        public async Task<ConversationsOpenResponse> ConversationsOpenAsync(ConversationsOpenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsOpenResponse> ConversationsOpenAsync(ConversationsOpenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(parameter, cancellationToken);
         }

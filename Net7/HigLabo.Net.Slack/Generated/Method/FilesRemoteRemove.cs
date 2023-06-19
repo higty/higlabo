@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.remove
         /// </summary>
-        public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync()
+        public async ValueTask<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync()
         {
             var p = new FilesRemoteRemoveParameter();
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.remove
         /// </summary>
-        public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(CancellationToken cancellationToken)
         {
             var p = new FilesRemoteRemoveParameter();
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.remove
         /// </summary>
-        public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(FilesRemoteRemoveParameter parameter)
+        public async ValueTask<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(FilesRemoteRemoveParameter parameter)
         {
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.remote.remove
         /// </summary>
-        public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(FilesRemoteRemoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(FilesRemoteRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(parameter, cancellationToken);
         }

@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync()
+        public async ValueTask<EventTentativelyacceptResponse> EventTentativelyacceptAsync()
         {
             var p = new EventTentativelyacceptParameter();
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventTentativelyacceptResponse> EventTentativelyacceptAsync(CancellationToken cancellationToken)
         {
             var p = new EventTentativelyacceptParameter();
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync(EventTentativelyacceptParameter parameter)
+        public async ValueTask<EventTentativelyacceptResponse> EventTentativelyacceptAsync(EventTentativelyacceptParameter parameter)
         {
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync(EventTentativelyacceptParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventTentativelyacceptResponse> EventTentativelyacceptAsync(EventTentativelyacceptParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(parameter, cancellationToken);
         }

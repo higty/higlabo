@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync()
+        public async ValueTask<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync()
         {
             var p = new EventmessageListAttachmentsParameter();
             return await this.SendAsync<EventmessageListAttachmentsParameter, EventmessageListAttachmentsResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new EventmessageListAttachmentsParameter();
             return await this.SendAsync<EventmessageListAttachmentsParameter, EventmessageListAttachmentsResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync(EventmessageListAttachmentsParameter parameter)
+        public async ValueTask<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync(EventmessageListAttachmentsParameter parameter)
         {
             return await this.SendAsync<EventmessageListAttachmentsParameter, EventmessageListAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync(EventmessageListAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventmessageListAttachmentsResponse> EventmessageListAttachmentsAsync(EventmessageListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventmessageListAttachmentsParameter, EventmessageListAttachmentsResponse>(parameter, cancellationToken);
         }

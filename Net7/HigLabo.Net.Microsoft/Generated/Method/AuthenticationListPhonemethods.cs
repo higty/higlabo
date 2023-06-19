@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-phonemethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync()
+        public async ValueTask<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync()
         {
             var p = new AuthenticationListPhonemethodsParameter();
             return await this.SendAsync<AuthenticationListPhonemethodsParameter, AuthenticationListPhonemethodsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-phonemethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationListPhonemethodsParameter();
             return await this.SendAsync<AuthenticationListPhonemethodsParameter, AuthenticationListPhonemethodsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-phonemethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync(AuthenticationListPhonemethodsParameter parameter)
+        public async ValueTask<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync(AuthenticationListPhonemethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListPhonemethodsParameter, AuthenticationListPhonemethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-phonemethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync(AuthenticationListPhonemethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListPhonemethodsResponse> AuthenticationListPhonemethodsAsync(AuthenticationListPhonemethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListPhonemethodsParameter, AuthenticationListPhonemethodsResponse>(parameter, cancellationToken);
         }

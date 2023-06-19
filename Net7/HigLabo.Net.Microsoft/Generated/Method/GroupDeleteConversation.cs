@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync()
+        public async ValueTask<GroupDeleteConversationResponse> GroupDeleteConversationAsync()
         {
             var p = new GroupDeleteConversationParameter();
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteConversationResponse> GroupDeleteConversationAsync(CancellationToken cancellationToken)
         {
             var p = new GroupDeleteConversationParameter();
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync(GroupDeleteConversationParameter parameter)
+        public async ValueTask<GroupDeleteConversationResponse> GroupDeleteConversationAsync(GroupDeleteConversationParameter parameter)
         {
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync(GroupDeleteConversationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteConversationResponse> GroupDeleteConversationAsync(GroupDeleteConversationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(parameter, cancellationToken);
         }

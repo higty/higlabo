@@ -24,7 +24,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.access
         /// </summary>
-        public async Task<OauthV2AccessResponse> OauthV2AccessAsync()
+        public async ValueTask<OauthV2AccessResponse> OauthV2AccessAsync()
         {
             var p = new OauthV2AccessParameter();
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(p, CancellationToken.None);
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.access
         /// </summary>
-        public async Task<OauthV2AccessResponse> OauthV2AccessAsync(CancellationToken cancellationToken)
+        public async ValueTask<OauthV2AccessResponse> OauthV2AccessAsync(CancellationToken cancellationToken)
         {
             var p = new OauthV2AccessParameter();
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(p, cancellationToken);
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.access
         /// </summary>
-        public async Task<OauthV2AccessResponse> OauthV2AccessAsync(OauthV2AccessParameter parameter)
+        public async ValueTask<OauthV2AccessResponse> OauthV2AccessAsync(OauthV2AccessParameter parameter)
         {
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.access
         /// </summary>
-        public async Task<OauthV2AccessResponse> OauthV2AccessAsync(OauthV2AccessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OauthV2AccessResponse> OauthV2AccessAsync(OauthV2AccessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(parameter, cancellationToken);
         }

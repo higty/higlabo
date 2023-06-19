@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync()
+        public async ValueTask<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync()
         {
             var p = new ConversationsListConnectInvitesParameter();
             return await this.SendAsync<ConversationsListConnectInvitesParameter, ConversationsListConnectInvitesResponse>(p, CancellationToken.None);
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync(CancellationToken cancellationToken)
         {
             var p = new ConversationsListConnectInvitesParameter();
             return await this.SendAsync<ConversationsListConnectInvitesParameter, ConversationsListConnectInvitesResponse>(p, cancellationToken);
@@ -48,21 +48,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter)
+        public async ValueTask<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter)
         {
             return await this.SendAsync<ConversationsListConnectInvitesParameter, ConversationsListConnectInvitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsListConnectInvitesResponse> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsListConnectInvitesParameter, ConversationsListConnectInvitesResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(PagingContext<ConversationsListConnectInvitesResponse> context)
+        public async ValueTask<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(PagingContext<ConversationsListConnectInvitesResponse> context)
         {
             var p = new ConversationsListConnectInvitesParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(CancellationToken cancellationToken, PagingContext<ConversationsListConnectInvitesResponse> context)
+        public async ValueTask<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(CancellationToken cancellationToken, PagingContext<ConversationsListConnectInvitesResponse> context)
         {
             var p = new ConversationsListConnectInvitesParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter, PagingContext<ConversationsListConnectInvitesResponse> context)
+        public async ValueTask<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter, PagingContext<ConversationsListConnectInvitesResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async Task<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter, PagingContext<ConversationsListConnectInvitesResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(ConversationsListConnectInvitesParameter parameter, PagingContext<ConversationsListConnectInvitesResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

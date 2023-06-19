@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetTabsResponse> ChatGetTabsAsync()
+        public async ValueTask<ChatGetTabsResponse> ChatGetTabsAsync()
         {
             var p = new ChatGetTabsParameter();
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetTabsResponse> ChatGetTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatGetTabsResponse> ChatGetTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatGetTabsParameter();
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetTabsResponse> ChatGetTabsAsync(ChatGetTabsParameter parameter)
+        public async ValueTask<ChatGetTabsResponse> ChatGetTabsAsync(ChatGetTabsParameter parameter)
         {
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetTabsResponse> ChatGetTabsAsync(ChatGetTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatGetTabsResponse> ChatGetTabsAsync(ChatGetTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(parameter, cancellationToken);
         }

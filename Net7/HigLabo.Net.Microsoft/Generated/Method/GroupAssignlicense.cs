@@ -205,7 +205,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupAssignlicenseResponse> GroupAssignlicenseAsync()
+        public async ValueTask<GroupAssignlicenseResponse> GroupAssignlicenseAsync()
         {
             var p = new GroupAssignlicenseParameter();
             return await this.SendAsync<GroupAssignlicenseParameter, GroupAssignlicenseResponse>(p, CancellationToken.None);
@@ -213,7 +213,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupAssignlicenseResponse> GroupAssignlicenseAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupAssignlicenseResponse> GroupAssignlicenseAsync(CancellationToken cancellationToken)
         {
             var p = new GroupAssignlicenseParameter();
             return await this.SendAsync<GroupAssignlicenseParameter, GroupAssignlicenseResponse>(p, cancellationToken);
@@ -221,14 +221,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupAssignlicenseResponse> GroupAssignlicenseAsync(GroupAssignlicenseParameter parameter)
+        public async ValueTask<GroupAssignlicenseResponse> GroupAssignlicenseAsync(GroupAssignlicenseParameter parameter)
         {
             return await this.SendAsync<GroupAssignlicenseParameter, GroupAssignlicenseResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupAssignlicenseResponse> GroupAssignlicenseAsync(GroupAssignlicenseParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupAssignlicenseResponse> GroupAssignlicenseAsync(GroupAssignlicenseParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupAssignlicenseParameter, GroupAssignlicenseResponse>(parameter, cancellationToken);
         }

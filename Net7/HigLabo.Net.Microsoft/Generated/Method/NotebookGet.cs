@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetResponse> NotebookGetAsync()
+        public async ValueTask<NotebookGetResponse> NotebookGetAsync()
         {
             var p = new NotebookGetParameter();
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(p, CancellationToken.None);
@@ -115,7 +115,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetResponse> NotebookGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookGetResponse> NotebookGetAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookGetParameter();
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(p, cancellationToken);
@@ -123,14 +123,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetResponse> NotebookGetAsync(NotebookGetParameter parameter)
+        public async ValueTask<NotebookGetResponse> NotebookGetAsync(NotebookGetParameter parameter)
         {
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetResponse> NotebookGetAsync(NotebookGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookGetResponse> NotebookGetAsync(NotebookGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(parameter, cancellationToken);
         }

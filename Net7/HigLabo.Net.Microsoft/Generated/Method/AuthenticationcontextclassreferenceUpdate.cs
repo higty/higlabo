@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync()
+        public async ValueTask<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync()
         {
             var p = new AuthenticationcontextclassreferenceUpdateParameter();
             return await this.SendAsync<AuthenticationcontextclassreferenceUpdateParameter, AuthenticationcontextclassreferenceUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationcontextclassreferenceUpdateParameter();
             return await this.SendAsync<AuthenticationcontextclassreferenceUpdateParameter, AuthenticationcontextclassreferenceUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync(AuthenticationcontextclassreferenceUpdateParameter parameter)
+        public async ValueTask<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync(AuthenticationcontextclassreferenceUpdateParameter parameter)
         {
             return await this.SendAsync<AuthenticationcontextclassreferenceUpdateParameter, AuthenticationcontextclassreferenceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync(AuthenticationcontextclassreferenceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcontextclassreferenceUpdateResponse> AuthenticationcontextclassreferenceUpdateAsync(AuthenticationcontextclassreferenceUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationcontextclassreferenceUpdateParameter, AuthenticationcontextclassreferenceUpdateResponse>(parameter, cancellationToken);
         }

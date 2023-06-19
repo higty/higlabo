@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync()
+        public async ValueTask<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync()
         {
             var p = new ServiceupdatemessageGetParameter();
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(p, CancellationToken.None);
@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceupdatemessageGetParameter();
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(p, cancellationToken);
@@ -107,14 +107,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(ServiceupdatemessageGetParameter parameter)
+        public async ValueTask<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(ServiceupdatemessageGetParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(ServiceupdatemessageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(ServiceupdatemessageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(parameter, cancellationToken);
         }

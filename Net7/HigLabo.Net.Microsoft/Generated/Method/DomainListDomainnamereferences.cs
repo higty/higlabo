@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync()
+        public async ValueTask<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync()
         {
             var p = new DomainListDomainnamereferencesParameter();
             return await this.SendAsync<DomainListDomainnamereferencesParameter, DomainListDomainnamereferencesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync(CancellationToken cancellationToken)
         {
             var p = new DomainListDomainnamereferencesParameter();
             return await this.SendAsync<DomainListDomainnamereferencesParameter, DomainListDomainnamereferencesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync(DomainListDomainnamereferencesParameter parameter)
+        public async ValueTask<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync(DomainListDomainnamereferencesParameter parameter)
         {
             return await this.SendAsync<DomainListDomainnamereferencesParameter, DomainListDomainnamereferencesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync(DomainListDomainnamereferencesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainListDomainnamereferencesResponse> DomainListDomainnamereferencesAsync(DomainListDomainnamereferencesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainListDomainnamereferencesParameter, DomainListDomainnamereferencesResponse>(parameter, cancellationToken);
         }

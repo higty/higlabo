@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync()
+        public async ValueTask<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync()
         {
             var p = new AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter();
             return await this.SendAsync<AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter, AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter();
             return await this.SendAsync<AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter, AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync(AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter parameter)
+        public async ValueTask<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync(AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter parameter)
         {
             return await this.SendAsync<AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter, AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync(AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse> AuthenticationstrengthPolicyDeleteCombinationConfigurationsAsync(AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthPolicyDeleteCombinationConfigurationsParameter, AuthenticationstrengthPolicyDeleteCombinationConfigurationsResponse>(parameter, cancellationToken);
         }

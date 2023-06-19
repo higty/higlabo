@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync()
+        public async ValueTask<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync()
         {
             var p = new DeviceDeleteRegisteredownersParameter();
             return await this.SendAsync<DeviceDeleteRegisteredownersParameter, DeviceDeleteRegisteredownersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceDeleteRegisteredownersParameter();
             return await this.SendAsync<DeviceDeleteRegisteredownersParameter, DeviceDeleteRegisteredownersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync(DeviceDeleteRegisteredownersParameter parameter)
+        public async ValueTask<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync(DeviceDeleteRegisteredownersParameter parameter)
         {
             return await this.SendAsync<DeviceDeleteRegisteredownersParameter, DeviceDeleteRegisteredownersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync(DeviceDeleteRegisteredownersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceDeleteRegisteredownersResponse> DeviceDeleteRegisteredownersAsync(DeviceDeleteRegisteredownersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceDeleteRegisteredownersParameter, DeviceDeleteRegisteredownersResponse>(parameter, cancellationToken);
         }

@@ -37,7 +37,7 @@ namespace HigLabo.Web
             }
             return cx.Items[ItemsKey.HeaderText]?.ToString() ?? "";
         }
-        public static async Task<String> GetRequestBodyTextAsync(this HttpRequest request)
+        public static async ValueTask<String> GetRequestBodyTextAsync(this HttpRequest request)
         {
             var cx = request.HttpContext;
             var text = cx.Items[ItemsKey.BodyText]?.ToString() ?? "";

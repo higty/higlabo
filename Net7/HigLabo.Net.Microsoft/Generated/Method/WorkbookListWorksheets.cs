@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-worksheets?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync()
+        public async ValueTask<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync()
         {
             var p = new WorkbookListWorksheetsParameter();
             return await this.SendAsync<WorkbookListWorksheetsParameter, WorkbookListWorksheetsResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-worksheets?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookListWorksheetsParameter();
             return await this.SendAsync<WorkbookListWorksheetsParameter, WorkbookListWorksheetsResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-worksheets?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync(WorkbookListWorksheetsParameter parameter)
+        public async ValueTask<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync(WorkbookListWorksheetsParameter parameter)
         {
             return await this.SendAsync<WorkbookListWorksheetsParameter, WorkbookListWorksheetsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-worksheets?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync(WorkbookListWorksheetsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookListWorksheetsResponse> WorkbookListWorksheetsAsync(WorkbookListWorksheetsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookListWorksheetsParameter, WorkbookListWorksheetsResponse>(parameter, cancellationToken);
         }

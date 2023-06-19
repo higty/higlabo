@@ -22,7 +22,7 @@ namespace HigLabo.Net.OAuth
                 + "&state=state&code_challenge=challenge&code_challenge_method=plain"
                 , this.ClientID, redirectUrl, WebUtility.UrlEncode(String.Join(",", scopes)));
         }
-        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
+        public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
             var cl = this;
             var mg = new HttpRequestMessage(HttpMethod.Post, cl.Url);

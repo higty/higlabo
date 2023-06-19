@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderUpdateResponse> LearningproviderUpdateAsync()
+        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync()
         {
             var p = new LearningproviderUpdateParameter();
             return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderUpdateResponse> LearningproviderUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new LearningproviderUpdateParameter();
             return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderUpdateResponse> LearningproviderUpdateAsync(LearningproviderUpdateParameter parameter)
+        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync(LearningproviderUpdateParameter parameter)
         {
             return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningproviderUpdateResponse> LearningproviderUpdateAsync(LearningproviderUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync(LearningproviderUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(parameter, cancellationToken);
         }

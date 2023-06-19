@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync()
+        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync()
         {
             var p = new EmployeeexperienceListLearningprovidersParameter();
             return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(CancellationToken cancellationToken)
         {
             var p = new EmployeeexperienceListLearningprovidersParameter();
             return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(EmployeeexperienceListLearningprovidersParameter parameter)
+        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(EmployeeexperienceListLearningprovidersParameter parameter)
         {
             return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(EmployeeexperienceListLearningprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(EmployeeexperienceListLearningprovidersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(parameter, cancellationToken);
         }

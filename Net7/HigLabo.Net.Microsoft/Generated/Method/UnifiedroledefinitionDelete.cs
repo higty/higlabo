@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync()
+        public async ValueTask<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync()
         {
             var p = new UnifiedroledefinitionDeleteParameter();
             return await this.SendAsync<UnifiedroledefinitionDeleteParameter, UnifiedroledefinitionDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroledefinitionDeleteParameter();
             return await this.SendAsync<UnifiedroledefinitionDeleteParameter, UnifiedroledefinitionDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync(UnifiedroledefinitionDeleteParameter parameter)
+        public async ValueTask<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync(UnifiedroledefinitionDeleteParameter parameter)
         {
             return await this.SendAsync<UnifiedroledefinitionDeleteParameter, UnifiedroledefinitionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync(UnifiedroledefinitionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroledefinitionDeleteResponse> UnifiedroledefinitionDeleteAsync(UnifiedroledefinitionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroledefinitionDeleteParameter, UnifiedroledefinitionDeleteResponse>(parameter, cancellationToken);
         }

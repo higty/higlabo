@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.approve
         /// </summary>
-        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string? invite_Request_Id)
+        public async ValueTask<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string? invite_Request_Id)
         {
             var p = new AdminInviteRequestsApproveParameter();
             p.Invite_Request_Id = invite_Request_Id;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.approve
         /// </summary>
-        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string? invite_Request_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string? invite_Request_Id, CancellationToken cancellationToken)
         {
             var p = new AdminInviteRequestsApproveParameter();
             p.Invite_Request_Id = invite_Request_Id;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.approve
         /// </summary>
-        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(AdminInviteRequestsApproveParameter parameter)
+        public async ValueTask<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(AdminInviteRequestsApproveParameter parameter)
         {
             return await this.SendAsync<AdminInviteRequestsApproveParameter, AdminInviteRequestsApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.approve
         /// </summary>
-        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(AdminInviteRequestsApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(AdminInviteRequestsApproveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminInviteRequestsApproveParameter, AdminInviteRequestsApproveResponse>(parameter, cancellationToken);
         }

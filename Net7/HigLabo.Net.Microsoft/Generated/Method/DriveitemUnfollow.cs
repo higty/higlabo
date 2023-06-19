@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUnfollowResponse> DriveitemUnfollowAsync()
+        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync()
         {
             var p = new DriveitemUnfollowParameter();
             return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUnfollowResponse> DriveitemUnfollowAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemUnfollowParameter();
             return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUnfollowResponse> DriveitemUnfollowAsync(DriveitemUnfollowParameter parameter)
+        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync(DriveitemUnfollowParameter parameter)
         {
             return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUnfollowResponse> DriveitemUnfollowAsync(DriveitemUnfollowParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync(DriveitemUnfollowParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(parameter, cancellationToken);
         }

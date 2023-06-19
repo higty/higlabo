@@ -52,9 +52,9 @@ namespace HigLabo.Net.Microsoft
             mg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
             return mg;
         }
-        public override async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
+        public override async ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            Func<Task<TResponse>>? f = null;
+            Func<ValueTask<TResponse>>? f = null;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
                 var queryString = "";
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             }
             return await this.ProcessRequest(f);
         }
-        public async Task<Stream> DownloadStreamAsync(IRestApiParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Stream> DownloadStreamAsync(IRestApiParameter parameter, CancellationToken cancellationToken)
         {
             var p = parameter;
             var queryString = "";
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
                 this.RefreshToken = result.Refresh_Token;
             }
         }
-        public async Task<RequestCodeResponse> RequestCodeAsync(string code)
+        public async ValueTask<RequestCodeResponse> RequestCodeAsync(string code)
         {
             if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
@@ -113,7 +113,7 @@ namespace HigLabo.Net.Microsoft
             var bodyText = await res.Content.ReadAsStringAsync();
             return this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
         }
-        public async Task<RequestCodeResponse> UpdateAccessTokenAsync()
+        public async ValueTask<RequestCodeResponse> UpdateAccessTokenAsync()
         {
             if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }

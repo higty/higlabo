@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync()
+        public async ValueTask<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync()
         {
             var p = new ServiceupdatemessageUnfavoriteParameter();
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceupdatemessageUnfavoriteParameter();
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(ServiceupdatemessageUnfavoriteParameter parameter)
+        public async ValueTask<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(ServiceupdatemessageUnfavoriteParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(ServiceupdatemessageUnfavoriteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(ServiceupdatemessageUnfavoriteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(parameter, cancellationToken);
         }

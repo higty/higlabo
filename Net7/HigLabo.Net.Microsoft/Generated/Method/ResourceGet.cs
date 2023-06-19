@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/resource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ResourceGetResponse> ResourceGetAsync()
+        public async ValueTask<ResourceGetResponse> ResourceGetAsync()
         {
             var p = new ResourceGetParameter();
             return await this.SendAsync<ResourceGetParameter, ResourceGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/resource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ResourceGetResponse> ResourceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ResourceGetResponse> ResourceGetAsync(CancellationToken cancellationToken)
         {
             var p = new ResourceGetParameter();
             return await this.SendAsync<ResourceGetParameter, ResourceGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/resource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ResourceGetResponse> ResourceGetAsync(ResourceGetParameter parameter)
+        public async ValueTask<ResourceGetResponse> ResourceGetAsync(ResourceGetParameter parameter)
         {
             return await this.SendAsync<ResourceGetParameter, ResourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/resource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ResourceGetResponse> ResourceGetAsync(ResourceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ResourceGetResponse> ResourceGetAsync(ResourceGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ResourceGetParameter, ResourceGetResponse>(parameter, cancellationToken);
         }

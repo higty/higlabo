@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync()
+        public async ValueTask<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync()
         {
             var p = new GrouplifecyclePolicyDeleteParameter();
             return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new GrouplifecyclePolicyDeleteParameter();
             return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(GrouplifecyclePolicyDeleteParameter parameter)
+        public async ValueTask<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(GrouplifecyclePolicyDeleteParameter parameter)
         {
             return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(GrouplifecyclePolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(GrouplifecyclePolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(parameter, cancellationToken);
         }

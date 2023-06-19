@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync()
+        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync()
         {
             var p = new ServiceprincipalAddpasswordParameter();
             return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalAddpasswordParameter();
             return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(ServiceprincipalAddpasswordParameter parameter)
+        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(ServiceprincipalAddpasswordParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(ServiceprincipalAddpasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(ServiceprincipalAddpasswordParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(parameter, cancellationToken);
         }

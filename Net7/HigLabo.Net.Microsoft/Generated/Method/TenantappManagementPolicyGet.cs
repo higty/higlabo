@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantappmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync()
+        public async ValueTask<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync()
         {
             var p = new TenantappManagementPolicyGetParameter();
             return await this.SendAsync<TenantappManagementPolicyGetParameter, TenantappManagementPolicyGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantappmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new TenantappManagementPolicyGetParameter();
             return await this.SendAsync<TenantappManagementPolicyGetParameter, TenantappManagementPolicyGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantappmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync(TenantappManagementPolicyGetParameter parameter)
+        public async ValueTask<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync(TenantappManagementPolicyGetParameter parameter)
         {
             return await this.SendAsync<TenantappManagementPolicyGetParameter, TenantappManagementPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantappmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync(TenantappManagementPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TenantappManagementPolicyGetResponse> TenantappManagementPolicyGetAsync(TenantappManagementPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TenantappManagementPolicyGetParameter, TenantappManagementPolicyGetResponse>(parameter, cancellationToken);
         }

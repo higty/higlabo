@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.publish
         /// </summary>
-        public async Task<ViewsPublishResponse> ViewsPublishAsync(string? user_Id, string? view)
+        public async ValueTask<ViewsPublishResponse> ViewsPublishAsync(string? user_Id, string? view)
         {
             var p = new ViewsPublishParameter();
             p.User_Id = user_Id;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.publish
         /// </summary>
-        public async Task<ViewsPublishResponse> ViewsPublishAsync(string? user_Id, string? view, CancellationToken cancellationToken)
+        public async ValueTask<ViewsPublishResponse> ViewsPublishAsync(string? user_Id, string? view, CancellationToken cancellationToken)
         {
             var p = new ViewsPublishParameter();
             p.User_Id = user_Id;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.publish
         /// </summary>
-        public async Task<ViewsPublishResponse> ViewsPublishAsync(ViewsPublishParameter parameter)
+        public async ValueTask<ViewsPublishResponse> ViewsPublishAsync(ViewsPublishParameter parameter)
         {
             return await this.SendAsync<ViewsPublishParameter, ViewsPublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/views.publish
         /// </summary>
-        public async Task<ViewsPublishResponse> ViewsPublishAsync(ViewsPublishParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ViewsPublishResponse> ViewsPublishAsync(ViewsPublishParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ViewsPublishParameter, ViewsPublishResponse>(parameter, cancellationToken);
         }

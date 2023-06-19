@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterGetResponse> PrinterGetAsync()
+        public async ValueTask<PrinterGetResponse> PrinterGetAsync()
         {
             var p = new PrinterGetParameter();
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(p, CancellationToken.None);
@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterGetResponse> PrinterGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterGetResponse> PrinterGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterGetParameter();
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(p, cancellationToken);
@@ -111,14 +111,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterGetResponse> PrinterGetAsync(PrinterGetParameter parameter)
+        public async ValueTask<PrinterGetResponse> PrinterGetAsync(PrinterGetParameter parameter)
         {
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterGetResponse> PrinterGetAsync(PrinterGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterGetResponse> PrinterGetAsync(PrinterGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(parameter, cancellationToken);
         }

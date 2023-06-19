@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-post-delegatedadminrelationships?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync()
+        public async ValueTask<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync()
         {
             var p = new TenantrelationshipPostDelegatedadminrelationshipsParameter();
             return await this.SendAsync<TenantrelationshipPostDelegatedadminrelationshipsParameter, TenantrelationshipPostDelegatedadminrelationshipsResponse>(p, CancellationToken.None);
@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-post-delegatedadminrelationships?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync(CancellationToken cancellationToken)
         {
             var p = new TenantrelationshipPostDelegatedadminrelationshipsParameter();
             return await this.SendAsync<TenantrelationshipPostDelegatedadminrelationshipsParameter, TenantrelationshipPostDelegatedadminrelationshipsResponse>(p, cancellationToken);
@@ -118,14 +118,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-post-delegatedadminrelationships?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync(TenantrelationshipPostDelegatedadminrelationshipsParameter parameter)
+        public async ValueTask<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync(TenantrelationshipPostDelegatedadminrelationshipsParameter parameter)
         {
             return await this.SendAsync<TenantrelationshipPostDelegatedadminrelationshipsParameter, TenantrelationshipPostDelegatedadminrelationshipsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-post-delegatedadminrelationships?view=graph-rest-1.0
         /// </summary>
-        public async Task<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync(TenantrelationshipPostDelegatedadminrelationshipsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TenantrelationshipPostDelegatedadminrelationshipsResponse> TenantrelationshipPostDelegatedadminrelationshipsAsync(TenantrelationshipPostDelegatedadminrelationshipsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TenantrelationshipPostDelegatedadminrelationshipsParameter, TenantrelationshipPostDelegatedadminrelationshipsResponse>(parameter, cancellationToken);
         }

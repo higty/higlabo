@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync()
+        public async ValueTask<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync()
         {
             var p = new ListitemListDocumentsetversionsParameter();
             return await this.SendAsync<ListitemListDocumentsetversionsParameter, ListitemListDocumentsetversionsResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync(CancellationToken cancellationToken)
         {
             var p = new ListitemListDocumentsetversionsParameter();
             return await this.SendAsync<ListitemListDocumentsetversionsParameter, ListitemListDocumentsetversionsResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync(ListitemListDocumentsetversionsParameter parameter)
+        public async ValueTask<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync(ListitemListDocumentsetversionsParameter parameter)
         {
             return await this.SendAsync<ListitemListDocumentsetversionsParameter, ListitemListDocumentsetversionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync(ListitemListDocumentsetversionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListitemListDocumentsetversionsResponse> ListitemListDocumentsetversionsAsync(ListitemListDocumentsetversionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListitemListDocumentsetversionsParameter, ListitemListDocumentsetversionsResponse>(parameter, cancellationToken);
         }

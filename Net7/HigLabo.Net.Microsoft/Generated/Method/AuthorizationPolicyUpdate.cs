@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync()
+        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync()
         {
             var p = new AuthorizationPolicyUpdateParameter();
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AuthorizationPolicyUpdateParameter();
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter)
+        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, cancellationToken);
         }

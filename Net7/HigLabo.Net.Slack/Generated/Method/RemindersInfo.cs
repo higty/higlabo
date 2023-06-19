@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.info
         /// </summary>
-        public async Task<RemindersInfoResponse> RemindersInfoAsync(string? reminder)
+        public async ValueTask<RemindersInfoResponse> RemindersInfoAsync(string? reminder)
         {
             var p = new RemindersInfoParameter();
             p.Reminder = reminder;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.info
         /// </summary>
-        public async Task<RemindersInfoResponse> RemindersInfoAsync(string? reminder, CancellationToken cancellationToken)
+        public async ValueTask<RemindersInfoResponse> RemindersInfoAsync(string? reminder, CancellationToken cancellationToken)
         {
             var p = new RemindersInfoParameter();
             p.Reminder = reminder;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.info
         /// </summary>
-        public async Task<RemindersInfoResponse> RemindersInfoAsync(RemindersInfoParameter parameter)
+        public async ValueTask<RemindersInfoResponse> RemindersInfoAsync(RemindersInfoParameter parameter)
         {
             return await this.SendAsync<RemindersInfoParameter, RemindersInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reminders.info
         /// </summary>
-        public async Task<RemindersInfoResponse> RemindersInfoAsync(RemindersInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RemindersInfoResponse> RemindersInfoAsync(RemindersInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RemindersInfoParameter, RemindersInfoResponse>(parameter, cancellationToken);
         }

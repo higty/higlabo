@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.removeGroup
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(string? channel_Id, string? group_Id, string? team_Id)
+        public async ValueTask<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(string? channel_Id, string? group_Id, string? team_Id)
         {
             var p = new AdminConversationsRestrictAccessRemoveGroupParameter();
             p.Channel_Id = channel_Id;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.removeGroup
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(string? channel_Id, string? group_Id, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(string? channel_Id, string? group_Id, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsRestrictAccessRemoveGroupParameter();
             p.Channel_Id = channel_Id;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.removeGroup
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(AdminConversationsRestrictAccessRemoveGroupParameter parameter)
+        public async ValueTask<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(AdminConversationsRestrictAccessRemoveGroupParameter parameter)
         {
             return await this.SendAsync<AdminConversationsRestrictAccessRemoveGroupParameter, AdminConversationsRestrictAccessRemoveGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.removeGroup
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(AdminConversationsRestrictAccessRemoveGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsRestrictAccessRemoveGroupResponse> AdminConversationsRestrictAccessRemoveGroupAsync(AdminConversationsRestrictAccessRemoveGroupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsRestrictAccessRemoveGroupParameter, AdminConversationsRestrictAccessRemoveGroupResponse>(parameter, cancellationToken);
         }

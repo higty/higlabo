@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync()
+        public async ValueTask<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync()
         {
             var p = new SubjectrightsrequestGetfinalattachmentParameter();
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(CancellationToken cancellationToken)
         {
             var p = new SubjectrightsrequestGetfinalattachmentParameter();
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(SubjectrightsrequestGetfinalattachmentParameter parameter)
+        public async ValueTask<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(SubjectrightsrequestGetfinalattachmentParameter parameter)
         {
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(SubjectrightsrequestGetfinalattachmentParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(SubjectrightsrequestGetfinalattachmentParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(parameter, cancellationToken);
         }

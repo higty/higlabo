@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync()
+        public async ValueTask<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync()
         {
             var p = new GroupDeleteAcceptedsendersParameter();
             return await this.SendAsync<GroupDeleteAcceptedsendersParameter, GroupDeleteAcceptedsendersResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync(CancellationToken cancellationToken)
         {
             var p = new GroupDeleteAcceptedsendersParameter();
             return await this.SendAsync<GroupDeleteAcceptedsendersParameter, GroupDeleteAcceptedsendersResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync(GroupDeleteAcceptedsendersParameter parameter)
+        public async ValueTask<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync(GroupDeleteAcceptedsendersParameter parameter)
         {
             return await this.SendAsync<GroupDeleteAcceptedsendersParameter, GroupDeleteAcceptedsendersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync(GroupDeleteAcceptedsendersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteAcceptedsendersResponse> GroupDeleteAcceptedsendersAsync(GroupDeleteAcceptedsendersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeleteAcceptedsendersParameter, GroupDeleteAcceptedsendersResponse>(parameter, cancellationToken);
         }

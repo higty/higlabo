@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/migration.exchange
         /// </summary>
-        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(string? users)
+        public async ValueTask<MigrationExchangeResponse> MigrationExchangeAsync(string? users)
         {
             var p = new MigrationExchangeParameter();
             p.Users = users;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/migration.exchange
         /// </summary>
-        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(string? users, CancellationToken cancellationToken)
+        public async ValueTask<MigrationExchangeResponse> MigrationExchangeAsync(string? users, CancellationToken cancellationToken)
         {
             var p = new MigrationExchangeParameter();
             p.Users = users;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/migration.exchange
         /// </summary>
-        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(MigrationExchangeParameter parameter)
+        public async ValueTask<MigrationExchangeResponse> MigrationExchangeAsync(MigrationExchangeParameter parameter)
         {
             return await this.SendAsync<MigrationExchangeParameter, MigrationExchangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/migration.exchange
         /// </summary>
-        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(MigrationExchangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MigrationExchangeResponse> MigrationExchangeAsync(MigrationExchangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MigrationExchangeParameter, MigrationExchangeResponse>(parameter, cancellationToken);
         }

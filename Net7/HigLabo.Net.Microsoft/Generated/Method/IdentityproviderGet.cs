@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync()
+        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync()
         {
             var p = new IdentityproviderGetParameter();
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityproviderGetParameter();
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter)
+        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter)
         {
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(parameter, cancellationToken);
         }

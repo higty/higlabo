@@ -326,7 +326,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostUsersResponse> UserPostUsersAsync()
+        public async ValueTask<UserPostUsersResponse> UserPostUsersAsync()
         {
             var p = new UserPostUsersParameter();
             return await this.SendAsync<UserPostUsersParameter, UserPostUsersResponse>(p, CancellationToken.None);
@@ -334,7 +334,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostUsersResponse> UserPostUsersAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostUsersResponse> UserPostUsersAsync(CancellationToken cancellationToken)
         {
             var p = new UserPostUsersParameter();
             return await this.SendAsync<UserPostUsersParameter, UserPostUsersResponse>(p, cancellationToken);
@@ -342,14 +342,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostUsersResponse> UserPostUsersAsync(UserPostUsersParameter parameter)
+        public async ValueTask<UserPostUsersResponse> UserPostUsersAsync(UserPostUsersParameter parameter)
         {
             return await this.SendAsync<UserPostUsersParameter, UserPostUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostUsersResponse> UserPostUsersAsync(UserPostUsersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostUsersResponse> UserPostUsersAsync(UserPostUsersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserPostUsersParameter, UserPostUsersResponse>(parameter, cancellationToken);
         }

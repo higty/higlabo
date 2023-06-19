@@ -104,7 +104,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync()
+        public async ValueTask<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync()
         {
             var p = new MultivaluelegacyextendedpropertyGetParameter();
             return await this.SendAsync<MultivaluelegacyextendedpropertyGetParameter, MultivaluelegacyextendedpropertyGetResponse>(p, CancellationToken.None);
@@ -112,7 +112,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync(CancellationToken cancellationToken)
         {
             var p = new MultivaluelegacyextendedpropertyGetParameter();
             return await this.SendAsync<MultivaluelegacyextendedpropertyGetParameter, MultivaluelegacyextendedpropertyGetResponse>(p, cancellationToken);
@@ -120,14 +120,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync(MultivaluelegacyextendedpropertyGetParameter parameter)
+        public async ValueTask<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync(MultivaluelegacyextendedpropertyGetParameter parameter)
         {
             return await this.SendAsync<MultivaluelegacyextendedpropertyGetParameter, MultivaluelegacyextendedpropertyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync(MultivaluelegacyextendedpropertyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MultivaluelegacyextendedpropertyGetResponse> MultivaluelegacyextendedpropertyGetAsync(MultivaluelegacyextendedpropertyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MultivaluelegacyextendedpropertyGetParameter, MultivaluelegacyextendedpropertyGetResponse>(parameter, cancellationToken);
         }

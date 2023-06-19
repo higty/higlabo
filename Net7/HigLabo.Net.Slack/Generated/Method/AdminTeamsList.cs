@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<AdminTeamsListResponse> AdminTeamsListAsync()
+        public async ValueTask<AdminTeamsListResponse> AdminTeamsListAsync()
         {
             var p = new AdminTeamsListParameter();
             return await this.SendAsync<AdminTeamsListParameter, AdminTeamsListResponse>(p, CancellationToken.None);
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<AdminTeamsListResponse> AdminTeamsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsListResponse> AdminTeamsListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminTeamsListParameter();
             return await this.SendAsync<AdminTeamsListParameter, AdminTeamsListResponse>(p, cancellationToken);
@@ -47,21 +47,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<AdminTeamsListResponse> AdminTeamsListAsync(AdminTeamsListParameter parameter)
+        public async ValueTask<AdminTeamsListResponse> AdminTeamsListAsync(AdminTeamsListParameter parameter)
         {
             return await this.SendAsync<AdminTeamsListParameter, AdminTeamsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<AdminTeamsListResponse> AdminTeamsListAsync(AdminTeamsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsListResponse> AdminTeamsListAsync(AdminTeamsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsListParameter, AdminTeamsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<List<AdminTeamsListResponse>> AdminTeamsListAsync(PagingContext<AdminTeamsListResponse> context)
+        public async ValueTask<List<AdminTeamsListResponse>> AdminTeamsListAsync(PagingContext<AdminTeamsListResponse> context)
         {
             var p = new AdminTeamsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<List<AdminTeamsListResponse>> AdminTeamsListAsync(CancellationToken cancellationToken, PagingContext<AdminTeamsListResponse> context)
+        public async ValueTask<List<AdminTeamsListResponse>> AdminTeamsListAsync(CancellationToken cancellationToken, PagingContext<AdminTeamsListResponse> context)
         {
             var p = new AdminTeamsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<List<AdminTeamsListResponse>> AdminTeamsListAsync(AdminTeamsListParameter parameter, PagingContext<AdminTeamsListResponse> context)
+        public async ValueTask<List<AdminTeamsListResponse>> AdminTeamsListAsync(AdminTeamsListParameter parameter, PagingContext<AdminTeamsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.list
         /// </summary>
-        public async Task<List<AdminTeamsListResponse>> AdminTeamsListAsync(AdminTeamsListParameter parameter, PagingContext<AdminTeamsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminTeamsListResponse>> AdminTeamsListAsync(AdminTeamsListParameter parameter, PagingContext<AdminTeamsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

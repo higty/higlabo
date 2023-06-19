@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionGetResponse> EducationsubmissionGetAsync()
+        public async ValueTask<EducationsubmissionGetResponse> EducationsubmissionGetAsync()
         {
             var p = new EducationsubmissionGetParameter();
             return await this.SendAsync<EducationsubmissionGetParameter, EducationsubmissionGetResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionGetResponse> EducationsubmissionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionGetResponse> EducationsubmissionGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationsubmissionGetParameter();
             return await this.SendAsync<EducationsubmissionGetParameter, EducationsubmissionGetResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionGetResponse> EducationsubmissionGetAsync(EducationsubmissionGetParameter parameter)
+        public async ValueTask<EducationsubmissionGetResponse> EducationsubmissionGetAsync(EducationsubmissionGetParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionGetParameter, EducationsubmissionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionGetResponse> EducationsubmissionGetAsync(EducationsubmissionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionGetResponse> EducationsubmissionGetAsync(EducationsubmissionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationsubmissionGetParameter, EducationsubmissionGetResponse>(parameter, cancellationToken);
         }

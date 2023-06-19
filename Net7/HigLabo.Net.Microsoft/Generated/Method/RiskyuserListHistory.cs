@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync()
+        public async ValueTask<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync()
         {
             var p = new RiskyUserListHistoryParameter();
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyUserListHistoryParameter();
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter)
+        public async ValueTask<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter)
         {
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(parameter, cancellationToken);
         }

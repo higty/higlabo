@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.deleteScheduledMessage
         /// </summary>
-        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string? channel, string? scheduled_Message_Id)
+        public async ValueTask<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string? channel, string? scheduled_Message_Id)
         {
             var p = new ChatDeleteScheduledMessageParameter();
             p.Channel = channel;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.deleteScheduledMessage
         /// </summary>
-        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string? channel, string? scheduled_Message_Id, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string? channel, string? scheduled_Message_Id, CancellationToken cancellationToken)
         {
             var p = new ChatDeleteScheduledMessageParameter();
             p.Channel = channel;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.deleteScheduledMessage
         /// </summary>
-        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(ChatDeleteScheduledMessageParameter parameter)
+        public async ValueTask<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(ChatDeleteScheduledMessageParameter parameter)
         {
             return await this.SendAsync<ChatDeleteScheduledMessageParameter, ChatDeleteScheduledMessageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.deleteScheduledMessage
         /// </summary>
-        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(ChatDeleteScheduledMessageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(ChatDeleteScheduledMessageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatDeleteScheduledMessageParameter, ChatDeleteScheduledMessageResponse>(parameter, cancellationToken);
         }

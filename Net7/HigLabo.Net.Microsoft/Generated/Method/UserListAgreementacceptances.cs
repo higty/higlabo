@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-agreementacceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync()
+        public async ValueTask<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync()
         {
             var p = new UserListAgreementacceptancesParameter();
             return await this.SendAsync<UserListAgreementacceptancesParameter, UserListAgreementacceptancesResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-agreementacceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync(CancellationToken cancellationToken)
         {
             var p = new UserListAgreementacceptancesParameter();
             return await this.SendAsync<UserListAgreementacceptancesParameter, UserListAgreementacceptancesResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-agreementacceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync(UserListAgreementacceptancesParameter parameter)
+        public async ValueTask<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync(UserListAgreementacceptancesParameter parameter)
         {
             return await this.SendAsync<UserListAgreementacceptancesParameter, UserListAgreementacceptancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-agreementacceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync(UserListAgreementacceptancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListAgreementacceptancesResponse> UserListAgreementacceptancesAsync(UserListAgreementacceptancesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListAgreementacceptancesParameter, UserListAgreementacceptancesResponse>(parameter, cancellationToken);
         }

@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-alerts_v2?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListAlertsV2Response> SecurityListAlertsV2Async()
+        public async ValueTask<SecurityListAlertsV2Response> SecurityListAlertsV2Async()
         {
             var p = new SecurityListAlertsV2Parameter();
             return await this.SendAsync<SecurityListAlertsV2Parameter, SecurityListAlertsV2Response>(p, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-alerts_v2?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListAlertsV2Response> SecurityListAlertsV2Async(CancellationToken cancellationToken)
+        public async ValueTask<SecurityListAlertsV2Response> SecurityListAlertsV2Async(CancellationToken cancellationToken)
         {
             var p = new SecurityListAlertsV2Parameter();
             return await this.SendAsync<SecurityListAlertsV2Parameter, SecurityListAlertsV2Response>(p, cancellationToken);
@@ -106,14 +106,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-alerts_v2?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListAlertsV2Response> SecurityListAlertsV2Async(SecurityListAlertsV2Parameter parameter)
+        public async ValueTask<SecurityListAlertsV2Response> SecurityListAlertsV2Async(SecurityListAlertsV2Parameter parameter)
         {
             return await this.SendAsync<SecurityListAlertsV2Parameter, SecurityListAlertsV2Response>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-alerts_v2?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListAlertsV2Response> SecurityListAlertsV2Async(SecurityListAlertsV2Parameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityListAlertsV2Response> SecurityListAlertsV2Async(SecurityListAlertsV2Parameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityListAlertsV2Parameter, SecurityListAlertsV2Response>(parameter, cancellationToken);
         }

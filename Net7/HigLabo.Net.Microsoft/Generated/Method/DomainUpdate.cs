@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainUpdateResponse> DomainUpdateAsync()
+        public async ValueTask<DomainUpdateResponse> DomainUpdateAsync()
         {
             var p = new DomainUpdateParameter();
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainUpdateResponse> DomainUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainUpdateResponse> DomainUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new DomainUpdateParameter();
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainUpdateResponse> DomainUpdateAsync(DomainUpdateParameter parameter)
+        public async ValueTask<DomainUpdateResponse> DomainUpdateAsync(DomainUpdateParameter parameter)
         {
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainUpdateResponse> DomainUpdateAsync(DomainUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainUpdateResponse> DomainUpdateAsync(DomainUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(parameter, cancellationToken);
         }

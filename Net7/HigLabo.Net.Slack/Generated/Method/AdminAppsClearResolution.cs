@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.clearResolution
         /// </summary>
-        public async Task<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(string? app_Id)
+        public async ValueTask<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(string? app_Id)
         {
             var p = new AdminAppsClearResolutionParameter();
             p.App_Id = app_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.clearResolution
         /// </summary>
-        public async Task<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(string? app_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(string? app_Id, CancellationToken cancellationToken)
         {
             var p = new AdminAppsClearResolutionParameter();
             p.App_Id = app_Id;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.clearResolution
         /// </summary>
-        public async Task<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(AdminAppsClearResolutionParameter parameter)
+        public async ValueTask<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(AdminAppsClearResolutionParameter parameter)
         {
             return await this.SendAsync<AdminAppsClearResolutionParameter, AdminAppsClearResolutionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.clearResolution
         /// </summary>
-        public async Task<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(AdminAppsClearResolutionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsClearResolutionResponse> AdminAppsClearResolutionAsync(AdminAppsClearResolutionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsClearResolutionParameter, AdminAppsClearResolutionResponse>(parameter, cancellationToken);
         }

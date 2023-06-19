@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-close?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync()
+        public async ValueTask<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync()
         {
             var p = new SecurityEdiscoverycaseCloseParameter();
             return await this.SendAsync<SecurityEdiscoverycaseCloseParameter, SecurityEdiscoverycaseCloseResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-close?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseCloseParameter();
             return await this.SendAsync<SecurityEdiscoverycaseCloseParameter, SecurityEdiscoverycaseCloseResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-close?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync(SecurityEdiscoverycaseCloseParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync(SecurityEdiscoverycaseCloseParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseCloseParameter, SecurityEdiscoverycaseCloseResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-close?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync(SecurityEdiscoverycaseCloseParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseCloseResponse> SecurityEdiscoverycaseCloseAsync(SecurityEdiscoverycaseCloseParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseCloseParameter, SecurityEdiscoverycaseCloseResponse>(parameter, cancellationToken);
         }

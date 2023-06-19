@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.delete
         /// </summary>
-        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string? app_Id)
+        public async ValueTask<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string? app_Id)
         {
             var p = new AppsManifestDeleteParameter();
             p.App_Id = app_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.delete
         /// </summary>
-        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string? app_Id, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string? app_Id, CancellationToken cancellationToken)
         {
             var p = new AppsManifestDeleteParameter();
             p.App_Id = app_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.delete
         /// </summary>
-        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(AppsManifestDeleteParameter parameter)
+        public async ValueTask<AppsManifestDeleteResponse> AppsManifestDeleteAsync(AppsManifestDeleteParameter parameter)
         {
             return await this.SendAsync<AppsManifestDeleteParameter, AppsManifestDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.delete
         /// </summary>
-        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(AppsManifestDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestDeleteResponse> AppsManifestDeleteAsync(AppsManifestDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsManifestDeleteParameter, AppsManifestDeleteResponse>(parameter, cancellationToken);
         }

@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-accept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventAcceptResponse> EventAcceptAsync()
+        public async ValueTask<EventAcceptResponse> EventAcceptAsync()
         {
             var p = new EventAcceptParameter();
             return await this.SendAsync<EventAcceptParameter, EventAcceptResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-accept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventAcceptResponse> EventAcceptAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventAcceptResponse> EventAcceptAsync(CancellationToken cancellationToken)
         {
             var p = new EventAcceptParameter();
             return await this.SendAsync<EventAcceptParameter, EventAcceptResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-accept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventAcceptResponse> EventAcceptAsync(EventAcceptParameter parameter)
+        public async ValueTask<EventAcceptResponse> EventAcceptAsync(EventAcceptParameter parameter)
         {
             return await this.SendAsync<EventAcceptParameter, EventAcceptResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-accept?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventAcceptResponse> EventAcceptAsync(EventAcceptParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventAcceptResponse> EventAcceptAsync(EventAcceptParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventAcceptParameter, EventAcceptResponse>(parameter, cancellationToken);
         }

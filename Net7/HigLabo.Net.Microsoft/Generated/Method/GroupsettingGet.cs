@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingGetResponse> GroupsettingGetAsync()
+        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync()
         {
             var p = new GroupsettingGetParameter();
             return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingGetResponse> GroupsettingGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync(CancellationToken cancellationToken)
         {
             var p = new GroupsettingGetParameter();
             return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingGetResponse> GroupsettingGetAsync(GroupsettingGetParameter parameter)
+        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync(GroupsettingGetParameter parameter)
         {
             return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupsettingGetResponse> GroupsettingGetAsync(GroupsettingGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync(GroupsettingGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(parameter, cancellationToken);
         }

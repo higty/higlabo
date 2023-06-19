@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync()
+        public async ValueTask<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync()
         {
             var p = new AppconsentrequestFilterbycurrentUserParameter();
             return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new AppconsentrequestFilterbycurrentUserParameter();
             return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(AppconsentrequestFilterbycurrentUserParameter parameter)
+        public async ValueTask<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(AppconsentrequestFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(AppconsentrequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(AppconsentrequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

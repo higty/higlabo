@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListJobsResponse> PrinterListJobsAsync()
+        public async ValueTask<PrinterListJobsResponse> PrinterListJobsAsync()
         {
             var p = new PrinterListJobsParameter();
             return await this.SendAsync<PrinterListJobsParameter, PrinterListJobsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListJobsResponse> PrinterListJobsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterListJobsResponse> PrinterListJobsAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterListJobsParameter();
             return await this.SendAsync<PrinterListJobsParameter, PrinterListJobsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListJobsResponse> PrinterListJobsAsync(PrinterListJobsParameter parameter)
+        public async ValueTask<PrinterListJobsResponse> PrinterListJobsAsync(PrinterListJobsParameter parameter)
         {
             return await this.SendAsync<PrinterListJobsParameter, PrinterListJobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListJobsResponse> PrinterListJobsAsync(PrinterListJobsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterListJobsResponse> PrinterListJobsAsync(PrinterListJobsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterListJobsParameter, PrinterListJobsResponse>(parameter, cancellationToken);
         }

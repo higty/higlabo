@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync()
+        public async ValueTask<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync()
         {
             var p = new SiteGetapplicableContentTypesforlistParameter();
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(CancellationToken cancellationToken)
         {
             var p = new SiteGetapplicableContentTypesforlistParameter();
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(SiteGetapplicableContentTypesforlistParameter parameter)
+        public async ValueTask<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(SiteGetapplicableContentTypesforlistParameter parameter)
         {
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(SiteGetapplicableContentTypesforlistParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(SiteGetapplicableContentTypesforlistParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(parameter, cancellationToken);
         }

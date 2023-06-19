@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync()
+        public async ValueTask<WorkbookListCommentsResponse> WorkbookListCommentsAsync()
         {
             var p = new WorkbookListCommentsParameter();
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookListCommentsResponse> WorkbookListCommentsAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookListCommentsParameter();
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync(WorkbookListCommentsParameter parameter)
+        public async ValueTask<WorkbookListCommentsResponse> WorkbookListCommentsAsync(WorkbookListCommentsParameter parameter)
         {
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync(WorkbookListCommentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookListCommentsResponse> WorkbookListCommentsAsync(WorkbookListCommentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(parameter, cancellationToken);
         }

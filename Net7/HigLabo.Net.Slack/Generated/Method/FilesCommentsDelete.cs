@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.comments.delete
         /// </summary>
-        public async Task<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(string? file, string? id)
+        public async ValueTask<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(string? file, string? id)
         {
             var p = new FilesCommentsDeleteParameter();
             p.File = file;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.comments.delete
         /// </summary>
-        public async Task<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(string? file, string? id, CancellationToken cancellationToken)
+        public async ValueTask<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(string? file, string? id, CancellationToken cancellationToken)
         {
             var p = new FilesCommentsDeleteParameter();
             p.File = file;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.comments.delete
         /// </summary>
-        public async Task<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(FilesCommentsDeleteParameter parameter)
+        public async ValueTask<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(FilesCommentsDeleteParameter parameter)
         {
             return await this.SendAsync<FilesCommentsDeleteParameter, FilesCommentsDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.comments.delete
         /// </summary>
-        public async Task<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(FilesCommentsDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesCommentsDeleteResponse> FilesCommentsDeleteAsync(FilesCommentsDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesCommentsDeleteParameter, FilesCommentsDeleteResponse>(parameter, cancellationToken);
         }

@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGetResponse> SectionGetAsync()
+        public async ValueTask<SectionGetResponse> SectionGetAsync()
         {
             var p = new SectionGetParameter();
             return await this.SendAsync<SectionGetParameter, SectionGetResponse>(p, CancellationToken.None);
@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGetResponse> SectionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionGetResponse> SectionGetAsync(CancellationToken cancellationToken)
         {
             var p = new SectionGetParameter();
             return await this.SendAsync<SectionGetParameter, SectionGetResponse>(p, cancellationToken);
@@ -111,14 +111,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGetResponse> SectionGetAsync(SectionGetParameter parameter)
+        public async ValueTask<SectionGetResponse> SectionGetAsync(SectionGetParameter parameter)
         {
             return await this.SendAsync<SectionGetParameter, SectionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGetResponse> SectionGetAsync(SectionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionGetResponse> SectionGetAsync(SectionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionGetParameter, SectionGetResponse>(parameter, cancellationToken);
         }

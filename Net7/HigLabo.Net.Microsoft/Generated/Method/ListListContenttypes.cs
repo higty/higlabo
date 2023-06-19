@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListContentTypesResponse> ListListContentTypesAsync()
+        public async ValueTask<ListListContentTypesResponse> ListListContentTypesAsync()
         {
             var p = new ListListContentTypesParameter();
             return await this.SendAsync<ListListContentTypesParameter, ListListContentTypesResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListContentTypesResponse> ListListContentTypesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListListContentTypesResponse> ListListContentTypesAsync(CancellationToken cancellationToken)
         {
             var p = new ListListContentTypesParameter();
             return await this.SendAsync<ListListContentTypesParameter, ListListContentTypesResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListContentTypesResponse> ListListContentTypesAsync(ListListContentTypesParameter parameter)
+        public async ValueTask<ListListContentTypesResponse> ListListContentTypesAsync(ListListContentTypesParameter parameter)
         {
             return await this.SendAsync<ListListContentTypesParameter, ListListContentTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListContentTypesResponse> ListListContentTypesAsync(ListListContentTypesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListListContentTypesResponse> ListListContentTypesAsync(ListListContentTypesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListListContentTypesParameter, ListListContentTypesResponse>(parameter, cancellationToken);
         }

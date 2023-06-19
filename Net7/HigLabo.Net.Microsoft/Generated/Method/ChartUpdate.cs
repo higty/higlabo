@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartUpdateResponse> ChartUpdateAsync()
+        public async ValueTask<ChartUpdateResponse> ChartUpdateAsync()
         {
             var p = new ChartUpdateParameter();
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartUpdateResponse> ChartUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartUpdateResponse> ChartUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ChartUpdateParameter();
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartUpdateResponse> ChartUpdateAsync(ChartUpdateParameter parameter)
+        public async ValueTask<ChartUpdateResponse> ChartUpdateAsync(ChartUpdateParameter parameter)
         {
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartUpdateResponse> ChartUpdateAsync(ChartUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartUpdateResponse> ChartUpdateAsync(ChartUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(parameter, cancellationToken);
         }

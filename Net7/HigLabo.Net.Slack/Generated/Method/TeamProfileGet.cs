@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.profile.get
         /// </summary>
-        public async Task<TeamProfileGetResponse> TeamProfileGetAsync()
+        public async ValueTask<TeamProfileGetResponse> TeamProfileGetAsync()
         {
             var p = new TeamProfileGetParameter();
             return await this.SendAsync<TeamProfileGetParameter, TeamProfileGetResponse>(p, CancellationToken.None);
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.profile.get
         /// </summary>
-        public async Task<TeamProfileGetResponse> TeamProfileGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamProfileGetResponse> TeamProfileGetAsync(CancellationToken cancellationToken)
         {
             var p = new TeamProfileGetParameter();
             return await this.SendAsync<TeamProfileGetParameter, TeamProfileGetResponse>(p, cancellationToken);
@@ -35,14 +35,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.profile.get
         /// </summary>
-        public async Task<TeamProfileGetResponse> TeamProfileGetAsync(TeamProfileGetParameter parameter)
+        public async ValueTask<TeamProfileGetResponse> TeamProfileGetAsync(TeamProfileGetParameter parameter)
         {
             return await this.SendAsync<TeamProfileGetParameter, TeamProfileGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.profile.get
         /// </summary>
-        public async Task<TeamProfileGetResponse> TeamProfileGetAsync(TeamProfileGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamProfileGetResponse> TeamProfileGetAsync(TeamProfileGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamProfileGetParameter, TeamProfileGetResponse>(parameter, cancellationToken);
         }

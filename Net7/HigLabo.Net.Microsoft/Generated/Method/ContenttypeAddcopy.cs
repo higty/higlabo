@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopy?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync()
+        public async ValueTask<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync()
         {
             var p = new ContentTypeAddcopyParameter();
             return await this.SendAsync<ContentTypeAddcopyParameter, ContentTypeAddcopyResponse>(p, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopy?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeAddcopyParameter();
             return await this.SendAsync<ContentTypeAddcopyParameter, ContentTypeAddcopyResponse>(p, cancellationToken);
@@ -106,14 +106,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopy?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync(ContentTypeAddcopyParameter parameter)
+        public async ValueTask<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync(ContentTypeAddcopyParameter parameter)
         {
             return await this.SendAsync<ContentTypeAddcopyParameter, ContentTypeAddcopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopy?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync(ContentTypeAddcopyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeAddcopyResponse> ContentTypeAddcopyAsync(ContentTypeAddcopyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeAddcopyParameter, ContentTypeAddcopyResponse>(parameter, cancellationToken);
         }

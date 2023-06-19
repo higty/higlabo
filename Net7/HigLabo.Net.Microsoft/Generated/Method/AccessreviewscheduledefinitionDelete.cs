@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync()
+        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync()
         {
             var p = new AccessreviewscheduledefinitionDeleteParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewscheduledefinitionDeleteParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(AccessreviewscheduledefinitionDeleteParameter parameter)
+        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(AccessreviewscheduledefinitionDeleteParameter parameter)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(AccessreviewscheduledefinitionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(AccessreviewscheduledefinitionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(parameter, cancellationToken);
         }

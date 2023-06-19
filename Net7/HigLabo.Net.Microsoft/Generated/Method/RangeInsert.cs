@@ -132,7 +132,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-insert?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeInsertResponse> RangeInsertAsync()
+        public async ValueTask<RangeInsertResponse> RangeInsertAsync()
         {
             var p = new RangeInsertParameter();
             return await this.SendAsync<RangeInsertParameter, RangeInsertResponse>(p, CancellationToken.None);
@@ -140,7 +140,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-insert?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeInsertResponse> RangeInsertAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeInsertResponse> RangeInsertAsync(CancellationToken cancellationToken)
         {
             var p = new RangeInsertParameter();
             return await this.SendAsync<RangeInsertParameter, RangeInsertResponse>(p, cancellationToken);
@@ -148,14 +148,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-insert?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeInsertResponse> RangeInsertAsync(RangeInsertParameter parameter)
+        public async ValueTask<RangeInsertResponse> RangeInsertAsync(RangeInsertParameter parameter)
         {
             return await this.SendAsync<RangeInsertParameter, RangeInsertResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-insert?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeInsertResponse> RangeInsertAsync(RangeInsertParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeInsertResponse> RangeInsertAsync(RangeInsertParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeInsertParameter, RangeInsertResponse>(parameter, cancellationToken);
         }

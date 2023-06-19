@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync()
+        public async ValueTask<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync()
         {
             var p = new ContentTypeAssociatewithhubsitesParameter();
             return await this.SendAsync<ContentTypeAssociatewithhubsitesParameter, ContentTypeAssociatewithhubsitesResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeAssociatewithhubsitesParameter();
             return await this.SendAsync<ContentTypeAssociatewithhubsitesParameter, ContentTypeAssociatewithhubsitesResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync(ContentTypeAssociatewithhubsitesParameter parameter)
+        public async ValueTask<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync(ContentTypeAssociatewithhubsitesParameter parameter)
         {
             return await this.SendAsync<ContentTypeAssociatewithhubsitesParameter, ContentTypeAssociatewithhubsitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync(ContentTypeAssociatewithhubsitesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeAssociatewithhubsitesResponse> ContentTypeAssociatewithhubsitesAsync(ContentTypeAssociatewithhubsitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeAssociatewithhubsitesParameter, ContentTypeAssociatewithhubsitesResponse>(parameter, cancellationToken);
         }

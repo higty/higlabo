@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync()
+        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync()
         {
             var p = new BookingcustomquestionUpdateParameter();
             return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new BookingcustomquestionUpdateParameter();
             return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(BookingcustomquestionUpdateParameter parameter)
+        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(BookingcustomquestionUpdateParameter parameter)
         {
             return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(BookingcustomquestionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(BookingcustomquestionUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(parameter, cancellationToken);
         }

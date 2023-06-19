@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync()
+        public async ValueTask<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync()
         {
             var p = new EducationoutcomeUpdateParameter();
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new EducationoutcomeUpdateParameter();
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(EducationoutcomeUpdateParameter parameter)
+        public async ValueTask<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(EducationoutcomeUpdateParameter parameter)
         {
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(EducationoutcomeUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(EducationoutcomeUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(parameter, cancellationToken);
         }

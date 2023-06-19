@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync()
+        public async ValueTask<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync()
         {
             var p = new SecurityEdiscoverycaseListTagsParameter();
             return await this.SendAsync<SecurityEdiscoverycaseListTagsParameter, SecurityEdiscoverycaseListTagsResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseListTagsParameter();
             return await this.SendAsync<SecurityEdiscoverycaseListTagsParameter, SecurityEdiscoverycaseListTagsResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync(SecurityEdiscoverycaseListTagsParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync(SecurityEdiscoverycaseListTagsParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseListTagsParameter, SecurityEdiscoverycaseListTagsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync(SecurityEdiscoverycaseListTagsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseListTagsResponse> SecurityEdiscoverycaseListTagsAsync(SecurityEdiscoverycaseListTagsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseListTagsParameter, SecurityEdiscoverycaseListTagsResponse>(parameter, cancellationToken);
         }

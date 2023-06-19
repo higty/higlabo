@@ -97,7 +97,7 @@ namespace HigLabo.Net.CodeGenerator
             return Path.Combine(FolderPath, "ResouceUrlMapping.txt");
         }
 
-        public override Task CreateScopeSourceCode()
+        public override ValueTask CreateScopeSourceCode()
         {
             var html = this.GetHtml("https://learn.microsoft.com/en-us/graph/permissions-reference");
             var parser = new HtmlParser();
@@ -148,7 +148,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             ConsoleWriteText("Scope");
 
-            return Task.FromResult(0);
+            return ValueTask.CompletedTask;
         }
         private String CreateScopeName(string name)
         {
@@ -220,7 +220,7 @@ namespace HigLabo.Net.CodeGenerator
             yield return "https://learn.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0";
             yield return "https://learn.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0";
         }
-        protected override async Task<List<ApiParameter>> GetEntityParameterList(IDocument document)
+        protected override async ValueTask<List<ApiParameter>> GetEntityParameterList(IDocument document)
         {
             var l = new List<ApiParameter>();
             var divList = new List<IElement>();
@@ -263,7 +263,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             return l;
         }
-        public async Task CreateResourceUrlMappingFile()
+        public async ValueTask CreateResourceUrlMappingFile()
         {
             var l = new List<UrlClassNameMapping>();
             var context = new CreateEntityClassContext();
@@ -275,7 +275,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             File.WriteAllText(this.GetResouceUrlMappingFilePath(), Newtonsoft.Json.JsonConvert.SerializeObject(l, Formatting.Indented));
         }
-        public async Task LoadUrlClassNameMappingList()
+        public async ValueTask LoadUrlClassNameMappingList()
         {
             var json = await File.ReadAllTextAsync(this.GetResouceUrlMappingFilePath());
             _UrlClassNameMappingList = JsonConvert.DeserializeObject<List<UrlClassNameMapping>>(json)!;
@@ -319,12 +319,12 @@ namespace HigLabo.Net.CodeGenerator
                 yield return url;
             }
         }
-        protected override Task<List<ApiParameter>> GetMethodParameterList(IDocument document)
+        protected override ValueTask<List<ApiParameter>> GetMethodParameterList(IDocument document)
         {
             var doc = document;
             var l = new List<ApiParameter>();
             var h2 = doc.QuerySelector("#request-body");
-            if (h2 == null) { return Task.FromResult(l); }
+            if (h2 == null) { return ValueTask.FromResult(l); }
             var node = h2.ParentElement!.NextElementSibling;
             IElement? tbl = null;
 
@@ -332,14 +332,14 @@ namespace HigLabo.Net.CodeGenerator
             {
                 tbl = node.QuerySelector("table[aria-label]");
                 if (tbl != null) { break; }
-                if (node.QuerySelector("#response") != null) { return Task.FromResult(l); }
+                if (node.QuerySelector("#response") != null) { return ValueTask.FromResult(l); }
                 node = node.NextElementSibling;
             }
-            if (tbl == null) { return Task.FromResult(l); }
+            if (tbl == null) { return ValueTask.FromResult(l); }
 
             return this.GetParameterList(document, tbl);
         }
-        public override async Task<SourceCode> CreateMethodSourceCode(string url, IDocument document, string className)
+        public override async ValueTask<SourceCode> CreateMethodSourceCode(string url, IDocument document, string className)
         {
             var sc = await base.CreateMethodSourceCode(url, document, className);
             var context = new CreateEntityClassContext();
@@ -503,7 +503,7 @@ namespace HigLabo.Net.CodeGenerator
                 md.Comment = url;
                 md.Parameters.Add(new MethodParameter(className + "Parameter", "parameter"));
                 md.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
-                md.ReturnTypeName.Name = "async Task";
+                md.ReturnTypeName.Name = "async ValueTask";
                 md.ReturnTypeName.GenericTypes.Add(new TypeName("Stream"));
                 md.Body.Add(SourceCodeLanguage.CSharp, $"return await this.DownloadStreamAsync(parameter, cancellationToken);");
                 if (cClient.Methods.Exists(el => el.Name == md.Name) == false)
@@ -549,7 +549,7 @@ namespace HigLabo.Net.CodeGenerator
             return sb.ToString().Replace("|", "Or").Replace(".", "").Replace("-", "").Replace("{", "").Replace("}", "").Replace("/", "_").Replace("$", "").Replace(":", "").Replace(" ", "");
         }
 
-        private Task<List<ApiParameter>> GetParameterList(IDocument document, IElement table)
+        private ValueTask<List<ApiParameter>> GetParameterList(IDocument document, IElement table)
         {
             var doc = document;
             var l = new List<ApiParameter>();
@@ -625,7 +625,7 @@ namespace HigLabo.Net.CodeGenerator
                 }
                 l.Add(p);
             }
-            return Task.FromResult(l);
+            return ValueTask.FromResult(l);
         }
         protected override string GetClassName(string url, IDocument document)
         {

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-stop?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageStopResponse> AccessreviewstageStopAsync()
+        public async ValueTask<AccessreviewstageStopResponse> AccessreviewstageStopAsync()
         {
             var p = new AccessreviewstageStopParameter();
             return await this.SendAsync<AccessreviewstageStopParameter, AccessreviewstageStopResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-stop?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageStopResponse> AccessreviewstageStopAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageStopResponse> AccessreviewstageStopAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewstageStopParameter();
             return await this.SendAsync<AccessreviewstageStopParameter, AccessreviewstageStopResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-stop?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageStopResponse> AccessreviewstageStopAsync(AccessreviewstageStopParameter parameter)
+        public async ValueTask<AccessreviewstageStopResponse> AccessreviewstageStopAsync(AccessreviewstageStopParameter parameter)
         {
             return await this.SendAsync<AccessreviewstageStopParameter, AccessreviewstageStopResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-stop?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageStopResponse> AccessreviewstageStopAsync(AccessreviewstageStopParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageStopResponse> AccessreviewstageStopAsync(AccessreviewstageStopParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewstageStopParameter, AccessreviewstageStopResponse>(parameter, cancellationToken);
         }

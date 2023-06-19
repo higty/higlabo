@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync()
+        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync()
         {
             var p = new HomerealmdiscoveryPolicyGetParameter();
             return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new HomerealmdiscoveryPolicyGetParameter();
             return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(HomerealmdiscoveryPolicyGetParameter parameter)
+        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(HomerealmdiscoveryPolicyGetParameter parameter)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(HomerealmdiscoveryPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(HomerealmdiscoveryPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(parameter, cancellationToken);
         }

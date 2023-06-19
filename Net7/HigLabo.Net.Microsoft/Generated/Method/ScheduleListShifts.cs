@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync()
+        public async ValueTask<ScheduleListShiftsResponse> ScheduleListShiftsAsync()
         {
             var p = new ScheduleListShiftsParameter();
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListShiftsResponse> ScheduleListShiftsAsync(CancellationToken cancellationToken)
         {
             var p = new ScheduleListShiftsParameter();
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter)
+        public async ValueTask<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter)
         {
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(parameter, cancellationToken);
         }

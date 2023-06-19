@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-unsubmit?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync()
+        public async ValueTask<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync()
         {
             var p = new EducationsubmissionUnsubmitParameter();
             return await this.SendAsync<EducationsubmissionUnsubmitParameter, EducationsubmissionUnsubmitResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-unsubmit?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync(CancellationToken cancellationToken)
         {
             var p = new EducationsubmissionUnsubmitParameter();
             return await this.SendAsync<EducationsubmissionUnsubmitParameter, EducationsubmissionUnsubmitResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-unsubmit?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync(EducationsubmissionUnsubmitParameter parameter)
+        public async ValueTask<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync(EducationsubmissionUnsubmitParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionUnsubmitParameter, EducationsubmissionUnsubmitResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-unsubmit?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync(EducationsubmissionUnsubmitParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionUnsubmitResponse> EducationsubmissionUnsubmitAsync(EducationsubmissionUnsubmitParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationsubmissionUnsubmitParameter, EducationsubmissionUnsubmitResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserDismissResponse> RiskyUserDismissAsync()
+        public async ValueTask<RiskyUserDismissResponse> RiskyUserDismissAsync()
         {
             var p = new RiskyUserDismissParameter();
             return await this.SendAsync<RiskyUserDismissParameter, RiskyUserDismissResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserDismissResponse> RiskyUserDismissAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserDismissResponse> RiskyUserDismissAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyUserDismissParameter();
             return await this.SendAsync<RiskyUserDismissParameter, RiskyUserDismissResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserDismissResponse> RiskyUserDismissAsync(RiskyUserDismissParameter parameter)
+        public async ValueTask<RiskyUserDismissResponse> RiskyUserDismissAsync(RiskyUserDismissParameter parameter)
         {
             return await this.SendAsync<RiskyUserDismissParameter, RiskyUserDismissResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserDismissResponse> RiskyUserDismissAsync(RiskyUserDismissParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserDismissResponse> RiskyUserDismissAsync(RiskyUserDismissParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyUserDismissParameter, RiskyUserDismissResponse>(parameter, cancellationToken);
         }

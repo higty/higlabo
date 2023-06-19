@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.invite
         /// </summary>
-        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string? channel_Id, string? user_Ids)
+        public async ValueTask<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string? channel_Id, string? user_Ids)
         {
             var p = new AdminConversationsInviteParameter();
             p.Channel_Id = channel_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.invite
         /// </summary>
-        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string? channel_Id, string? user_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string? channel_Id, string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsInviteParameter();
             p.Channel_Id = channel_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.invite
         /// </summary>
-        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(AdminConversationsInviteParameter parameter)
+        public async ValueTask<AdminConversationsInviteResponse> AdminConversationsInviteAsync(AdminConversationsInviteParameter parameter)
         {
             return await this.SendAsync<AdminConversationsInviteParameter, AdminConversationsInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.invite
         /// </summary>
-        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(AdminConversationsInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsInviteResponse> AdminConversationsInviteAsync(AdminConversationsInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsInviteParameter, AdminConversationsInviteResponse>(parameter, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync()
+        public async ValueTask<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync()
         {
             var p = new EducationAssignmentSettingsGetParameter();
             return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationAssignmentSettingsGetParameter();
             return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(EducationAssignmentSettingsGetParameter parameter)
+        public async ValueTask<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(EducationAssignmentSettingsGetParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(EducationAssignmentSettingsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(EducationAssignmentSettingsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(parameter, cancellationToken);
         }

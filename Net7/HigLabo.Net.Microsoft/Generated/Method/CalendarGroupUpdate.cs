@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync()
+        public async ValueTask<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync()
         {
             var p = new CalendarGroupUpdateParameter();
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGroupUpdateParameter();
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CalendarGroupUpdateParameter parameter)
+        public async ValueTask<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CalendarGroupUpdateParameter parameter)
         {
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CalendarGroupUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CalendarGroupUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(parameter, cancellationToken);
         }

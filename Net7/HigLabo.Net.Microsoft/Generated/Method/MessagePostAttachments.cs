@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync()
+        public async ValueTask<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync()
         {
             var p = new MessagePostAttachmentsParameter();
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new MessagePostAttachmentsParameter();
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(MessagePostAttachmentsParameter parameter)
+        public async ValueTask<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(MessagePostAttachmentsParameter parameter)
         {
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(MessagePostAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(MessagePostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(parameter, cancellationToken);
         }

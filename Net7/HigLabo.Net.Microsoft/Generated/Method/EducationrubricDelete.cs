@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync()
+        public async ValueTask<EducationrubricDeleteResponse> EducationrubricDeleteAsync()
         {
             var p = new EducationrubricDeleteParameter();
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationrubricDeleteResponse> EducationrubricDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new EducationrubricDeleteParameter();
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync(EducationrubricDeleteParameter parameter)
+        public async ValueTask<EducationrubricDeleteResponse> EducationrubricDeleteAsync(EducationrubricDeleteParameter parameter)
         {
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync(EducationrubricDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationrubricDeleteResponse> EducationrubricDeleteAsync(EducationrubricDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(parameter, cancellationToken);
         }

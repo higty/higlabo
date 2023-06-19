@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-calculate?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync()
+        public async ValueTask<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync()
         {
             var p = new WorkbookapplicationCalculateParameter();
             return await this.SendAsync<WorkbookapplicationCalculateParameter, WorkbookapplicationCalculateResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-calculate?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookapplicationCalculateParameter();
             return await this.SendAsync<WorkbookapplicationCalculateParameter, WorkbookapplicationCalculateResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-calculate?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync(WorkbookapplicationCalculateParameter parameter)
+        public async ValueTask<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync(WorkbookapplicationCalculateParameter parameter)
         {
             return await this.SendAsync<WorkbookapplicationCalculateParameter, WorkbookapplicationCalculateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-calculate?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync(WorkbookapplicationCalculateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookapplicationCalculateResponse> WorkbookapplicationCalculateAsync(WorkbookapplicationCalculateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookapplicationCalculateParameter, WorkbookapplicationCalculateResponse>(parameter, cancellationToken);
         }

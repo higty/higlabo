@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.list
         /// </summary>
-        public async Task<FilesListResponse> FilesListAsync()
+        public async ValueTask<FilesListResponse> FilesListAsync()
         {
             var p = new FilesListParameter();
             return await this.SendAsync<FilesListParameter, FilesListResponse>(p, CancellationToken.None);
@@ -35,7 +35,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.list
         /// </summary>
-        public async Task<FilesListResponse> FilesListAsync(CancellationToken cancellationToken)
+        public async ValueTask<FilesListResponse> FilesListAsync(CancellationToken cancellationToken)
         {
             var p = new FilesListParameter();
             return await this.SendAsync<FilesListParameter, FilesListResponse>(p, cancellationToken);
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.list
         /// </summary>
-        public async Task<FilesListResponse> FilesListAsync(FilesListParameter parameter)
+        public async ValueTask<FilesListResponse> FilesListAsync(FilesListParameter parameter)
         {
             return await this.SendAsync<FilesListParameter, FilesListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.list
         /// </summary>
-        public async Task<FilesListResponse> FilesListAsync(FilesListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesListResponse> FilesListAsync(FilesListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesListParameter, FilesListResponse>(parameter, cancellationToken);
         }

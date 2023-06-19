@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync()
+        public async ValueTask<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync()
         {
             var p = new InternaldomainfederationGetParameter();
             return await this.SendAsync<InternaldomainfederationGetParameter, InternaldomainfederationGetResponse>(p, CancellationToken.None);
@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync(CancellationToken cancellationToken)
         {
             var p = new InternaldomainfederationGetParameter();
             return await this.SendAsync<InternaldomainfederationGetParameter, InternaldomainfederationGetResponse>(p, cancellationToken);
@@ -111,14 +111,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync(InternaldomainfederationGetParameter parameter)
+        public async ValueTask<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync(InternaldomainfederationGetParameter parameter)
         {
             return await this.SendAsync<InternaldomainfederationGetParameter, InternaldomainfederationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync(InternaldomainfederationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InternaldomainfederationGetResponse> InternaldomainfederationGetAsync(InternaldomainfederationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InternaldomainfederationGetParameter, InternaldomainfederationGetResponse>(parameter, cancellationToken);
         }

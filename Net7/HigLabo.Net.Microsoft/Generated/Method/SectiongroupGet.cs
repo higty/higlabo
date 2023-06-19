@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupGetResponse> SectionGroupGetAsync()
+        public async ValueTask<SectionGroupGetResponse> SectionGroupGetAsync()
         {
             var p = new SectionGroupGetParameter();
             return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(p, CancellationToken.None);
@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupGetResponse> SectionGroupGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionGroupGetResponse> SectionGroupGetAsync(CancellationToken cancellationToken)
         {
             var p = new SectionGroupGetParameter();
             return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(p, cancellationToken);
@@ -111,14 +111,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupGetResponse> SectionGroupGetAsync(SectionGroupGetParameter parameter)
+        public async ValueTask<SectionGroupGetResponse> SectionGroupGetAsync(SectionGroupGetParameter parameter)
         {
             return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupGetResponse> SectionGroupGetAsync(SectionGroupGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionGroupGetResponse> SectionGroupGetAsync(SectionGroupGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(parameter, cancellationToken);
         }

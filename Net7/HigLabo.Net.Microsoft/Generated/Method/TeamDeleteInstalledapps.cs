@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync()
+        public async ValueTask<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync()
         {
             var p = new TeamDeleteInstalledappsParameter();
             return await this.SendAsync<TeamDeleteInstalledappsParameter, TeamDeleteInstalledappsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamDeleteInstalledappsParameter();
             return await this.SendAsync<TeamDeleteInstalledappsParameter, TeamDeleteInstalledappsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync(TeamDeleteInstalledappsParameter parameter)
+        public async ValueTask<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync(TeamDeleteInstalledappsParameter parameter)
         {
             return await this.SendAsync<TeamDeleteInstalledappsParameter, TeamDeleteInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync(TeamDeleteInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamDeleteInstalledappsResponse> TeamDeleteInstalledappsAsync(TeamDeleteInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamDeleteInstalledappsParameter, TeamDeleteInstalledappsResponse>(parameter, cancellationToken);
         }

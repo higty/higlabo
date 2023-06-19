@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.removeAssignments
         /// </summary>
-        public async Task<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids)
+        public async ValueTask<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids)
         {
             var p = new AdminRolesRemoveAssignmentsParameter();
             p.Entity_Ids = entity_Ids;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.removeAssignments
         /// </summary>
-        public async Task<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminRolesRemoveAssignmentsParameter();
             p.Entity_Ids = entity_Ids;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.removeAssignments
         /// </summary>
-        public async Task<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(AdminRolesRemoveAssignmentsParameter parameter)
+        public async ValueTask<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(AdminRolesRemoveAssignmentsParameter parameter)
         {
             return await this.SendAsync<AdminRolesRemoveAssignmentsParameter, AdminRolesRemoveAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.removeAssignments
         /// </summary>
-        public async Task<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(AdminRolesRemoveAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminRolesRemoveAssignmentsResponse> AdminRolesRemoveAssignmentsAsync(AdminRolesRemoveAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminRolesRemoveAssignmentsParameter, AdminRolesRemoveAssignmentsResponse>(parameter, cancellationToken);
         }

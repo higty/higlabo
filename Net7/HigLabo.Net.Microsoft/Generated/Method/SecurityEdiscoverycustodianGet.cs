@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync()
+        public async ValueTask<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync()
         {
             var p = new SecurityEdiscoverycustodianGetParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianGetParameter, SecurityEdiscoverycustodianGetResponse>(p, CancellationToken.None);
@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycustodianGetParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianGetParameter, SecurityEdiscoverycustodianGetResponse>(p, cancellationToken);
@@ -107,14 +107,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync(SecurityEdiscoverycustodianGetParameter parameter)
+        public async ValueTask<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync(SecurityEdiscoverycustodianGetParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianGetParameter, SecurityEdiscoverycustodianGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync(SecurityEdiscoverycustodianGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianGetResponse> SecurityEdiscoverycustodianGetAsync(SecurityEdiscoverycustodianGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianGetParameter, SecurityEdiscoverycustodianGetResponse>(parameter, cancellationToken);
         }

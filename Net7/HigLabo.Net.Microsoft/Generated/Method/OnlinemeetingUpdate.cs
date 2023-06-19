@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync()
+        public async ValueTask<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync()
         {
             var p = new OnlinemeetingUpdateParameter();
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new OnlinemeetingUpdateParameter();
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(OnlinemeetingUpdateParameter parameter)
+        public async ValueTask<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(OnlinemeetingUpdateParameter parameter)
         {
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(OnlinemeetingUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(OnlinemeetingUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(parameter, cancellationToken);
         }

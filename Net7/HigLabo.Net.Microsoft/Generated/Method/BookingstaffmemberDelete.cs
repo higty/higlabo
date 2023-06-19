@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync()
+        public async ValueTask<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync()
         {
             var p = new BookingstaffmemberDeleteParameter();
             return await this.SendAsync<BookingstaffmemberDeleteParameter, BookingstaffmemberDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new BookingstaffmemberDeleteParameter();
             return await this.SendAsync<BookingstaffmemberDeleteParameter, BookingstaffmemberDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync(BookingstaffmemberDeleteParameter parameter)
+        public async ValueTask<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync(BookingstaffmemberDeleteParameter parameter)
         {
             return await this.SendAsync<BookingstaffmemberDeleteParameter, BookingstaffmemberDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync(BookingstaffmemberDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingstaffmemberDeleteResponse> BookingstaffmemberDeleteAsync(BookingstaffmemberDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingstaffmemberDeleteParameter, BookingstaffmemberDeleteResponse>(parameter, cancellationToken);
         }

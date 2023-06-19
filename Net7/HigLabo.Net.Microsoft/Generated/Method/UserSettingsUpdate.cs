@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync()
+        public async ValueTask<UserSettingsUpdateResponse> UserSettingsUpdateAsync()
         {
             var p = new UserSettingsUpdateParameter();
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserSettingsUpdateResponse> UserSettingsUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new UserSettingsUpdateParameter();
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync(UserSettingsUpdateParameter parameter)
+        public async ValueTask<UserSettingsUpdateResponse> UserSettingsUpdateAsync(UserSettingsUpdateParameter parameter)
         {
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync(UserSettingsUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserSettingsUpdateResponse> UserSettingsUpdateAsync(UserSettingsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(parameter, cancellationToken);
         }

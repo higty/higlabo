@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync()
+        public async ValueTask<UserListDirectreportsResponse> UserListDirectreportsAsync()
         {
             var p = new UserListDirectreportsParameter();
             return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListDirectreportsResponse> UserListDirectreportsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListDirectreportsParameter();
             return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync(UserListDirectreportsParameter parameter)
+        public async ValueTask<UserListDirectreportsResponse> UserListDirectreportsAsync(UserListDirectreportsParameter parameter)
         {
             return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync(UserListDirectreportsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListDirectreportsResponse> UserListDirectreportsAsync(UserListDirectreportsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(parameter, cancellationToken);
         }

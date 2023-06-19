@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.convertToPublic
         /// </summary>
-        public async Task<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(string? channel_Id)
         {
             var p = new AdminConversationsConvertToPublicParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.convertToPublic
         /// </summary>
-        public async Task<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsConvertToPublicParameter();
             p.Channel_Id = channel_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.convertToPublic
         /// </summary>
-        public async Task<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(AdminConversationsConvertToPublicParameter parameter)
+        public async ValueTask<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(AdminConversationsConvertToPublicParameter parameter)
         {
             return await this.SendAsync<AdminConversationsConvertToPublicParameter, AdminConversationsConvertToPublicResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.convertToPublic
         /// </summary>
-        public async Task<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(AdminConversationsConvertToPublicParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsConvertToPublicResponse> AdminConversationsConvertToPublicAsync(AdminConversationsConvertToPublicParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsConvertToPublicParameter, AdminConversationsConvertToPublicResponse>(parameter, cancellationToken);
         }

@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync()
+        public async ValueTask<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync()
         {
             var p = new AuthorizationPolicyGetParameter();
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new AuthorizationPolicyGetParameter();
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter)
+        public async ValueTask<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter)
         {
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(parameter, cancellationToken);
         }

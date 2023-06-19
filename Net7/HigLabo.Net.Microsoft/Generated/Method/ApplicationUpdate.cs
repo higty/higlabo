@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync()
+        public async ValueTask<ApplicationUpdateResponse> ApplicationUpdateAsync()
         {
             var p = new ApplicationUpdateParameter();
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationUpdateResponse> ApplicationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationUpdateParameter();
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync(ApplicationUpdateParameter parameter)
+        public async ValueTask<ApplicationUpdateResponse> ApplicationUpdateAsync(ApplicationUpdateParameter parameter)
         {
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync(ApplicationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationUpdateResponse> ApplicationUpdateAsync(ApplicationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(parameter, cancellationToken);
         }

@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync()
+        public async ValueTask<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync()
         {
             var p = new ChatmessageListRepliesParameter();
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessageListRepliesParameter();
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter)
+        public async ValueTask<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter)
         {
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(parameter, cancellationToken);
         }

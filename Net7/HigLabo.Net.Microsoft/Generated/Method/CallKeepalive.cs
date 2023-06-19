@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallKeepaliveResponse> CallKeepaliveAsync()
+        public async ValueTask<CallKeepaliveResponse> CallKeepaliveAsync()
         {
             var p = new CallKeepaliveParameter();
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallKeepaliveResponse> CallKeepaliveAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallKeepaliveResponse> CallKeepaliveAsync(CancellationToken cancellationToken)
         {
             var p = new CallKeepaliveParameter();
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallKeepaliveResponse> CallKeepaliveAsync(CallKeepaliveParameter parameter)
+        public async ValueTask<CallKeepaliveResponse> CallKeepaliveAsync(CallKeepaliveParameter parameter)
         {
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallKeepaliveResponse> CallKeepaliveAsync(CallKeepaliveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallKeepaliveResponse> CallKeepaliveAsync(CallKeepaliveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(parameter, cancellationToken);
         }

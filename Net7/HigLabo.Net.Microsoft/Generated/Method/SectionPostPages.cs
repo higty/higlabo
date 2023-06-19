@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionPostPagesResponse> SectionPostPagesAsync()
+        public async ValueTask<SectionPostPagesResponse> SectionPostPagesAsync()
         {
             var p = new SectionPostPagesParameter();
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionPostPagesResponse> SectionPostPagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionPostPagesResponse> SectionPostPagesAsync(CancellationToken cancellationToken)
         {
             var p = new SectionPostPagesParameter();
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionPostPagesResponse> SectionPostPagesAsync(SectionPostPagesParameter parameter)
+        public async ValueTask<SectionPostPagesResponse> SectionPostPagesAsync(SectionPostPagesParameter parameter)
         {
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionPostPagesResponse> SectionPostPagesAsync(SectionPostPagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionPostPagesResponse> SectionPostPagesAsync(SectionPostPagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(parameter, cancellationToken);
         }

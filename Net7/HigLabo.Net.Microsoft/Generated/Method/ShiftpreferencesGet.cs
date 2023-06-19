@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync()
+        public async ValueTask<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync()
         {
             var p = new ShiftpreferencesGetParameter();
             return await this.SendAsync<ShiftpreferencesGetParameter, ShiftpreferencesGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync(CancellationToken cancellationToken)
         {
             var p = new ShiftpreferencesGetParameter();
             return await this.SendAsync<ShiftpreferencesGetParameter, ShiftpreferencesGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync(ShiftpreferencesGetParameter parameter)
+        public async ValueTask<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync(ShiftpreferencesGetParameter parameter)
         {
             return await this.SendAsync<ShiftpreferencesGetParameter, ShiftpreferencesGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync(ShiftpreferencesGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ShiftpreferencesGetResponse> ShiftpreferencesGetAsync(ShiftpreferencesGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ShiftpreferencesGetParameter, ShiftpreferencesGetResponse>(parameter, cancellationToken);
         }

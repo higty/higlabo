@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync()
+        public async ValueTask<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync()
         {
             var p = new AccessreviewscheduledefinitionUpdateParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionUpdateParameter, AccessreviewscheduledefinitionUpdateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewscheduledefinitionUpdateParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionUpdateParameter, AccessreviewscheduledefinitionUpdateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync(AccessreviewscheduledefinitionUpdateParameter parameter)
+        public async ValueTask<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync(AccessreviewscheduledefinitionUpdateParameter parameter)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionUpdateParameter, AccessreviewscheduledefinitionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync(AccessreviewscheduledefinitionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionUpdateResponse> AccessreviewscheduledefinitionUpdateAsync(AccessreviewscheduledefinitionUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionUpdateParameter, AccessreviewscheduledefinitionUpdateResponse>(parameter, cancellationToken);
         }

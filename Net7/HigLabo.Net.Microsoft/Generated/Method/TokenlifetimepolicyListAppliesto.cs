@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync()
+        public async ValueTask<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync()
         {
             var p = new TokenlifetimePolicyListAppliestoParameter();
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
             var p = new TokenlifetimePolicyListAppliestoParameter();
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(TokenlifetimePolicyListAppliestoParameter parameter)
+        public async ValueTask<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(TokenlifetimePolicyListAppliestoParameter parameter)
         {
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(TokenlifetimePolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(TokenlifetimePolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(parameter, cancellationToken);
         }

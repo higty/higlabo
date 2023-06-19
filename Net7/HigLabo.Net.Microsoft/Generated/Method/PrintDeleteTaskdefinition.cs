@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync()
+        public async ValueTask<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync()
         {
             var p = new PrintDeleteTaskdefinitionParameter();
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(CancellationToken cancellationToken)
         {
             var p = new PrintDeleteTaskdefinitionParameter();
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(PrintDeleteTaskdefinitionParameter parameter)
+        public async ValueTask<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(PrintDeleteTaskdefinitionParameter parameter)
         {
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(PrintDeleteTaskdefinitionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(PrintDeleteTaskdefinitionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(parameter, cancellationToken);
         }

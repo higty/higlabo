@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-clone?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCloneResponse> TeamCloneAsync()
+        public async ValueTask<TeamCloneResponse> TeamCloneAsync()
         {
             var p = new TeamCloneParameter();
             return await this.SendAsync<TeamCloneParameter, TeamCloneResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-clone?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCloneResponse> TeamCloneAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamCloneResponse> TeamCloneAsync(CancellationToken cancellationToken)
         {
             var p = new TeamCloneParameter();
             return await this.SendAsync<TeamCloneParameter, TeamCloneResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-clone?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCloneResponse> TeamCloneAsync(TeamCloneParameter parameter)
+        public async ValueTask<TeamCloneResponse> TeamCloneAsync(TeamCloneParameter parameter)
         {
             return await this.SendAsync<TeamCloneParameter, TeamCloneResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-clone?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCloneResponse> TeamCloneAsync(TeamCloneParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamCloneResponse> TeamCloneAsync(TeamCloneParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamCloneParameter, TeamCloneResponse>(parameter, cancellationToken);
         }

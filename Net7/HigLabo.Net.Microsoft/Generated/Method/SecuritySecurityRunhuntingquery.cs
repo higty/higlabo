@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-security-runhuntingquery?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync()
+        public async ValueTask<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync()
         {
             var p = new SecuritySecurityRunhuntingqueryParameter();
             return await this.SendAsync<SecuritySecurityRunhuntingqueryParameter, SecuritySecurityRunhuntingqueryResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-security-runhuntingquery?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync(CancellationToken cancellationToken)
         {
             var p = new SecuritySecurityRunhuntingqueryParameter();
             return await this.SendAsync<SecuritySecurityRunhuntingqueryParameter, SecuritySecurityRunhuntingqueryResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-security-runhuntingquery?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync(SecuritySecurityRunhuntingqueryParameter parameter)
+        public async ValueTask<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync(SecuritySecurityRunhuntingqueryParameter parameter)
         {
             return await this.SendAsync<SecuritySecurityRunhuntingqueryParameter, SecuritySecurityRunhuntingqueryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-security-runhuntingquery?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync(SecuritySecurityRunhuntingqueryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecuritySecurityRunhuntingqueryResponse> SecuritySecurityRunhuntingqueryAsync(SecuritySecurityRunhuntingqueryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecuritySecurityRunhuntingqueryParameter, SecuritySecurityRunhuntingqueryResponse>(parameter, cancellationToken);
         }

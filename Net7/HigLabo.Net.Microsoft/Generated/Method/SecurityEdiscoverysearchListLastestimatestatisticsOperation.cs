@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync()
+        public async ValueTask<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync()
         {
             var p = new SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter();
             return await this.SendAsync<SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter, SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter();
             return await this.SendAsync<SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter, SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync(SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter parameter)
+        public async ValueTask<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync(SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter, SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync(SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse> SecurityEdiscoverysearchListLastestimatestatisticsOperationAsync(SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverysearchListLastestimatestatisticsOperationParameter, SecurityEdiscoverysearchListLastestimatestatisticsOperationResponse>(parameter, cancellationToken);
         }

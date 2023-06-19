@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<AdminConversationsLookupResponse> AdminConversationsLookupAsync(int? last_Message_Activity_Before, string? team_Ids)
+        public async ValueTask<AdminConversationsLookupResponse> AdminConversationsLookupAsync(int? last_Message_Activity_Before, string? team_Ids)
         {
             var p = new AdminConversationsLookupParameter();
             p.Last_Message_Activity_Before = last_Message_Activity_Before;
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<AdminConversationsLookupResponse> AdminConversationsLookupAsync(int? last_Message_Activity_Before, string? team_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsLookupResponse> AdminConversationsLookupAsync(int? last_Message_Activity_Before, string? team_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsLookupParameter();
             p.Last_Message_Activity_Before = last_Message_Activity_Before;
@@ -54,21 +54,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<AdminConversationsLookupResponse> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter)
+        public async ValueTask<AdminConversationsLookupResponse> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter)
         {
             return await this.SendAsync<AdminConversationsLookupParameter, AdminConversationsLookupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<AdminConversationsLookupResponse> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsLookupResponse> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsLookupParameter, AdminConversationsLookupResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(int? last_Message_Activity_Before, PagingContext<AdminConversationsLookupResponse> context, string? team_Ids)
+        public async ValueTask<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(int? last_Message_Activity_Before, PagingContext<AdminConversationsLookupResponse> context, string? team_Ids)
         {
             var p = new AdminConversationsLookupParameter();
             p.Last_Message_Activity_Before = last_Message_Activity_Before;
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(int? last_Message_Activity_Before, PagingContext<AdminConversationsLookupResponse> context, string? team_Ids, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(int? last_Message_Activity_Before, PagingContext<AdminConversationsLookupResponse> context, string? team_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsLookupParameter();
             p.Last_Message_Activity_Before = last_Message_Activity_Before;
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter, PagingContext<AdminConversationsLookupResponse> context)
+        public async ValueTask<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter, PagingContext<AdminConversationsLookupResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.lookup
         /// </summary>
-        public async Task<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter, PagingContext<AdminConversationsLookupResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminConversationsLookupResponse>> AdminConversationsLookupAsync(AdminConversationsLookupParameter parameter, PagingContext<AdminConversationsLookupResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

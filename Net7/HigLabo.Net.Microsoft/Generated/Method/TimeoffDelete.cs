@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffDeleteResponse> TimeoffDeleteAsync()
+        public async ValueTask<TimeoffDeleteResponse> TimeoffDeleteAsync()
         {
             var p = new TimeoffDeleteParameter();
             return await this.SendAsync<TimeoffDeleteParameter, TimeoffDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffDeleteResponse> TimeoffDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffDeleteResponse> TimeoffDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffDeleteParameter();
             return await this.SendAsync<TimeoffDeleteParameter, TimeoffDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffDeleteResponse> TimeoffDeleteAsync(TimeoffDeleteParameter parameter)
+        public async ValueTask<TimeoffDeleteResponse> TimeoffDeleteAsync(TimeoffDeleteParameter parameter)
         {
             return await this.SendAsync<TimeoffDeleteParameter, TimeoffDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffDeleteResponse> TimeoffDeleteAsync(TimeoffDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffDeleteResponse> TimeoffDeleteAsync(TimeoffDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffDeleteParameter, TimeoffDeleteResponse>(parameter, cancellationToken);
         }

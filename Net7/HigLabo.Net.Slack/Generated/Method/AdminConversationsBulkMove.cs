@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkMove
         /// </summary>
-        public async Task<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(string? channel_Ids, string? target_Team_Id)
+        public async ValueTask<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(string? channel_Ids, string? target_Team_Id)
         {
             var p = new AdminConversationsBulkMoveParameter();
             p.Channel_Ids = channel_Ids;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkMove
         /// </summary>
-        public async Task<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(string? channel_Ids, string? target_Team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(string? channel_Ids, string? target_Team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsBulkMoveParameter();
             p.Channel_Ids = channel_Ids;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkMove
         /// </summary>
-        public async Task<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(AdminConversationsBulkMoveParameter parameter)
+        public async ValueTask<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(AdminConversationsBulkMoveParameter parameter)
         {
             return await this.SendAsync<AdminConversationsBulkMoveParameter, AdminConversationsBulkMoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkMove
         /// </summary>
-        public async Task<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(AdminConversationsBulkMoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsBulkMoveResponse> AdminConversationsBulkMoveAsync(AdminConversationsBulkMoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsBulkMoveParameter, AdminConversationsBulkMoveResponse>(parameter, cancellationToken);
         }

@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync()
+        public async ValueTask<BookingserviceUpdateResponse> BookingserviceUpdateAsync()
         {
             var p = new BookingserviceUpdateParameter();
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingserviceUpdateResponse> BookingserviceUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new BookingserviceUpdateParameter();
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync(BookingserviceUpdateParameter parameter)
+        public async ValueTask<BookingserviceUpdateResponse> BookingserviceUpdateAsync(BookingserviceUpdateParameter parameter)
         {
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync(BookingserviceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingserviceUpdateResponse> BookingserviceUpdateAsync(BookingserviceUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(parameter, cancellationToken);
         }

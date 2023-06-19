@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantInviteResponse> ParticipantInviteAsync()
+        public async ValueTask<ParticipantInviteResponse> ParticipantInviteAsync()
         {
             var p = new ParticipantInviteParameter();
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantInviteResponse> ParticipantInviteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ParticipantInviteResponse> ParticipantInviteAsync(CancellationToken cancellationToken)
         {
             var p = new ParticipantInviteParameter();
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantInviteResponse> ParticipantInviteAsync(ParticipantInviteParameter parameter)
+        public async ValueTask<ParticipantInviteResponse> ParticipantInviteAsync(ParticipantInviteParameter parameter)
         {
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantInviteResponse> ParticipantInviteAsync(ParticipantInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ParticipantInviteResponse> ParticipantInviteAsync(ParticipantInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(parameter, cancellationToken);
         }

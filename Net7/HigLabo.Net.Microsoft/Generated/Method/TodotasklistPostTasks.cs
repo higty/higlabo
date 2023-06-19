@@ -134,7 +134,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync()
+        public async ValueTask<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync()
         {
             var p = new TodotasklistPostTasksParameter();
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(p, CancellationToken.None);
@@ -142,7 +142,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(CancellationToken cancellationToken)
         {
             var p = new TodotasklistPostTasksParameter();
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(p, cancellationToken);
@@ -150,14 +150,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(TodotasklistPostTasksParameter parameter)
+        public async ValueTask<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(TodotasklistPostTasksParameter parameter)
         {
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(TodotasklistPostTasksParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(TodotasklistPostTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(parameter, cancellationToken);
         }

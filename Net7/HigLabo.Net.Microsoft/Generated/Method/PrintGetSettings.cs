@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync()
+        public async ValueTask<PrintGetSettingsResponse> PrintGetSettingsAsync()
         {
             var p = new PrintGetSettingsParameter();
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintGetSettingsResponse> PrintGetSettingsAsync(CancellationToken cancellationToken)
         {
             var p = new PrintGetSettingsParameter();
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync(PrintGetSettingsParameter parameter)
+        public async ValueTask<PrintGetSettingsResponse> PrintGetSettingsAsync(PrintGetSettingsParameter parameter)
         {
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync(PrintGetSettingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintGetSettingsResponse> PrintGetSettingsAsync(PrintGetSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(parameter, cancellationToken);
         }

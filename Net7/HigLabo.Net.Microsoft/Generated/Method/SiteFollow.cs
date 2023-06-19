@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteFollowResponse> SiteFollowAsync()
+        public async ValueTask<SiteFollowResponse> SiteFollowAsync()
         {
             var p = new SiteFollowParameter();
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteFollowResponse> SiteFollowAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteFollowResponse> SiteFollowAsync(CancellationToken cancellationToken)
         {
             var p = new SiteFollowParameter();
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteFollowResponse> SiteFollowAsync(SiteFollowParameter parameter)
+        public async ValueTask<SiteFollowResponse> SiteFollowAsync(SiteFollowParameter parameter)
         {
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteFollowResponse> SiteFollowAsync(SiteFollowParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteFollowResponse> SiteFollowAsync(SiteFollowParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(parameter, cancellationToken);
         }

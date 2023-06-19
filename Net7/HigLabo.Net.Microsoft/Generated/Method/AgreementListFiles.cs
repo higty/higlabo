@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListFilesResponse> AgreementListFilesAsync()
+        public async ValueTask<AgreementListFilesResponse> AgreementListFilesAsync()
         {
             var p = new AgreementListFilesParameter();
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListFilesResponse> AgreementListFilesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementListFilesResponse> AgreementListFilesAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementListFilesParameter();
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter)
+        public async ValueTask<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter)
         {
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(parameter, cancellationToken);
         }

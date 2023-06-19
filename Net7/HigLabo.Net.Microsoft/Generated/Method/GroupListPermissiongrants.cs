@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync()
+        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync()
         {
             var p = new GroupListPermissiongrantsParameter();
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListPermissiongrantsParameter();
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter)
+        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter)
         {
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(parameter, cancellationToken);
         }

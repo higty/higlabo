@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowDeleteResponse> TablerowDeleteAsync()
+        public async ValueTask<TablerowDeleteResponse> TablerowDeleteAsync()
         {
             var p = new TablerowDeleteParameter();
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowDeleteResponse> TablerowDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablerowDeleteResponse> TablerowDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TablerowDeleteParameter();
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowDeleteResponse> TablerowDeleteAsync(TablerowDeleteParameter parameter)
+        public async ValueTask<TablerowDeleteResponse> TablerowDeleteAsync(TablerowDeleteParameter parameter)
         {
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowDeleteResponse> TablerowDeleteAsync(TablerowDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablerowDeleteResponse> TablerowDeleteAsync(TablerowDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(parameter, cancellationToken);
         }

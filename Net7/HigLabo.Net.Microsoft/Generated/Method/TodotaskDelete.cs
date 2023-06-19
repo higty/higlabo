@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync()
+        public async ValueTask<TodotaskDeleteResponse> TodotaskDeleteAsync()
         {
             var p = new TodotaskDeleteParameter();
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskDeleteResponse> TodotaskDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TodotaskDeleteParameter();
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync(TodotaskDeleteParameter parameter)
+        public async ValueTask<TodotaskDeleteResponse> TodotaskDeleteAsync(TodotaskDeleteParameter parameter)
         {
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync(TodotaskDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskDeleteResponse> TodotaskDeleteAsync(TodotaskDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(parameter, cancellationToken);
         }

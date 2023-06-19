@@ -101,7 +101,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableGetResponse> TableGetAsync()
+        public async ValueTask<TableGetResponse> TableGetAsync()
         {
             var p = new TableGetParameter();
             return await this.SendAsync<TableGetParameter, TableGetResponse>(p, CancellationToken.None);
@@ -109,7 +109,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableGetResponse> TableGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TableGetResponse> TableGetAsync(CancellationToken cancellationToken)
         {
             var p = new TableGetParameter();
             return await this.SendAsync<TableGetParameter, TableGetResponse>(p, cancellationToken);
@@ -117,14 +117,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableGetResponse> TableGetAsync(TableGetParameter parameter)
+        public async ValueTask<TableGetResponse> TableGetAsync(TableGetParameter parameter)
         {
             return await this.SendAsync<TableGetParameter, TableGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableGetResponse> TableGetAsync(TableGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TableGetResponse> TableGetAsync(TableGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableGetParameter, TableGetResponse>(parameter, cancellationToken);
         }

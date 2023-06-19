@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.kick
         /// </summary>
-        public async Task<ConversationsKickResponse> ConversationsKickAsync(string? channel, string? user)
+        public async ValueTask<ConversationsKickResponse> ConversationsKickAsync(string? channel, string? user)
         {
             var p = new ConversationsKickParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.kick
         /// </summary>
-        public async Task<ConversationsKickResponse> ConversationsKickAsync(string? channel, string? user, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsKickResponse> ConversationsKickAsync(string? channel, string? user, CancellationToken cancellationToken)
         {
             var p = new ConversationsKickParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.kick
         /// </summary>
-        public async Task<ConversationsKickResponse> ConversationsKickAsync(ConversationsKickParameter parameter)
+        public async ValueTask<ConversationsKickResponse> ConversationsKickAsync(ConversationsKickParameter parameter)
         {
             return await this.SendAsync<ConversationsKickParameter, ConversationsKickResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.kick
         /// </summary>
-        public async Task<ConversationsKickResponse> ConversationsKickAsync(ConversationsKickParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsKickResponse> ConversationsKickAsync(ConversationsKickParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsKickParameter, ConversationsKickResponse>(parameter, cancellationToken);
         }

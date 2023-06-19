@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistGetResponse> TodotasklistGetAsync()
+        public async ValueTask<TodotasklistGetResponse> TodotasklistGetAsync()
         {
             var p = new TodotasklistGetParameter();
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistGetResponse> TodotasklistGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotasklistGetResponse> TodotasklistGetAsync(CancellationToken cancellationToken)
         {
             var p = new TodotasklistGetParameter();
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistGetResponse> TodotasklistGetAsync(TodotasklistGetParameter parameter)
+        public async ValueTask<TodotasklistGetResponse> TodotasklistGetAsync(TodotasklistGetParameter parameter)
         {
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotasklistGetResponse> TodotasklistGetAsync(TodotasklistGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotasklistGetResponse> TodotasklistGetAsync(TodotasklistGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(parameter, cancellationToken);
         }

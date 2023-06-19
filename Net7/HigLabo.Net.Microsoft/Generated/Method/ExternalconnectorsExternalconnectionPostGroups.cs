@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync()
+        public async ValueTask<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync()
         {
             var p = new ExternalConnectorsExternalconnectionPostGroupsParameter();
             return await this.SendAsync<ExternalConnectorsExternalconnectionPostGroupsParameter, ExternalConnectorsExternalconnectionPostGroupsResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsExternalconnectionPostGroupsParameter();
             return await this.SendAsync<ExternalConnectorsExternalconnectionPostGroupsParameter, ExternalConnectorsExternalconnectionPostGroupsResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync(ExternalConnectorsExternalconnectionPostGroupsParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync(ExternalConnectorsExternalconnectionPostGroupsParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionPostGroupsParameter, ExternalConnectorsExternalconnectionPostGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync(ExternalConnectorsExternalconnectionPostGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalconnectionPostGroupsResponse> ExternalConnectorsExternalconnectionPostGroupsAsync(ExternalConnectorsExternalconnectionPostGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionPostGroupsParameter, ExternalConnectorsExternalconnectionPostGroupsResponse>(parameter, cancellationToken);
         }

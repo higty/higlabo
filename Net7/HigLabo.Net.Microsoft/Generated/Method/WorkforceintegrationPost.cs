@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync()
+        public async ValueTask<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync()
         {
             var p = new WorkforceintegrationPostParameter();
             return await this.SendAsync<WorkforceintegrationPostParameter, WorkforceintegrationPostResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync(CancellationToken cancellationToken)
         {
             var p = new WorkforceintegrationPostParameter();
             return await this.SendAsync<WorkforceintegrationPostParameter, WorkforceintegrationPostResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync(WorkforceintegrationPostParameter parameter)
+        public async ValueTask<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync(WorkforceintegrationPostParameter parameter)
         {
             return await this.SendAsync<WorkforceintegrationPostParameter, WorkforceintegrationPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync(WorkforceintegrationPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkforceintegrationPostResponse> WorkforceintegrationPostAsync(WorkforceintegrationPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkforceintegrationPostParameter, WorkforceintegrationPostResponse>(parameter, cancellationToken);
         }

@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync()
+        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync()
         {
             var p = new ConnectedorganizationListExternalsponsorsParameter();
             return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(CancellationToken cancellationToken)
         {
             var p = new ConnectedorganizationListExternalsponsorsParameter();
             return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter)
+        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(parameter, cancellationToken);
         }

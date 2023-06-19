@@ -152,7 +152,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageMoveResponse> MessageMoveAsync()
+        public async ValueTask<MessageMoveResponse> MessageMoveAsync()
         {
             var p = new MessageMoveParameter();
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(p, CancellationToken.None);
@@ -160,7 +160,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageMoveResponse> MessageMoveAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageMoveResponse> MessageMoveAsync(CancellationToken cancellationToken)
         {
             var p = new MessageMoveParameter();
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(p, cancellationToken);
@@ -168,14 +168,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageMoveResponse> MessageMoveAsync(MessageMoveParameter parameter)
+        public async ValueTask<MessageMoveResponse> MessageMoveAsync(MessageMoveParameter parameter)
         {
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageMoveResponse> MessageMoveAsync(MessageMoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageMoveResponse> MessageMoveAsync(MessageMoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(parameter, cancellationToken);
         }

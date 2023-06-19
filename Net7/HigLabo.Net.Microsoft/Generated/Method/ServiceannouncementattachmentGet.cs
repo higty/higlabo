@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncementattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync()
+        public async ValueTask<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync()
         {
             var p = new ServiceannouncementattachmentGetParameter();
             return await this.SendAsync<ServiceannouncementattachmentGetParameter, ServiceannouncementattachmentGetResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncementattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceannouncementattachmentGetParameter();
             return await this.SendAsync<ServiceannouncementattachmentGetParameter, ServiceannouncementattachmentGetResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncementattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync(ServiceannouncementattachmentGetParameter parameter)
+        public async ValueTask<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync(ServiceannouncementattachmentGetParameter parameter)
         {
             return await this.SendAsync<ServiceannouncementattachmentGetParameter, ServiceannouncementattachmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncementattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync(ServiceannouncementattachmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceannouncementattachmentGetResponse> ServiceannouncementattachmentGetAsync(ServiceannouncementattachmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceannouncementattachmentGetParameter, ServiceannouncementattachmentGetResponse>(parameter, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListInstalledappsResponse> TeamListInstalledappsAsync()
+        public async ValueTask<TeamListInstalledappsResponse> TeamListInstalledappsAsync()
         {
             var p = new TeamListInstalledappsParameter();
             return await this.SendAsync<TeamListInstalledappsParameter, TeamListInstalledappsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListInstalledappsResponse> TeamListInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamListInstalledappsResponse> TeamListInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamListInstalledappsParameter();
             return await this.SendAsync<TeamListInstalledappsParameter, TeamListInstalledappsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListInstalledappsResponse> TeamListInstalledappsAsync(TeamListInstalledappsParameter parameter)
+        public async ValueTask<TeamListInstalledappsResponse> TeamListInstalledappsAsync(TeamListInstalledappsParameter parameter)
         {
             return await this.SendAsync<TeamListInstalledappsParameter, TeamListInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListInstalledappsResponse> TeamListInstalledappsAsync(TeamListInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamListInstalledappsResponse> TeamListInstalledappsAsync(TeamListInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamListInstalledappsParameter, TeamListInstalledappsResponse>(parameter, cancellationToken);
         }

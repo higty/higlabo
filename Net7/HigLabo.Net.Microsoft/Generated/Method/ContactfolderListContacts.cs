@@ -109,7 +109,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListContactsResponse> ContactfolderListContactsAsync()
+        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync()
         {
             var p = new ContactfolderListContactsParameter();
             return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(p, CancellationToken.None);
@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListContactsResponse> ContactfolderListContactsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync(CancellationToken cancellationToken)
         {
             var p = new ContactfolderListContactsParameter();
             return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(p, cancellationToken);
@@ -125,14 +125,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListContactsResponse> ContactfolderListContactsAsync(ContactfolderListContactsParameter parameter)
+        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync(ContactfolderListContactsParameter parameter)
         {
             return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListContactsResponse> ContactfolderListContactsAsync(ContactfolderListContactsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync(ContactfolderListContactsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(parameter, cancellationToken);
         }

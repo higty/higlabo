@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUpdateResponse> DriveitemUpdateAsync()
+        public async ValueTask<DriveitemUpdateResponse> DriveitemUpdateAsync()
         {
             var p = new DriveitemUpdateParameter();
             return await this.SendAsync<DriveitemUpdateParameter, DriveitemUpdateResponse>(p, CancellationToken.None);
@@ -113,7 +113,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUpdateResponse> DriveitemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemUpdateResponse> DriveitemUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemUpdateParameter();
             return await this.SendAsync<DriveitemUpdateParameter, DriveitemUpdateResponse>(p, cancellationToken);
@@ -121,14 +121,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUpdateResponse> DriveitemUpdateAsync(DriveitemUpdateParameter parameter)
+        public async ValueTask<DriveitemUpdateResponse> DriveitemUpdateAsync(DriveitemUpdateParameter parameter)
         {
             return await this.SendAsync<DriveitemUpdateParameter, DriveitemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemUpdateResponse> DriveitemUpdateAsync(DriveitemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemUpdateResponse> DriveitemUpdateAsync(DriveitemUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemUpdateParameter, DriveitemUpdateResponse>(parameter, cancellationToken);
         }

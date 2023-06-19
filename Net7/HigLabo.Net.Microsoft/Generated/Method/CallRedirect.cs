@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRedirectResponse> CallRedirectAsync()
+        public async ValueTask<CallRedirectResponse> CallRedirectAsync()
         {
             var p = new CallRedirectParameter();
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRedirectResponse> CallRedirectAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallRedirectResponse> CallRedirectAsync(CancellationToken cancellationToken)
         {
             var p = new CallRedirectParameter();
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRedirectResponse> CallRedirectAsync(CallRedirectParameter parameter)
+        public async ValueTask<CallRedirectResponse> CallRedirectAsync(CallRedirectParameter parameter)
         {
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRedirectResponse> CallRedirectAsync(CallRedirectParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallRedirectResponse> CallRedirectAsync(CallRedirectParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(parameter, cancellationToken);
         }

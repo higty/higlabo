@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync()
+        public async ValueTask<TimeoffrequestGetResponse> TimeoffrequestGetAsync()
         {
             var p = new TimeoffrequestGetParameter();
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestGetResponse> TimeoffrequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffrequestGetParameter();
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync(TimeoffrequestGetParameter parameter)
+        public async ValueTask<TimeoffrequestGetResponse> TimeoffrequestGetAsync(TimeoffrequestGetParameter parameter)
         {
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync(TimeoffrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestGetResponse> TimeoffrequestGetAsync(TimeoffrequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(parameter, cancellationToken);
         }

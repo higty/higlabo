@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync()
+        public async ValueTask<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync()
         {
             var p = new AttachmentCreateuploadsessionParameter();
             return await this.SendAsync<AttachmentCreateuploadsessionParameter, AttachmentCreateuploadsessionResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync(CancellationToken cancellationToken)
+        public async ValueTask<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync(CancellationToken cancellationToken)
         {
             var p = new AttachmentCreateuploadsessionParameter();
             return await this.SendAsync<AttachmentCreateuploadsessionParameter, AttachmentCreateuploadsessionResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync(AttachmentCreateuploadsessionParameter parameter)
+        public async ValueTask<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync(AttachmentCreateuploadsessionParameter parameter)
         {
             return await this.SendAsync<AttachmentCreateuploadsessionParameter, AttachmentCreateuploadsessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync(AttachmentCreateuploadsessionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AttachmentCreateuploadsessionResponse> AttachmentCreateuploadsessionAsync(AttachmentCreateuploadsessionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AttachmentCreateuploadsessionParameter, AttachmentCreateuploadsessionResponse>(parameter, cancellationToken);
         }

@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-post-multivalueextendedproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync()
+        public async ValueTask<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync()
         {
             var p = new MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter();
             return await this.SendAsync<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter, MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse>(p, CancellationToken.None);
@@ -133,7 +133,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-post-multivalueextendedproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync(CancellationToken cancellationToken)
         {
             var p = new MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter();
             return await this.SendAsync<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter, MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse>(p, cancellationToken);
@@ -141,14 +141,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-post-multivalueextendedproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync(MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter parameter)
+        public async ValueTask<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync(MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter parameter)
         {
             return await this.SendAsync<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter, MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/multivaluelegacyextendedproperty-post-multivalueextendedproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync(MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse> MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesAsync(MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesParameter, MultivaluelegacyextendedpropertyPostMultivalueextendedpropertiesResponse>(parameter, cancellationToken);
         }

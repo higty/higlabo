@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync()
+        public async ValueTask<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync()
         {
             var p = new EducationfeedbackResourceoutcomeDeleteParameter();
             return await this.SendAsync<EducationfeedbackResourceoutcomeDeleteParameter, EducationfeedbackResourceoutcomeDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new EducationfeedbackResourceoutcomeDeleteParameter();
             return await this.SendAsync<EducationfeedbackResourceoutcomeDeleteParameter, EducationfeedbackResourceoutcomeDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync(EducationfeedbackResourceoutcomeDeleteParameter parameter)
+        public async ValueTask<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync(EducationfeedbackResourceoutcomeDeleteParameter parameter)
         {
             return await this.SendAsync<EducationfeedbackResourceoutcomeDeleteParameter, EducationfeedbackResourceoutcomeDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync(EducationfeedbackResourceoutcomeDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationfeedbackResourceoutcomeDeleteResponse> EducationfeedbackResourceoutcomeDeleteAsync(EducationfeedbackResourceoutcomeDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationfeedbackResourceoutcomeDeleteParameter, EducationfeedbackResourceoutcomeDeleteResponse>(parameter, cancellationToken);
         }

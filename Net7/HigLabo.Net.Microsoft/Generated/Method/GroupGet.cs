@@ -204,7 +204,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetResponse> GroupGetAsync()
+        public async ValueTask<GroupGetResponse> GroupGetAsync()
         {
             var p = new GroupGetParameter();
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(p, CancellationToken.None);
@@ -212,7 +212,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetResponse> GroupGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupGetResponse> GroupGetAsync(CancellationToken cancellationToken)
         {
             var p = new GroupGetParameter();
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(p, cancellationToken);
@@ -220,14 +220,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetResponse> GroupGetAsync(GroupGetParameter parameter)
+        public async ValueTask<GroupGetResponse> GroupGetAsync(GroupGetParameter parameter)
         {
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetResponse> GroupGetAsync(GroupGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupGetResponse> GroupGetAsync(GroupGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(parameter, cancellationToken);
         }

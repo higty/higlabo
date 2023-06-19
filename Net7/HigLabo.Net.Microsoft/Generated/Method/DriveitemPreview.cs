@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPreviewResponse> DriveitemPreviewAsync()
+        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync()
         {
             var p = new DriveitemPreviewParameter();
             return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPreviewResponse> DriveitemPreviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemPreviewParameter();
             return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPreviewResponse> DriveitemPreviewAsync(DriveitemPreviewParameter parameter)
+        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync(DriveitemPreviewParameter parameter)
         {
             return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPreviewResponse> DriveitemPreviewAsync(DriveitemPreviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync(DriveitemPreviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(parameter, cancellationToken);
         }

@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync()
+        public async ValueTask<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync()
         {
             var p = new BrowsersitelistListSitesParameter();
             return await this.SendAsync<BrowsersitelistListSitesParameter, BrowsersitelistListSitesResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersitelistListSitesParameter();
             return await this.SendAsync<BrowsersitelistListSitesParameter, BrowsersitelistListSitesResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync(BrowsersitelistListSitesParameter parameter)
+        public async ValueTask<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync(BrowsersitelistListSitesParameter parameter)
         {
             return await this.SendAsync<BrowsersitelistListSitesParameter, BrowsersitelistListSitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync(BrowsersitelistListSitesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistListSitesResponse> BrowsersitelistListSitesAsync(BrowsersitelistListSitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersitelistListSitesParameter, BrowsersitelistListSitesResponse>(parameter, cancellationToken);
         }

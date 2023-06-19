@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync()
+        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync()
         {
             var p = new AccessreviewinstanceUpdateParameter();
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceUpdateParameter();
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter)
+        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(parameter, cancellationToken);
         }

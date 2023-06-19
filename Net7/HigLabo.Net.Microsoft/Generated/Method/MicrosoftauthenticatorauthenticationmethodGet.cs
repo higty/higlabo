@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync()
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync()
         {
             var p = new MicrosoftauthenticatorauthenticationmethodGetParameter();
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodGetParameter, MicrosoftauthenticatorauthenticationmethodGetResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync(CancellationToken cancellationToken)
         {
             var p = new MicrosoftauthenticatorauthenticationmethodGetParameter();
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodGetParameter, MicrosoftauthenticatorauthenticationmethodGetResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync(MicrosoftauthenticatorauthenticationmethodGetParameter parameter)
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync(MicrosoftauthenticatorauthenticationmethodGetParameter parameter)
         {
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodGetParameter, MicrosoftauthenticatorauthenticationmethodGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync(MicrosoftauthenticatorauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodGetResponse> MicrosoftauthenticatorauthenticationmethodGetAsync(MicrosoftauthenticatorauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodGetParameter, MicrosoftauthenticatorauthenticationmethodGetResponse>(parameter, cancellationToken);
         }

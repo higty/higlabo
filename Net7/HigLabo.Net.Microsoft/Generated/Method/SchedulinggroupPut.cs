@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync()
+        public async ValueTask<SchedulingGroupPutResponse> SchedulingGroupPutAsync()
         {
             var p = new SchedulingGroupPutParameter();
             return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulingGroupPutResponse> SchedulingGroupPutAsync(CancellationToken cancellationToken)
         {
             var p = new SchedulingGroupPutParameter();
             return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync(SchedulingGroupPutParameter parameter)
+        public async ValueTask<SchedulingGroupPutResponse> SchedulingGroupPutAsync(SchedulingGroupPutParameter parameter)
         {
             return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync(SchedulingGroupPutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulingGroupPutResponse> SchedulingGroupPutAsync(SchedulingGroupPutParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(parameter, cancellationToken);
         }

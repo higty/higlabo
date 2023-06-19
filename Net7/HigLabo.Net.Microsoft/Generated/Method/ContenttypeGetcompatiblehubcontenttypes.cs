@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync()
+        public async ValueTask<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync()
         {
             var p = new ContentTypeGetcompatiblehubContentTypesParameter();
             return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeGetcompatiblehubContentTypesParameter();
             return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter)
+        public async ValueTask<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter)
         {
             return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(parameter, cancellationToken);
         }

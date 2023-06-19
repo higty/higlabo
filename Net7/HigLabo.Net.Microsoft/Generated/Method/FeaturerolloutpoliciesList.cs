@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync()
+        public async ValueTask<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync()
         {
             var p = new FeaturerolloutpoliciesListParameter();
             return await this.SendAsync<FeaturerolloutpoliciesListParameter, FeaturerolloutpoliciesListResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(CancellationToken cancellationToken)
         {
             var p = new FeaturerolloutpoliciesListParameter();
             return await this.SendAsync<FeaturerolloutpoliciesListParameter, FeaturerolloutpoliciesListResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(FeaturerolloutpoliciesListParameter parameter)
+        public async ValueTask<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(FeaturerolloutpoliciesListParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutpoliciesListParameter, FeaturerolloutpoliciesListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(FeaturerolloutpoliciesListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(FeaturerolloutpoliciesListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FeaturerolloutpoliciesListParameter, FeaturerolloutpoliciesListResponse>(parameter, cancellationToken);
         }

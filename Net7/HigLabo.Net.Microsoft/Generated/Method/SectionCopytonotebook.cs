@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytonotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytonotebookResponse> SectionCopytonotebookAsync()
+        public async ValueTask<SectionCopytonotebookResponse> SectionCopytonotebookAsync()
         {
             var p = new SectionCopytonotebookParameter();
             return await this.SendAsync<SectionCopytonotebookParameter, SectionCopytonotebookResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytonotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytonotebookResponse> SectionCopytonotebookAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionCopytonotebookResponse> SectionCopytonotebookAsync(CancellationToken cancellationToken)
         {
             var p = new SectionCopytonotebookParameter();
             return await this.SendAsync<SectionCopytonotebookParameter, SectionCopytonotebookResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytonotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytonotebookResponse> SectionCopytonotebookAsync(SectionCopytonotebookParameter parameter)
+        public async ValueTask<SectionCopytonotebookResponse> SectionCopytonotebookAsync(SectionCopytonotebookParameter parameter)
         {
             return await this.SendAsync<SectionCopytonotebookParameter, SectionCopytonotebookResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytonotebook?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytonotebookResponse> SectionCopytonotebookAsync(SectionCopytonotebookParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionCopytonotebookResponse> SectionCopytonotebookAsync(SectionCopytonotebookParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionCopytonotebookParameter, SectionCopytonotebookResponse>(parameter, cancellationToken);
         }

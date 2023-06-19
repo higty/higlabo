@@ -127,7 +127,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostMessagesResponse> ChatPostMessagesAsync()
+        public async ValueTask<ChatPostMessagesResponse> ChatPostMessagesAsync()
         {
             var p = new ChatPostMessagesParameter();
             return await this.SendAsync<ChatPostMessagesParameter, ChatPostMessagesResponse>(p, CancellationToken.None);
@@ -135,7 +135,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostMessagesResponse> ChatPostMessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatPostMessagesResponse> ChatPostMessagesAsync(CancellationToken cancellationToken)
         {
             var p = new ChatPostMessagesParameter();
             return await this.SendAsync<ChatPostMessagesParameter, ChatPostMessagesResponse>(p, cancellationToken);
@@ -143,14 +143,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostMessagesResponse> ChatPostMessagesAsync(ChatPostMessagesParameter parameter)
+        public async ValueTask<ChatPostMessagesResponse> ChatPostMessagesAsync(ChatPostMessagesParameter parameter)
         {
             return await this.SendAsync<ChatPostMessagesParameter, ChatPostMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPostMessagesResponse> ChatPostMessagesAsync(ChatPostMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatPostMessagesResponse> ChatPostMessagesAsync(ChatPostMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPostMessagesParameter, ChatPostMessagesResponse>(parameter, cancellationToken);
         }

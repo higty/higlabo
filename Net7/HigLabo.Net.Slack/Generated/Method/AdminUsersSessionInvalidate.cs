@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.invalidate
         /// </summary>
-        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int? session_Id, string? team_Id)
+        public async ValueTask<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int? session_Id, string? team_Id)
         {
             var p = new AdminUsersSessionInvalidateParameter();
             p.Session_Id = session_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.invalidate
         /// </summary>
-        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int? session_Id, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int? session_Id, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionInvalidateParameter();
             p.Session_Id = session_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.invalidate
         /// </summary>
-        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(AdminUsersSessionInvalidateParameter parameter)
+        public async ValueTask<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(AdminUsersSessionInvalidateParameter parameter)
         {
             return await this.SendAsync<AdminUsersSessionInvalidateParameter, AdminUsersSessionInvalidateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.invalidate
         /// </summary>
-        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(AdminUsersSessionInvalidateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(AdminUsersSessionInvalidateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSessionInvalidateParameter, AdminUsersSessionInvalidateResponse>(parameter, cancellationToken);
         }

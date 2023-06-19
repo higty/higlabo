@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync()
+        public async ValueTask<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync()
         {
             var p = new PlannerbuckettaskboardtaskformatGetParameter();
             return await this.SendAsync<PlannerbuckettaskboardtaskformatGetParameter, PlannerbuckettaskboardtaskformatGetResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerbuckettaskboardtaskformatGetParameter();
             return await this.SendAsync<PlannerbuckettaskboardtaskformatGetParameter, PlannerbuckettaskboardtaskformatGetResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync(PlannerbuckettaskboardtaskformatGetParameter parameter)
+        public async ValueTask<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync(PlannerbuckettaskboardtaskformatGetParameter parameter)
         {
             return await this.SendAsync<PlannerbuckettaskboardtaskformatGetParameter, PlannerbuckettaskboardtaskformatGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync(PlannerbuckettaskboardtaskformatGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerbuckettaskboardtaskformatGetResponse> PlannerbuckettaskboardtaskformatGetAsync(PlannerbuckettaskboardtaskformatGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerbuckettaskboardtaskformatGetParameter, PlannerbuckettaskboardtaskformatGetResponse>(parameter, cancellationToken);
         }

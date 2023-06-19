@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-put-apiconnectorconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync()
+        public async ValueTask<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync()
         {
             var p = new B2xidentityUserflowPutApiConnectorConfigurationParameter();
             return await this.SendAsync<B2xidentityUserflowPutApiConnectorConfigurationParameter, B2xidentityUserflowPutApiConnectorConfigurationResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-put-apiconnectorconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync(CancellationToken cancellationToken)
         {
             var p = new B2xidentityUserflowPutApiConnectorConfigurationParameter();
             return await this.SendAsync<B2xidentityUserflowPutApiConnectorConfigurationParameter, B2xidentityUserflowPutApiConnectorConfigurationResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-put-apiconnectorconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync(B2xidentityUserflowPutApiConnectorConfigurationParameter parameter)
+        public async ValueTask<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync(B2xidentityUserflowPutApiConnectorConfigurationParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowPutApiConnectorConfigurationParameter, B2xidentityUserflowPutApiConnectorConfigurationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-put-apiconnectorconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync(B2xidentityUserflowPutApiConnectorConfigurationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowPutApiConnectorConfigurationResponse> B2xidentityUserflowPutApiConnectorConfigurationAsync(B2xidentityUserflowPutApiConnectorConfigurationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<B2xidentityUserflowPutApiConnectorConfigurationParameter, B2xidentityUserflowPutApiConnectorConfigurationResponse>(parameter, cancellationToken);
         }

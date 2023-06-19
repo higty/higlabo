@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync()
+        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync()
         {
             var p = new SecurityCasesRootListEdiscoverycasesParameter();
             return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityCasesRootListEdiscoverycasesParameter();
             return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(SecurityCasesRootListEdiscoverycasesParameter parameter)
+        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(SecurityCasesRootListEdiscoverycasesParameter parameter)
         {
             return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(SecurityCasesRootListEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(SecurityCasesRootListEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(parameter, cancellationToken);
         }

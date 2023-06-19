@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListResponse> EducationclassListAsync()
+        public async ValueTask<EducationclassListResponse> EducationclassListAsync()
         {
             var p = new EducationclassListParameter();
             return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListResponse> EducationclassListAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassListResponse> EducationclassListAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassListParameter();
             return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListResponse> EducationclassListAsync(EducationclassListParameter parameter)
+        public async ValueTask<EducationclassListResponse> EducationclassListAsync(EducationclassListParameter parameter)
         {
             return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListResponse> EducationclassListAsync(EducationclassListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassListResponse> EducationclassListAsync(EducationclassListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(parameter, cancellationToken);
         }

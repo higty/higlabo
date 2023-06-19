@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setdata?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetdataResponse> ChartSetdataAsync()
+        public async ValueTask<ChartSetdataResponse> ChartSetdataAsync()
         {
             var p = new ChartSetdataParameter();
             return await this.SendAsync<ChartSetdataParameter, ChartSetdataResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setdata?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetdataResponse> ChartSetdataAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartSetdataResponse> ChartSetdataAsync(CancellationToken cancellationToken)
         {
             var p = new ChartSetdataParameter();
             return await this.SendAsync<ChartSetdataParameter, ChartSetdataResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setdata?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetdataResponse> ChartSetdataAsync(ChartSetdataParameter parameter)
+        public async ValueTask<ChartSetdataResponse> ChartSetdataAsync(ChartSetdataParameter parameter)
         {
             return await this.SendAsync<ChartSetdataParameter, ChartSetdataResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setdata?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetdataResponse> ChartSetdataAsync(ChartSetdataParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartSetdataResponse> ChartSetdataAsync(ChartSetdataParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartSetdataParameter, ChartSetdataResponse>(parameter, cancellationToken);
         }

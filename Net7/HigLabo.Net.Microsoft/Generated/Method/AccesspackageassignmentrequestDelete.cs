@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync()
+        public async ValueTask<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync()
         {
             var p = new AccesspackageAssignmentrequestDeleteParameter();
             return await this.SendAsync<AccesspackageAssignmentrequestDeleteParameter, AccesspackageAssignmentrequestDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageAssignmentrequestDeleteParameter();
             return await this.SendAsync<AccesspackageAssignmentrequestDeleteParameter, AccesspackageAssignmentrequestDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync(AccesspackageAssignmentrequestDeleteParameter parameter)
+        public async ValueTask<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync(AccesspackageAssignmentrequestDeleteParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentrequestDeleteParameter, AccesspackageAssignmentrequestDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync(AccesspackageAssignmentrequestDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentrequestDeleteResponse> AccesspackageAssignmentrequestDeleteAsync(AccesspackageAssignmentrequestDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageAssignmentrequestDeleteParameter, AccesspackageAssignmentrequestDeleteResponse>(parameter, cancellationToken);
         }

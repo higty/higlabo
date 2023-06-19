@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync()
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync()
         {
             var p = new CrosstenantidentitySyncPolicyPartnerDeleteParameter();
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerDeleteParameter, CrosstenantidentitySyncPolicyPartnerDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantidentitySyncPolicyPartnerDeleteParameter();
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerDeleteParameter, CrosstenantidentitySyncPolicyPartnerDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync(CrosstenantidentitySyncPolicyPartnerDeleteParameter parameter)
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync(CrosstenantidentitySyncPolicyPartnerDeleteParameter parameter)
         {
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerDeleteParameter, CrosstenantidentitySyncPolicyPartnerDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync(CrosstenantidentitySyncPolicyPartnerDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerDeleteResponse> CrosstenantidentitySyncPolicyPartnerDeleteAsync(CrosstenantidentitySyncPolicyPartnerDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerDeleteParameter, CrosstenantidentitySyncPolicyPartnerDeleteResponse>(parameter, cancellationToken);
         }

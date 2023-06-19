@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionListPagesResponse> SectionListPagesAsync()
+        public async ValueTask<SectionListPagesResponse> SectionListPagesAsync()
         {
             var p = new SectionListPagesParameter();
             return await this.SendAsync<SectionListPagesParameter, SectionListPagesResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionListPagesResponse> SectionListPagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionListPagesResponse> SectionListPagesAsync(CancellationToken cancellationToken)
         {
             var p = new SectionListPagesParameter();
             return await this.SendAsync<SectionListPagesParameter, SectionListPagesResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionListPagesResponse> SectionListPagesAsync(SectionListPagesParameter parameter)
+        public async ValueTask<SectionListPagesResponse> SectionListPagesAsync(SectionListPagesParameter parameter)
         {
             return await this.SendAsync<SectionListPagesParameter, SectionListPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionListPagesResponse> SectionListPagesAsync(SectionListPagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionListPagesResponse> SectionListPagesAsync(SectionListPagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionListPagesParameter, SectionListPagesResponse>(parameter, cancellationToken);
         }

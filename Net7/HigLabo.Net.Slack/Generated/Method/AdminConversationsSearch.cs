@@ -37,7 +37,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<AdminConversationsSearchResponse> AdminConversationsSearchAsync()
+        public async ValueTask<AdminConversationsSearchResponse> AdminConversationsSearchAsync()
         {
             var p = new AdminConversationsSearchParameter();
             return await this.SendAsync<AdminConversationsSearchParameter, AdminConversationsSearchResponse>(p, CancellationToken.None);
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<AdminConversationsSearchResponse> AdminConversationsSearchAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsSearchResponse> AdminConversationsSearchAsync(CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSearchParameter();
             return await this.SendAsync<AdminConversationsSearchParameter, AdminConversationsSearchResponse>(p, cancellationToken);
@@ -53,21 +53,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<AdminConversationsSearchResponse> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter)
+        public async ValueTask<AdminConversationsSearchResponse> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter)
         {
             return await this.SendAsync<AdminConversationsSearchParameter, AdminConversationsSearchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<AdminConversationsSearchResponse> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsSearchResponse> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsSearchParameter, AdminConversationsSearchResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(PagingContext<AdminConversationsSearchResponse> context)
+        public async ValueTask<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(PagingContext<AdminConversationsSearchResponse> context)
         {
             var p = new AdminConversationsSearchParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsSearchResponse> context)
+        public async ValueTask<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsSearchResponse> context)
         {
             var p = new AdminConversationsSearchParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter, PagingContext<AdminConversationsSearchResponse> context)
+        public async ValueTask<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter, PagingContext<AdminConversationsSearchResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async Task<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter, PagingContext<AdminConversationsSearchResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(AdminConversationsSearchParameter parameter, PagingContext<AdminConversationsSearchResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

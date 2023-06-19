@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync()
+        public async ValueTask<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync()
         {
             var p = new GroupListApproleAssignmentsParameter();
             return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListApproleAssignmentsParameter();
             return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(GroupListApproleAssignmentsParameter parameter)
+        public async ValueTask<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(GroupListApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(GroupListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(GroupListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(parameter, cancellationToken);
         }

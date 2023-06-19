@@ -128,7 +128,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostMessagesResponse> ChannelPostMessagesAsync()
+        public async ValueTask<ChannelPostMessagesResponse> ChannelPostMessagesAsync()
         {
             var p = new ChannelPostMessagesParameter();
             return await this.SendAsync<ChannelPostMessagesParameter, ChannelPostMessagesResponse>(p, CancellationToken.None);
@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostMessagesResponse> ChannelPostMessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelPostMessagesResponse> ChannelPostMessagesAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelPostMessagesParameter();
             return await this.SendAsync<ChannelPostMessagesParameter, ChannelPostMessagesResponse>(p, cancellationToken);
@@ -144,14 +144,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostMessagesResponse> ChannelPostMessagesAsync(ChannelPostMessagesParameter parameter)
+        public async ValueTask<ChannelPostMessagesResponse> ChannelPostMessagesAsync(ChannelPostMessagesParameter parameter)
         {
             return await this.SendAsync<ChannelPostMessagesParameter, ChannelPostMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostMessagesResponse> ChannelPostMessagesAsync(ChannelPostMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelPostMessagesResponse> ChannelPostMessagesAsync(ChannelPostMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelPostMessagesParameter, ChannelPostMessagesResponse>(parameter, cancellationToken);
         }

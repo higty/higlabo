@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync()
+        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync()
         {
             var p = new UserListCreatedobjectsParameter();
             return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListCreatedobjectsParameter();
             return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(UserListCreatedobjectsParameter parameter)
+        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(UserListCreatedobjectsParameter parameter)
         {
             return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(UserListCreatedobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(UserListCreatedobjectsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(parameter, cancellationToken);
         }

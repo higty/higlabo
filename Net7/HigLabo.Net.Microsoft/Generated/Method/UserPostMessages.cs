@@ -148,7 +148,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMessagesResponse> UserPostMessagesAsync()
+        public async ValueTask<UserPostMessagesResponse> UserPostMessagesAsync()
         {
             var p = new UserPostMessagesParameter();
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(p, CancellationToken.None);
@@ -156,7 +156,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMessagesResponse> UserPostMessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostMessagesResponse> UserPostMessagesAsync(CancellationToken cancellationToken)
         {
             var p = new UserPostMessagesParameter();
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(p, cancellationToken);
@@ -164,14 +164,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMessagesResponse> UserPostMessagesAsync(UserPostMessagesParameter parameter)
+        public async ValueTask<UserPostMessagesResponse> UserPostMessagesAsync(UserPostMessagesParameter parameter)
         {
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMessagesResponse> UserPostMessagesAsync(UserPostMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostMessagesResponse> UserPostMessagesAsync(UserPostMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(parameter, cancellationToken);
         }

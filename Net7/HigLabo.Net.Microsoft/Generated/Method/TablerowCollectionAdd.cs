@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionAddResponse> TablerowCollectionAddAsync()
+        public async ValueTask<TablerowCollectionAddResponse> TablerowCollectionAddAsync()
         {
             var p = new TablerowCollectionAddParameter();
             return await this.SendAsync<TablerowCollectionAddParameter, TablerowCollectionAddResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionAddResponse> TablerowCollectionAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablerowCollectionAddResponse> TablerowCollectionAddAsync(CancellationToken cancellationToken)
         {
             var p = new TablerowCollectionAddParameter();
             return await this.SendAsync<TablerowCollectionAddParameter, TablerowCollectionAddResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionAddResponse> TablerowCollectionAddAsync(TablerowCollectionAddParameter parameter)
+        public async ValueTask<TablerowCollectionAddResponse> TablerowCollectionAddAsync(TablerowCollectionAddParameter parameter)
         {
             return await this.SendAsync<TablerowCollectionAddParameter, TablerowCollectionAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionAddResponse> TablerowCollectionAddAsync(TablerowCollectionAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablerowCollectionAddResponse> TablerowCollectionAddAsync(TablerowCollectionAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowCollectionAddParameter, TablerowCollectionAddResponse>(parameter, cancellationToken);
         }

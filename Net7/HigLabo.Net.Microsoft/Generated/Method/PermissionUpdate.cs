@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionUpdateResponse> PermissionUpdateAsync()
+        public async ValueTask<PermissionUpdateResponse> PermissionUpdateAsync()
         {
             var p = new PermissionUpdateParameter();
             return await this.SendAsync<PermissionUpdateParameter, PermissionUpdateResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionUpdateResponse> PermissionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissionUpdateResponse> PermissionUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PermissionUpdateParameter();
             return await this.SendAsync<PermissionUpdateParameter, PermissionUpdateResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionUpdateResponse> PermissionUpdateAsync(PermissionUpdateParameter parameter)
+        public async ValueTask<PermissionUpdateResponse> PermissionUpdateAsync(PermissionUpdateParameter parameter)
         {
             return await this.SendAsync<PermissionUpdateParameter, PermissionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionUpdateResponse> PermissionUpdateAsync(PermissionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissionUpdateResponse> PermissionUpdateAsync(PermissionUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissionUpdateParameter, PermissionUpdateResponse>(parameter, cancellationToken);
         }

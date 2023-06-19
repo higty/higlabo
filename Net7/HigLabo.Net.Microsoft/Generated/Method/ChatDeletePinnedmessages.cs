@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync()
+        public async ValueTask<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync()
         {
             var p = new ChatDeletePinnedmessagesParameter();
             return await this.SendAsync<ChatDeletePinnedmessagesParameter, ChatDeletePinnedmessagesResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync(CancellationToken cancellationToken)
         {
             var p = new ChatDeletePinnedmessagesParameter();
             return await this.SendAsync<ChatDeletePinnedmessagesParameter, ChatDeletePinnedmessagesResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync(ChatDeletePinnedmessagesParameter parameter)
+        public async ValueTask<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync(ChatDeletePinnedmessagesParameter parameter)
         {
             return await this.SendAsync<ChatDeletePinnedmessagesParameter, ChatDeletePinnedmessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync(ChatDeletePinnedmessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeletePinnedmessagesResponse> ChatDeletePinnedmessagesAsync(ChatDeletePinnedmessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatDeletePinnedmessagesParameter, ChatDeletePinnedmessagesResponse>(parameter, cancellationToken);
         }

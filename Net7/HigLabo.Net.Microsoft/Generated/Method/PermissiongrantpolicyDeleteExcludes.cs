@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync()
+        public async ValueTask<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync()
         {
             var p = new PermissiongrantPolicyDeleteExcludesParameter();
             return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(CancellationToken cancellationToken)
         {
             var p = new PermissiongrantPolicyDeleteExcludesParameter();
             return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(PermissiongrantPolicyDeleteExcludesParameter parameter)
+        public async ValueTask<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(PermissiongrantPolicyDeleteExcludesParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(PermissiongrantPolicyDeleteExcludesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(PermissiongrantPolicyDeleteExcludesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(parameter, cancellationToken);
         }

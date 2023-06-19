@@ -138,7 +138,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemReStoreResponse> DriveitemReStoreAsync()
+        public async ValueTask<DriveitemReStoreResponse> DriveitemReStoreAsync()
         {
             var p = new DriveitemReStoreParameter();
             return await this.SendAsync<DriveitemReStoreParameter, DriveitemReStoreResponse>(p, CancellationToken.None);
@@ -146,7 +146,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemReStoreResponse> DriveitemReStoreAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemReStoreResponse> DriveitemReStoreAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemReStoreParameter();
             return await this.SendAsync<DriveitemReStoreParameter, DriveitemReStoreResponse>(p, cancellationToken);
@@ -154,14 +154,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemReStoreResponse> DriveitemReStoreAsync(DriveitemReStoreParameter parameter)
+        public async ValueTask<DriveitemReStoreResponse> DriveitemReStoreAsync(DriveitemReStoreParameter parameter)
         {
             return await this.SendAsync<DriveitemReStoreParameter, DriveitemReStoreResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemReStoreResponse> DriveitemReStoreAsync(DriveitemReStoreParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemReStoreResponse> DriveitemReStoreAsync(DriveitemReStoreParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemReStoreParameter, DriveitemReStoreResponse>(parameter, cancellationToken);
         }

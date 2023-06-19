@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync()
+        public async ValueTask<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync()
         {
             var p = new BookingcustomquestionGetParameter();
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(CancellationToken cancellationToken)
         {
             var p = new BookingcustomquestionGetParameter();
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(BookingcustomquestionGetParameter parameter)
+        public async ValueTask<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(BookingcustomquestionGetParameter parameter)
         {
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(BookingcustomquestionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(BookingcustomquestionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(parameter, cancellationToken);
         }

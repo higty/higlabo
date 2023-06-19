@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListTabsResponse> ChatListTabsAsync()
+        public async ValueTask<ChatListTabsResponse> ChatListTabsAsync()
         {
             var p = new ChatListTabsParameter();
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListTabsResponse> ChatListTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatListTabsResponse> ChatListTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatListTabsParameter();
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter)
+        public async ValueTask<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter)
         {
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(parameter, cancellationToken);
         }

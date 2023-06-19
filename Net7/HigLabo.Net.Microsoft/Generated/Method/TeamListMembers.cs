@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListMembersResponse> TeamListMembersAsync()
+        public async ValueTask<TeamListMembersResponse> TeamListMembersAsync()
         {
             var p = new TeamListMembersParameter();
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListMembersResponse> TeamListMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamListMembersResponse> TeamListMembersAsync(CancellationToken cancellationToken)
         {
             var p = new TeamListMembersParameter();
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter)
+        public async ValueTask<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter)
         {
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(parameter, cancellationToken);
         }

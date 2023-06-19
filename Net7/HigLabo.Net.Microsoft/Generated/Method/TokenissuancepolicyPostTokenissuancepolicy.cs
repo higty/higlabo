@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-post-tokenissuancepolicy?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync()
+        public async ValueTask<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync()
         {
             var p = new TokenissuancePolicyPostTokenissuancePolicyParameter();
             return await this.SendAsync<TokenissuancePolicyPostTokenissuancePolicyParameter, TokenissuancePolicyPostTokenissuancePolicyResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-post-tokenissuancepolicy?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync(CancellationToken cancellationToken)
         {
             var p = new TokenissuancePolicyPostTokenissuancePolicyParameter();
             return await this.SendAsync<TokenissuancePolicyPostTokenissuancePolicyParameter, TokenissuancePolicyPostTokenissuancePolicyResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-post-tokenissuancepolicy?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync(TokenissuancePolicyPostTokenissuancePolicyParameter parameter)
+        public async ValueTask<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync(TokenissuancePolicyPostTokenissuancePolicyParameter parameter)
         {
             return await this.SendAsync<TokenissuancePolicyPostTokenissuancePolicyParameter, TokenissuancePolicyPostTokenissuancePolicyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-post-tokenissuancepolicy?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync(TokenissuancePolicyPostTokenissuancePolicyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyPostTokenissuancePolicyResponse> TokenissuancePolicyPostTokenissuancePolicyAsync(TokenissuancePolicyPostTokenissuancePolicyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenissuancePolicyPostTokenissuancePolicyParameter, TokenissuancePolicyPostTokenissuancePolicyResponse>(parameter, cancellationToken);
         }

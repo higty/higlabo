@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync()
+        public async ValueTask<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync()
         {
             var p = new AppManagementPolicyGetParameter();
             return await this.SendAsync<AppManagementPolicyGetParameter, AppManagementPolicyGetResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new AppManagementPolicyGetParameter();
             return await this.SendAsync<AppManagementPolicyGetParameter, AppManagementPolicyGetResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync(AppManagementPolicyGetParameter parameter)
+        public async ValueTask<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync(AppManagementPolicyGetParameter parameter)
         {
             return await this.SendAsync<AppManagementPolicyGetParameter, AppManagementPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync(AppManagementPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyGetResponse> AppManagementPolicyGetAsync(AppManagementPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyGetParameter, AppManagementPolicyGetResponse>(parameter, cancellationToken);
         }

@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageGetResponse> AccessreviewstageGetAsync()
+        public async ValueTask<AccessreviewstageGetResponse> AccessreviewstageGetAsync()
         {
             var p = new AccessreviewstageGetParameter();
             return await this.SendAsync<AccessreviewstageGetParameter, AccessreviewstageGetResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageGetResponse> AccessreviewstageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageGetResponse> AccessreviewstageGetAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewstageGetParameter();
             return await this.SendAsync<AccessreviewstageGetParameter, AccessreviewstageGetResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageGetResponse> AccessreviewstageGetAsync(AccessreviewstageGetParameter parameter)
+        public async ValueTask<AccessreviewstageGetResponse> AccessreviewstageGetAsync(AccessreviewstageGetParameter parameter)
         {
             return await this.SendAsync<AccessreviewstageGetParameter, AccessreviewstageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageGetResponse> AccessreviewstageGetAsync(AccessreviewstageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageGetResponse> AccessreviewstageGetAsync(AccessreviewstageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewstageGetParameter, AccessreviewstageGetResponse>(parameter, cancellationToken);
         }

@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.update
         /// </summary>
-        public async Task<CallsUpdateResponse> CallsUpdateAsync(string? id)
+        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(string? id)
         {
             var p = new CallsUpdateParameter();
             p.Id = id;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.update
         /// </summary>
-        public async Task<CallsUpdateResponse> CallsUpdateAsync(string? id, CancellationToken cancellationToken)
+        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(string? id, CancellationToken cancellationToken)
         {
             var p = new CallsUpdateParameter();
             p.Id = id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.update
         /// </summary>
-        public async Task<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter)
+        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter)
         {
             return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/calls.update
         /// </summary>
-        public async Task<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(parameter, cancellationToken);
         }

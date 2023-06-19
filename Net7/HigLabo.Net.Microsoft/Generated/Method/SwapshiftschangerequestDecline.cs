@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync()
+        public async ValueTask<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync()
         {
             var p = new SwapshiftschangerequestDeclineParameter();
             return await this.SendAsync<SwapshiftschangerequestDeclineParameter, SwapshiftschangerequestDeclineResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync(CancellationToken cancellationToken)
+        public async ValueTask<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync(CancellationToken cancellationToken)
         {
             var p = new SwapshiftschangerequestDeclineParameter();
             return await this.SendAsync<SwapshiftschangerequestDeclineParameter, SwapshiftschangerequestDeclineResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync(SwapshiftschangerequestDeclineParameter parameter)
+        public async ValueTask<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync(SwapshiftschangerequestDeclineParameter parameter)
         {
             return await this.SendAsync<SwapshiftschangerequestDeclineParameter, SwapshiftschangerequestDeclineResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync(SwapshiftschangerequestDeclineParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SwapshiftschangerequestDeclineResponse> SwapshiftschangerequestDeclineAsync(SwapshiftschangerequestDeclineParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SwapshiftschangerequestDeclineParameter, SwapshiftschangerequestDeclineResponse>(parameter, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync()
+        public async ValueTask<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync()
         {
             var p = new DevicePostRegisteredUsersParameter();
             return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(CancellationToken cancellationToken)
+        public async ValueTask<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(CancellationToken cancellationToken)
         {
             var p = new DevicePostRegisteredUsersParameter();
             return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(DevicePostRegisteredUsersParameter parameter)
+        public async ValueTask<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(DevicePostRegisteredUsersParameter parameter)
         {
             return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(DevicePostRegisteredUsersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(DevicePostRegisteredUsersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(parameter, cancellationToken);
         }

@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync()
+        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync()
         {
             var p = new MailsearchfolderUpdateParameter();
             return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new MailsearchfolderUpdateParameter();
             return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(MailsearchfolderUpdateParameter parameter)
+        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(MailsearchfolderUpdateParameter parameter)
         {
             return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(MailsearchfolderUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(MailsearchfolderUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(parameter, cancellationToken);
         }

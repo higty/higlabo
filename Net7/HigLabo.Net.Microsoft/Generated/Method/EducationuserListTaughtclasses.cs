@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync()
+        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync()
         {
             var p = new EducationUserListTaughtclassesParameter();
             return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(CancellationToken cancellationToken)
         {
             var p = new EducationUserListTaughtclassesParameter();
             return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter)
+        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter)
         {
             return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(parameter, cancellationToken);
         }

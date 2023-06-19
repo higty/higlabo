@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostTasksResponse> PlannerPostTasksAsync()
+        public async ValueTask<PlannerPostTasksResponse> PlannerPostTasksAsync()
         {
             var p = new PlannerPostTasksParameter();
             return await this.SendAsync<PlannerPostTasksParameter, PlannerPostTasksResponse>(p, CancellationToken.None);
@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostTasksResponse> PlannerPostTasksAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerPostTasksResponse> PlannerPostTasksAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerPostTasksParameter();
             return await this.SendAsync<PlannerPostTasksParameter, PlannerPostTasksResponse>(p, cancellationToken);
@@ -115,14 +115,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostTasksResponse> PlannerPostTasksAsync(PlannerPostTasksParameter parameter)
+        public async ValueTask<PlannerPostTasksResponse> PlannerPostTasksAsync(PlannerPostTasksParameter parameter)
         {
             return await this.SendAsync<PlannerPostTasksParameter, PlannerPostTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/planner-post-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerPostTasksResponse> PlannerPostTasksAsync(PlannerPostTasksParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerPostTasksResponse> PlannerPostTasksAsync(PlannerPostTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerPostTasksParameter, PlannerPostTasksResponse>(parameter, cancellationToken);
         }

@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuListResponse> SubscribedskuListAsync()
+        public async ValueTask<SubscribedskuListResponse> SubscribedskuListAsync()
         {
             var p = new SubscribedskuListParameter();
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuListResponse> SubscribedskuListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubscribedskuListResponse> SubscribedskuListAsync(CancellationToken cancellationToken)
         {
             var p = new SubscribedskuListParameter();
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter)
+        public async ValueTask<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter)
         {
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(parameter, cancellationToken);
         }

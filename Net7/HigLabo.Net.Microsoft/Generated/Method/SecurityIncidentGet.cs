@@ -119,7 +119,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentGetResponse> SecurityIncidentGetAsync()
+        public async ValueTask<SecurityIncidentGetResponse> SecurityIncidentGetAsync()
         {
             var p = new SecurityIncidentGetParameter();
             return await this.SendAsync<SecurityIncidentGetParameter, SecurityIncidentGetResponse>(p, CancellationToken.None);
@@ -127,7 +127,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentGetResponse> SecurityIncidentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityIncidentGetResponse> SecurityIncidentGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityIncidentGetParameter();
             return await this.SendAsync<SecurityIncidentGetParameter, SecurityIncidentGetResponse>(p, cancellationToken);
@@ -135,14 +135,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentGetResponse> SecurityIncidentGetAsync(SecurityIncidentGetParameter parameter)
+        public async ValueTask<SecurityIncidentGetResponse> SecurityIncidentGetAsync(SecurityIncidentGetParameter parameter)
         {
             return await this.SendAsync<SecurityIncidentGetParameter, SecurityIncidentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentGetResponse> SecurityIncidentGetAsync(SecurityIncidentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityIncidentGetResponse> SecurityIncidentGetAsync(SecurityIncidentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityIncidentGetParameter, SecurityIncidentGetResponse>(parameter, cancellationToken);
         }

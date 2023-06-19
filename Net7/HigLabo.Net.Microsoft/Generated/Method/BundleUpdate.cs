@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleUpdateResponse> BundleUpdateAsync()
+        public async ValueTask<BundleUpdateResponse> BundleUpdateAsync()
         {
             var p = new BundleUpdateParameter();
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(p, CancellationToken.None);
@@ -101,7 +101,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleUpdateResponse> BundleUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BundleUpdateResponse> BundleUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new BundleUpdateParameter();
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(p, cancellationToken);
@@ -109,14 +109,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleUpdateResponse> BundleUpdateAsync(BundleUpdateParameter parameter)
+        public async ValueTask<BundleUpdateResponse> BundleUpdateAsync(BundleUpdateParameter parameter)
         {
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleUpdateResponse> BundleUpdateAsync(BundleUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BundleUpdateResponse> BundleUpdateAsync(BundleUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(parameter, cancellationToken);
         }

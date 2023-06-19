@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkDelete
         /// </summary>
-        public async Task<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(string? channel_Ids)
+        public async ValueTask<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(string? channel_Ids)
         {
             var p = new AdminConversationsBulkDeleteParameter();
             p.Channel_Ids = channel_Ids;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkDelete
         /// </summary>
-        public async Task<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(string? channel_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(string? channel_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsBulkDeleteParameter();
             p.Channel_Ids = channel_Ids;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkDelete
         /// </summary>
-        public async Task<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(AdminConversationsBulkDeleteParameter parameter)
+        public async ValueTask<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(AdminConversationsBulkDeleteParameter parameter)
         {
             return await this.SendAsync<AdminConversationsBulkDeleteParameter, AdminConversationsBulkDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.bulkDelete
         /// </summary>
-        public async Task<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(AdminConversationsBulkDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsBulkDeleteResponse> AdminConversationsBulkDeleteAsync(AdminConversationsBulkDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsBulkDeleteParameter, AdminConversationsBulkDeleteResponse>(parameter, cancellationToken);
         }

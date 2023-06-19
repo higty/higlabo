@@ -327,7 +327,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync()
+        public async ValueTask<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync()
         {
             var p = new UserReprocesslicenseAssignmentParameter();
             return await this.SendAsync<UserReprocesslicenseAssignmentParameter, UserReprocesslicenseAssignmentResponse>(p, CancellationToken.None);
@@ -335,7 +335,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync(CancellationToken cancellationToken)
         {
             var p = new UserReprocesslicenseAssignmentParameter();
             return await this.SendAsync<UserReprocesslicenseAssignmentParameter, UserReprocesslicenseAssignmentResponse>(p, cancellationToken);
@@ -343,14 +343,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync(UserReprocesslicenseAssignmentParameter parameter)
+        public async ValueTask<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync(UserReprocesslicenseAssignmentParameter parameter)
         {
             return await this.SendAsync<UserReprocesslicenseAssignmentParameter, UserReprocesslicenseAssignmentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync(UserReprocesslicenseAssignmentParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserReprocesslicenseAssignmentResponse> UserReprocesslicenseAssignmentAsync(UserReprocesslicenseAssignmentParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserReprocesslicenseAssignmentParameter, UserReprocesslicenseAssignmentResponse>(parameter, cancellationToken);
         }

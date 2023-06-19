@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync()
+        public async ValueTask<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync()
         {
             var p = new PermissiongrantPolicyListExcludesParameter();
             return await this.SendAsync<PermissiongrantPolicyListExcludesParameter, PermissiongrantPolicyListExcludesResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync(CancellationToken cancellationToken)
         {
             var p = new PermissiongrantPolicyListExcludesParameter();
             return await this.SendAsync<PermissiongrantPolicyListExcludesParameter, PermissiongrantPolicyListExcludesResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync(PermissiongrantPolicyListExcludesParameter parameter)
+        public async ValueTask<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync(PermissiongrantPolicyListExcludesParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyListExcludesParameter, PermissiongrantPolicyListExcludesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync(PermissiongrantPolicyListExcludesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyListExcludesResponse> PermissiongrantPolicyListExcludesAsync(PermissiongrantPolicyListExcludesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissiongrantPolicyListExcludesParameter, PermissiongrantPolicyListExcludesResponse>(parameter, cancellationToken);
         }

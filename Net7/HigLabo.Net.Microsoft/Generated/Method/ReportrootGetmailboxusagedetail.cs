@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getmailboxusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync()
+        public async ValueTask<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync()
         {
             var p = new ReportRootGetmailboxusagedetailParameter();
             return await this.SendAsync<ReportRootGetmailboxusagedetailParameter, ReportRootGetmailboxusagedetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getmailboxusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetmailboxusagedetailParameter();
             return await this.SendAsync<ReportRootGetmailboxusagedetailParameter, ReportRootGetmailboxusagedetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getmailboxusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync(ReportRootGetmailboxusagedetailParameter parameter)
+        public async ValueTask<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync(ReportRootGetmailboxusagedetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetmailboxusagedetailParameter, ReportRootGetmailboxusagedetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getmailboxusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync(ReportRootGetmailboxusagedetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetmailboxusagedetailResponse> ReportRootGetmailboxusagedetailAsync(ReportRootGetmailboxusagedetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetmailboxusagedetailParameter, ReportRootGetmailboxusagedetailResponse>(parameter, cancellationToken);
         }

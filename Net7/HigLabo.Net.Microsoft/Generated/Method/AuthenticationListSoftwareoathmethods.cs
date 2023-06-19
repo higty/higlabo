@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-softwareoathmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync()
+        public async ValueTask<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync()
         {
             var p = new AuthenticationListSoftwareoathmethodsParameter();
             return await this.SendAsync<AuthenticationListSoftwareoathmethodsParameter, AuthenticationListSoftwareoathmethodsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-softwareoathmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationListSoftwareoathmethodsParameter();
             return await this.SendAsync<AuthenticationListSoftwareoathmethodsParameter, AuthenticationListSoftwareoathmethodsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-softwareoathmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync(AuthenticationListSoftwareoathmethodsParameter parameter)
+        public async ValueTask<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync(AuthenticationListSoftwareoathmethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListSoftwareoathmethodsParameter, AuthenticationListSoftwareoathmethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-softwareoathmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync(AuthenticationListSoftwareoathmethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListSoftwareoathmethodsResponse> AuthenticationListSoftwareoathmethodsAsync(AuthenticationListSoftwareoathmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListSoftwareoathmethodsParameter, AuthenticationListSoftwareoathmethodsResponse>(parameter, cancellationToken);
         }

@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateResponse> GroupUpdateAsync()
+        public async ValueTask<GroupUpdateResponse> GroupUpdateAsync()
         {
             var p = new GroupUpdateParameter();
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateResponse> GroupUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupUpdateResponse> GroupUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new GroupUpdateParameter();
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateResponse> GroupUpdateAsync(GroupUpdateParameter parameter)
+        public async ValueTask<GroupUpdateResponse> GroupUpdateAsync(GroupUpdateParameter parameter)
         {
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateResponse> GroupUpdateAsync(GroupUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupUpdateResponse> GroupUpdateAsync(GroupUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(parameter, cancellationToken);
         }

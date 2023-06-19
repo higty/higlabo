@@ -50,7 +50,7 @@ namespace HigLabo.Net.OAuth
             var authValue = Encoding.UTF8.GetBytes(cl.ClientID + ":" + cl.ClientSecret);
             return String.Format("Basic {0}", Convert.ToBase64String(authValue));
         }
-        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
+        public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
             var cl = this;
             var mg = new HttpRequestMessage(HttpMethod.Post, cl.Url);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.OAuth
             var res = await cl.SendAsync(mg);
             return await ParseResponse(res);
         }
-        public async Task<OAuthTokenGetRequestResult> UpdateAccessTokenAsync(string refreshToken, String[] scopes)
+        public async ValueTask<OAuthTokenGetRequestResult> UpdateAccessTokenAsync(string refreshToken, String[] scopes)
         {
             var cl = this;
             var mg = new HttpRequestMessage(HttpMethod.Post, cl.Url);

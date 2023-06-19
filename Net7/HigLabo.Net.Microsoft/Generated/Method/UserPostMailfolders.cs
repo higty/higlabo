@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync()
+        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync()
         {
             var p = new UserPostMailfoldersParameter();
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync(CancellationToken cancellationToken)
         {
             var p = new UserPostMailfoldersParameter();
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter)
+        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter)
         {
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(parameter, cancellationToken);
         }

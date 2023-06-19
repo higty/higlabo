@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync()
+        public async ValueTask<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync()
         {
             var p = new AccesspackageAssignmentrequestReprocessParameter();
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(p, CancellationToken.None);
@@ -139,7 +139,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageAssignmentrequestReprocessParameter();
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(p, cancellationToken);
@@ -147,14 +147,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(AccesspackageAssignmentrequestReprocessParameter parameter)
+        public async ValueTask<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(AccesspackageAssignmentrequestReprocessParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(AccesspackageAssignmentrequestReprocessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(AccesspackageAssignmentrequestReprocessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(parameter, cancellationToken);
         }

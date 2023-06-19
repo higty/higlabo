@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync()
+        public async ValueTask<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync()
         {
             var p = new ContentTypeCopytodefaultContentLocationParameter();
             return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeCopytodefaultContentLocationParameter();
             return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(ContentTypeCopytodefaultContentLocationParameter parameter)
+        public async ValueTask<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(ContentTypeCopytodefaultContentLocationParameter parameter)
         {
             return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(ContentTypeCopytodefaultContentLocationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(ContentTypeCopytodefaultContentLocationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(parameter, cancellationToken);
         }

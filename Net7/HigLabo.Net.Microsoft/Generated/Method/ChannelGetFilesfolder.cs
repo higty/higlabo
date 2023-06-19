@@ -120,7 +120,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-filesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync()
+        public async ValueTask<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync()
         {
             var p = new ChannelGetFilesfolderParameter();
             return await this.SendAsync<ChannelGetFilesfolderParameter, ChannelGetFilesfolderResponse>(p, CancellationToken.None);
@@ -128,7 +128,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-filesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelGetFilesfolderParameter();
             return await this.SendAsync<ChannelGetFilesfolderParameter, ChannelGetFilesfolderResponse>(p, cancellationToken);
@@ -136,14 +136,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-filesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync(ChannelGetFilesfolderParameter parameter)
+        public async ValueTask<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync(ChannelGetFilesfolderParameter parameter)
         {
             return await this.SendAsync<ChannelGetFilesfolderParameter, ChannelGetFilesfolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get-filesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync(ChannelGetFilesfolderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetFilesfolderResponse> ChannelGetFilesfolderAsync(ChannelGetFilesfolderParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelGetFilesfolderParameter, ChannelGetFilesfolderResponse>(parameter, cancellationToken);
         }

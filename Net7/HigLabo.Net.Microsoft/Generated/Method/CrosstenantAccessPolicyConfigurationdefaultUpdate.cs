@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync()
+        public async ValueTask<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync()
         {
             var p = new CrosstenantAccessPolicyConfigurationdefaultUpdateParameter();
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantAccessPolicyConfigurationdefaultUpdateParameter();
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CrosstenantAccessPolicyConfigurationdefaultUpdateParameter parameter)
+        public async ValueTask<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CrosstenantAccessPolicyConfigurationdefaultUpdateParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CrosstenantAccessPolicyConfigurationdefaultUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CrosstenantAccessPolicyConfigurationdefaultUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(parameter, cancellationToken);
         }

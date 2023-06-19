@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approvalstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalstageGetResponse> ApprovalstageGetAsync()
+        public async ValueTask<ApprovalstageGetResponse> ApprovalstageGetAsync()
         {
             var p = new ApprovalstageGetParameter();
             return await this.SendAsync<ApprovalstageGetParameter, ApprovalstageGetResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approvalstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalstageGetResponse> ApprovalstageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApprovalstageGetResponse> ApprovalstageGetAsync(CancellationToken cancellationToken)
         {
             var p = new ApprovalstageGetParameter();
             return await this.SendAsync<ApprovalstageGetParameter, ApprovalstageGetResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approvalstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalstageGetResponse> ApprovalstageGetAsync(ApprovalstageGetParameter parameter)
+        public async ValueTask<ApprovalstageGetResponse> ApprovalstageGetAsync(ApprovalstageGetParameter parameter)
         {
             return await this.SendAsync<ApprovalstageGetParameter, ApprovalstageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approvalstage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalstageGetResponse> ApprovalstageGetAsync(ApprovalstageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApprovalstageGetResponse> ApprovalstageGetAsync(ApprovalstageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApprovalstageGetParameter, ApprovalstageGetResponse>(parameter, cancellationToken);
         }

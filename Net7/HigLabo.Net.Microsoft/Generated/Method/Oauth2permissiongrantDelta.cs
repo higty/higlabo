@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync()
+        public async ValueTask<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync()
         {
             var p = new Oauth2permissiongrantDeltaParameter();
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new Oauth2permissiongrantDeltaParameter();
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(Oauth2permissiongrantDeltaParameter parameter)
+        public async ValueTask<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(Oauth2permissiongrantDeltaParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(Oauth2permissiongrantDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(Oauth2permissiongrantDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(parameter, cancellationToken);
         }

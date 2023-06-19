@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCompletemigrationResponse> TeamCompletemigrationAsync()
+        public async ValueTask<TeamCompletemigrationResponse> TeamCompletemigrationAsync()
         {
             var p = new TeamCompletemigrationParameter();
             return await this.SendAsync<TeamCompletemigrationParameter, TeamCompletemigrationResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCompletemigrationResponse> TeamCompletemigrationAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamCompletemigrationResponse> TeamCompletemigrationAsync(CancellationToken cancellationToken)
         {
             var p = new TeamCompletemigrationParameter();
             return await this.SendAsync<TeamCompletemigrationParameter, TeamCompletemigrationResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCompletemigrationResponse> TeamCompletemigrationAsync(TeamCompletemigrationParameter parameter)
+        public async ValueTask<TeamCompletemigrationResponse> TeamCompletemigrationAsync(TeamCompletemigrationParameter parameter)
         {
             return await this.SendAsync<TeamCompletemigrationParameter, TeamCompletemigrationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamCompletemigrationResponse> TeamCompletemigrationAsync(TeamCompletemigrationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamCompletemigrationResponse> TeamCompletemigrationAsync(TeamCompletemigrationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamCompletemigrationParameter, TeamCompletemigrationResponse>(parameter, cancellationToken);
         }

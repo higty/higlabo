@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync()
+        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync()
         {
             var p = new ServiceprincipalDeltaParameter();
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(p, CancellationToken.None);
@@ -115,7 +115,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalDeltaParameter();
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(p, cancellationToken);
@@ -123,14 +123,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter)
+        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(parameter, cancellationToken);
         }

@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync()
+        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync()
         {
             var p = new ReportRootGetskypeforbusinessactivityUserdetailParameter();
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetskypeforbusinessactivityUserdetailParameter();
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, cancellationToken);
         }

@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync()
+        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync()
         {
             var p = new ChannelGetallmessagesParameter();
             return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelGetallmessagesParameter();
             return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(ChannelGetallmessagesParameter parameter)
+        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(ChannelGetallmessagesParameter parameter)
         {
             return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(ChannelGetallmessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(ChannelGetallmessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(parameter, cancellationToken);
         }

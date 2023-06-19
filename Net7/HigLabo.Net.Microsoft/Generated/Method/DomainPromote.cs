@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-promote?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPromoteResponse> DomainPromoteAsync()
+        public async ValueTask<DomainPromoteResponse> DomainPromoteAsync()
         {
             var p = new DomainPromoteParameter();
             return await this.SendAsync<DomainPromoteParameter, DomainPromoteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-promote?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPromoteResponse> DomainPromoteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainPromoteResponse> DomainPromoteAsync(CancellationToken cancellationToken)
         {
             var p = new DomainPromoteParameter();
             return await this.SendAsync<DomainPromoteParameter, DomainPromoteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-promote?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPromoteResponse> DomainPromoteAsync(DomainPromoteParameter parameter)
+        public async ValueTask<DomainPromoteResponse> DomainPromoteAsync(DomainPromoteParameter parameter)
         {
             return await this.SendAsync<DomainPromoteParameter, DomainPromoteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-promote?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPromoteResponse> DomainPromoteAsync(DomainPromoteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainPromoteResponse> DomainPromoteAsync(DomainPromoteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainPromoteParameter, DomainPromoteResponse>(parameter, cancellationToken);
         }

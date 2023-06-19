@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync()
+        public async ValueTask<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync()
         {
             var p = new InternaldomainfederationUpdateParameter();
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(p, CancellationToken.None);
@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new InternaldomainfederationUpdateParameter();
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(p, cancellationToken);
@@ -133,14 +133,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(InternaldomainfederationUpdateParameter parameter)
+        public async ValueTask<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(InternaldomainfederationUpdateParameter parameter)
         {
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(InternaldomainfederationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(InternaldomainfederationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(parameter, cancellationToken);
         }

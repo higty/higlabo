@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync()
+        public async ValueTask<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync()
         {
             var p = new ReportRootGetemailactivitycountsParameter();
             return await this.SendAsync<ReportRootGetemailactivitycountsParameter, ReportRootGetemailactivitycountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetemailactivitycountsParameter();
             return await this.SendAsync<ReportRootGetemailactivitycountsParameter, ReportRootGetemailactivitycountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync(ReportRootGetemailactivitycountsParameter parameter)
+        public async ValueTask<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync(ReportRootGetemailactivitycountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetemailactivitycountsParameter, ReportRootGetemailactivitycountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync(ReportRootGetemailactivitycountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetemailactivitycountsResponse> ReportRootGetemailactivitycountsAsync(ReportRootGetemailactivitycountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetemailactivitycountsParameter, ReportRootGetemailactivitycountsResponse>(parameter, cancellationToken);
         }

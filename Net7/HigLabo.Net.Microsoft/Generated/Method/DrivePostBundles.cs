@@ -137,7 +137,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
-        public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync()
+        public async ValueTask<DrivePostBundlesResponse> DrivePostBundlesAsync()
         {
             var p = new DrivePostBundlesParameter();
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(p, CancellationToken.None);
@@ -145,7 +145,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
-        public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync(CancellationToken cancellationToken)
+        public async ValueTask<DrivePostBundlesResponse> DrivePostBundlesAsync(CancellationToken cancellationToken)
         {
             var p = new DrivePostBundlesParameter();
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(p, cancellationToken);
@@ -153,14 +153,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
-        public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync(DrivePostBundlesParameter parameter)
+        public async ValueTask<DrivePostBundlesResponse> DrivePostBundlesAsync(DrivePostBundlesParameter parameter)
         {
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
-        public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync(DrivePostBundlesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DrivePostBundlesResponse> DrivePostBundlesAsync(DrivePostBundlesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(parameter, cancellationToken);
         }

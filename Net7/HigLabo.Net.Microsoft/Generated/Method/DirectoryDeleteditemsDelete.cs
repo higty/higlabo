@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync()
+        public async ValueTask<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync()
         {
             var p = new DirectoryDeleteditemsDeleteParameter();
             return await this.SendAsync<DirectoryDeleteditemsDeleteParameter, DirectoryDeleteditemsDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryDeleteditemsDeleteParameter();
             return await this.SendAsync<DirectoryDeleteditemsDeleteParameter, DirectoryDeleteditemsDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync(DirectoryDeleteditemsDeleteParameter parameter)
+        public async ValueTask<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync(DirectoryDeleteditemsDeleteParameter parameter)
         {
             return await this.SendAsync<DirectoryDeleteditemsDeleteParameter, DirectoryDeleteditemsDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync(DirectoryDeleteditemsDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsDeleteResponse> DirectoryDeleteditemsDeleteAsync(DirectoryDeleteditemsDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryDeleteditemsDeleteParameter, DirectoryDeleteditemsDeleteResponse>(parameter, cancellationToken);
         }

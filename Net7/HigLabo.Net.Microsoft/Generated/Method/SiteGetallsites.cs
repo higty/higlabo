@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getallsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetallsitesResponse> SiteGetallsitesAsync()
+        public async ValueTask<SiteGetallsitesResponse> SiteGetallsitesAsync()
         {
             var p = new SiteGetallsitesParameter();
             return await this.SendAsync<SiteGetallsitesParameter, SiteGetallsitesResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getallsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetallsitesResponse> SiteGetallsitesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteGetallsitesResponse> SiteGetallsitesAsync(CancellationToken cancellationToken)
         {
             var p = new SiteGetallsitesParameter();
             return await this.SendAsync<SiteGetallsitesParameter, SiteGetallsitesResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getallsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetallsitesResponse> SiteGetallsitesAsync(SiteGetallsitesParameter parameter)
+        public async ValueTask<SiteGetallsitesResponse> SiteGetallsitesAsync(SiteGetallsitesParameter parameter)
         {
             return await this.SendAsync<SiteGetallsitesParameter, SiteGetallsitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-getallsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteGetallsitesResponse> SiteGetallsitesAsync(SiteGetallsitesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteGetallsitesResponse> SiteGetallsitesAsync(SiteGetallsitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteGetallsitesParameter, SiteGetallsitesResponse>(parameter, cancellationToken);
         }

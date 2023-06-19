@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync()
+        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync()
         {
             var p = new OutlookcategoryDeleteParameter();
             return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new OutlookcategoryDeleteParameter();
             return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(OutlookcategoryDeleteParameter parameter)
+        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(OutlookcategoryDeleteParameter parameter)
         {
             return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(OutlookcategoryDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(OutlookcategoryDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(parameter, cancellationToken);
         }

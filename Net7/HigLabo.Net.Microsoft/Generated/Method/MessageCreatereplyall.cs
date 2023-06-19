@@ -151,7 +151,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync()
+        public async ValueTask<MessageCreatereplyallResponse> MessageCreatereplyallAsync()
         {
             var p = new MessageCreatereplyallParameter();
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(p, CancellationToken.None);
@@ -159,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageCreatereplyallResponse> MessageCreatereplyallAsync(CancellationToken cancellationToken)
         {
             var p = new MessageCreatereplyallParameter();
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(p, cancellationToken);
@@ -167,14 +167,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync(MessageCreatereplyallParameter parameter)
+        public async ValueTask<MessageCreatereplyallResponse> MessageCreatereplyallAsync(MessageCreatereplyallParameter parameter)
         {
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync(MessageCreatereplyallParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageCreatereplyallResponse> MessageCreatereplyallAsync(MessageCreatereplyallParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(parameter, cancellationToken);
         }

@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync()
+        public async ValueTask<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync()
         {
             var p = new CallCancelmediaprocessingParameter();
             return await this.SendAsync<CallCancelmediaprocessingParameter, CallCancelmediaprocessingResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync(CancellationToken cancellationToken)
         {
             var p = new CallCancelmediaprocessingParameter();
             return await this.SendAsync<CallCancelmediaprocessingParameter, CallCancelmediaprocessingResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync(CallCancelmediaprocessingParameter parameter)
+        public async ValueTask<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync(CallCancelmediaprocessingParameter parameter)
         {
             return await this.SendAsync<CallCancelmediaprocessingParameter, CallCancelmediaprocessingResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync(CallCancelmediaprocessingParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallCancelmediaprocessingResponse> CallCancelmediaprocessingAsync(CallCancelmediaprocessingParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallCancelmediaprocessingParameter, CallCancelmediaprocessingResponse>(parameter, cancellationToken);
         }

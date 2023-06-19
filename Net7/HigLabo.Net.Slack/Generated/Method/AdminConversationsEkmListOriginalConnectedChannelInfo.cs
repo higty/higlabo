@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync()
+        public async ValueTask<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync()
         {
             var p = new AdminConversationsEkmListOriginalConnectedChannelInfoParameter();
             return await this.SendAsync<AdminConversationsEkmListOriginalConnectedChannelInfoParameter, AdminConversationsEkmListOriginalConnectedChannelInfoResponse>(p, CancellationToken.None);
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(CancellationToken cancellationToken)
         {
             var p = new AdminConversationsEkmListOriginalConnectedChannelInfoParameter();
             return await this.SendAsync<AdminConversationsEkmListOriginalConnectedChannelInfoParameter, AdminConversationsEkmListOriginalConnectedChannelInfoResponse>(p, cancellationToken);
@@ -49,21 +49,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter)
+        public async ValueTask<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter)
         {
             return await this.SendAsync<AdminConversationsEkmListOriginalConnectedChannelInfoParameter, AdminConversationsEkmListOriginalConnectedChannelInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsEkmListOriginalConnectedChannelInfoParameter, AdminConversationsEkmListOriginalConnectedChannelInfoResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
+        public async ValueTask<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
         {
             var p = new AdminConversationsEkmListOriginalConnectedChannelInfoParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
+        public async ValueTask<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
         {
             var p = new AdminConversationsEkmListOriginalConnectedChannelInfoParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
+        public async ValueTask<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async Task<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(AdminConversationsEkmListOriginalConnectedChannelInfoParameter parameter, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync()
+        public async ValueTask<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync()
         {
             var p = new AuthenticationstrengthPolicyUpdateParameter();
             return await this.SendAsync<AuthenticationstrengthPolicyUpdateParameter, AuthenticationstrengthPolicyUpdateResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationstrengthPolicyUpdateParameter();
             return await this.SendAsync<AuthenticationstrengthPolicyUpdateParameter, AuthenticationstrengthPolicyUpdateResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync(AuthenticationstrengthPolicyUpdateParameter parameter)
+        public async ValueTask<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync(AuthenticationstrengthPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AuthenticationstrengthPolicyUpdateParameter, AuthenticationstrengthPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync(AuthenticationstrengthPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthPolicyUpdateResponse> AuthenticationstrengthPolicyUpdateAsync(AuthenticationstrengthPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthPolicyUpdateParameter, AuthenticationstrengthPolicyUpdateResponse>(parameter, cancellationToken);
         }

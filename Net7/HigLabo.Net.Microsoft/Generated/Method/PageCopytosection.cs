@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-copytosection?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageCopytosectionResponse> PageCopytosectionAsync()
+        public async ValueTask<PageCopytosectionResponse> PageCopytosectionAsync()
         {
             var p = new PageCopytosectionParameter();
             return await this.SendAsync<PageCopytosectionParameter, PageCopytosectionResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-copytosection?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageCopytosectionResponse> PageCopytosectionAsync(CancellationToken cancellationToken)
+        public async ValueTask<PageCopytosectionResponse> PageCopytosectionAsync(CancellationToken cancellationToken)
         {
             var p = new PageCopytosectionParameter();
             return await this.SendAsync<PageCopytosectionParameter, PageCopytosectionResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-copytosection?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageCopytosectionResponse> PageCopytosectionAsync(PageCopytosectionParameter parameter)
+        public async ValueTask<PageCopytosectionResponse> PageCopytosectionAsync(PageCopytosectionParameter parameter)
         {
             return await this.SendAsync<PageCopytosectionParameter, PageCopytosectionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-copytosection?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageCopytosectionResponse> PageCopytosectionAsync(PageCopytosectionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PageCopytosectionResponse> PageCopytosectionAsync(PageCopytosectionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PageCopytosectionParameter, PageCopytosectionResponse>(parameter, cancellationToken);
         }

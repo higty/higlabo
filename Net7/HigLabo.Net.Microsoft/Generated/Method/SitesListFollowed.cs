@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitesListFollowedResponse> SitesListFollowedAsync()
+        public async ValueTask<SitesListFollowedResponse> SitesListFollowedAsync()
         {
             var p = new SitesListFollowedParameter();
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitesListFollowedResponse> SitesListFollowedAsync(CancellationToken cancellationToken)
+        public async ValueTask<SitesListFollowedResponse> SitesListFollowedAsync(CancellationToken cancellationToken)
         {
             var p = new SitesListFollowedParameter();
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitesListFollowedResponse> SitesListFollowedAsync(SitesListFollowedParameter parameter)
+        public async ValueTask<SitesListFollowedResponse> SitesListFollowedAsync(SitesListFollowedParameter parameter)
         {
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitesListFollowedResponse> SitesListFollowedAsync(SitesListFollowedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SitesListFollowedResponse> SitesListFollowedAsync(SitesListFollowedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(parameter, cancellationToken);
         }

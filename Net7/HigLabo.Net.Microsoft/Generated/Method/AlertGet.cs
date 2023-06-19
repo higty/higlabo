@@ -150,7 +150,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertGetResponse> AlertGetAsync()
+        public async ValueTask<AlertGetResponse> AlertGetAsync()
         {
             var p = new AlertGetParameter();
             return await this.SendAsync<AlertGetParameter, AlertGetResponse>(p, CancellationToken.None);
@@ -158,7 +158,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertGetResponse> AlertGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AlertGetResponse> AlertGetAsync(CancellationToken cancellationToken)
         {
             var p = new AlertGetParameter();
             return await this.SendAsync<AlertGetParameter, AlertGetResponse>(p, cancellationToken);
@@ -166,14 +166,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertGetResponse> AlertGetAsync(AlertGetParameter parameter)
+        public async ValueTask<AlertGetResponse> AlertGetAsync(AlertGetParameter parameter)
         {
             return await this.SendAsync<AlertGetParameter, AlertGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/alert-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AlertGetResponse> AlertGetAsync(AlertGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AlertGetResponse> AlertGetAsync(AlertGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AlertGetParameter, AlertGetResponse>(parameter, cancellationToken);
         }

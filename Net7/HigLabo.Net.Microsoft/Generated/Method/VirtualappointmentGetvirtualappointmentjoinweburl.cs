@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async Task<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync()
+        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync()
         {
             var p = new VirtualappointmentGetvirtualappointmentjoinweburlParameter();
             return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async Task<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(CancellationToken cancellationToken)
+        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(CancellationToken cancellationToken)
         {
             var p = new VirtualappointmentGetvirtualappointmentjoinweburlParameter();
             return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async Task<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(VirtualappointmentGetvirtualappointmentjoinweburlParameter parameter)
+        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(VirtualappointmentGetvirtualappointmentjoinweburlParameter parameter)
         {
             return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async Task<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(VirtualappointmentGetvirtualappointmentjoinweburlParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(VirtualappointmentGetvirtualappointmentjoinweburlParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(parameter, cancellationToken);
         }

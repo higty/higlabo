@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync()
+        public async ValueTask<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync()
         {
             var p = new SamlorwsfedexternaldomainfederationListParameter();
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(CancellationToken cancellationToken)
         {
             var p = new SamlorwsfedexternaldomainfederationListParameter();
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter)
+        public async ValueTask<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(parameter, cancellationToken);
         }

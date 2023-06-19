@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync()
+        public async ValueTask<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync()
         {
             var p = new PresenceSetUserpreferredpresenceParameter();
             return await this.SendAsync<PresenceSetUserpreferredpresenceParameter, PresenceSetUserpreferredpresenceResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync(CancellationToken cancellationToken)
+        public async ValueTask<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync(CancellationToken cancellationToken)
         {
             var p = new PresenceSetUserpreferredpresenceParameter();
             return await this.SendAsync<PresenceSetUserpreferredpresenceParameter, PresenceSetUserpreferredpresenceResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync(PresenceSetUserpreferredpresenceParameter parameter)
+        public async ValueTask<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync(PresenceSetUserpreferredpresenceParameter parameter)
         {
             return await this.SendAsync<PresenceSetUserpreferredpresenceParameter, PresenceSetUserpreferredpresenceResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync(PresenceSetUserpreferredpresenceParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PresenceSetUserpreferredpresenceResponse> PresenceSetUserpreferredpresenceAsync(PresenceSetUserpreferredpresenceParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PresenceSetUserpreferredpresenceParameter, PresenceSetUserpreferredpresenceResponse>(parameter, cancellationToken);
         }

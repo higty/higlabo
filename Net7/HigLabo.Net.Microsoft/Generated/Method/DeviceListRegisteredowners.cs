@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync()
+        public async ValueTask<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync()
         {
             var p = new DeviceListRegisteredownersParameter();
             return await this.SendAsync<DeviceListRegisteredownersParameter, DeviceListRegisteredownersResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceListRegisteredownersParameter();
             return await this.SendAsync<DeviceListRegisteredownersParameter, DeviceListRegisteredownersResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync(DeviceListRegisteredownersParameter parameter)
+        public async ValueTask<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync(DeviceListRegisteredownersParameter parameter)
         {
             return await this.SendAsync<DeviceListRegisteredownersParameter, DeviceListRegisteredownersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredowners?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync(DeviceListRegisteredownersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceListRegisteredownersResponse> DeviceListRegisteredownersAsync(DeviceListRegisteredownersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceListRegisteredownersParameter, DeviceListRegisteredownersResponse>(parameter, cancellationToken);
         }

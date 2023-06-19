@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync()
+        public async ValueTask<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync()
         {
             var p = new SecurityEdiscoverysearchUpdateParameter();
             return await this.SendAsync<SecurityEdiscoverysearchUpdateParameter, SecurityEdiscoverysearchUpdateResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverysearchUpdateParameter();
             return await this.SendAsync<SecurityEdiscoverysearchUpdateParameter, SecurityEdiscoverysearchUpdateResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync(SecurityEdiscoverysearchUpdateParameter parameter)
+        public async ValueTask<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync(SecurityEdiscoverysearchUpdateParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverysearchUpdateParameter, SecurityEdiscoverysearchUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync(SecurityEdiscoverysearchUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchUpdateResponse> SecurityEdiscoverysearchUpdateAsync(SecurityEdiscoverysearchUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverysearchUpdateParameter, SecurityEdiscoverysearchUpdateResponse>(parameter, cancellationToken);
         }

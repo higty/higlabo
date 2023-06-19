@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateThreadResponse> GroupUpdateThreadAsync()
+        public async ValueTask<GroupUpdateThreadResponse> GroupUpdateThreadAsync()
         {
             var p = new GroupUpdateThreadParameter();
             return await this.SendAsync<GroupUpdateThreadParameter, GroupUpdateThreadResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateThreadResponse> GroupUpdateThreadAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupUpdateThreadResponse> GroupUpdateThreadAsync(CancellationToken cancellationToken)
         {
             var p = new GroupUpdateThreadParameter();
             return await this.SendAsync<GroupUpdateThreadParameter, GroupUpdateThreadResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateThreadResponse> GroupUpdateThreadAsync(GroupUpdateThreadParameter parameter)
+        public async ValueTask<GroupUpdateThreadResponse> GroupUpdateThreadAsync(GroupUpdateThreadParameter parameter)
         {
             return await this.SendAsync<GroupUpdateThreadParameter, GroupUpdateThreadResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-thread?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateThreadResponse> GroupUpdateThreadAsync(GroupUpdateThreadParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupUpdateThreadResponse> GroupUpdateThreadAsync(GroupUpdateThreadParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupUpdateThreadParameter, GroupUpdateThreadResponse>(parameter, cancellationToken);
         }

@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationGetResponse> SimulationautomationGetAsync()
+        public async ValueTask<SimulationautomationGetResponse> SimulationautomationGetAsync()
         {
             var p = new SimulationautomationGetParameter();
             return await this.SendAsync<SimulationautomationGetParameter, SimulationautomationGetResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationGetResponse> SimulationautomationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SimulationautomationGetResponse> SimulationautomationGetAsync(CancellationToken cancellationToken)
         {
             var p = new SimulationautomationGetParameter();
             return await this.SendAsync<SimulationautomationGetParameter, SimulationautomationGetResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationGetResponse> SimulationautomationGetAsync(SimulationautomationGetParameter parameter)
+        public async ValueTask<SimulationautomationGetResponse> SimulationautomationGetAsync(SimulationautomationGetParameter parameter)
         {
             return await this.SendAsync<SimulationautomationGetParameter, SimulationautomationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationGetResponse> SimulationautomationGetAsync(SimulationautomationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SimulationautomationGetResponse> SimulationautomationGetAsync(SimulationautomationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SimulationautomationGetParameter, SimulationautomationGetResponse>(parameter, cancellationToken);
         }

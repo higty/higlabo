@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetResponse> ContentTypeGetAsync()
+        public async ValueTask<ContentTypeGetResponse> ContentTypeGetAsync()
         {
             var p = new ContentTypeGetParameter();
             return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(p, CancellationToken.None);
@@ -111,7 +111,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetResponse> ContentTypeGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeGetResponse> ContentTypeGetAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeGetParameter();
             return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(p, cancellationToken);
@@ -119,14 +119,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetResponse> ContentTypeGetAsync(ContentTypeGetParameter parameter)
+        public async ValueTask<ContentTypeGetResponse> ContentTypeGetAsync(ContentTypeGetParameter parameter)
         {
             return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeGetResponse> ContentTypeGetAsync(ContentTypeGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeGetResponse> ContentTypeGetAsync(ContentTypeGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(parameter, cancellationToken);
         }

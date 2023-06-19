@@ -139,7 +139,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactUpdateResponse> ContactUpdateAsync()
+        public async ValueTask<ContactUpdateResponse> ContactUpdateAsync()
         {
             var p = new ContactUpdateParameter();
             return await this.SendAsync<ContactUpdateParameter, ContactUpdateResponse>(p, CancellationToken.None);
@@ -147,7 +147,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactUpdateResponse> ContactUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactUpdateResponse> ContactUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ContactUpdateParameter();
             return await this.SendAsync<ContactUpdateParameter, ContactUpdateResponse>(p, cancellationToken);
@@ -155,14 +155,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactUpdateResponse> ContactUpdateAsync(ContactUpdateParameter parameter)
+        public async ValueTask<ContactUpdateResponse> ContactUpdateAsync(ContactUpdateParameter parameter)
         {
             return await this.SendAsync<ContactUpdateParameter, ContactUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactUpdateResponse> ContactUpdateAsync(ContactUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactUpdateResponse> ContactUpdateAsync(ContactUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactUpdateParameter, ContactUpdateResponse>(parameter, cancellationToken);
         }

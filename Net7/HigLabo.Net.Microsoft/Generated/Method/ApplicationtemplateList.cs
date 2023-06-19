@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationtemplateListResponse> ApplicationtemplateListAsync()
+        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync()
         {
             var p = new ApplicationtemplateListParameter();
             return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationtemplateListResponse> ApplicationtemplateListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationtemplateListParameter();
             return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationtemplateListResponse> ApplicationtemplateListAsync(ApplicationtemplateListParameter parameter)
+        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync(ApplicationtemplateListParameter parameter)
         {
             return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationtemplateListResponse> ApplicationtemplateListAsync(ApplicationtemplateListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync(ApplicationtemplateListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(parameter, cancellationToken);
         }

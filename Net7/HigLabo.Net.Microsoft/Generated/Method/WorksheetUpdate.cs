@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUpdateResponse> WorksheetUpdateAsync()
+        public async ValueTask<WorksheetUpdateResponse> WorksheetUpdateAsync()
         {
             var p = new WorksheetUpdateParameter();
             return await this.SendAsync<WorksheetUpdateParameter, WorksheetUpdateResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUpdateResponse> WorksheetUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetUpdateResponse> WorksheetUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetUpdateParameter();
             return await this.SendAsync<WorksheetUpdateParameter, WorksheetUpdateResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUpdateResponse> WorksheetUpdateAsync(WorksheetUpdateParameter parameter)
+        public async ValueTask<WorksheetUpdateResponse> WorksheetUpdateAsync(WorksheetUpdateParameter parameter)
         {
             return await this.SendAsync<WorksheetUpdateParameter, WorksheetUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUpdateResponse> WorksheetUpdateAsync(WorksheetUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetUpdateResponse> WorksheetUpdateAsync(WorksheetUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetUpdateParameter, WorksheetUpdateResponse>(parameter, cancellationToken);
         }

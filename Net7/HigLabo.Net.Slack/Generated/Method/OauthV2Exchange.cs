@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.exchange
         /// </summary>
-        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string? client_Id, string? client_Secret)
+        public async ValueTask<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string? client_Id, string? client_Secret)
         {
             var p = new OauthV2ExchangeParameter();
             p.Client_Id = client_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.exchange
         /// </summary>
-        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string? client_Id, string? client_Secret, CancellationToken cancellationToken)
+        public async ValueTask<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string? client_Id, string? client_Secret, CancellationToken cancellationToken)
         {
             var p = new OauthV2ExchangeParameter();
             p.Client_Id = client_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.exchange
         /// </summary>
-        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(OauthV2ExchangeParameter parameter)
+        public async ValueTask<OauthV2ExchangeResponse> OauthV2ExchangeAsync(OauthV2ExchangeParameter parameter)
         {
             return await this.SendAsync<OauthV2ExchangeParameter, OauthV2ExchangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.exchange
         /// </summary>
-        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(OauthV2ExchangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OauthV2ExchangeResponse> OauthV2ExchangeAsync(OauthV2ExchangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OauthV2ExchangeParameter, OauthV2ExchangeResponse>(parameter, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync()
+        public async ValueTask<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync()
         {
             var p = new ChatMarkchatunreadforUserParameter();
             return await this.SendAsync<ChatMarkchatunreadforUserParameter, ChatMarkchatunreadforUserResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync(CancellationToken cancellationToken)
         {
             var p = new ChatMarkchatunreadforUserParameter();
             return await this.SendAsync<ChatMarkchatunreadforUserParameter, ChatMarkchatunreadforUserResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync(ChatMarkchatunreadforUserParameter parameter)
+        public async ValueTask<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync(ChatMarkchatunreadforUserParameter parameter)
         {
             return await this.SendAsync<ChatMarkchatunreadforUserParameter, ChatMarkchatunreadforUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync(ChatMarkchatunreadforUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatMarkchatunreadforUserResponse> ChatMarkchatunreadforUserAsync(ChatMarkchatunreadforUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatMarkchatunreadforUserParameter, ChatMarkchatunreadforUserResponse>(parameter, cancellationToken);
         }

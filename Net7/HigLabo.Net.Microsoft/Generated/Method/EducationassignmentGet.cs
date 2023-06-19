@@ -130,7 +130,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync()
+        public async ValueTask<EducationAssignmentGetResponse> EducationAssignmentGetAsync()
         {
             var p = new EducationAssignmentGetParameter();
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(p, CancellationToken.None);
@@ -138,7 +138,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentGetResponse> EducationAssignmentGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationAssignmentGetParameter();
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(p, cancellationToken);
@@ -146,14 +146,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter)
+        public async ValueTask<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(parameter, cancellationToken);
         }

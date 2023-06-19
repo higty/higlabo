@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync()
+        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync()
         {
             var p = new PrintjobRedirectParameter();
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync(CancellationToken cancellationToken)
         {
             var p = new PrintjobRedirectParameter();
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter)
+        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter)
         {
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(parameter, cancellationToken);
         }

@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync()
+        public async ValueTask<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync()
         {
             var p = new EducationAssignmentSetupResourcesfolderParameter();
             return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(CancellationToken cancellationToken)
         {
             var p = new EducationAssignmentSetupResourcesfolderParameter();
             return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(EducationAssignmentSetupResourcesfolderParameter parameter)
+        public async ValueTask<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(EducationAssignmentSetupResourcesfolderParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(EducationAssignmentSetupResourcesfolderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(EducationAssignmentSetupResourcesfolderParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(parameter, cancellationToken);
         }

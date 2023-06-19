@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync()
+        public async ValueTask<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync()
         {
             var p = new WorksheetUsedrangeParameter();
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetUsedrangeParameter();
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(WorksheetUsedrangeParameter parameter)
+        public async ValueTask<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(WorksheetUsedrangeParameter parameter)
         {
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(WorksheetUsedrangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(WorksheetUsedrangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(parameter, cancellationToken);
         }

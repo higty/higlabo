@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync()
+        public async ValueTask<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync()
         {
             var p = new Fido2authenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<Fido2authenticationmethodConfigurationUpdateParameter, Fido2authenticationmethodConfigurationUpdateResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new Fido2authenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<Fido2authenticationmethodConfigurationUpdateParameter, Fido2authenticationmethodConfigurationUpdateResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync(Fido2authenticationmethodConfigurationUpdateParameter parameter)
+        public async ValueTask<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync(Fido2authenticationmethodConfigurationUpdateParameter parameter)
         {
             return await this.SendAsync<Fido2authenticationmethodConfigurationUpdateParameter, Fido2authenticationmethodConfigurationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync(Fido2authenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Fido2authenticationmethodConfigurationUpdateResponse> Fido2authenticationmethodConfigurationUpdateAsync(Fido2authenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Fido2authenticationmethodConfigurationUpdateParameter, Fido2authenticationmethodConfigurationUpdateResponse>(parameter, cancellationToken);
         }

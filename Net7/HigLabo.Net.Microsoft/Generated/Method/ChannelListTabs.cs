@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListTabsResponse> ChannelListTabsAsync()
+        public async ValueTask<ChannelListTabsResponse> ChannelListTabsAsync()
         {
             var p = new ChannelListTabsParameter();
             return await this.SendAsync<ChannelListTabsParameter, ChannelListTabsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListTabsResponse> ChannelListTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelListTabsResponse> ChannelListTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelListTabsParameter();
             return await this.SendAsync<ChannelListTabsParameter, ChannelListTabsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListTabsResponse> ChannelListTabsAsync(ChannelListTabsParameter parameter)
+        public async ValueTask<ChannelListTabsResponse> ChannelListTabsAsync(ChannelListTabsParameter parameter)
         {
             return await this.SendAsync<ChannelListTabsParameter, ChannelListTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListTabsResponse> ChannelListTabsAsync(ChannelListTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelListTabsResponse> ChannelListTabsAsync(ChannelListTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelListTabsParameter, ChannelListTabsResponse>(parameter, cancellationToken);
         }

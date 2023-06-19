@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync()
+        public async ValueTask<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync()
         {
             var p = new UserListApproleAssignmentsParameter();
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListApproleAssignmentsParameter();
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter)
+        public async ValueTask<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, cancellationToken);
         }

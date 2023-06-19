@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync()
+        public async ValueTask<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync()
         {
             var p = new CrosstenantAccessPolicyUpdateParameter();
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantAccessPolicyUpdateParameter();
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CrosstenantAccessPolicyUpdateParameter parameter)
+        public async ValueTask<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CrosstenantAccessPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CrosstenantAccessPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CrosstenantAccessPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(parameter, cancellationToken);
         }

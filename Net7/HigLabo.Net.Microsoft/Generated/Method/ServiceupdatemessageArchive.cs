@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync()
+        public async ValueTask<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync()
         {
             var p = new ServiceupdatemessageArchiveParameter();
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceupdatemessageArchiveParameter();
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(ServiceupdatemessageArchiveParameter parameter)
+        public async ValueTask<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(ServiceupdatemessageArchiveParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(ServiceupdatemessageArchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(ServiceupdatemessageArchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(parameter, cancellationToken);
         }

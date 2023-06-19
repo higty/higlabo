@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeleteResponse> ContactDeleteAsync()
+        public async ValueTask<ContactDeleteResponse> ContactDeleteAsync()
         {
             var p = new ContactDeleteParameter();
             return await this.SendAsync<ContactDeleteParameter, ContactDeleteResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeleteResponse> ContactDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactDeleteResponse> ContactDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ContactDeleteParameter();
             return await this.SendAsync<ContactDeleteParameter, ContactDeleteResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeleteResponse> ContactDeleteAsync(ContactDeleteParameter parameter)
+        public async ValueTask<ContactDeleteResponse> ContactDeleteAsync(ContactDeleteParameter parameter)
         {
             return await this.SendAsync<ContactDeleteParameter, ContactDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeleteResponse> ContactDeleteAsync(ContactDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactDeleteResponse> ContactDeleteAsync(ContactDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactDeleteParameter, ContactDeleteResponse>(parameter, cancellationToken);
         }

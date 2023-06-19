@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUpdateResponse> RangeUpdateAsync()
+        public async ValueTask<RangeUpdateResponse> RangeUpdateAsync()
         {
             var p = new RangeUpdateParameter();
             return await this.SendAsync<RangeUpdateParameter, RangeUpdateResponse>(p, CancellationToken.None);
@@ -111,7 +111,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUpdateResponse> RangeUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeUpdateResponse> RangeUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new RangeUpdateParameter();
             return await this.SendAsync<RangeUpdateParameter, RangeUpdateResponse>(p, cancellationToken);
@@ -119,14 +119,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUpdateResponse> RangeUpdateAsync(RangeUpdateParameter parameter)
+        public async ValueTask<RangeUpdateResponse> RangeUpdateAsync(RangeUpdateParameter parameter)
         {
             return await this.SendAsync<RangeUpdateParameter, RangeUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUpdateResponse> RangeUpdateAsync(RangeUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeUpdateResponse> RangeUpdateAsync(RangeUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeUpdateParameter, RangeUpdateResponse>(parameter, cancellationToken);
         }

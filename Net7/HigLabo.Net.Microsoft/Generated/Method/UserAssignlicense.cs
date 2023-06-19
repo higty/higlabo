@@ -329,7 +329,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserAssignlicenseResponse> UserAssignlicenseAsync()
+        public async ValueTask<UserAssignlicenseResponse> UserAssignlicenseAsync()
         {
             var p = new UserAssignlicenseParameter();
             return await this.SendAsync<UserAssignlicenseParameter, UserAssignlicenseResponse>(p, CancellationToken.None);
@@ -337,7 +337,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserAssignlicenseResponse> UserAssignlicenseAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserAssignlicenseResponse> UserAssignlicenseAsync(CancellationToken cancellationToken)
         {
             var p = new UserAssignlicenseParameter();
             return await this.SendAsync<UserAssignlicenseParameter, UserAssignlicenseResponse>(p, cancellationToken);
@@ -345,14 +345,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserAssignlicenseResponse> UserAssignlicenseAsync(UserAssignlicenseParameter parameter)
+        public async ValueTask<UserAssignlicenseResponse> UserAssignlicenseAsync(UserAssignlicenseParameter parameter)
         {
             return await this.SendAsync<UserAssignlicenseParameter, UserAssignlicenseResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-assignlicense?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserAssignlicenseResponse> UserAssignlicenseAsync(UserAssignlicenseParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserAssignlicenseResponse> UserAssignlicenseAsync(UserAssignlicenseParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserAssignlicenseParameter, UserAssignlicenseResponse>(parameter, cancellationToken);
         }

@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.create
         /// </summary>
-        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string? team_Domain, string? team_Name)
+        public async ValueTask<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string? team_Domain, string? team_Name)
         {
             var p = new AdminTeamsCreateParameter();
             p.Team_Domain = team_Domain;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.create
         /// </summary>
-        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string? team_Domain, string? team_Name, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string? team_Domain, string? team_Name, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsCreateParameter();
             p.Team_Domain = team_Domain;
@@ -42,14 +42,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.create
         /// </summary>
-        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(AdminTeamsCreateParameter parameter)
+        public async ValueTask<AdminTeamsCreateResponse> AdminTeamsCreateAsync(AdminTeamsCreateParameter parameter)
         {
             return await this.SendAsync<AdminTeamsCreateParameter, AdminTeamsCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.create
         /// </summary>
-        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(AdminTeamsCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsCreateResponse> AdminTeamsCreateAsync(AdminTeamsCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsCreateParameter, AdminTeamsCreateResponse>(parameter, cancellationToken);
         }

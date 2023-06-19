@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync()
+        public async ValueTask<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync()
         {
             var p = new ReportRootGetteamsUseractivitycountsParameter();
             return await this.SendAsync<ReportRootGetteamsUseractivitycountsParameter, ReportRootGetteamsUseractivitycountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetteamsUseractivitycountsParameter();
             return await this.SendAsync<ReportRootGetteamsUseractivitycountsParameter, ReportRootGetteamsUseractivitycountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync(ReportRootGetteamsUseractivitycountsParameter parameter)
+        public async ValueTask<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync(ReportRootGetteamsUseractivitycountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetteamsUseractivitycountsParameter, ReportRootGetteamsUseractivitycountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync(ReportRootGetteamsUseractivitycountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetteamsUseractivitycountsResponse> ReportRootGetteamsUseractivitycountsAsync(ReportRootGetteamsUseractivitycountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetteamsUseractivitycountsParameter, ReportRootGetteamsUseractivitycountsResponse>(parameter, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync()
+        public async ValueTask<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync()
         {
             var p = new ConditionalAccessRootListAuthenticationcontextclassreferencesParameter();
             return await this.SendAsync<ConditionalAccessRootListAuthenticationcontextclassreferencesParameter, ConditionalAccessRootListAuthenticationcontextclassreferencesResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync(CancellationToken cancellationToken)
         {
             var p = new ConditionalAccessRootListAuthenticationcontextclassreferencesParameter();
             return await this.SendAsync<ConditionalAccessRootListAuthenticationcontextclassreferencesParameter, ConditionalAccessRootListAuthenticationcontextclassreferencesResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync(ConditionalAccessRootListAuthenticationcontextclassreferencesParameter parameter)
+        public async ValueTask<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync(ConditionalAccessRootListAuthenticationcontextclassreferencesParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessRootListAuthenticationcontextclassreferencesParameter, ConditionalAccessRootListAuthenticationcontextclassreferencesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync(ConditionalAccessRootListAuthenticationcontextclassreferencesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessRootListAuthenticationcontextclassreferencesResponse> ConditionalAccessRootListAuthenticationcontextclassreferencesAsync(ConditionalAccessRootListAuthenticationcontextclassreferencesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccessRootListAuthenticationcontextclassreferencesParameter, ConditionalAccessRootListAuthenticationcontextclassreferencesResponse>(parameter, cancellationToken);
         }

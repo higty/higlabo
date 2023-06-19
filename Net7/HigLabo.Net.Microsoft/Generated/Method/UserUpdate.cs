@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateResponse> UserUpdateAsync()
+        public async ValueTask<UserUpdateResponse> UserUpdateAsync()
         {
             var p = new UserUpdateParameter();
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(p, CancellationToken.None);
@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateResponse> UserUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserUpdateResponse> UserUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new UserUpdateParameter();
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(p, cancellationToken);
@@ -118,14 +118,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateResponse> UserUpdateAsync(UserUpdateParameter parameter)
+        public async ValueTask<UserUpdateResponse> UserUpdateAsync(UserUpdateParameter parameter)
         {
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateResponse> UserUpdateAsync(UserUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserUpdateResponse> UserUpdateAsync(UserUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(parameter, cancellationToken);
         }

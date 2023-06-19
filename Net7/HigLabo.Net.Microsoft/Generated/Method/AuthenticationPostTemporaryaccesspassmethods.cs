@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync()
+        public async ValueTask<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync()
         {
             var p = new AuthenticationPostTemporaryAccesspassmethodsParameter();
             return await this.SendAsync<AuthenticationPostTemporaryAccesspassmethodsParameter, AuthenticationPostTemporaryAccesspassmethodsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationPostTemporaryAccesspassmethodsParameter();
             return await this.SendAsync<AuthenticationPostTemporaryAccesspassmethodsParameter, AuthenticationPostTemporaryAccesspassmethodsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync(AuthenticationPostTemporaryAccesspassmethodsParameter parameter)
+        public async ValueTask<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync(AuthenticationPostTemporaryAccesspassmethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationPostTemporaryAccesspassmethodsParameter, AuthenticationPostTemporaryAccesspassmethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync(AuthenticationPostTemporaryAccesspassmethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationPostTemporaryAccesspassmethodsResponse> AuthenticationPostTemporaryAccesspassmethodsAsync(AuthenticationPostTemporaryAccesspassmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationPostTemporaryAccesspassmethodsParameter, AuthenticationPostTemporaryAccesspassmethodsResponse>(parameter, cancellationToken);
         }

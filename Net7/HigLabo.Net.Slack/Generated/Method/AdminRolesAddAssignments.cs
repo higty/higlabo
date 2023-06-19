@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.addAssignments
         /// </summary>
-        public async Task<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids)
+        public async ValueTask<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids)
         {
             var p = new AdminRolesAddAssignmentsParameter();
             p.Entity_Ids = entity_Ids;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.addAssignments
         /// </summary>
-        public async Task<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(string? entity_Ids, string? role_Id, string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminRolesAddAssignmentsParameter();
             p.Entity_Ids = entity_Ids;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.addAssignments
         /// </summary>
-        public async Task<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(AdminRolesAddAssignmentsParameter parameter)
+        public async ValueTask<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(AdminRolesAddAssignmentsParameter parameter)
         {
             return await this.SendAsync<AdminRolesAddAssignmentsParameter, AdminRolesAddAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.addAssignments
         /// </summary>
-        public async Task<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(AdminRolesAddAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminRolesAddAssignmentsResponse> AdminRolesAddAssignmentsAsync(AdminRolesAddAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminRolesAddAssignmentsParameter, AdminRolesAddAssignmentsResponse>(parameter, cancellationToken);
         }

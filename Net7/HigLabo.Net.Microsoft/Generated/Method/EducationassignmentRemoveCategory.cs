@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync()
+        public async ValueTask<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync()
         {
             var p = new EducationAssignmentRemoveCategoryParameter();
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(CancellationToken cancellationToken)
         {
             var p = new EducationAssignmentRemoveCategoryParameter();
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter)
+        public async ValueTask<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(parameter, cancellationToken);
         }

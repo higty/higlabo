@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync()
+        public async ValueTask<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync()
         {
             var p = new WorkbookcommentListRepliesParameter();
             return await this.SendAsync<WorkbookcommentListRepliesParameter, WorkbookcommentListRepliesResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookcommentListRepliesParameter();
             return await this.SendAsync<WorkbookcommentListRepliesParameter, WorkbookcommentListRepliesResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync(WorkbookcommentListRepliesParameter parameter)
+        public async ValueTask<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync(WorkbookcommentListRepliesParameter parameter)
         {
             return await this.SendAsync<WorkbookcommentListRepliesParameter, WorkbookcommentListRepliesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-list-replies?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync(WorkbookcommentListRepliesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookcommentListRepliesResponse> WorkbookcommentListRepliesAsync(WorkbookcommentListRepliesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookcommentListRepliesParameter, WorkbookcommentListRepliesResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteResponse> GroupDeleteAsync()
+        public async ValueTask<GroupDeleteResponse> GroupDeleteAsync()
         {
             var p = new GroupDeleteParameter();
             return await this.SendAsync<GroupDeleteParameter, GroupDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteResponse> GroupDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteResponse> GroupDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new GroupDeleteParameter();
             return await this.SendAsync<GroupDeleteParameter, GroupDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteResponse> GroupDeleteAsync(GroupDeleteParameter parameter)
+        public async ValueTask<GroupDeleteResponse> GroupDeleteAsync(GroupDeleteParameter parameter)
         {
             return await this.SendAsync<GroupDeleteParameter, GroupDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteResponse> GroupDeleteAsync(GroupDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteResponse> GroupDeleteAsync(GroupDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeleteParameter, GroupDeleteResponse>(parameter, cancellationToken);
         }

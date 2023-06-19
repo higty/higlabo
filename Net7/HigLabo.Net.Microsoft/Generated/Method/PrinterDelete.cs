@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterDeleteResponse> PrinterDeleteAsync()
+        public async ValueTask<PrinterDeleteResponse> PrinterDeleteAsync()
         {
             var p = new PrinterDeleteParameter();
             return await this.SendAsync<PrinterDeleteParameter, PrinterDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterDeleteResponse> PrinterDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterDeleteResponse> PrinterDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterDeleteParameter();
             return await this.SendAsync<PrinterDeleteParameter, PrinterDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterDeleteResponse> PrinterDeleteAsync(PrinterDeleteParameter parameter)
+        public async ValueTask<PrinterDeleteResponse> PrinterDeleteAsync(PrinterDeleteParameter parameter)
         {
             return await this.SendAsync<PrinterDeleteParameter, PrinterDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterDeleteResponse> PrinterDeleteAsync(PrinterDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterDeleteResponse> PrinterDeleteAsync(PrinterDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterDeleteParameter, PrinterDeleteResponse>(parameter, cancellationToken);
         }

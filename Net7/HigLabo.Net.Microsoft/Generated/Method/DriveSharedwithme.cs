@@ -104,7 +104,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-sharedwithme?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveSharedwithmeResponse> DriveSharedwithmeAsync()
+        public async ValueTask<DriveSharedwithmeResponse> DriveSharedwithmeAsync()
         {
             var p = new DriveSharedwithmeParameter();
             return await this.SendAsync<DriveSharedwithmeParameter, DriveSharedwithmeResponse>(p, CancellationToken.None);
@@ -112,7 +112,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-sharedwithme?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveSharedwithmeResponse> DriveSharedwithmeAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveSharedwithmeResponse> DriveSharedwithmeAsync(CancellationToken cancellationToken)
         {
             var p = new DriveSharedwithmeParameter();
             return await this.SendAsync<DriveSharedwithmeParameter, DriveSharedwithmeResponse>(p, cancellationToken);
@@ -120,14 +120,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-sharedwithme?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveSharedwithmeResponse> DriveSharedwithmeAsync(DriveSharedwithmeParameter parameter)
+        public async ValueTask<DriveSharedwithmeResponse> DriveSharedwithmeAsync(DriveSharedwithmeParameter parameter)
         {
             return await this.SendAsync<DriveSharedwithmeParameter, DriveSharedwithmeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-sharedwithme?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveSharedwithmeResponse> DriveSharedwithmeAsync(DriveSharedwithmeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveSharedwithmeResponse> DriveSharedwithmeAsync(DriveSharedwithmeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveSharedwithmeParameter, DriveSharedwithmeResponse>(parameter, cancellationToken);
         }

@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getCustomRetention
         /// </summary>
-        public async Task<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(string? channel_Id)
         {
             var p = new AdminConversationsGetCustomRetentionParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getCustomRetention
         /// </summary>
-        public async Task<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsGetCustomRetentionParameter();
             p.Channel_Id = channel_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getCustomRetention
         /// </summary>
-        public async Task<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(AdminConversationsGetCustomRetentionParameter parameter)
+        public async ValueTask<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(AdminConversationsGetCustomRetentionParameter parameter)
         {
             return await this.SendAsync<AdminConversationsGetCustomRetentionParameter, AdminConversationsGetCustomRetentionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getCustomRetention
         /// </summary>
-        public async Task<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(AdminConversationsGetCustomRetentionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsGetCustomRetentionResponse> AdminConversationsGetCustomRetentionAsync(AdminConversationsGetCustomRetentionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsGetCustomRetentionParameter, AdminConversationsGetCustomRetentionResponse>(parameter, cancellationToken);
         }

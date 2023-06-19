@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeleteResponse> EventDeleteAsync()
+        public async ValueTask<EventDeleteResponse> EventDeleteAsync()
         {
             var p = new EventDeleteParameter();
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeleteResponse> EventDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventDeleteResponse> EventDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new EventDeleteParameter();
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeleteResponse> EventDeleteAsync(EventDeleteParameter parameter)
+        public async ValueTask<EventDeleteResponse> EventDeleteAsync(EventDeleteParameter parameter)
         {
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeleteResponse> EventDeleteAsync(EventDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventDeleteResponse> EventDeleteAsync(EventDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(parameter, cancellationToken);
         }

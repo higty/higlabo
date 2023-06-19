@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListSettingsResponse> GroupListSettingsAsync()
+        public async ValueTask<GroupListSettingsResponse> GroupListSettingsAsync()
         {
             var p = new GroupListSettingsParameter();
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListSettingsResponse> GroupListSettingsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListSettingsResponse> GroupListSettingsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListSettingsParameter();
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter)
+        public async ValueTask<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter)
         {
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(parameter, cancellationToken);
         }

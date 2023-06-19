@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync()
+        public async ValueTask<SubscriptionDeleteResponse> SubscriptionDeleteAsync()
         {
             var p = new SubscriptionDeleteParameter();
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionDeleteResponse> SubscriptionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SubscriptionDeleteParameter();
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync(SubscriptionDeleteParameter parameter)
+        public async ValueTask<SubscriptionDeleteResponse> SubscriptionDeleteAsync(SubscriptionDeleteParameter parameter)
         {
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync(SubscriptionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionDeleteResponse> SubscriptionDeleteAsync(SubscriptionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(parameter, cancellationToken);
         }

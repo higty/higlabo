@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkin?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckinResponse> DriveitemCheckinAsync()
+        public async ValueTask<DriveitemCheckinResponse> DriveitemCheckinAsync()
         {
             var p = new DriveitemCheckinParameter();
             return await this.SendAsync<DriveitemCheckinParameter, DriveitemCheckinResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkin?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckinResponse> DriveitemCheckinAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCheckinResponse> DriveitemCheckinAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemCheckinParameter();
             return await this.SendAsync<DriveitemCheckinParameter, DriveitemCheckinResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkin?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckinResponse> DriveitemCheckinAsync(DriveitemCheckinParameter parameter)
+        public async ValueTask<DriveitemCheckinResponse> DriveitemCheckinAsync(DriveitemCheckinParameter parameter)
         {
             return await this.SendAsync<DriveitemCheckinParameter, DriveitemCheckinResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkin?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckinResponse> DriveitemCheckinAsync(DriveitemCheckinParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCheckinResponse> DriveitemCheckinAsync(DriveitemCheckinParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemCheckinParameter, DriveitemCheckinResponse>(parameter, cancellationToken);
         }

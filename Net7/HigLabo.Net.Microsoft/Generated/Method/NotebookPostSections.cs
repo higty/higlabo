@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionsResponse> NotebookPostSectionsAsync()
+        public async ValueTask<NotebookPostSectionsResponse> NotebookPostSectionsAsync()
         {
             var p = new NotebookPostSectionsParameter();
             return await this.SendAsync<NotebookPostSectionsParameter, NotebookPostSectionsResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionsResponse> NotebookPostSectionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookPostSectionsResponse> NotebookPostSectionsAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookPostSectionsParameter();
             return await this.SendAsync<NotebookPostSectionsParameter, NotebookPostSectionsResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionsResponse> NotebookPostSectionsAsync(NotebookPostSectionsParameter parameter)
+        public async ValueTask<NotebookPostSectionsResponse> NotebookPostSectionsAsync(NotebookPostSectionsParameter parameter)
         {
             return await this.SendAsync<NotebookPostSectionsParameter, NotebookPostSectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionsResponse> NotebookPostSectionsAsync(NotebookPostSectionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookPostSectionsResponse> NotebookPostSectionsAsync(NotebookPostSectionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookPostSectionsParameter, NotebookPostSectionsResponse>(parameter, cancellationToken);
         }

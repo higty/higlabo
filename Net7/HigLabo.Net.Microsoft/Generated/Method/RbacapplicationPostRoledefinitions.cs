@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync()
+        public async ValueTask<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync()
         {
             var p = new RbacapplicationPostRoledefinitionsParameter();
             return await this.SendAsync<RbacapplicationPostRoledefinitionsParameter, RbacapplicationPostRoledefinitionsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync(CancellationToken cancellationToken)
         {
             var p = new RbacapplicationPostRoledefinitionsParameter();
             return await this.SendAsync<RbacapplicationPostRoledefinitionsParameter, RbacapplicationPostRoledefinitionsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync(RbacapplicationPostRoledefinitionsParameter parameter)
+        public async ValueTask<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync(RbacapplicationPostRoledefinitionsParameter parameter)
         {
             return await this.SendAsync<RbacapplicationPostRoledefinitionsParameter, RbacapplicationPostRoledefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync(RbacapplicationPostRoledefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RbacapplicationPostRoledefinitionsResponse> RbacapplicationPostRoledefinitionsAsync(RbacapplicationPostRoledefinitionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RbacapplicationPostRoledefinitionsParameter, RbacapplicationPostRoledefinitionsResponse>(parameter, cancellationToken);
         }

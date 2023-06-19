@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemUpdateResponse> ListitemUpdateAsync()
+        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync()
         {
             var p = new ListitemUpdateParameter();
             return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemUpdateResponse> ListitemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ListitemUpdateParameter();
             return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemUpdateResponse> ListitemUpdateAsync(ListitemUpdateParameter parameter)
+        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync(ListitemUpdateParameter parameter)
         {
             return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemUpdateResponse> ListitemUpdateAsync(ListitemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync(ListitemUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(parameter, cancellationToken);
         }

@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync()
+        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync()
         {
             var p = new SecurityEdiscoveryreviewtagAshierarchyParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoveryreviewtagAshierarchyParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(SecurityEdiscoveryreviewtagAshierarchyParameter parameter)
+        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(SecurityEdiscoveryreviewtagAshierarchyParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(SecurityEdiscoveryreviewtagAshierarchyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(SecurityEdiscoveryreviewtagAshierarchyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(parameter, cancellationToken);
         }

@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationtrainingusercoverage?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync()
+        public async ValueTask<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync()
         {
             var p = new SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter();
             return await this.SendAsync<SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter, SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationtrainingusercoverage?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter();
             return await this.SendAsync<SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter, SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationtrainingusercoverage?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync(SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter parameter)
+        public async ValueTask<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync(SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter parameter)
         {
             return await this.SendAsync<SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter, SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationtrainingusercoverage?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync(SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse> SecurityreportsRootGetattacksimulationtrainingUsercoverageAsync(SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityreportsRootGetattacksimulationtrainingUsercoverageParameter, SecurityreportsRootGetattacksimulationtrainingUsercoverageResponse>(parameter, cancellationToken);
         }

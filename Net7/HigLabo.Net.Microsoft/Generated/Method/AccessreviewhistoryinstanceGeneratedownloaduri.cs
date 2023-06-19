@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync()
+        public async ValueTask<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync()
         {
             var p = new AccessreviewhistoryinstanceGeneratedownloaduriParameter();
             return await this.SendAsync<AccessreviewhistoryinstanceGeneratedownloaduriParameter, AccessreviewhistoryinstanceGeneratedownloaduriResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewhistoryinstanceGeneratedownloaduriParameter();
             return await this.SendAsync<AccessreviewhistoryinstanceGeneratedownloaduriParameter, AccessreviewhistoryinstanceGeneratedownloaduriResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync(AccessreviewhistoryinstanceGeneratedownloaduriParameter parameter)
+        public async ValueTask<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync(AccessreviewhistoryinstanceGeneratedownloaduriParameter parameter)
         {
             return await this.SendAsync<AccessreviewhistoryinstanceGeneratedownloaduriParameter, AccessreviewhistoryinstanceGeneratedownloaduriResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync(AccessreviewhistoryinstanceGeneratedownloaduriParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewhistoryinstanceGeneratedownloaduriResponse> AccessreviewhistoryinstanceGeneratedownloaduriAsync(AccessreviewhistoryinstanceGeneratedownloaduriParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewhistoryinstanceGeneratedownloaduriParameter, AccessreviewhistoryinstanceGeneratedownloaduriResponse>(parameter, cancellationToken);
         }

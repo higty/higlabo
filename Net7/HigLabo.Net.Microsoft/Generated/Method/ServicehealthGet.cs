@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealth-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthGetResponse> ServicehealthGetAsync()
+        public async ValueTask<ServicehealthGetResponse> ServicehealthGetAsync()
         {
             var p = new ServicehealthGetParameter();
             return await this.SendAsync<ServicehealthGetParameter, ServicehealthGetResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealth-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthGetResponse> ServicehealthGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicehealthGetResponse> ServicehealthGetAsync(CancellationToken cancellationToken)
         {
             var p = new ServicehealthGetParameter();
             return await this.SendAsync<ServicehealthGetParameter, ServicehealthGetResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealth-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthGetResponse> ServicehealthGetAsync(ServicehealthGetParameter parameter)
+        public async ValueTask<ServicehealthGetResponse> ServicehealthGetAsync(ServicehealthGetParameter parameter)
         {
             return await this.SendAsync<ServicehealthGetParameter, ServicehealthGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealth-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthGetResponse> ServicehealthGetAsync(ServicehealthGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicehealthGetResponse> ServicehealthGetAsync(ServicehealthGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServicehealthGetParameter, ServicehealthGetResponse>(parameter, cancellationToken);
         }

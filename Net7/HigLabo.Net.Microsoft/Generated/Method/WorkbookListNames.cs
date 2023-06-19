@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-names?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListNamesResponse> WorkbookListNamesAsync()
+        public async ValueTask<WorkbookListNamesResponse> WorkbookListNamesAsync()
         {
             var p = new WorkbookListNamesParameter();
             return await this.SendAsync<WorkbookListNamesParameter, WorkbookListNamesResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-names?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListNamesResponse> WorkbookListNamesAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookListNamesResponse> WorkbookListNamesAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookListNamesParameter();
             return await this.SendAsync<WorkbookListNamesParameter, WorkbookListNamesResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-names?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListNamesResponse> WorkbookListNamesAsync(WorkbookListNamesParameter parameter)
+        public async ValueTask<WorkbookListNamesResponse> WorkbookListNamesAsync(WorkbookListNamesParameter parameter)
         {
             return await this.SendAsync<WorkbookListNamesParameter, WorkbookListNamesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-list-names?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookListNamesResponse> WorkbookListNamesAsync(WorkbookListNamesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookListNamesResponse> WorkbookListNamesAsync(WorkbookListNamesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookListNamesParameter, WorkbookListNamesResponse>(parameter, cancellationToken);
         }

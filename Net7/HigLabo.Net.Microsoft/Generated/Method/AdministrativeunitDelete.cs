@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync()
+        public async ValueTask<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync()
         {
             var p = new AdministrativeunitDeleteParameter();
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AdministrativeunitDeleteParameter();
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(AdministrativeunitDeleteParameter parameter)
+        public async ValueTask<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(AdministrativeunitDeleteParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(AdministrativeunitDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(AdministrativeunitDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(parameter, cancellationToken);
         }

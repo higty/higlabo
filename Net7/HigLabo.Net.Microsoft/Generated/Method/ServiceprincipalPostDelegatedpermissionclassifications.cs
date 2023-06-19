@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync()
+        public async ValueTask<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync()
         {
             var p = new ServiceprincipalPostDelegatedpermissionclassificationsParameter();
             return await this.SendAsync<ServiceprincipalPostDelegatedpermissionclassificationsParameter, ServiceprincipalPostDelegatedpermissionclassificationsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalPostDelegatedpermissionclassificationsParameter();
             return await this.SendAsync<ServiceprincipalPostDelegatedpermissionclassificationsParameter, ServiceprincipalPostDelegatedpermissionclassificationsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync(ServiceprincipalPostDelegatedpermissionclassificationsParameter parameter)
+        public async ValueTask<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync(ServiceprincipalPostDelegatedpermissionclassificationsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalPostDelegatedpermissionclassificationsParameter, ServiceprincipalPostDelegatedpermissionclassificationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync(ServiceprincipalPostDelegatedpermissionclassificationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalPostDelegatedpermissionclassificationsResponse> ServiceprincipalPostDelegatedpermissionclassificationsAsync(ServiceprincipalPostDelegatedpermissionclassificationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalPostDelegatedpermissionclassificationsParameter, ServiceprincipalPostDelegatedpermissionclassificationsResponse>(parameter, cancellationToken);
         }

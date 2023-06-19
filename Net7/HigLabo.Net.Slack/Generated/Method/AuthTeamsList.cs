@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<AuthTeamsListResponse> AuthTeamsListAsync()
+        public async ValueTask<AuthTeamsListResponse> AuthTeamsListAsync()
         {
             var p = new AuthTeamsListParameter();
             return await this.SendAsync<AuthTeamsListParameter, AuthTeamsListResponse>(p, CancellationToken.None);
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<AuthTeamsListResponse> AuthTeamsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthTeamsListResponse> AuthTeamsListAsync(CancellationToken cancellationToken)
         {
             var p = new AuthTeamsListParameter();
             return await this.SendAsync<AuthTeamsListParameter, AuthTeamsListResponse>(p, cancellationToken);
@@ -48,21 +48,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<AuthTeamsListResponse> AuthTeamsListAsync(AuthTeamsListParameter parameter)
+        public async ValueTask<AuthTeamsListResponse> AuthTeamsListAsync(AuthTeamsListParameter parameter)
         {
             return await this.SendAsync<AuthTeamsListParameter, AuthTeamsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<AuthTeamsListResponse> AuthTeamsListAsync(AuthTeamsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthTeamsListResponse> AuthTeamsListAsync(AuthTeamsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthTeamsListParameter, AuthTeamsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<List<AuthTeamsListResponse>> AuthTeamsListAsync(PagingContext<AuthTeamsListResponse> context)
+        public async ValueTask<List<AuthTeamsListResponse>> AuthTeamsListAsync(PagingContext<AuthTeamsListResponse> context)
         {
             var p = new AuthTeamsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<List<AuthTeamsListResponse>> AuthTeamsListAsync(CancellationToken cancellationToken, PagingContext<AuthTeamsListResponse> context)
+        public async ValueTask<List<AuthTeamsListResponse>> AuthTeamsListAsync(CancellationToken cancellationToken, PagingContext<AuthTeamsListResponse> context)
         {
             var p = new AuthTeamsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<List<AuthTeamsListResponse>> AuthTeamsListAsync(AuthTeamsListParameter parameter, PagingContext<AuthTeamsListResponse> context)
+        public async ValueTask<List<AuthTeamsListResponse>> AuthTeamsListAsync(AuthTeamsListParameter parameter, PagingContext<AuthTeamsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async Task<List<AuthTeamsListResponse>> AuthTeamsListAsync(AuthTeamsListParameter parameter, PagingContext<AuthTeamsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AuthTeamsListResponse>> AuthTeamsListAsync(AuthTeamsListParameter parameter, PagingContext<AuthTeamsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

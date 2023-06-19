@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync()
+        public async ValueTask<EventSnoozereminderResponse> EventSnoozereminderAsync()
         {
             var p = new EventSnoozereminderParameter();
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventSnoozereminderResponse> EventSnoozereminderAsync(CancellationToken cancellationToken)
         {
             var p = new EventSnoozereminderParameter();
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync(EventSnoozereminderParameter parameter)
+        public async ValueTask<EventSnoozereminderResponse> EventSnoozereminderAsync(EventSnoozereminderParameter parameter)
         {
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync(EventSnoozereminderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventSnoozereminderResponse> EventSnoozereminderAsync(EventSnoozereminderParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(parameter, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationreportoverview-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync()
+        public async ValueTask<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync()
         {
             var p = new SimulationreportoverviewGetParameter();
             return await this.SendAsync<SimulationreportoverviewGetParameter, SimulationreportoverviewGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationreportoverview-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync(CancellationToken cancellationToken)
         {
             var p = new SimulationreportoverviewGetParameter();
             return await this.SendAsync<SimulationreportoverviewGetParameter, SimulationreportoverviewGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationreportoverview-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync(SimulationreportoverviewGetParameter parameter)
+        public async ValueTask<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync(SimulationreportoverviewGetParameter parameter)
         {
             return await this.SendAsync<SimulationreportoverviewGetParameter, SimulationreportoverviewGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationreportoverview-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync(SimulationreportoverviewGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SimulationreportoverviewGetResponse> SimulationreportoverviewGetAsync(SimulationreportoverviewGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SimulationreportoverviewGetParameter, SimulationreportoverviewGetResponse>(parameter, cancellationToken);
         }

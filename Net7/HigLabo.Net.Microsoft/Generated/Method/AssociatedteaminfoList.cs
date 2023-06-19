@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/associatedteaminfo-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync()
+        public async ValueTask<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync()
         {
             var p = new AssociatedteaminfoListParameter();
             return await this.SendAsync<AssociatedteaminfoListParameter, AssociatedteaminfoListResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/associatedteaminfo-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(CancellationToken cancellationToken)
         {
             var p = new AssociatedteaminfoListParameter();
             return await this.SendAsync<AssociatedteaminfoListParameter, AssociatedteaminfoListResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/associatedteaminfo-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(AssociatedteaminfoListParameter parameter)
+        public async ValueTask<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(AssociatedteaminfoListParameter parameter)
         {
             return await this.SendAsync<AssociatedteaminfoListParameter, AssociatedteaminfoListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/associatedteaminfo-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(AssociatedteaminfoListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(AssociatedteaminfoListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AssociatedteaminfoListParameter, AssociatedteaminfoListResponse>(parameter, cancellationToken);
         }

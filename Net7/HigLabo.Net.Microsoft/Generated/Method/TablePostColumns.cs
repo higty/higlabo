@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostColumnsResponse> TablePostColumnsAsync()
+        public async ValueTask<TablePostColumnsResponse> TablePostColumnsAsync()
         {
             var p = new TablePostColumnsParameter();
             return await this.SendAsync<TablePostColumnsParameter, TablePostColumnsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostColumnsResponse> TablePostColumnsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablePostColumnsResponse> TablePostColumnsAsync(CancellationToken cancellationToken)
         {
             var p = new TablePostColumnsParameter();
             return await this.SendAsync<TablePostColumnsParameter, TablePostColumnsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostColumnsResponse> TablePostColumnsAsync(TablePostColumnsParameter parameter)
+        public async ValueTask<TablePostColumnsResponse> TablePostColumnsAsync(TablePostColumnsParameter parameter)
         {
             return await this.SendAsync<TablePostColumnsParameter, TablePostColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostColumnsResponse> TablePostColumnsAsync(TablePostColumnsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablePostColumnsResponse> TablePostColumnsAsync(TablePostColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablePostColumnsParameter, TablePostColumnsResponse>(parameter, cancellationToken);
         }

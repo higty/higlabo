@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync()
+        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync()
         {
             var p = new B2xidentityUserflowListIdentityprovidersParameter();
             return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(CancellationToken cancellationToken)
         {
             var p = new B2xidentityUserflowListIdentityprovidersParameter();
             return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(B2xidentityUserflowListIdentityprovidersParameter parameter)
+        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(B2xidentityUserflowListIdentityprovidersParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(B2xidentityUserflowListIdentityprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(B2xidentityUserflowListIdentityprovidersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(parameter, cancellationToken);
         }

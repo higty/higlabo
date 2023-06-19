@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync()
+        public async ValueTask<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync()
         {
             var p = new TokenlifetimePolicyPostTokenlifetimepoliciesParameter();
             return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new TokenlifetimePolicyPostTokenlifetimepoliciesParameter();
             return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(TokenlifetimePolicyPostTokenlifetimepoliciesParameter parameter)
+        public async ValueTask<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(TokenlifetimePolicyPostTokenlifetimepoliciesParameter parameter)
         {
             return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(TokenlifetimePolicyPostTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(TokenlifetimePolicyPostTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(parameter, cancellationToken);
         }

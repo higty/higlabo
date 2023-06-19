@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync()
+        public async ValueTask<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync()
         {
             var p = new SchemaextensionDeleteParameter();
             return await this.SendAsync<SchemaextensionDeleteParameter, SchemaextensionDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SchemaextensionDeleteParameter();
             return await this.SendAsync<SchemaextensionDeleteParameter, SchemaextensionDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync(SchemaextensionDeleteParameter parameter)
+        public async ValueTask<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync(SchemaextensionDeleteParameter parameter)
         {
             return await this.SendAsync<SchemaextensionDeleteParameter, SchemaextensionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync(SchemaextensionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchemaextensionDeleteResponse> SchemaextensionDeleteAsync(SchemaextensionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchemaextensionDeleteParameter, SchemaextensionDeleteResponse>(parameter, cancellationToken);
         }

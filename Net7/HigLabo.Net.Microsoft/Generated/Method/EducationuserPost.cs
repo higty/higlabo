@@ -157,7 +157,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostResponse> EducationUserPostAsync()
+        public async ValueTask<EducationUserPostResponse> EducationUserPostAsync()
         {
             var p = new EducationUserPostParameter();
             return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(p, CancellationToken.None);
@@ -165,7 +165,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostResponse> EducationUserPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationUserPostResponse> EducationUserPostAsync(CancellationToken cancellationToken)
         {
             var p = new EducationUserPostParameter();
             return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(p, cancellationToken);
@@ -173,14 +173,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostResponse> EducationUserPostAsync(EducationUserPostParameter parameter)
+        public async ValueTask<EducationUserPostResponse> EducationUserPostAsync(EducationUserPostParameter parameter)
         {
             return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostResponse> EducationUserPostAsync(EducationUserPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationUserPostResponse> EducationUserPostAsync(EducationUserPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(parameter, cancellationToken);
         }

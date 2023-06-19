@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync()
+        public async ValueTask<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync()
         {
             var p = new OnenoteListNotebooksParameter();
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(CancellationToken cancellationToken)
         {
             var p = new OnenoteListNotebooksParameter();
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter)
+        public async ValueTask<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter)
         {
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(parameter, cancellationToken);
         }

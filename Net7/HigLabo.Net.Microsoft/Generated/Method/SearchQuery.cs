@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
-        public async Task<SearchQueryResponse> SearchQueryAsync()
+        public async ValueTask<SearchQueryResponse> SearchQueryAsync()
         {
             var p = new SearchQueryParameter();
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
-        public async Task<SearchQueryResponse> SearchQueryAsync(CancellationToken cancellationToken)
+        public async ValueTask<SearchQueryResponse> SearchQueryAsync(CancellationToken cancellationToken)
         {
             var p = new SearchQueryParameter();
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
-        public async Task<SearchQueryResponse> SearchQueryAsync(SearchQueryParameter parameter)
+        public async ValueTask<SearchQueryResponse> SearchQueryAsync(SearchQueryParameter parameter)
         {
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
-        public async Task<SearchQueryResponse> SearchQueryAsync(SearchQueryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SearchQueryResponse> SearchQueryAsync(SearchQueryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(parameter, cancellationToken);
         }

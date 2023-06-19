@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.revokePublicURL
         /// </summary>
-        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string? file)
+        public async ValueTask<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string? file)
         {
             var p = new FilesRevokePublicURLParameter();
             p.File = file;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.revokePublicURL
         /// </summary>
-        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string? file, CancellationToken cancellationToken)
+        public async ValueTask<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesRevokePublicURLParameter();
             p.File = file;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.revokePublicURL
         /// </summary>
-        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(FilesRevokePublicURLParameter parameter)
+        public async ValueTask<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(FilesRevokePublicURLParameter parameter)
         {
             return await this.SendAsync<FilesRevokePublicURLParameter, FilesRevokePublicURLResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.revokePublicURL
         /// </summary>
-        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(FilesRevokePublicURLParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(FilesRevokePublicURLParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRevokePublicURLParameter, FilesRevokePublicURLResponse>(parameter, cancellationToken);
         }

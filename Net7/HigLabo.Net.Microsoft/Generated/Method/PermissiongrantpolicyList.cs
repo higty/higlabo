@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync()
+        public async ValueTask<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync()
         {
             var p = new PermissiongrantPolicyListParameter();
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(CancellationToken cancellationToken)
         {
             var p = new PermissiongrantPolicyListParameter();
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(PermissiongrantPolicyListParameter parameter)
+        public async ValueTask<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(PermissiongrantPolicyListParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(PermissiongrantPolicyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(PermissiongrantPolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(parameter, cancellationToken);
         }

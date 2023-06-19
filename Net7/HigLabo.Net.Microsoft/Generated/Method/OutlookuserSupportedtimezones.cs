@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedtimezones?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync()
+        public async ValueTask<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync()
         {
             var p = new OutlookUserSupportedtimezonesParameter();
             return await this.SendAsync<OutlookUserSupportedtimezonesParameter, OutlookUserSupportedtimezonesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedtimezones?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync(CancellationToken cancellationToken)
         {
             var p = new OutlookUserSupportedtimezonesParameter();
             return await this.SendAsync<OutlookUserSupportedtimezonesParameter, OutlookUserSupportedtimezonesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedtimezones?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync(OutlookUserSupportedtimezonesParameter parameter)
+        public async ValueTask<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync(OutlookUserSupportedtimezonesParameter parameter)
         {
             return await this.SendAsync<OutlookUserSupportedtimezonesParameter, OutlookUserSupportedtimezonesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedtimezones?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync(OutlookUserSupportedtimezonesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserSupportedtimezonesResponse> OutlookUserSupportedtimezonesAsync(OutlookUserSupportedtimezonesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookUserSupportedtimezonesParameter, OutlookUserSupportedtimezonesResponse>(parameter, cancellationToken);
         }

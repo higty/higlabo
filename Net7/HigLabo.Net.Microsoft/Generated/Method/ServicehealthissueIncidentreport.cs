@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync()
+        public async ValueTask<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync()
         {
             var p = new ServicehealthissueIncidentreportParameter();
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(CancellationToken cancellationToken)
         {
             var p = new ServicehealthissueIncidentreportParameter();
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(ServicehealthissueIncidentreportParameter parameter)
+        public async ValueTask<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(ServicehealthissueIncidentreportParameter parameter)
         {
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(ServicehealthissueIncidentreportParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(ServicehealthissueIncidentreportParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(parameter, cancellationToken);
         }

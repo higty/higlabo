@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleShareResponse> ScheduleShareAsync()
+        public async ValueTask<ScheduleShareResponse> ScheduleShareAsync()
         {
             var p = new ScheduleShareParameter();
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleShareResponse> ScheduleShareAsync(CancellationToken cancellationToken)
+        public async ValueTask<ScheduleShareResponse> ScheduleShareAsync(CancellationToken cancellationToken)
         {
             var p = new ScheduleShareParameter();
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleShareResponse> ScheduleShareAsync(ScheduleShareParameter parameter)
+        public async ValueTask<ScheduleShareResponse> ScheduleShareAsync(ScheduleShareParameter parameter)
         {
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleShareResponse> ScheduleShareAsync(ScheduleShareParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ScheduleShareResponse> ScheduleShareAsync(ScheduleShareParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(parameter, cancellationToken);
         }

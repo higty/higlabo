@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostForwardResponse> PostForwardAsync()
+        public async ValueTask<PostForwardResponse> PostForwardAsync()
         {
             var p = new PostForwardParameter();
             return await this.SendAsync<PostForwardParameter, PostForwardResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostForwardResponse> PostForwardAsync(CancellationToken cancellationToken)
+        public async ValueTask<PostForwardResponse> PostForwardAsync(CancellationToken cancellationToken)
         {
             var p = new PostForwardParameter();
             return await this.SendAsync<PostForwardParameter, PostForwardResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostForwardResponse> PostForwardAsync(PostForwardParameter parameter)
+        public async ValueTask<PostForwardResponse> PostForwardAsync(PostForwardParameter parameter)
         {
             return await this.SendAsync<PostForwardParameter, PostForwardResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostForwardResponse> PostForwardAsync(PostForwardParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PostForwardResponse> PostForwardAsync(PostForwardParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PostForwardParameter, PostForwardResponse>(parameter, cancellationToken);
         }

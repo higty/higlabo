@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync()
+        public async ValueTask<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync()
         {
             var p = new EducationSchoolDeltaParameter();
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new EducationSchoolDeltaParameter();
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter)
+        public async ValueTask<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter)
         {
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, cancellationToken);
         }

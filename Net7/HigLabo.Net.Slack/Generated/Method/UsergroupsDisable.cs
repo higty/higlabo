@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.disable
         /// </summary>
-        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(string? usergroup)
+        public async ValueTask<UsergroupsDisableResponse> UsergroupsDisableAsync(string? usergroup)
         {
             var p = new UsergroupsDisableParameter();
             p.Usergroup = usergroup;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.disable
         /// </summary>
-        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(string? usergroup, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsDisableResponse> UsergroupsDisableAsync(string? usergroup, CancellationToken cancellationToken)
         {
             var p = new UsergroupsDisableParameter();
             p.Usergroup = usergroup;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.disable
         /// </summary>
-        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(UsergroupsDisableParameter parameter)
+        public async ValueTask<UsergroupsDisableResponse> UsergroupsDisableAsync(UsergroupsDisableParameter parameter)
         {
             return await this.SendAsync<UsergroupsDisableParameter, UsergroupsDisableResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/usergroups.disable
         /// </summary>
-        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(UsergroupsDisableParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsDisableResponse> UsergroupsDisableAsync(UsergroupsDisableParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsergroupsDisableParameter, UsergroupsDisableResponse>(parameter, cancellationToken);
         }

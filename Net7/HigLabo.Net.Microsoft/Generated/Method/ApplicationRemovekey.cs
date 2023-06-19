@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync()
+        public async ValueTask<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync()
         {
             var p = new ApplicationRemovekeyParameter();
             return await this.SendAsync<ApplicationRemovekeyParameter, ApplicationRemovekeyResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationRemovekeyParameter();
             return await this.SendAsync<ApplicationRemovekeyParameter, ApplicationRemovekeyResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync(ApplicationRemovekeyParameter parameter)
+        public async ValueTask<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync(ApplicationRemovekeyParameter parameter)
         {
             return await this.SendAsync<ApplicationRemovekeyParameter, ApplicationRemovekeyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync(ApplicationRemovekeyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationRemovekeyResponse> ApplicationRemovekeyAsync(ApplicationRemovekeyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationRemovekeyParameter, ApplicationRemovekeyResponse>(parameter, cancellationToken);
         }

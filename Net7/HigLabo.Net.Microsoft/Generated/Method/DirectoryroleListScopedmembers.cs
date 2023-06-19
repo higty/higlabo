@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync()
+        public async ValueTask<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync()
         {
             var p = new DirectoryroleListScopedmembersParameter();
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryroleListScopedmembersParameter();
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(DirectoryroleListScopedmembersParameter parameter)
+        public async ValueTask<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(DirectoryroleListScopedmembersParameter parameter)
         {
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(DirectoryroleListScopedmembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(DirectoryroleListScopedmembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(parameter, cancellationToken);
         }

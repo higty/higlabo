@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync()
+        public async ValueTask<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync()
         {
             var p = new BrowsersitelistPublishParameter();
             return await this.SendAsync<BrowsersitelistPublishParameter, BrowsersitelistPublishResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersitelistPublishParameter();
             return await this.SendAsync<BrowsersitelistPublishParameter, BrowsersitelistPublishResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync(BrowsersitelistPublishParameter parameter)
+        public async ValueTask<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync(BrowsersitelistPublishParameter parameter)
         {
             return await this.SendAsync<BrowsersitelistPublishParameter, BrowsersitelistPublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync(BrowsersitelistPublishParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistPublishResponse> BrowsersitelistPublishAsync(BrowsersitelistPublishParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersitelistPublishParameter, BrowsersitelistPublishResponse>(parameter, cancellationToken);
         }

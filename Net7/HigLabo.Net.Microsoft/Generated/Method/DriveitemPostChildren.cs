@@ -150,7 +150,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync()
+        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync()
         {
             var p = new DriveitemPostChildrenParameter();
             return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(p, CancellationToken.None);
@@ -158,7 +158,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemPostChildrenParameter();
             return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(p, cancellationToken);
@@ -166,14 +166,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(DriveitemPostChildrenParameter parameter)
+        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(DriveitemPostChildrenParameter parameter)
         {
             return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(DriveitemPostChildrenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(DriveitemPostChildrenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(parameter, cancellationToken);
         }

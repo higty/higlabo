@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.invite
         /// </summary>
-        public async Task<AdminUsersInviteResponse> AdminUsersInviteAsync(string? channel_Ids, string? email, string? team_Id)
+        public async ValueTask<AdminUsersInviteResponse> AdminUsersInviteAsync(string? channel_Ids, string? email, string? team_Id)
         {
             var p = new AdminUsersInviteParameter();
             p.Channel_Ids = channel_Ids;
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.invite
         /// </summary>
-        public async Task<AdminUsersInviteResponse> AdminUsersInviteAsync(string? channel_Ids, string? email, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersInviteResponse> AdminUsersInviteAsync(string? channel_Ids, string? email, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersInviteParameter();
             p.Channel_Ids = channel_Ids;
@@ -50,14 +50,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.invite
         /// </summary>
-        public async Task<AdminUsersInviteResponse> AdminUsersInviteAsync(AdminUsersInviteParameter parameter)
+        public async ValueTask<AdminUsersInviteResponse> AdminUsersInviteAsync(AdminUsersInviteParameter parameter)
         {
             return await this.SendAsync<AdminUsersInviteParameter, AdminUsersInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.invite
         /// </summary>
-        public async Task<AdminUsersInviteResponse> AdminUsersInviteAsync(AdminUsersInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersInviteResponse> AdminUsersInviteAsync(AdminUsersInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersInviteParameter, AdminUsersInviteResponse>(parameter, cancellationToken);
         }

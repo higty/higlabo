@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync()
+        public async ValueTask<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync()
         {
             var p = new ApplicationListFederatedidentitycredentialsParameter();
             return await this.SendAsync<ApplicationListFederatedidentitycredentialsParameter, ApplicationListFederatedidentitycredentialsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationListFederatedidentitycredentialsParameter();
             return await this.SendAsync<ApplicationListFederatedidentitycredentialsParameter, ApplicationListFederatedidentitycredentialsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(ApplicationListFederatedidentitycredentialsParameter parameter)
+        public async ValueTask<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(ApplicationListFederatedidentitycredentialsParameter parameter)
         {
             return await this.SendAsync<ApplicationListFederatedidentitycredentialsParameter, ApplicationListFederatedidentitycredentialsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(ApplicationListFederatedidentitycredentialsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(ApplicationListFederatedidentitycredentialsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListFederatedidentitycredentialsParameter, ApplicationListFederatedidentitycredentialsResponse>(parameter, cancellationToken);
         }

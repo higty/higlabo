@@ -309,7 +309,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetResponse> UserGetAsync()
+        public async ValueTask<UserGetResponse> UserGetAsync()
         {
             var p = new UserGetParameter();
             return await this.SendAsync<UserGetParameter, UserGetResponse>(p, CancellationToken.None);
@@ -317,7 +317,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetResponse> UserGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserGetResponse> UserGetAsync(CancellationToken cancellationToken)
         {
             var p = new UserGetParameter();
             return await this.SendAsync<UserGetParameter, UserGetResponse>(p, cancellationToken);
@@ -325,14 +325,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetResponse> UserGetAsync(UserGetParameter parameter)
+        public async ValueTask<UserGetResponse> UserGetAsync(UserGetParameter parameter)
         {
             return await this.SendAsync<UserGetParameter, UserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetResponse> UserGetAsync(UserGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserGetResponse> UserGetAsync(UserGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserGetParameter, UserGetResponse>(parameter, cancellationToken);
         }

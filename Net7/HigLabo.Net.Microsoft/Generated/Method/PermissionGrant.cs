@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-grant?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGrantResponse> PermissionGrantAsync()
+        public async ValueTask<PermissionGrantResponse> PermissionGrantAsync()
         {
             var p = new PermissionGrantParameter();
             return await this.SendAsync<PermissionGrantParameter, PermissionGrantResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-grant?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGrantResponse> PermissionGrantAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissionGrantResponse> PermissionGrantAsync(CancellationToken cancellationToken)
         {
             var p = new PermissionGrantParameter();
             return await this.SendAsync<PermissionGrantParameter, PermissionGrantResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-grant?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGrantResponse> PermissionGrantAsync(PermissionGrantParameter parameter)
+        public async ValueTask<PermissionGrantResponse> PermissionGrantAsync(PermissionGrantParameter parameter)
         {
             return await this.SendAsync<PermissionGrantParameter, PermissionGrantResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-grant?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGrantResponse> PermissionGrantAsync(PermissionGrantParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissionGrantResponse> PermissionGrantAsync(PermissionGrantParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissionGrantParameter, PermissionGrantResponse>(parameter, cancellationToken);
         }

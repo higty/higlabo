@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync()
+        public async ValueTask<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync()
         {
             var p = new AdminAppsRestrictedListParameter();
             return await this.SendAsync<AdminAppsRestrictedListParameter, AdminAppsRestrictedListResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAppsRestrictedListParameter();
             return await this.SendAsync<AdminAppsRestrictedListParameter, AdminAppsRestrictedListResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter)
+        public async ValueTask<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter)
         {
             return await this.SendAsync<AdminAppsRestrictedListParameter, AdminAppsRestrictedListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRestrictedListResponse> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsRestrictedListParameter, AdminAppsRestrictedListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(PagingContext<AdminAppsRestrictedListResponse> context)
+        public async ValueTask<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(PagingContext<AdminAppsRestrictedListResponse> context)
         {
             var p = new AdminAppsRestrictedListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsRestrictedListResponse> context)
+        public async ValueTask<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsRestrictedListResponse> context)
         {
             var p = new AdminAppsRestrictedListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter, PagingContext<AdminAppsRestrictedListResponse> context)
+        public async ValueTask<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter, PagingContext<AdminAppsRestrictedListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async Task<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter, PagingContext<AdminAppsRestrictedListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(AdminAppsRestrictedListParameter parameter, PagingContext<AdminAppsRestrictedListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

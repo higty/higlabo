@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync()
+        public async ValueTask<TodotaskDeltaResponse> TodotaskDeltaAsync()
         {
             var p = new TodotaskDeltaParameter();
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskDeltaResponse> TodotaskDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new TodotaskDeltaParameter();
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync(TodotaskDeltaParameter parameter)
+        public async ValueTask<TodotaskDeltaResponse> TodotaskDeltaAsync(TodotaskDeltaParameter parameter)
         {
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync(TodotaskDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskDeltaResponse> TodotaskDeltaAsync(TodotaskDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(parameter, cancellationToken);
         }

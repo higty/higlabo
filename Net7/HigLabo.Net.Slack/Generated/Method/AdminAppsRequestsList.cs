@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync()
+        public async ValueTask<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync()
         {
             var p = new AdminAppsRequestsListParameter();
             return await this.SendAsync<AdminAppsRequestsListParameter, AdminAppsRequestsListResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAppsRequestsListParameter();
             return await this.SendAsync<AdminAppsRequestsListParameter, AdminAppsRequestsListResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter)
+        public async ValueTask<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter)
         {
             return await this.SendAsync<AdminAppsRequestsListParameter, AdminAppsRequestsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRequestsListResponse> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsRequestsListParameter, AdminAppsRequestsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(PagingContext<AdminAppsRequestsListResponse> context)
+        public async ValueTask<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(PagingContext<AdminAppsRequestsListResponse> context)
         {
             var p = new AdminAppsRequestsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsRequestsListResponse> context)
+        public async ValueTask<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsRequestsListResponse> context)
         {
             var p = new AdminAppsRequestsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter, PagingContext<AdminAppsRequestsListResponse> context)
+        public async ValueTask<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter, PagingContext<AdminAppsRequestsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.list
         /// </summary>
-        public async Task<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter, PagingContext<AdminAppsRequestsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminAppsRequestsListResponse>> AdminAppsRequestsListAsync(AdminAppsRequestsListParameter parameter, PagingContext<AdminAppsRequestsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

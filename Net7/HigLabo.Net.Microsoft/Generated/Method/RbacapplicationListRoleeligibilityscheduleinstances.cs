@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleeligibilityscheduleinstances?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync()
+        public async ValueTask<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync()
         {
             var p = new RbacapplicationListRoleeligibilityscheduleinstancesParameter();
             return await this.SendAsync<RbacapplicationListRoleeligibilityscheduleinstancesParameter, RbacapplicationListRoleeligibilityscheduleinstancesResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleeligibilityscheduleinstances?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync(CancellationToken cancellationToken)
         {
             var p = new RbacapplicationListRoleeligibilityscheduleinstancesParameter();
             return await this.SendAsync<RbacapplicationListRoleeligibilityscheduleinstancesParameter, RbacapplicationListRoleeligibilityscheduleinstancesResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleeligibilityscheduleinstances?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync(RbacapplicationListRoleeligibilityscheduleinstancesParameter parameter)
+        public async ValueTask<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync(RbacapplicationListRoleeligibilityscheduleinstancesParameter parameter)
         {
             return await this.SendAsync<RbacapplicationListRoleeligibilityscheduleinstancesParameter, RbacapplicationListRoleeligibilityscheduleinstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleeligibilityscheduleinstances?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync(RbacapplicationListRoleeligibilityscheduleinstancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RbacapplicationListRoleeligibilityscheduleinstancesResponse> RbacapplicationListRoleeligibilityscheduleinstancesAsync(RbacapplicationListRoleeligibilityscheduleinstancesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RbacapplicationListRoleeligibilityscheduleinstancesParameter, RbacapplicationListRoleeligibilityscheduleinstancesResponse>(parameter, cancellationToken);
         }

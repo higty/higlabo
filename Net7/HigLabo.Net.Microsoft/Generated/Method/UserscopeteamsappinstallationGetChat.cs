@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync()
+        public async ValueTask<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync()
         {
             var p = new UserscopeteamsappinstallationGetChatParameter();
             return await this.SendAsync<UserscopeteamsappinstallationGetChatParameter, UserscopeteamsappinstallationGetChatResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync(CancellationToken cancellationToken)
         {
             var p = new UserscopeteamsappinstallationGetChatParameter();
             return await this.SendAsync<UserscopeteamsappinstallationGetChatParameter, UserscopeteamsappinstallationGetChatResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync(UserscopeteamsappinstallationGetChatParameter parameter)
+        public async ValueTask<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync(UserscopeteamsappinstallationGetChatParameter parameter)
         {
             return await this.SendAsync<UserscopeteamsappinstallationGetChatParameter, UserscopeteamsappinstallationGetChatResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync(UserscopeteamsappinstallationGetChatParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserscopeteamsappinstallationGetChatResponse> UserscopeteamsappinstallationGetChatAsync(UserscopeteamsappinstallationGetChatParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserscopeteamsappinstallationGetChatParameter, UserscopeteamsappinstallationGetChatResponse>(parameter, cancellationToken);
         }

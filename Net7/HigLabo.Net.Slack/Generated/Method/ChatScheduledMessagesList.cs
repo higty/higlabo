@@ -35,7 +35,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync()
+        public async ValueTask<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync()
         {
             var p = new ChatScheduledMessagesListParameter();
             return await this.SendAsync<ChatScheduledMessagesListParameter, ChatScheduledMessagesListResponse>(p, CancellationToken.None);
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync(CancellationToken cancellationToken)
         {
             var p = new ChatScheduledMessagesListParameter();
             return await this.SendAsync<ChatScheduledMessagesListParameter, ChatScheduledMessagesListResponse>(p, cancellationToken);
@@ -51,21 +51,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter)
+        public async ValueTask<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter)
         {
             return await this.SendAsync<ChatScheduledMessagesListParameter, ChatScheduledMessagesListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatScheduledMessagesListResponse> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatScheduledMessagesListParameter, ChatScheduledMessagesListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(PagingContext<ChatScheduledMessagesListResponse> context)
+        public async ValueTask<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(PagingContext<ChatScheduledMessagesListResponse> context)
         {
             var p = new ChatScheduledMessagesListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(CancellationToken cancellationToken, PagingContext<ChatScheduledMessagesListResponse> context)
+        public async ValueTask<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(CancellationToken cancellationToken, PagingContext<ChatScheduledMessagesListResponse> context)
         {
             var p = new ChatScheduledMessagesListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter, PagingContext<ChatScheduledMessagesListResponse> context)
+        public async ValueTask<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter, PagingContext<ChatScheduledMessagesListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async Task<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter, PagingContext<ChatScheduledMessagesListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(ChatScheduledMessagesListParameter parameter, PagingContext<ChatScheduledMessagesListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

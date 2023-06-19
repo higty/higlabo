@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync()
+        public async ValueTask<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync()
         {
             var p = new SharedwithchannelteaminfoDeleteParameter();
             return await this.SendAsync<SharedwithchannelteaminfoDeleteParameter, SharedwithchannelteaminfoDeleteResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SharedwithchannelteaminfoDeleteParameter();
             return await this.SendAsync<SharedwithchannelteaminfoDeleteParameter, SharedwithchannelteaminfoDeleteResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync(SharedwithchannelteaminfoDeleteParameter parameter)
+        public async ValueTask<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync(SharedwithchannelteaminfoDeleteParameter parameter)
         {
             return await this.SendAsync<SharedwithchannelteaminfoDeleteParameter, SharedwithchannelteaminfoDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync(SharedwithchannelteaminfoDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoDeleteResponse> SharedwithchannelteaminfoDeleteAsync(SharedwithchannelteaminfoDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SharedwithchannelteaminfoDeleteParameter, SharedwithchannelteaminfoDeleteResponse>(parameter, cancellationToken);
         }

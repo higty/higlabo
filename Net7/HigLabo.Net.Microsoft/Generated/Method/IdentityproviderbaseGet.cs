@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync()
+        public async ValueTask<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync()
         {
             var p = new IdentityproviderbaseGetParameter();
             return await this.SendAsync<IdentityproviderbaseGetParameter, IdentityproviderbaseGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityproviderbaseGetParameter();
             return await this.SendAsync<IdentityproviderbaseGetParameter, IdentityproviderbaseGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync(IdentityproviderbaseGetParameter parameter)
+        public async ValueTask<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync(IdentityproviderbaseGetParameter parameter)
         {
             return await this.SendAsync<IdentityproviderbaseGetParameter, IdentityproviderbaseGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync(IdentityproviderbaseGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderbaseGetResponse> IdentityproviderbaseGetAsync(IdentityproviderbaseGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityproviderbaseGetParameter, IdentityproviderbaseGetResponse>(parameter, cancellationToken);
         }

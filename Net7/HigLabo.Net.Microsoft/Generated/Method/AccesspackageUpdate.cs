@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageUpdateResponse> AccesspackageUpdateAsync()
+        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync()
         {
             var p = new AccesspackageUpdateParameter();
             return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageUpdateResponse> AccesspackageUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageUpdateParameter();
             return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageUpdateResponse> AccesspackageUpdateAsync(AccesspackageUpdateParameter parameter)
+        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync(AccesspackageUpdateParameter parameter)
         {
             return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageUpdateResponse> AccesspackageUpdateAsync(AccesspackageUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync(AccesspackageUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(parameter, cancellationToken);
         }

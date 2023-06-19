@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.setSnooze
         /// </summary>
-        public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync()
+        public async ValueTask<DndSetSnoozeResponse> DndSetSnoozeAsync()
         {
             var p = new DndSetSnoozeParameter();
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(p, CancellationToken.None);
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.setSnooze
         /// </summary>
-        public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync(CancellationToken cancellationToken)
+        public async ValueTask<DndSetSnoozeResponse> DndSetSnoozeAsync(CancellationToken cancellationToken)
         {
             var p = new DndSetSnoozeParameter();
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(p, cancellationToken);
@@ -35,14 +35,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.setSnooze
         /// </summary>
-        public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync(DndSetSnoozeParameter parameter)
+        public async ValueTask<DndSetSnoozeResponse> DndSetSnoozeAsync(DndSetSnoozeParameter parameter)
         {
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/dnd.setSnooze
         /// </summary>
-        public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync(DndSetSnoozeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DndSetSnoozeResponse> DndSetSnoozeAsync(DndSetSnoozeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(parameter, cancellationToken);
         }

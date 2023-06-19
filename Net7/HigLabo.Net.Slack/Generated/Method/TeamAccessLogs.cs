@@ -35,7 +35,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync()
+        public async ValueTask<TeamAccessLogsResponse> TeamAccessLogsAsync()
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(p, CancellationToken.None);
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamAccessLogsResponse> TeamAccessLogsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(p, cancellationToken);
@@ -51,21 +51,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync(TeamAccessLogsParameter parameter)
+        public async ValueTask<TeamAccessLogsResponse> TeamAccessLogsAsync(TeamAccessLogsParameter parameter)
         {
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamAccessLogsResponse> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(PagingContext<TeamAccessLogsResponse> context)
+        public async ValueTask<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(PagingContext<TeamAccessLogsResponse> context)
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(CancellationToken cancellationToken, PagingContext<TeamAccessLogsResponse> context)
+        public async ValueTask<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(CancellationToken cancellationToken, PagingContext<TeamAccessLogsResponse> context)
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, PagingContext<TeamAccessLogsResponse> context)
+        public async ValueTask<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, PagingContext<TeamAccessLogsResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async Task<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, PagingContext<TeamAccessLogsResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, PagingContext<TeamAccessLogsResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

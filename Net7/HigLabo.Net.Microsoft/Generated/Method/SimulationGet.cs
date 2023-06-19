@@ -130,7 +130,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationGetResponse> SimulationGetAsync()
+        public async ValueTask<SimulationGetResponse> SimulationGetAsync()
         {
             var p = new SimulationGetParameter();
             return await this.SendAsync<SimulationGetParameter, SimulationGetResponse>(p, CancellationToken.None);
@@ -138,7 +138,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationGetResponse> SimulationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SimulationGetResponse> SimulationGetAsync(CancellationToken cancellationToken)
         {
             var p = new SimulationGetParameter();
             return await this.SendAsync<SimulationGetParameter, SimulationGetResponse>(p, cancellationToken);
@@ -146,14 +146,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationGetResponse> SimulationGetAsync(SimulationGetParameter parameter)
+        public async ValueTask<SimulationGetResponse> SimulationGetAsync(SimulationGetParameter parameter)
         {
             return await this.SendAsync<SimulationGetParameter, SimulationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationGetResponse> SimulationGetAsync(SimulationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SimulationGetResponse> SimulationGetAsync(SimulationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SimulationGetParameter, SimulationGetResponse>(parameter, cancellationToken);
         }

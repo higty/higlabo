@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync()
+        public async ValueTask<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync()
         {
             var p = new B2xidentityUserflowGetParameter();
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(CancellationToken cancellationToken)
         {
             var p = new B2xidentityUserflowGetParameter();
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter)
+        public async ValueTask<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(parameter, cancellationToken);
         }

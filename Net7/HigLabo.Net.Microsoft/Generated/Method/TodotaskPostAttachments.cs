@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync()
+        public async ValueTask<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync()
         {
             var p = new TodotaskPostAttachmentsParameter();
             return await this.SendAsync<TodotaskPostAttachmentsParameter, TodotaskPostAttachmentsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new TodotaskPostAttachmentsParameter();
             return await this.SendAsync<TodotaskPostAttachmentsParameter, TodotaskPostAttachmentsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync(TodotaskPostAttachmentsParameter parameter)
+        public async ValueTask<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync(TodotaskPostAttachmentsParameter parameter)
         {
             return await this.SendAsync<TodotaskPostAttachmentsParameter, TodotaskPostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync(TodotaskPostAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskPostAttachmentsResponse> TodotaskPostAttachmentsAsync(TodotaskPostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskPostAttachmentsParameter, TodotaskPostAttachmentsResponse>(parameter, cancellationToken);
         }

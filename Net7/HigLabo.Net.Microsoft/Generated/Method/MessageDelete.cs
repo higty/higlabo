@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageDeleteResponse> MessageDeleteAsync()
+        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync()
         {
             var p = new MessageDeleteParameter();
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageDeleteResponse> MessageDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new MessageDeleteParameter();
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter)
+        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter)
         {
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(parameter, cancellationToken);
         }

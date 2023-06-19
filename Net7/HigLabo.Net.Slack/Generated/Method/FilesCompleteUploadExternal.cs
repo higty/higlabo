@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.completeUploadExternal
         /// </summary>
-        public async Task<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(string? files)
+        public async ValueTask<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(string? files)
         {
             var p = new FilesCompleteUploadExternalParameter();
             p.Files = files;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.completeUploadExternal
         /// </summary>
-        public async Task<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(string? files, CancellationToken cancellationToken)
+        public async ValueTask<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(string? files, CancellationToken cancellationToken)
         {
             var p = new FilesCompleteUploadExternalParameter();
             p.Files = files;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.completeUploadExternal
         /// </summary>
-        public async Task<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(FilesCompleteUploadExternalParameter parameter)
+        public async ValueTask<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(FilesCompleteUploadExternalParameter parameter)
         {
             return await this.SendAsync<FilesCompleteUploadExternalParameter, FilesCompleteUploadExternalResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.completeUploadExternal
         /// </summary>
-        public async Task<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(FilesCompleteUploadExternalParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesCompleteUploadExternalResponse> FilesCompleteUploadExternalAsync(FilesCompleteUploadExternalParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesCompleteUploadExternalParameter, FilesCompleteUploadExternalResponse>(parameter, cancellationToken);
         }

@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync()
+        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync()
         {
             var p = new ServiceprincipalPostOwnersParameter();
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalPostOwnersParameter();
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter)
+        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(parameter, cancellationToken);
         }

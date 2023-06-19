@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync()
+        public async ValueTask<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync()
         {
             var p = new ExternalConnectorsExternalGroupDeleteParameter();
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsExternalGroupDeleteParameter();
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(ExternalConnectorsExternalGroupDeleteParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(ExternalConnectorsExternalGroupDeleteParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(ExternalConnectorsExternalGroupDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(ExternalConnectorsExternalGroupDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(parameter, cancellationToken);
         }

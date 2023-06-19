@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListThreadsResponse> GroupListThreadsAsync()
+        public async ValueTask<GroupListThreadsResponse> GroupListThreadsAsync()
         {
             var p = new GroupListThreadsParameter();
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListThreadsResponse> GroupListThreadsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListThreadsResponse> GroupListThreadsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListThreadsParameter();
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter)
+        public async ValueTask<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter)
         {
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(parameter, cancellationToken);
         }

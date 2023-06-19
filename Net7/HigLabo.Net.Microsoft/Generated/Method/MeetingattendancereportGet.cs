@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync()
+        public async ValueTask<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync()
         {
             var p = new MeetingattendancereportGetParameter();
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(CancellationToken cancellationToken)
         {
             var p = new MeetingattendancereportGetParameter();
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(MeetingattendancereportGetParameter parameter)
+        public async ValueTask<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(MeetingattendancereportGetParameter parameter)
         {
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(MeetingattendancereportGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(MeetingattendancereportGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(parameter, cancellationToken);
         }

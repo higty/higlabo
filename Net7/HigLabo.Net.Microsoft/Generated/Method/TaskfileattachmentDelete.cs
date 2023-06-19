@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync()
+        public async ValueTask<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync()
         {
             var p = new TaskfileattachmentDeleteParameter();
             return await this.SendAsync<TaskfileattachmentDeleteParameter, TaskfileattachmentDeleteResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TaskfileattachmentDeleteParameter();
             return await this.SendAsync<TaskfileattachmentDeleteParameter, TaskfileattachmentDeleteResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync(TaskfileattachmentDeleteParameter parameter)
+        public async ValueTask<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync(TaskfileattachmentDeleteParameter parameter)
         {
             return await this.SendAsync<TaskfileattachmentDeleteParameter, TaskfileattachmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync(TaskfileattachmentDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TaskfileattachmentDeleteResponse> TaskfileattachmentDeleteAsync(TaskfileattachmentDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TaskfileattachmentDeleteParameter, TaskfileattachmentDeleteResponse>(parameter, cancellationToken);
         }

@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeMergeResponse> RangeMergeAsync()
+        public async ValueTask<RangeMergeResponse> RangeMergeAsync()
         {
             var p = new RangeMergeParameter();
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeMergeResponse> RangeMergeAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeMergeResponse> RangeMergeAsync(CancellationToken cancellationToken)
         {
             var p = new RangeMergeParameter();
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeMergeResponse> RangeMergeAsync(RangeMergeParameter parameter)
+        public async ValueTask<RangeMergeResponse> RangeMergeAsync(RangeMergeParameter parameter)
         {
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeMergeResponse> RangeMergeAsync(RangeMergeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeMergeResponse> RangeMergeAsync(RangeMergeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(parameter, cancellationToken);
         }

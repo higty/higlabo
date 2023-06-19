@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<ConversationsListResponse> ConversationsListAsync()
+        public async ValueTask<ConversationsListResponse> ConversationsListAsync()
         {
             var p = new ConversationsListParameter();
             return await this.SendAsync<ConversationsListParameter, ConversationsListResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<ConversationsListResponse> ConversationsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConversationsListResponse> ConversationsListAsync(CancellationToken cancellationToken)
         {
             var p = new ConversationsListParameter();
             return await this.SendAsync<ConversationsListParameter, ConversationsListResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<ConversationsListResponse> ConversationsListAsync(ConversationsListParameter parameter)
+        public async ValueTask<ConversationsListResponse> ConversationsListAsync(ConversationsListParameter parameter)
         {
             return await this.SendAsync<ConversationsListParameter, ConversationsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<ConversationsListResponse> ConversationsListAsync(ConversationsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsListResponse> ConversationsListAsync(ConversationsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsListParameter, ConversationsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<List<ConversationsListResponse>> ConversationsListAsync(PagingContext<ConversationsListResponse> context)
+        public async ValueTask<List<ConversationsListResponse>> ConversationsListAsync(PagingContext<ConversationsListResponse> context)
         {
             var p = new ConversationsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<List<ConversationsListResponse>> ConversationsListAsync(CancellationToken cancellationToken, PagingContext<ConversationsListResponse> context)
+        public async ValueTask<List<ConversationsListResponse>> ConversationsListAsync(CancellationToken cancellationToken, PagingContext<ConversationsListResponse> context)
         {
             var p = new ConversationsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<List<ConversationsListResponse>> ConversationsListAsync(ConversationsListParameter parameter, PagingContext<ConversationsListResponse> context)
+        public async ValueTask<List<ConversationsListResponse>> ConversationsListAsync(ConversationsListParameter parameter, PagingContext<ConversationsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.list
         /// </summary>
-        public async Task<List<ConversationsListResponse>> ConversationsListAsync(ConversationsListParameter parameter, PagingContext<ConversationsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ConversationsListResponse>> ConversationsListAsync(ConversationsListParameter parameter, PagingContext<ConversationsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

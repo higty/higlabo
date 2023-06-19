@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeltaResponse> DeviceDeltaAsync()
+        public async ValueTask<DeviceDeltaResponse> DeviceDeltaAsync()
         {
             var p = new DeviceDeltaParameter();
             return await this.SendAsync<DeviceDeltaParameter, DeviceDeltaResponse>(p, CancellationToken.None);
@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeltaResponse> DeviceDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceDeltaResponse> DeviceDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceDeltaParameter();
             return await this.SendAsync<DeviceDeltaParameter, DeviceDeltaResponse>(p, cancellationToken);
@@ -107,14 +107,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeltaResponse> DeviceDeltaAsync(DeviceDeltaParameter parameter)
+        public async ValueTask<DeviceDeltaResponse> DeviceDeltaAsync(DeviceDeltaParameter parameter)
         {
             return await this.SendAsync<DeviceDeltaParameter, DeviceDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeltaResponse> DeviceDeltaAsync(DeviceDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceDeltaResponse> DeviceDeltaAsync(DeviceDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceDeltaParameter, DeviceDeltaResponse>(parameter, cancellationToken);
         }

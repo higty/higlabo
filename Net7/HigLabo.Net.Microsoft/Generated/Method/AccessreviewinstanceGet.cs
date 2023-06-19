@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync()
+        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync()
         {
             var p = new AccessreviewinstanceGetParameter();
             return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceGetParameter();
             return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(AccessreviewinstanceGetParameter parameter)
+        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(AccessreviewinstanceGetParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(AccessreviewinstanceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(AccessreviewinstanceGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(parameter, cancellationToken);
         }

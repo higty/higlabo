@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync()
+        public async ValueTask<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync()
         {
             var p = new AuthenticationcombinationConfigurationGetParameter();
             return await this.SendAsync<AuthenticationcombinationConfigurationGetParameter, AuthenticationcombinationConfigurationGetResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationcombinationConfigurationGetParameter();
             return await this.SendAsync<AuthenticationcombinationConfigurationGetParameter, AuthenticationcombinationConfigurationGetResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync(AuthenticationcombinationConfigurationGetParameter parameter)
+        public async ValueTask<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync(AuthenticationcombinationConfigurationGetParameter parameter)
         {
             return await this.SendAsync<AuthenticationcombinationConfigurationGetParameter, AuthenticationcombinationConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync(AuthenticationcombinationConfigurationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcombinationConfigurationGetResponse> AuthenticationcombinationConfigurationGetAsync(AuthenticationcombinationConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationcombinationConfigurationGetParameter, AuthenticationcombinationConfigurationGetResponse>(parameter, cancellationToken);
         }

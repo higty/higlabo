@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync()
+        public async ValueTask<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync()
         {
             var p = new ServiceupdatemessageMarkreadParameter();
             return await this.SendAsync<ServiceupdatemessageMarkreadParameter, ServiceupdatemessageMarkreadResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceupdatemessageMarkreadParameter();
             return await this.SendAsync<ServiceupdatemessageMarkreadParameter, ServiceupdatemessageMarkreadResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync(ServiceupdatemessageMarkreadParameter parameter)
+        public async ValueTask<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync(ServiceupdatemessageMarkreadParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageMarkreadParameter, ServiceupdatemessageMarkreadResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-markread?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync(ServiceupdatemessageMarkreadParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageMarkreadResponse> ServiceupdatemessageMarkreadAsync(ServiceupdatemessageMarkreadParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageMarkreadParameter, ServiceupdatemessageMarkreadResponse>(parameter, cancellationToken);
         }

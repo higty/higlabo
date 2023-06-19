@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecolumn-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablecolumnDeleteResponse> TablecolumnDeleteAsync()
+        public async ValueTask<TablecolumnDeleteResponse> TablecolumnDeleteAsync()
         {
             var p = new TablecolumnDeleteParameter();
             return await this.SendAsync<TablecolumnDeleteParameter, TablecolumnDeleteResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecolumn-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablecolumnDeleteResponse> TablecolumnDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablecolumnDeleteResponse> TablecolumnDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TablecolumnDeleteParameter();
             return await this.SendAsync<TablecolumnDeleteParameter, TablecolumnDeleteResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecolumn-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablecolumnDeleteResponse> TablecolumnDeleteAsync(TablecolumnDeleteParameter parameter)
+        public async ValueTask<TablecolumnDeleteResponse> TablecolumnDeleteAsync(TablecolumnDeleteParameter parameter)
         {
             return await this.SendAsync<TablecolumnDeleteParameter, TablecolumnDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecolumn-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablecolumnDeleteResponse> TablecolumnDeleteAsync(TablecolumnDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablecolumnDeleteResponse> TablecolumnDeleteAsync(TablecolumnDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablecolumnDeleteParameter, TablecolumnDeleteResponse>(parameter, cancellationToken);
         }

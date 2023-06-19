@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync()
+        public async ValueTask<PrintListConnectorsResponse> PrintListConnectorsAsync()
         {
             var p = new PrintListConnectorsParameter();
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintListConnectorsResponse> PrintListConnectorsAsync(CancellationToken cancellationToken)
         {
             var p = new PrintListConnectorsParameter();
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync(PrintListConnectorsParameter parameter)
+        public async ValueTask<PrintListConnectorsResponse> PrintListConnectorsAsync(PrintListConnectorsParameter parameter)
         {
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync(PrintListConnectorsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintListConnectorsResponse> PrintListConnectorsAsync(PrintListConnectorsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(parameter, cancellationToken);
         }

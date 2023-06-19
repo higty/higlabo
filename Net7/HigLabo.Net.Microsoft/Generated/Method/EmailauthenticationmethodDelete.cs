@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync()
+        public async ValueTask<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync()
         {
             var p = new EmailauthenticationmethodDeleteParameter();
             return await this.SendAsync<EmailauthenticationmethodDeleteParameter, EmailauthenticationmethodDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new EmailauthenticationmethodDeleteParameter();
             return await this.SendAsync<EmailauthenticationmethodDeleteParameter, EmailauthenticationmethodDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync(EmailauthenticationmethodDeleteParameter parameter)
+        public async ValueTask<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync(EmailauthenticationmethodDeleteParameter parameter)
         {
             return await this.SendAsync<EmailauthenticationmethodDeleteParameter, EmailauthenticationmethodDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync(EmailauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmailauthenticationmethodDeleteResponse> EmailauthenticationmethodDeleteAsync(EmailauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EmailauthenticationmethodDeleteParameter, EmailauthenticationmethodDeleteResponse>(parameter, cancellationToken);
         }

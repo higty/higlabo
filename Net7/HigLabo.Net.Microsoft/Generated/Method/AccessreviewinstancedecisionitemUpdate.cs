@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync()
+        public async ValueTask<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync()
         {
             var p = new AccessreviewinstancedecisionitemUpdateParameter();
             return await this.SendAsync<AccessreviewinstancedecisionitemUpdateParameter, AccessreviewinstancedecisionitemUpdateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstancedecisionitemUpdateParameter();
             return await this.SendAsync<AccessreviewinstancedecisionitemUpdateParameter, AccessreviewinstancedecisionitemUpdateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync(AccessreviewinstancedecisionitemUpdateParameter parameter)
+        public async ValueTask<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync(AccessreviewinstancedecisionitemUpdateParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstancedecisionitemUpdateParameter, AccessreviewinstancedecisionitemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync(AccessreviewinstancedecisionitemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstancedecisionitemUpdateResponse> AccessreviewinstancedecisionitemUpdateAsync(AccessreviewinstancedecisionitemUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstancedecisionitemUpdateParameter, AccessreviewinstancedecisionitemUpdateResponse>(parameter, cancellationToken);
         }

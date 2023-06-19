@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-delete-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteManagerResponse> UserDeleteManagerAsync()
+        public async ValueTask<UserDeleteManagerResponse> UserDeleteManagerAsync()
         {
             var p = new UserDeleteManagerParameter();
             return await this.SendAsync<UserDeleteManagerParameter, UserDeleteManagerResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-delete-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteManagerResponse> UserDeleteManagerAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserDeleteManagerResponse> UserDeleteManagerAsync(CancellationToken cancellationToken)
         {
             var p = new UserDeleteManagerParameter();
             return await this.SendAsync<UserDeleteManagerParameter, UserDeleteManagerResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-delete-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteManagerResponse> UserDeleteManagerAsync(UserDeleteManagerParameter parameter)
+        public async ValueTask<UserDeleteManagerResponse> UserDeleteManagerAsync(UserDeleteManagerParameter parameter)
         {
             return await this.SendAsync<UserDeleteManagerParameter, UserDeleteManagerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-delete-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteManagerResponse> UserDeleteManagerAsync(UserDeleteManagerParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserDeleteManagerResponse> UserDeleteManagerAsync(UserDeleteManagerParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserDeleteManagerParameter, UserDeleteManagerResponse>(parameter, cancellationToken);
         }

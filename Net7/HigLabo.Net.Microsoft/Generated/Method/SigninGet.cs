@@ -142,7 +142,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninGetResponse> SigninGetAsync()
+        public async ValueTask<SigninGetResponse> SigninGetAsync()
         {
             var p = new SigninGetParameter();
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(p, CancellationToken.None);
@@ -150,7 +150,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninGetResponse> SigninGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SigninGetResponse> SigninGetAsync(CancellationToken cancellationToken)
         {
             var p = new SigninGetParameter();
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(p, cancellationToken);
@@ -158,14 +158,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninGetResponse> SigninGetAsync(SigninGetParameter parameter)
+        public async ValueTask<SigninGetResponse> SigninGetAsync(SigninGetParameter parameter)
         {
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninGetResponse> SigninGetAsync(SigninGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SigninGetResponse> SigninGetAsync(SigninGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(parameter, cancellationToken);
         }

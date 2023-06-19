@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync()
+        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync()
         {
             var p = new UserListOwnedobjectsParameter();
             return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListOwnedobjectsParameter();
             return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(UserListOwnedobjectsParameter parameter)
+        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(UserListOwnedobjectsParameter parameter)
         {
             return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(UserListOwnedobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(UserListOwnedobjectsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(parameter, cancellationToken);
         }

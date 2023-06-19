@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<FilesInfoResponse> FilesInfoAsync(string? file)
+        public async ValueTask<FilesInfoResponse> FilesInfoAsync(string? file)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<FilesInfoResponse> FilesInfoAsync(string? file, CancellationToken cancellationToken)
+        public async ValueTask<FilesInfoResponse> FilesInfoAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -52,21 +52,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<FilesInfoResponse> FilesInfoAsync(FilesInfoParameter parameter)
+        public async ValueTask<FilesInfoResponse> FilesInfoAsync(FilesInfoParameter parameter)
         {
             return await this.SendAsync<FilesInfoParameter, FilesInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<FilesInfoResponse> FilesInfoAsync(FilesInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesInfoResponse> FilesInfoAsync(FilesInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesInfoParameter, FilesInfoResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context)
+        public async ValueTask<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<List<FilesInfoResponse>> FilesInfoAsync(FilesInfoParameter parameter, PagingContext<FilesInfoResponse> context)
+        public async ValueTask<List<FilesInfoResponse>> FilesInfoAsync(FilesInfoParameter parameter, PagingContext<FilesInfoResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<List<FilesInfoResponse>> FilesInfoAsync(FilesInfoParameter parameter, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<FilesInfoResponse>> FilesInfoAsync(FilesInfoParameter parameter, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

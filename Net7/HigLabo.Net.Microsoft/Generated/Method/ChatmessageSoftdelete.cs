@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-softdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync()
+        public async ValueTask<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync()
         {
             var p = new ChatmessageSoftdeleteParameter();
             return await this.SendAsync<ChatmessageSoftdeleteParameter, ChatmessageSoftdeleteResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-softdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessageSoftdeleteParameter();
             return await this.SendAsync<ChatmessageSoftdeleteParameter, ChatmessageSoftdeleteResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-softdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync(ChatmessageSoftdeleteParameter parameter)
+        public async ValueTask<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync(ChatmessageSoftdeleteParameter parameter)
         {
             return await this.SendAsync<ChatmessageSoftdeleteParameter, ChatmessageSoftdeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-softdelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync(ChatmessageSoftdeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageSoftdeleteResponse> ChatmessageSoftdeleteAsync(ChatmessageSoftdeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageSoftdeleteParameter, ChatmessageSoftdeleteResponse>(parameter, cancellationToken);
         }

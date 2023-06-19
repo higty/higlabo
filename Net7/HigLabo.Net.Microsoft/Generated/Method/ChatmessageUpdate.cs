@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync()
+        public async ValueTask<ChatmessageUpdateResponse> ChatmessageUpdateAsync()
         {
             var p = new ChatmessageUpdateParameter();
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageUpdateResponse> ChatmessageUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessageUpdateParameter();
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync(ChatmessageUpdateParameter parameter)
+        public async ValueTask<ChatmessageUpdateResponse> ChatmessageUpdateAsync(ChatmessageUpdateParameter parameter)
         {
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync(ChatmessageUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageUpdateResponse> ChatmessageUpdateAsync(ChatmessageUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(parameter, cancellationToken);
         }

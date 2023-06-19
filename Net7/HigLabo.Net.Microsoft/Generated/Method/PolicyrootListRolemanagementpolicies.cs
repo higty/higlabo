@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync()
+        public async ValueTask<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync()
         {
             var p = new PolicyRootListRoleManagementpoliciesParameter();
             return await this.SendAsync<PolicyRootListRoleManagementpoliciesParameter, PolicyRootListRoleManagementpoliciesResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new PolicyRootListRoleManagementpoliciesParameter();
             return await this.SendAsync<PolicyRootListRoleManagementpoliciesParameter, PolicyRootListRoleManagementpoliciesResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(PolicyRootListRoleManagementpoliciesParameter parameter)
+        public async ValueTask<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(PolicyRootListRoleManagementpoliciesParameter parameter)
         {
             return await this.SendAsync<PolicyRootListRoleManagementpoliciesParameter, PolicyRootListRoleManagementpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(PolicyRootListRoleManagementpoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(PolicyRootListRoleManagementpoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PolicyRootListRoleManagementpoliciesParameter, PolicyRootListRoleManagementpoliciesResponse>(parameter, cancellationToken);
         }

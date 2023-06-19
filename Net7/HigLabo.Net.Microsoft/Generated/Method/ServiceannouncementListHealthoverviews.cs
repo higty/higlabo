@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync()
+        public async ValueTask<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync()
         {
             var p = new ServiceannouncementListHealthoverviewsParameter();
             return await this.SendAsync<ServiceannouncementListHealthoverviewsParameter, ServiceannouncementListHealthoverviewsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceannouncementListHealthoverviewsParameter();
             return await this.SendAsync<ServiceannouncementListHealthoverviewsParameter, ServiceannouncementListHealthoverviewsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync(ServiceannouncementListHealthoverviewsParameter parameter)
+        public async ValueTask<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync(ServiceannouncementListHealthoverviewsParameter parameter)
         {
             return await this.SendAsync<ServiceannouncementListHealthoverviewsParameter, ServiceannouncementListHealthoverviewsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync(ServiceannouncementListHealthoverviewsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceannouncementListHealthoverviewsResponse> ServiceannouncementListHealthoverviewsAsync(ServiceannouncementListHealthoverviewsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceannouncementListHealthoverviewsParameter, ServiceannouncementListHealthoverviewsResponse>(parameter, cancellationToken);
         }

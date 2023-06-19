@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync()
+        public async ValueTask<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync()
         {
             var p = new TeamListIncomingchannelsParameter();
             return await this.SendAsync<TeamListIncomingchannelsParameter, TeamListIncomingchannelsResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamListIncomingchannelsParameter();
             return await this.SendAsync<TeamListIncomingchannelsParameter, TeamListIncomingchannelsResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync(TeamListIncomingchannelsParameter parameter)
+        public async ValueTask<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync(TeamListIncomingchannelsParameter parameter)
         {
             return await this.SendAsync<TeamListIncomingchannelsParameter, TeamListIncomingchannelsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-list-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync(TeamListIncomingchannelsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamListIncomingchannelsResponse> TeamListIncomingchannelsAsync(TeamListIncomingchannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamListIncomingchannelsParameter, TeamListIncomingchannelsResponse>(parameter, cancellationToken);
         }

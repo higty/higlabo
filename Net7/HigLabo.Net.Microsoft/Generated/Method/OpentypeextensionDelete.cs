@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync()
+        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync()
         {
             var p = new OpenTypeextensionDeleteParameter();
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new OpenTypeextensionDeleteParameter();
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter)
+        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter)
         {
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(parameter, cancellationToken);
         }

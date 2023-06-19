@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync()
+        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync()
         {
             var p = new AccesspackagePostIncompatibleAccesspackageParameter();
             return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackagePostIncompatibleAccesspackageParameter();
             return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(AccesspackagePostIncompatibleAccesspackageParameter parameter)
+        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(AccesspackagePostIncompatibleAccesspackageParameter parameter)
         {
             return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(AccesspackagePostIncompatibleAccesspackageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(AccesspackagePostIncompatibleAccesspackageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(parameter, cancellationToken);
         }

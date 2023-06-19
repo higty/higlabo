@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcurrencyGetResponse> BookingcurrencyGetAsync()
+        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync()
         {
             var p = new BookingcurrencyGetParameter();
             return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcurrencyGetResponse> BookingcurrencyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync(CancellationToken cancellationToken)
         {
             var p = new BookingcurrencyGetParameter();
             return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcurrencyGetResponse> BookingcurrencyGetAsync(BookingcurrencyGetParameter parameter)
+        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync(BookingcurrencyGetParameter parameter)
         {
             return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingcurrencyGetResponse> BookingcurrencyGetAsync(BookingcurrencyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync(BookingcurrencyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(parameter, cancellationToken);
         }

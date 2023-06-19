@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleRemoveitemResponse> BundleRemoveitemAsync()
+        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync()
         {
             var p = new BundleRemoveitemParameter();
             return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleRemoveitemResponse> BundleRemoveitemAsync(CancellationToken cancellationToken)
+        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync(CancellationToken cancellationToken)
         {
             var p = new BundleRemoveitemParameter();
             return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleRemoveitemResponse> BundleRemoveitemAsync(BundleRemoveitemParameter parameter)
+        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync(BundleRemoveitemParameter parameter)
         {
             return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleRemoveitemResponse> BundleRemoveitemAsync(BundleRemoveitemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync(BundleRemoveitemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(parameter, cancellationToken);
         }

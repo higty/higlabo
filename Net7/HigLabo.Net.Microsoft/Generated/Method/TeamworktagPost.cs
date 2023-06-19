@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagPostResponse> TeamworktagPostAsync()
+        public async ValueTask<TeamworktagPostResponse> TeamworktagPostAsync()
         {
             var p = new TeamworktagPostParameter();
             return await this.SendAsync<TeamworktagPostParameter, TeamworktagPostResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagPostResponse> TeamworktagPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagPostResponse> TeamworktagPostAsync(CancellationToken cancellationToken)
         {
             var p = new TeamworktagPostParameter();
             return await this.SendAsync<TeamworktagPostParameter, TeamworktagPostResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagPostResponse> TeamworktagPostAsync(TeamworktagPostParameter parameter)
+        public async ValueTask<TeamworktagPostResponse> TeamworktagPostAsync(TeamworktagPostParameter parameter)
         {
             return await this.SendAsync<TeamworktagPostParameter, TeamworktagPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagPostResponse> TeamworktagPostAsync(TeamworktagPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagPostResponse> TeamworktagPostAsync(TeamworktagPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamworktagPostParameter, TeamworktagPostResponse>(parameter, cancellationToken);
         }

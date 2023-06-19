@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.disconnectShared
         /// </summary>
-        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string? channel_Id)
         {
             var p = new AdminConversationsDisconnectSharedParameter();
             p.Channel_Id = channel_Id;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.disconnectShared
         /// </summary>
-        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsDisconnectSharedParameter();
             p.Channel_Id = channel_Id;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.disconnectShared
         /// </summary>
-        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(AdminConversationsDisconnectSharedParameter parameter)
+        public async ValueTask<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(AdminConversationsDisconnectSharedParameter parameter)
         {
             return await this.SendAsync<AdminConversationsDisconnectSharedParameter, AdminConversationsDisconnectSharedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.disconnectShared
         /// </summary>
-        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(AdminConversationsDisconnectSharedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(AdminConversationsDisconnectSharedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsDisconnectSharedParameter, AdminConversationsDisconnectSharedResponse>(parameter, cancellationToken);
         }

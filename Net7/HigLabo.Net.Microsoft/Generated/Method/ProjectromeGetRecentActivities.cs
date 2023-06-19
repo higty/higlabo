@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-get-recent-activities?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync()
+        public async ValueTask<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync()
         {
             var p = new ProjectromeGetRecentActivitiesParameter();
             return await this.SendAsync<ProjectromeGetRecentActivitiesParameter, ProjectromeGetRecentActivitiesResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-get-recent-activities?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync(CancellationToken cancellationToken)
         {
             var p = new ProjectromeGetRecentActivitiesParameter();
             return await this.SendAsync<ProjectromeGetRecentActivitiesParameter, ProjectromeGetRecentActivitiesResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-get-recent-activities?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync(ProjectromeGetRecentActivitiesParameter parameter)
+        public async ValueTask<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync(ProjectromeGetRecentActivitiesParameter parameter)
         {
             return await this.SendAsync<ProjectromeGetRecentActivitiesParameter, ProjectromeGetRecentActivitiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-get-recent-activities?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync(ProjectromeGetRecentActivitiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProjectromeGetRecentActivitiesResponse> ProjectromeGetRecentActivitiesAsync(ProjectromeGetRecentActivitiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ProjectromeGetRecentActivitiesParameter, ProjectromeGetRecentActivitiesResponse>(parameter, cancellationToken);
         }

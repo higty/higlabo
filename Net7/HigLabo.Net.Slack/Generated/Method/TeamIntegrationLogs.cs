@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.integrationLogs
         /// </summary>
-        public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync()
+        public async ValueTask<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync()
         {
             var p = new TeamIntegrationLogsParameter();
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(p, CancellationToken.None);
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.integrationLogs
         /// </summary>
-        public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamIntegrationLogsParameter();
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(p, cancellationToken);
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.integrationLogs
         /// </summary>
-        public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(TeamIntegrationLogsParameter parameter)
+        public async ValueTask<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(TeamIntegrationLogsParameter parameter)
         {
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.integrationLogs
         /// </summary>
-        public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(TeamIntegrationLogsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(TeamIntegrationLogsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(parameter, cancellationToken);
         }

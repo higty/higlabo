@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync()
+        public async ValueTask<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync()
         {
             var p = new DirectoryDeleteditemsGetParameter();
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryDeleteditemsGetParameter();
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(DirectoryDeleteditemsGetParameter parameter)
+        public async ValueTask<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(DirectoryDeleteditemsGetParameter parameter)
         {
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(DirectoryDeleteditemsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(DirectoryDeleteditemsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(parameter, cancellationToken);
         }

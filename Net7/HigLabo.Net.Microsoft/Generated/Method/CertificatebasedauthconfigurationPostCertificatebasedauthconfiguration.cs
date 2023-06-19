@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync()
+        public async ValueTask<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync()
         {
             var p = new CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter();
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CancellationToken cancellationToken)
+        public async ValueTask<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CancellationToken cancellationToken)
         {
             var p = new CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter();
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter parameter)
+        public async ValueTask<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter parameter)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(parameter, cancellationToken);
         }

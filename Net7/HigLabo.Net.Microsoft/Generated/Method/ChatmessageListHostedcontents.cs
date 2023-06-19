@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync()
+        public async ValueTask<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync()
         {
             var p = new ChatmessageListHostedContentsParameter();
             return await this.SendAsync<ChatmessageListHostedContentsParameter, ChatmessageListHostedContentsResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessageListHostedContentsParameter();
             return await this.SendAsync<ChatmessageListHostedContentsParameter, ChatmessageListHostedContentsResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync(ChatmessageListHostedContentsParameter parameter)
+        public async ValueTask<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync(ChatmessageListHostedContentsParameter parameter)
         {
             return await this.SendAsync<ChatmessageListHostedContentsParameter, ChatmessageListHostedContentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync(ChatmessageListHostedContentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageListHostedContentsResponse> ChatmessageListHostedContentsAsync(ChatmessageListHostedContentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageListHostedContentsParameter, ChatmessageListHostedContentsResponse>(parameter, cancellationToken);
         }

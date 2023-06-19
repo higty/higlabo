@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync()
+        public async ValueTask<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync()
         {
             var p = new ConnectedorganizationGetParameter();
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(CancellationToken cancellationToken)
         {
             var p = new ConnectedorganizationGetParameter();
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(ConnectedorganizationGetParameter parameter)
+        public async ValueTask<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(ConnectedorganizationGetParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(ConnectedorganizationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(ConnectedorganizationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(parameter, cancellationToken);
         }

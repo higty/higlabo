@@ -129,7 +129,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync()
+        public async ValueTask<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync()
         {
             var p = new ApplicationPostApplicationsParameter();
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(p, CancellationToken.None);
@@ -137,7 +137,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationPostApplicationsParameter();
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(p, cancellationToken);
@@ -145,14 +145,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(ApplicationPostApplicationsParameter parameter)
+        public async ValueTask<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(ApplicationPostApplicationsParameter parameter)
         {
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(ApplicationPostApplicationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(ApplicationPostApplicationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(parameter, cancellationToken);
         }

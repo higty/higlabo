@@ -127,7 +127,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync()
+        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync()
         {
             var p = new AccesspackageListIncompatibleGroupsParameter();
             return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(p, CancellationToken.None);
@@ -135,7 +135,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageListIncompatibleGroupsParameter();
             return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(p, cancellationToken);
@@ -143,14 +143,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(AccesspackageListIncompatibleGroupsParameter parameter)
+        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(AccesspackageListIncompatibleGroupsParameter parameter)
         {
             return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(AccesspackageListIncompatibleGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(AccesspackageListIncompatibleGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(parameter, cancellationToken);
         }

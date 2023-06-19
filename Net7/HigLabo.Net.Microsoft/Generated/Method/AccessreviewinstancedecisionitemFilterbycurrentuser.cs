@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync()
+        public async ValueTask<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync()
         {
             var p = new AccessreviewinstancedecisionitemFilterbycurrentUserParameter();
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstancedecisionitemFilterbycurrentUserParameter();
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(p, cancellationToken);
@@ -94,14 +94,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(AccessreviewinstancedecisionitemFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(AccessreviewinstancedecisionitemFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(AccessreviewinstancedecisionitemFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(AccessreviewinstancedecisionitemFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

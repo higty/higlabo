@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync()
+        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync()
         {
             var p = new EntitlementManagementListAccesspackagesParameter();
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(CancellationToken cancellationToken)
         {
             var p = new EntitlementManagementListAccesspackagesParameter();
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter)
+        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(parameter, cancellationToken);
         }

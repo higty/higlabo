@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync()
+        public async ValueTask<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync()
         {
             var p = new SecurityRetentioneventDeleteParameter();
             return await this.SendAsync<SecurityRetentioneventDeleteParameter, SecurityRetentioneventDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityRetentioneventDeleteParameter();
             return await this.SendAsync<SecurityRetentioneventDeleteParameter, SecurityRetentioneventDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync(SecurityRetentioneventDeleteParameter parameter)
+        public async ValueTask<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync(SecurityRetentioneventDeleteParameter parameter)
         {
             return await this.SendAsync<SecurityRetentioneventDeleteParameter, SecurityRetentioneventDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync(SecurityRetentioneventDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityRetentioneventDeleteResponse> SecurityRetentioneventDeleteAsync(SecurityRetentioneventDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityRetentioneventDeleteParameter, SecurityRetentioneventDeleteResponse>(parameter, cancellationToken);
         }

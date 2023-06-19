@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync()
+        public async ValueTask<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync()
         {
             var p = new ChannelDoesUserhaveAccessParameter();
             return await this.SendAsync<ChannelDoesUserhaveAccessParameter, ChannelDoesUserhaveAccessResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelDoesUserhaveAccessParameter();
             return await this.SendAsync<ChannelDoesUserhaveAccessParameter, ChannelDoesUserhaveAccessResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync(ChannelDoesUserhaveAccessParameter parameter)
+        public async ValueTask<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync(ChannelDoesUserhaveAccessParameter parameter)
         {
             return await this.SendAsync<ChannelDoesUserhaveAccessParameter, ChannelDoesUserhaveAccessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync(ChannelDoesUserhaveAccessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelDoesUserhaveAccessResponse> ChannelDoesUserhaveAccessAsync(ChannelDoesUserhaveAccessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelDoesUserhaveAccessParameter, ChannelDoesUserhaveAccessResponse>(parameter, cancellationToken);
         }

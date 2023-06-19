@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setTeams
         /// </summary>
-        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string? channel_Id)
         {
             var p = new AdminConversationsSetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setTeams
         /// </summary>
-        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setTeams
         /// </summary>
-        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(AdminConversationsSetTeamsParameter parameter)
+        public async ValueTask<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(AdminConversationsSetTeamsParameter parameter)
         {
             return await this.SendAsync<AdminConversationsSetTeamsParameter, AdminConversationsSetTeamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setTeams
         /// </summary>
-        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(AdminConversationsSetTeamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(AdminConversationsSetTeamsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsSetTeamsParameter, AdminConversationsSetTeamsResponse>(parameter, cancellationToken);
         }

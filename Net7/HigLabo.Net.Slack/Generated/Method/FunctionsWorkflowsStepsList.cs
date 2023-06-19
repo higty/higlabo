@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.list
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(string? function_Id)
+        public async ValueTask<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(string? function_Id)
         {
             var p = new FunctionsWorkflowsStepsListParameter();
             p.Function_Id = function_Id;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.list
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(string? function_Id, CancellationToken cancellationToken)
+        public async ValueTask<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(string? function_Id, CancellationToken cancellationToken)
         {
             var p = new FunctionsWorkflowsStepsListParameter();
             p.Function_Id = function_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.list
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(FunctionsWorkflowsStepsListParameter parameter)
+        public async ValueTask<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(FunctionsWorkflowsStepsListParameter parameter)
         {
             return await this.SendAsync<FunctionsWorkflowsStepsListParameter, FunctionsWorkflowsStepsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/functions.workflows.steps.list
         /// </summary>
-        public async Task<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(FunctionsWorkflowsStepsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FunctionsWorkflowsStepsListResponse> FunctionsWorkflowsStepsListAsync(FunctionsWorkflowsStepsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FunctionsWorkflowsStepsListParameter, FunctionsWorkflowsStepsListResponse>(parameter, cancellationToken);
         }

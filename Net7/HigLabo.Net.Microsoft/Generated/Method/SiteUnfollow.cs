@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteUnfollowResponse> SiteUnfollowAsync()
+        public async ValueTask<SiteUnfollowResponse> SiteUnfollowAsync()
         {
             var p = new SiteUnfollowParameter();
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteUnfollowResponse> SiteUnfollowAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteUnfollowResponse> SiteUnfollowAsync(CancellationToken cancellationToken)
         {
             var p = new SiteUnfollowParameter();
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteUnfollowResponse> SiteUnfollowAsync(SiteUnfollowParameter parameter)
+        public async ValueTask<SiteUnfollowResponse> SiteUnfollowAsync(SiteUnfollowParameter parameter)
         {
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteUnfollowResponse> SiteUnfollowAsync(SiteUnfollowParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteUnfollowResponse> SiteUnfollowAsync(SiteUnfollowParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(parameter, cancellationToken);
         }

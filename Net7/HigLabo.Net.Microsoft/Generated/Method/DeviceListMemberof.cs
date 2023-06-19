@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListMemberofResponse> DeviceListMemberofAsync()
+        public async ValueTask<DeviceListMemberofResponse> DeviceListMemberofAsync()
         {
             var p = new DeviceListMemberofParameter();
             return await this.SendAsync<DeviceListMemberofParameter, DeviceListMemberofResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListMemberofResponse> DeviceListMemberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceListMemberofResponse> DeviceListMemberofAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceListMemberofParameter();
             return await this.SendAsync<DeviceListMemberofParameter, DeviceListMemberofResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListMemberofResponse> DeviceListMemberofAsync(DeviceListMemberofParameter parameter)
+        public async ValueTask<DeviceListMemberofResponse> DeviceListMemberofAsync(DeviceListMemberofParameter parameter)
         {
             return await this.SendAsync<DeviceListMemberofParameter, DeviceListMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListMemberofResponse> DeviceListMemberofAsync(DeviceListMemberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceListMemberofResponse> DeviceListMemberofAsync(DeviceListMemberofParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceListMemberofParameter, DeviceListMemberofResponse>(parameter, cancellationToken);
         }

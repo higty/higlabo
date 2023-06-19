@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync()
+        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync()
         {
             var p = new ConditionalAccesstemplateGetParameter();
             return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(CancellationToken cancellationToken)
         {
             var p = new ConditionalAccesstemplateGetParameter();
             return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(ConditionalAccesstemplateGetParameter parameter)
+        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(ConditionalAccesstemplateGetParameter parameter)
         {
             return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(ConditionalAccesstemplateGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(ConditionalAccesstemplateGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(parameter, cancellationToken);
         }

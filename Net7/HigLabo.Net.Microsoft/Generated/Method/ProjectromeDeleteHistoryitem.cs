@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync()
+        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync()
         {
             var p = new ProjectromeDeleteHistoryitemParameter();
             return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(CancellationToken cancellationToken)
         {
             var p = new ProjectromeDeleteHistoryitemParameter();
             return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(ProjectromeDeleteHistoryitemParameter parameter)
+        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(ProjectromeDeleteHistoryitemParameter parameter)
         {
             return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(ProjectromeDeleteHistoryitemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(ProjectromeDeleteHistoryitemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(parameter, cancellationToken);
         }

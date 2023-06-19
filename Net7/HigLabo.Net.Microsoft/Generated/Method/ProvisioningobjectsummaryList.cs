@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync()
+        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync()
         {
             var p = new ProvisioningobjectSummaryListParameter();
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(CancellationToken cancellationToken)
         {
             var p = new ProvisioningobjectSummaryListParameter();
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter)
+        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter)
         {
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, cancellationToken);
         }

@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync()
+        public async ValueTask<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync()
         {
             var p = new UserteamworkDeleteInstalledappsParameter();
             return await this.SendAsync<UserteamworkDeleteInstalledappsParameter, UserteamworkDeleteInstalledappsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new UserteamworkDeleteInstalledappsParameter();
             return await this.SendAsync<UserteamworkDeleteInstalledappsParameter, UserteamworkDeleteInstalledappsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync(UserteamworkDeleteInstalledappsParameter parameter)
+        public async ValueTask<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync(UserteamworkDeleteInstalledappsParameter parameter)
         {
             return await this.SendAsync<UserteamworkDeleteInstalledappsParameter, UserteamworkDeleteInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync(UserteamworkDeleteInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserteamworkDeleteInstalledappsResponse> UserteamworkDeleteInstalledappsAsync(UserteamworkDeleteInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserteamworkDeleteInstalledappsParameter, UserteamworkDeleteInstalledappsResponse>(parameter, cancellationToken);
         }

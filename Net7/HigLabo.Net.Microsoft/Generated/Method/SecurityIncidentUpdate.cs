@@ -147,7 +147,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync()
+        public async ValueTask<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync()
         {
             var p = new SecurityIncidentUpdateParameter();
             return await this.SendAsync<SecurityIncidentUpdateParameter, SecurityIncidentUpdateResponse>(p, CancellationToken.None);
@@ -155,7 +155,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityIncidentUpdateParameter();
             return await this.SendAsync<SecurityIncidentUpdateParameter, SecurityIncidentUpdateResponse>(p, cancellationToken);
@@ -163,14 +163,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync(SecurityIncidentUpdateParameter parameter)
+        public async ValueTask<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync(SecurityIncidentUpdateParameter parameter)
         {
             return await this.SendAsync<SecurityIncidentUpdateParameter, SecurityIncidentUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync(SecurityIncidentUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityIncidentUpdateResponse> SecurityIncidentUpdateAsync(SecurityIncidentUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityIncidentUpdateParameter, SecurityIncidentUpdateResponse>(parameter, cancellationToken);
         }

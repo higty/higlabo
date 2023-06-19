@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync()
+        public async ValueTask<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync()
         {
             var p = new TokenlifetimePolicyDeleteParameter();
             return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TokenlifetimePolicyDeleteParameter();
             return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(TokenlifetimePolicyDeleteParameter parameter)
+        public async ValueTask<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(TokenlifetimePolicyDeleteParameter parameter)
         {
             return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(TokenlifetimePolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(TokenlifetimePolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(parameter, cancellationToken);
         }

@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync()
+        public async ValueTask<WorksheetPostChartsResponse> WorksheetPostChartsAsync()
         {
             var p = new WorksheetPostChartsParameter();
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(p, CancellationToken.None);
@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetPostChartsResponse> WorksheetPostChartsAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetPostChartsParameter();
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(p, cancellationToken);
@@ -94,14 +94,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync(WorksheetPostChartsParameter parameter)
+        public async ValueTask<WorksheetPostChartsResponse> WorksheetPostChartsAsync(WorksheetPostChartsParameter parameter)
         {
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync(WorksheetPostChartsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetPostChartsResponse> WorksheetPostChartsAsync(WorksheetPostChartsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(parameter, cancellationToken);
         }

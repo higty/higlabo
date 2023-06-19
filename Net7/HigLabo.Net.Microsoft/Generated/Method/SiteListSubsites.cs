@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync()
+        public async ValueTask<SiteListSubsitesResponse> SiteListSubsitesAsync()
         {
             var p = new SiteListSubsitesParameter();
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteListSubsitesResponse> SiteListSubsitesAsync(CancellationToken cancellationToken)
         {
             var p = new SiteListSubsitesParameter();
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter)
+        public async ValueTask<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter)
         {
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(parameter, cancellationToken);
         }

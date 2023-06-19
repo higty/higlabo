@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync()
+        public async ValueTask<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync()
         {
             var p = new FederatedidentitycredentialUpdateParameter();
             return await this.SendAsync<FederatedidentitycredentialUpdateParameter, FederatedidentitycredentialUpdateResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new FederatedidentitycredentialUpdateParameter();
             return await this.SendAsync<FederatedidentitycredentialUpdateParameter, FederatedidentitycredentialUpdateResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync(FederatedidentitycredentialUpdateParameter parameter)
+        public async ValueTask<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync(FederatedidentitycredentialUpdateParameter parameter)
         {
             return await this.SendAsync<FederatedidentitycredentialUpdateParameter, FederatedidentitycredentialUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync(FederatedidentitycredentialUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FederatedidentitycredentialUpdateResponse> FederatedidentitycredentialUpdateAsync(FederatedidentitycredentialUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FederatedidentitycredentialUpdateParameter, FederatedidentitycredentialUpdateResponse>(parameter, cancellationToken);
         }

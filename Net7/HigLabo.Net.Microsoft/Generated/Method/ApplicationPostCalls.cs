@@ -146,7 +146,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-calls?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostCallsResponse> ApplicationPostCallsAsync()
+        public async ValueTask<ApplicationPostCallsResponse> ApplicationPostCallsAsync()
         {
             var p = new ApplicationPostCallsParameter();
             return await this.SendAsync<ApplicationPostCallsParameter, ApplicationPostCallsResponse>(p, CancellationToken.None);
@@ -154,7 +154,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-calls?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostCallsResponse> ApplicationPostCallsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostCallsResponse> ApplicationPostCallsAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationPostCallsParameter();
             return await this.SendAsync<ApplicationPostCallsParameter, ApplicationPostCallsResponse>(p, cancellationToken);
@@ -162,14 +162,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-calls?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostCallsResponse> ApplicationPostCallsAsync(ApplicationPostCallsParameter parameter)
+        public async ValueTask<ApplicationPostCallsResponse> ApplicationPostCallsAsync(ApplicationPostCallsParameter parameter)
         {
             return await this.SendAsync<ApplicationPostCallsParameter, ApplicationPostCallsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-calls?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostCallsResponse> ApplicationPostCallsAsync(ApplicationPostCallsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostCallsResponse> ApplicationPostCallsAsync(ApplicationPostCallsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationPostCallsParameter, ApplicationPostCallsResponse>(parameter, cancellationToken);
         }

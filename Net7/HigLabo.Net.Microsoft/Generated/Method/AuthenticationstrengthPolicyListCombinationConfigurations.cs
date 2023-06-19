@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-list-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync()
+        public async ValueTask<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync()
         {
             var p = new AuthenticationstrengthPolicyListCombinationConfigurationsParameter();
             return await this.SendAsync<AuthenticationstrengthPolicyListCombinationConfigurationsParameter, AuthenticationstrengthPolicyListCombinationConfigurationsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-list-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationstrengthPolicyListCombinationConfigurationsParameter();
             return await this.SendAsync<AuthenticationstrengthPolicyListCombinationConfigurationsParameter, AuthenticationstrengthPolicyListCombinationConfigurationsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-list-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync(AuthenticationstrengthPolicyListCombinationConfigurationsParameter parameter)
+        public async ValueTask<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync(AuthenticationstrengthPolicyListCombinationConfigurationsParameter parameter)
         {
             return await this.SendAsync<AuthenticationstrengthPolicyListCombinationConfigurationsParameter, AuthenticationstrengthPolicyListCombinationConfigurationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthpolicy-list-combinationconfigurations?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync(AuthenticationstrengthPolicyListCombinationConfigurationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthPolicyListCombinationConfigurationsResponse> AuthenticationstrengthPolicyListCombinationConfigurationsAsync(AuthenticationstrengthPolicyListCombinationConfigurationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthPolicyListCombinationConfigurationsParameter, AuthenticationstrengthPolicyListCombinationConfigurationsResponse>(parameter, cancellationToken);
         }

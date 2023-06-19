@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync()
+        public async ValueTask<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync()
         {
             var p = new CrosstenantAccessPolicyGetParameter();
             return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantAccessPolicyGetParameter();
             return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CrosstenantAccessPolicyGetParameter parameter)
+        public async ValueTask<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CrosstenantAccessPolicyGetParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CrosstenantAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CrosstenantAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(parameter, cancellationToken);
         }

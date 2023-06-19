@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListPeopleResponse> UserListPeopleAsync()
+        public async ValueTask<UserListPeopleResponse> UserListPeopleAsync()
         {
             var p = new UserListPeopleParameter();
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListPeopleResponse> UserListPeopleAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListPeopleResponse> UserListPeopleAsync(CancellationToken cancellationToken)
         {
             var p = new UserListPeopleParameter();
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter)
+        public async ValueTask<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter)
         {
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(parameter, cancellationToken);
         }

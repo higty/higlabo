@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync()
+        public async ValueTask<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync()
         {
             var p = new SecurityCasesRootPostEdiscoverycasesParameter();
             return await this.SendAsync<SecurityCasesRootPostEdiscoverycasesParameter, SecurityCasesRootPostEdiscoverycasesResponse>(p, CancellationToken.None);
@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityCasesRootPostEdiscoverycasesParameter();
             return await this.SendAsync<SecurityCasesRootPostEdiscoverycasesParameter, SecurityCasesRootPostEdiscoverycasesResponse>(p, cancellationToken);
@@ -118,14 +118,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync(SecurityCasesRootPostEdiscoverycasesParameter parameter)
+        public async ValueTask<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync(SecurityCasesRootPostEdiscoverycasesParameter parameter)
         {
             return await this.SendAsync<SecurityCasesRootPostEdiscoverycasesParameter, SecurityCasesRootPostEdiscoverycasesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync(SecurityCasesRootPostEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootPostEdiscoverycasesResponse> SecurityCasesRootPostEdiscoverycasesAsync(SecurityCasesRootPostEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityCasesRootPostEdiscoverycasesParameter, SecurityCasesRootPostEdiscoverycasesResponse>(parameter, cancellationToken);
         }

@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync()
+        public async ValueTask<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync()
         {
             var p = new ApplicationDeleteOwnersParameter();
             return await this.SendAsync<ApplicationDeleteOwnersParameter, ApplicationDeleteOwnersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationDeleteOwnersParameter();
             return await this.SendAsync<ApplicationDeleteOwnersParameter, ApplicationDeleteOwnersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync(ApplicationDeleteOwnersParameter parameter)
+        public async ValueTask<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync(ApplicationDeleteOwnersParameter parameter)
         {
             return await this.SendAsync<ApplicationDeleteOwnersParameter, ApplicationDeleteOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync(ApplicationDeleteOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteOwnersResponse> ApplicationDeleteOwnersAsync(ApplicationDeleteOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationDeleteOwnersParameter, ApplicationDeleteOwnersResponse>(parameter, cancellationToken);
         }

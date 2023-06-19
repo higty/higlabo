@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync()
+        public async ValueTask<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync()
         {
             var p = new OrganizationalBrandinglocalizationDeleteParameter();
             return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationalBrandinglocalizationDeleteParameter();
             return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(OrganizationalBrandinglocalizationDeleteParameter parameter)
+        public async ValueTask<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(OrganizationalBrandinglocalizationDeleteParameter parameter)
         {
             return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(OrganizationalBrandinglocalizationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(OrganizationalBrandinglocalizationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(parameter, cancellationToken);
         }

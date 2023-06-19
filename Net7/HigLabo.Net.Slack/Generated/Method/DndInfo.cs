@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.info
         /// </summary>
-        public async Task<DndInfoResponse> DndInfoAsync()
+        public async ValueTask<DndInfoResponse> DndInfoAsync()
         {
             var p = new DndInfoParameter();
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.info
         /// </summary>
-        public async Task<DndInfoResponse> DndInfoAsync(CancellationToken cancellationToken)
+        public async ValueTask<DndInfoResponse> DndInfoAsync(CancellationToken cancellationToken)
         {
             var p = new DndInfoParameter();
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.info
         /// </summary>
-        public async Task<DndInfoResponse> DndInfoAsync(DndInfoParameter parameter)
+        public async ValueTask<DndInfoResponse> DndInfoAsync(DndInfoParameter parameter)
         {
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/dnd.info
         /// </summary>
-        public async Task<DndInfoResponse> DndInfoAsync(DndInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DndInfoResponse> DndInfoAsync(DndInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(parameter, cancellationToken);
         }

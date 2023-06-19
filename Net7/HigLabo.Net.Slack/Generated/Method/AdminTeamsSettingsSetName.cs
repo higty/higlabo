@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setName
         /// </summary>
-        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string? name, string? team_Id)
+        public async ValueTask<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string? name, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetNameParameter();
             p.Name = name;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setName
         /// </summary>
-        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string? name, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string? name, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetNameParameter();
             p.Name = name;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setName
         /// </summary>
-        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(AdminTeamsSettingsSetNameParameter parameter)
+        public async ValueTask<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(AdminTeamsSettingsSetNameParameter parameter)
         {
             return await this.SendAsync<AdminTeamsSettingsSetNameParameter, AdminTeamsSettingsSetNameResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setName
         /// </summary>
-        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(AdminTeamsSettingsSetNameParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(AdminTeamsSettingsSetNameParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsSettingsSetNameParameter, AdminTeamsSettingsSetNameResponse>(parameter, cancellationToken);
         }

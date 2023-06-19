@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync()
+        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync()
         {
             var p = new ScheduleListTimeoffreasonsParameter();
             return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(CancellationToken cancellationToken)
         {
             var p = new ScheduleListTimeoffreasonsParameter();
             return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(ScheduleListTimeoffreasonsParameter parameter)
+        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(ScheduleListTimeoffreasonsParameter parameter)
         {
             return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(ScheduleListTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(ScheduleListTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(parameter, cancellationToken);
         }

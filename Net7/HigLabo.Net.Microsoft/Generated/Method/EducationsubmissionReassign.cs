@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync()
+        public async ValueTask<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync()
         {
             var p = new EducationsubmissionReassignParameter();
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(CancellationToken cancellationToken)
         {
             var p = new EducationsubmissionReassignParameter();
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(EducationsubmissionReassignParameter parameter)
+        public async ValueTask<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(EducationsubmissionReassignParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(EducationsubmissionReassignParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(EducationsubmissionReassignParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(parameter, cancellationToken);
         }

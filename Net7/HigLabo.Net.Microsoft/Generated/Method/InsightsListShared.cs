@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListSharedResponse> InsightsListSharedAsync()
+        public async ValueTask<InsightsListSharedResponse> InsightsListSharedAsync()
         {
             var p = new InsightsListSharedParameter();
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListSharedResponse> InsightsListSharedAsync(CancellationToken cancellationToken)
+        public async ValueTask<InsightsListSharedResponse> InsightsListSharedAsync(CancellationToken cancellationToken)
         {
             var p = new InsightsListSharedParameter();
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListSharedResponse> InsightsListSharedAsync(InsightsListSharedParameter parameter)
+        public async ValueTask<InsightsListSharedResponse> InsightsListSharedAsync(InsightsListSharedParameter parameter)
         {
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListSharedResponse> InsightsListSharedAsync(InsightsListSharedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InsightsListSharedResponse> InsightsListSharedAsync(InsightsListSharedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(parameter, cancellationToken);
         }

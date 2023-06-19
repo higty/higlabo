@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffPutResponse> TimeoffPutAsync()
+        public async ValueTask<TimeoffPutResponse> TimeoffPutAsync()
         {
             var p = new TimeoffPutParameter();
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffPutResponse> TimeoffPutAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffPutResponse> TimeoffPutAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffPutParameter();
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffPutResponse> TimeoffPutAsync(TimeoffPutParameter parameter)
+        public async ValueTask<TimeoffPutResponse> TimeoffPutAsync(TimeoffPutParameter parameter)
         {
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffPutResponse> TimeoffPutAsync(TimeoffPutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffPutResponse> TimeoffPutAsync(TimeoffPutParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(parameter, cancellationToken);
         }

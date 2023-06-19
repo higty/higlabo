@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync()
+        public async ValueTask<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync()
         {
             var p = new DirectoryobjectGetbyidsParameter();
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryobjectGetbyidsParameter();
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(DirectoryobjectGetbyidsParameter parameter)
+        public async ValueTask<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(DirectoryobjectGetbyidsParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(DirectoryobjectGetbyidsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(DirectoryobjectGetbyidsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(parameter, cancellationToken);
         }

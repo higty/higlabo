@@ -168,7 +168,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync()
+        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync()
         {
             var p = new PrintershareListAllowedUsersParameter();
             return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(p, CancellationToken.None);
@@ -176,7 +176,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(CancellationToken cancellationToken)
         {
             var p = new PrintershareListAllowedUsersParameter();
             return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(p, cancellationToken);
@@ -184,14 +184,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter)
+        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter)
         {
             return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(parameter, cancellationToken);
         }

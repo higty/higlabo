@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync()
+        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync()
         {
             var p = new ColumndefinitionDeleteParameter();
             return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ColumndefinitionDeleteParameter();
             return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(ColumndefinitionDeleteParameter parameter)
+        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(ColumndefinitionDeleteParameter parameter)
         {
             return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(ColumndefinitionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(ColumndefinitionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(parameter, cancellationToken);
         }

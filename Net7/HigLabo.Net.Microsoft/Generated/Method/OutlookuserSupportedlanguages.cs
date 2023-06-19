@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync()
+        public async ValueTask<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync()
         {
             var p = new OutlookUserSupportedlanguagesParameter();
             return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(CancellationToken cancellationToken)
         {
             var p = new OutlookUserSupportedlanguagesParameter();
             return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter)
+        public async ValueTask<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter)
         {
             return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(parameter, cancellationToken);
         }

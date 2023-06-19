@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.info
         /// </summary>
-        public async Task<TeamInfoResponse> TeamInfoAsync()
+        public async ValueTask<TeamInfoResponse> TeamInfoAsync()
         {
             var p = new TeamInfoParameter();
             return await this.SendAsync<TeamInfoParameter, TeamInfoResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.info
         /// </summary>
-        public async Task<TeamInfoResponse> TeamInfoAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamInfoResponse> TeamInfoAsync(CancellationToken cancellationToken)
         {
             var p = new TeamInfoParameter();
             return await this.SendAsync<TeamInfoParameter, TeamInfoResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.info
         /// </summary>
-        public async Task<TeamInfoResponse> TeamInfoAsync(TeamInfoParameter parameter)
+        public async ValueTask<TeamInfoResponse> TeamInfoAsync(TeamInfoParameter parameter)
         {
             return await this.SendAsync<TeamInfoParameter, TeamInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.info
         /// </summary>
-        public async Task<TeamInfoResponse> TeamInfoAsync(TeamInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamInfoResponse> TeamInfoAsync(TeamInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamInfoParameter, TeamInfoResponse>(parameter, cancellationToken);
         }

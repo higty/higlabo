@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync()
+        public async ValueTask<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync()
         {
             var p = new IdentityapiConnectorCreateParameter();
             return await this.SendAsync<IdentityapiConnectorCreateParameter, IdentityapiConnectorCreateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityapiConnectorCreateParameter();
             return await this.SendAsync<IdentityapiConnectorCreateParameter, IdentityapiConnectorCreateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync(IdentityapiConnectorCreateParameter parameter)
+        public async ValueTask<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync(IdentityapiConnectorCreateParameter parameter)
         {
             return await this.SendAsync<IdentityapiConnectorCreateParameter, IdentityapiConnectorCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync(IdentityapiConnectorCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorCreateResponse> IdentityapiConnectorCreateAsync(IdentityapiConnectorCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityapiConnectorCreateParameter, IdentityapiConnectorCreateResponse>(parameter, cancellationToken);
         }

@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync()
+        public async ValueTask<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync()
         {
             var p = new ReportRootGetyammerdeviceusageUsercountsParameter();
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetyammerdeviceusageUsercountsParameter();
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(ReportRootGetyammerdeviceusageUsercountsParameter parameter)
+        public async ValueTask<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(ReportRootGetyammerdeviceusageUsercountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(ReportRootGetyammerdeviceusageUsercountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(ReportRootGetyammerdeviceusageUsercountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(parameter, cancellationToken);
         }

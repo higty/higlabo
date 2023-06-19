@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync()
+        public async ValueTask<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync()
         {
             var p = new FeaturerolloutPolicyPostAppliestoParameter();
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(CancellationToken cancellationToken)
         {
             var p = new FeaturerolloutPolicyPostAppliestoParameter();
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(FeaturerolloutPolicyPostAppliestoParameter parameter)
+        public async ValueTask<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(FeaturerolloutPolicyPostAppliestoParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(FeaturerolloutPolicyPostAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(FeaturerolloutPolicyPostAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(parameter, cancellationToken);
         }

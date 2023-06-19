@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.add
         /// </summary>
-        public async Task<BookmarksAddResponse> BookmarksAddAsync(string? channel_Id, string? title, string? type)
+        public async ValueTask<BookmarksAddResponse> BookmarksAddAsync(string? channel_Id, string? title, string? type)
         {
             var p = new BookmarksAddParameter();
             p.Channel_Id = channel_Id;
@@ -36,7 +36,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.add
         /// </summary>
-        public async Task<BookmarksAddResponse> BookmarksAddAsync(string? channel_Id, string? title, string? type, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksAddResponse> BookmarksAddAsync(string? channel_Id, string? title, string? type, CancellationToken cancellationToken)
         {
             var p = new BookmarksAddParameter();
             p.Channel_Id = channel_Id;
@@ -47,14 +47,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.add
         /// </summary>
-        public async Task<BookmarksAddResponse> BookmarksAddAsync(BookmarksAddParameter parameter)
+        public async ValueTask<BookmarksAddResponse> BookmarksAddAsync(BookmarksAddParameter parameter)
         {
             return await this.SendAsync<BookmarksAddParameter, BookmarksAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.add
         /// </summary>
-        public async Task<BookmarksAddResponse> BookmarksAddAsync(BookmarksAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksAddResponse> BookmarksAddAsync(BookmarksAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksAddParameter, BookmarksAddResponse>(parameter, cancellationToken);
         }

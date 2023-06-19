@@ -116,7 +116,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskUpdateResponse> TodotaskUpdateAsync()
+        public async ValueTask<TodotaskUpdateResponse> TodotaskUpdateAsync()
         {
             var p = new TodotaskUpdateParameter();
             return await this.SendAsync<TodotaskUpdateParameter, TodotaskUpdateResponse>(p, CancellationToken.None);
@@ -124,7 +124,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskUpdateResponse> TodotaskUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskUpdateResponse> TodotaskUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new TodotaskUpdateParameter();
             return await this.SendAsync<TodotaskUpdateParameter, TodotaskUpdateResponse>(p, cancellationToken);
@@ -132,14 +132,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskUpdateResponse> TodotaskUpdateAsync(TodotaskUpdateParameter parameter)
+        public async ValueTask<TodotaskUpdateResponse> TodotaskUpdateAsync(TodotaskUpdateParameter parameter)
         {
             return await this.SendAsync<TodotaskUpdateParameter, TodotaskUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskUpdateResponse> TodotaskUpdateAsync(TodotaskUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskUpdateResponse> TodotaskUpdateAsync(TodotaskUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskUpdateParameter, TodotaskUpdateResponse>(parameter, cancellationToken);
         }

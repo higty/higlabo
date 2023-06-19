@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync()
+        public async ValueTask<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync()
         {
             var p = new ServiceprincipalDeleteDelegatedpermissionclassificationsParameter();
             return await this.SendAsync<ServiceprincipalDeleteDelegatedpermissionclassificationsParameter, ServiceprincipalDeleteDelegatedpermissionclassificationsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalDeleteDelegatedpermissionclassificationsParameter();
             return await this.SendAsync<ServiceprincipalDeleteDelegatedpermissionclassificationsParameter, ServiceprincipalDeleteDelegatedpermissionclassificationsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync(ServiceprincipalDeleteDelegatedpermissionclassificationsParameter parameter)
+        public async ValueTask<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync(ServiceprincipalDeleteDelegatedpermissionclassificationsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteDelegatedpermissionclassificationsParameter, ServiceprincipalDeleteDelegatedpermissionclassificationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync(ServiceprincipalDeleteDelegatedpermissionclassificationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeleteDelegatedpermissionclassificationsResponse> ServiceprincipalDeleteDelegatedpermissionclassificationsAsync(ServiceprincipalDeleteDelegatedpermissionclassificationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalDeleteDelegatedpermissionclassificationsParameter, ServiceprincipalDeleteDelegatedpermissionclassificationsResponse>(parameter, cancellationToken);
         }

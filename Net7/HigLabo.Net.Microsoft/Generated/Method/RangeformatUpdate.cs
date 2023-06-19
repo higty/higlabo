@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatUpdateResponse> RangeformatUpdateAsync()
+        public async ValueTask<RangeformatUpdateResponse> RangeformatUpdateAsync()
         {
             var p = new RangeformatUpdateParameter();
             return await this.SendAsync<RangeformatUpdateParameter, RangeformatUpdateResponse>(p, CancellationToken.None);
@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatUpdateResponse> RangeformatUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeformatUpdateResponse> RangeformatUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new RangeformatUpdateParameter();
             return await this.SendAsync<RangeformatUpdateParameter, RangeformatUpdateResponse>(p, cancellationToken);
@@ -118,14 +118,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatUpdateResponse> RangeformatUpdateAsync(RangeformatUpdateParameter parameter)
+        public async ValueTask<RangeformatUpdateResponse> RangeformatUpdateAsync(RangeformatUpdateParameter parameter)
         {
             return await this.SendAsync<RangeformatUpdateParameter, RangeformatUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatUpdateResponse> RangeformatUpdateAsync(RangeformatUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeformatUpdateResponse> RangeformatUpdateAsync(RangeformatUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeformatUpdateParameter, RangeformatUpdateResponse>(parameter, cancellationToken);
         }

@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.getUploadURLExternal
         /// </summary>
-        public async Task<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(string? filename, int? length)
+        public async ValueTask<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(string? filename, int? length)
         {
             var p = new FilesGetUploadURLExternalParameter();
             p.Filename = filename;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.getUploadURLExternal
         /// </summary>
-        public async Task<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(string? filename, int? length, CancellationToken cancellationToken)
+        public async ValueTask<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(string? filename, int? length, CancellationToken cancellationToken)
         {
             var p = new FilesGetUploadURLExternalParameter();
             p.Filename = filename;
@@ -42,14 +42,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.getUploadURLExternal
         /// </summary>
-        public async Task<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(FilesGetUploadURLExternalParameter parameter)
+        public async ValueTask<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(FilesGetUploadURLExternalParameter parameter)
         {
             return await this.SendAsync<FilesGetUploadURLExternalParameter, FilesGetUploadURLExternalResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.getUploadURLExternal
         /// </summary>
-        public async Task<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(FilesGetUploadURLExternalParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesGetUploadURLExternalResponse> FilesGetUploadURLExternalAsync(FilesGetUploadURLExternalParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesGetUploadURLExternalParameter, FilesGetUploadURLExternalResponse>(parameter, cancellationToken);
         }

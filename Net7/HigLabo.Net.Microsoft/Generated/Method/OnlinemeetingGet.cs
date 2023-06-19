@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingGetResponse> OnlinemeetingGetAsync()
+        public async ValueTask<OnlinemeetingGetResponse> OnlinemeetingGetAsync()
         {
             var p = new OnlinemeetingGetParameter();
             return await this.SendAsync<OnlinemeetingGetParameter, OnlinemeetingGetResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingGetResponse> OnlinemeetingGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingGetResponse> OnlinemeetingGetAsync(CancellationToken cancellationToken)
         {
             var p = new OnlinemeetingGetParameter();
             return await this.SendAsync<OnlinemeetingGetParameter, OnlinemeetingGetResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingGetResponse> OnlinemeetingGetAsync(OnlinemeetingGetParameter parameter)
+        public async ValueTask<OnlinemeetingGetResponse> OnlinemeetingGetAsync(OnlinemeetingGetParameter parameter)
         {
             return await this.SendAsync<OnlinemeetingGetParameter, OnlinemeetingGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingGetResponse> OnlinemeetingGetAsync(OnlinemeetingGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingGetResponse> OnlinemeetingGetAsync(OnlinemeetingGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnlinemeetingGetParameter, OnlinemeetingGetResponse>(parameter, cancellationToken);
         }

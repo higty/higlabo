@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync()
+        public async ValueTask<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync()
         {
             var p = new SecurityEdiscoveryreviewsetGetParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewsetGetParameter, SecurityEdiscoveryreviewsetGetResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoveryreviewsetGetParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewsetGetParameter, SecurityEdiscoveryreviewsetGetResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync(SecurityEdiscoveryreviewsetGetParameter parameter)
+        public async ValueTask<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync(SecurityEdiscoveryreviewsetGetParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewsetGetParameter, SecurityEdiscoveryreviewsetGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync(SecurityEdiscoveryreviewsetGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewsetGetResponse> SecurityEdiscoveryreviewsetGetAsync(SecurityEdiscoveryreviewsetGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewsetGetParameter, SecurityEdiscoveryreviewsetGetResponse>(parameter, cancellationToken);
         }

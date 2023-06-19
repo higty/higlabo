@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OffershiftrequestGetResponse> OffershiftrequestGetAsync()
+        public async ValueTask<OffershiftrequestGetResponse> OffershiftrequestGetAsync()
         {
             var p = new OffershiftrequestGetParameter();
             return await this.SendAsync<OffershiftrequestGetParameter, OffershiftrequestGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OffershiftrequestGetResponse> OffershiftrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OffershiftrequestGetResponse> OffershiftrequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new OffershiftrequestGetParameter();
             return await this.SendAsync<OffershiftrequestGetParameter, OffershiftrequestGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OffershiftrequestGetResponse> OffershiftrequestGetAsync(OffershiftrequestGetParameter parameter)
+        public async ValueTask<OffershiftrequestGetResponse> OffershiftrequestGetAsync(OffershiftrequestGetParameter parameter)
         {
             return await this.SendAsync<OffershiftrequestGetParameter, OffershiftrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OffershiftrequestGetResponse> OffershiftrequestGetAsync(OffershiftrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OffershiftrequestGetResponse> OffershiftrequestGetAsync(OffershiftrequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OffershiftrequestGetParameter, OffershiftrequestGetResponse>(parameter, cancellationToken);
         }

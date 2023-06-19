@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string? team_Id)
+        public async ValueTask<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string? team_Id)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter)
+        public async ValueTask<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter)
         {
             return await this.SendAsync<AdminTeamsOwnersListParameter, AdminTeamsOwnersListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsOwnersListParameter, AdminTeamsOwnersListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string? team_Id, PagingContext<AdminTeamsOwnersListResponse> context)
+        public async ValueTask<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string? team_Id, PagingContext<AdminTeamsOwnersListResponse> context)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string? team_Id, PagingContext<AdminTeamsOwnersListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string? team_Id, PagingContext<AdminTeamsOwnersListResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter, PagingContext<AdminTeamsOwnersListResponse> context)
+        public async ValueTask<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter, PagingContext<AdminTeamsOwnersListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter, PagingContext<AdminTeamsOwnersListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(AdminTeamsOwnersListParameter parameter, PagingContext<AdminTeamsOwnersListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

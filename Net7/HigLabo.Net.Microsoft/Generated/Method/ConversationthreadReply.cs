@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationthread-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationthreadReplyResponse> ConversationthreadReplyAsync()
+        public async ValueTask<ConversationthreadReplyResponse> ConversationthreadReplyAsync()
         {
             var p = new ConversationthreadReplyParameter();
             return await this.SendAsync<ConversationthreadReplyParameter, ConversationthreadReplyResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationthread-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationthreadReplyResponse> ConversationthreadReplyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConversationthreadReplyResponse> ConversationthreadReplyAsync(CancellationToken cancellationToken)
         {
             var p = new ConversationthreadReplyParameter();
             return await this.SendAsync<ConversationthreadReplyParameter, ConversationthreadReplyResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationthread-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationthreadReplyResponse> ConversationthreadReplyAsync(ConversationthreadReplyParameter parameter)
+        public async ValueTask<ConversationthreadReplyResponse> ConversationthreadReplyAsync(ConversationthreadReplyParameter parameter)
         {
             return await this.SendAsync<ConversationthreadReplyParameter, ConversationthreadReplyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationthread-reply?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationthreadReplyResponse> ConversationthreadReplyAsync(ConversationthreadReplyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationthreadReplyResponse> ConversationthreadReplyAsync(ConversationthreadReplyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationthreadReplyParameter, ConversationthreadReplyResponse>(parameter, cancellationToken);
         }

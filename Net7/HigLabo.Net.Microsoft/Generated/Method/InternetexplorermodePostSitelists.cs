@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-post-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync()
+        public async ValueTask<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync()
         {
             var p = new InternetexplorermodePostSitelistsParameter();
             return await this.SendAsync<InternetexplorermodePostSitelistsParameter, InternetexplorermodePostSitelistsResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-post-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync(CancellationToken cancellationToken)
+        public async ValueTask<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync(CancellationToken cancellationToken)
         {
             var p = new InternetexplorermodePostSitelistsParameter();
             return await this.SendAsync<InternetexplorermodePostSitelistsParameter, InternetexplorermodePostSitelistsResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-post-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync(InternetexplorermodePostSitelistsParameter parameter)
+        public async ValueTask<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync(InternetexplorermodePostSitelistsParameter parameter)
         {
             return await this.SendAsync<InternetexplorermodePostSitelistsParameter, InternetexplorermodePostSitelistsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-post-sitelists?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync(InternetexplorermodePostSitelistsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InternetexplorermodePostSitelistsResponse> InternetexplorermodePostSitelistsAsync(InternetexplorermodePostSitelistsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InternetexplorermodePostSitelistsParameter, InternetexplorermodePostSitelistsResponse>(parameter, cancellationToken);
         }

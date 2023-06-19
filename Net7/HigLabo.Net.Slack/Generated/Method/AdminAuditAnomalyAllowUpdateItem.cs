@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync()
+        public async ValueTask<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync()
         {
             var p = new AdminAuditAnomalyAllowUpdateItemParameter();
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAuditAnomalyAllowUpdateItemParameter();
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(AdminAuditAnomalyAllowUpdateItemParameter parameter)
+        public async ValueTask<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(AdminAuditAnomalyAllowUpdateItemParameter parameter)
         {
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(AdminAuditAnomalyAllowUpdateItemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(AdminAuditAnomalyAllowUpdateItemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(parameter, cancellationToken);
         }

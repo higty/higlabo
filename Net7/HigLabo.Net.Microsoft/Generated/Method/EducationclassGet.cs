@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassGetResponse> EducationclassGetAsync()
+        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync()
         {
             var p = new EducationclassGetParameter();
             return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassGetResponse> EducationclassGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassGetParameter();
             return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassGetResponse> EducationclassGetAsync(EducationclassGetParameter parameter)
+        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync(EducationclassGetParameter parameter)
         {
             return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassGetResponse> EducationclassGetAsync(EducationclassGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync(EducationclassGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(parameter, cancellationToken);
         }

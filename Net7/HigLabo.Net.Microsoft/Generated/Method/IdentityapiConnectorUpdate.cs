@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync()
+        public async ValueTask<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync()
         {
             var p = new IdentityapiConnectorUpdateParameter();
             return await this.SendAsync<IdentityapiConnectorUpdateParameter, IdentityapiConnectorUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityapiConnectorUpdateParameter();
             return await this.SendAsync<IdentityapiConnectorUpdateParameter, IdentityapiConnectorUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync(IdentityapiConnectorUpdateParameter parameter)
+        public async ValueTask<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync(IdentityapiConnectorUpdateParameter parameter)
         {
             return await this.SendAsync<IdentityapiConnectorUpdateParameter, IdentityapiConnectorUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync(IdentityapiConnectorUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorUpdateResponse> IdentityapiConnectorUpdateAsync(IdentityapiConnectorUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityapiConnectorUpdateParameter, IdentityapiConnectorUpdateResponse>(parameter, cancellationToken);
         }

@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-unhideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatUnhideforUserResponse> ChatUnhideforUserAsync()
+        public async ValueTask<ChatUnhideforUserResponse> ChatUnhideforUserAsync()
         {
             var p = new ChatUnhideforUserParameter();
             return await this.SendAsync<ChatUnhideforUserParameter, ChatUnhideforUserResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-unhideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatUnhideforUserResponse> ChatUnhideforUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatUnhideforUserResponse> ChatUnhideforUserAsync(CancellationToken cancellationToken)
         {
             var p = new ChatUnhideforUserParameter();
             return await this.SendAsync<ChatUnhideforUserParameter, ChatUnhideforUserResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-unhideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatUnhideforUserResponse> ChatUnhideforUserAsync(ChatUnhideforUserParameter parameter)
+        public async ValueTask<ChatUnhideforUserResponse> ChatUnhideforUserAsync(ChatUnhideforUserParameter parameter)
         {
             return await this.SendAsync<ChatUnhideforUserParameter, ChatUnhideforUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-unhideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatUnhideforUserResponse> ChatUnhideforUserAsync(ChatUnhideforUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatUnhideforUserResponse> ChatUnhideforUserAsync(ChatUnhideforUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatUnhideforUserParameter, ChatUnhideforUserResponse>(parameter, cancellationToken);
         }

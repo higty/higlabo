@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync()
+        public async ValueTask<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync()
         {
             var p = new DelegatedadminrelationshipListOperationsParameter();
             return await this.SendAsync<DelegatedadminrelationshipListOperationsParameter, DelegatedadminrelationshipListOperationsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadminrelationshipListOperationsParameter();
             return await this.SendAsync<DelegatedadminrelationshipListOperationsParameter, DelegatedadminrelationshipListOperationsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(DelegatedadminrelationshipListOperationsParameter parameter)
+        public async ValueTask<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(DelegatedadminrelationshipListOperationsParameter parameter)
         {
             return await this.SendAsync<DelegatedadminrelationshipListOperationsParameter, DelegatedadminrelationshipListOperationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(DelegatedadminrelationshipListOperationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(DelegatedadminrelationshipListOperationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminrelationshipListOperationsParameter, DelegatedadminrelationshipListOperationsResponse>(parameter, cancellationToken);
         }

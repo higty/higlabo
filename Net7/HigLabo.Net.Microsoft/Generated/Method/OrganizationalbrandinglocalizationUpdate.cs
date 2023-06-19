@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync()
+        public async ValueTask<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync()
         {
             var p = new OrganizationalBrandinglocalizationUpdateParameter();
             return await this.SendAsync<OrganizationalBrandinglocalizationUpdateParameter, OrganizationalBrandinglocalizationUpdateResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationalBrandinglocalizationUpdateParameter();
             return await this.SendAsync<OrganizationalBrandinglocalizationUpdateParameter, OrganizationalBrandinglocalizationUpdateResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync(OrganizationalBrandinglocalizationUpdateParameter parameter)
+        public async ValueTask<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync(OrganizationalBrandinglocalizationUpdateParameter parameter)
         {
             return await this.SendAsync<OrganizationalBrandinglocalizationUpdateParameter, OrganizationalBrandinglocalizationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync(OrganizationalBrandinglocalizationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandinglocalizationUpdateResponse> OrganizationalBrandinglocalizationUpdateAsync(OrganizationalBrandinglocalizationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationalBrandinglocalizationUpdateParameter, OrganizationalBrandinglocalizationUpdateResponse>(parameter, cancellationToken);
         }

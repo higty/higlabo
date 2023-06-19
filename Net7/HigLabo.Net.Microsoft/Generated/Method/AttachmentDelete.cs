@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync()
+        public async ValueTask<AttachmentDeleteResponse> AttachmentDeleteAsync()
         {
             var p = new AttachmentDeleteParameter();
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(p, CancellationToken.None);
@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AttachmentDeleteResponse> AttachmentDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AttachmentDeleteParameter();
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(p, cancellationToken);
@@ -105,14 +105,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync(AttachmentDeleteParameter parameter)
+        public async ValueTask<AttachmentDeleteResponse> AttachmentDeleteAsync(AttachmentDeleteParameter parameter)
         {
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync(AttachmentDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AttachmentDeleteResponse> AttachmentDeleteAsync(AttachmentDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(parameter, cancellationToken);
         }

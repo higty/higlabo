@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync()
+        public async ValueTask<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync()
         {
             var p = new OutlookUserListMastercategoriesParameter();
             return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(CancellationToken cancellationToken)
         {
             var p = new OutlookUserListMastercategoriesParameter();
             return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(OutlookUserListMastercategoriesParameter parameter)
+        public async ValueTask<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(OutlookUserListMastercategoriesParameter parameter)
         {
             return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(OutlookUserListMastercategoriesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(OutlookUserListMastercategoriesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(parameter, cancellationToken);
         }

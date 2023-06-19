@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostListAttachmentsResponse> PostListAttachmentsAsync()
+        public async ValueTask<PostListAttachmentsResponse> PostListAttachmentsAsync()
         {
             var p = new PostListAttachmentsParameter();
             return await this.SendAsync<PostListAttachmentsParameter, PostListAttachmentsResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostListAttachmentsResponse> PostListAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PostListAttachmentsResponse> PostListAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new PostListAttachmentsParameter();
             return await this.SendAsync<PostListAttachmentsParameter, PostListAttachmentsResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostListAttachmentsResponse> PostListAttachmentsAsync(PostListAttachmentsParameter parameter)
+        public async ValueTask<PostListAttachmentsResponse> PostListAttachmentsAsync(PostListAttachmentsParameter parameter)
         {
             return await this.SendAsync<PostListAttachmentsParameter, PostListAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/post-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PostListAttachmentsResponse> PostListAttachmentsAsync(PostListAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PostListAttachmentsResponse> PostListAttachmentsAsync(PostListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PostListAttachmentsParameter, PostListAttachmentsResponse>(parameter, cancellationToken);
         }

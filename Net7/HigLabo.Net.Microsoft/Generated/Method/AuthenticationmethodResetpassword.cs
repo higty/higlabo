@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync()
+        public async ValueTask<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync()
         {
             var p = new AuthenticationmethodResetpasswordParameter();
             return await this.SendAsync<AuthenticationmethodResetpasswordParameter, AuthenticationmethodResetpasswordResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationmethodResetpasswordParameter();
             return await this.SendAsync<AuthenticationmethodResetpasswordParameter, AuthenticationmethodResetpasswordResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync(AuthenticationmethodResetpasswordParameter parameter)
+        public async ValueTask<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync(AuthenticationmethodResetpasswordParameter parameter)
         {
             return await this.SendAsync<AuthenticationmethodResetpasswordParameter, AuthenticationmethodResetpasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync(AuthenticationmethodResetpasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationmethodResetpasswordResponse> AuthenticationmethodResetpasswordAsync(AuthenticationmethodResetpasswordParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationmethodResetpasswordParameter, AuthenticationmethodResetpasswordResponse>(parameter, cancellationToken);
         }

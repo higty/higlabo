@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.rename
         /// </summary>
-        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string? name, string? new_Name)
+        public async ValueTask<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string? name, string? new_Name)
         {
             var p = new AdminEmojiRenameParameter();
             p.Name = name;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.rename
         /// </summary>
-        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string? name, string? new_Name, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string? name, string? new_Name, CancellationToken cancellationToken)
         {
             var p = new AdminEmojiRenameParameter();
             p.Name = name;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.rename
         /// </summary>
-        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(AdminEmojiRenameParameter parameter)
+        public async ValueTask<AdminEmojiRenameResponse> AdminEmojiRenameAsync(AdminEmojiRenameParameter parameter)
         {
             return await this.SendAsync<AdminEmojiRenameParameter, AdminEmojiRenameResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.rename
         /// </summary>
-        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(AdminEmojiRenameParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiRenameResponse> AdminEmojiRenameAsync(AdminEmojiRenameParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminEmojiRenameParameter, AdminEmojiRenameResponse>(parameter, cancellationToken);
         }

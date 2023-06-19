@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowUpdateResponse> TablerowUpdateAsync()
+        public async ValueTask<TablerowUpdateResponse> TablerowUpdateAsync()
         {
             var p = new TablerowUpdateParameter();
             return await this.SendAsync<TablerowUpdateParameter, TablerowUpdateResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowUpdateResponse> TablerowUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablerowUpdateResponse> TablerowUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new TablerowUpdateParameter();
             return await this.SendAsync<TablerowUpdateParameter, TablerowUpdateResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowUpdateResponse> TablerowUpdateAsync(TablerowUpdateParameter parameter)
+        public async ValueTask<TablerowUpdateResponse> TablerowUpdateAsync(TablerowUpdateParameter parameter)
         {
             return await this.SendAsync<TablerowUpdateParameter, TablerowUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowUpdateResponse> TablerowUpdateAsync(TablerowUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablerowUpdateResponse> TablerowUpdateAsync(TablerowUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowUpdateParameter, TablerowUpdateResponse>(parameter, cancellationToken);
         }

@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync()
+        public async ValueTask<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync()
         {
             var p = new CertificatebasedauthConfigurationListParameter();
             return await this.SendAsync<CertificatebasedauthConfigurationListParameter, CertificatebasedauthConfigurationListResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync(CancellationToken cancellationToken)
+        public async ValueTask<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync(CancellationToken cancellationToken)
         {
             var p = new CertificatebasedauthConfigurationListParameter();
             return await this.SendAsync<CertificatebasedauthConfigurationListParameter, CertificatebasedauthConfigurationListResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync(CertificatebasedauthConfigurationListParameter parameter)
+        public async ValueTask<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync(CertificatebasedauthConfigurationListParameter parameter)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationListParameter, CertificatebasedauthConfigurationListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync(CertificatebasedauthConfigurationListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CertificatebasedauthConfigurationListResponse> CertificatebasedauthConfigurationListAsync(CertificatebasedauthConfigurationListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationListParameter, CertificatebasedauthConfigurationListResponse>(parameter, cancellationToken);
         }

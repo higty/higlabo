@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billing.info
         /// </summary>
-        public async Task<TeamBillingInfoResponse> TeamBillingInfoAsync()
+        public async ValueTask<TeamBillingInfoResponse> TeamBillingInfoAsync()
         {
             var p = new TeamBillingInfoParameter();
             return await this.SendAsync<TeamBillingInfoParameter, TeamBillingInfoResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billing.info
         /// </summary>
-        public async Task<TeamBillingInfoResponse> TeamBillingInfoAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamBillingInfoResponse> TeamBillingInfoAsync(CancellationToken cancellationToken)
         {
             var p = new TeamBillingInfoParameter();
             return await this.SendAsync<TeamBillingInfoParameter, TeamBillingInfoResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billing.info
         /// </summary>
-        public async Task<TeamBillingInfoResponse> TeamBillingInfoAsync(TeamBillingInfoParameter parameter)
+        public async ValueTask<TeamBillingInfoResponse> TeamBillingInfoAsync(TeamBillingInfoParameter parameter)
         {
             return await this.SendAsync<TeamBillingInfoParameter, TeamBillingInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.billing.info
         /// </summary>
-        public async Task<TeamBillingInfoResponse> TeamBillingInfoAsync(TeamBillingInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamBillingInfoResponse> TeamBillingInfoAsync(TeamBillingInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamBillingInfoParameter, TeamBillingInfoResponse>(parameter, cancellationToken);
         }

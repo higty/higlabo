@@ -134,7 +134,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagePostResponse> ChatmessagePostAsync()
+        public async ValueTask<ChatmessagePostResponse> ChatmessagePostAsync()
         {
             var p = new ChatmessagePostParameter();
             return await this.SendAsync<ChatmessagePostParameter, ChatmessagePostResponse>(p, CancellationToken.None);
@@ -142,7 +142,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagePostResponse> ChatmessagePostAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessagePostResponse> ChatmessagePostAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessagePostParameter();
             return await this.SendAsync<ChatmessagePostParameter, ChatmessagePostResponse>(p, cancellationToken);
@@ -150,14 +150,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagePostResponse> ChatmessagePostAsync(ChatmessagePostParameter parameter)
+        public async ValueTask<ChatmessagePostResponse> ChatmessagePostAsync(ChatmessagePostParameter parameter)
         {
             return await this.SendAsync<ChatmessagePostParameter, ChatmessagePostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagePostResponse> ChatmessagePostAsync(ChatmessagePostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessagePostResponse> ChatmessagePostAsync(ChatmessagePostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessagePostParameter, ChatmessagePostResponse>(parameter, cancellationToken);
         }

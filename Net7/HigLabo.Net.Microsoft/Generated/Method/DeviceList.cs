@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListResponse> DeviceListAsync()
+        public async ValueTask<DeviceListResponse> DeviceListAsync()
         {
             var p = new DeviceListParameter();
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(p, CancellationToken.None);
@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListResponse> DeviceListAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceListResponse> DeviceListAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceListParameter();
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(p, cancellationToken);
@@ -107,14 +107,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListResponse> DeviceListAsync(DeviceListParameter parameter)
+        public async ValueTask<DeviceListResponse> DeviceListAsync(DeviceListParameter parameter)
         {
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListResponse> DeviceListAsync(DeviceListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceListResponse> DeviceListAsync(DeviceListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(parameter, cancellationToken);
         }

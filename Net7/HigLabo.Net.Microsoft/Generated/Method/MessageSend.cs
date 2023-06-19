@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageSendResponse> MessageSendAsync()
+        public async ValueTask<MessageSendResponse> MessageSendAsync()
         {
             var p = new MessageSendParameter();
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageSendResponse> MessageSendAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageSendResponse> MessageSendAsync(CancellationToken cancellationToken)
         {
             var p = new MessageSendParameter();
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageSendResponse> MessageSendAsync(MessageSendParameter parameter)
+        public async ValueTask<MessageSendResponse> MessageSendAsync(MessageSendParameter parameter)
         {
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageSendResponse> MessageSendAsync(MessageSendParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageSendResponse> MessageSendAsync(MessageSendParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(parameter, cancellationToken);
         }

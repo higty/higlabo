@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync()
+        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync()
         {
             var p = new ConnectedorganizationUpdateParameter();
             return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ConnectedorganizationUpdateParameter();
             return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(ConnectedorganizationUpdateParameter parameter)
+        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(ConnectedorganizationUpdateParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(ConnectedorganizationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(ConnectedorganizationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(parameter, cancellationToken);
         }

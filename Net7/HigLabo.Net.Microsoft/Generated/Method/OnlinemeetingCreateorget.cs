@@ -101,7 +101,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync()
+        public async ValueTask<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync()
         {
             var p = new OnlinemeetingCreateorgetParameter();
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(p, CancellationToken.None);
@@ -109,7 +109,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(CancellationToken cancellationToken)
         {
             var p = new OnlinemeetingCreateorgetParameter();
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(p, cancellationToken);
@@ -117,14 +117,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(OnlinemeetingCreateorgetParameter parameter)
+        public async ValueTask<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(OnlinemeetingCreateorgetParameter parameter)
         {
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(OnlinemeetingCreateorgetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(OnlinemeetingCreateorgetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(parameter, cancellationToken);
         }

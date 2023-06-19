@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-clear?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeClearResponse> RangeClearAsync()
+        public async ValueTask<RangeClearResponse> RangeClearAsync()
         {
             var p = new RangeClearParameter();
             return await this.SendAsync<RangeClearParameter, RangeClearResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-clear?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeClearResponse> RangeClearAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeClearResponse> RangeClearAsync(CancellationToken cancellationToken)
         {
             var p = new RangeClearParameter();
             return await this.SendAsync<RangeClearParameter, RangeClearResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-clear?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeClearResponse> RangeClearAsync(RangeClearParameter parameter)
+        public async ValueTask<RangeClearResponse> RangeClearAsync(RangeClearParameter parameter)
         {
             return await this.SendAsync<RangeClearParameter, RangeClearResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-clear?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeClearResponse> RangeClearAsync(RangeClearParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeClearResponse> RangeClearAsync(RangeClearParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeClearParameter, RangeClearResponse>(parameter, cancellationToken);
         }

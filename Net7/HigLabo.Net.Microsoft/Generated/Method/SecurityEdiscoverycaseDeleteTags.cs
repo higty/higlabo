@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync()
+        public async ValueTask<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync()
         {
             var p = new SecurityEdiscoverycaseDeleteTagsParameter();
             return await this.SendAsync<SecurityEdiscoverycaseDeleteTagsParameter, SecurityEdiscoverycaseDeleteTagsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseDeleteTagsParameter();
             return await this.SendAsync<SecurityEdiscoverycaseDeleteTagsParameter, SecurityEdiscoverycaseDeleteTagsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync(SecurityEdiscoverycaseDeleteTagsParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync(SecurityEdiscoverycaseDeleteTagsParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseDeleteTagsParameter, SecurityEdiscoverycaseDeleteTagsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync(SecurityEdiscoverycaseDeleteTagsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseDeleteTagsResponse> SecurityEdiscoverycaseDeleteTagsAsync(SecurityEdiscoverycaseDeleteTagsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseDeleteTagsParameter, SecurityEdiscoverycaseDeleteTagsResponse>(parameter, cancellationToken);
         }

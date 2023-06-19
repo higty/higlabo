@@ -23,7 +23,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.assign
         /// </summary>
-        public async Task<AdminUsersAssignResponse> AdminUsersAssignAsync(string? team_Id, string? user_Id)
+        public async ValueTask<AdminUsersAssignResponse> AdminUsersAssignAsync(string? team_Id, string? user_Id)
         {
             var p = new AdminUsersAssignParameter();
             p.Team_Id = team_Id;
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.assign
         /// </summary>
-        public async Task<AdminUsersAssignResponse> AdminUsersAssignAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersAssignResponse> AdminUsersAssignAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersAssignParameter();
             p.Team_Id = team_Id;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.assign
         /// </summary>
-        public async Task<AdminUsersAssignResponse> AdminUsersAssignAsync(AdminUsersAssignParameter parameter)
+        public async ValueTask<AdminUsersAssignResponse> AdminUsersAssignAsync(AdminUsersAssignParameter parameter)
         {
             return await this.SendAsync<AdminUsersAssignParameter, AdminUsersAssignResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.assign
         /// </summary>
-        public async Task<AdminUsersAssignResponse> AdminUsersAssignAsync(AdminUsersAssignParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersAssignResponse> AdminUsersAssignAsync(AdminUsersAssignParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersAssignParameter, AdminUsersAssignResponse>(parameter, cancellationToken);
         }

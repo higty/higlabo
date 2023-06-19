@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyallResponse> MessageReplyallAsync()
+        public async ValueTask<MessageReplyallResponse> MessageReplyallAsync()
         {
             var p = new MessageReplyallParameter();
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyallResponse> MessageReplyallAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageReplyallResponse> MessageReplyallAsync(CancellationToken cancellationToken)
         {
             var p = new MessageReplyallParameter();
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyallResponse> MessageReplyallAsync(MessageReplyallParameter parameter)
+        public async ValueTask<MessageReplyallResponse> MessageReplyallAsync(MessageReplyallParameter parameter)
         {
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageReplyallResponse> MessageReplyallAsync(MessageReplyallParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageReplyallResponse> MessageReplyallAsync(MessageReplyallParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(parameter, cancellationToken);
         }

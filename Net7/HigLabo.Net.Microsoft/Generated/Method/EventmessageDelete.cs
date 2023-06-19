@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageDeleteResponse> EventmessageDeleteAsync()
+        public async ValueTask<EventmessageDeleteResponse> EventmessageDeleteAsync()
         {
             var p = new EventmessageDeleteParameter();
             return await this.SendAsync<EventmessageDeleteParameter, EventmessageDeleteResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageDeleteResponse> EventmessageDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventmessageDeleteResponse> EventmessageDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new EventmessageDeleteParameter();
             return await this.SendAsync<EventmessageDeleteParameter, EventmessageDeleteResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageDeleteResponse> EventmessageDeleteAsync(EventmessageDeleteParameter parameter)
+        public async ValueTask<EventmessageDeleteResponse> EventmessageDeleteAsync(EventmessageDeleteParameter parameter)
         {
             return await this.SendAsync<EventmessageDeleteParameter, EventmessageDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageDeleteResponse> EventmessageDeleteAsync(EventmessageDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventmessageDeleteResponse> EventmessageDeleteAsync(EventmessageDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventmessageDeleteParameter, EventmessageDeleteResponse>(parameter, cancellationToken);
         }

@@ -38,9 +38,9 @@ namespace HigLabo.Net.Slack
             return mg;
         }
 
-        public override async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
+        public override async ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            Func<Task<TResponse>>? f = null;
+            Func<ValueTask<TResponse>>? f = null;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
                 //Use POST method with FormUrlEncodedContent for GET endpoint.
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Slack
                 this.RefreshToken = result.Authed_User!.Refresh_Token;
             }
         }
-        public async Task<RequestCodeResponse> RequestCodeAsync(string code)
+        public async ValueTask<RequestCodeResponse> RequestCodeAsync(string code)
         {
             if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Slack
             var bodyText = await res.Content.ReadAsStringAsync();
             return this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
         }
-        public async Task<RequestCodeResponse> UpdateAccessTokenAsync()
+        public async ValueTask<RequestCodeResponse> UpdateAccessTokenAsync()
         {
             if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }

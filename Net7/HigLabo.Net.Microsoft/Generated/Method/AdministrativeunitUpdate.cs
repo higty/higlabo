@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync()
+        public async ValueTask<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync()
         {
             var p = new AdministrativeunitUpdateParameter();
             return await this.SendAsync<AdministrativeunitUpdateParameter, AdministrativeunitUpdateResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AdministrativeunitUpdateParameter();
             return await this.SendAsync<AdministrativeunitUpdateParameter, AdministrativeunitUpdateResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync(AdministrativeunitUpdateParameter parameter)
+        public async ValueTask<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync(AdministrativeunitUpdateParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitUpdateParameter, AdministrativeunitUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync(AdministrativeunitUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitUpdateResponse> AdministrativeunitUpdateAsync(AdministrativeunitUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdministrativeunitUpdateParameter, AdministrativeunitUpdateResponse>(parameter, cancellationToken);
         }

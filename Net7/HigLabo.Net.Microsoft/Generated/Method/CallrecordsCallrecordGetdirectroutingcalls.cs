@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getdirectroutingcalls?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync()
+        public async ValueTask<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync()
         {
             var p = new CallrecordsCallrecordGetdirectroutingcallsParameter();
             return await this.SendAsync<CallrecordsCallrecordGetdirectroutingcallsParameter, CallrecordsCallrecordGetdirectroutingcallsResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getdirectroutingcalls?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync(CancellationToken cancellationToken)
         {
             var p = new CallrecordsCallrecordGetdirectroutingcallsParameter();
             return await this.SendAsync<CallrecordsCallrecordGetdirectroutingcallsParameter, CallrecordsCallrecordGetdirectroutingcallsResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getdirectroutingcalls?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync(CallrecordsCallrecordGetdirectroutingcallsParameter parameter)
+        public async ValueTask<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync(CallrecordsCallrecordGetdirectroutingcallsParameter parameter)
         {
             return await this.SendAsync<CallrecordsCallrecordGetdirectroutingcallsParameter, CallrecordsCallrecordGetdirectroutingcallsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getdirectroutingcalls?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync(CallrecordsCallrecordGetdirectroutingcallsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallrecordsCallrecordGetdirectroutingcallsResponse> CallrecordsCallrecordGetdirectroutingcallsAsync(CallrecordsCallrecordGetdirectroutingcallsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallrecordsCallrecordGetdirectroutingcallsParameter, CallrecordsCallrecordGetdirectroutingcallsResponse>(parameter, cancellationToken);
         }

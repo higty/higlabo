@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedLocationGetResponse> NamedLocationGetAsync()
+        public async ValueTask<NamedLocationGetResponse> NamedLocationGetAsync()
         {
             var p = new NamedLocationGetParameter();
             return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedLocationGetResponse> NamedLocationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<NamedLocationGetResponse> NamedLocationGetAsync(CancellationToken cancellationToken)
         {
             var p = new NamedLocationGetParameter();
             return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedLocationGetResponse> NamedLocationGetAsync(NamedLocationGetParameter parameter)
+        public async ValueTask<NamedLocationGetResponse> NamedLocationGetAsync(NamedLocationGetParameter parameter)
         {
             return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedLocationGetResponse> NamedLocationGetAsync(NamedLocationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NamedLocationGetResponse> NamedLocationGetAsync(NamedLocationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(parameter, cancellationToken);
         }

@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync()
+        public async ValueTask<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync()
         {
             var p = new OutlookcategoryUpdateParameter();
             return await this.SendAsync<OutlookcategoryUpdateParameter, OutlookcategoryUpdateResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new OutlookcategoryUpdateParameter();
             return await this.SendAsync<OutlookcategoryUpdateParameter, OutlookcategoryUpdateResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync(OutlookcategoryUpdateParameter parameter)
+        public async ValueTask<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync(OutlookcategoryUpdateParameter parameter)
         {
             return await this.SendAsync<OutlookcategoryUpdateParameter, OutlookcategoryUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync(OutlookcategoryUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookcategoryUpdateResponse> OutlookcategoryUpdateAsync(OutlookcategoryUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookcategoryUpdateParameter, OutlookcategoryUpdateResponse>(parameter, cancellationToken);
         }

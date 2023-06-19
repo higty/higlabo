@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-delete-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteDeletePermissionResponse> SiteDeletePermissionAsync()
+        public async ValueTask<SiteDeletePermissionResponse> SiteDeletePermissionAsync()
         {
             var p = new SiteDeletePermissionParameter();
             return await this.SendAsync<SiteDeletePermissionParameter, SiteDeletePermissionResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-delete-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteDeletePermissionResponse> SiteDeletePermissionAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteDeletePermissionResponse> SiteDeletePermissionAsync(CancellationToken cancellationToken)
         {
             var p = new SiteDeletePermissionParameter();
             return await this.SendAsync<SiteDeletePermissionParameter, SiteDeletePermissionResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-delete-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteDeletePermissionResponse> SiteDeletePermissionAsync(SiteDeletePermissionParameter parameter)
+        public async ValueTask<SiteDeletePermissionResponse> SiteDeletePermissionAsync(SiteDeletePermissionParameter parameter)
         {
             return await this.SendAsync<SiteDeletePermissionParameter, SiteDeletePermissionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-delete-permission?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteDeletePermissionResponse> SiteDeletePermissionAsync(SiteDeletePermissionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteDeletePermissionResponse> SiteDeletePermissionAsync(SiteDeletePermissionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteDeletePermissionParameter, SiteDeletePermissionResponse>(parameter, cancellationToken);
         }

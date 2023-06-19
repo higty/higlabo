@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostMembersResponse> EducationclassPostMembersAsync()
+        public async ValueTask<EducationclassPostMembersResponse> EducationclassPostMembersAsync()
         {
             var p = new EducationclassPostMembersParameter();
             return await this.SendAsync<EducationclassPostMembersParameter, EducationclassPostMembersResponse>(p, CancellationToken.None);
@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostMembersResponse> EducationclassPostMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassPostMembersResponse> EducationclassPostMembersAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassPostMembersParameter();
             return await this.SendAsync<EducationclassPostMembersParameter, EducationclassPostMembersResponse>(p, cancellationToken);
@@ -115,14 +115,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostMembersResponse> EducationclassPostMembersAsync(EducationclassPostMembersParameter parameter)
+        public async ValueTask<EducationclassPostMembersResponse> EducationclassPostMembersAsync(EducationclassPostMembersParameter parameter)
         {
             return await this.SendAsync<EducationclassPostMembersParameter, EducationclassPostMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostMembersResponse> EducationclassPostMembersAsync(EducationclassPostMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassPostMembersResponse> EducationclassPostMembersAsync(EducationclassPostMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassPostMembersParameter, EducationclassPostMembersResponse>(parameter, cancellationToken);
         }

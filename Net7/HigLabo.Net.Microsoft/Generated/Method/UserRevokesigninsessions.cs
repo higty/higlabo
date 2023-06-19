@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync()
+        public async ValueTask<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync()
         {
             var p = new UserRevokesigninsessionsParameter();
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(CancellationToken cancellationToken)
         {
             var p = new UserRevokesigninsessionsParameter();
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(UserRevokesigninsessionsParameter parameter)
+        public async ValueTask<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(UserRevokesigninsessionsParameter parameter)
         {
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(UserRevokesigninsessionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(UserRevokesigninsessionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(parameter, cancellationToken);
         }

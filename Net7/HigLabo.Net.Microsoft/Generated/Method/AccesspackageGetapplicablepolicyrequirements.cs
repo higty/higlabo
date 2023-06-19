@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync()
+        public async ValueTask<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync()
         {
             var p = new AccesspackageGetapplicablePolicyRequirementsParameter();
             return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageGetapplicablePolicyRequirementsParameter();
             return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(AccesspackageGetapplicablePolicyRequirementsParameter parameter)
+        public async ValueTask<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(AccesspackageGetapplicablePolicyRequirementsParameter parameter)
         {
             return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(AccesspackageGetapplicablePolicyRequirementsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(AccesspackageGetapplicablePolicyRequirementsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(parameter, cancellationToken);
         }

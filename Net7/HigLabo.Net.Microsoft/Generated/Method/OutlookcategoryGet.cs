@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync()
+        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync()
         {
             var p = new OutlookcategoryGetParameter();
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync(CancellationToken cancellationToken)
         {
             var p = new OutlookcategoryGetParameter();
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter)
+        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter)
         {
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(parameter, cancellationToken);
         }

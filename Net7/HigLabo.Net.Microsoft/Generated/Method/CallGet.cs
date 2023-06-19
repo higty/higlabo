@@ -132,7 +132,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallGetResponse> CallGetAsync()
+        public async ValueTask<CallGetResponse> CallGetAsync()
         {
             var p = new CallGetParameter();
             return await this.SendAsync<CallGetParameter, CallGetResponse>(p, CancellationToken.None);
@@ -140,7 +140,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallGetResponse> CallGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallGetResponse> CallGetAsync(CancellationToken cancellationToken)
         {
             var p = new CallGetParameter();
             return await this.SendAsync<CallGetParameter, CallGetResponse>(p, cancellationToken);
@@ -148,14 +148,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallGetResponse> CallGetAsync(CallGetParameter parameter)
+        public async ValueTask<CallGetResponse> CallGetAsync(CallGetParameter parameter)
         {
             return await this.SendAsync<CallGetParameter, CallGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallGetResponse> CallGetAsync(CallGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallGetResponse> CallGetAsync(CallGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallGetParameter, CallGetResponse>(parameter, cancellationToken);
         }

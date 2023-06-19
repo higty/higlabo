@@ -36,7 +36,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<ReactionsListResponse> ReactionsListAsync()
+        public async ValueTask<ReactionsListResponse> ReactionsListAsync()
         {
             var p = new ReactionsListParameter();
             return await this.SendAsync<ReactionsListParameter, ReactionsListResponse>(p, CancellationToken.None);
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<ReactionsListResponse> ReactionsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReactionsListResponse> ReactionsListAsync(CancellationToken cancellationToken)
         {
             var p = new ReactionsListParameter();
             return await this.SendAsync<ReactionsListParameter, ReactionsListResponse>(p, cancellationToken);
@@ -52,21 +52,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<ReactionsListResponse> ReactionsListAsync(ReactionsListParameter parameter)
+        public async ValueTask<ReactionsListResponse> ReactionsListAsync(ReactionsListParameter parameter)
         {
             return await this.SendAsync<ReactionsListParameter, ReactionsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<ReactionsListResponse> ReactionsListAsync(ReactionsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReactionsListResponse> ReactionsListAsync(ReactionsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReactionsListParameter, ReactionsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<List<ReactionsListResponse>> ReactionsListAsync(PagingContext<ReactionsListResponse> context)
+        public async ValueTask<List<ReactionsListResponse>> ReactionsListAsync(PagingContext<ReactionsListResponse> context)
         {
             var p = new ReactionsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<List<ReactionsListResponse>> ReactionsListAsync(CancellationToken cancellationToken, PagingContext<ReactionsListResponse> context)
+        public async ValueTask<List<ReactionsListResponse>> ReactionsListAsync(CancellationToken cancellationToken, PagingContext<ReactionsListResponse> context)
         {
             var p = new ReactionsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<List<ReactionsListResponse>> ReactionsListAsync(ReactionsListParameter parameter, PagingContext<ReactionsListResponse> context)
+        public async ValueTask<List<ReactionsListResponse>> ReactionsListAsync(ReactionsListParameter parameter, PagingContext<ReactionsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async Task<List<ReactionsListResponse>> ReactionsListAsync(ReactionsListParameter parameter, PagingContext<ReactionsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ReactionsListResponse>> ReactionsListAsync(ReactionsListParameter parameter, PagingContext<ReactionsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

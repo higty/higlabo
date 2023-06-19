@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync()
+        public async ValueTask<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync()
         {
             var p = new PrinttasktriggerGetParameter();
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrinttasktriggerGetParameter();
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(PrinttasktriggerGetParameter parameter)
+        public async ValueTask<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(PrinttasktriggerGetParameter parameter)
         {
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(PrinttasktriggerGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(PrinttasktriggerGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(parameter, cancellationToken);
         }

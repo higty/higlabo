@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync()
+        public async ValueTask<ChannelProvisionemailResponse> ChannelProvisionemailAsync()
         {
             var p = new ChannelProvisionemailParameter();
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelProvisionemailResponse> ChannelProvisionemailAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelProvisionemailParameter();
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync(ChannelProvisionemailParameter parameter)
+        public async ValueTask<ChannelProvisionemailResponse> ChannelProvisionemailAsync(ChannelProvisionemailParameter parameter)
         {
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync(ChannelProvisionemailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelProvisionemailResponse> ChannelProvisionemailAsync(ChannelProvisionemailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(parameter, cancellationToken);
         }

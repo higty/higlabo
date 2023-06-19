@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetResponse> ChannelGetAsync()
+        public async ValueTask<ChannelGetResponse> ChannelGetAsync()
         {
             var p = new ChannelGetParameter();
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(p, CancellationToken.None);
@@ -106,7 +106,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetResponse> ChannelGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetResponse> ChannelGetAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelGetParameter();
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(p, cancellationToken);
@@ -114,14 +114,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetResponse> ChannelGetAsync(ChannelGetParameter parameter)
+        public async ValueTask<ChannelGetResponse> ChannelGetAsync(ChannelGetParameter parameter)
         {
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelGetResponse> ChannelGetAsync(ChannelGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetResponse> ChannelGetAsync(ChannelGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(parameter, cancellationToken);
         }

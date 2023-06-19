@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPostResponse> TeamPostAsync()
+        public async ValueTask<TeamPostResponse> TeamPostAsync()
         {
             var p = new TeamPostParameter();
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPostResponse> TeamPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamPostResponse> TeamPostAsync(CancellationToken cancellationToken)
         {
             var p = new TeamPostParameter();
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPostResponse> TeamPostAsync(TeamPostParameter parameter)
+        public async ValueTask<TeamPostResponse> TeamPostAsync(TeamPostParameter parameter)
         {
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPostResponse> TeamPostAsync(TeamPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamPostResponse> TeamPostAsync(TeamPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(parameter, cancellationToken);
         }

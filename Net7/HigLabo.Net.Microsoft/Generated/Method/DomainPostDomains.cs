@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-domains?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostDomainsResponse> DomainPostDomainsAsync()
+        public async ValueTask<DomainPostDomainsResponse> DomainPostDomainsAsync()
         {
             var p = new DomainPostDomainsParameter();
             return await this.SendAsync<DomainPostDomainsParameter, DomainPostDomainsResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-domains?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostDomainsResponse> DomainPostDomainsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainPostDomainsResponse> DomainPostDomainsAsync(CancellationToken cancellationToken)
         {
             var p = new DomainPostDomainsParameter();
             return await this.SendAsync<DomainPostDomainsParameter, DomainPostDomainsResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-domains?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostDomainsResponse> DomainPostDomainsAsync(DomainPostDomainsParameter parameter)
+        public async ValueTask<DomainPostDomainsResponse> DomainPostDomainsAsync(DomainPostDomainsParameter parameter)
         {
             return await this.SendAsync<DomainPostDomainsParameter, DomainPostDomainsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-domains?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostDomainsResponse> DomainPostDomainsAsync(DomainPostDomainsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainPostDomainsResponse> DomainPostDomainsAsync(DomainPostDomainsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainPostDomainsParameter, DomainPostDomainsResponse>(parameter, cancellationToken);
         }

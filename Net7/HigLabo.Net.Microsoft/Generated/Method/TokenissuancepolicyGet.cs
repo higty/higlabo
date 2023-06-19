@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync()
+        public async ValueTask<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync()
         {
             var p = new TokenissuancePolicyGetParameter();
             return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new TokenissuancePolicyGetParameter();
             return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(TokenissuancePolicyGetParameter parameter)
+        public async ValueTask<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(TokenissuancePolicyGetParameter parameter)
         {
             return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(TokenissuancePolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(TokenissuancePolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(parameter, cancellationToken);
         }

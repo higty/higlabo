@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addTeams
         /// </summary>
-        public async Task<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(string? team_Ids, string? usergroup_Id)
+        public async ValueTask<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(string? team_Ids, string? usergroup_Id)
         {
             var p = new AdminUsergroupsAddTeamsParameter();
             p.Team_Ids = team_Ids;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addTeams
         /// </summary>
-        public async Task<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(string? team_Ids, string? usergroup_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(string? team_Ids, string? usergroup_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsergroupsAddTeamsParameter();
             p.Team_Ids = team_Ids;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addTeams
         /// </summary>
-        public async Task<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(AdminUsergroupsAddTeamsParameter parameter)
+        public async ValueTask<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(AdminUsergroupsAddTeamsParameter parameter)
         {
             return await this.SendAsync<AdminUsergroupsAddTeamsParameter, AdminUsergroupsAddTeamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addTeams
         /// </summary>
-        public async Task<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(AdminUsergroupsAddTeamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsergroupsAddTeamsResponse> AdminUsergroupsAddTeamsAsync(AdminUsergroupsAddTeamsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsergroupsAddTeamsParameter, AdminUsergroupsAddTeamsResponse>(parameter, cancellationToken);
         }

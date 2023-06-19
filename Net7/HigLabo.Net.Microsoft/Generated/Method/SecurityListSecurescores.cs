@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync()
+        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync()
         {
             var p = new SecurityListSecurescoresParameter();
             return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityListSecurescoresParameter();
             return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(SecurityListSecurescoresParameter parameter)
+        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(SecurityListSecurescoresParameter parameter)
         {
             return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(SecurityListSecurescoresParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(SecurityListSecurescoresParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(parameter, cancellationToken);
         }

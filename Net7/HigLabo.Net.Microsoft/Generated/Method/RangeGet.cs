@@ -122,7 +122,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeGetResponse> RangeGetAsync()
+        public async ValueTask<RangeGetResponse> RangeGetAsync()
         {
             var p = new RangeGetParameter();
             return await this.SendAsync<RangeGetParameter, RangeGetResponse>(p, CancellationToken.None);
@@ -130,7 +130,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeGetResponse> RangeGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeGetResponse> RangeGetAsync(CancellationToken cancellationToken)
         {
             var p = new RangeGetParameter();
             return await this.SendAsync<RangeGetParameter, RangeGetResponse>(p, cancellationToken);
@@ -138,14 +138,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeGetResponse> RangeGetAsync(RangeGetParameter parameter)
+        public async ValueTask<RangeGetResponse> RangeGetAsync(RangeGetParameter parameter)
         {
             return await this.SendAsync<RangeGetParameter, RangeGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeGetResponse> RangeGetAsync(RangeGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeGetResponse> RangeGetAsync(RangeGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeGetParameter, RangeGetResponse>(parameter, cancellationToken);
         }

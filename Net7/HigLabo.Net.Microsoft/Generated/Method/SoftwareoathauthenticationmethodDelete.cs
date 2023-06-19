@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync()
+        public async ValueTask<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync()
         {
             var p = new SoftwareoathauthenticationmethodDeleteParameter();
             return await this.SendAsync<SoftwareoathauthenticationmethodDeleteParameter, SoftwareoathauthenticationmethodDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SoftwareoathauthenticationmethodDeleteParameter();
             return await this.SendAsync<SoftwareoathauthenticationmethodDeleteParameter, SoftwareoathauthenticationmethodDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync(SoftwareoathauthenticationmethodDeleteParameter parameter)
+        public async ValueTask<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync(SoftwareoathauthenticationmethodDeleteParameter parameter)
         {
             return await this.SendAsync<SoftwareoathauthenticationmethodDeleteParameter, SoftwareoathauthenticationmethodDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync(SoftwareoathauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SoftwareoathauthenticationmethodDeleteResponse> SoftwareoathauthenticationmethodDeleteAsync(SoftwareoathauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SoftwareoathauthenticationmethodDeleteParameter, SoftwareoathauthenticationmethodDeleteResponse>(parameter, cancellationToken);
         }

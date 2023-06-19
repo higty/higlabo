@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync()
+        public async ValueTask<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync()
         {
             var p = new WorkforceintegrationUpdateParameter();
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new WorkforceintegrationUpdateParameter();
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(WorkforceintegrationUpdateParameter parameter)
+        public async ValueTask<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(WorkforceintegrationUpdateParameter parameter)
         {
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(WorkforceintegrationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(WorkforceintegrationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(parameter, cancellationToken);
         }

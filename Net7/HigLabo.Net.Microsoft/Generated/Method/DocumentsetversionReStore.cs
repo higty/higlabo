@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync()
+        public async ValueTask<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync()
         {
             var p = new DocumentsetversionReStoreParameter();
             return await this.SendAsync<DocumentsetversionReStoreParameter, DocumentsetversionReStoreResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync(CancellationToken cancellationToken)
+        public async ValueTask<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync(CancellationToken cancellationToken)
         {
             var p = new DocumentsetversionReStoreParameter();
             return await this.SendAsync<DocumentsetversionReStoreParameter, DocumentsetversionReStoreResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync(DocumentsetversionReStoreParameter parameter)
+        public async ValueTask<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync(DocumentsetversionReStoreParameter parameter)
         {
             return await this.SendAsync<DocumentsetversionReStoreParameter, DocumentsetversionReStoreResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync(DocumentsetversionReStoreParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DocumentsetversionReStoreResponse> DocumentsetversionReStoreAsync(DocumentsetversionReStoreParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DocumentsetversionReStoreParameter, DocumentsetversionReStoreResponse>(parameter, cancellationToken);
         }

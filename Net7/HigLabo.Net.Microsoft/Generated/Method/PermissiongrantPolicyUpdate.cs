@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync()
+        public async ValueTask<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync()
         {
             var p = new PermissiongrantPolicyUpdateParameter();
             return await this.SendAsync<PermissiongrantPolicyUpdateParameter, PermissiongrantPolicyUpdateResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PermissiongrantPolicyUpdateParameter();
             return await this.SendAsync<PermissiongrantPolicyUpdateParameter, PermissiongrantPolicyUpdateResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync(PermissiongrantPolicyUpdateParameter parameter)
+        public async ValueTask<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync(PermissiongrantPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyUpdateParameter, PermissiongrantPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync(PermissiongrantPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyUpdateResponse> PermissiongrantPolicyUpdateAsync(PermissiongrantPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissiongrantPolicyUpdateParameter, PermissiongrantPolicyUpdateResponse>(parameter, cancellationToken);
         }

@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setAdmin
         /// </summary>
-        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string? team_Id, string? user_Id)
+        public async ValueTask<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string? team_Id, string? user_Id)
         {
             var p = new AdminUsersSetAdminParameter();
             p.Team_Id = team_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setAdmin
         /// </summary>
-        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetAdminParameter();
             p.Team_Id = team_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setAdmin
         /// </summary>
-        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(AdminUsersSetAdminParameter parameter)
+        public async ValueTask<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(AdminUsersSetAdminParameter parameter)
         {
             return await this.SendAsync<AdminUsersSetAdminParameter, AdminUsersSetAdminResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setAdmin
         /// </summary>
-        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(AdminUsersSetAdminParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(AdminUsersSetAdminParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSetAdminParameter, AdminUsersSetAdminResponse>(parameter, cancellationToken);
         }

@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.add
         /// </summary>
-        public async Task<ReactionsAddResponse> ReactionsAddAsync(string? channel, string? name, string? timestamp)
+        public async ValueTask<ReactionsAddResponse> ReactionsAddAsync(string? channel, string? name, string? timestamp)
         {
             var p = new ReactionsAddParameter();
             p.Channel = channel;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.add
         /// </summary>
-        public async Task<ReactionsAddResponse> ReactionsAddAsync(string? channel, string? name, string? timestamp, CancellationToken cancellationToken)
+        public async ValueTask<ReactionsAddResponse> ReactionsAddAsync(string? channel, string? name, string? timestamp, CancellationToken cancellationToken)
         {
             var p = new ReactionsAddParameter();
             p.Channel = channel;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.add
         /// </summary>
-        public async Task<ReactionsAddResponse> ReactionsAddAsync(ReactionsAddParameter parameter)
+        public async ValueTask<ReactionsAddResponse> ReactionsAddAsync(ReactionsAddParameter parameter)
         {
             return await this.SendAsync<ReactionsAddParameter, ReactionsAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reactions.add
         /// </summary>
-        public async Task<ReactionsAddResponse> ReactionsAddAsync(ReactionsAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReactionsAddResponse> ReactionsAddAsync(ReactionsAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReactionsAddParameter, ReactionsAddResponse>(parameter, cancellationToken);
         }

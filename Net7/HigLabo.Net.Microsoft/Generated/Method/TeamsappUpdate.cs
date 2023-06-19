@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappUpdateResponse> TeamsappUpdateAsync()
+        public async ValueTask<TeamsappUpdateResponse> TeamsappUpdateAsync()
         {
             var p = new TeamsappUpdateParameter();
             return await this.SendAsync<TeamsappUpdateParameter, TeamsappUpdateResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappUpdateResponse> TeamsappUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamsappUpdateResponse> TeamsappUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new TeamsappUpdateParameter();
             return await this.SendAsync<TeamsappUpdateParameter, TeamsappUpdateResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappUpdateResponse> TeamsappUpdateAsync(TeamsappUpdateParameter parameter)
+        public async ValueTask<TeamsappUpdateResponse> TeamsappUpdateAsync(TeamsappUpdateParameter parameter)
         {
             return await this.SendAsync<TeamsappUpdateParameter, TeamsappUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappUpdateResponse> TeamsappUpdateAsync(TeamsappUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamsappUpdateResponse> TeamsappUpdateAsync(TeamsappUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamsappUpdateParameter, TeamsappUpdateResponse>(parameter, cancellationToken);
         }

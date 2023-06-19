@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user)
+        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user)
         {
             var p = new ChatPostEphemeralParameter();
             p.Channel = channel;
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user, CancellationToken cancellationToken)
+        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user, CancellationToken cancellationToken)
         {
             var p = new ChatPostEphemeralParameter();
             p.Channel = channel;
@@ -52,14 +52,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(ChatPostEphemeralParameter parameter)
+        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(ChatPostEphemeralParameter parameter)
         {
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(ChatPostEphemeralParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(ChatPostEphemeralParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(parameter, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync()
+        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync()
         {
             var p = new DelegatedadmincustomerGetParameter();
             return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadmincustomerGetParameter();
             return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(DelegatedadmincustomerGetParameter parameter)
+        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(DelegatedadmincustomerGetParameter parameter)
         {
             return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(DelegatedadmincustomerGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(DelegatedadmincustomerGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(parameter, cancellationToken);
         }

@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.leave
         /// </summary>
-        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(string? channel)
+        public async ValueTask<ConversationsLeaveResponse> ConversationsLeaveAsync(string? channel)
         {
             var p = new ConversationsLeaveParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.leave
         /// </summary>
-        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsLeaveResponse> ConversationsLeaveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsLeaveParameter();
             p.Channel = channel;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.leave
         /// </summary>
-        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(ConversationsLeaveParameter parameter)
+        public async ValueTask<ConversationsLeaveResponse> ConversationsLeaveAsync(ConversationsLeaveParameter parameter)
         {
             return await this.SendAsync<ConversationsLeaveParameter, ConversationsLeaveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.leave
         /// </summary>
-        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(ConversationsLeaveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsLeaveResponse> ConversationsLeaveAsync(ConversationsLeaveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsLeaveParameter, ConversationsLeaveResponse>(parameter, cancellationToken);
         }

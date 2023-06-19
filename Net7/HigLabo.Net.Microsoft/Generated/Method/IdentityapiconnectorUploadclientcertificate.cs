@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync()
+        public async ValueTask<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync()
         {
             var p = new IdentityapiConnectorUploadclientcertificateParameter();
             return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityapiConnectorUploadclientcertificateParameter();
             return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(IdentityapiConnectorUploadclientcertificateParameter parameter)
+        public async ValueTask<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(IdentityapiConnectorUploadclientcertificateParameter parameter)
         {
             return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(IdentityapiConnectorUploadclientcertificateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(IdentityapiConnectorUploadclientcertificateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(parameter, cancellationToken);
         }

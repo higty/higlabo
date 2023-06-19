@@ -112,7 +112,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync()
+        public async ValueTask<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync()
         {
             var p = new EducationAssignmentUpdateParameter();
             return await this.SendAsync<EducationAssignmentUpdateParameter, EducationAssignmentUpdateResponse>(p, CancellationToken.None);
@@ -120,7 +120,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new EducationAssignmentUpdateParameter();
             return await this.SendAsync<EducationAssignmentUpdateParameter, EducationAssignmentUpdateResponse>(p, cancellationToken);
@@ -128,14 +128,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync(EducationAssignmentUpdateParameter parameter)
+        public async ValueTask<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync(EducationAssignmentUpdateParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentUpdateParameter, EducationAssignmentUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync(EducationAssignmentUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentUpdateResponse> EducationAssignmentUpdateAsync(EducationAssignmentUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentUpdateParameter, EducationAssignmentUpdateResponse>(parameter, cancellationToken);
         }

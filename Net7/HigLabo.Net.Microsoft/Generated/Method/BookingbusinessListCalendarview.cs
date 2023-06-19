@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync()
+        public async ValueTask<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync()
         {
             var p = new BookingbusinessListCalendarviewParameter();
             return await this.SendAsync<BookingbusinessListCalendarviewParameter, BookingbusinessListCalendarviewResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync(CancellationToken cancellationToken)
         {
             var p = new BookingbusinessListCalendarviewParameter();
             return await this.SendAsync<BookingbusinessListCalendarviewParameter, BookingbusinessListCalendarviewResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync(BookingbusinessListCalendarviewParameter parameter)
+        public async ValueTask<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync(BookingbusinessListCalendarviewParameter parameter)
         {
             return await this.SendAsync<BookingbusinessListCalendarviewParameter, BookingbusinessListCalendarviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync(BookingbusinessListCalendarviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingbusinessListCalendarviewResponse> BookingbusinessListCalendarviewAsync(BookingbusinessListCalendarviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingbusinessListCalendarviewParameter, BookingbusinessListCalendarviewResponse>(parameter, cancellationToken);
         }

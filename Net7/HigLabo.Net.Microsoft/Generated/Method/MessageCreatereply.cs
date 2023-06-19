@@ -151,7 +151,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync()
+        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync()
         {
             var p = new MessageCreatereplyParameter();
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(p, CancellationToken.None);
@@ -159,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync(CancellationToken cancellationToken)
         {
             var p = new MessageCreatereplyParameter();
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(p, cancellationToken);
@@ -167,14 +167,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter)
+        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter)
         {
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(parameter, cancellationToken);
         }

@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync()
+        public async ValueTask<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync()
         {
             var p = new UnifiedroleManagementPolicyruleUpdateParameter();
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroleManagementPolicyruleUpdateParameter();
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(UnifiedroleManagementPolicyruleUpdateParameter parameter)
+        public async ValueTask<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(UnifiedroleManagementPolicyruleUpdateParameter parameter)
         {
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(UnifiedroleManagementPolicyruleUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(UnifiedroleManagementPolicyruleUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(parameter, cancellationToken);
         }

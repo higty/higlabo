@@ -159,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostEventsResponse> GroupPostEventsAsync()
+        public async ValueTask<GroupPostEventsResponse> GroupPostEventsAsync()
         {
             var p = new GroupPostEventsParameter();
             return await this.SendAsync<GroupPostEventsParameter, GroupPostEventsResponse>(p, CancellationToken.None);
@@ -167,7 +167,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostEventsResponse> GroupPostEventsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupPostEventsResponse> GroupPostEventsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupPostEventsParameter();
             return await this.SendAsync<GroupPostEventsParameter, GroupPostEventsResponse>(p, cancellationToken);
@@ -175,14 +175,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostEventsResponse> GroupPostEventsAsync(GroupPostEventsParameter parameter)
+        public async ValueTask<GroupPostEventsResponse> GroupPostEventsAsync(GroupPostEventsParameter parameter)
         {
             return await this.SendAsync<GroupPostEventsParameter, GroupPostEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostEventsResponse> GroupPostEventsAsync(GroupPostEventsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupPostEventsResponse> GroupPostEventsAsync(GroupPostEventsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupPostEventsParameter, GroupPostEventsResponse>(parameter, cancellationToken);
         }

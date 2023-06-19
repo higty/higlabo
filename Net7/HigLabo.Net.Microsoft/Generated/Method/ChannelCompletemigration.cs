@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync()
+        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync()
         {
             var p = new ChannelCompletemigrationParameter();
             return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelCompletemigrationParameter();
             return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(ChannelCompletemigrationParameter parameter)
+        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(ChannelCompletemigrationParameter parameter)
         {
             return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(ChannelCompletemigrationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(ChannelCompletemigrationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(parameter, cancellationToken);
         }

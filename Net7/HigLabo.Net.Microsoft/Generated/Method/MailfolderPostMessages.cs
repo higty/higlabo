@@ -144,7 +144,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync()
+        public async ValueTask<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync()
         {
             var p = new MailfolderPostMessagesParameter();
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(p, CancellationToken.None);
@@ -152,7 +152,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(CancellationToken cancellationToken)
         {
             var p = new MailfolderPostMessagesParameter();
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(p, cancellationToken);
@@ -160,14 +160,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(MailfolderPostMessagesParameter parameter)
+        public async ValueTask<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(MailfolderPostMessagesParameter parameter)
         {
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(MailfolderPostMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(MailfolderPostMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(parameter, cancellationToken);
         }

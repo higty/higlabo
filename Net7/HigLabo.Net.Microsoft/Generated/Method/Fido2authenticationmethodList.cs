@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync()
+        public async ValueTask<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync()
         {
             var p = new Fido2authenticationmethodListParameter();
             return await this.SendAsync<Fido2authenticationmethodListParameter, Fido2authenticationmethodListResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(CancellationToken cancellationToken)
+        public async ValueTask<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(CancellationToken cancellationToken)
         {
             var p = new Fido2authenticationmethodListParameter();
             return await this.SendAsync<Fido2authenticationmethodListParameter, Fido2authenticationmethodListResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(Fido2authenticationmethodListParameter parameter)
+        public async ValueTask<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(Fido2authenticationmethodListParameter parameter)
         {
             return await this.SendAsync<Fido2authenticationmethodListParameter, Fido2authenticationmethodListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(Fido2authenticationmethodListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(Fido2authenticationmethodListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Fido2authenticationmethodListParameter, Fido2authenticationmethodListResponse>(parameter, cancellationToken);
         }

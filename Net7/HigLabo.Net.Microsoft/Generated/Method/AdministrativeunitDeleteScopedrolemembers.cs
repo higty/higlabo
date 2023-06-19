@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync()
+        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync()
         {
             var p = new AdministrativeunitDeleteScopedrolemembersParameter();
             return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(CancellationToken cancellationToken)
         {
             var p = new AdministrativeunitDeleteScopedrolemembersParameter();
             return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(AdministrativeunitDeleteScopedrolemembersParameter parameter)
+        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(AdministrativeunitDeleteScopedrolemembersParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(AdministrativeunitDeleteScopedrolemembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(AdministrativeunitDeleteScopedrolemembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(parameter, cancellationToken);
         }

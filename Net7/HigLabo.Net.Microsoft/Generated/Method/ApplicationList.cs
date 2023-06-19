@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListResponse> ApplicationListAsync()
+        public async ValueTask<ApplicationListResponse> ApplicationListAsync()
         {
             var p = new ApplicationListParameter();
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListResponse> ApplicationListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListResponse> ApplicationListAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationListParameter();
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter)
+        public async ValueTask<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter)
         {
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(parameter, cancellationToken);
         }

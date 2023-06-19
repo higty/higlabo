@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-assignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync()
+        public async ValueTask<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync()
         {
             var p = new EducationUserListAssignmentsParameter();
             return await this.SendAsync<EducationUserListAssignmentsParameter, EducationUserListAssignmentsResponse>(p, CancellationToken.None);
@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-assignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new EducationUserListAssignmentsParameter();
             return await this.SendAsync<EducationUserListAssignmentsParameter, EducationUserListAssignmentsResponse>(p, cancellationToken);
@@ -105,14 +105,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-assignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync(EducationUserListAssignmentsParameter parameter)
+        public async ValueTask<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync(EducationUserListAssignmentsParameter parameter)
         {
             return await this.SendAsync<EducationUserListAssignmentsParameter, EducationUserListAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-assignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync(EducationUserListAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationUserListAssignmentsResponse> EducationUserListAssignmentsAsync(EducationUserListAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserListAssignmentsParameter, EducationUserListAssignmentsResponse>(parameter, cancellationToken);
         }

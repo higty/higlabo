@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync()
+        public async ValueTask<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync()
         {
             var p = new UserListRegistereddevicesParameter();
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(CancellationToken cancellationToken)
         {
             var p = new UserListRegistereddevicesParameter();
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(UserListRegistereddevicesParameter parameter)
+        public async ValueTask<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(UserListRegistereddevicesParameter parameter)
         {
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(UserListRegistereddevicesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(UserListRegistereddevicesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(parameter, cancellationToken);
         }

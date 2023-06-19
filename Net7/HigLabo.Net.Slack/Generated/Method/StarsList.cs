@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<StarsListResponse> StarsListAsync()
+        public async ValueTask<StarsListResponse> StarsListAsync()
         {
             var p = new StarsListParameter();
             return await this.SendAsync<StarsListParameter, StarsListResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<StarsListResponse> StarsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<StarsListResponse> StarsListAsync(CancellationToken cancellationToken)
         {
             var p = new StarsListParameter();
             return await this.SendAsync<StarsListParameter, StarsListResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<StarsListResponse> StarsListAsync(StarsListParameter parameter)
+        public async ValueTask<StarsListResponse> StarsListAsync(StarsListParameter parameter)
         {
             return await this.SendAsync<StarsListParameter, StarsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<StarsListResponse> StarsListAsync(StarsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<StarsListResponse> StarsListAsync(StarsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<StarsListParameter, StarsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<List<StarsListResponse>> StarsListAsync(PagingContext<StarsListResponse> context)
+        public async ValueTask<List<StarsListResponse>> StarsListAsync(PagingContext<StarsListResponse> context)
         {
             var p = new StarsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<List<StarsListResponse>> StarsListAsync(CancellationToken cancellationToken, PagingContext<StarsListResponse> context)
+        public async ValueTask<List<StarsListResponse>> StarsListAsync(CancellationToken cancellationToken, PagingContext<StarsListResponse> context)
         {
             var p = new StarsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<List<StarsListResponse>> StarsListAsync(StarsListParameter parameter, PagingContext<StarsListResponse> context)
+        public async ValueTask<List<StarsListResponse>> StarsListAsync(StarsListParameter parameter, PagingContext<StarsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async Task<List<StarsListResponse>> StarsListAsync(StarsListParameter parameter, PagingContext<StarsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<StarsListResponse>> StarsListAsync(StarsListParameter parameter, PagingContext<StarsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

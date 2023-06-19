@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-participants?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListParticipantsResponse> CallListParticipantsAsync()
+        public async ValueTask<CallListParticipantsResponse> CallListParticipantsAsync()
         {
             var p = new CallListParticipantsParameter();
             return await this.SendAsync<CallListParticipantsParameter, CallListParticipantsResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-participants?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListParticipantsResponse> CallListParticipantsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallListParticipantsResponse> CallListParticipantsAsync(CancellationToken cancellationToken)
         {
             var p = new CallListParticipantsParameter();
             return await this.SendAsync<CallListParticipantsParameter, CallListParticipantsResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-participants?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListParticipantsResponse> CallListParticipantsAsync(CallListParticipantsParameter parameter)
+        public async ValueTask<CallListParticipantsResponse> CallListParticipantsAsync(CallListParticipantsParameter parameter)
         {
             return await this.SendAsync<CallListParticipantsParameter, CallListParticipantsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-participants?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListParticipantsResponse> CallListParticipantsAsync(CallListParticipantsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallListParticipantsResponse> CallListParticipantsAsync(CallListParticipantsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallListParticipantsParameter, CallListParticipantsResponse>(parameter, cancellationToken);
         }

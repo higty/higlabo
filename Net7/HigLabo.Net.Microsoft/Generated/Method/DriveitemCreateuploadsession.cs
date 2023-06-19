@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync()
+        public async ValueTask<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync()
         {
             var p = new DriveitemCreateuploadsessionParameter();
             return await this.SendAsync<DriveitemCreateuploadsessionParameter, DriveitemCreateuploadsessionResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemCreateuploadsessionParameter();
             return await this.SendAsync<DriveitemCreateuploadsessionParameter, DriveitemCreateuploadsessionResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync(DriveitemCreateuploadsessionParameter parameter)
+        public async ValueTask<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync(DriveitemCreateuploadsessionParameter parameter)
         {
             return await this.SendAsync<DriveitemCreateuploadsessionParameter, DriveitemCreateuploadsessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync(DriveitemCreateuploadsessionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCreateuploadsessionResponse> DriveitemCreateuploadsessionAsync(DriveitemCreateuploadsessionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemCreateuploadsessionParameter, DriveitemCreateuploadsessionResponse>(parameter, cancellationToken);
         }

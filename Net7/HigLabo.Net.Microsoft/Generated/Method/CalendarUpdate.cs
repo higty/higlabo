@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarUpdateResponse> CalendarUpdateAsync()
+        public async ValueTask<CalendarUpdateResponse> CalendarUpdateAsync()
         {
             var p = new CalendarUpdateParameter();
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(p, CancellationToken.None);
@@ -116,7 +116,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarUpdateResponse> CalendarUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarUpdateResponse> CalendarUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarUpdateParameter();
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(p, cancellationToken);
@@ -124,14 +124,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarUpdateResponse> CalendarUpdateAsync(CalendarUpdateParameter parameter)
+        public async ValueTask<CalendarUpdateResponse> CalendarUpdateAsync(CalendarUpdateParameter parameter)
         {
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarUpdateResponse> CalendarUpdateAsync(CalendarUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarUpdateResponse> CalendarUpdateAsync(CalendarUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(parameter, cancellationToken);
         }

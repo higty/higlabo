@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync()
+        public async ValueTask<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync()
         {
             var p = new ExternalConnectorsSchemaCreateParameter();
             return await this.SendAsync<ExternalConnectorsSchemaCreateParameter, ExternalConnectorsSchemaCreateResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsSchemaCreateParameter();
             return await this.SendAsync<ExternalConnectorsSchemaCreateParameter, ExternalConnectorsSchemaCreateResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync(ExternalConnectorsSchemaCreateParameter parameter)
+        public async ValueTask<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync(ExternalConnectorsSchemaCreateParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsSchemaCreateParameter, ExternalConnectorsSchemaCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync(ExternalConnectorsSchemaCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsSchemaCreateResponse> ExternalConnectorsSchemaCreateAsync(ExternalConnectorsSchemaCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsSchemaCreateParameter, ExternalConnectorsSchemaCreateResponse>(parameter, cancellationToken);
         }

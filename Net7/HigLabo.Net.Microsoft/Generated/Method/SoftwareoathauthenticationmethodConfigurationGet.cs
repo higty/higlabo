@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync()
+        public async ValueTask<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync()
         {
             var p = new SoftwareoathauthenticationmethodConfigurationGetParameter();
             return await this.SendAsync<SoftwareoathauthenticationmethodConfigurationGetParameter, SoftwareoathauthenticationmethodConfigurationGetResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync(CancellationToken cancellationToken)
         {
             var p = new SoftwareoathauthenticationmethodConfigurationGetParameter();
             return await this.SendAsync<SoftwareoathauthenticationmethodConfigurationGetParameter, SoftwareoathauthenticationmethodConfigurationGetResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync(SoftwareoathauthenticationmethodConfigurationGetParameter parameter)
+        public async ValueTask<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync(SoftwareoathauthenticationmethodConfigurationGetParameter parameter)
         {
             return await this.SendAsync<SoftwareoathauthenticationmethodConfigurationGetParameter, SoftwareoathauthenticationmethodConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/softwareoathauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync(SoftwareoathauthenticationmethodConfigurationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SoftwareoathauthenticationmethodConfigurationGetResponse> SoftwareoathauthenticationmethodConfigurationGetAsync(SoftwareoathauthenticationmethodConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SoftwareoathauthenticationmethodConfigurationGetParameter, SoftwareoathauthenticationmethodConfigurationGetResponse>(parameter, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingappointmentCancelResponse> BookingappointmentCancelAsync()
+        public async ValueTask<BookingappointmentCancelResponse> BookingappointmentCancelAsync()
         {
             var p = new BookingappointmentCancelParameter();
             return await this.SendAsync<BookingappointmentCancelParameter, BookingappointmentCancelResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingappointmentCancelResponse> BookingappointmentCancelAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingappointmentCancelResponse> BookingappointmentCancelAsync(CancellationToken cancellationToken)
         {
             var p = new BookingappointmentCancelParameter();
             return await this.SendAsync<BookingappointmentCancelParameter, BookingappointmentCancelResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingappointmentCancelResponse> BookingappointmentCancelAsync(BookingappointmentCancelParameter parameter)
+        public async ValueTask<BookingappointmentCancelResponse> BookingappointmentCancelAsync(BookingappointmentCancelParameter parameter)
         {
             return await this.SendAsync<BookingappointmentCancelParameter, BookingappointmentCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingappointmentCancelResponse> BookingappointmentCancelAsync(BookingappointmentCancelParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingappointmentCancelResponse> BookingappointmentCancelAsync(BookingappointmentCancelParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingappointmentCancelParameter, BookingappointmentCancelResponse>(parameter, cancellationToken);
         }

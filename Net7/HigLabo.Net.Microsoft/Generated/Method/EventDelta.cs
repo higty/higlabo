@@ -109,7 +109,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeltaResponse> EventDeltaAsync()
+        public async ValueTask<EventDeltaResponse> EventDeltaAsync()
         {
             var p = new EventDeltaParameter();
             return await this.SendAsync<EventDeltaParameter, EventDeltaResponse>(p, CancellationToken.None);
@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeltaResponse> EventDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventDeltaResponse> EventDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new EventDeltaParameter();
             return await this.SendAsync<EventDeltaParameter, EventDeltaResponse>(p, cancellationToken);
@@ -125,14 +125,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeltaResponse> EventDeltaAsync(EventDeltaParameter parameter)
+        public async ValueTask<EventDeltaResponse> EventDeltaAsync(EventDeltaParameter parameter)
         {
             return await this.SendAsync<EventDeltaParameter, EventDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventDeltaResponse> EventDeltaAsync(EventDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventDeltaResponse> EventDeltaAsync(EventDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventDeltaParameter, EventDeltaResponse>(parameter, cancellationToken);
         }

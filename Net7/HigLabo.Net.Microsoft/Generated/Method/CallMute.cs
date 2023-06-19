@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallMuteResponse> CallMuteAsync()
+        public async ValueTask<CallMuteResponse> CallMuteAsync()
         {
             var p = new CallMuteParameter();
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallMuteResponse> CallMuteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallMuteResponse> CallMuteAsync(CancellationToken cancellationToken)
         {
             var p = new CallMuteParameter();
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallMuteResponse> CallMuteAsync(CallMuteParameter parameter)
+        public async ValueTask<CallMuteResponse> CallMuteAsync(CallMuteParameter parameter)
         {
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallMuteResponse> CallMuteAsync(CallMuteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallMuteResponse> CallMuteAsync(CallMuteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(parameter, cancellationToken);
         }

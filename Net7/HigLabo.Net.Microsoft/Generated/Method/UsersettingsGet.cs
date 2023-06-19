@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsGetResponse> UserSettingsGetAsync()
+        public async ValueTask<UserSettingsGetResponse> UserSettingsGetAsync()
         {
             var p = new UserSettingsGetParameter();
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsGetResponse> UserSettingsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserSettingsGetResponse> UserSettingsGetAsync(CancellationToken cancellationToken)
         {
             var p = new UserSettingsGetParameter();
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter)
+        public async ValueTask<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter)
         {
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(parameter, cancellationToken);
         }

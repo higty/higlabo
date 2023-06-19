@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync()
+        public async ValueTask<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync()
         {
             var p = new CloudcommunicationsGetpresencesbyUseridParameter();
             return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CancellationToken cancellationToken)
+        public async ValueTask<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CancellationToken cancellationToken)
         {
             var p = new CloudcommunicationsGetpresencesbyUseridParameter();
             return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CloudcommunicationsGetpresencesbyUseridParameter parameter)
+        public async ValueTask<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CloudcommunicationsGetpresencesbyUseridParameter parameter)
         {
             return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CloudcommunicationsGetpresencesbyUseridParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CloudcommunicationsGetpresencesbyUseridParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(parameter, cancellationToken);
         }

@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftPostResponse> OpenshiftPostAsync()
+        public async ValueTask<OpenshiftPostResponse> OpenshiftPostAsync()
         {
             var p = new OpenshiftPostParameter();
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftPostResponse> OpenshiftPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftPostResponse> OpenshiftPostAsync(CancellationToken cancellationToken)
         {
             var p = new OpenshiftPostParameter();
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftPostResponse> OpenshiftPostAsync(OpenshiftPostParameter parameter)
+        public async ValueTask<OpenshiftPostResponse> OpenshiftPostAsync(OpenshiftPostParameter parameter)
         {
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftPostResponse> OpenshiftPostAsync(OpenshiftPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftPostResponse> OpenshiftPostAsync(OpenshiftPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(parameter, cancellationToken);
         }

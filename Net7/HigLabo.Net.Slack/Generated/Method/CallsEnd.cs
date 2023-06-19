@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.end
         /// </summary>
-        public async Task<CallsEndResponse> CallsEndAsync(string? id)
+        public async ValueTask<CallsEndResponse> CallsEndAsync(string? id)
         {
             var p = new CallsEndParameter();
             p.Id = id;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.end
         /// </summary>
-        public async Task<CallsEndResponse> CallsEndAsync(string? id, CancellationToken cancellationToken)
+        public async ValueTask<CallsEndResponse> CallsEndAsync(string? id, CancellationToken cancellationToken)
         {
             var p = new CallsEndParameter();
             p.Id = id;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.end
         /// </summary>
-        public async Task<CallsEndResponse> CallsEndAsync(CallsEndParameter parameter)
+        public async ValueTask<CallsEndResponse> CallsEndAsync(CallsEndParameter parameter)
         {
             return await this.SendAsync<CallsEndParameter, CallsEndResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/calls.end
         /// </summary>
-        public async Task<CallsEndResponse> CallsEndAsync(CallsEndParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallsEndResponse> CallsEndAsync(CallsEndParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallsEndParameter, CallsEndResponse>(parameter, cancellationToken);
         }

@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync()
+        public async ValueTask<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync()
         {
             var p = new WorksheetCollectionAddParameter();
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetCollectionAddParameter();
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(WorksheetCollectionAddParameter parameter)
+        public async ValueTask<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(WorksheetCollectionAddParameter parameter)
         {
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(WorksheetCollectionAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(WorksheetCollectionAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(parameter, cancellationToken);
         }

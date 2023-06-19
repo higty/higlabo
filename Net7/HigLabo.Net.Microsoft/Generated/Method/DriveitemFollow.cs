@@ -150,7 +150,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemFollowResponse> DriveitemFollowAsync()
+        public async ValueTask<DriveitemFollowResponse> DriveitemFollowAsync()
         {
             var p = new DriveitemFollowParameter();
             return await this.SendAsync<DriveitemFollowParameter, DriveitemFollowResponse>(p, CancellationToken.None);
@@ -158,7 +158,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemFollowResponse> DriveitemFollowAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemFollowResponse> DriveitemFollowAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemFollowParameter();
             return await this.SendAsync<DriveitemFollowParameter, DriveitemFollowResponse>(p, cancellationToken);
@@ -166,14 +166,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemFollowResponse> DriveitemFollowAsync(DriveitemFollowParameter parameter)
+        public async ValueTask<DriveitemFollowResponse> DriveitemFollowAsync(DriveitemFollowParameter parameter)
         {
             return await this.SendAsync<DriveitemFollowParameter, DriveitemFollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-follow?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemFollowResponse> DriveitemFollowAsync(DriveitemFollowParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemFollowResponse> DriveitemFollowAsync(DriveitemFollowParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemFollowParameter, DriveitemFollowResponse>(parameter, cancellationToken);
         }

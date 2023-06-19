@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync()
+        public async ValueTask<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync()
         {
             var p = new EntitlementManagementPostCatalogsParameter();
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(CancellationToken cancellationToken)
         {
             var p = new EntitlementManagementPostCatalogsParameter();
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(EntitlementManagementPostCatalogsParameter parameter)
+        public async ValueTask<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(EntitlementManagementPostCatalogsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(EntitlementManagementPostCatalogsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(EntitlementManagementPostCatalogsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(parameter, cancellationToken);
         }

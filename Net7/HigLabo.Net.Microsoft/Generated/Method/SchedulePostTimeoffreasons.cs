@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync()
+        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync()
         {
             var p = new SchedulePostTimeoffreasonsParameter();
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(CancellationToken cancellationToken)
         {
             var p = new SchedulePostTimeoffreasonsParameter();
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter)
+        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter)
         {
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(parameter, cancellationToken);
         }

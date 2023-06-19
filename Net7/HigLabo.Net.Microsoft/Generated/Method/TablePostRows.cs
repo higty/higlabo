@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostRowsResponse> TablePostRowsAsync()
+        public async ValueTask<TablePostRowsResponse> TablePostRowsAsync()
         {
             var p = new TablePostRowsParameter();
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostRowsResponse> TablePostRowsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablePostRowsResponse> TablePostRowsAsync(CancellationToken cancellationToken)
         {
             var p = new TablePostRowsParameter();
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostRowsResponse> TablePostRowsAsync(TablePostRowsParameter parameter)
+        public async ValueTask<TablePostRowsResponse> TablePostRowsAsync(TablePostRowsParameter parameter)
         {
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablePostRowsResponse> TablePostRowsAsync(TablePostRowsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablePostRowsResponse> TablePostRowsAsync(TablePostRowsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(parameter, cancellationToken);
         }

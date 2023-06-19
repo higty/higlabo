@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersimulationdetails-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync()
+        public async ValueTask<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync()
         {
             var p = new UsersimulationdetailsListParameter();
             return await this.SendAsync<UsersimulationdetailsListParameter, UsersimulationdetailsListResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersimulationdetails-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync(CancellationToken cancellationToken)
         {
             var p = new UsersimulationdetailsListParameter();
             return await this.SendAsync<UsersimulationdetailsListParameter, UsersimulationdetailsListResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersimulationdetails-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync(UsersimulationdetailsListParameter parameter)
+        public async ValueTask<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync(UsersimulationdetailsListParameter parameter)
         {
             return await this.SendAsync<UsersimulationdetailsListParameter, UsersimulationdetailsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/usersimulationdetails-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync(UsersimulationdetailsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersimulationdetailsListResponse> UsersimulationdetailsListAsync(UsersimulationdetailsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersimulationdetailsListParameter, UsersimulationdetailsListResponse>(parameter, cancellationToken);
         }

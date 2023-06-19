@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync()
+        public async ValueTask<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync()
         {
             var p = new ExtensionpropertyDeleteParameter();
             return await this.SendAsync<ExtensionpropertyDeleteParameter, ExtensionpropertyDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ExtensionpropertyDeleteParameter();
             return await this.SendAsync<ExtensionpropertyDeleteParameter, ExtensionpropertyDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync(ExtensionpropertyDeleteParameter parameter)
+        public async ValueTask<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync(ExtensionpropertyDeleteParameter parameter)
         {
             return await this.SendAsync<ExtensionpropertyDeleteParameter, ExtensionpropertyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync(ExtensionpropertyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExtensionpropertyDeleteResponse> ExtensionpropertyDeleteAsync(ExtensionpropertyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExtensionpropertyDeleteParameter, ExtensionpropertyDeleteResponse>(parameter, cancellationToken);
         }

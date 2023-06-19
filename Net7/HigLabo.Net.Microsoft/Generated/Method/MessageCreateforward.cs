@@ -151,7 +151,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createforward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreateforwardResponse> MessageCreateforwardAsync()
+        public async ValueTask<MessageCreateforwardResponse> MessageCreateforwardAsync()
         {
             var p = new MessageCreateforwardParameter();
             return await this.SendAsync<MessageCreateforwardParameter, MessageCreateforwardResponse>(p, CancellationToken.None);
@@ -159,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createforward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreateforwardResponse> MessageCreateforwardAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageCreateforwardResponse> MessageCreateforwardAsync(CancellationToken cancellationToken)
         {
             var p = new MessageCreateforwardParameter();
             return await this.SendAsync<MessageCreateforwardParameter, MessageCreateforwardResponse>(p, cancellationToken);
@@ -167,14 +167,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createforward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreateforwardResponse> MessageCreateforwardAsync(MessageCreateforwardParameter parameter)
+        public async ValueTask<MessageCreateforwardResponse> MessageCreateforwardAsync(MessageCreateforwardParameter parameter)
         {
             return await this.SendAsync<MessageCreateforwardParameter, MessageCreateforwardResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createforward?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCreateforwardResponse> MessageCreateforwardAsync(MessageCreateforwardParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageCreateforwardResponse> MessageCreateforwardAsync(MessageCreateforwardParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageCreateforwardParameter, MessageCreateforwardResponse>(parameter, cancellationToken);
         }

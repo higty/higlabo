@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderPostResponse> MailsearchfolderPostAsync()
+        public async ValueTask<MailsearchfolderPostResponse> MailsearchfolderPostAsync()
         {
             var p = new MailsearchfolderPostParameter();
             return await this.SendAsync<MailsearchfolderPostParameter, MailsearchfolderPostResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderPostResponse> MailsearchfolderPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailsearchfolderPostResponse> MailsearchfolderPostAsync(CancellationToken cancellationToken)
         {
             var p = new MailsearchfolderPostParameter();
             return await this.SendAsync<MailsearchfolderPostParameter, MailsearchfolderPostResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderPostResponse> MailsearchfolderPostAsync(MailsearchfolderPostParameter parameter)
+        public async ValueTask<MailsearchfolderPostResponse> MailsearchfolderPostAsync(MailsearchfolderPostParameter parameter)
         {
             return await this.SendAsync<MailsearchfolderPostParameter, MailsearchfolderPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailsearchfolderPostResponse> MailsearchfolderPostAsync(MailsearchfolderPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailsearchfolderPostResponse> MailsearchfolderPostAsync(MailsearchfolderPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailsearchfolderPostParameter, MailsearchfolderPostResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync()
+        public async ValueTask<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync()
         {
             var p = new ConditionalAccessPolicyUpdateParameter();
             return await this.SendAsync<ConditionalAccessPolicyUpdateParameter, ConditionalAccessPolicyUpdateResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ConditionalAccessPolicyUpdateParameter();
             return await this.SendAsync<ConditionalAccessPolicyUpdateParameter, ConditionalAccessPolicyUpdateResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync(ConditionalAccessPolicyUpdateParameter parameter)
+        public async ValueTask<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync(ConditionalAccessPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessPolicyUpdateParameter, ConditionalAccessPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync(ConditionalAccessPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessPolicyUpdateResponse> ConditionalAccessPolicyUpdateAsync(ConditionalAccessPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccessPolicyUpdateParameter, ConditionalAccessPolicyUpdateResponse>(parameter, cancellationToken);
         }

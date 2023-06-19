@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.close
         /// </summary>
-        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(string? channel)
+        public async ValueTask<ConversationsCloseResponse> ConversationsCloseAsync(string? channel)
         {
             var p = new ConversationsCloseParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.close
         /// </summary>
-        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsCloseResponse> ConversationsCloseAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsCloseParameter();
             p.Channel = channel;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.close
         /// </summary>
-        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(ConversationsCloseParameter parameter)
+        public async ValueTask<ConversationsCloseResponse> ConversationsCloseAsync(ConversationsCloseParameter parameter)
         {
             return await this.SendAsync<ConversationsCloseParameter, ConversationsCloseResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.close
         /// </summary>
-        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(ConversationsCloseParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsCloseResponse> ConversationsCloseAsync(ConversationsCloseParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsCloseParameter, ConversationsCloseResponse>(parameter, cancellationToken);
         }

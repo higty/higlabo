@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuGetResponse> SubscribedskuGetAsync()
+        public async ValueTask<SubscribedskuGetResponse> SubscribedskuGetAsync()
         {
             var p = new SubscribedskuGetParameter();
             return await this.SendAsync<SubscribedskuGetParameter, SubscribedskuGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuGetResponse> SubscribedskuGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubscribedskuGetResponse> SubscribedskuGetAsync(CancellationToken cancellationToken)
         {
             var p = new SubscribedskuGetParameter();
             return await this.SendAsync<SubscribedskuGetParameter, SubscribedskuGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuGetResponse> SubscribedskuGetAsync(SubscribedskuGetParameter parameter)
+        public async ValueTask<SubscribedskuGetResponse> SubscribedskuGetAsync(SubscribedskuGetParameter parameter)
         {
             return await this.SendAsync<SubscribedskuGetParameter, SubscribedskuGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscribedskuGetResponse> SubscribedskuGetAsync(SubscribedskuGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubscribedskuGetResponse> SubscribedskuGetAsync(SubscribedskuGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscribedskuGetParameter, SubscribedskuGetResponse>(parameter, cancellationToken);
         }

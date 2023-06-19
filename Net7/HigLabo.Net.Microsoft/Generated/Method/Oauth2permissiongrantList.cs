@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync()
+        public async ValueTask<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync()
         {
             var p = new Oauth2permissiongrantListParameter();
             return await this.SendAsync<Oauth2permissiongrantListParameter, Oauth2permissiongrantListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync(CancellationToken cancellationToken)
+        public async ValueTask<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync(CancellationToken cancellationToken)
         {
             var p = new Oauth2permissiongrantListParameter();
             return await this.SendAsync<Oauth2permissiongrantListParameter, Oauth2permissiongrantListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync(Oauth2permissiongrantListParameter parameter)
+        public async ValueTask<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync(Oauth2permissiongrantListParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantListParameter, Oauth2permissiongrantListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync(Oauth2permissiongrantListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Oauth2permissiongrantListResponse> Oauth2permissiongrantListAsync(Oauth2permissiongrantListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Oauth2permissiongrantListParameter, Oauth2permissiongrantListResponse>(parameter, cancellationToken);
         }

@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminaccessassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync()
+        public async ValueTask<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync()
         {
             var p = new DelegatedadminAccessAssignmentGetParameter();
             return await this.SendAsync<DelegatedadminAccessAssignmentGetParameter, DelegatedadminAccessAssignmentGetResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminaccessassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadminAccessAssignmentGetParameter();
             return await this.SendAsync<DelegatedadminAccessAssignmentGetParameter, DelegatedadminAccessAssignmentGetResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminaccessassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync(DelegatedadminAccessAssignmentGetParameter parameter)
+        public async ValueTask<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync(DelegatedadminAccessAssignmentGetParameter parameter)
         {
             return await this.SendAsync<DelegatedadminAccessAssignmentGetParameter, DelegatedadminAccessAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminaccessassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync(DelegatedadminAccessAssignmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminAccessAssignmentGetResponse> DelegatedadminAccessAssignmentGetAsync(DelegatedadminAccessAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminAccessAssignmentGetParameter, DelegatedadminAccessAssignmentGetResponse>(parameter, cancellationToken);
         }

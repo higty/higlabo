@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamUpdateMembersResponse> TeamUpdateMembersAsync()
+        public async ValueTask<TeamUpdateMembersResponse> TeamUpdateMembersAsync()
         {
             var p = new TeamUpdateMembersParameter();
             return await this.SendAsync<TeamUpdateMembersParameter, TeamUpdateMembersResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamUpdateMembersResponse> TeamUpdateMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamUpdateMembersResponse> TeamUpdateMembersAsync(CancellationToken cancellationToken)
         {
             var p = new TeamUpdateMembersParameter();
             return await this.SendAsync<TeamUpdateMembersParameter, TeamUpdateMembersResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamUpdateMembersResponse> TeamUpdateMembersAsync(TeamUpdateMembersParameter parameter)
+        public async ValueTask<TeamUpdateMembersResponse> TeamUpdateMembersAsync(TeamUpdateMembersParameter parameter)
         {
             return await this.SendAsync<TeamUpdateMembersParameter, TeamUpdateMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamUpdateMembersResponse> TeamUpdateMembersAsync(TeamUpdateMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamUpdateMembersResponse> TeamUpdateMembersAsync(TeamUpdateMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamUpdateMembersParameter, TeamUpdateMembersResponse>(parameter, cancellationToken);
         }

@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync()
+        public async ValueTask<DirectoryroleGetResponse> DirectoryroleGetAsync()
         {
             var p = new DirectoryroleGetParameter();
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleGetResponse> DirectoryroleGetAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryroleGetParameter();
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync(DirectoryroleGetParameter parameter)
+        public async ValueTask<DirectoryroleGetResponse> DirectoryroleGetAsync(DirectoryroleGetParameter parameter)
         {
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync(DirectoryroleGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleGetResponse> DirectoryroleGetAsync(DirectoryroleGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(parameter, cancellationToken);
         }

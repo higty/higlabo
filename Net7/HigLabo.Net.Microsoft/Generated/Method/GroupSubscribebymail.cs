@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync()
+        public async ValueTask<GroupSubscribebymailResponse> GroupSubscribebymailAsync()
         {
             var p = new GroupSubscribebymailParameter();
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupSubscribebymailResponse> GroupSubscribebymailAsync(CancellationToken cancellationToken)
         {
             var p = new GroupSubscribebymailParameter();
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync(GroupSubscribebymailParameter parameter)
+        public async ValueTask<GroupSubscribebymailResponse> GroupSubscribebymailAsync(GroupSubscribebymailParameter parameter)
         {
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync(GroupSubscribebymailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupSubscribebymailResponse> GroupSubscribebymailAsync(GroupSubscribebymailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(parameter, cancellationToken);
         }

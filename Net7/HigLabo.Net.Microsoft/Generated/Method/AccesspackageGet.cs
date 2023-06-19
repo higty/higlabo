@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetResponse> AccesspackageGetAsync()
+        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync()
         {
             var p = new AccesspackageGetParameter();
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetResponse> AccesspackageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageGetParameter();
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter)
+        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter)
         {
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(parameter, cancellationToken);
         }

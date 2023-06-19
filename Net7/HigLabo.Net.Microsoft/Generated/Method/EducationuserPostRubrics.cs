@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync()
+        public async ValueTask<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync()
         {
             var p = new EducationUserPostRubricsParameter();
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(CancellationToken cancellationToken)
         {
             var p = new EducationUserPostRubricsParameter();
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(EducationUserPostRubricsParameter parameter)
+        public async ValueTask<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(EducationUserPostRubricsParameter parameter)
         {
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(EducationUserPostRubricsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(EducationUserPostRubricsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(parameter, cancellationToken);
         }

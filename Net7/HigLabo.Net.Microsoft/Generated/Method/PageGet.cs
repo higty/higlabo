@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageGetResponse> PageGetAsync()
+        public async ValueTask<PageGetResponse> PageGetAsync()
         {
             var p = new PageGetParameter();
             return await this.SendAsync<PageGetParameter, PageGetResponse>(p, CancellationToken.None);
@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageGetResponse> PageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PageGetResponse> PageGetAsync(CancellationToken cancellationToken)
         {
             var p = new PageGetParameter();
             return await this.SendAsync<PageGetParameter, PageGetResponse>(p, cancellationToken);
@@ -111,14 +111,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageGetResponse> PageGetAsync(PageGetParameter parameter)
+        public async ValueTask<PageGetResponse> PageGetAsync(PageGetParameter parameter)
         {
             return await this.SendAsync<PageGetParameter, PageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageGetResponse> PageGetAsync(PageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PageGetResponse> PageGetAsync(PageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PageGetParameter, PageGetResponse>(parameter, cancellationToken);
         }

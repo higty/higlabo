@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync()
+        public async ValueTask<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync()
         {
             var p = new PhoneauthenticationmethodGetParameter();
             return await this.SendAsync<PhoneauthenticationmethodGetParameter, PhoneauthenticationmethodGetResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync(CancellationToken cancellationToken)
         {
             var p = new PhoneauthenticationmethodGetParameter();
             return await this.SendAsync<PhoneauthenticationmethodGetParameter, PhoneauthenticationmethodGetResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync(PhoneauthenticationmethodGetParameter parameter)
+        public async ValueTask<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync(PhoneauthenticationmethodGetParameter parameter)
         {
             return await this.SendAsync<PhoneauthenticationmethodGetParameter, PhoneauthenticationmethodGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync(PhoneauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodGetResponse> PhoneauthenticationmethodGetAsync(PhoneauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PhoneauthenticationmethodGetParameter, PhoneauthenticationmethodGetResponse>(parameter, cancellationToken);
         }

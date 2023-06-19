@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteResponse> ChannelDeleteAsync()
+        public async ValueTask<ChannelDeleteResponse> ChannelDeleteAsync()
         {
             var p = new ChannelDeleteParameter();
             return await this.SendAsync<ChannelDeleteParameter, ChannelDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteResponse> ChannelDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelDeleteResponse> ChannelDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelDeleteParameter();
             return await this.SendAsync<ChannelDeleteParameter, ChannelDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteResponse> ChannelDeleteAsync(ChannelDeleteParameter parameter)
+        public async ValueTask<ChannelDeleteResponse> ChannelDeleteAsync(ChannelDeleteParameter parameter)
         {
             return await this.SendAsync<ChannelDeleteParameter, ChannelDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelDeleteResponse> ChannelDeleteAsync(ChannelDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelDeleteResponse> ChannelDeleteAsync(ChannelDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelDeleteParameter, ChannelDeleteResponse>(parameter, cancellationToken);
         }

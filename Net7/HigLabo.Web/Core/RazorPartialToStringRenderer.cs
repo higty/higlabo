@@ -29,7 +29,7 @@ namespace HigLabo.Web
 			_tempDataProvider = tempDataProvider;
 			_serviceProvider = serviceProvider;
 		}
-		public async Task<string> RenderPartialToStringAsync<TModel>(string viewName, TModel model)
+		public async ValueTask<string> RenderPartialToStringAsync<TModel>(string viewName, TModel model)
 		{
 			var actionContext = GetActionContext();
 			var partial = FindView(actionContext, viewName);

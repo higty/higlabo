@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync()
+        public async ValueTask<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync()
         {
             var p = new SecurityAlertPostCommentsParameter();
             return await this.SendAsync<SecurityAlertPostCommentsParameter, SecurityAlertPostCommentsResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityAlertPostCommentsParameter();
             return await this.SendAsync<SecurityAlertPostCommentsParameter, SecurityAlertPostCommentsResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync(SecurityAlertPostCommentsParameter parameter)
+        public async ValueTask<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync(SecurityAlertPostCommentsParameter parameter)
         {
             return await this.SendAsync<SecurityAlertPostCommentsParameter, SecurityAlertPostCommentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-alert-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync(SecurityAlertPostCommentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityAlertPostCommentsResponse> SecurityAlertPostCommentsAsync(SecurityAlertPostCommentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityAlertPostCommentsParameter, SecurityAlertPostCommentsResponse>(parameter, cancellationToken);
         }

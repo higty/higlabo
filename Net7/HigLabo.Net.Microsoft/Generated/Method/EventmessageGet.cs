@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageGetResponse> EventmessageGetAsync()
+        public async ValueTask<EventmessageGetResponse> EventmessageGetAsync()
         {
             var p = new EventmessageGetParameter();
             return await this.SendAsync<EventmessageGetParameter, EventmessageGetResponse>(p, CancellationToken.None);
@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageGetResponse> EventmessageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventmessageGetResponse> EventmessageGetAsync(CancellationToken cancellationToken)
         {
             var p = new EventmessageGetParameter();
             return await this.SendAsync<EventmessageGetParameter, EventmessageGetResponse>(p, cancellationToken);
@@ -133,14 +133,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageGetResponse> EventmessageGetAsync(EventmessageGetParameter parameter)
+        public async ValueTask<EventmessageGetResponse> EventmessageGetAsync(EventmessageGetParameter parameter)
         {
             return await this.SendAsync<EventmessageGetParameter, EventmessageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/eventmessage-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventmessageGetResponse> EventmessageGetAsync(EventmessageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventmessageGetResponse> EventmessageGetAsync(EventmessageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventmessageGetParameter, EventmessageGetResponse>(parameter, cancellationToken);
         }

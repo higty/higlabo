@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync()
+        public async ValueTask<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync()
         {
             var p = new FeaturerolloutPolicyDeleteAppliestoParameter();
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(CancellationToken cancellationToken)
         {
             var p = new FeaturerolloutPolicyDeleteAppliestoParameter();
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(FeaturerolloutPolicyDeleteAppliestoParameter parameter)
+        public async ValueTask<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(FeaturerolloutPolicyDeleteAppliestoParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(FeaturerolloutPolicyDeleteAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(FeaturerolloutPolicyDeleteAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(parameter, cancellationToken);
         }

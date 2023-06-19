@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync()
+        public async ValueTask<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync()
         {
             var p = new PresenceClearUserpreferredpresenceParameter();
             return await this.SendAsync<PresenceClearUserpreferredpresenceParameter, PresenceClearUserpreferredpresenceResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync(CancellationToken cancellationToken)
+        public async ValueTask<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync(CancellationToken cancellationToken)
         {
             var p = new PresenceClearUserpreferredpresenceParameter();
             return await this.SendAsync<PresenceClearUserpreferredpresenceParameter, PresenceClearUserpreferredpresenceResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync(PresenceClearUserpreferredpresenceParameter parameter)
+        public async ValueTask<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync(PresenceClearUserpreferredpresenceParameter parameter)
         {
             return await this.SendAsync<PresenceClearUserpreferredpresenceParameter, PresenceClearUserpreferredpresenceResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0
         /// </summary>
-        public async Task<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync(PresenceClearUserpreferredpresenceParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PresenceClearUserpreferredpresenceResponse> PresenceClearUserpreferredpresenceAsync(PresenceClearUserpreferredpresenceParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PresenceClearUserpreferredpresenceParameter, PresenceClearUserpreferredpresenceResponse>(parameter, cancellationToken);
         }

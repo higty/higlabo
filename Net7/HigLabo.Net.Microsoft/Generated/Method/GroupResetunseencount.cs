@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-resetunseencount?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupResetunseencountResponse> GroupResetunseencountAsync()
+        public async ValueTask<GroupResetunseencountResponse> GroupResetunseencountAsync()
         {
             var p = new GroupResetunseencountParameter();
             return await this.SendAsync<GroupResetunseencountParameter, GroupResetunseencountResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-resetunseencount?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupResetunseencountResponse> GroupResetunseencountAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupResetunseencountResponse> GroupResetunseencountAsync(CancellationToken cancellationToken)
         {
             var p = new GroupResetunseencountParameter();
             return await this.SendAsync<GroupResetunseencountParameter, GroupResetunseencountResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-resetunseencount?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupResetunseencountResponse> GroupResetunseencountAsync(GroupResetunseencountParameter parameter)
+        public async ValueTask<GroupResetunseencountResponse> GroupResetunseencountAsync(GroupResetunseencountParameter parameter)
         {
             return await this.SendAsync<GroupResetunseencountParameter, GroupResetunseencountResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-resetunseencount?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupResetunseencountResponse> GroupResetunseencountAsync(GroupResetunseencountParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupResetunseencountResponse> GroupResetunseencountAsync(GroupResetunseencountParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupResetunseencountParameter, GroupResetunseencountResponse>(parameter, cancellationToken);
         }

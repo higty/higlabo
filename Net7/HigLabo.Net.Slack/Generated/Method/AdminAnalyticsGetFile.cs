@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.analytics.getFile
         /// </summary>
-        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string? type)
+        public async ValueTask<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string? type)
         {
             var p = new AdminAnalyticsGetFileParameter();
             p.Type = type;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.analytics.getFile
         /// </summary>
-        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string? type, CancellationToken cancellationToken)
+        public async ValueTask<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string? type, CancellationToken cancellationToken)
         {
             var p = new AdminAnalyticsGetFileParameter();
             p.Type = type;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.analytics.getFile
         /// </summary>
-        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(AdminAnalyticsGetFileParameter parameter)
+        public async ValueTask<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(AdminAnalyticsGetFileParameter parameter)
         {
             return await this.SendAsync<AdminAnalyticsGetFileParameter, AdminAnalyticsGetFileResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.analytics.getFile
         /// </summary>
-        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(AdminAnalyticsGetFileParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(AdminAnalyticsGetFileParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAnalyticsGetFileParameter, AdminAnalyticsGetFileResponse>(parameter, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync()
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync()
         {
             var p = new CrosstenantidentitySyncPolicyPartnerUpdateParameter();
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerUpdateParameter, CrosstenantidentitySyncPolicyPartnerUpdateResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantidentitySyncPolicyPartnerUpdateParameter();
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerUpdateParameter, CrosstenantidentitySyncPolicyPartnerUpdateResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync(CrosstenantidentitySyncPolicyPartnerUpdateParameter parameter)
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync(CrosstenantidentitySyncPolicyPartnerUpdateParameter parameter)
         {
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerUpdateParameter, CrosstenantidentitySyncPolicyPartnerUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync(CrosstenantidentitySyncPolicyPartnerUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantidentitySyncPolicyPartnerUpdateResponse> CrosstenantidentitySyncPolicyPartnerUpdateAsync(CrosstenantidentitySyncPolicyPartnerUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantidentitySyncPolicyPartnerUpdateParameter, CrosstenantidentitySyncPolicyPartnerUpdateResponse>(parameter, cancellationToken);
         }

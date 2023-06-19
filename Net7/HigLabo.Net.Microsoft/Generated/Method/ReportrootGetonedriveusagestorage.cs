@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync()
+        public async ValueTask<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync()
         {
             var p = new ReportRootGetonedriveusagestorageParameter();
             return await this.SendAsync<ReportRootGetonedriveusagestorageParameter, ReportRootGetonedriveusagestorageResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetonedriveusagestorageParameter();
             return await this.SendAsync<ReportRootGetonedriveusagestorageParameter, ReportRootGetonedriveusagestorageResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync(ReportRootGetonedriveusagestorageParameter parameter)
+        public async ValueTask<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync(ReportRootGetonedriveusagestorageParameter parameter)
         {
             return await this.SendAsync<ReportRootGetonedriveusagestorageParameter, ReportRootGetonedriveusagestorageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync(ReportRootGetonedriveusagestorageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetonedriveusagestorageResponse> ReportRootGetonedriveusagestorageAsync(ReportRootGetonedriveusagestorageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetonedriveusagestorageParameter, ReportRootGetonedriveusagestorageResponse>(parameter, cancellationToken);
         }

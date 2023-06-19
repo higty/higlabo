@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync()
+        public async ValueTask<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync()
         {
             var p = new EducationAssignmentPutRubricParameter();
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(CancellationToken cancellationToken)
         {
             var p = new EducationAssignmentPutRubricParameter();
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(EducationAssignmentPutRubricParameter parameter)
+        public async ValueTask<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(EducationAssignmentPutRubricParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(EducationAssignmentPutRubricParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(EducationAssignmentPutRubricParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(parameter, cancellationToken);
         }

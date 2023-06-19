@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync()
+        public async ValueTask<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync()
         {
             var p = new TodotaskPostLinkedResourcesParameter();
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(CancellationToken cancellationToken)
         {
             var p = new TodotaskPostLinkedResourcesParameter();
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter)
+        public async ValueTask<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter)
         {
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(parameter, cancellationToken);
         }

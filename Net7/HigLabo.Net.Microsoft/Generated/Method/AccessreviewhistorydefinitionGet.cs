@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync()
+        public async ValueTask<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync()
         {
             var p = new AccessreviewhistorydefinitionGetParameter();
             return await this.SendAsync<AccessreviewhistorydefinitionGetParameter, AccessreviewhistorydefinitionGetResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewhistorydefinitionGetParameter();
             return await this.SendAsync<AccessreviewhistorydefinitionGetParameter, AccessreviewhistorydefinitionGetResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync(AccessreviewhistorydefinitionGetParameter parameter)
+        public async ValueTask<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync(AccessreviewhistorydefinitionGetParameter parameter)
         {
             return await this.SendAsync<AccessreviewhistorydefinitionGetParameter, AccessreviewhistorydefinitionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync(AccessreviewhistorydefinitionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewhistorydefinitionGetResponse> AccessreviewhistorydefinitionGetAsync(AccessreviewhistorydefinitionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewhistorydefinitionGetParameter, AccessreviewhistorydefinitionGetResponse>(parameter, cancellationToken);
         }

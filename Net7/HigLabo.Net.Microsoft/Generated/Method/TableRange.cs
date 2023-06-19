@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableRangeResponse> TableRangeAsync()
+        public async ValueTask<TableRangeResponse> TableRangeAsync()
         {
             var p = new TableRangeParameter();
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(p, CancellationToken.None);
@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableRangeResponse> TableRangeAsync(CancellationToken cancellationToken)
+        public async ValueTask<TableRangeResponse> TableRangeAsync(CancellationToken cancellationToken)
         {
             var p = new TableRangeParameter();
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(p, cancellationToken);
@@ -118,14 +118,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableRangeResponse> TableRangeAsync(TableRangeParameter parameter)
+        public async ValueTask<TableRangeResponse> TableRangeAsync(TableRangeParameter parameter)
         {
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableRangeResponse> TableRangeAsync(TableRangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TableRangeResponse> TableRangeAsync(TableRangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(parameter, cancellationToken);
         }

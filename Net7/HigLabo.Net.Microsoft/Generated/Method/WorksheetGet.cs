@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetGetResponse> WorksheetGetAsync()
+        public async ValueTask<WorksheetGetResponse> WorksheetGetAsync()
         {
             var p = new WorksheetGetParameter();
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetGetResponse> WorksheetGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetGetResponse> WorksheetGetAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetGetParameter();
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetGetResponse> WorksheetGetAsync(WorksheetGetParameter parameter)
+        public async ValueTask<WorksheetGetResponse> WorksheetGetAsync(WorksheetGetParameter parameter)
         {
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetGetResponse> WorksheetGetAsync(WorksheetGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetGetResponse> WorksheetGetAsync(WorksheetGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(parameter, cancellationToken);
         }

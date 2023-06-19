@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReminderviewResponse> UserReminderviewAsync()
+        public async ValueTask<UserReminderviewResponse> UserReminderviewAsync()
         {
             var p = new UserReminderviewParameter();
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReminderviewResponse> UserReminderviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserReminderviewResponse> UserReminderviewAsync(CancellationToken cancellationToken)
         {
             var p = new UserReminderviewParameter();
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter)
+        public async ValueTask<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter)
         {
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(parameter, cancellationToken);
         }

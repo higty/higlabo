@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync()
+        public async ValueTask<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync()
         {
             var p = new ApplicationPostOnlinemeetingsParameter();
             return await this.SendAsync<ApplicationPostOnlinemeetingsParameter, ApplicationPostOnlinemeetingsResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationPostOnlinemeetingsParameter();
             return await this.SendAsync<ApplicationPostOnlinemeetingsParameter, ApplicationPostOnlinemeetingsResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync(ApplicationPostOnlinemeetingsParameter parameter)
+        public async ValueTask<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync(ApplicationPostOnlinemeetingsParameter parameter)
         {
             return await this.SendAsync<ApplicationPostOnlinemeetingsParameter, ApplicationPostOnlinemeetingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync(ApplicationPostOnlinemeetingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostOnlinemeetingsResponse> ApplicationPostOnlinemeetingsAsync(ApplicationPostOnlinemeetingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationPostOnlinemeetingsParameter, ApplicationPostOnlinemeetingsResponse>(parameter, cancellationToken);
         }

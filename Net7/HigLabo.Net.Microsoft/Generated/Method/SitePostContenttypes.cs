@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostContentTypesResponse> SitePostContentTypesAsync()
+        public async ValueTask<SitePostContentTypesResponse> SitePostContentTypesAsync()
         {
             var p = new SitePostContentTypesParameter();
             return await this.SendAsync<SitePostContentTypesParameter, SitePostContentTypesResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostContentTypesResponse> SitePostContentTypesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SitePostContentTypesResponse> SitePostContentTypesAsync(CancellationToken cancellationToken)
         {
             var p = new SitePostContentTypesParameter();
             return await this.SendAsync<SitePostContentTypesParameter, SitePostContentTypesResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostContentTypesResponse> SitePostContentTypesAsync(SitePostContentTypesParameter parameter)
+        public async ValueTask<SitePostContentTypesResponse> SitePostContentTypesAsync(SitePostContentTypesParameter parameter)
         {
             return await this.SendAsync<SitePostContentTypesParameter, SitePostContentTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-contenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostContentTypesResponse> SitePostContentTypesAsync(SitePostContentTypesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SitePostContentTypesResponse> SitePostContentTypesAsync(SitePostContentTypesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SitePostContentTypesParameter, SitePostContentTypesResponse>(parameter, cancellationToken);
         }

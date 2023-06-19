@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync()
+        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync()
         {
             var p = new DirectoryDeleteditemsReStoreParameter();
             return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryDeleteditemsReStoreParameter();
             return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(DirectoryDeleteditemsReStoreParameter parameter)
+        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(DirectoryDeleteditemsReStoreParameter parameter)
         {
             return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(DirectoryDeleteditemsReStoreParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(DirectoryDeleteditemsReStoreParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(parameter, cancellationToken);
         }

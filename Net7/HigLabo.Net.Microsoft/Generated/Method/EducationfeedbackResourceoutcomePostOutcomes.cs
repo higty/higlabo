@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-post-outcomes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync()
+        public async ValueTask<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync()
         {
             var p = new EducationfeedbackResourceoutcomePostOutcomesParameter();
             return await this.SendAsync<EducationfeedbackResourceoutcomePostOutcomesParameter, EducationfeedbackResourceoutcomePostOutcomesResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-post-outcomes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync(CancellationToken cancellationToken)
         {
             var p = new EducationfeedbackResourceoutcomePostOutcomesParameter();
             return await this.SendAsync<EducationfeedbackResourceoutcomePostOutcomesParameter, EducationfeedbackResourceoutcomePostOutcomesResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-post-outcomes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync(EducationfeedbackResourceoutcomePostOutcomesParameter parameter)
+        public async ValueTask<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync(EducationfeedbackResourceoutcomePostOutcomesParameter parameter)
         {
             return await this.SendAsync<EducationfeedbackResourceoutcomePostOutcomesParameter, EducationfeedbackResourceoutcomePostOutcomesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationfeedbackresourceoutcome-post-outcomes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync(EducationfeedbackResourceoutcomePostOutcomesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationfeedbackResourceoutcomePostOutcomesResponse> EducationfeedbackResourceoutcomePostOutcomesAsync(EducationfeedbackResourceoutcomePostOutcomesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationfeedbackResourceoutcomePostOutcomesParameter, EducationfeedbackResourceoutcomePostOutcomesResponse>(parameter, cancellationToken);
         }

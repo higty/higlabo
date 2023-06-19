@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contentsharingsession-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync()
+        public async ValueTask<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync()
         {
             var p = new ContentsharingsessionGetParameter();
             return await this.SendAsync<ContentsharingsessionGetParameter, ContentsharingsessionGetResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contentsharingsession-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync(CancellationToken cancellationToken)
         {
             var p = new ContentsharingsessionGetParameter();
             return await this.SendAsync<ContentsharingsessionGetParameter, ContentsharingsessionGetResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contentsharingsession-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync(ContentsharingsessionGetParameter parameter)
+        public async ValueTask<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync(ContentsharingsessionGetParameter parameter)
         {
             return await this.SendAsync<ContentsharingsessionGetParameter, ContentsharingsessionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contentsharingsession-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync(ContentsharingsessionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentsharingsessionGetResponse> ContentsharingsessionGetAsync(ContentsharingsessionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentsharingsessionGetParameter, ContentsharingsessionGetResponse>(parameter, cancellationToken);
         }

@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionDeleteResponse> PermissionDeleteAsync()
+        public async ValueTask<PermissionDeleteResponse> PermissionDeleteAsync()
         {
             var p = new PermissionDeleteParameter();
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionDeleteResponse> PermissionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissionDeleteResponse> PermissionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PermissionDeleteParameter();
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionDeleteResponse> PermissionDeleteAsync(PermissionDeleteParameter parameter)
+        public async ValueTask<PermissionDeleteResponse> PermissionDeleteAsync(PermissionDeleteParameter parameter)
         {
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionDeleteResponse> PermissionDeleteAsync(PermissionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissionDeleteResponse> PermissionDeleteAsync(PermissionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(parameter, cancellationToken);
         }

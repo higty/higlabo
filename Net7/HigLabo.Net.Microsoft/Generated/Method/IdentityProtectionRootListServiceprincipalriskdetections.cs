@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync()
+        public async ValueTask<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync()
         {
             var p = new IdentityProtectionRootListServiceprincipalriskdetectionsParameter();
             return await this.SendAsync<IdentityProtectionRootListServiceprincipalriskdetectionsParameter, IdentityProtectionRootListServiceprincipalriskdetectionsResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityProtectionRootListServiceprincipalriskdetectionsParameter();
             return await this.SendAsync<IdentityProtectionRootListServiceprincipalriskdetectionsParameter, IdentityProtectionRootListServiceprincipalriskdetectionsResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync(IdentityProtectionRootListServiceprincipalriskdetectionsParameter parameter)
+        public async ValueTask<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync(IdentityProtectionRootListServiceprincipalriskdetectionsParameter parameter)
         {
             return await this.SendAsync<IdentityProtectionRootListServiceprincipalriskdetectionsParameter, IdentityProtectionRootListServiceprincipalriskdetectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync(IdentityProtectionRootListServiceprincipalriskdetectionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProtectionRootListServiceprincipalriskdetectionsResponse> IdentityProtectionRootListServiceprincipalriskdetectionsAsync(IdentityProtectionRootListServiceprincipalriskdetectionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityProtectionRootListServiceprincipalriskdetectionsParameter, IdentityProtectionRootListServiceprincipalriskdetectionsResponse>(parameter, cancellationToken);
         }

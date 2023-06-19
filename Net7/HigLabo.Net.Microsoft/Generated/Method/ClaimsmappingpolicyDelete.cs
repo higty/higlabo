@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync()
+        public async ValueTask<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync()
         {
             var p = new ClaimsmappingPolicyDeleteParameter();
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ClaimsmappingPolicyDeleteParameter();
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(ClaimsmappingPolicyDeleteParameter parameter)
+        public async ValueTask<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(ClaimsmappingPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(ClaimsmappingPolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(ClaimsmappingPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(parameter, cancellationToken);
         }

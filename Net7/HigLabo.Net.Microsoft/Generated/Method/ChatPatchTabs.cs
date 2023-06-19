@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchTabsResponse> ChatPatchTabsAsync()
+        public async ValueTask<ChatPatchTabsResponse> ChatPatchTabsAsync()
         {
             var p = new ChatPatchTabsParameter();
             return await this.SendAsync<ChatPatchTabsParameter, ChatPatchTabsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchTabsResponse> ChatPatchTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatPatchTabsResponse> ChatPatchTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatPatchTabsParameter();
             return await this.SendAsync<ChatPatchTabsParameter, ChatPatchTabsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchTabsResponse> ChatPatchTabsAsync(ChatPatchTabsParameter parameter)
+        public async ValueTask<ChatPatchTabsResponse> ChatPatchTabsAsync(ChatPatchTabsParameter parameter)
         {
             return await this.SendAsync<ChatPatchTabsParameter, ChatPatchTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchTabsResponse> ChatPatchTabsAsync(ChatPatchTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatPatchTabsResponse> ChatPatchTabsAsync(ChatPatchTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPatchTabsParameter, ChatPatchTabsResponse>(parameter, cancellationToken);
         }

@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync()
+        public async ValueTask<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync()
         {
             var p = new OnpremisesdirectorySynchronizationGetParameter();
             return await this.SendAsync<OnpremisesdirectorySynchronizationGetParameter, OnpremisesdirectorySynchronizationGetResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync(CancellationToken cancellationToken)
         {
             var p = new OnpremisesdirectorySynchronizationGetParameter();
             return await this.SendAsync<OnpremisesdirectorySynchronizationGetParameter, OnpremisesdirectorySynchronizationGetResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync(OnpremisesdirectorySynchronizationGetParameter parameter)
+        public async ValueTask<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync(OnpremisesdirectorySynchronizationGetParameter parameter)
         {
             return await this.SendAsync<OnpremisesdirectorySynchronizationGetParameter, OnpremisesdirectorySynchronizationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync(OnpremisesdirectorySynchronizationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnpremisesdirectorySynchronizationGetResponse> OnpremisesdirectorySynchronizationGetAsync(OnpremisesdirectorySynchronizationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnpremisesdirectorySynchronizationGetParameter, OnpremisesdirectorySynchronizationGetResponse>(parameter, cancellationToken);
         }

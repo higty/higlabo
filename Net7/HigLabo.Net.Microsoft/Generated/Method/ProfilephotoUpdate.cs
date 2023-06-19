@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync()
+        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync()
         {
             var p = new ProfilephotoUpdateParameter();
             return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ProfilephotoUpdateParameter();
             return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(p, cancellationToken);
@@ -80,21 +80,21 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(ProfilephotoUpdateParameter parameter)
+        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(ProfilephotoUpdateParameter parameter)
         {
             return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(ProfilephotoUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(ProfilephotoUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<Stream> ProfilephotoUpdateStreamAsync(ProfilephotoUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Stream> ProfilephotoUpdateStreamAsync(ProfilephotoUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.DownloadStreamAsync(parameter, cancellationToken);
         }

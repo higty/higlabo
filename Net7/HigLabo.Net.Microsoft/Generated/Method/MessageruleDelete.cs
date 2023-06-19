@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleDeleteResponse> MessageruleDeleteAsync()
+        public async ValueTask<MessageruleDeleteResponse> MessageruleDeleteAsync()
         {
             var p = new MessageruleDeleteParameter();
             return await this.SendAsync<MessageruleDeleteParameter, MessageruleDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleDeleteResponse> MessageruleDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageruleDeleteResponse> MessageruleDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new MessageruleDeleteParameter();
             return await this.SendAsync<MessageruleDeleteParameter, MessageruleDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleDeleteResponse> MessageruleDeleteAsync(MessageruleDeleteParameter parameter)
+        public async ValueTask<MessageruleDeleteResponse> MessageruleDeleteAsync(MessageruleDeleteParameter parameter)
         {
             return await this.SendAsync<MessageruleDeleteParameter, MessageruleDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleDeleteResponse> MessageruleDeleteAsync(MessageruleDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageruleDeleteResponse> MessageruleDeleteAsync(MessageruleDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageruleDeleteParameter, MessageruleDeleteResponse>(parameter, cancellationToken);
         }

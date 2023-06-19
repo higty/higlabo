@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync()
+        public async ValueTask<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync()
         {
             var p = new SecurityRetentioneventListParameter();
             return await this.SendAsync<SecurityRetentioneventListParameter, SecurityRetentioneventListResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityRetentioneventListParameter();
             return await this.SendAsync<SecurityRetentioneventListParameter, SecurityRetentioneventListResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync(SecurityRetentioneventListParameter parameter)
+        public async ValueTask<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync(SecurityRetentioneventListParameter parameter)
         {
             return await this.SendAsync<SecurityRetentioneventListParameter, SecurityRetentioneventListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-retentionevent-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync(SecurityRetentioneventListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityRetentioneventListResponse> SecurityRetentioneventListAsync(SecurityRetentioneventListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityRetentioneventListParameter, SecurityRetentioneventListResponse>(parameter, cancellationToken);
         }

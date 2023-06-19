@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagmemberListResponse> TeamworktagmemberListAsync()
+        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync()
         {
             var p = new TeamworktagmemberListParameter();
             return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagmemberListResponse> TeamworktagmemberListAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync(CancellationToken cancellationToken)
         {
             var p = new TeamworktagmemberListParameter();
             return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagmemberListResponse> TeamworktagmemberListAsync(TeamworktagmemberListParameter parameter)
+        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync(TeamworktagmemberListParameter parameter)
         {
             return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagmemberListResponse> TeamworktagmemberListAsync(TeamworktagmemberListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync(TeamworktagmemberListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(parameter, cancellationToken);
         }

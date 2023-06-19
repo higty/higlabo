@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync()
+        public async ValueTask<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync()
         {
             var p = new CallrecordsCallrecordGetParameter();
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(p, CancellationToken.None);
@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CancellationToken cancellationToken)
         {
             var p = new CallrecordsCallrecordGetParameter();
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(p, cancellationToken);
@@ -115,14 +115,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CallrecordsCallrecordGetParameter parameter)
+        public async ValueTask<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CallrecordsCallrecordGetParameter parameter)
         {
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CallrecordsCallrecordGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CallrecordsCallrecordGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(parameter, cancellationToken);
         }

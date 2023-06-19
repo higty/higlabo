@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsGetResponse> SharepointSettingsGetAsync()
+        public async ValueTask<SharepointSettingsGetResponse> SharepointSettingsGetAsync()
         {
             var p = new SharepointSettingsGetParameter();
             return await this.SendAsync<SharepointSettingsGetParameter, SharepointSettingsGetResponse>(p, CancellationToken.None);
@@ -144,7 +144,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsGetResponse> SharepointSettingsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SharepointSettingsGetResponse> SharepointSettingsGetAsync(CancellationToken cancellationToken)
         {
             var p = new SharepointSettingsGetParameter();
             return await this.SendAsync<SharepointSettingsGetParameter, SharepointSettingsGetResponse>(p, cancellationToken);
@@ -152,14 +152,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsGetResponse> SharepointSettingsGetAsync(SharepointSettingsGetParameter parameter)
+        public async ValueTask<SharepointSettingsGetResponse> SharepointSettingsGetAsync(SharepointSettingsGetParameter parameter)
         {
             return await this.SendAsync<SharepointSettingsGetParameter, SharepointSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsGetResponse> SharepointSettingsGetAsync(SharepointSettingsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SharepointSettingsGetResponse> SharepointSettingsGetAsync(SharepointSettingsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SharepointSettingsGetParameter, SharepointSettingsGetResponse>(parameter, cancellationToken);
         }

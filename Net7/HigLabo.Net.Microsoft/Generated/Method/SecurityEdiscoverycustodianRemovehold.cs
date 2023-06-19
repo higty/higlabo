@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync()
+        public async ValueTask<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync()
         {
             var p = new SecurityEdiscoverycustodianRemoveholdParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianRemoveholdParameter, SecurityEdiscoverycustodianRemoveholdResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycustodianRemoveholdParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianRemoveholdParameter, SecurityEdiscoverycustodianRemoveholdResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync(SecurityEdiscoverycustodianRemoveholdParameter parameter)
+        public async ValueTask<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync(SecurityEdiscoverycustodianRemoveholdParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianRemoveholdParameter, SecurityEdiscoverycustodianRemoveholdResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-removehold?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync(SecurityEdiscoverycustodianRemoveholdParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianRemoveholdResponse> SecurityEdiscoverycustodianRemoveholdAsync(SecurityEdiscoverycustodianRemoveholdParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianRemoveholdParameter, SecurityEdiscoverycustodianRemoveholdResponse>(parameter, cancellationToken);
         }

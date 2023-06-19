@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync()
+        public async ValueTask<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync()
         {
             var p = new UserListCalendarGroupsParameter();
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListCalendarGroupsParameter();
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(UserListCalendarGroupsParameter parameter)
+        public async ValueTask<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(UserListCalendarGroupsParameter parameter)
         {
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(UserListCalendarGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(UserListCalendarGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(parameter, cancellationToken);
         }

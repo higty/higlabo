@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypePublishResponse> ContentTypePublishAsync()
+        public async ValueTask<ContentTypePublishResponse> ContentTypePublishAsync()
         {
             var p = new ContentTypePublishParameter();
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypePublishResponse> ContentTypePublishAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypePublishResponse> ContentTypePublishAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypePublishParameter();
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter)
+        public async ValueTask<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter)
         {
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(parameter, cancellationToken);
         }

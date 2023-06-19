@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync()
+        public async ValueTask<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync()
         {
             var p = new InternaldomainfederationDeleteParameter();
             return await this.SendAsync<InternaldomainfederationDeleteParameter, InternaldomainfederationDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new InternaldomainfederationDeleteParameter();
             return await this.SendAsync<InternaldomainfederationDeleteParameter, InternaldomainfederationDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync(InternaldomainfederationDeleteParameter parameter)
+        public async ValueTask<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync(InternaldomainfederationDeleteParameter parameter)
         {
             return await this.SendAsync<InternaldomainfederationDeleteParameter, InternaldomainfederationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync(InternaldomainfederationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InternaldomainfederationDeleteResponse> InternaldomainfederationDeleteAsync(InternaldomainfederationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InternaldomainfederationDeleteParameter, InternaldomainfederationDeleteResponse>(parameter, cancellationToken);
         }

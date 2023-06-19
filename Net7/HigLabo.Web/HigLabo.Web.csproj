@@ -16,8 +16,13 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+	<ItemGroup>
 	  <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 	  <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
+	  <ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
+	  <ProjectReference Include="..\HigLabo.Web.Api\HigLabo.Web.Api.csproj" />
 	</ItemGroup>
 
 </Project>

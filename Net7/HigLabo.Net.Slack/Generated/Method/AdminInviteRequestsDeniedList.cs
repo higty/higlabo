@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync()
+        public async ValueTask<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync()
         {
             var p = new AdminInviteRequestsDeniedListParameter();
             return await this.SendAsync<AdminInviteRequestsDeniedListParameter, AdminInviteRequestsDeniedListResponse>(p, CancellationToken.None);
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminInviteRequestsDeniedListParameter();
             return await this.SendAsync<AdminInviteRequestsDeniedListParameter, AdminInviteRequestsDeniedListResponse>(p, cancellationToken);
@@ -48,21 +48,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter)
+        public async ValueTask<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter)
         {
             return await this.SendAsync<AdminInviteRequestsDeniedListParameter, AdminInviteRequestsDeniedListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminInviteRequestsDeniedListResponse> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminInviteRequestsDeniedListParameter, AdminInviteRequestsDeniedListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(PagingContext<AdminInviteRequestsDeniedListResponse> context)
+        public async ValueTask<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(PagingContext<AdminInviteRequestsDeniedListResponse> context)
         {
             var p = new AdminInviteRequestsDeniedListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(CancellationToken cancellationToken, PagingContext<AdminInviteRequestsDeniedListResponse> context)
+        public async ValueTask<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(CancellationToken cancellationToken, PagingContext<AdminInviteRequestsDeniedListResponse> context)
         {
             var p = new AdminInviteRequestsDeniedListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter, PagingContext<AdminInviteRequestsDeniedListResponse> context)
+        public async ValueTask<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter, PagingContext<AdminInviteRequestsDeniedListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async Task<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter, PagingContext<AdminInviteRequestsDeniedListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(AdminInviteRequestsDeniedListParameter parameter, PagingContext<AdminInviteRequestsDeniedListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

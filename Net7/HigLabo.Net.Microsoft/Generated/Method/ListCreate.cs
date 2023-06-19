@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListCreateResponse> ListCreateAsync()
+        public async ValueTask<ListCreateResponse> ListCreateAsync()
         {
             var p = new ListCreateParameter();
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListCreateResponse> ListCreateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListCreateResponse> ListCreateAsync(CancellationToken cancellationToken)
         {
             var p = new ListCreateParameter();
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListCreateResponse> ListCreateAsync(ListCreateParameter parameter)
+        public async ValueTask<ListCreateResponse> ListCreateAsync(ListCreateParameter parameter)
         {
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListCreateResponse> ListCreateAsync(ListCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListCreateResponse> ListCreateAsync(ListCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(parameter, cancellationToken);
         }

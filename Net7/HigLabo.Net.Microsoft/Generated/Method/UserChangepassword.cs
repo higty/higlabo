@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-changepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserChangepasswordResponse> UserChangepasswordAsync()
+        public async ValueTask<UserChangepasswordResponse> UserChangepasswordAsync()
         {
             var p = new UserChangepasswordParameter();
             return await this.SendAsync<UserChangepasswordParameter, UserChangepasswordResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-changepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserChangepasswordResponse> UserChangepasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserChangepasswordResponse> UserChangepasswordAsync(CancellationToken cancellationToken)
         {
             var p = new UserChangepasswordParameter();
             return await this.SendAsync<UserChangepasswordParameter, UserChangepasswordResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-changepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserChangepasswordResponse> UserChangepasswordAsync(UserChangepasswordParameter parameter)
+        public async ValueTask<UserChangepasswordResponse> UserChangepasswordAsync(UserChangepasswordParameter parameter)
         {
             return await this.SendAsync<UserChangepasswordParameter, UserChangepasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-changepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserChangepasswordResponse> UserChangepasswordAsync(UserChangepasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserChangepasswordResponse> UserChangepasswordAsync(UserChangepasswordParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserChangepasswordParameter, UserChangepasswordResponse>(parameter, cancellationToken);
         }

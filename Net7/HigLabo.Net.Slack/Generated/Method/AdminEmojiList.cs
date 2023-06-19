@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<AdminEmojiListResponse> AdminEmojiListAsync()
+        public async ValueTask<AdminEmojiListResponse> AdminEmojiListAsync()
         {
             var p = new AdminEmojiListParameter();
             return await this.SendAsync<AdminEmojiListParameter, AdminEmojiListResponse>(p, CancellationToken.None);
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<AdminEmojiListResponse> AdminEmojiListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiListResponse> AdminEmojiListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminEmojiListParameter();
             return await this.SendAsync<AdminEmojiListParameter, AdminEmojiListResponse>(p, cancellationToken);
@@ -47,21 +47,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<AdminEmojiListResponse> AdminEmojiListAsync(AdminEmojiListParameter parameter)
+        public async ValueTask<AdminEmojiListResponse> AdminEmojiListAsync(AdminEmojiListParameter parameter)
         {
             return await this.SendAsync<AdminEmojiListParameter, AdminEmojiListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<AdminEmojiListResponse> AdminEmojiListAsync(AdminEmojiListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiListResponse> AdminEmojiListAsync(AdminEmojiListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminEmojiListParameter, AdminEmojiListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<List<AdminEmojiListResponse>> AdminEmojiListAsync(PagingContext<AdminEmojiListResponse> context)
+        public async ValueTask<List<AdminEmojiListResponse>> AdminEmojiListAsync(PagingContext<AdminEmojiListResponse> context)
         {
             var p = new AdminEmojiListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<List<AdminEmojiListResponse>> AdminEmojiListAsync(CancellationToken cancellationToken, PagingContext<AdminEmojiListResponse> context)
+        public async ValueTask<List<AdminEmojiListResponse>> AdminEmojiListAsync(CancellationToken cancellationToken, PagingContext<AdminEmojiListResponse> context)
         {
             var p = new AdminEmojiListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<List<AdminEmojiListResponse>> AdminEmojiListAsync(AdminEmojiListParameter parameter, PagingContext<AdminEmojiListResponse> context)
+        public async ValueTask<List<AdminEmojiListResponse>> AdminEmojiListAsync(AdminEmojiListParameter parameter, PagingContext<AdminEmojiListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async Task<List<AdminEmojiListResponse>> AdminEmojiListAsync(AdminEmojiListParameter parameter, PagingContext<AdminEmojiListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminEmojiListResponse>> AdminEmojiListAsync(AdminEmojiListParameter parameter, PagingContext<AdminEmojiListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

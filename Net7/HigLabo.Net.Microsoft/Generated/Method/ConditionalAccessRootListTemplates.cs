@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync()
+        public async ValueTask<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync()
         {
             var p = new ConditionalAccessRootListTemplatesParameter();
             return await this.SendAsync<ConditionalAccessRootListTemplatesParameter, ConditionalAccessRootListTemplatesResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(CancellationToken cancellationToken)
         {
             var p = new ConditionalAccessRootListTemplatesParameter();
             return await this.SendAsync<ConditionalAccessRootListTemplatesParameter, ConditionalAccessRootListTemplatesResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(ConditionalAccessRootListTemplatesParameter parameter)
+        public async ValueTask<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(ConditionalAccessRootListTemplatesParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessRootListTemplatesParameter, ConditionalAccessRootListTemplatesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(ConditionalAccessRootListTemplatesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(ConditionalAccessRootListTemplatesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccessRootListTemplatesParameter, ConditionalAccessRootListTemplatesResponse>(parameter, cancellationToken);
         }

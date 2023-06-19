@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-record?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRecordResponse> CallRecordAsync()
+        public async ValueTask<CallRecordResponse> CallRecordAsync()
         {
             var p = new CallRecordParameter();
             return await this.SendAsync<CallRecordParameter, CallRecordResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-record?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRecordResponse> CallRecordAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallRecordResponse> CallRecordAsync(CancellationToken cancellationToken)
         {
             var p = new CallRecordParameter();
             return await this.SendAsync<CallRecordParameter, CallRecordResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-record?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRecordResponse> CallRecordAsync(CallRecordParameter parameter)
+        public async ValueTask<CallRecordResponse> CallRecordAsync(CallRecordParameter parameter)
         {
             return await this.SendAsync<CallRecordParameter, CallRecordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-record?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallRecordResponse> CallRecordAsync(CallRecordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallRecordResponse> CallRecordAsync(CallRecordParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallRecordParameter, CallRecordResponse>(parameter, cancellationToken);
         }

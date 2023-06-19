@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(string? channel_Id)
         {
             var p = new AdminConversationsRestrictAccessListGroupsParameter();
             p.Channel_Id = channel_Id;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsRestrictAccessListGroupsParameter();
             p.Channel_Id = channel_Id;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(AdminConversationsRestrictAccessListGroupsParameter parameter)
+        public async ValueTask<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(AdminConversationsRestrictAccessListGroupsParameter parameter)
         {
             return await this.SendAsync<AdminConversationsRestrictAccessListGroupsParameter, AdminConversationsRestrictAccessListGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
         /// </summary>
-        public async Task<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(AdminConversationsRestrictAccessListGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsRestrictAccessListGroupsResponse> AdminConversationsRestrictAccessListGroupsAsync(AdminConversationsRestrictAccessListGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsRestrictAccessListGroupsParameter, AdminConversationsRestrictAccessListGroupsResponse>(parameter, cancellationToken);
         }

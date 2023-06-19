@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetMembersResponse> TeamGetMembersAsync()
+        public async ValueTask<TeamGetMembersResponse> TeamGetMembersAsync()
         {
             var p = new TeamGetMembersParameter();
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(p, CancellationToken.None);
@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetMembersResponse> TeamGetMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamGetMembersResponse> TeamGetMembersAsync(CancellationToken cancellationToken)
         {
             var p = new TeamGetMembersParameter();
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(p, cancellationToken);
@@ -108,14 +108,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetMembersResponse> TeamGetMembersAsync(TeamGetMembersParameter parameter)
+        public async ValueTask<TeamGetMembersResponse> TeamGetMembersAsync(TeamGetMembersParameter parameter)
         {
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetMembersResponse> TeamGetMembersAsync(TeamGetMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamGetMembersResponse> TeamGetMembersAsync(TeamGetMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(parameter, cancellationToken);
         }

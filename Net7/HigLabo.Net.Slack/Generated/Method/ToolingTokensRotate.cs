@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/tooling.tokens.rotate
         /// </summary>
-        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string? refresh_Token)
+        public async ValueTask<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string? refresh_Token)
         {
             var p = new ToolingTokensRotateParameter();
             p.Refresh_Token = refresh_Token;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/tooling.tokens.rotate
         /// </summary>
-        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string? refresh_Token, CancellationToken cancellationToken)
+        public async ValueTask<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string? refresh_Token, CancellationToken cancellationToken)
         {
             var p = new ToolingTokensRotateParameter();
             p.Refresh_Token = refresh_Token;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/tooling.tokens.rotate
         /// </summary>
-        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(ToolingTokensRotateParameter parameter)
+        public async ValueTask<ToolingTokensRotateResponse> ToolingTokensRotateAsync(ToolingTokensRotateParameter parameter)
         {
             return await this.SendAsync<ToolingTokensRotateParameter, ToolingTokensRotateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/tooling.tokens.rotate
         /// </summary>
-        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(ToolingTokensRotateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ToolingTokensRotateResponse> ToolingTokensRotateAsync(ToolingTokensRotateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ToolingTokensRotateParameter, ToolingTokensRotateResponse>(parameter, cancellationToken);
         }

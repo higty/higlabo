@@ -135,7 +135,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetResponse> CalendarGetAsync()
+        public async ValueTask<CalendarGetResponse> CalendarGetAsync()
         {
             var p = new CalendarGetParameter();
             return await this.SendAsync<CalendarGetParameter, CalendarGetResponse>(p, CancellationToken.None);
@@ -143,7 +143,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetResponse> CalendarGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGetResponse> CalendarGetAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGetParameter();
             return await this.SendAsync<CalendarGetParameter, CalendarGetResponse>(p, cancellationToken);
@@ -151,14 +151,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetResponse> CalendarGetAsync(CalendarGetParameter parameter)
+        public async ValueTask<CalendarGetResponse> CalendarGetAsync(CalendarGetParameter parameter)
         {
             return await this.SendAsync<CalendarGetParameter, CalendarGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetResponse> CalendarGetAsync(CalendarGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGetResponse> CalendarGetAsync(CalendarGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGetParameter, CalendarGetResponse>(parameter, cancellationToken);
         }

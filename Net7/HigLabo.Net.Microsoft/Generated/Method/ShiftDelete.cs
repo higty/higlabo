@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftDeleteResponse> ShiftDeleteAsync()
+        public async ValueTask<ShiftDeleteResponse> ShiftDeleteAsync()
         {
             var p = new ShiftDeleteParameter();
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftDeleteResponse> ShiftDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ShiftDeleteResponse> ShiftDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ShiftDeleteParameter();
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftDeleteResponse> ShiftDeleteAsync(ShiftDeleteParameter parameter)
+        public async ValueTask<ShiftDeleteResponse> ShiftDeleteAsync(ShiftDeleteParameter parameter)
         {
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftDeleteResponse> ShiftDeleteAsync(ShiftDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ShiftDeleteResponse> ShiftDeleteAsync(ShiftDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(parameter, cancellationToken);
         }

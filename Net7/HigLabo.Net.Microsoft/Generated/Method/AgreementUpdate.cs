@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementUpdateResponse> AgreementUpdateAsync()
+        public async ValueTask<AgreementUpdateResponse> AgreementUpdateAsync()
         {
             var p = new AgreementUpdateParameter();
             return await this.SendAsync<AgreementUpdateParameter, AgreementUpdateResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementUpdateResponse> AgreementUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementUpdateResponse> AgreementUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementUpdateParameter();
             return await this.SendAsync<AgreementUpdateParameter, AgreementUpdateResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementUpdateResponse> AgreementUpdateAsync(AgreementUpdateParameter parameter)
+        public async ValueTask<AgreementUpdateResponse> AgreementUpdateAsync(AgreementUpdateParameter parameter)
         {
             return await this.SendAsync<AgreementUpdateParameter, AgreementUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementUpdateResponse> AgreementUpdateAsync(AgreementUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementUpdateResponse> AgreementUpdateAsync(AgreementUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementUpdateParameter, AgreementUpdateResponse>(parameter, cancellationToken);
         }

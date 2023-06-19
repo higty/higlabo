@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync()
+        public async ValueTask<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync()
         {
             var p = new AppManagementPolicyDeleteParameter();
             return await this.SendAsync<AppManagementPolicyDeleteParameter, AppManagementPolicyDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AppManagementPolicyDeleteParameter();
             return await this.SendAsync<AppManagementPolicyDeleteParameter, AppManagementPolicyDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync(AppManagementPolicyDeleteParameter parameter)
+        public async ValueTask<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync(AppManagementPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<AppManagementPolicyDeleteParameter, AppManagementPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync(AppManagementPolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyDeleteResponse> AppManagementPolicyDeleteAsync(AppManagementPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyDeleteParameter, AppManagementPolicyDeleteResponse>(parameter, cancellationToken);
         }

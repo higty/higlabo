@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync()
+        public async ValueTask<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync()
         {
             var p = new PhoneauthenticationmethodEnablesmssigninParameter();
             return await this.SendAsync<PhoneauthenticationmethodEnablesmssigninParameter, PhoneauthenticationmethodEnablesmssigninResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync(CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync(CancellationToken cancellationToken)
         {
             var p = new PhoneauthenticationmethodEnablesmssigninParameter();
             return await this.SendAsync<PhoneauthenticationmethodEnablesmssigninParameter, PhoneauthenticationmethodEnablesmssigninResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync(PhoneauthenticationmethodEnablesmssigninParameter parameter)
+        public async ValueTask<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync(PhoneauthenticationmethodEnablesmssigninParameter parameter)
         {
             return await this.SendAsync<PhoneauthenticationmethodEnablesmssigninParameter, PhoneauthenticationmethodEnablesmssigninResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync(PhoneauthenticationmethodEnablesmssigninParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodEnablesmssigninResponse> PhoneauthenticationmethodEnablesmssigninAsync(PhoneauthenticationmethodEnablesmssigninParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PhoneauthenticationmethodEnablesmssigninParameter, PhoneauthenticationmethodEnablesmssigninResponse>(parameter, cancellationToken);
         }

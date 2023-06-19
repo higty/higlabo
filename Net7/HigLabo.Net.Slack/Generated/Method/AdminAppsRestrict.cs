@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restrict
         /// </summary>
-        public async Task<AdminAppsRestrictResponse> AdminAppsRestrictAsync()
+        public async ValueTask<AdminAppsRestrictResponse> AdminAppsRestrictAsync()
         {
             var p = new AdminAppsRestrictParameter();
             return await this.SendAsync<AdminAppsRestrictParameter, AdminAppsRestrictResponse>(p, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restrict
         /// </summary>
-        public async Task<AdminAppsRestrictResponse> AdminAppsRestrictAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRestrictResponse> AdminAppsRestrictAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAppsRestrictParameter();
             return await this.SendAsync<AdminAppsRestrictParameter, AdminAppsRestrictResponse>(p, cancellationToken);
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restrict
         /// </summary>
-        public async Task<AdminAppsRestrictResponse> AdminAppsRestrictAsync(AdminAppsRestrictParameter parameter)
+        public async ValueTask<AdminAppsRestrictResponse> AdminAppsRestrictAsync(AdminAppsRestrictParameter parameter)
         {
             return await this.SendAsync<AdminAppsRestrictParameter, AdminAppsRestrictResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restrict
         /// </summary>
-        public async Task<AdminAppsRestrictResponse> AdminAppsRestrictAsync(AdminAppsRestrictParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRestrictResponse> AdminAppsRestrictAsync(AdminAppsRestrictParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsRestrictParameter, AdminAppsRestrictResponse>(parameter, cancellationToken);
         }

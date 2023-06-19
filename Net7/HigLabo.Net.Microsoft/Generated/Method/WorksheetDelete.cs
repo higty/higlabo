@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync()
+        public async ValueTask<WorksheetDeleteResponse> WorksheetDeleteAsync()
         {
             var p = new WorksheetDeleteParameter();
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetDeleteResponse> WorksheetDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetDeleteParameter();
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync(WorksheetDeleteParameter parameter)
+        public async ValueTask<WorksheetDeleteResponse> WorksheetDeleteAsync(WorksheetDeleteParameter parameter)
         {
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync(WorksheetDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetDeleteResponse> WorksheetDeleteAsync(WorksheetDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(parameter, cancellationToken);
         }

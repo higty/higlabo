@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync()
+        public async ValueTask<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync()
         {
             var p = new ChatmessagehostedContentGetParameter();
             return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessagehostedContentGetParameter();
             return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(ChatmessagehostedContentGetParameter parameter)
+        public async ValueTask<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(ChatmessagehostedContentGetParameter parameter)
         {
             return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(ChatmessagehostedContentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(ChatmessagehostedContentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(parameter, cancellationToken);
         }

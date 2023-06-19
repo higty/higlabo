@@ -205,7 +205,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListManagerResponse> UserListManagerAsync()
+        public async ValueTask<UserListManagerResponse> UserListManagerAsync()
         {
             var p = new UserListManagerParameter();
             return await this.SendAsync<UserListManagerParameter, UserListManagerResponse>(p, CancellationToken.None);
@@ -213,7 +213,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListManagerResponse> UserListManagerAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListManagerResponse> UserListManagerAsync(CancellationToken cancellationToken)
         {
             var p = new UserListManagerParameter();
             return await this.SendAsync<UserListManagerParameter, UserListManagerResponse>(p, cancellationToken);
@@ -221,14 +221,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListManagerResponse> UserListManagerAsync(UserListManagerParameter parameter)
+        public async ValueTask<UserListManagerResponse> UserListManagerAsync(UserListManagerParameter parameter)
         {
             return await this.SendAsync<UserListManagerParameter, UserListManagerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListManagerResponse> UserListManagerAsync(UserListManagerParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListManagerResponse> UserListManagerAsync(UserListManagerParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListManagerParameter, UserListManagerResponse>(parameter, cancellationToken);
         }

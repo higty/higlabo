@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetResponse> DriveGetAsync()
+        public async ValueTask<DriveGetResponse> DriveGetAsync()
         {
             var p = new DriveGetParameter();
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(p, CancellationToken.None);
@@ -116,7 +116,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetResponse> DriveGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveGetResponse> DriveGetAsync(CancellationToken cancellationToken)
         {
             var p = new DriveGetParameter();
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(p, cancellationToken);
@@ -124,14 +124,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetResponse> DriveGetAsync(DriveGetParameter parameter)
+        public async ValueTask<DriveGetResponse> DriveGetAsync(DriveGetParameter parameter)
         {
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetResponse> DriveGetAsync(DriveGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveGetResponse> DriveGetAsync(DriveGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(parameter, cancellationToken);
         }

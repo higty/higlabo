@@ -23,7 +23,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.access
         /// </summary>
-        public async Task<OauthAccessResponse> OauthAccessAsync()
+        public async ValueTask<OauthAccessResponse> OauthAccessAsync()
         {
             var p = new OauthAccessParameter();
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(p, CancellationToken.None);
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.access
         /// </summary>
-        public async Task<OauthAccessResponse> OauthAccessAsync(CancellationToken cancellationToken)
+        public async ValueTask<OauthAccessResponse> OauthAccessAsync(CancellationToken cancellationToken)
         {
             var p = new OauthAccessParameter();
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(p, cancellationToken);
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.access
         /// </summary>
-        public async Task<OauthAccessResponse> OauthAccessAsync(OauthAccessParameter parameter)
+        public async ValueTask<OauthAccessResponse> OauthAccessAsync(OauthAccessParameter parameter)
         {
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/oauth.access
         /// </summary>
-        public async Task<OauthAccessResponse> OauthAccessAsync(OauthAccessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OauthAccessResponse> OauthAccessAsync(OauthAccessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(parameter, cancellationToken);
         }

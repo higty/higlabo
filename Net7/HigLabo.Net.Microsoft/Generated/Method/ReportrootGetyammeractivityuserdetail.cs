@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync()
+        public async ValueTask<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync()
         {
             var p = new ReportRootGetyammeractivityUserdetailParameter();
             return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetyammeractivityUserdetailParameter();
             return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(ReportRootGetyammeractivityUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(ReportRootGetyammeractivityUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(ReportRootGetyammeractivityUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(ReportRootGetyammeractivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(parameter, cancellationToken);
         }

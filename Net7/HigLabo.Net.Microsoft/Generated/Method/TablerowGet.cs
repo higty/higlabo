@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowGetResponse> TablerowGetAsync()
+        public async ValueTask<TablerowGetResponse> TablerowGetAsync()
         {
             var p = new TablerowGetParameter();
             return await this.SendAsync<TablerowGetParameter, TablerowGetResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowGetResponse> TablerowGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablerowGetResponse> TablerowGetAsync(CancellationToken cancellationToken)
         {
             var p = new TablerowGetParameter();
             return await this.SendAsync<TablerowGetParameter, TablerowGetResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowGetResponse> TablerowGetAsync(TablerowGetParameter parameter)
+        public async ValueTask<TablerowGetResponse> TablerowGetAsync(TablerowGetParameter parameter)
         {
             return await this.SendAsync<TablerowGetParameter, TablerowGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowGetResponse> TablerowGetAsync(TablerowGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablerowGetResponse> TablerowGetAsync(TablerowGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowGetParameter, TablerowGetResponse>(parameter, cancellationToken);
         }

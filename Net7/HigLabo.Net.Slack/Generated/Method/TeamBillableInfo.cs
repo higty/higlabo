@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<TeamBillableInfoResponse> TeamBillableInfoAsync()
+        public async ValueTask<TeamBillableInfoResponse> TeamBillableInfoAsync()
         {
             var p = new TeamBillableInfoParameter();
             return await this.SendAsync<TeamBillableInfoParameter, TeamBillableInfoResponse>(p, CancellationToken.None);
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<TeamBillableInfoResponse> TeamBillableInfoAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamBillableInfoResponse> TeamBillableInfoAsync(CancellationToken cancellationToken)
         {
             var p = new TeamBillableInfoParameter();
             return await this.SendAsync<TeamBillableInfoParameter, TeamBillableInfoResponse>(p, cancellationToken);
@@ -49,21 +49,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<TeamBillableInfoResponse> TeamBillableInfoAsync(TeamBillableInfoParameter parameter)
+        public async ValueTask<TeamBillableInfoResponse> TeamBillableInfoAsync(TeamBillableInfoParameter parameter)
         {
             return await this.SendAsync<TeamBillableInfoParameter, TeamBillableInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<TeamBillableInfoResponse> TeamBillableInfoAsync(TeamBillableInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamBillableInfoResponse> TeamBillableInfoAsync(TeamBillableInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamBillableInfoParameter, TeamBillableInfoResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(PagingContext<TeamBillableInfoResponse> context)
+        public async ValueTask<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(PagingContext<TeamBillableInfoResponse> context)
         {
             var p = new TeamBillableInfoParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(CancellationToken cancellationToken, PagingContext<TeamBillableInfoResponse> context)
+        public async ValueTask<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(CancellationToken cancellationToken, PagingContext<TeamBillableInfoResponse> context)
         {
             var p = new TeamBillableInfoParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(TeamBillableInfoParameter parameter, PagingContext<TeamBillableInfoResponse> context)
+        public async ValueTask<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(TeamBillableInfoParameter parameter, PagingContext<TeamBillableInfoResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async Task<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(TeamBillableInfoParameter parameter, PagingContext<TeamBillableInfoResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(TeamBillableInfoParameter parameter, PagingContext<TeamBillableInfoResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalGetResponse> ApprovalGetAsync()
+        public async ValueTask<ApprovalGetResponse> ApprovalGetAsync()
         {
             var p = new ApprovalGetParameter();
             return await this.SendAsync<ApprovalGetParameter, ApprovalGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalGetResponse> ApprovalGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApprovalGetResponse> ApprovalGetAsync(CancellationToken cancellationToken)
         {
             var p = new ApprovalGetParameter();
             return await this.SendAsync<ApprovalGetParameter, ApprovalGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalGetResponse> ApprovalGetAsync(ApprovalGetParameter parameter)
+        public async ValueTask<ApprovalGetResponse> ApprovalGetAsync(ApprovalGetParameter parameter)
         {
             return await this.SendAsync<ApprovalGetParameter, ApprovalGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalGetResponse> ApprovalGetAsync(ApprovalGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApprovalGetResponse> ApprovalGetAsync(ApprovalGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApprovalGetParameter, ApprovalGetResponse>(parameter, cancellationToken);
         }

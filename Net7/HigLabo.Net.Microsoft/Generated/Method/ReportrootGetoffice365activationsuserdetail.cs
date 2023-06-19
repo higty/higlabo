@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365activationsuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync()
+        public async ValueTask<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync()
         {
             var p = new ReportRootGetoffice365activationsUserdetailParameter();
             return await this.SendAsync<ReportRootGetoffice365activationsUserdetailParameter, ReportRootGetoffice365activationsUserdetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365activationsuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetoffice365activationsUserdetailParameter();
             return await this.SendAsync<ReportRootGetoffice365activationsUserdetailParameter, ReportRootGetoffice365activationsUserdetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365activationsuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync(ReportRootGetoffice365activationsUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync(ReportRootGetoffice365activationsUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetoffice365activationsUserdetailParameter, ReportRootGetoffice365activationsUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365activationsuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync(ReportRootGetoffice365activationsUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365activationsUserdetailResponse> ReportRootGetoffice365activationsUserdetailAsync(ReportRootGetoffice365activationsUserdetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetoffice365activationsUserdetailParameter, ReportRootGetoffice365activationsUserdetailResponse>(parameter, cancellationToken);
         }

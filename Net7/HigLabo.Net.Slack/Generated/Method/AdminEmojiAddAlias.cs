@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.addAlias
         /// </summary>
-        public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(string? alias_For, string? name)
+        public async ValueTask<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(string? alias_For, string? name)
         {
             var p = new AdminEmojiAddAliasParameter();
             p.Alias_For = alias_For;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.addAlias
         /// </summary>
-        public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(string? alias_For, string? name, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(string? alias_For, string? name, CancellationToken cancellationToken)
         {
             var p = new AdminEmojiAddAliasParameter();
             p.Alias_For = alias_For;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.addAlias
         /// </summary>
-        public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(AdminEmojiAddAliasParameter parameter)
+        public async ValueTask<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(AdminEmojiAddAliasParameter parameter)
         {
             return await this.SendAsync<AdminEmojiAddAliasParameter, AdminEmojiAddAliasResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.addAlias
         /// </summary>
-        public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(AdminEmojiAddAliasParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(AdminEmojiAddAliasParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminEmojiAddAliasParameter, AdminEmojiAddAliasResponse>(parameter, cancellationToken);
         }

@@ -24,7 +24,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.create
         /// </summary>
-        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(string? name)
+        public async ValueTask<UsergroupsCreateResponse> UsergroupsCreateAsync(string? name)
         {
             var p = new UsergroupsCreateParameter();
             p.Name = name;
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.create
         /// </summary>
-        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(string? name, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsCreateResponse> UsergroupsCreateAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new UsergroupsCreateParameter();
             p.Name = name;
@@ -42,14 +42,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.create
         /// </summary>
-        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(UsergroupsCreateParameter parameter)
+        public async ValueTask<UsergroupsCreateResponse> UsergroupsCreateAsync(UsergroupsCreateParameter parameter)
         {
             return await this.SendAsync<UsergroupsCreateParameter, UsergroupsCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/usergroups.create
         /// </summary>
-        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(UsergroupsCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsCreateResponse> UsergroupsCreateAsync(UsergroupsCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsergroupsCreateParameter, UsergroupsCreateResponse>(parameter, cancellationToken);
         }

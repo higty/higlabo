@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync()
+        public async ValueTask<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync()
         {
             var p = new ReportRootListMonthlyprintusagebyUserParameter();
             return await this.SendAsync<ReportRootListMonthlyprintusagebyUserParameter, ReportRootListMonthlyprintusagebyUserResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootListMonthlyprintusagebyUserParameter();
             return await this.SendAsync<ReportRootListMonthlyprintusagebyUserParameter, ReportRootListMonthlyprintusagebyUserResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync(ReportRootListMonthlyprintusagebyUserParameter parameter)
+        public async ValueTask<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync(ReportRootListMonthlyprintusagebyUserParameter parameter)
         {
             return await this.SendAsync<ReportRootListMonthlyprintusagebyUserParameter, ReportRootListMonthlyprintusagebyUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync(ReportRootListMonthlyprintusagebyUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootListMonthlyprintusagebyUserResponse> ReportRootListMonthlyprintusagebyUserAsync(ReportRootListMonthlyprintusagebyUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootListMonthlyprintusagebyUserParameter, ReportRootListMonthlyprintusagebyUserResponse>(parameter, cancellationToken);
         }

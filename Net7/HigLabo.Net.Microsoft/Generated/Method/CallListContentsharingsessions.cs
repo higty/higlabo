@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync()
+        public async ValueTask<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync()
         {
             var p = new CallListContentsharingsessionsParameter();
             return await this.SendAsync<CallListContentsharingsessionsParameter, CallListContentsharingsessionsResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync(CancellationToken cancellationToken)
         {
             var p = new CallListContentsharingsessionsParameter();
             return await this.SendAsync<CallListContentsharingsessionsParameter, CallListContentsharingsessionsResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync(CallListContentsharingsessionsParameter parameter)
+        public async ValueTask<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync(CallListContentsharingsessionsParameter parameter)
         {
             return await this.SendAsync<CallListContentsharingsessionsParameter, CallListContentsharingsessionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync(CallListContentsharingsessionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallListContentsharingsessionsResponse> CallListContentsharingsessionsAsync(CallListContentsharingsessionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallListContentsharingsessionsParameter, CallListContentsharingsessionsResponse>(parameter, cancellationToken);
         }

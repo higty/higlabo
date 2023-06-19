@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync()
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync()
         {
             var p = new MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter, MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter, MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync(MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter parameter)
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync(MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter parameter)
         {
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter, MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync(MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse> MicrosoftauthenticatorauthenticationmethodConfigurationUpdateAsync(MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationUpdateParameter, MicrosoftauthenticatorauthenticationmethodConfigurationUpdateResponse>(parameter, cancellationToken);
         }

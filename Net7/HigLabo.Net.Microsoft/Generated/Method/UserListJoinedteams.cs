@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync()
+        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync()
         {
             var p = new UserListJoinedteamsParameter();
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(p, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListJoinedteamsParameter();
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(p, cancellationToken);
@@ -106,14 +106,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter)
+        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter)
         {
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(parameter, cancellationToken);
         }

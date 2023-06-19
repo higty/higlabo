@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync()
+        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync()
         {
             var p = new AccesspackagecatalogUpdateParameter();
             return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackagecatalogUpdateParameter();
             return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(AccesspackagecatalogUpdateParameter parameter)
+        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(AccesspackagecatalogUpdateParameter parameter)
         {
             return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(AccesspackagecatalogUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(AccesspackagecatalogUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(parameter, cancellationToken);
         }

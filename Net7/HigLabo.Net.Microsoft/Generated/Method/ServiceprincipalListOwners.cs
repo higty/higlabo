@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync()
+        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync()
         {
             var p = new ServiceprincipalListOwnersParameter();
             return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalListOwnersParameter();
             return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(ServiceprincipalListOwnersParameter parameter)
+        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(ServiceprincipalListOwnersParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(ServiceprincipalListOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(ServiceprincipalListOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(parameter, cancellationToken);
         }

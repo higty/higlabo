@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync()
+        public async ValueTask<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync()
         {
             var p = new ChannelUpdateMembersParameter();
             return await this.SendAsync<ChannelUpdateMembersParameter, ChannelUpdateMembersResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelUpdateMembersParameter();
             return await this.SendAsync<ChannelUpdateMembersParameter, ChannelUpdateMembersResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync(ChannelUpdateMembersParameter parameter)
+        public async ValueTask<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync(ChannelUpdateMembersParameter parameter)
         {
             return await this.SendAsync<ChannelUpdateMembersParameter, ChannelUpdateMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-update-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync(ChannelUpdateMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelUpdateMembersResponse> ChannelUpdateMembersAsync(ChannelUpdateMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelUpdateMembersParameter, ChannelUpdateMembersResponse>(parameter, cancellationToken);
         }

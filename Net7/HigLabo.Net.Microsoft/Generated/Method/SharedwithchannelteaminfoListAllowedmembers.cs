@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync()
+        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync()
         {
             var p = new SharedwithchannelteaminfoListAllowedmembersParameter();
             return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(CancellationToken cancellationToken)
         {
             var p = new SharedwithchannelteaminfoListAllowedmembersParameter();
             return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(SharedwithchannelteaminfoListAllowedmembersParameter parameter)
+        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(SharedwithchannelteaminfoListAllowedmembersParameter parameter)
         {
             return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(SharedwithchannelteaminfoListAllowedmembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(SharedwithchannelteaminfoListAllowedmembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(parameter, cancellationToken);
         }

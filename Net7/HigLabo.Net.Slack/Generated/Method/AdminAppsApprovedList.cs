@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync()
+        public async ValueTask<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync()
         {
             var p = new AdminAppsApprovedListParameter();
             return await this.SendAsync<AdminAppsApprovedListParameter, AdminAppsApprovedListResponse>(p, CancellationToken.None);
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAppsApprovedListParameter();
             return await this.SendAsync<AdminAppsApprovedListParameter, AdminAppsApprovedListResponse>(p, cancellationToken);
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter)
+        public async ValueTask<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter)
         {
             return await this.SendAsync<AdminAppsApprovedListParameter, AdminAppsApprovedListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsApprovedListResponse> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsApprovedListParameter, AdminAppsApprovedListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(PagingContext<AdminAppsApprovedListResponse> context)
+        public async ValueTask<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(PagingContext<AdminAppsApprovedListResponse> context)
         {
             var p = new AdminAppsApprovedListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsApprovedListResponse> context)
+        public async ValueTask<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsApprovedListResponse> context)
         {
             var p = new AdminAppsApprovedListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter, PagingContext<AdminAppsApprovedListResponse> context)
+        public async ValueTask<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter, PagingContext<AdminAppsApprovedListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approved.list
         /// </summary>
-        public async Task<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter, PagingContext<AdminAppsApprovedListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminAppsApprovedListResponse>> AdminAppsApprovedListAsync(AdminAppsApprovedListParameter parameter, PagingContext<AdminAppsApprovedListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListColumnsResponse> ListListColumnsAsync()
+        public async ValueTask<ListListColumnsResponse> ListListColumnsAsync()
         {
             var p = new ListListColumnsParameter();
             return await this.SendAsync<ListListColumnsParameter, ListListColumnsResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListColumnsResponse> ListListColumnsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListListColumnsResponse> ListListColumnsAsync(CancellationToken cancellationToken)
         {
             var p = new ListListColumnsParameter();
             return await this.SendAsync<ListListColumnsParameter, ListListColumnsResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListColumnsResponse> ListListColumnsAsync(ListListColumnsParameter parameter)
+        public async ValueTask<ListListColumnsResponse> ListListColumnsAsync(ListListColumnsParameter parameter)
         {
             return await this.SendAsync<ListListColumnsParameter, ListListColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListColumnsResponse> ListListColumnsAsync(ListListColumnsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListListColumnsResponse> ListListColumnsAsync(ListListColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListListColumnsParameter, ListListColumnsResponse>(parameter, cancellationToken);
         }

@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskGetResponse> TodotaskGetAsync()
+        public async ValueTask<TodotaskGetResponse> TodotaskGetAsync()
         {
             var p = new TodotaskGetParameter();
             return await this.SendAsync<TodotaskGetParameter, TodotaskGetResponse>(p, CancellationToken.None);
@@ -106,7 +106,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskGetResponse> TodotaskGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskGetResponse> TodotaskGetAsync(CancellationToken cancellationToken)
         {
             var p = new TodotaskGetParameter();
             return await this.SendAsync<TodotaskGetParameter, TodotaskGetResponse>(p, cancellationToken);
@@ -114,14 +114,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskGetResponse> TodotaskGetAsync(TodotaskGetParameter parameter)
+        public async ValueTask<TodotaskGetResponse> TodotaskGetAsync(TodotaskGetParameter parameter)
         {
             return await this.SendAsync<TodotaskGetParameter, TodotaskGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskGetResponse> TodotaskGetAsync(TodotaskGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskGetResponse> TodotaskGetAsync(TodotaskGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskGetParameter, TodotaskGetResponse>(parameter, cancellationToken);
         }

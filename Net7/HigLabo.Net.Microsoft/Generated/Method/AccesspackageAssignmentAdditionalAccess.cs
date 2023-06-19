@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-additionalaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync()
+        public async ValueTask<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync()
         {
             var p = new AccesspackageAssignmentAdditionalAccessParameter();
             return await this.SendAsync<AccesspackageAssignmentAdditionalAccessParameter, AccesspackageAssignmentAdditionalAccessResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-additionalaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageAssignmentAdditionalAccessParameter();
             return await this.SendAsync<AccesspackageAssignmentAdditionalAccessParameter, AccesspackageAssignmentAdditionalAccessResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-additionalaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync(AccesspackageAssignmentAdditionalAccessParameter parameter)
+        public async ValueTask<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync(AccesspackageAssignmentAdditionalAccessParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentAdditionalAccessParameter, AccesspackageAssignmentAdditionalAccessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-additionalaccess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync(AccesspackageAssignmentAdditionalAccessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentAdditionalAccessResponse> AccesspackageAssignmentAdditionalAccessAsync(AccesspackageAssignmentAdditionalAccessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageAssignmentAdditionalAccessParameter, AccesspackageAssignmentAdditionalAccessResponse>(parameter, cancellationToken);
         }

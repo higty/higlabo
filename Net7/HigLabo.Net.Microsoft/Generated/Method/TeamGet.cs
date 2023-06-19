@@ -115,7 +115,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetResponse> TeamGetAsync()
+        public async ValueTask<TeamGetResponse> TeamGetAsync()
         {
             var p = new TeamGetParameter();
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(p, CancellationToken.None);
@@ -123,7 +123,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetResponse> TeamGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamGetResponse> TeamGetAsync(CancellationToken cancellationToken)
         {
             var p = new TeamGetParameter();
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(p, cancellationToken);
@@ -131,14 +131,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetResponse> TeamGetAsync(TeamGetParameter parameter)
+        public async ValueTask<TeamGetResponse> TeamGetAsync(TeamGetParameter parameter)
         {
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetResponse> TeamGetAsync(TeamGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamGetResponse> TeamGetAsync(TeamGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(parameter, cancellationToken);
         }

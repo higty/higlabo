@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync()
+        public async ValueTask<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync()
         {
             var p = new DocumentsetversionDeleteParameter();
             return await this.SendAsync<DocumentsetversionDeleteParameter, DocumentsetversionDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DocumentsetversionDeleteParameter();
             return await this.SendAsync<DocumentsetversionDeleteParameter, DocumentsetversionDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync(DocumentsetversionDeleteParameter parameter)
+        public async ValueTask<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync(DocumentsetversionDeleteParameter parameter)
         {
             return await this.SendAsync<DocumentsetversionDeleteParameter, DocumentsetversionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync(DocumentsetversionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DocumentsetversionDeleteResponse> DocumentsetversionDeleteAsync(DocumentsetversionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DocumentsetversionDeleteParameter, DocumentsetversionDeleteResponse>(parameter, cancellationToken);
         }

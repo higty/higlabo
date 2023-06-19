@@ -141,7 +141,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationGetResponse> ApplicationGetAsync()
+        public async ValueTask<ApplicationGetResponse> ApplicationGetAsync()
         {
             var p = new ApplicationGetParameter();
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(p, CancellationToken.None);
@@ -149,7 +149,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationGetResponse> ApplicationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationGetResponse> ApplicationGetAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationGetParameter();
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(p, cancellationToken);
@@ -157,14 +157,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationGetResponse> ApplicationGetAsync(ApplicationGetParameter parameter)
+        public async ValueTask<ApplicationGetResponse> ApplicationGetAsync(ApplicationGetParameter parameter)
         {
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationGetResponse> ApplicationGetAsync(ApplicationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationGetResponse> ApplicationGetAsync(ApplicationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(parameter, cancellationToken);
         }

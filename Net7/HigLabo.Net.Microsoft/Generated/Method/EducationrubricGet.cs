@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricGetResponse> EducationrubricGetAsync()
+        public async ValueTask<EducationrubricGetResponse> EducationrubricGetAsync()
         {
             var p = new EducationrubricGetParameter();
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricGetResponse> EducationrubricGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationrubricGetResponse> EducationrubricGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationrubricGetParameter();
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricGetResponse> EducationrubricGetAsync(EducationrubricGetParameter parameter)
+        public async ValueTask<EducationrubricGetResponse> EducationrubricGetAsync(EducationrubricGetParameter parameter)
         {
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationrubricGetResponse> EducationrubricGetAsync(EducationrubricGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationrubricGetResponse> EducationrubricGetAsync(EducationrubricGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(parameter, cancellationToken);
         }

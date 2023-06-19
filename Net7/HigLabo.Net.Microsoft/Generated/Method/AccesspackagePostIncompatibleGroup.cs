@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync()
+        public async ValueTask<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync()
         {
             var p = new AccesspackagePostIncompatibleGroupParameter();
             return await this.SendAsync<AccesspackagePostIncompatibleGroupParameter, AccesspackagePostIncompatibleGroupResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackagePostIncompatibleGroupParameter();
             return await this.SendAsync<AccesspackagePostIncompatibleGroupParameter, AccesspackagePostIncompatibleGroupResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync(AccesspackagePostIncompatibleGroupParameter parameter)
+        public async ValueTask<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync(AccesspackagePostIncompatibleGroupParameter parameter)
         {
             return await this.SendAsync<AccesspackagePostIncompatibleGroupParameter, AccesspackagePostIncompatibleGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync(AccesspackagePostIncompatibleGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackagePostIncompatibleGroupResponse> AccesspackagePostIncompatibleGroupAsync(AccesspackagePostIncompatibleGroupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackagePostIncompatibleGroupParameter, AccesspackagePostIncompatibleGroupResponse>(parameter, cancellationToken);
         }

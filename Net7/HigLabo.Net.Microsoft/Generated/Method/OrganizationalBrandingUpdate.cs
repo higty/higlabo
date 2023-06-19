@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync()
+        public async ValueTask<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync()
         {
             var p = new OrganizationalBrandingUpdateParameter();
             return await this.SendAsync<OrganizationalBrandingUpdateParameter, OrganizationalBrandingUpdateResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationalBrandingUpdateParameter();
             return await this.SendAsync<OrganizationalBrandingUpdateParameter, OrganizationalBrandingUpdateResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync(OrganizationalBrandingUpdateParameter parameter)
+        public async ValueTask<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync(OrganizationalBrandingUpdateParameter parameter)
         {
             return await this.SendAsync<OrganizationalBrandingUpdateParameter, OrganizationalBrandingUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync(OrganizationalBrandingUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandingUpdateResponse> OrganizationalBrandingUpdateAsync(OrganizationalBrandingUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationalBrandingUpdateParameter, OrganizationalBrandingUpdateResponse>(parameter, cancellationToken);
         }

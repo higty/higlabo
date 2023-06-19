@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync()
+        public async ValueTask<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync()
         {
             var p = new IdentitycontainerListB2xUserflowsParameter();
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(CancellationToken cancellationToken)
         {
             var p = new IdentitycontainerListB2xUserflowsParameter();
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter)
+        public async ValueTask<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter)
         {
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(parameter, cancellationToken);
         }

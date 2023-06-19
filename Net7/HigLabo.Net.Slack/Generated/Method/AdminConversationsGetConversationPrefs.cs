@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(string? channel_Id)
         {
             var p = new AdminConversationsGetConversationPrefsParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsGetConversationPrefsParameter();
             p.Channel_Id = channel_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(AdminConversationsGetConversationPrefsParameter parameter)
+        public async ValueTask<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(AdminConversationsGetConversationPrefsParameter parameter)
         {
             return await this.SendAsync<AdminConversationsGetConversationPrefsParameter, AdminConversationsGetConversationPrefsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(AdminConversationsGetConversationPrefsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsGetConversationPrefsResponse> AdminConversationsGetConversationPrefsAsync(AdminConversationsGetConversationPrefsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsGetConversationPrefsParameter, AdminConversationsGetConversationPrefsResponse>(parameter, cancellationToken);
         }

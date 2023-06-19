@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.remove
         /// </summary>
-        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string? bookmark_Id, string? channel_Id)
+        public async ValueTask<BookmarksRemoveResponse> BookmarksRemoveAsync(string? bookmark_Id, string? channel_Id)
         {
             var p = new BookmarksRemoveParameter();
             p.Bookmark_Id = bookmark_Id;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.remove
         /// </summary>
-        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string? bookmark_Id, string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksRemoveResponse> BookmarksRemoveAsync(string? bookmark_Id, string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksRemoveParameter();
             p.Bookmark_Id = bookmark_Id;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.remove
         /// </summary>
-        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(BookmarksRemoveParameter parameter)
+        public async ValueTask<BookmarksRemoveResponse> BookmarksRemoveAsync(BookmarksRemoveParameter parameter)
         {
             return await this.SendAsync<BookmarksRemoveParameter, BookmarksRemoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.remove
         /// </summary>
-        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(BookmarksRemoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksRemoveResponse> BookmarksRemoveAsync(BookmarksRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksRemoveParameter, BookmarksRemoveResponse>(parameter, cancellationToken);
         }

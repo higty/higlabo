@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync()
+        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync()
         {
             var p = new SecurityEdiscoverycaseDeleteSearchesParameter();
             return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseDeleteSearchesParameter();
             return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(SecurityEdiscoverycaseDeleteSearchesParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(SecurityEdiscoverycaseDeleteSearchesParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(SecurityEdiscoverycaseDeleteSearchesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(SecurityEdiscoverycaseDeleteSearchesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(parameter, cancellationToken);
         }

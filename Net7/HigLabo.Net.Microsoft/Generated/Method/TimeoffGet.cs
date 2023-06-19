@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffGetResponse> TimeoffGetAsync()
+        public async ValueTask<TimeoffGetResponse> TimeoffGetAsync()
         {
             var p = new TimeoffGetParameter();
             return await this.SendAsync<TimeoffGetParameter, TimeoffGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffGetResponse> TimeoffGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffGetResponse> TimeoffGetAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffGetParameter();
             return await this.SendAsync<TimeoffGetParameter, TimeoffGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffGetResponse> TimeoffGetAsync(TimeoffGetParameter parameter)
+        public async ValueTask<TimeoffGetResponse> TimeoffGetAsync(TimeoffGetParameter parameter)
         {
             return await this.SendAsync<TimeoffGetParameter, TimeoffGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoff-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffGetResponse> TimeoffGetAsync(TimeoffGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffGetResponse> TimeoffGetAsync(TimeoffGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffGetParameter, TimeoffGetResponse>(parameter, cancellationToken);
         }

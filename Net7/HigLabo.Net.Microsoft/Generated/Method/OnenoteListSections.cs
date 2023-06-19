@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionsResponse> OnenoteListSectionsAsync()
+        public async ValueTask<OnenoteListSectionsResponse> OnenoteListSectionsAsync()
         {
             var p = new OnenoteListSectionsParameter();
             return await this.SendAsync<OnenoteListSectionsParameter, OnenoteListSectionsResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionsResponse> OnenoteListSectionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListSectionsResponse> OnenoteListSectionsAsync(CancellationToken cancellationToken)
         {
             var p = new OnenoteListSectionsParameter();
             return await this.SendAsync<OnenoteListSectionsParameter, OnenoteListSectionsResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionsResponse> OnenoteListSectionsAsync(OnenoteListSectionsParameter parameter)
+        public async ValueTask<OnenoteListSectionsResponse> OnenoteListSectionsAsync(OnenoteListSectionsParameter parameter)
         {
             return await this.SendAsync<OnenoteListSectionsParameter, OnenoteListSectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionsResponse> OnenoteListSectionsAsync(OnenoteListSectionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListSectionsResponse> OnenoteListSectionsAsync(OnenoteListSectionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnenoteListSectionsParameter, OnenoteListSectionsResponse>(parameter, cancellationToken);
         }

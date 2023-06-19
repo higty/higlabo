@@ -106,7 +106,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeltaResponse> ContactDeltaAsync()
+        public async ValueTask<ContactDeltaResponse> ContactDeltaAsync()
         {
             var p = new ContactDeltaParameter();
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(p, CancellationToken.None);
@@ -114,7 +114,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeltaResponse> ContactDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactDeltaResponse> ContactDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new ContactDeltaParameter();
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(p, cancellationToken);
@@ -122,14 +122,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter)
+        public async ValueTask<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter)
         {
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(parameter, cancellationToken);
         }

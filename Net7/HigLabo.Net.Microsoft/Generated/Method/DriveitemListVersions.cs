@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListVersionsResponse> DriveitemListVersionsAsync()
+        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync()
         {
             var p = new DriveitemListVersionsParameter();
             return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListVersionsResponse> DriveitemListVersionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemListVersionsParameter();
             return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListVersionsResponse> DriveitemListVersionsAsync(DriveitemListVersionsParameter parameter)
+        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync(DriveitemListVersionsParameter parameter)
         {
             return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListVersionsResponse> DriveitemListVersionsAsync(DriveitemListVersionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync(DriveitemListVersionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(parameter, cancellationToken);
         }

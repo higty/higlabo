@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemCreateResponse> ListitemCreateAsync()
+        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync()
         {
             var p = new ListitemCreateParameter();
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemCreateResponse> ListitemCreateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync(CancellationToken cancellationToken)
         {
             var p = new ListitemCreateParameter();
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter)
+        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter)
         {
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(parameter, cancellationToken);
         }

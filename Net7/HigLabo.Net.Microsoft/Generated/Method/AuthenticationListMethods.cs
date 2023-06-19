@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync()
+        public async ValueTask<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync()
         {
             var p = new AuthenticationListMethodsParameter();
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationListMethodsParameter();
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(AuthenticationListMethodsParameter parameter)
+        public async ValueTask<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(AuthenticationListMethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(AuthenticationListMethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(AuthenticationListMethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(parameter, cancellationToken);
         }

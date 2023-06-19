@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync()
+        public async ValueTask<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync()
         {
             var p = new PlannerassignedtotaskboardtaskformatGetParameter();
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerassignedtotaskboardtaskformatGetParameter();
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(PlannerassignedtotaskboardtaskformatGetParameter parameter)
+        public async ValueTask<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(PlannerassignedtotaskboardtaskformatGetParameter parameter)
         {
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(PlannerassignedtotaskboardtaskformatGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(PlannerassignedtotaskboardtaskformatGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(parameter, cancellationToken);
         }

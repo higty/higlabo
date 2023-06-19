@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskUpdateResponse> PlannertaskUpdateAsync()
+        public async ValueTask<PlannertaskUpdateResponse> PlannertaskUpdateAsync()
         {
             var p = new PlannertaskUpdateParameter();
             return await this.SendAsync<PlannertaskUpdateParameter, PlannertaskUpdateResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskUpdateResponse> PlannertaskUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannertaskUpdateResponse> PlannertaskUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PlannertaskUpdateParameter();
             return await this.SendAsync<PlannertaskUpdateParameter, PlannertaskUpdateResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskUpdateResponse> PlannertaskUpdateAsync(PlannertaskUpdateParameter parameter)
+        public async ValueTask<PlannertaskUpdateResponse> PlannertaskUpdateAsync(PlannertaskUpdateParameter parameter)
         {
             return await this.SendAsync<PlannertaskUpdateParameter, PlannertaskUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertask-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskUpdateResponse> PlannertaskUpdateAsync(PlannertaskUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannertaskUpdateResponse> PlannertaskUpdateAsync(PlannertaskUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannertaskUpdateParameter, PlannertaskUpdateResponse>(parameter, cancellationToken);
         }

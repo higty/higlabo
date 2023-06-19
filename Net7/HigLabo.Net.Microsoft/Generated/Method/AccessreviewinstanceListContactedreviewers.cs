@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync()
+        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync()
         {
             var p = new AccessreviewinstanceListContactedreviewersParameter();
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceListContactedreviewersParameter();
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter)
+        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(parameter, cancellationToken);
         }

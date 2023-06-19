@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-post-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementPostFilesResponse> AgreementPostFilesAsync()
+        public async ValueTask<AgreementPostFilesResponse> AgreementPostFilesAsync()
         {
             var p = new AgreementPostFilesParameter();
             return await this.SendAsync<AgreementPostFilesParameter, AgreementPostFilesResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-post-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementPostFilesResponse> AgreementPostFilesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementPostFilesResponse> AgreementPostFilesAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementPostFilesParameter();
             return await this.SendAsync<AgreementPostFilesParameter, AgreementPostFilesResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-post-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementPostFilesResponse> AgreementPostFilesAsync(AgreementPostFilesParameter parameter)
+        public async ValueTask<AgreementPostFilesResponse> AgreementPostFilesAsync(AgreementPostFilesParameter parameter)
         {
             return await this.SendAsync<AgreementPostFilesParameter, AgreementPostFilesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-post-files?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementPostFilesResponse> AgreementPostFilesAsync(AgreementPostFilesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementPostFilesResponse> AgreementPostFilesAsync(AgreementPostFilesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementPostFilesParameter, AgreementPostFilesResponse>(parameter, cancellationToken);
         }

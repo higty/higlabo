@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync()
+        public async ValueTask<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync()
         {
             var p = new PlannertaskdetailsGetParameter();
             return await this.SendAsync<PlannertaskdetailsGetParameter, PlannertaskdetailsGetResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync(CancellationToken cancellationToken)
         {
             var p = new PlannertaskdetailsGetParameter();
             return await this.SendAsync<PlannertaskdetailsGetParameter, PlannertaskdetailsGetResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync(PlannertaskdetailsGetParameter parameter)
+        public async ValueTask<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync(PlannertaskdetailsGetParameter parameter)
         {
             return await this.SendAsync<PlannertaskdetailsGetParameter, PlannertaskdetailsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync(PlannertaskdetailsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannertaskdetailsGetResponse> PlannertaskdetailsGetAsync(PlannertaskdetailsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannertaskdetailsGetParameter, PlannertaskdetailsGetResponse>(parameter, cancellationToken);
         }

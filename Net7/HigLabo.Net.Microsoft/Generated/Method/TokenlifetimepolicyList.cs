@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync()
+        public async ValueTask<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync()
         {
             var p = new TokenlifetimePolicyListParameter();
             return await this.SendAsync<TokenlifetimePolicyListParameter, TokenlifetimePolicyListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(CancellationToken cancellationToken)
         {
             var p = new TokenlifetimePolicyListParameter();
             return await this.SendAsync<TokenlifetimePolicyListParameter, TokenlifetimePolicyListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(TokenlifetimePolicyListParameter parameter)
+        public async ValueTask<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(TokenlifetimePolicyListParameter parameter)
         {
             return await this.SendAsync<TokenlifetimePolicyListParameter, TokenlifetimePolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(TokenlifetimePolicyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(TokenlifetimePolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenlifetimePolicyListParameter, TokenlifetimePolicyListResponse>(parameter, cancellationToken);
         }

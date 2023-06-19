@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync()
+        public async ValueTask<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync()
         {
             var p = new ReportRootGetoffice365GroupsactivitydetailParameter();
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitydetailParameter, ReportRootGetoffice365GroupsactivitydetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetoffice365GroupsactivitydetailParameter();
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitydetailParameter, ReportRootGetoffice365GroupsactivitydetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync(ReportRootGetoffice365GroupsactivitydetailParameter parameter)
+        public async ValueTask<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync(ReportRootGetoffice365GroupsactivitydetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitydetailParameter, ReportRootGetoffice365GroupsactivitydetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync(ReportRootGetoffice365GroupsactivitydetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsactivitydetailResponse> ReportRootGetoffice365GroupsactivitydetailAsync(ReportRootGetoffice365GroupsactivitydetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitydetailParameter, ReportRootGetoffice365GroupsactivitydetailResponse>(parameter, cancellationToken);
         }

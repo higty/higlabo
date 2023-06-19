@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync()
+        public async ValueTask<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync()
         {
             var p = new PrinterReStorefactorydefaultsParameter();
             return await this.SendAsync<PrinterReStorefactorydefaultsParameter, PrinterReStorefactorydefaultsResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterReStorefactorydefaultsParameter();
             return await this.SendAsync<PrinterReStorefactorydefaultsParameter, PrinterReStorefactorydefaultsResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync(PrinterReStorefactorydefaultsParameter parameter)
+        public async ValueTask<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync(PrinterReStorefactorydefaultsParameter parameter)
         {
             return await this.SendAsync<PrinterReStorefactorydefaultsParameter, PrinterReStorefactorydefaultsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync(PrinterReStorefactorydefaultsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterReStorefactorydefaultsResponse> PrinterReStorefactorydefaultsAsync(PrinterReStorefactorydefaultsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterReStorefactorydefaultsParameter, PrinterReStorefactorydefaultsResponse>(parameter, cancellationToken);
         }

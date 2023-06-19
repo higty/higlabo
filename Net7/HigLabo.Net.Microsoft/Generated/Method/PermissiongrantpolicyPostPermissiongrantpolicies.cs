@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-permissiongrantpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync()
+        public async ValueTask<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync()
         {
             var p = new PermissiongrantPolicyPostPermissiongrantpoliciesParameter();
             return await this.SendAsync<PermissiongrantPolicyPostPermissiongrantpoliciesParameter, PermissiongrantPolicyPostPermissiongrantpoliciesResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-permissiongrantpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new PermissiongrantPolicyPostPermissiongrantpoliciesParameter();
             return await this.SendAsync<PermissiongrantPolicyPostPermissiongrantpoliciesParameter, PermissiongrantPolicyPostPermissiongrantpoliciesResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-permissiongrantpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync(PermissiongrantPolicyPostPermissiongrantpoliciesParameter parameter)
+        public async ValueTask<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync(PermissiongrantPolicyPostPermissiongrantpoliciesParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyPostPermissiongrantpoliciesParameter, PermissiongrantPolicyPostPermissiongrantpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-permissiongrantpolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync(PermissiongrantPolicyPostPermissiongrantpoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissiongrantPolicyPostPermissiongrantpoliciesResponse> PermissiongrantPolicyPostPermissiongrantpoliciesAsync(PermissiongrantPolicyPostPermissiongrantpoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissiongrantPolicyPostPermissiongrantpoliciesParameter, PermissiongrantPolicyPostPermissiongrantpoliciesResponse>(parameter, cancellationToken);
         }

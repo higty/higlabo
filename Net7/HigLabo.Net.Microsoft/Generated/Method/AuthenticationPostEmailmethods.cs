@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync()
+        public async ValueTask<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync()
         {
             var p = new AuthenticationPostEmailmethodsParameter();
             return await this.SendAsync<AuthenticationPostEmailmethodsParameter, AuthenticationPostEmailmethodsResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationPostEmailmethodsParameter();
             return await this.SendAsync<AuthenticationPostEmailmethodsParameter, AuthenticationPostEmailmethodsResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync(AuthenticationPostEmailmethodsParameter parameter)
+        public async ValueTask<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync(AuthenticationPostEmailmethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationPostEmailmethodsParameter, AuthenticationPostEmailmethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-post-emailmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync(AuthenticationPostEmailmethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationPostEmailmethodsResponse> AuthenticationPostEmailmethodsAsync(AuthenticationPostEmailmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationPostEmailmethodsParameter, AuthenticationPostEmailmethodsResponse>(parameter, cancellationToken);
         }

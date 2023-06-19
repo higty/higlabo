@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync()
+        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync()
         {
             var p = new WorkbookapplicationGetParameter();
             return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookapplicationGetParameter();
             return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(WorkbookapplicationGetParameter parameter)
+        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(WorkbookapplicationGetParameter parameter)
         {
             return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(WorkbookapplicationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(WorkbookapplicationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(parameter, cancellationToken);
         }

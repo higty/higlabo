@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-removeemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelRemoveemailResponse> ChannelRemoveemailAsync()
+        public async ValueTask<ChannelRemoveemailResponse> ChannelRemoveemailAsync()
         {
             var p = new ChannelRemoveemailParameter();
             return await this.SendAsync<ChannelRemoveemailParameter, ChannelRemoveemailResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-removeemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelRemoveemailResponse> ChannelRemoveemailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelRemoveemailResponse> ChannelRemoveemailAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelRemoveemailParameter();
             return await this.SendAsync<ChannelRemoveemailParameter, ChannelRemoveemailResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-removeemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelRemoveemailResponse> ChannelRemoveemailAsync(ChannelRemoveemailParameter parameter)
+        public async ValueTask<ChannelRemoveemailResponse> ChannelRemoveemailAsync(ChannelRemoveemailParameter parameter)
         {
             return await this.SendAsync<ChannelRemoveemailParameter, ChannelRemoveemailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-removeemail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelRemoveemailResponse> ChannelRemoveemailAsync(ChannelRemoveemailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelRemoveemailResponse> ChannelRemoveemailAsync(ChannelRemoveemailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelRemoveemailParameter, ChannelRemoveemailResponse>(parameter, cancellationToken);
         }

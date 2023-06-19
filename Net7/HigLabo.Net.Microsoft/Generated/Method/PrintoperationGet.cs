@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintOperationGetResponse> PrintOperationGetAsync()
+        public async ValueTask<PrintOperationGetResponse> PrintOperationGetAsync()
         {
             var p = new PrintOperationGetParameter();
             return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintOperationGetResponse> PrintOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintOperationGetResponse> PrintOperationGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrintOperationGetParameter();
             return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintOperationGetResponse> PrintOperationGetAsync(PrintOperationGetParameter parameter)
+        public async ValueTask<PrintOperationGetResponse> PrintOperationGetAsync(PrintOperationGetParameter parameter)
         {
             return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintOperationGetResponse> PrintOperationGetAsync(PrintOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintOperationGetResponse> PrintOperationGetAsync(PrintOperationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(parameter, cancellationToken);
         }

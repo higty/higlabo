@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableDeleteResponse> TableDeleteAsync()
+        public async ValueTask<TableDeleteResponse> TableDeleteAsync()
         {
             var p = new TableDeleteParameter();
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableDeleteResponse> TableDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TableDeleteResponse> TableDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TableDeleteParameter();
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableDeleteResponse> TableDeleteAsync(TableDeleteParameter parameter)
+        public async ValueTask<TableDeleteResponse> TableDeleteAsync(TableDeleteParameter parameter)
         {
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableDeleteResponse> TableDeleteAsync(TableDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TableDeleteResponse> TableDeleteAsync(TableDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(parameter, cancellationToken);
         }

@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-hideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatHideforUserResponse> ChatHideforUserAsync()
+        public async ValueTask<ChatHideforUserResponse> ChatHideforUserAsync()
         {
             var p = new ChatHideforUserParameter();
             return await this.SendAsync<ChatHideforUserParameter, ChatHideforUserResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-hideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatHideforUserResponse> ChatHideforUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatHideforUserResponse> ChatHideforUserAsync(CancellationToken cancellationToken)
         {
             var p = new ChatHideforUserParameter();
             return await this.SendAsync<ChatHideforUserParameter, ChatHideforUserResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-hideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatHideforUserResponse> ChatHideforUserAsync(ChatHideforUserParameter parameter)
+        public async ValueTask<ChatHideforUserResponse> ChatHideforUserAsync(ChatHideforUserParameter parameter)
         {
             return await this.SendAsync<ChatHideforUserParameter, ChatHideforUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-hideforuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatHideforUserResponse> ChatHideforUserAsync(ChatHideforUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatHideforUserResponse> ChatHideforUserAsync(ChatHideforUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatHideforUserParameter, ChatHideforUserResponse>(parameter, cancellationToken);
         }

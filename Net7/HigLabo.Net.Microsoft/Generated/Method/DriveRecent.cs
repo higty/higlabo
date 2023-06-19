@@ -104,7 +104,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveRecentResponse> DriveRecentAsync()
+        public async ValueTask<DriveRecentResponse> DriveRecentAsync()
         {
             var p = new DriveRecentParameter();
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(p, CancellationToken.None);
@@ -112,7 +112,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveRecentResponse> DriveRecentAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveRecentResponse> DriveRecentAsync(CancellationToken cancellationToken)
         {
             var p = new DriveRecentParameter();
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(p, cancellationToken);
@@ -120,14 +120,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveRecentResponse> DriveRecentAsync(DriveRecentParameter parameter)
+        public async ValueTask<DriveRecentResponse> DriveRecentAsync(DriveRecentParameter parameter)
         {
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveRecentResponse> DriveRecentAsync(DriveRecentParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveRecentResponse> DriveRecentAsync(DriveRecentParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(parameter, cancellationToken);
         }

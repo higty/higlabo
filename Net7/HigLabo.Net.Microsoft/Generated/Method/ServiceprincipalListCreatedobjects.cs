@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync()
+        public async ValueTask<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync()
         {
             var p = new ServiceprincipalListCreatedobjectsParameter();
             return await this.SendAsync<ServiceprincipalListCreatedobjectsParameter, ServiceprincipalListCreatedobjectsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalListCreatedobjectsParameter();
             return await this.SendAsync<ServiceprincipalListCreatedobjectsParameter, ServiceprincipalListCreatedobjectsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync(ServiceprincipalListCreatedobjectsParameter parameter)
+        public async ValueTask<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync(ServiceprincipalListCreatedobjectsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListCreatedobjectsParameter, ServiceprincipalListCreatedobjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync(ServiceprincipalListCreatedobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalListCreatedobjectsResponse> ServiceprincipalListCreatedobjectsAsync(ServiceprincipalListCreatedobjectsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalListCreatedobjectsParameter, ServiceprincipalListCreatedobjectsResponse>(parameter, cancellationToken);
         }

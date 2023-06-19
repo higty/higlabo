@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync()
+        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync()
         {
             var p = new BookingstaffmemberGetParameter();
             return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(CancellationToken cancellationToken)
         {
             var p = new BookingstaffmemberGetParameter();
             return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(BookingstaffmemberGetParameter parameter)
+        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(BookingstaffmemberGetParameter parameter)
         {
             return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(BookingstaffmemberGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(BookingstaffmemberGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(parameter, cancellationToken);
         }

@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync()
+        public async ValueTask<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync()
         {
             var p = new ReportRootListDailyprintusagebyprinterParameter();
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootListDailyprintusagebyprinterParameter();
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter)
+        public async ValueTask<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter)
         {
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, cancellationToken);
         }

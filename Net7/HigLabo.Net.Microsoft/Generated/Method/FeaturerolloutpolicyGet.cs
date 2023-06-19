@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync()
+        public async ValueTask<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync()
         {
             var p = new FeaturerolloutPolicyGetParameter();
             return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new FeaturerolloutPolicyGetParameter();
             return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(FeaturerolloutPolicyGetParameter parameter)
+        public async ValueTask<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(FeaturerolloutPolicyGetParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(FeaturerolloutPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(FeaturerolloutPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(parameter, cancellationToken);
         }

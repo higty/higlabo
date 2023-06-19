@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowRangeResponse> TablerowRangeAsync()
+        public async ValueTask<TablerowRangeResponse> TablerowRangeAsync()
         {
             var p = new TablerowRangeParameter();
             return await this.SendAsync<TablerowRangeParameter, TablerowRangeResponse>(p, CancellationToken.None);
@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowRangeResponse> TablerowRangeAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablerowRangeResponse> TablerowRangeAsync(CancellationToken cancellationToken)
         {
             var p = new TablerowRangeParameter();
             return await this.SendAsync<TablerowRangeParameter, TablerowRangeResponse>(p, cancellationToken);
@@ -118,14 +118,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowRangeResponse> TablerowRangeAsync(TablerowRangeParameter parameter)
+        public async ValueTask<TablerowRangeResponse> TablerowRangeAsync(TablerowRangeParameter parameter)
         {
             return await this.SendAsync<TablerowRangeParameter, TablerowRangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerow-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowRangeResponse> TablerowRangeAsync(TablerowRangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablerowRangeResponse> TablerowRangeAsync(TablerowRangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowRangeParameter, TablerowRangeResponse>(parameter, cancellationToken);
         }

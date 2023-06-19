@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync()
+        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync()
         {
             var p = new ServiceprincipalRemovekeyParameter();
             return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalRemovekeyParameter();
             return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(ServiceprincipalRemovekeyParameter parameter)
+        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(ServiceprincipalRemovekeyParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(ServiceprincipalRemovekeyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(ServiceprincipalRemovekeyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(parameter, cancellationToken);
         }

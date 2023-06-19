@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSendmailResponse> UserSendmailAsync()
+        public async ValueTask<UserSendmailResponse> UserSendmailAsync()
         {
             var p = new UserSendmailParameter();
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSendmailResponse> UserSendmailAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserSendmailResponse> UserSendmailAsync(CancellationToken cancellationToken)
         {
             var p = new UserSendmailParameter();
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSendmailResponse> UserSendmailAsync(UserSendmailParameter parameter)
+        public async ValueTask<UserSendmailResponse> UserSendmailAsync(UserSendmailParameter parameter)
         {
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserSendmailResponse> UserSendmailAsync(UserSendmailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserSendmailResponse> UserSendmailAsync(UserSendmailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(parameter, cancellationToken);
         }

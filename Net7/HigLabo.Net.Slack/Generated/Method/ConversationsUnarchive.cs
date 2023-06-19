@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.unarchive
         /// </summary>
-        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string? channel)
+        public async ValueTask<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string? channel)
         {
             var p = new ConversationsUnarchiveParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.unarchive
         /// </summary>
-        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsUnarchiveParameter();
             p.Channel = channel;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.unarchive
         /// </summary>
-        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(ConversationsUnarchiveParameter parameter)
+        public async ValueTask<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(ConversationsUnarchiveParameter parameter)
         {
             return await this.SendAsync<ConversationsUnarchiveParameter, ConversationsUnarchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.unarchive
         /// </summary>
-        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(ConversationsUnarchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(ConversationsUnarchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsUnarchiveParameter, ConversationsUnarchiveResponse>(parameter, cancellationToken);
         }

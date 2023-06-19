@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduleMessage
         /// </summary>
-        public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, string? text)
+        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, string? text)
         {
             var p = new ChatScheduleMessageParameter();
             p.Channel = channel;
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduleMessage
         /// </summary>
-        public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, string? text, CancellationToken cancellationToken)
+        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, string? text, CancellationToken cancellationToken)
         {
             var p = new ChatScheduleMessageParameter();
             p.Channel = channel;
@@ -53,14 +53,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduleMessage
         /// </summary>
-        public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(ChatScheduleMessageParameter parameter)
+        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(ChatScheduleMessageParameter parameter)
         {
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduleMessage
         /// </summary>
-        public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(ChatScheduleMessageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(ChatScheduleMessageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(parameter, cancellationToken);
         }

@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.participants.remove
         /// </summary>
-        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string? id, string? users)
+        public async ValueTask<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string? id, string? users)
         {
             var p = new CallsParticipantsRemoveParameter();
             p.Id = id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.participants.remove
         /// </summary>
-        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string? id, string? users, CancellationToken cancellationToken)
+        public async ValueTask<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string? id, string? users, CancellationToken cancellationToken)
         {
             var p = new CallsParticipantsRemoveParameter();
             p.Id = id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.participants.remove
         /// </summary>
-        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(CallsParticipantsRemoveParameter parameter)
+        public async ValueTask<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(CallsParticipantsRemoveParameter parameter)
         {
             return await this.SendAsync<CallsParticipantsRemoveParameter, CallsParticipantsRemoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/calls.participants.remove
         /// </summary>
-        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(CallsParticipantsRemoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(CallsParticipantsRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallsParticipantsRemoveParameter, CallsParticipantsRemoveResponse>(parameter, cancellationToken);
         }

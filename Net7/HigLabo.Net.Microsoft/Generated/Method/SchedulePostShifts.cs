@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync()
+        public async ValueTask<SchedulePostShiftsResponse> SchedulePostShiftsAsync()
         {
             var p = new SchedulePostShiftsParameter();
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostShiftsResponse> SchedulePostShiftsAsync(CancellationToken cancellationToken)
         {
             var p = new SchedulePostShiftsParameter();
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync(SchedulePostShiftsParameter parameter)
+        public async ValueTask<SchedulePostShiftsResponse> SchedulePostShiftsAsync(SchedulePostShiftsParameter parameter)
         {
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync(SchedulePostShiftsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostShiftsResponse> SchedulePostShiftsAsync(SchedulePostShiftsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(parameter, cancellationToken);
         }

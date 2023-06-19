@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync()
+        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync()
         {
             var p = new AppconsentrequestGetParameter();
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new AppconsentrequestGetParameter();
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter)
+        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter)
         {
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(parameter, cancellationToken);
         }

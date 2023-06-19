@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync()
+        public async ValueTask<LinkedResourceGetResponse> LinkedResourceGetAsync()
         {
             var p = new LinkedResourceGetParameter();
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<LinkedResourceGetResponse> LinkedResourceGetAsync(CancellationToken cancellationToken)
         {
             var p = new LinkedResourceGetParameter();
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync(LinkedResourceGetParameter parameter)
+        public async ValueTask<LinkedResourceGetResponse> LinkedResourceGetAsync(LinkedResourceGetParameter parameter)
         {
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync(LinkedResourceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LinkedResourceGetResponse> LinkedResourceGetAsync(LinkedResourceGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(parameter, cancellationToken);
         }

@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.complete
         /// </summary>
-        public async Task<RemindersCompleteResponse> RemindersCompleteAsync(string? reminder)
+        public async ValueTask<RemindersCompleteResponse> RemindersCompleteAsync(string? reminder)
         {
             var p = new RemindersCompleteParameter();
             p.Reminder = reminder;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.complete
         /// </summary>
-        public async Task<RemindersCompleteResponse> RemindersCompleteAsync(string? reminder, CancellationToken cancellationToken)
+        public async ValueTask<RemindersCompleteResponse> RemindersCompleteAsync(string? reminder, CancellationToken cancellationToken)
         {
             var p = new RemindersCompleteParameter();
             p.Reminder = reminder;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.complete
         /// </summary>
-        public async Task<RemindersCompleteResponse> RemindersCompleteAsync(RemindersCompleteParameter parameter)
+        public async ValueTask<RemindersCompleteResponse> RemindersCompleteAsync(RemindersCompleteParameter parameter)
         {
             return await this.SendAsync<RemindersCompleteParameter, RemindersCompleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reminders.complete
         /// </summary>
-        public async Task<RemindersCompleteResponse> RemindersCompleteAsync(RemindersCompleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RemindersCompleteResponse> RemindersCompleteAsync(RemindersCompleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RemindersCompleteParameter, RemindersCompleteResponse>(parameter, cancellationToken);
         }

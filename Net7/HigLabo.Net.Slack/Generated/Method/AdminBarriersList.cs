@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<AdminBarriersListResponse> AdminBarriersListAsync()
+        public async ValueTask<AdminBarriersListResponse> AdminBarriersListAsync()
         {
             var p = new AdminBarriersListParameter();
             return await this.SendAsync<AdminBarriersListParameter, AdminBarriersListResponse>(p, CancellationToken.None);
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<AdminBarriersListResponse> AdminBarriersListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminBarriersListResponse> AdminBarriersListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminBarriersListParameter();
             return await this.SendAsync<AdminBarriersListParameter, AdminBarriersListResponse>(p, cancellationToken);
@@ -47,21 +47,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<AdminBarriersListResponse> AdminBarriersListAsync(AdminBarriersListParameter parameter)
+        public async ValueTask<AdminBarriersListResponse> AdminBarriersListAsync(AdminBarriersListParameter parameter)
         {
             return await this.SendAsync<AdminBarriersListParameter, AdminBarriersListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<AdminBarriersListResponse> AdminBarriersListAsync(AdminBarriersListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminBarriersListResponse> AdminBarriersListAsync(AdminBarriersListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminBarriersListParameter, AdminBarriersListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<List<AdminBarriersListResponse>> AdminBarriersListAsync(PagingContext<AdminBarriersListResponse> context)
+        public async ValueTask<List<AdminBarriersListResponse>> AdminBarriersListAsync(PagingContext<AdminBarriersListResponse> context)
         {
             var p = new AdminBarriersListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<List<AdminBarriersListResponse>> AdminBarriersListAsync(CancellationToken cancellationToken, PagingContext<AdminBarriersListResponse> context)
+        public async ValueTask<List<AdminBarriersListResponse>> AdminBarriersListAsync(CancellationToken cancellationToken, PagingContext<AdminBarriersListResponse> context)
         {
             var p = new AdminBarriersListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<List<AdminBarriersListResponse>> AdminBarriersListAsync(AdminBarriersListParameter parameter, PagingContext<AdminBarriersListResponse> context)
+        public async ValueTask<List<AdminBarriersListResponse>> AdminBarriersListAsync(AdminBarriersListParameter parameter, PagingContext<AdminBarriersListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async Task<List<AdminBarriersListResponse>> AdminBarriersListAsync(AdminBarriersListParameter parameter, PagingContext<AdminBarriersListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminBarriersListResponse>> AdminBarriersListAsync(AdminBarriersListParameter parameter, PagingContext<AdminBarriersListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

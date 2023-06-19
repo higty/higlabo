@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.rename
         /// </summary>
-        public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(string? channel_Id, string? name)
+        public async ValueTask<AdminConversationsRenameResponse> AdminConversationsRenameAsync(string? channel_Id, string? name)
         {
             var p = new AdminConversationsRenameParameter();
             p.Channel_Id = channel_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.rename
         /// </summary>
-        public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(string? channel_Id, string? name, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsRenameResponse> AdminConversationsRenameAsync(string? channel_Id, string? name, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsRenameParameter();
             p.Channel_Id = channel_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.rename
         /// </summary>
-        public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(AdminConversationsRenameParameter parameter)
+        public async ValueTask<AdminConversationsRenameResponse> AdminConversationsRenameAsync(AdminConversationsRenameParameter parameter)
         {
             return await this.SendAsync<AdminConversationsRenameParameter, AdminConversationsRenameResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.rename
         /// </summary>
-        public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(AdminConversationsRenameParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsRenameResponse> AdminConversationsRenameAsync(AdminConversationsRenameParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsRenameParameter, AdminConversationsRenameResponse>(parameter, cancellationToken);
         }

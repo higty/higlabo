@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractGetResponse> ContractGetAsync()
+        public async ValueTask<ContractGetResponse> ContractGetAsync()
         {
             var p = new ContractGetParameter();
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractGetResponse> ContractGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContractGetResponse> ContractGetAsync(CancellationToken cancellationToken)
         {
             var p = new ContractGetParameter();
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractGetResponse> ContractGetAsync(ContractGetParameter parameter)
+        public async ValueTask<ContractGetResponse> ContractGetAsync(ContractGetParameter parameter)
         {
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractGetResponse> ContractGetAsync(ContractGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContractGetResponse> ContractGetAsync(ContractGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(parameter, cancellationToken);
         }

@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync()
+        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync()
         {
             var p = new EducationclassPostCategoryParameter();
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassPostCategoryParameter();
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter)
+        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter)
         {
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(parameter, cancellationToken);
         }

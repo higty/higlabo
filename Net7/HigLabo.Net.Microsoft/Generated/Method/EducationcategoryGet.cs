@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationcategoryGetResponse> EducationcategoryGetAsync()
+        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync()
         {
             var p = new EducationcategoryGetParameter();
             return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationcategoryGetResponse> EducationcategoryGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationcategoryGetParameter();
             return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationcategoryGetResponse> EducationcategoryGetAsync(EducationcategoryGetParameter parameter)
+        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync(EducationcategoryGetParameter parameter)
         {
             return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationcategoryGetResponse> EducationcategoryGetAsync(EducationcategoryGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync(EducationcategoryGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(parameter, cancellationToken);
         }

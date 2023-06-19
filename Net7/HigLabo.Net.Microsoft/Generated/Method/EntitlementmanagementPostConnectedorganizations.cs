@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync()
+        public async ValueTask<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync()
         {
             var p = new EntitlementManagementPostConnectedorganizationsParameter();
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(p, CancellationToken.None);
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(CancellationToken cancellationToken)
         {
             var p = new EntitlementManagementPostConnectedorganizationsParameter();
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(p, cancellationToken);
@@ -102,14 +102,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(EntitlementManagementPostConnectedorganizationsParameter parameter)
+        public async ValueTask<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(EntitlementManagementPostConnectedorganizationsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(EntitlementManagementPostConnectedorganizationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(EntitlementManagementPostConnectedorganizationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(parameter, cancellationToken);
         }

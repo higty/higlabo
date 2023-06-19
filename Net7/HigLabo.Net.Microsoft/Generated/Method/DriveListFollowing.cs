@@ -104,7 +104,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListFollowingResponse> DriveListFollowingAsync()
+        public async ValueTask<DriveListFollowingResponse> DriveListFollowingAsync()
         {
             var p = new DriveListFollowingParameter();
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(p, CancellationToken.None);
@@ -112,7 +112,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListFollowingResponse> DriveListFollowingAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveListFollowingResponse> DriveListFollowingAsync(CancellationToken cancellationToken)
         {
             var p = new DriveListFollowingParameter();
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(p, cancellationToken);
@@ -120,14 +120,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter)
+        public async ValueTask<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter)
         {
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(parameter, cancellationToken);
         }

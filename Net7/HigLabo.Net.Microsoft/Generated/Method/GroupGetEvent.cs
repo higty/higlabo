@@ -184,7 +184,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetEventResponse> GroupGetEventAsync()
+        public async ValueTask<GroupGetEventResponse> GroupGetEventAsync()
         {
             var p = new GroupGetEventParameter();
             return await this.SendAsync<GroupGetEventParameter, GroupGetEventResponse>(p, CancellationToken.None);
@@ -192,7 +192,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetEventResponse> GroupGetEventAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupGetEventResponse> GroupGetEventAsync(CancellationToken cancellationToken)
         {
             var p = new GroupGetEventParameter();
             return await this.SendAsync<GroupGetEventParameter, GroupGetEventResponse>(p, cancellationToken);
@@ -200,14 +200,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetEventResponse> GroupGetEventAsync(GroupGetEventParameter parameter)
+        public async ValueTask<GroupGetEventResponse> GroupGetEventAsync(GroupGetEventParameter parameter)
         {
             return await this.SendAsync<GroupGetEventParameter, GroupGetEventResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-get-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupGetEventResponse> GroupGetEventAsync(GroupGetEventParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupGetEventResponse> GroupGetEventAsync(GroupGetEventParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupGetEventParameter, GroupGetEventResponse>(parameter, cancellationToken);
         }

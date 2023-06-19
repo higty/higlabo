@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync()
+        public async ValueTask<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync()
         {
             var p = new PhoneauthenticationmethodUpdateParameter();
             return await this.SendAsync<PhoneauthenticationmethodUpdateParameter, PhoneauthenticationmethodUpdateResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PhoneauthenticationmethodUpdateParameter();
             return await this.SendAsync<PhoneauthenticationmethodUpdateParameter, PhoneauthenticationmethodUpdateResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync(PhoneauthenticationmethodUpdateParameter parameter)
+        public async ValueTask<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync(PhoneauthenticationmethodUpdateParameter parameter)
         {
             return await this.SendAsync<PhoneauthenticationmethodUpdateParameter, PhoneauthenticationmethodUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/phoneauthenticationmethod-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync(PhoneauthenticationmethodUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PhoneauthenticationmethodUpdateResponse> PhoneauthenticationmethodUpdateAsync(PhoneauthenticationmethodUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PhoneauthenticationmethodUpdateParameter, PhoneauthenticationmethodUpdateResponse>(parameter, cancellationToken);
         }

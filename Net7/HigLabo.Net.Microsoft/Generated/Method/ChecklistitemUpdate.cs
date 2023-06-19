@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync()
+        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync()
         {
             var p = new ChecklistitemUpdateParameter();
             return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new ChecklistitemUpdateParameter();
             return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(ChecklistitemUpdateParameter parameter)
+        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(ChecklistitemUpdateParameter parameter)
         {
             return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(ChecklistitemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(ChecklistitemUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(parameter, cancellationToken);
         }

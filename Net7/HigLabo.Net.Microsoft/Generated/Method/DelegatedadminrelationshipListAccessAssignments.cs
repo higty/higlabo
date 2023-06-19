@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync()
+        public async ValueTask<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync()
         {
             var p = new DelegatedadminrelationshipListAccessAssignmentsParameter();
             return await this.SendAsync<DelegatedadminrelationshipListAccessAssignmentsParameter, DelegatedadminrelationshipListAccessAssignmentsResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadminrelationshipListAccessAssignmentsParameter();
             return await this.SendAsync<DelegatedadminrelationshipListAccessAssignmentsParameter, DelegatedadminrelationshipListAccessAssignmentsResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync(DelegatedadminrelationshipListAccessAssignmentsParameter parameter)
+        public async ValueTask<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync(DelegatedadminrelationshipListAccessAssignmentsParameter parameter)
         {
             return await this.SendAsync<DelegatedadminrelationshipListAccessAssignmentsParameter, DelegatedadminrelationshipListAccessAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync(DelegatedadminrelationshipListAccessAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipListAccessAssignmentsResponse> DelegatedadminrelationshipListAccessAssignmentsAsync(DelegatedadminrelationshipListAccessAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminrelationshipListAccessAssignmentsParameter, DelegatedadminrelationshipListAccessAssignmentsResponse>(parameter, cancellationToken);
         }

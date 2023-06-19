@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetResponse> AdministrativeunitGetAsync()
+        public async ValueTask<AdministrativeunitGetResponse> AdministrativeunitGetAsync()
         {
             var p = new AdministrativeunitGetParameter();
             return await this.SendAsync<AdministrativeunitGetParameter, AdministrativeunitGetResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetResponse> AdministrativeunitGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitGetResponse> AdministrativeunitGetAsync(CancellationToken cancellationToken)
         {
             var p = new AdministrativeunitGetParameter();
             return await this.SendAsync<AdministrativeunitGetParameter, AdministrativeunitGetResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetResponse> AdministrativeunitGetAsync(AdministrativeunitGetParameter parameter)
+        public async ValueTask<AdministrativeunitGetResponse> AdministrativeunitGetAsync(AdministrativeunitGetParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitGetParameter, AdministrativeunitGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetResponse> AdministrativeunitGetAsync(AdministrativeunitGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitGetResponse> AdministrativeunitGetAsync(AdministrativeunitGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdministrativeunitGetParameter, AdministrativeunitGetResponse>(parameter, cancellationToken);
         }

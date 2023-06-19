@@ -152,7 +152,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCopyResponse> MessageCopyAsync()
+        public async ValueTask<MessageCopyResponse> MessageCopyAsync()
         {
             var p = new MessageCopyParameter();
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(p, CancellationToken.None);
@@ -160,7 +160,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCopyResponse> MessageCopyAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageCopyResponse> MessageCopyAsync(CancellationToken cancellationToken)
         {
             var p = new MessageCopyParameter();
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(p, cancellationToken);
@@ -168,14 +168,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCopyResponse> MessageCopyAsync(MessageCopyParameter parameter)
+        public async ValueTask<MessageCopyResponse> MessageCopyAsync(MessageCopyParameter parameter)
         {
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageCopyResponse> MessageCopyAsync(MessageCopyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageCopyResponse> MessageCopyAsync(MessageCopyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(parameter, cancellationToken);
         }

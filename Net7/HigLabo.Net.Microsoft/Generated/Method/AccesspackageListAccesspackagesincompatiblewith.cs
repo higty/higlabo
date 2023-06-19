@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync()
+        public async ValueTask<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync()
         {
             var p = new AccesspackageListAccesspackagesincompatiblewithParameter();
             return await this.SendAsync<AccesspackageListAccesspackagesincompatiblewithParameter, AccesspackageListAccesspackagesincompatiblewithResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageListAccesspackagesincompatiblewithParameter();
             return await this.SendAsync<AccesspackageListAccesspackagesincompatiblewithParameter, AccesspackageListAccesspackagesincompatiblewithResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync(AccesspackageListAccesspackagesincompatiblewithParameter parameter)
+        public async ValueTask<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync(AccesspackageListAccesspackagesincompatiblewithParameter parameter)
         {
             return await this.SendAsync<AccesspackageListAccesspackagesincompatiblewithParameter, AccesspackageListAccesspackagesincompatiblewithResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync(AccesspackageListAccesspackagesincompatiblewithParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageListAccesspackagesincompatiblewithResponse> AccesspackageListAccesspackagesincompatiblewithAsync(AccesspackageListAccesspackagesincompatiblewithParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageListAccesspackagesincompatiblewithParameter, AccesspackageListAccesspackagesincompatiblewithResponse>(parameter, cancellationToken);
         }

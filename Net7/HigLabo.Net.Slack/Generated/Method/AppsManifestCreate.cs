@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.create
         /// </summary>
-        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(string? manifest)
+        public async ValueTask<AppsManifestCreateResponse> AppsManifestCreateAsync(string? manifest)
         {
             var p = new AppsManifestCreateParameter();
             p.Manifest = manifest;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.create
         /// </summary>
-        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(string? manifest, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestCreateResponse> AppsManifestCreateAsync(string? manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestCreateParameter();
             p.Manifest = manifest;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.create
         /// </summary>
-        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(AppsManifestCreateParameter parameter)
+        public async ValueTask<AppsManifestCreateResponse> AppsManifestCreateAsync(AppsManifestCreateParameter parameter)
         {
             return await this.SendAsync<AppsManifestCreateParameter, AppsManifestCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.create
         /// </summary>
-        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(AppsManifestCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestCreateResponse> AppsManifestCreateAsync(AppsManifestCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsManifestCreateParameter, AppsManifestCreateResponse>(parameter, cancellationToken);
         }

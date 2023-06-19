@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-itemat?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionItematResponse> TablerowCollectionItematAsync()
+        public async ValueTask<TablerowCollectionItematResponse> TablerowCollectionItematAsync()
         {
             var p = new TablerowCollectionItematParameter();
             return await this.SendAsync<TablerowCollectionItematParameter, TablerowCollectionItematResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-itemat?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionItematResponse> TablerowCollectionItematAsync(CancellationToken cancellationToken)
+        public async ValueTask<TablerowCollectionItematResponse> TablerowCollectionItematAsync(CancellationToken cancellationToken)
         {
             var p = new TablerowCollectionItematParameter();
             return await this.SendAsync<TablerowCollectionItematParameter, TablerowCollectionItematResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-itemat?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionItematResponse> TablerowCollectionItematAsync(TablerowCollectionItematParameter parameter)
+        public async ValueTask<TablerowCollectionItematResponse> TablerowCollectionItematAsync(TablerowCollectionItematParameter parameter)
         {
             return await this.SendAsync<TablerowCollectionItematParameter, TablerowCollectionItematResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablerowcollection-itemat?view=graph-rest-1.0
         /// </summary>
-        public async Task<TablerowCollectionItematResponse> TablerowCollectionItematAsync(TablerowCollectionItematParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TablerowCollectionItematResponse> TablerowCollectionItematAsync(TablerowCollectionItematParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowCollectionItematParameter, TablerowCollectionItematResponse>(parameter, cancellationToken);
         }

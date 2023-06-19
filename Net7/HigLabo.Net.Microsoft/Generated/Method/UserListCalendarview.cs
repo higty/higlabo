@@ -121,7 +121,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarviewResponse> UserListCalendarviewAsync()
+        public async ValueTask<UserListCalendarviewResponse> UserListCalendarviewAsync()
         {
             var p = new UserListCalendarviewParameter();
             return await this.SendAsync<UserListCalendarviewParameter, UserListCalendarviewResponse>(p, CancellationToken.None);
@@ -129,7 +129,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarviewResponse> UserListCalendarviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListCalendarviewResponse> UserListCalendarviewAsync(CancellationToken cancellationToken)
         {
             var p = new UserListCalendarviewParameter();
             return await this.SendAsync<UserListCalendarviewParameter, UserListCalendarviewResponse>(p, cancellationToken);
@@ -137,14 +137,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarviewResponse> UserListCalendarviewAsync(UserListCalendarviewParameter parameter)
+        public async ValueTask<UserListCalendarviewResponse> UserListCalendarviewAsync(UserListCalendarviewParameter parameter)
         {
             return await this.SendAsync<UserListCalendarviewParameter, UserListCalendarviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListCalendarviewResponse> UserListCalendarviewAsync(UserListCalendarviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListCalendarviewResponse> UserListCalendarviewAsync(UserListCalendarviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListCalendarviewParameter, UserListCalendarviewResponse>(parameter, cancellationToken);
         }

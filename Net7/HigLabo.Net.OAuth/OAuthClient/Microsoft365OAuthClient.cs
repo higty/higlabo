@@ -23,11 +23,11 @@ namespace HigLabo.Net.OAuth
                 , this.ClientID, redirectUrl, WebUtility.UrlEncode(String.Join(" ", scopes))
                 , new Random().Next(0, 100000));
         }
-        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
+        public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
             return await RequestCodeAsync_Common(code, redirectUrl);
         }
-        public async Task<OAuthTokenGetRequestResult> RefreshTokenAsync(String refreshToken, String redirectUrl, String[] scopes)
+        public async ValueTask<OAuthTokenGetRequestResult> RefreshTokenAsync(String refreshToken, String redirectUrl, String[] scopes)
         {
             var cl = this;
             var d = new Dictionary<String, String>();

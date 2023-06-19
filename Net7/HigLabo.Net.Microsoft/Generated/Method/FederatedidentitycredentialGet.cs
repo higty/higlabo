@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync()
+        public async ValueTask<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync()
         {
             var p = new FederatedidentitycredentialGetParameter();
             return await this.SendAsync<FederatedidentitycredentialGetParameter, FederatedidentitycredentialGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync(CancellationToken cancellationToken)
         {
             var p = new FederatedidentitycredentialGetParameter();
             return await this.SendAsync<FederatedidentitycredentialGetParameter, FederatedidentitycredentialGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync(FederatedidentitycredentialGetParameter parameter)
+        public async ValueTask<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync(FederatedidentitycredentialGetParameter parameter)
         {
             return await this.SendAsync<FederatedidentitycredentialGetParameter, FederatedidentitycredentialGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync(FederatedidentitycredentialGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FederatedidentitycredentialGetResponse> FederatedidentitycredentialGetAsync(FederatedidentitycredentialGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FederatedidentitycredentialGetParameter, FederatedidentitycredentialGetResponse>(parameter, cancellationToken);
         }

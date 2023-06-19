@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync()
+        public async ValueTask<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync()
         {
             var p = new SectionCopytosectionGroupParameter();
             return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(CancellationToken cancellationToken)
         {
             var p = new SectionCopytosectionGroupParameter();
             return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(SectionCopytosectionGroupParameter parameter)
+        public async ValueTask<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(SectionCopytosectionGroupParameter parameter)
         {
             return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(SectionCopytosectionGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(SectionCopytosectionGroupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(parameter, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync()
+        public async ValueTask<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync()
         {
             var p = new SecurityEdiscoveryreviewsetDeleteQueriesParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewsetDeleteQueriesParameter, SecurityEdiscoveryreviewsetDeleteQueriesResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoveryreviewsetDeleteQueriesParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewsetDeleteQueriesParameter, SecurityEdiscoveryreviewsetDeleteQueriesResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync(SecurityEdiscoveryreviewsetDeleteQueriesParameter parameter)
+        public async ValueTask<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync(SecurityEdiscoveryreviewsetDeleteQueriesParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewsetDeleteQueriesParameter, SecurityEdiscoveryreviewsetDeleteQueriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync(SecurityEdiscoveryreviewsetDeleteQueriesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewsetDeleteQueriesResponse> SecurityEdiscoveryreviewsetDeleteQueriesAsync(SecurityEdiscoveryreviewsetDeleteQueriesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewsetDeleteQueriesParameter, SecurityEdiscoveryreviewsetDeleteQueriesResponse>(parameter, cancellationToken);
         }

@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync()
+        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync()
         {
             var p = new AccessreviewstageListDecisionsParameter();
             return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewstageListDecisionsParameter();
             return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(AccessreviewstageListDecisionsParameter parameter)
+        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(AccessreviewstageListDecisionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(AccessreviewstageListDecisionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(AccessreviewstageListDecisionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(parameter, cancellationToken);
         }

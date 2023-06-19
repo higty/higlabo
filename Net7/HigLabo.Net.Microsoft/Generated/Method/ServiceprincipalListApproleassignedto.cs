@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync()
+        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync()
         {
             var p = new ServiceprincipalListApproleassignedtoParameter();
             return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalListApproleassignedtoParameter();
             return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(ServiceprincipalListApproleassignedtoParameter parameter)
+        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(ServiceprincipalListApproleassignedtoParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(ServiceprincipalListApproleassignedtoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(ServiceprincipalListApproleassignedtoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(parameter, cancellationToken);
         }

@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.delete
         /// </summary>
-        public async Task<ChatDeleteResponse> ChatDeleteAsync(string? channel, string? ts)
+        public async ValueTask<ChatDeleteResponse> ChatDeleteAsync(string? channel, string? ts)
         {
             var p = new ChatDeleteParameter();
             p.Channel = channel;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.delete
         /// </summary>
-        public async Task<ChatDeleteResponse> ChatDeleteAsync(string? channel, string? ts, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteResponse> ChatDeleteAsync(string? channel, string? ts, CancellationToken cancellationToken)
         {
             var p = new ChatDeleteParameter();
             p.Channel = channel;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.delete
         /// </summary>
-        public async Task<ChatDeleteResponse> ChatDeleteAsync(ChatDeleteParameter parameter)
+        public async ValueTask<ChatDeleteResponse> ChatDeleteAsync(ChatDeleteParameter parameter)
         {
             return await this.SendAsync<ChatDeleteParameter, ChatDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.delete
         /// </summary>
-        public async Task<ChatDeleteResponse> ChatDeleteAsync(ChatDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteResponse> ChatDeleteAsync(ChatDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatDeleteParameter, ChatDeleteResponse>(parameter, cancellationToken);
         }

@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync()
+        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync()
         {
             var p = new UserflowlanguageConfigurationListDefaultpagesParameter();
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(CancellationToken cancellationToken)
         {
             var p = new UserflowlanguageConfigurationListDefaultpagesParameter();
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter)
+        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter)
         {
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(parameter, cancellationToken);
         }

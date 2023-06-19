@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync()
+        public async ValueTask<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync()
         {
             var p = new TeamGetInstalledappsParameter();
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(p, CancellationToken.None);
@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamGetInstalledappsParameter();
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(p, cancellationToken);
@@ -107,14 +107,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(TeamGetInstalledappsParameter parameter)
+        public async ValueTask<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(TeamGetInstalledappsParameter parameter)
         {
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(TeamGetInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(TeamGetInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(parameter, cancellationToken);
         }

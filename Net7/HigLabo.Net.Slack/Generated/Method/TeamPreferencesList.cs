@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.preferences.list
         /// </summary>
-        public async Task<TeamPreferencesListResponse> TeamPreferencesListAsync()
+        public async ValueTask<TeamPreferencesListResponse> TeamPreferencesListAsync()
         {
             var p = new TeamPreferencesListParameter();
             return await this.SendAsync<TeamPreferencesListParameter, TeamPreferencesListResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.preferences.list
         /// </summary>
-        public async Task<TeamPreferencesListResponse> TeamPreferencesListAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamPreferencesListResponse> TeamPreferencesListAsync(CancellationToken cancellationToken)
         {
             var p = new TeamPreferencesListParameter();
             return await this.SendAsync<TeamPreferencesListParameter, TeamPreferencesListResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.preferences.list
         /// </summary>
-        public async Task<TeamPreferencesListResponse> TeamPreferencesListAsync(TeamPreferencesListParameter parameter)
+        public async ValueTask<TeamPreferencesListResponse> TeamPreferencesListAsync(TeamPreferencesListParameter parameter)
         {
             return await this.SendAsync<TeamPreferencesListParameter, TeamPreferencesListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/team.preferences.list
         /// </summary>
-        public async Task<TeamPreferencesListResponse> TeamPreferencesListAsync(TeamPreferencesListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamPreferencesListResponse> TeamPreferencesListAsync(TeamPreferencesListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamPreferencesListParameter, TeamPreferencesListResponse>(parameter, cancellationToken);
         }

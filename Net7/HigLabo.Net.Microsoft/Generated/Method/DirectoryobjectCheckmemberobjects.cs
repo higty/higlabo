@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmemberobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync()
+        public async ValueTask<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync()
         {
             var p = new DirectoryobjectCheckmemberobjectsParameter();
             return await this.SendAsync<DirectoryobjectCheckmemberobjectsParameter, DirectoryobjectCheckmemberobjectsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmemberobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryobjectCheckmemberobjectsParameter();
             return await this.SendAsync<DirectoryobjectCheckmemberobjectsParameter, DirectoryobjectCheckmemberobjectsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmemberobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync(DirectoryobjectCheckmemberobjectsParameter parameter)
+        public async ValueTask<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync(DirectoryobjectCheckmemberobjectsParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectCheckmemberobjectsParameter, DirectoryobjectCheckmemberobjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmemberobjects?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync(DirectoryobjectCheckmemberobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectCheckmemberobjectsResponse> DirectoryobjectCheckmemberobjectsAsync(DirectoryobjectCheckmemberobjectsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryobjectCheckmemberobjectsParameter, DirectoryobjectCheckmemberobjectsResponse>(parameter, cancellationToken);
         }

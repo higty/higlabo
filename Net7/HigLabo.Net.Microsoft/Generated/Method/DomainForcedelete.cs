@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-forcedelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainForcedeleteResponse> DomainForcedeleteAsync()
+        public async ValueTask<DomainForcedeleteResponse> DomainForcedeleteAsync()
         {
             var p = new DomainForcedeleteParameter();
             return await this.SendAsync<DomainForcedeleteParameter, DomainForcedeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-forcedelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainForcedeleteResponse> DomainForcedeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainForcedeleteResponse> DomainForcedeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DomainForcedeleteParameter();
             return await this.SendAsync<DomainForcedeleteParameter, DomainForcedeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-forcedelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainForcedeleteResponse> DomainForcedeleteAsync(DomainForcedeleteParameter parameter)
+        public async ValueTask<DomainForcedeleteResponse> DomainForcedeleteAsync(DomainForcedeleteParameter parameter)
         {
             return await this.SendAsync<DomainForcedeleteParameter, DomainForcedeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-forcedelete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainForcedeleteResponse> DomainForcedeleteAsync(DomainForcedeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainForcedeleteResponse> DomainForcedeleteAsync(DomainForcedeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainForcedeleteParameter, DomainForcedeleteResponse>(parameter, cancellationToken);
         }

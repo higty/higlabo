@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemGetResponse> ListitemGetAsync()
+        public async ValueTask<ListitemGetResponse> ListitemGetAsync()
         {
             var p = new ListitemGetParameter();
             return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemGetResponse> ListitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListitemGetResponse> ListitemGetAsync(CancellationToken cancellationToken)
         {
             var p = new ListitemGetParameter();
             return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemGetResponse> ListitemGetAsync(ListitemGetParameter parameter)
+        public async ValueTask<ListitemGetResponse> ListitemGetAsync(ListitemGetParameter parameter)
         {
             return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemGetResponse> ListitemGetAsync(ListitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListitemGetResponse> ListitemGetAsync(ListitemGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(parameter, cancellationToken);
         }

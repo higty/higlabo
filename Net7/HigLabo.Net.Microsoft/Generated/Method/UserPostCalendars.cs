@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendarsResponse> UserPostCalendarsAsync()
+        public async ValueTask<UserPostCalendarsResponse> UserPostCalendarsAsync()
         {
             var p = new UserPostCalendarsParameter();
             return await this.SendAsync<UserPostCalendarsParameter, UserPostCalendarsResponse>(p, CancellationToken.None);
@@ -139,7 +139,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendarsResponse> UserPostCalendarsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostCalendarsResponse> UserPostCalendarsAsync(CancellationToken cancellationToken)
         {
             var p = new UserPostCalendarsParameter();
             return await this.SendAsync<UserPostCalendarsParameter, UserPostCalendarsResponse>(p, cancellationToken);
@@ -147,14 +147,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendarsResponse> UserPostCalendarsAsync(UserPostCalendarsParameter parameter)
+        public async ValueTask<UserPostCalendarsResponse> UserPostCalendarsAsync(UserPostCalendarsParameter parameter)
         {
             return await this.SendAsync<UserPostCalendarsParameter, UserPostCalendarsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendarsResponse> UserPostCalendarsAsync(UserPostCalendarsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostCalendarsResponse> UserPostCalendarsAsync(UserPostCalendarsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserPostCalendarsParameter, UserPostCalendarsResponse>(parameter, cancellationToken);
         }

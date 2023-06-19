@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemGetResponse> NameditemGetAsync()
+        public async ValueTask<NameditemGetResponse> NameditemGetAsync()
         {
             var p = new NameditemGetParameter();
             return await this.SendAsync<NameditemGetParameter, NameditemGetResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemGetResponse> NameditemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<NameditemGetResponse> NameditemGetAsync(CancellationToken cancellationToken)
         {
             var p = new NameditemGetParameter();
             return await this.SendAsync<NameditemGetParameter, NameditemGetResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemGetResponse> NameditemGetAsync(NameditemGetParameter parameter)
+        public async ValueTask<NameditemGetResponse> NameditemGetAsync(NameditemGetParameter parameter)
         {
             return await this.SendAsync<NameditemGetParameter, NameditemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NameditemGetResponse> NameditemGetAsync(NameditemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NameditemGetResponse> NameditemGetAsync(NameditemGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NameditemGetParameter, NameditemGetResponse>(parameter, cancellationToken);
         }

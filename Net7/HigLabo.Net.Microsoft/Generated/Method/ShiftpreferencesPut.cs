@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync()
+        public async ValueTask<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync()
         {
             var p = new ShiftpreferencesPutParameter();
             return await this.SendAsync<ShiftpreferencesPutParameter, ShiftpreferencesPutResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync(CancellationToken cancellationToken)
+        public async ValueTask<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync(CancellationToken cancellationToken)
         {
             var p = new ShiftpreferencesPutParameter();
             return await this.SendAsync<ShiftpreferencesPutParameter, ShiftpreferencesPutResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync(ShiftpreferencesPutParameter parameter)
+        public async ValueTask<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync(ShiftpreferencesPutParameter parameter)
         {
             return await this.SendAsync<ShiftpreferencesPutParameter, ShiftpreferencesPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shiftpreferences-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync(ShiftpreferencesPutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ShiftpreferencesPutResponse> ShiftpreferencesPutAsync(ShiftpreferencesPutParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ShiftpreferencesPutParameter, ShiftpreferencesPutResponse>(parameter, cancellationToken);
         }

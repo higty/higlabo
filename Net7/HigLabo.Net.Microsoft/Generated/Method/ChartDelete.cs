@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartDeleteResponse> ChartDeleteAsync()
+        public async ValueTask<ChartDeleteResponse> ChartDeleteAsync()
         {
             var p = new ChartDeleteParameter();
             return await this.SendAsync<ChartDeleteParameter, ChartDeleteResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartDeleteResponse> ChartDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartDeleteResponse> ChartDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ChartDeleteParameter();
             return await this.SendAsync<ChartDeleteParameter, ChartDeleteResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartDeleteResponse> ChartDeleteAsync(ChartDeleteParameter parameter)
+        public async ValueTask<ChartDeleteResponse> ChartDeleteAsync(ChartDeleteParameter parameter)
         {
             return await this.SendAsync<ChartDeleteParameter, ChartDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartDeleteResponse> ChartDeleteAsync(ChartDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartDeleteResponse> ChartDeleteAsync(ChartDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartDeleteParameter, ChartDeleteResponse>(parameter, cancellationToken);
         }

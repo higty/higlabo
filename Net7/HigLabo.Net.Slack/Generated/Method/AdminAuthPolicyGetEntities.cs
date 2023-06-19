@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(string? policy_Name)
+        public async ValueTask<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(string? policy_Name)
         {
             var p = new AdminAuthPolicyGetEntitiesParameter();
             p.Policy_Name = policy_Name;
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, CancellationToken cancellationToken)
         {
             var p = new AdminAuthPolicyGetEntitiesParameter();
             p.Policy_Name = policy_Name;
@@ -51,21 +51,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter)
+        public async ValueTask<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter)
         {
             return await this.SendAsync<AdminAuthPolicyGetEntitiesParameter, AdminAuthPolicyGetEntitiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuthPolicyGetEntitiesResponse> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAuthPolicyGetEntitiesParameter, AdminAuthPolicyGetEntitiesResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context)
+        public async ValueTask<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context)
         {
             var p = new AdminAuthPolicyGetEntitiesParameter();
             p.Policy_Name = policy_Name;
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminAuthPolicyGetEntitiesParameter();
             p.Policy_Name = policy_Name;
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter, PagingContext<AdminAuthPolicyGetEntitiesResponse> context)
+        public async ValueTask<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter, PagingContext<AdminAuthPolicyGetEntitiesResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async Task<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter, PagingContext<AdminAuthPolicyGetEntitiesResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(AdminAuthPolicyGetEntitiesParameter parameter, PagingContext<AdminAuthPolicyGetEntitiesResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceGetResponse> PlaceGetAsync()
+        public async ValueTask<PlaceGetResponse> PlaceGetAsync()
         {
             var p = new PlaceGetParameter();
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceGetResponse> PlaceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlaceGetResponse> PlaceGetAsync(CancellationToken cancellationToken)
         {
             var p = new PlaceGetParameter();
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceGetResponse> PlaceGetAsync(PlaceGetParameter parameter)
+        public async ValueTask<PlaceGetResponse> PlaceGetAsync(PlaceGetParameter parameter)
         {
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceGetResponse> PlaceGetAsync(PlaceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlaceGetResponse> PlaceGetAsync(PlaceGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(parameter, cancellationToken);
         }

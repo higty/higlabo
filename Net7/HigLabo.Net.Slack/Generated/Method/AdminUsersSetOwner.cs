@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setOwner
         /// </summary>
-        public async Task<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(string? team_Id, string? user_Id)
+        public async ValueTask<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(string? team_Id, string? user_Id)
         {
             var p = new AdminUsersSetOwnerParameter();
             p.Team_Id = team_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setOwner
         /// </summary>
-        public async Task<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetOwnerParameter();
             p.Team_Id = team_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setOwner
         /// </summary>
-        public async Task<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(AdminUsersSetOwnerParameter parameter)
+        public async ValueTask<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(AdminUsersSetOwnerParameter parameter)
         {
             return await this.SendAsync<AdminUsersSetOwnerParameter, AdminUsersSetOwnerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setOwner
         /// </summary>
-        public async Task<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(AdminUsersSetOwnerParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetOwnerResponse> AdminUsersSetOwnerAsync(AdminUsersSetOwnerParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSetOwnerParameter, AdminUsersSetOwnerResponse>(parameter, cancellationToken);
         }

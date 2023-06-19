@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync()
+        public async ValueTask<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync()
         {
             var p = new NotebookGetrecentnotebooksParameter();
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookGetrecentnotebooksParameter();
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(NotebookGetrecentnotebooksParameter parameter)
+        public async ValueTask<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(NotebookGetrecentnotebooksParameter parameter)
         {
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(NotebookGetrecentnotebooksParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(NotebookGetrecentnotebooksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(parameter, cancellationToken);
         }

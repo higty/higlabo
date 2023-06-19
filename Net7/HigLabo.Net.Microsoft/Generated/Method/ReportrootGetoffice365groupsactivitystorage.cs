@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitystorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync()
+        public async ValueTask<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync()
         {
             var p = new ReportRootGetoffice365GroupsactivitystorageParameter();
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitystorageParameter, ReportRootGetoffice365GroupsactivitystorageResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitystorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetoffice365GroupsactivitystorageParameter();
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitystorageParameter, ReportRootGetoffice365GroupsactivitystorageResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitystorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync(ReportRootGetoffice365GroupsactivitystorageParameter parameter)
+        public async ValueTask<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync(ReportRootGetoffice365GroupsactivitystorageParameter parameter)
         {
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitystorageParameter, ReportRootGetoffice365GroupsactivitystorageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitystorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync(ReportRootGetoffice365GroupsactivitystorageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsactivitystorageResponse> ReportRootGetoffice365GroupsactivitystorageAsync(ReportRootGetoffice365GroupsactivitystorageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetoffice365GroupsactivitystorageParameter, ReportRootGetoffice365GroupsactivitystorageResponse>(parameter, cancellationToken);
         }

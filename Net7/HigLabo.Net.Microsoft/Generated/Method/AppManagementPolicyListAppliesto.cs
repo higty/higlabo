@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync()
+        public async ValueTask<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync()
         {
             var p = new AppManagementPolicyListAppliestoParameter();
             return await this.SendAsync<AppManagementPolicyListAppliestoParameter, AppManagementPolicyListAppliestoResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
             var p = new AppManagementPolicyListAppliestoParameter();
             return await this.SendAsync<AppManagementPolicyListAppliestoParameter, AppManagementPolicyListAppliestoResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(AppManagementPolicyListAppliestoParameter parameter)
+        public async ValueTask<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(AppManagementPolicyListAppliestoParameter parameter)
         {
             return await this.SendAsync<AppManagementPolicyListAppliestoParameter, AppManagementPolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(AppManagementPolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(AppManagementPolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyListAppliestoParameter, AppManagementPolicyListAppliestoResponse>(parameter, cancellationToken);
         }

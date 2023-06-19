@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync()
+        public async ValueTask<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync()
         {
             var p = new ChatDeleteInstalledappsParameter();
             return await this.SendAsync<ChatDeleteInstalledappsParameter, ChatDeleteInstalledappsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatDeleteInstalledappsParameter();
             return await this.SendAsync<ChatDeleteInstalledappsParameter, ChatDeleteInstalledappsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync(ChatDeleteInstalledappsParameter parameter)
+        public async ValueTask<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync(ChatDeleteInstalledappsParameter parameter)
         {
             return await this.SendAsync<ChatDeleteInstalledappsParameter, ChatDeleteInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync(ChatDeleteInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteInstalledappsResponse> ChatDeleteInstalledappsAsync(ChatDeleteInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatDeleteInstalledappsParameter, ChatDeleteInstalledappsResponse>(parameter, cancellationToken);
         }

@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListResponse> RiskyUserListAsync()
+        public async ValueTask<RiskyUserListResponse> RiskyUserListAsync()
         {
             var p = new RiskyUserListParameter();
             return await this.SendAsync<RiskyUserListParameter, RiskyUserListResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListResponse> RiskyUserListAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserListResponse> RiskyUserListAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyUserListParameter();
             return await this.SendAsync<RiskyUserListParameter, RiskyUserListResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListResponse> RiskyUserListAsync(RiskyUserListParameter parameter)
+        public async ValueTask<RiskyUserListResponse> RiskyUserListAsync(RiskyUserListParameter parameter)
         {
             return await this.SendAsync<RiskyUserListParameter, RiskyUserListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserListResponse> RiskyUserListAsync(RiskyUserListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserListResponse> RiskyUserListAsync(RiskyUserListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyUserListParameter, RiskyUserListResponse>(parameter, cancellationToken);
         }

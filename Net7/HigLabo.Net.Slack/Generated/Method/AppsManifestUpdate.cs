@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.update
         /// </summary>
-        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string? app_Id, string? manifest)
+        public async ValueTask<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string? app_Id, string? manifest)
         {
             var p = new AppsManifestUpdateParameter();
             p.App_Id = app_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.update
         /// </summary>
-        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string? app_Id, string? manifest, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string? app_Id, string? manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestUpdateParameter();
             p.App_Id = app_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.update
         /// </summary>
-        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(AppsManifestUpdateParameter parameter)
+        public async ValueTask<AppsManifestUpdateResponse> AppsManifestUpdateAsync(AppsManifestUpdateParameter parameter)
         {
             return await this.SendAsync<AppsManifestUpdateParameter, AppsManifestUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.update
         /// </summary>
-        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(AppsManifestUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsManifestUpdateResponse> AppsManifestUpdateAsync(AppsManifestUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsManifestUpdateParameter, AppsManifestUpdateResponse>(parameter, cancellationToken);
         }

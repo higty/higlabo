@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.list
         /// </summary>
-        public async Task<RemindersListResponse> RemindersListAsync()
+        public async ValueTask<RemindersListResponse> RemindersListAsync()
         {
             var p = new RemindersListParameter();
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(p, CancellationToken.None);
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.list
         /// </summary>
-        public async Task<RemindersListResponse> RemindersListAsync(CancellationToken cancellationToken)
+        public async ValueTask<RemindersListResponse> RemindersListAsync(CancellationToken cancellationToken)
         {
             var p = new RemindersListParameter();
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(p, cancellationToken);
@@ -35,14 +35,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.list
         /// </summary>
-        public async Task<RemindersListResponse> RemindersListAsync(RemindersListParameter parameter)
+        public async ValueTask<RemindersListResponse> RemindersListAsync(RemindersListParameter parameter)
         {
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reminders.list
         /// </summary>
-        public async Task<RemindersListResponse> RemindersListAsync(RemindersListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RemindersListResponse> RemindersListAsync(RemindersListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(parameter, cancellationToken);
         }

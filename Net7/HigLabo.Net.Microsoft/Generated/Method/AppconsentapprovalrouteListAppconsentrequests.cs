@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync()
+        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync()
         {
             var p = new AppconsentapprovalrouteListAppconsentrequestsParameter();
             return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(CancellationToken cancellationToken)
         {
             var p = new AppconsentapprovalrouteListAppconsentrequestsParameter();
             return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(AppconsentapprovalrouteListAppconsentrequestsParameter parameter)
+        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(AppconsentapprovalrouteListAppconsentrequestsParameter parameter)
         {
             return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(AppconsentapprovalrouteListAppconsentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(AppconsentapprovalrouteListAppconsentrequestsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(parameter, cancellationToken);
         }

@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync()
+        public async ValueTask<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync()
         {
             var p = new OrganizationalBrandingGetParameter();
             return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationalBrandingGetParameter();
             return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(OrganizationalBrandingGetParameter parameter)
+        public async ValueTask<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(OrganizationalBrandingGetParameter parameter)
         {
             return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(OrganizationalBrandingGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(OrganizationalBrandingGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(parameter, cancellationToken);
         }

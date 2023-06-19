@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync()
+        public async ValueTask<GroupDeleteEventResponse> GroupDeleteEventAsync()
         {
             var p = new GroupDeleteEventParameter();
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteEventResponse> GroupDeleteEventAsync(CancellationToken cancellationToken)
         {
             var p = new GroupDeleteEventParameter();
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync(GroupDeleteEventParameter parameter)
+        public async ValueTask<GroupDeleteEventResponse> GroupDeleteEventAsync(GroupDeleteEventParameter parameter)
         {
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync(GroupDeleteEventParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupDeleteEventResponse> GroupDeleteEventAsync(GroupDeleteEventParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(parameter, cancellationToken);
         }

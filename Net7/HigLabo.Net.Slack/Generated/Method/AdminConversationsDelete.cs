@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.delete
         /// </summary>
-        public async Task<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(string? channel_Id)
         {
             var p = new AdminConversationsDeleteParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.delete
         /// </summary>
-        public async Task<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsDeleteParameter();
             p.Channel_Id = channel_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.delete
         /// </summary>
-        public async Task<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(AdminConversationsDeleteParameter parameter)
+        public async ValueTask<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(AdminConversationsDeleteParameter parameter)
         {
             return await this.SendAsync<AdminConversationsDeleteParameter, AdminConversationsDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.delete
         /// </summary>
-        public async Task<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(AdminConversationsDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsDeleteResponse> AdminConversationsDeleteAsync(AdminConversationsDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsDeleteParameter, AdminConversationsDeleteResponse>(parameter, cancellationToken);
         }

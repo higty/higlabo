@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync()
+        public async ValueTask<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync()
         {
             var p = new ExtensionpropertyGetParameter();
             return await this.SendAsync<ExtensionpropertyGetParameter, ExtensionpropertyGetResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync(CancellationToken cancellationToken)
         {
             var p = new ExtensionpropertyGetParameter();
             return await this.SendAsync<ExtensionpropertyGetParameter, ExtensionpropertyGetResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync(ExtensionpropertyGetParameter parameter)
+        public async ValueTask<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync(ExtensionpropertyGetParameter parameter)
         {
             return await this.SendAsync<ExtensionpropertyGetParameter, ExtensionpropertyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/extensionproperty-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync(ExtensionpropertyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExtensionpropertyGetResponse> ExtensionpropertyGetAsync(ExtensionpropertyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExtensionpropertyGetParameter, ExtensionpropertyGetResponse>(parameter, cancellationToken);
         }

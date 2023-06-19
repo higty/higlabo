@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-exportpersonaldata?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserExportpersonaldataResponse> UserExportpersonaldataAsync()
+        public async ValueTask<UserExportpersonaldataResponse> UserExportpersonaldataAsync()
         {
             var p = new UserExportpersonaldataParameter();
             return await this.SendAsync<UserExportpersonaldataParameter, UserExportpersonaldataResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-exportpersonaldata?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserExportpersonaldataResponse> UserExportpersonaldataAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserExportpersonaldataResponse> UserExportpersonaldataAsync(CancellationToken cancellationToken)
         {
             var p = new UserExportpersonaldataParameter();
             return await this.SendAsync<UserExportpersonaldataParameter, UserExportpersonaldataResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-exportpersonaldata?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserExportpersonaldataResponse> UserExportpersonaldataAsync(UserExportpersonaldataParameter parameter)
+        public async ValueTask<UserExportpersonaldataResponse> UserExportpersonaldataAsync(UserExportpersonaldataParameter parameter)
         {
             return await this.SendAsync<UserExportpersonaldataParameter, UserExportpersonaldataResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-exportpersonaldata?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserExportpersonaldataResponse> UserExportpersonaldataAsync(UserExportpersonaldataParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserExportpersonaldataResponse> UserExportpersonaldataAsync(UserExportpersonaldataParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserExportpersonaldataParameter, UserExportpersonaldataResponse>(parameter, cancellationToken);
         }

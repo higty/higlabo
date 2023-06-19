@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupGetResponse> CalendarGroupGetAsync()
+        public async ValueTask<CalendarGroupGetResponse> CalendarGroupGetAsync()
         {
             var p = new CalendarGroupGetParameter();
             return await this.SendAsync<CalendarGroupGetParameter, CalendarGroupGetResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupGetResponse> CalendarGroupGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupGetResponse> CalendarGroupGetAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGroupGetParameter();
             return await this.SendAsync<CalendarGroupGetParameter, CalendarGroupGetResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupGetResponse> CalendarGroupGetAsync(CalendarGroupGetParameter parameter)
+        public async ValueTask<CalendarGroupGetResponse> CalendarGroupGetAsync(CalendarGroupGetParameter parameter)
         {
             return await this.SendAsync<CalendarGroupGetParameter, CalendarGroupGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupGetResponse> CalendarGroupGetAsync(CalendarGroupGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupGetResponse> CalendarGroupGetAsync(CalendarGroupGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGroupGetParameter, CalendarGroupGetResponse>(parameter, cancellationToken);
         }

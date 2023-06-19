@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync()
+        public async ValueTask<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync()
         {
             var p = new CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter();
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter, CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter();
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter, CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync(CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter parameter)
+        public async ValueTask<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync(CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter, CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync(CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse> CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationAsync(CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationParameter, CrosstenantAccessPolicyConfigurationPartnerPutIdentitySynchronizationResponse>(parameter, cancellationToken);
         }

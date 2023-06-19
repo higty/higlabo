@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync()
+        public async ValueTask<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync()
         {
             var p = new CalendarGroupPostCalendarsParameter();
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(p, CancellationToken.None);
@@ -144,7 +144,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGroupPostCalendarsParameter();
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(p, cancellationToken);
@@ -152,14 +152,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CalendarGroupPostCalendarsParameter parameter)
+        public async ValueTask<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CalendarGroupPostCalendarsParameter parameter)
         {
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CalendarGroupPostCalendarsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CalendarGroupPostCalendarsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(parameter, cancellationToken);
         }

@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-owneddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwneddevicesResponse> UserListOwneddevicesAsync()
+        public async ValueTask<UserListOwneddevicesResponse> UserListOwneddevicesAsync()
         {
             var p = new UserListOwneddevicesParameter();
             return await this.SendAsync<UserListOwneddevicesParameter, UserListOwneddevicesResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-owneddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwneddevicesResponse> UserListOwneddevicesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListOwneddevicesResponse> UserListOwneddevicesAsync(CancellationToken cancellationToken)
         {
             var p = new UserListOwneddevicesParameter();
             return await this.SendAsync<UserListOwneddevicesParameter, UserListOwneddevicesResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-owneddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwneddevicesResponse> UserListOwneddevicesAsync(UserListOwneddevicesParameter parameter)
+        public async ValueTask<UserListOwneddevicesResponse> UserListOwneddevicesAsync(UserListOwneddevicesParameter parameter)
         {
             return await this.SendAsync<UserListOwneddevicesParameter, UserListOwneddevicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-owneddevices?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListOwneddevicesResponse> UserListOwneddevicesAsync(UserListOwneddevicesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListOwneddevicesResponse> UserListOwneddevicesAsync(UserListOwneddevicesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListOwneddevicesParameter, UserListOwneddevicesResponse>(parameter, cancellationToken);
         }

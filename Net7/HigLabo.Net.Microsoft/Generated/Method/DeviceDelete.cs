@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteResponse> DeviceDeleteAsync()
+        public async ValueTask<DeviceDeleteResponse> DeviceDeleteAsync()
         {
             var p = new DeviceDeleteParameter();
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteResponse> DeviceDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceDeleteResponse> DeviceDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceDeleteParameter();
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteResponse> DeviceDeleteAsync(DeviceDeleteParameter parameter)
+        public async ValueTask<DeviceDeleteResponse> DeviceDeleteAsync(DeviceDeleteParameter parameter)
         {
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceDeleteResponse> DeviceDeleteAsync(DeviceDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceDeleteResponse> DeviceDeleteAsync(DeviceDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(parameter, cancellationToken);
         }

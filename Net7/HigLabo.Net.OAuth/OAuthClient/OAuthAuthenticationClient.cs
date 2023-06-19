@@ -32,9 +32,9 @@ namespace HigLabo.Net.OAuth
         }
 
         public abstract String CreateAuthorizeUrl(String redirectUrl, String[] scopes);
-        public abstract Task<OAuthTokenGetRequestResult> RequestCodeAsync(String code, String redirectUrl);
+        public abstract ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(String code, String redirectUrl);
 
-        protected async Task<OAuthTokenGetRequestResult> RequestCodeAsync_Common(String code, String redirectUrl)
+        protected async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync_Common(String code, String redirectUrl)
         {
             var cl = this;
             var d = new Dictionary<String, String>();
@@ -48,11 +48,11 @@ namespace HigLabo.Net.OAuth
             var res = await cl.PostFormAsync(this.Url, d);
             return await ParseResponse(res);
         }
-        protected async Task<OAuthTokenGetRequestResult> ParseResponse(HttpResponseMessage responseMessage)
+        protected async ValueTask<OAuthTokenGetRequestResult> ParseResponse(HttpResponseMessage responseMessage)
         {
             return await ParseResponse<OAuthTokenGetRequestResult>(responseMessage);
         }
-        protected virtual async Task<T> ParseResponse<T>(HttpResponseMessage responseMessage)
+        protected virtual async ValueTask<T> ParseResponse<T>(HttpResponseMessage responseMessage)
             where T: class
         {
             var res = responseMessage;

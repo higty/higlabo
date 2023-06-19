@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync()
+        public async ValueTask<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync()
         {
             var p = new UserflowlanguagepageDeleteParameter();
             return await this.SendAsync<UserflowlanguagepageDeleteParameter, UserflowlanguagepageDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new UserflowlanguagepageDeleteParameter();
             return await this.SendAsync<UserflowlanguagepageDeleteParameter, UserflowlanguagepageDeleteResponse>(p, cancellationToken);
@@ -65,21 +65,21 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync(UserflowlanguagepageDeleteParameter parameter)
+        public async ValueTask<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync(UserflowlanguagepageDeleteParameter parameter)
         {
             return await this.SendAsync<UserflowlanguagepageDeleteParameter, UserflowlanguagepageDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync(UserflowlanguagepageDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguagepageDeleteResponse> UserflowlanguagepageDeleteAsync(UserflowlanguagepageDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserflowlanguagepageDeleteParameter, UserflowlanguagepageDeleteResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Stream> UserflowlanguagepageDeleteStreamAsync(UserflowlanguagepageDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Stream> UserflowlanguagepageDeleteStreamAsync(UserflowlanguagepageDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.DownloadStreamAsync(parameter, cancellationToken);
         }

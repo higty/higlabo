@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationmembersAddResponse> ConversationmembersAddAsync()
+        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync()
         {
             var p = new ConversationmembersAddParameter();
             return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationmembersAddResponse> ConversationmembersAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync(CancellationToken cancellationToken)
         {
             var p = new ConversationmembersAddParameter();
             return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationmembersAddResponse> ConversationmembersAddAsync(ConversationmembersAddParameter parameter)
+        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync(ConversationmembersAddParameter parameter)
         {
             return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConversationmembersAddResponse> ConversationmembersAddAsync(ConversationmembersAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync(ConversationmembersAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(parameter, cancellationToken);
         }

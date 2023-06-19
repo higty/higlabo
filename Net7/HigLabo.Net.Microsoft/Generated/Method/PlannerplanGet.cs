@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerplanGetResponse> PlannerplanGetAsync()
+        public async ValueTask<PlannerplanGetResponse> PlannerplanGetAsync()
         {
             var p = new PlannerplanGetParameter();
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerplanGetResponse> PlannerplanGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerplanGetResponse> PlannerplanGetAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerplanGetParameter();
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerplanGetResponse> PlannerplanGetAsync(PlannerplanGetParameter parameter)
+        public async ValueTask<PlannerplanGetResponse> PlannerplanGetAsync(PlannerplanGetParameter parameter)
         {
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerplanGetResponse> PlannerplanGetAsync(PlannerplanGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerplanGetResponse> PlannerplanGetAsync(PlannerplanGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(parameter, cancellationToken);
         }

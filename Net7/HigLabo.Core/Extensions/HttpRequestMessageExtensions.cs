@@ -9,7 +9,7 @@ namespace HigLabo.Core
 {
     public static class HttpRequestMessageExtensions
     {
-        public static async Task<HttpRequestMessage> CloneAsync(this HttpRequestMessage request)
+        public static async ValueTask<HttpRequestMessage> CloneAsync(this HttpRequestMessage request)
         {
             var clone = new HttpRequestMessage(request.Method, request.RequestUri);
             clone.Version = request.Version;
@@ -28,7 +28,7 @@ namespace HigLabo.Core
             }
             return clone;
         }
-        public static async Task<HttpContent?> CloneAsync(this HttpContent content)
+        public static async ValueTask<HttpContent?> CloneAsync(this HttpContent content)
         {
             if (content == null) return null;
 

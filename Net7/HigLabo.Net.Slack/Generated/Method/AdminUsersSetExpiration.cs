@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setExpiration
         /// </summary>
-        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int? expiration_Ts, string? user_Id)
+        public async ValueTask<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int? expiration_Ts, string? user_Id)
         {
             var p = new AdminUsersSetExpirationParameter();
             p.Expiration_Ts = expiration_Ts;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setExpiration
         /// </summary>
-        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int? expiration_Ts, string? user_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int? expiration_Ts, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetExpirationParameter();
             p.Expiration_Ts = expiration_Ts;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setExpiration
         /// </summary>
-        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(AdminUsersSetExpirationParameter parameter)
+        public async ValueTask<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(AdminUsersSetExpirationParameter parameter)
         {
             return await this.SendAsync<AdminUsersSetExpirationParameter, AdminUsersSetExpirationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setExpiration
         /// </summary>
-        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(AdminUsersSetExpirationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(AdminUsersSetExpirationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSetExpirationParameter, AdminUsersSetExpirationResponse>(parameter, cancellationToken);
         }

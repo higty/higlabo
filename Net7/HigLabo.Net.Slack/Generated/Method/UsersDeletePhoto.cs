@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.deletePhoto
         /// </summary>
-        public async Task<UsersDeletePhotoResponse> UsersDeletePhotoAsync()
+        public async ValueTask<UsersDeletePhotoResponse> UsersDeletePhotoAsync()
         {
             var p = new UsersDeletePhotoParameter();
             return await this.SendAsync<UsersDeletePhotoParameter, UsersDeletePhotoResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.deletePhoto
         /// </summary>
-        public async Task<UsersDeletePhotoResponse> UsersDeletePhotoAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersDeletePhotoResponse> UsersDeletePhotoAsync(CancellationToken cancellationToken)
         {
             var p = new UsersDeletePhotoParameter();
             return await this.SendAsync<UsersDeletePhotoParameter, UsersDeletePhotoResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.deletePhoto
         /// </summary>
-        public async Task<UsersDeletePhotoResponse> UsersDeletePhotoAsync(UsersDeletePhotoParameter parameter)
+        public async ValueTask<UsersDeletePhotoResponse> UsersDeletePhotoAsync(UsersDeletePhotoParameter parameter)
         {
             return await this.SendAsync<UsersDeletePhotoParameter, UsersDeletePhotoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.deletePhoto
         /// </summary>
-        public async Task<UsersDeletePhotoResponse> UsersDeletePhotoAsync(UsersDeletePhotoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersDeletePhotoResponse> UsersDeletePhotoAsync(UsersDeletePhotoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersDeletePhotoParameter, UsersDeletePhotoResponse>(parameter, cancellationToken);
         }

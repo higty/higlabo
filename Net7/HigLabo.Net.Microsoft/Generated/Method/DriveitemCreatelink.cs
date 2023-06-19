@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync()
+        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync()
         {
             var p = new DriveitemCreatelinkParameter();
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemCreatelinkParameter();
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter)
+        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter)
         {
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(parameter, cancellationToken);
         }

@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync()
+        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync()
         {
             var p = new IdentityUserflowattributeAssignmentGetParameter();
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityUserflowattributeAssignmentGetParameter();
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter)
+        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter)
         {
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(parameter, cancellationToken);
         }

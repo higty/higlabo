@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListResponse> SiteListAsync()
+        public async ValueTask<SiteListResponse> SiteListAsync()
         {
             var p = new SiteListParameter();
             return await this.SendAsync<SiteListParameter, SiteListResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListResponse> SiteListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SiteListResponse> SiteListAsync(CancellationToken cancellationToken)
         {
             var p = new SiteListParameter();
             return await this.SendAsync<SiteListParameter, SiteListResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListResponse> SiteListAsync(SiteListParameter parameter)
+        public async ValueTask<SiteListResponse> SiteListAsync(SiteListParameter parameter)
         {
             return await this.SendAsync<SiteListParameter, SiteListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SiteListResponse> SiteListAsync(SiteListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SiteListResponse> SiteListAsync(SiteListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListParameter, SiteListResponse>(parameter, cancellationToken);
         }

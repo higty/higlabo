@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.info
         /// </summary>
-        public async Task<UsersInfoResponse> UsersInfoAsync(string? user)
+        public async ValueTask<UsersInfoResponse> UsersInfoAsync(string? user)
         {
             var p = new UsersInfoParameter();
             p.User = user;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.info
         /// </summary>
-        public async Task<UsersInfoResponse> UsersInfoAsync(string? user, CancellationToken cancellationToken)
+        public async ValueTask<UsersInfoResponse> UsersInfoAsync(string? user, CancellationToken cancellationToken)
         {
             var p = new UsersInfoParameter();
             p.User = user;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.info
         /// </summary>
-        public async Task<UsersInfoResponse> UsersInfoAsync(UsersInfoParameter parameter)
+        public async ValueTask<UsersInfoResponse> UsersInfoAsync(UsersInfoParameter parameter)
         {
             return await this.SendAsync<UsersInfoParameter, UsersInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.info
         /// </summary>
-        public async Task<UsersInfoResponse> UsersInfoAsync(UsersInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersInfoResponse> UsersInfoAsync(UsersInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersInfoParameter, UsersInfoResponse>(parameter, cancellationToken);
         }

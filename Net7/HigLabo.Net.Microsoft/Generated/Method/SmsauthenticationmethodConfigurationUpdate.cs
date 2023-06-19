@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync()
+        public async ValueTask<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync()
         {
             var p = new SmsauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<SmsauthenticationmethodConfigurationUpdateParameter, SmsauthenticationmethodConfigurationUpdateResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new SmsauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<SmsauthenticationmethodConfigurationUpdateParameter, SmsauthenticationmethodConfigurationUpdateResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync(SmsauthenticationmethodConfigurationUpdateParameter parameter)
+        public async ValueTask<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync(SmsauthenticationmethodConfigurationUpdateParameter parameter)
         {
             return await this.SendAsync<SmsauthenticationmethodConfigurationUpdateParameter, SmsauthenticationmethodConfigurationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync(SmsauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SmsauthenticationmethodConfigurationUpdateResponse> SmsauthenticationmethodConfigurationUpdateAsync(SmsauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SmsauthenticationmethodConfigurationUpdateParameter, SmsauthenticationmethodConfigurationUpdateResponse>(parameter, cancellationToken);
         }

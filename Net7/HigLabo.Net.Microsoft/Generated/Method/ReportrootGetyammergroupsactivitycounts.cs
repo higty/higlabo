@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammergroupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync()
+        public async ValueTask<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync()
         {
             var p = new ReportRootGetyammerGroupsactivitycountsParameter();
             return await this.SendAsync<ReportRootGetyammerGroupsactivitycountsParameter, ReportRootGetyammerGroupsactivitycountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammergroupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetyammerGroupsactivitycountsParameter();
             return await this.SendAsync<ReportRootGetyammerGroupsactivitycountsParameter, ReportRootGetyammerGroupsactivitycountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammergroupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync(ReportRootGetyammerGroupsactivitycountsParameter parameter)
+        public async ValueTask<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync(ReportRootGetyammerGroupsactivitycountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetyammerGroupsactivitycountsParameter, ReportRootGetyammerGroupsactivitycountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammergroupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync(ReportRootGetyammerGroupsactivitycountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetyammerGroupsactivitycountsResponse> ReportRootGetyammerGroupsactivitycountsAsync(ReportRootGetyammerGroupsactivitycountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetyammerGroupsactivitycountsParameter, ReportRootGetyammerGroupsactivitycountsResponse>(parameter, cancellationToken);
         }

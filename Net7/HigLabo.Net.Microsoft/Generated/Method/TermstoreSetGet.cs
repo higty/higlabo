@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync()
+        public async ValueTask<TermStoreSetGetResponse> TermStoreSetGetAsync()
         {
             var p = new TermStoreSetGetParameter();
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(p, CancellationToken.None);
@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TermStoreSetGetResponse> TermStoreSetGetAsync(CancellationToken cancellationToken)
         {
             var p = new TermStoreSetGetParameter();
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(p, cancellationToken);
@@ -94,14 +94,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync(TermStoreSetGetParameter parameter)
+        public async ValueTask<TermStoreSetGetResponse> TermStoreSetGetAsync(TermStoreSetGetParameter parameter)
         {
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync(TermStoreSetGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TermStoreSetGetResponse> TermStoreSetGetAsync(TermStoreSetGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(parameter, cancellationToken);
         }

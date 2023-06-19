@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantGetResponse> ParticipantGetAsync()
+        public async ValueTask<ParticipantGetResponse> ParticipantGetAsync()
         {
             var p = new ParticipantGetParameter();
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantGetResponse> ParticipantGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ParticipantGetResponse> ParticipantGetAsync(CancellationToken cancellationToken)
         {
             var p = new ParticipantGetParameter();
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantGetResponse> ParticipantGetAsync(ParticipantGetParameter parameter)
+        public async ValueTask<ParticipantGetResponse> ParticipantGetAsync(ParticipantGetParameter parameter)
         {
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantGetResponse> ParticipantGetAsync(ParticipantGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ParticipantGetResponse> ParticipantGetAsync(ParticipantGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(parameter, cancellationToken);
         }

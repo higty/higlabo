@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync()
+        public async ValueTask<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync()
         {
             var p = new HomerealmdiscoveryPolicyListParameter();
             return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(CancellationToken cancellationToken)
         {
             var p = new HomerealmdiscoveryPolicyListParameter();
             return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(HomerealmdiscoveryPolicyListParameter parameter)
+        public async ValueTask<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(HomerealmdiscoveryPolicyListParameter parameter)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(HomerealmdiscoveryPolicyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(HomerealmdiscoveryPolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(parameter, cancellationToken);
         }

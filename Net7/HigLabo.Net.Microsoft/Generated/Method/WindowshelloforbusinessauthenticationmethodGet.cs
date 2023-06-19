@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync()
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync()
         {
             var p = new WindowshelloforbusinessauthenticationmethodGetParameter();
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodGetParameter, WindowshelloforbusinessauthenticationmethodGetResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync(CancellationToken cancellationToken)
         {
             var p = new WindowshelloforbusinessauthenticationmethodGetParameter();
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodGetParameter, WindowshelloforbusinessauthenticationmethodGetResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync(WindowshelloforbusinessauthenticationmethodGetParameter parameter)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync(WindowshelloforbusinessauthenticationmethodGetParameter parameter)
         {
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodGetParameter, WindowshelloforbusinessauthenticationmethodGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync(WindowshelloforbusinessauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodGetResponse> WindowshelloforbusinessauthenticationmethodGetAsync(WindowshelloforbusinessauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodGetParameter, WindowshelloforbusinessauthenticationmethodGetResponse>(parameter, cancellationToken);
         }

@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-extensionproperty?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync()
+        public async ValueTask<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync()
         {
             var p = new ApplicationListExtensionpropertyParameter();
             return await this.SendAsync<ApplicationListExtensionpropertyParameter, ApplicationListExtensionpropertyResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-extensionproperty?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationListExtensionpropertyParameter();
             return await this.SendAsync<ApplicationListExtensionpropertyParameter, ApplicationListExtensionpropertyResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-extensionproperty?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync(ApplicationListExtensionpropertyParameter parameter)
+        public async ValueTask<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync(ApplicationListExtensionpropertyParameter parameter)
         {
             return await this.SendAsync<ApplicationListExtensionpropertyParameter, ApplicationListExtensionpropertyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-extensionproperty?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync(ApplicationListExtensionpropertyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListExtensionpropertyResponse> ApplicationListExtensionpropertyAsync(ApplicationListExtensionpropertyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListExtensionpropertyParameter, ApplicationListExtensionpropertyResponse>(parameter, cancellationToken);
         }

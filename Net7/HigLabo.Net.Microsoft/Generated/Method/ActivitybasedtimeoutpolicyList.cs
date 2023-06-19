@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync()
+        public async ValueTask<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync()
         {
             var p = new ActivitybasedtimeoutPolicyListParameter();
             return await this.SendAsync<ActivitybasedtimeoutPolicyListParameter, ActivitybasedtimeoutPolicyListResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync(CancellationToken cancellationToken)
         {
             var p = new ActivitybasedtimeoutPolicyListParameter();
             return await this.SendAsync<ActivitybasedtimeoutPolicyListParameter, ActivitybasedtimeoutPolicyListResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync(ActivitybasedtimeoutPolicyListParameter parameter)
+        public async ValueTask<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync(ActivitybasedtimeoutPolicyListParameter parameter)
         {
             return await this.SendAsync<ActivitybasedtimeoutPolicyListParameter, ActivitybasedtimeoutPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync(ActivitybasedtimeoutPolicyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ActivitybasedtimeoutPolicyListResponse> ActivitybasedtimeoutPolicyListAsync(ActivitybasedtimeoutPolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ActivitybasedtimeoutPolicyListParameter, ActivitybasedtimeoutPolicyListResponse>(parameter, cancellationToken);
         }

@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeDeleteResponse> RangeDeleteAsync()
+        public async ValueTask<RangeDeleteResponse> RangeDeleteAsync()
         {
             var p = new RangeDeleteParameter();
             return await this.SendAsync<RangeDeleteParameter, RangeDeleteResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeDeleteResponse> RangeDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeDeleteResponse> RangeDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new RangeDeleteParameter();
             return await this.SendAsync<RangeDeleteParameter, RangeDeleteResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeDeleteResponse> RangeDeleteAsync(RangeDeleteParameter parameter)
+        public async ValueTask<RangeDeleteResponse> RangeDeleteAsync(RangeDeleteParameter parameter)
         {
             return await this.SendAsync<RangeDeleteParameter, RangeDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeDeleteResponse> RangeDeleteAsync(RangeDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeDeleteResponse> RangeDeleteAsync(RangeDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeDeleteParameter, RangeDeleteResponse>(parameter, cancellationToken);
         }

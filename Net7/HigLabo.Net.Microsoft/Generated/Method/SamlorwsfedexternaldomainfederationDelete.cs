@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync()
+        public async ValueTask<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync()
         {
             var p = new SamlorwsfedexternaldomainfederationDeleteParameter();
             return await this.SendAsync<SamlorwsfedexternaldomainfederationDeleteParameter, SamlorwsfedexternaldomainfederationDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SamlorwsfedexternaldomainfederationDeleteParameter();
             return await this.SendAsync<SamlorwsfedexternaldomainfederationDeleteParameter, SamlorwsfedexternaldomainfederationDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync(SamlorwsfedexternaldomainfederationDeleteParameter parameter)
+        public async ValueTask<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync(SamlorwsfedexternaldomainfederationDeleteParameter parameter)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationDeleteParameter, SamlorwsfedexternaldomainfederationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync(SamlorwsfedexternaldomainfederationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SamlorwsfedexternaldomainfederationDeleteResponse> SamlorwsfedexternaldomainfederationDeleteAsync(SamlorwsfedexternaldomainfederationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationDeleteParameter, SamlorwsfedexternaldomainfederationDeleteResponse>(parameter, cancellationToken);
         }

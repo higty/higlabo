@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteMembersResponse> TeamDeleteMembersAsync()
+        public async ValueTask<TeamDeleteMembersResponse> TeamDeleteMembersAsync()
         {
             var p = new TeamDeleteMembersParameter();
             return await this.SendAsync<TeamDeleteMembersParameter, TeamDeleteMembersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteMembersResponse> TeamDeleteMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamDeleteMembersResponse> TeamDeleteMembersAsync(CancellationToken cancellationToken)
         {
             var p = new TeamDeleteMembersParameter();
             return await this.SendAsync<TeamDeleteMembersParameter, TeamDeleteMembersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteMembersResponse> TeamDeleteMembersAsync(TeamDeleteMembersParameter parameter)
+        public async ValueTask<TeamDeleteMembersResponse> TeamDeleteMembersAsync(TeamDeleteMembersParameter parameter)
         {
             return await this.SendAsync<TeamDeleteMembersParameter, TeamDeleteMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteMembersResponse> TeamDeleteMembersAsync(TeamDeleteMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamDeleteMembersResponse> TeamDeleteMembersAsync(TeamDeleteMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamDeleteMembersParameter, TeamDeleteMembersResponse>(parameter, cancellationToken);
         }

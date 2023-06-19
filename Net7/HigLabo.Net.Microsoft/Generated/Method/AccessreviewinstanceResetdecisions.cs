@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-resetdecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync()
+        public async ValueTask<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync()
         {
             var p = new AccessreviewinstanceResetdecisionsParameter();
             return await this.SendAsync<AccessreviewinstanceResetdecisionsParameter, AccessreviewinstanceResetdecisionsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-resetdecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceResetdecisionsParameter();
             return await this.SendAsync<AccessreviewinstanceResetdecisionsParameter, AccessreviewinstanceResetdecisionsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-resetdecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync(AccessreviewinstanceResetdecisionsParameter parameter)
+        public async ValueTask<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync(AccessreviewinstanceResetdecisionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceResetdecisionsParameter, AccessreviewinstanceResetdecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-resetdecisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync(AccessreviewinstanceResetdecisionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceResetdecisionsResponse> AccessreviewinstanceResetdecisionsAsync(AccessreviewinstanceResetdecisionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceResetdecisionsParameter, AccessreviewinstanceResetdecisionsResponse>(parameter, cancellationToken);
         }

@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetRangeResponse> WorksheetRangeAsync()
+        public async ValueTask<WorksheetRangeResponse> WorksheetRangeAsync()
         {
             var p = new WorksheetRangeParameter();
             return await this.SendAsync<WorksheetRangeParameter, WorksheetRangeResponse>(p, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetRangeResponse> WorksheetRangeAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorksheetRangeResponse> WorksheetRangeAsync(CancellationToken cancellationToken)
         {
             var p = new WorksheetRangeParameter();
             return await this.SendAsync<WorksheetRangeParameter, WorksheetRangeResponse>(p, cancellationToken);
@@ -110,14 +110,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetRangeResponse> WorksheetRangeAsync(WorksheetRangeParameter parameter)
+        public async ValueTask<WorksheetRangeResponse> WorksheetRangeAsync(WorksheetRangeParameter parameter)
         {
             return await this.SendAsync<WorksheetRangeParameter, WorksheetRangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/worksheet-range?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorksheetRangeResponse> WorksheetRangeAsync(WorksheetRangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorksheetRangeResponse> WorksheetRangeAsync(WorksheetRangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetRangeParameter, WorksheetRangeResponse>(parameter, cancellationToken);
         }

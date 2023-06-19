@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.cancel
         /// </summary>
-        public async Task<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(string? request_Id)
+        public async ValueTask<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(string? request_Id)
         {
             var p = new AdminAppsRequestsCancelParameter();
             p.Request_Id = request_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.cancel
         /// </summary>
-        public async Task<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(string? request_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(string? request_Id, CancellationToken cancellationToken)
         {
             var p = new AdminAppsRequestsCancelParameter();
             p.Request_Id = request_Id;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.cancel
         /// </summary>
-        public async Task<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(AdminAppsRequestsCancelParameter parameter)
+        public async ValueTask<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(AdminAppsRequestsCancelParameter parameter)
         {
             return await this.SendAsync<AdminAppsRequestsCancelParameter, AdminAppsRequestsCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.requests.cancel
         /// </summary>
-        public async Task<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(AdminAppsRequestsCancelParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsRequestsCancelResponse> AdminAppsRequestsCancelAsync(AdminAppsRequestsCancelParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsRequestsCancelParameter, AdminAppsRequestsCancelResponse>(parameter, cancellationToken);
         }

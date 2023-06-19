@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approve
         /// </summary>
-        public async Task<AdminAppsApproveResponse> AdminAppsApproveAsync()
+        public async ValueTask<AdminAppsApproveResponse> AdminAppsApproveAsync()
         {
             var p = new AdminAppsApproveParameter();
             return await this.SendAsync<AdminAppsApproveParameter, AdminAppsApproveResponse>(p, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approve
         /// </summary>
-        public async Task<AdminAppsApproveResponse> AdminAppsApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsApproveResponse> AdminAppsApproveAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAppsApproveParameter();
             return await this.SendAsync<AdminAppsApproveParameter, AdminAppsApproveResponse>(p, cancellationToken);
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approve
         /// </summary>
-        public async Task<AdminAppsApproveResponse> AdminAppsApproveAsync(AdminAppsApproveParameter parameter)
+        public async ValueTask<AdminAppsApproveResponse> AdminAppsApproveAsync(AdminAppsApproveParameter parameter)
         {
             return await this.SendAsync<AdminAppsApproveParameter, AdminAppsApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.approve
         /// </summary>
-        public async Task<AdminAppsApproveResponse> AdminAppsApproveAsync(AdminAppsApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsApproveResponse> AdminAppsApproveAsync(AdminAppsApproveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsApproveParameter, AdminAppsApproveResponse>(parameter, cancellationToken);
         }

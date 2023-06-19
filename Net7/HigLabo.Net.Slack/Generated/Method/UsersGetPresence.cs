@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.getPresence
         /// </summary>
-        public async Task<UsersGetPresenceResponse> UsersGetPresenceAsync()
+        public async ValueTask<UsersGetPresenceResponse> UsersGetPresenceAsync()
         {
             var p = new UsersGetPresenceParameter();
             return await this.SendAsync<UsersGetPresenceParameter, UsersGetPresenceResponse>(p, CancellationToken.None);
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.getPresence
         /// </summary>
-        public async Task<UsersGetPresenceResponse> UsersGetPresenceAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersGetPresenceResponse> UsersGetPresenceAsync(CancellationToken cancellationToken)
         {
             var p = new UsersGetPresenceParameter();
             return await this.SendAsync<UsersGetPresenceParameter, UsersGetPresenceResponse>(p, cancellationToken);
@@ -35,14 +35,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.getPresence
         /// </summary>
-        public async Task<UsersGetPresenceResponse> UsersGetPresenceAsync(UsersGetPresenceParameter parameter)
+        public async ValueTask<UsersGetPresenceResponse> UsersGetPresenceAsync(UsersGetPresenceParameter parameter)
         {
             return await this.SendAsync<UsersGetPresenceParameter, UsersGetPresenceResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.getPresence
         /// </summary>
-        public async Task<UsersGetPresenceResponse> UsersGetPresenceAsync(UsersGetPresenceParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersGetPresenceResponse> UsersGetPresenceAsync(UsersGetPresenceParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersGetPresenceParameter, UsersGetPresenceResponse>(parameter, cancellationToken);
         }

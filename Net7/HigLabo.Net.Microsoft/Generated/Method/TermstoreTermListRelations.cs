@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync()
+        public async ValueTask<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync()
         {
             var p = new TermStoreTermListRelationsParameter();
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(CancellationToken cancellationToken)
         {
             var p = new TermStoreTermListRelationsParameter();
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter)
+        public async ValueTask<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter)
         {
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(parameter, cancellationToken);
         }

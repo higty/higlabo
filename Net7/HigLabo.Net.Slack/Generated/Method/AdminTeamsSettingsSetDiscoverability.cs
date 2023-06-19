@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string? discoverability, string? team_Id)
+        public async ValueTask<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string? discoverability, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetDiscoverabilityParameter();
             p.Discoverability = discoverability;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string? discoverability, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string? discoverability, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetDiscoverabilityParameter();
             p.Discoverability = discoverability;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(AdminTeamsSettingsSetDiscoverabilityParameter parameter)
+        public async ValueTask<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(AdminTeamsSettingsSetDiscoverabilityParameter parameter)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDiscoverabilityParameter, AdminTeamsSettingsSetDiscoverabilityResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(AdminTeamsSettingsSetDiscoverabilityParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(AdminTeamsSettingsSetDiscoverabilityParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDiscoverabilityParameter, AdminTeamsSettingsSetDiscoverabilityResponse>(parameter, cancellationToken);
         }

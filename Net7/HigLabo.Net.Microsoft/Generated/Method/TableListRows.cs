@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-list-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableListRowsResponse> TableListRowsAsync()
+        public async ValueTask<TableListRowsResponse> TableListRowsAsync()
         {
             var p = new TableListRowsParameter();
             return await this.SendAsync<TableListRowsParameter, TableListRowsResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-list-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableListRowsResponse> TableListRowsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TableListRowsResponse> TableListRowsAsync(CancellationToken cancellationToken)
         {
             var p = new TableListRowsParameter();
             return await this.SendAsync<TableListRowsParameter, TableListRowsResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-list-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableListRowsResponse> TableListRowsAsync(TableListRowsParameter parameter)
+        public async ValueTask<TableListRowsResponse> TableListRowsAsync(TableListRowsParameter parameter)
         {
             return await this.SendAsync<TableListRowsParameter, TableListRowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-list-rows?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableListRowsResponse> TableListRowsAsync(TableListRowsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TableListRowsResponse> TableListRowsAsync(TableListRowsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableListRowsParameter, TableListRowsResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync()
+        public async ValueTask<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync()
         {
             var p = new PrintConnectorDeleteParameter();
             return await this.SendAsync<PrintConnectorDeleteParameter, PrintConnectorDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PrintConnectorDeleteParameter();
             return await this.SendAsync<PrintConnectorDeleteParameter, PrintConnectorDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync(PrintConnectorDeleteParameter parameter)
+        public async ValueTask<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync(PrintConnectorDeleteParameter parameter)
         {
             return await this.SendAsync<PrintConnectorDeleteParameter, PrintConnectorDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync(PrintConnectorDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintConnectorDeleteResponse> PrintConnectorDeleteAsync(PrintConnectorDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintConnectorDeleteParameter, PrintConnectorDeleteResponse>(parameter, cancellationToken);
         }

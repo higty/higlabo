@@ -62,7 +62,7 @@ namespace HigLabo.Net.OAuth
             return o;
         }
 
-        protected async Task<TResponse> ProcessRequest<TResponse>(Func<Task<TResponse>> func)
+        protected async ValueTask<TResponse> ProcessRequest<TResponse>(Func<ValueTask<TResponse>> func)
         {
             var isFirst = true;
 
@@ -86,7 +86,7 @@ namespace HigLabo.Net.OAuth
         }
         protected abstract Task ProcessAccessTokenAsync();
 
-        protected async Task<TResponse> SendAsync<TResponse>(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected async ValueTask<TResponse> SendAsync<TResponse>(HttpRequestMessage request, CancellationToken cancellationToken)
             where TResponse : RestApiResponse
         {
             var req = request;
@@ -94,7 +94,7 @@ namespace HigLabo.Net.OAuth
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(req, res, bodyText);
         }
-        protected async Task<TResponse> SendFormAsync<TResponse>(HttpRequestMessage request, Dictionary<String, String> parameter, CancellationToken cancellationToken)
+        protected async ValueTask<TResponse> SendFormAsync<TResponse>(HttpRequestMessage request, Dictionary<String, String> parameter, CancellationToken cancellationToken)
             where TResponse : RestApiResponse
         {
             var req = request;
@@ -108,7 +108,7 @@ namespace HigLabo.Net.OAuth
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(d, req, res, bodyText);
         }
-        protected async Task<TResponse> SendJsonAsync<TResponse>(HttpRequestMessage request, object parameter, CancellationToken cancellationToken)
+        protected async ValueTask<TResponse> SendJsonAsync<TResponse>(HttpRequestMessage request, object parameter, CancellationToken cancellationToken)
             where TResponse : RestApiResponse
         {
             var req = request;
@@ -118,29 +118,29 @@ namespace HigLabo.Net.OAuth
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(parameter, json, req, res, bodyText);
         }
-        protected async Task<Stream> DownloadStreamAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected async ValueTask<Stream> DownloadStreamAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var req = request;
             var res = await this.SendAsync(req, cancellationToken);
             return await res.Content.ReadAsStreamAsync(cancellationToken);
         }
 
-        public async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter)
+        public async ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter)
             where TParameter : IRestApiParameter
             where TResponse : RestApiResponse
         {
             return await this.SendAsync<TParameter, TResponse>(parameter, CancellationToken.None);
         }
-        public abstract Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
+        public abstract ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
             where TParameter : IRestApiParameter
             where TResponse : RestApiResponse;
-        public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context)
+        public async ValueTask<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context)
             where TParameter : IRestApiParameter, IRestApiPagingParameter
             where TResponse : RestApiResponse
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
-        public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context, CancellationToken cancellationToken)
             where TParameter : IRestApiParameter, IRestApiPagingParameter
             where TResponse : RestApiResponse
         {

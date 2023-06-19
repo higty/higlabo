@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync()
+        public async ValueTask<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync()
         {
             var p = new SchedulePostTimesoffParameter();
             return await this.SendAsync<SchedulePostTimesoffParameter, SchedulePostTimesoffResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync(CancellationToken cancellationToken)
         {
             var p = new SchedulePostTimesoffParameter();
             return await this.SendAsync<SchedulePostTimesoffParameter, SchedulePostTimesoffResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync(SchedulePostTimesoffParameter parameter)
+        public async ValueTask<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync(SchedulePostTimesoffParameter parameter)
         {
             return await this.SendAsync<SchedulePostTimesoffParameter, SchedulePostTimesoffResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync(SchedulePostTimesoffParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostTimesoffResponse> SchedulePostTimesoffAsync(SchedulePostTimesoffParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchedulePostTimesoffParameter, SchedulePostTimesoffResponse>(parameter, cancellationToken);
         }

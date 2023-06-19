@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync()
+        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync()
         {
             var p = new PrintershareDeleteAllowedUserParameter();
             return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(CancellationToken cancellationToken)
         {
             var p = new PrintershareDeleteAllowedUserParameter();
             return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(PrintershareDeleteAllowedUserParameter parameter)
+        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(PrintershareDeleteAllowedUserParameter parameter)
         {
             return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(PrintershareDeleteAllowedUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(PrintershareDeleteAllowedUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(parameter, cancellationToken);
         }

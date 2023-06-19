@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync()
+        public async ValueTask<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync()
         {
             var p = new ServiceannouncementListIssuesParameter();
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceannouncementListIssuesParameter();
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter)
+        public async ValueTask<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter)
         {
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(parameter, cancellationToken);
         }

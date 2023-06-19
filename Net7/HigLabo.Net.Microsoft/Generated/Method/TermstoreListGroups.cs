@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync()
+        public async ValueTask<TermStoreListGroupsResponse> TermStoreListGroupsAsync()
         {
             var p = new TermStoreListGroupsParameter();
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TermStoreListGroupsResponse> TermStoreListGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new TermStoreListGroupsParameter();
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync(TermStoreListGroupsParameter parameter)
+        public async ValueTask<TermStoreListGroupsResponse> TermStoreListGroupsAsync(TermStoreListGroupsParameter parameter)
         {
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync(TermStoreListGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TermStoreListGroupsResponse> TermStoreListGroupsAsync(TermStoreListGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(parameter, cancellationToken);
         }

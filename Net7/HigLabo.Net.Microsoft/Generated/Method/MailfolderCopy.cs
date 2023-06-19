@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderCopyResponse> MailfolderCopyAsync()
+        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync()
         {
             var p = new MailfolderCopyParameter();
             return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderCopyResponse> MailfolderCopyAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync(CancellationToken cancellationToken)
         {
             var p = new MailfolderCopyParameter();
             return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderCopyResponse> MailfolderCopyAsync(MailfolderCopyParameter parameter)
+        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync(MailfolderCopyParameter parameter)
         {
             return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderCopyResponse> MailfolderCopyAsync(MailfolderCopyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync(MailfolderCopyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(parameter, cancellationToken);
         }

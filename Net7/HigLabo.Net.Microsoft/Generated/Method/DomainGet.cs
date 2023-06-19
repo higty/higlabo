@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainGetResponse> DomainGetAsync()
+        public async ValueTask<DomainGetResponse> DomainGetAsync()
         {
             var p = new DomainGetParameter();
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(p, CancellationToken.None);
@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainGetResponse> DomainGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainGetResponse> DomainGetAsync(CancellationToken cancellationToken)
         {
             var p = new DomainGetParameter();
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(p, cancellationToken);
@@ -107,14 +107,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainGetResponse> DomainGetAsync(DomainGetParameter parameter)
+        public async ValueTask<DomainGetResponse> DomainGetAsync(DomainGetParameter parameter)
         {
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainGetResponse> DomainGetAsync(DomainGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainGetResponse> DomainGetAsync(DomainGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(parameter, cancellationToken);
         }

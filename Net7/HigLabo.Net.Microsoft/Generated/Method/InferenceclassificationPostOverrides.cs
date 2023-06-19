@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync()
+        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync()
         {
             var p = new InferenceclassificationPostOverridesParameter();
             return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(CancellationToken cancellationToken)
+        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(CancellationToken cancellationToken)
         {
             var p = new InferenceclassificationPostOverridesParameter();
             return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(InferenceclassificationPostOverridesParameter parameter)
+        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(InferenceclassificationPostOverridesParameter parameter)
         {
             return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async Task<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(InferenceclassificationPostOverridesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(InferenceclassificationPostOverridesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(parameter, cancellationToken);
         }

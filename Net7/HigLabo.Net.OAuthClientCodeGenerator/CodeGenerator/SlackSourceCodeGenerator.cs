@@ -36,7 +36,7 @@ namespace HigLabo.Net.CodeGenerator
         {
         }
 
-        public override async Task CreateScopeSourceCode()
+        public override async ValueTask CreateScopeSourceCode()
         {
             var doc = await Context.OpenAsync("https://api.slack.com/scopes");
 
@@ -104,7 +104,7 @@ namespace HigLabo.Net.CodeGenerator
         {
             yield break;
         }
-        protected override Task<List<ApiParameter>> GetEntityParameterList(IDocument document)
+        protected override ValueTask<List<ApiParameter>> GetEntityParameterList(IDocument document)
         {
             throw new NotImplementedException();
         }
@@ -144,7 +144,7 @@ namespace HigLabo.Net.CodeGenerator
             return sb.ToString().Replace(".", "");
         }
 
-        protected override Task<List<ApiParameter>> GetMethodParameterList(IDocument document)
+        protected override ValueTask<List<ApiParameter>> GetMethodParameterList(IDocument document)
         {
             var doc = document;
             var l = new List<ApiParameter>();
@@ -159,7 +159,7 @@ namespace HigLabo.Net.CodeGenerator
                 p.Required = row.QuerySelector(".apiMethodPage__argumentOptionality")?.TextContent.Contains("required", StringComparison.OrdinalIgnoreCase) == true;
                 l.Add(p);
             }
-            return Task.FromResult(l);
+            return ValueTask.FromResult(l);
         }
         protected override Property CreateParameterProperty(ApiParameter parameter)
         {

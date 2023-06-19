@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartGetResponse> ChartGetAsync()
+        public async ValueTask<ChartGetResponse> ChartGetAsync()
         {
             var p = new ChartGetParameter();
             return await this.SendAsync<ChartGetParameter, ChartGetResponse>(p, CancellationToken.None);
@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartGetResponse> ChartGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartGetResponse> ChartGetAsync(CancellationToken cancellationToken)
         {
             var p = new ChartGetParameter();
             return await this.SendAsync<ChartGetParameter, ChartGetResponse>(p, cancellationToken);
@@ -106,14 +106,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartGetResponse> ChartGetAsync(ChartGetParameter parameter)
+        public async ValueTask<ChartGetResponse> ChartGetAsync(ChartGetParameter parameter)
         {
             return await this.SendAsync<ChartGetParameter, ChartGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartGetResponse> ChartGetAsync(ChartGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartGetResponse> ChartGetAsync(ChartGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartGetParameter, ChartGetResponse>(parameter, cancellationToken);
         }

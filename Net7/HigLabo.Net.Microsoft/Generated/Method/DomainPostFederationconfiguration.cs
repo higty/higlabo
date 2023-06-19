@@ -137,7 +137,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync()
+        public async ValueTask<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync()
         {
             var p = new DomainPostFederationConfigurationParameter();
             return await this.SendAsync<DomainPostFederationConfigurationParameter, DomainPostFederationConfigurationResponse>(p, CancellationToken.None);
@@ -145,7 +145,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync(CancellationToken cancellationToken)
         {
             var p = new DomainPostFederationConfigurationParameter();
             return await this.SendAsync<DomainPostFederationConfigurationParameter, DomainPostFederationConfigurationResponse>(p, cancellationToken);
@@ -153,14 +153,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync(DomainPostFederationConfigurationParameter parameter)
+        public async ValueTask<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync(DomainPostFederationConfigurationParameter parameter)
         {
             return await this.SendAsync<DomainPostFederationConfigurationParameter, DomainPostFederationConfigurationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync(DomainPostFederationConfigurationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainPostFederationConfigurationResponse> DomainPostFederationConfigurationAsync(DomainPostFederationConfigurationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainPostFederationConfigurationParameter, DomainPostFederationConfigurationResponse>(parameter, cancellationToken);
         }

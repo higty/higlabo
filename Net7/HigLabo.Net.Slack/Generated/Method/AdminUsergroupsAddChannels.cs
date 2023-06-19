@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addChannels
         /// </summary>
-        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string? channel_Ids, string? usergroup_Id)
+        public async ValueTask<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string? channel_Ids, string? usergroup_Id)
         {
             var p = new AdminUsergroupsAddChannelsParameter();
             p.Channel_Ids = channel_Ids;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addChannels
         /// </summary>
-        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string? channel_Ids, string? usergroup_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string? channel_Ids, string? usergroup_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsergroupsAddChannelsParameter();
             p.Channel_Ids = channel_Ids;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addChannels
         /// </summary>
-        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(AdminUsergroupsAddChannelsParameter parameter)
+        public async ValueTask<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(AdminUsergroupsAddChannelsParameter parameter)
         {
             return await this.SendAsync<AdminUsergroupsAddChannelsParameter, AdminUsergroupsAddChannelsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addChannels
         /// </summary>
-        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(AdminUsergroupsAddChannelsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(AdminUsergroupsAddChannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsergroupsAddChannelsParameter, AdminUsergroupsAddChannelsResponse>(parameter, cancellationToken);
         }

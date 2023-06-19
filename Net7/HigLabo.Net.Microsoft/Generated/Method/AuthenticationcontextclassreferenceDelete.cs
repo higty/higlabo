@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync()
+        public async ValueTask<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync()
         {
             var p = new AuthenticationcontextclassreferenceDeleteParameter();
             return await this.SendAsync<AuthenticationcontextclassreferenceDeleteParameter, AuthenticationcontextclassreferenceDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationcontextclassreferenceDeleteParameter();
             return await this.SendAsync<AuthenticationcontextclassreferenceDeleteParameter, AuthenticationcontextclassreferenceDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync(AuthenticationcontextclassreferenceDeleteParameter parameter)
+        public async ValueTask<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync(AuthenticationcontextclassreferenceDeleteParameter parameter)
         {
             return await this.SendAsync<AuthenticationcontextclassreferenceDeleteParameter, AuthenticationcontextclassreferenceDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync(AuthenticationcontextclassreferenceDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcontextclassreferenceDeleteResponse> AuthenticationcontextclassreferenceDeleteAsync(AuthenticationcontextclassreferenceDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationcontextclassreferenceDeleteParameter, AuthenticationcontextclassreferenceDeleteResponse>(parameter, cancellationToken);
         }

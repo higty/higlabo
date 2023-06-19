@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitysecuritydefaultsenforcementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync()
+        public async ValueTask<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync()
         {
             var p = new IdentitysecuritydefaultsenforcementPolicyGetParameter();
             return await this.SendAsync<IdentitysecuritydefaultsenforcementPolicyGetParameter, IdentitysecuritydefaultsenforcementPolicyGetResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitysecuritydefaultsenforcementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new IdentitysecuritydefaultsenforcementPolicyGetParameter();
             return await this.SendAsync<IdentitysecuritydefaultsenforcementPolicyGetParameter, IdentitysecuritydefaultsenforcementPolicyGetResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitysecuritydefaultsenforcementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync(IdentitysecuritydefaultsenforcementPolicyGetParameter parameter)
+        public async ValueTask<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync(IdentitysecuritydefaultsenforcementPolicyGetParameter parameter)
         {
             return await this.SendAsync<IdentitysecuritydefaultsenforcementPolicyGetParameter, IdentitysecuritydefaultsenforcementPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitysecuritydefaultsenforcementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync(IdentitysecuritydefaultsenforcementPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentitysecuritydefaultsenforcementPolicyGetResponse> IdentitysecuritydefaultsenforcementPolicyGetAsync(IdentitysecuritydefaultsenforcementPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentitysecuritydefaultsenforcementPolicyGetParameter, IdentitysecuritydefaultsenforcementPolicyGetResponse>(parameter, cancellationToken);
         }

@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync()
+        public async ValueTask<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync()
         {
             var p = new DirectoryroleDeleteMemberParameter();
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryroleDeleteMemberParameter();
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(DirectoryroleDeleteMemberParameter parameter)
+        public async ValueTask<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(DirectoryroleDeleteMemberParameter parameter)
         {
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(DirectoryroleDeleteMemberParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(DirectoryroleDeleteMemberParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(parameter, cancellationToken);
         }

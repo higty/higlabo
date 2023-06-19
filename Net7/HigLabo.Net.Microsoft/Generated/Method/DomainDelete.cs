@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainDeleteResponse> DomainDeleteAsync()
+        public async ValueTask<DomainDeleteResponse> DomainDeleteAsync()
         {
             var p = new DomainDeleteParameter();
             return await this.SendAsync<DomainDeleteParameter, DomainDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainDeleteResponse> DomainDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainDeleteResponse> DomainDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DomainDeleteParameter();
             return await this.SendAsync<DomainDeleteParameter, DomainDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainDeleteResponse> DomainDeleteAsync(DomainDeleteParameter parameter)
+        public async ValueTask<DomainDeleteResponse> DomainDeleteAsync(DomainDeleteParameter parameter)
         {
             return await this.SendAsync<DomainDeleteParameter, DomainDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainDeleteResponse> DomainDeleteAsync(DomainDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainDeleteResponse> DomainDeleteAsync(DomainDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainDeleteParameter, DomainDeleteResponse>(parameter, cancellationToken);
         }

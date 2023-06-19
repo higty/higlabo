@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.getItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync()
+        public async ValueTask<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync()
         {
             var p = new AdminAuditAnomalyAllowGetItemParameter();
             return await this.SendAsync<AdminAuditAnomalyAllowGetItemParameter, AdminAuditAnomalyAllowGetItemResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.getItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAuditAnomalyAllowGetItemParameter();
             return await this.SendAsync<AdminAuditAnomalyAllowGetItemParameter, AdminAuditAnomalyAllowGetItemResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.getItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync(AdminAuditAnomalyAllowGetItemParameter parameter)
+        public async ValueTask<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync(AdminAuditAnomalyAllowGetItemParameter parameter)
         {
             return await this.SendAsync<AdminAuditAnomalyAllowGetItemParameter, AdminAuditAnomalyAllowGetItemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.audit.anomaly.allow.getItem
         /// </summary>
-        public async Task<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync(AdminAuditAnomalyAllowGetItemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuditAnomalyAllowGetItemResponse> AdminAuditAnomalyAllowGetItemAsync(AdminAuditAnomalyAllowGetItemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAuditAnomalyAllowGetItemParameter, AdminAuditAnomalyAllowGetItemResponse>(parameter, cancellationToken);
         }

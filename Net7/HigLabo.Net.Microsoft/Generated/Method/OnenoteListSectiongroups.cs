@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync()
+        public async ValueTask<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync()
         {
             var p = new OnenoteListSectionGroupsParameter();
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new OnenoteListSectionGroupsParameter();
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(OnenoteListSectionGroupsParameter parameter)
+        public async ValueTask<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(OnenoteListSectionGroupsParameter parameter)
         {
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(OnenoteListSectionGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(OnenoteListSectionGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(parameter, cancellationToken);
         }

@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync()
+        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync()
         {
             var p = new DeviceListTransitivememberofParameter();
             return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceListTransitivememberofParameter();
             return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(DeviceListTransitivememberofParameter parameter)
+        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(DeviceListTransitivememberofParameter parameter)
         {
             return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(DeviceListTransitivememberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(DeviceListTransitivememberofParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(parameter, cancellationToken);
         }

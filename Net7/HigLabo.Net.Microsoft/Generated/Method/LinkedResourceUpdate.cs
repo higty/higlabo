@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync()
+        public async ValueTask<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync()
         {
             var p = new LinkedResourceUpdateParameter();
             return await this.SendAsync<LinkedResourceUpdateParameter, LinkedResourceUpdateResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new LinkedResourceUpdateParameter();
             return await this.SendAsync<LinkedResourceUpdateParameter, LinkedResourceUpdateResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync(LinkedResourceUpdateParameter parameter)
+        public async ValueTask<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync(LinkedResourceUpdateParameter parameter)
         {
             return await this.SendAsync<LinkedResourceUpdateParameter, LinkedResourceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/linkedresource-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync(LinkedResourceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LinkedResourceUpdateResponse> LinkedResourceUpdateAsync(LinkedResourceUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LinkedResourceUpdateParameter, LinkedResourceUpdateResponse>(parameter, cancellationToken);
         }

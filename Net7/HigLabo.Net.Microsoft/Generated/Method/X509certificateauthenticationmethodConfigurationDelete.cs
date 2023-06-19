@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync()
+        public async ValueTask<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync()
         {
             var p = new X509certificateauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationDeleteParameter, X509certificateauthenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new X509certificateauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationDeleteParameter, X509certificateauthenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync(X509certificateauthenticationmethodConfigurationDeleteParameter parameter)
+        public async ValueTask<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync(X509certificateauthenticationmethodConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationDeleteParameter, X509certificateauthenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/x509certificateauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync(X509certificateauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<X509certificateauthenticationmethodConfigurationDeleteResponse> X509certificateauthenticationmethodConfigurationDeleteAsync(X509certificateauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<X509certificateauthenticationmethodConfigurationDeleteParameter, X509certificateauthenticationmethodConfigurationDeleteResponse>(parameter, cancellationToken);
         }

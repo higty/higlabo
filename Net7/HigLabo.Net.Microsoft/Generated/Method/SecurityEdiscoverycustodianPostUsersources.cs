@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-usersources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync()
+        public async ValueTask<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync()
         {
             var p = new SecurityEdiscoverycustodianPostUsersourcesParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianPostUsersourcesParameter, SecurityEdiscoverycustodianPostUsersourcesResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-usersources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycustodianPostUsersourcesParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianPostUsersourcesParameter, SecurityEdiscoverycustodianPostUsersourcesResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-usersources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync(SecurityEdiscoverycustodianPostUsersourcesParameter parameter)
+        public async ValueTask<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync(SecurityEdiscoverycustodianPostUsersourcesParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianPostUsersourcesParameter, SecurityEdiscoverycustodianPostUsersourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-usersources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync(SecurityEdiscoverycustodianPostUsersourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianPostUsersourcesResponse> SecurityEdiscoverycustodianPostUsersourcesAsync(SecurityEdiscoverycustodianPostUsersourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianPostUsersourcesParameter, SecurityEdiscoverycustodianPostUsersourcesResponse>(parameter, cancellationToken);
         }

@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync()
+        public async ValueTask<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync()
         {
             var p = new CalendarGroupDeleteParameter();
             return await this.SendAsync<CalendarGroupDeleteParameter, CalendarGroupDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGroupDeleteParameter();
             return await this.SendAsync<CalendarGroupDeleteParameter, CalendarGroupDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync(CalendarGroupDeleteParameter parameter)
+        public async ValueTask<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync(CalendarGroupDeleteParameter parameter)
         {
             return await this.SendAsync<CalendarGroupDeleteParameter, CalendarGroupDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendargroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync(CalendarGroupDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGroupDeleteResponse> CalendarGroupDeleteAsync(CalendarGroupDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGroupDeleteParameter, CalendarGroupDeleteResponse>(parameter, cancellationToken);
         }

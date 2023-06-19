@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync()
+        public async ValueTask<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync()
         {
             var p = new OpenTypeextensionUpdateParameter();
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new OpenTypeextensionUpdateParameter();
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(OpenTypeextensionUpdateParameter parameter)
+        public async ValueTask<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(OpenTypeextensionUpdateParameter parameter)
         {
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(OpenTypeextensionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(OpenTypeextensionUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(parameter, cancellationToken);
         }

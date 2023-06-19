@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync()
+        public async ValueTask<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync()
         {
             var p = new SecurityCasesRootDeleteEdiscoverycasesParameter();
             return await this.SendAsync<SecurityCasesRootDeleteEdiscoverycasesParameter, SecurityCasesRootDeleteEdiscoverycasesResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityCasesRootDeleteEdiscoverycasesParameter();
             return await this.SendAsync<SecurityCasesRootDeleteEdiscoverycasesParameter, SecurityCasesRootDeleteEdiscoverycasesResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync(SecurityCasesRootDeleteEdiscoverycasesParameter parameter)
+        public async ValueTask<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync(SecurityCasesRootDeleteEdiscoverycasesParameter parameter)
         {
             return await this.SendAsync<SecurityCasesRootDeleteEdiscoverycasesParameter, SecurityCasesRootDeleteEdiscoverycasesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync(SecurityCasesRootDeleteEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootDeleteEdiscoverycasesResponse> SecurityCasesRootDeleteEdiscoverycasesAsync(SecurityCasesRootDeleteEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityCasesRootDeleteEdiscoverycasesParameter, SecurityCasesRootDeleteEdiscoverycasesResponse>(parameter, cancellationToken);
         }

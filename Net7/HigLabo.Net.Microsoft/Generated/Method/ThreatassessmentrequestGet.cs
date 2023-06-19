@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync()
+        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync()
         {
             var p = new ThreatassessmentrequestGetParameter();
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(p, CancellationToken.None);
@@ -103,7 +103,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new ThreatassessmentrequestGetParameter();
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(p, cancellationToken);
@@ -111,14 +111,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter)
+        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter)
         {
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(parameter, cancellationToken);
         }

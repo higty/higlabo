@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync()
+        public async ValueTask<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync()
         {
             var p = new SecurityEdiscoverysearchGetParameter();
             return await this.SendAsync<SecurityEdiscoverysearchGetParameter, SecurityEdiscoverysearchGetResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverysearchGetParameter();
             return await this.SendAsync<SecurityEdiscoverysearchGetParameter, SecurityEdiscoverysearchGetResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync(SecurityEdiscoverysearchGetParameter parameter)
+        public async ValueTask<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync(SecurityEdiscoverysearchGetParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverysearchGetParameter, SecurityEdiscoverysearchGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync(SecurityEdiscoverysearchGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchGetResponse> SecurityEdiscoverysearchGetAsync(SecurityEdiscoverysearchGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverysearchGetParameter, SecurityEdiscoverysearchGetResponse>(parameter, cancellationToken);
         }

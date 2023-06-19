@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync()
+        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync()
         {
             var p = new OpenshiftchangerequestPostParameter();
             return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(CancellationToken cancellationToken)
         {
             var p = new OpenshiftchangerequestPostParameter();
             return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(OpenshiftchangerequestPostParameter parameter)
+        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(OpenshiftchangerequestPostParameter parameter)
         {
             return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(OpenshiftchangerequestPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(OpenshiftchangerequestPostParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(parameter, cancellationToken);
         }

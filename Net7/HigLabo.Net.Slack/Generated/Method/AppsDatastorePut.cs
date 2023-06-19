@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.put
         /// </summary>
-        public async Task<AppsDatastorePutResponse> AppsDatastorePutAsync(string? datastore, object? item)
+        public async ValueTask<AppsDatastorePutResponse> AppsDatastorePutAsync(string? datastore, object? item)
         {
             var p = new AppsDatastorePutParameter();
             p.Datastore = datastore;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.put
         /// </summary>
-        public async Task<AppsDatastorePutResponse> AppsDatastorePutAsync(string? datastore, object? item, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastorePutResponse> AppsDatastorePutAsync(string? datastore, object? item, CancellationToken cancellationToken)
         {
             var p = new AppsDatastorePutParameter();
             p.Datastore = datastore;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.put
         /// </summary>
-        public async Task<AppsDatastorePutResponse> AppsDatastorePutAsync(AppsDatastorePutParameter parameter)
+        public async ValueTask<AppsDatastorePutResponse> AppsDatastorePutAsync(AppsDatastorePutParameter parameter)
         {
             return await this.SendAsync<AppsDatastorePutParameter, AppsDatastorePutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.put
         /// </summary>
-        public async Task<AppsDatastorePutResponse> AppsDatastorePutAsync(AppsDatastorePutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastorePutResponse> AppsDatastorePutAsync(AppsDatastorePutParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsDatastorePutParameter, AppsDatastorePutResponse>(parameter, cancellationToken);
         }

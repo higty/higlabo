@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync()
+        public async ValueTask<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync()
         {
             var p = new SectionGroupPostSectionsParameter();
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(CancellationToken cancellationToken)
         {
             var p = new SectionGroupPostSectionsParameter();
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(SectionGroupPostSectionsParameter parameter)
+        public async ValueTask<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(SectionGroupPostSectionsParameter parameter)
         {
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(SectionGroupPostSectionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(SectionGroupPostSectionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(parameter, cancellationToken);
         }

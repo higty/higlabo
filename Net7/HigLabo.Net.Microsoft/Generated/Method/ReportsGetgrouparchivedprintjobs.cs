@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getgrouparchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync()
+        public async ValueTask<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync()
         {
             var p = new ReportsGetGrouparchivedprintjobsParameter();
             return await this.SendAsync<ReportsGetGrouparchivedprintjobsParameter, ReportsGetGrouparchivedprintjobsResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getgrouparchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportsGetGrouparchivedprintjobsParameter();
             return await this.SendAsync<ReportsGetGrouparchivedprintjobsParameter, ReportsGetGrouparchivedprintjobsResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getgrouparchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync(ReportsGetGrouparchivedprintjobsParameter parameter)
+        public async ValueTask<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync(ReportsGetGrouparchivedprintjobsParameter parameter)
         {
             return await this.SendAsync<ReportsGetGrouparchivedprintjobsParameter, ReportsGetGrouparchivedprintjobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reports-getgrouparchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync(ReportsGetGrouparchivedprintjobsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportsGetGrouparchivedprintjobsResponse> ReportsGetGrouparchivedprintjobsAsync(ReportsGetGrouparchivedprintjobsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportsGetGrouparchivedprintjobsParameter, ReportsGetGrouparchivedprintjobsResponse>(parameter, cancellationToken);
         }

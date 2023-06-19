@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync()
+        public async ValueTask<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync()
         {
             var p = new PlannerbucketDeleteParameter();
             return await this.SendAsync<PlannerbucketDeleteParameter, PlannerbucketDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerbucketDeleteParameter();
             return await this.SendAsync<PlannerbucketDeleteParameter, PlannerbucketDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync(PlannerbucketDeleteParameter parameter)
+        public async ValueTask<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync(PlannerbucketDeleteParameter parameter)
         {
             return await this.SendAsync<PlannerbucketDeleteParameter, PlannerbucketDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync(PlannerbucketDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerbucketDeleteResponse> PlannerbucketDeleteAsync(PlannerbucketDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerbucketDeleteParameter, PlannerbucketDeleteResponse>(parameter, cancellationToken);
         }

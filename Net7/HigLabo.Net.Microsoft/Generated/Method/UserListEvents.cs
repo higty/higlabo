@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListEventsResponse> UserListEventsAsync()
+        public async ValueTask<UserListEventsResponse> UserListEventsAsync()
         {
             var p = new UserListEventsParameter();
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(p, CancellationToken.None);
@@ -133,7 +133,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListEventsResponse> UserListEventsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListEventsResponse> UserListEventsAsync(CancellationToken cancellationToken)
         {
             var p = new UserListEventsParameter();
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(p, cancellationToken);
@@ -141,14 +141,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListEventsResponse> UserListEventsAsync(UserListEventsParameter parameter)
+        public async ValueTask<UserListEventsResponse> UserListEventsAsync(UserListEventsParameter parameter)
         {
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListEventsResponse> UserListEventsAsync(UserListEventsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListEventsResponse> UserListEventsAsync(UserListEventsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(parameter, cancellationToken);
         }

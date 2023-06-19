@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-acceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync()
+        public async ValueTask<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync()
         {
             var p = new AgreementListAcceptancesParameter();
             return await this.SendAsync<AgreementListAcceptancesParameter, AgreementListAcceptancesResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-acceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementListAcceptancesParameter();
             return await this.SendAsync<AgreementListAcceptancesParameter, AgreementListAcceptancesResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-acceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(AgreementListAcceptancesParameter parameter)
+        public async ValueTask<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(AgreementListAcceptancesParameter parameter)
         {
             return await this.SendAsync<AgreementListAcceptancesParameter, AgreementListAcceptancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-list-acceptances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(AgreementListAcceptancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(AgreementListAcceptancesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementListAcceptancesParameter, AgreementListAcceptancesResponse>(parameter, cancellationToken);
         }

@@ -37,7 +37,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(string? channel, string? ts)
+        public async ValueTask<ConversationsRepliesResponse> ConversationsRepliesAsync(string? channel, string? ts)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(string? channel, string? ts, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsRepliesResponse> ConversationsRepliesAsync(string? channel, string? ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -57,21 +57,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(ConversationsRepliesParameter parameter)
+        public async ValueTask<ConversationsRepliesResponse> ConversationsRepliesAsync(ConversationsRepliesParameter parameter)
         {
             return await this.SendAsync<ConversationsRepliesParameter, ConversationsRepliesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(ConversationsRepliesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsRepliesResponse> ConversationsRepliesAsync(ConversationsRepliesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsRepliesParameter, ConversationsRepliesResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts)
+        public async ValueTask<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts, CancellationToken cancellationToken)
+        public async ValueTask<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(ConversationsRepliesParameter parameter, PagingContext<ConversationsRepliesResponse> context)
+        public async ValueTask<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(ConversationsRepliesParameter parameter, PagingContext<ConversationsRepliesResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(ConversationsRepliesParameter parameter, PagingContext<ConversationsRepliesResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(ConversationsRepliesParameter parameter, PagingContext<ConversationsRepliesResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

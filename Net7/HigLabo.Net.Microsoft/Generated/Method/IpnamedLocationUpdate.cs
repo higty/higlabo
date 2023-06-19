@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync()
+        public async ValueTask<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync()
         {
             var p = new IpnamedLocationUpdateParameter();
             return await this.SendAsync<IpnamedLocationUpdateParameter, IpnamedLocationUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new IpnamedLocationUpdateParameter();
             return await this.SendAsync<IpnamedLocationUpdateParameter, IpnamedLocationUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync(IpnamedLocationUpdateParameter parameter)
+        public async ValueTask<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync(IpnamedLocationUpdateParameter parameter)
         {
             return await this.SendAsync<IpnamedLocationUpdateParameter, IpnamedLocationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync(IpnamedLocationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IpnamedLocationUpdateResponse> IpnamedLocationUpdateAsync(IpnamedLocationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IpnamedLocationUpdateParameter, IpnamedLocationUpdateResponse>(parameter, cancellationToken);
         }

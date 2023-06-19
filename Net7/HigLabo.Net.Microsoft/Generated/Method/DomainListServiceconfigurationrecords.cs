@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync()
+        public async ValueTask<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync()
         {
             var p = new DomainListServiceConfigurationrecordsParameter();
             return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(CancellationToken cancellationToken)
         {
             var p = new DomainListServiceConfigurationrecordsParameter();
             return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter)
+        public async ValueTask<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter)
         {
             return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(parameter, cancellationToken);
         }

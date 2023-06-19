@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostOwnersResponse> GroupPostOwnersAsync()
+        public async ValueTask<GroupPostOwnersResponse> GroupPostOwnersAsync()
         {
             var p = new GroupPostOwnersParameter();
             return await this.SendAsync<GroupPostOwnersParameter, GroupPostOwnersResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostOwnersResponse> GroupPostOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupPostOwnersResponse> GroupPostOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new GroupPostOwnersParameter();
             return await this.SendAsync<GroupPostOwnersParameter, GroupPostOwnersResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostOwnersResponse> GroupPostOwnersAsync(GroupPostOwnersParameter parameter)
+        public async ValueTask<GroupPostOwnersResponse> GroupPostOwnersAsync(GroupPostOwnersParameter parameter)
         {
             return await this.SendAsync<GroupPostOwnersParameter, GroupPostOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupPostOwnersResponse> GroupPostOwnersAsync(GroupPostOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupPostOwnersResponse> GroupPostOwnersAsync(GroupPostOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupPostOwnersParameter, GroupPostOwnersResponse>(parameter, cancellationToken);
         }

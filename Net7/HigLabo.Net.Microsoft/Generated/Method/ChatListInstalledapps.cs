@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync()
+        public async ValueTask<ChatListInstalledappsResponse> ChatListInstalledappsAsync()
         {
             var p = new ChatListInstalledappsParameter();
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatListInstalledappsResponse> ChatListInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatListInstalledappsParameter();
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync(ChatListInstalledappsParameter parameter)
+        public async ValueTask<ChatListInstalledappsResponse> ChatListInstalledappsAsync(ChatListInstalledappsParameter parameter)
         {
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync(ChatListInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatListInstalledappsResponse> ChatListInstalledappsAsync(ChatListInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(parameter, cancellationToken);
         }

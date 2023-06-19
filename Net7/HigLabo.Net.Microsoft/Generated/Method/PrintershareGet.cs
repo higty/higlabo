@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareGetResponse> PrintershareGetAsync()
+        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync()
         {
             var p = new PrintershareGetParameter();
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareGetResponse> PrintershareGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrintershareGetParameter();
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter)
+        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter)
         {
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(parameter, cancellationToken);
         }

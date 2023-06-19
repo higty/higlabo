@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcommentreply-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync()
+        public async ValueTask<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync()
         {
             var p = new WorkbookcommentreplyGetParameter();
             return await this.SendAsync<WorkbookcommentreplyGetParameter, WorkbookcommentreplyGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcommentreply-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookcommentreplyGetParameter();
             return await this.SendAsync<WorkbookcommentreplyGetParameter, WorkbookcommentreplyGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcommentreply-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync(WorkbookcommentreplyGetParameter parameter)
+        public async ValueTask<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync(WorkbookcommentreplyGetParameter parameter)
         {
             return await this.SendAsync<WorkbookcommentreplyGetParameter, WorkbookcommentreplyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcommentreply-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync(WorkbookcommentreplyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookcommentreplyGetResponse> WorkbookcommentreplyGetAsync(WorkbookcommentreplyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookcommentreplyGetParameter, WorkbookcommentreplyGetResponse>(parameter, cancellationToken);
         }

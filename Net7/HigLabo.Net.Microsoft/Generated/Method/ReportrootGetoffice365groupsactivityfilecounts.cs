@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync()
+        public async ValueTask<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync()
         {
             var p = new ReportRootGetoffice365GroupsactivityfilecountsParameter();
             return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetoffice365GroupsactivityfilecountsParameter();
             return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(ReportRootGetoffice365GroupsactivityfilecountsParameter parameter)
+        public async ValueTask<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(ReportRootGetoffice365GroupsactivityfilecountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(ReportRootGetoffice365GroupsactivityfilecountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(ReportRootGetoffice365GroupsactivityfilecountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(parameter, cancellationToken);
         }

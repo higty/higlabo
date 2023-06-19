@@ -185,7 +185,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventGetResponse> EventGetAsync()
+        public async ValueTask<EventGetResponse> EventGetAsync()
         {
             var p = new EventGetParameter();
             return await this.SendAsync<EventGetParameter, EventGetResponse>(p, CancellationToken.None);
@@ -193,7 +193,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventGetResponse> EventGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventGetResponse> EventGetAsync(CancellationToken cancellationToken)
         {
             var p = new EventGetParameter();
             return await this.SendAsync<EventGetParameter, EventGetResponse>(p, cancellationToken);
@@ -201,14 +201,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventGetResponse> EventGetAsync(EventGetParameter parameter)
+        public async ValueTask<EventGetResponse> EventGetAsync(EventGetParameter parameter)
         {
             return await this.SendAsync<EventGetParameter, EventGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventGetResponse> EventGetAsync(EventGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventGetResponse> EventGetAsync(EventGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventGetParameter, EventGetResponse>(parameter, cancellationToken);
         }

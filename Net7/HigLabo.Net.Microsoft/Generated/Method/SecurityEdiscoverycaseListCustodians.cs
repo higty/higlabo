@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync()
+        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync()
         {
             var p = new SecurityEdiscoverycaseListCustodiansParameter();
             return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseListCustodiansParameter();
             return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(SecurityEdiscoverycaseListCustodiansParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(SecurityEdiscoverycaseListCustodiansParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(SecurityEdiscoverycaseListCustodiansParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(SecurityEdiscoverycaseListCustodiansParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(parameter, cancellationToken);
         }

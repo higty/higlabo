@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffreasonGetResponse> TimeoffreasonGetAsync()
+        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync()
         {
             var p = new TimeoffreasonGetParameter();
             return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffreasonGetResponse> TimeoffreasonGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffreasonGetParameter();
             return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffreasonGetResponse> TimeoffreasonGetAsync(TimeoffreasonGetParameter parameter)
+        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync(TimeoffreasonGetParameter parameter)
         {
             return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffreasonGetResponse> TimeoffreasonGetAsync(TimeoffreasonGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync(TimeoffreasonGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(parameter, cancellationToken);
         }

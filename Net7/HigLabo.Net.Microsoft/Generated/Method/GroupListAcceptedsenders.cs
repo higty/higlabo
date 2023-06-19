@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync()
+        public async ValueTask<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync()
         {
             var p = new GroupListAcceptedsendersParameter();
             return await this.SendAsync<GroupListAcceptedsendersParameter, GroupListAcceptedsendersResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListAcceptedsendersParameter();
             return await this.SendAsync<GroupListAcceptedsendersParameter, GroupListAcceptedsendersResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync(GroupListAcceptedsendersParameter parameter)
+        public async ValueTask<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync(GroupListAcceptedsendersParameter parameter)
         {
             return await this.SendAsync<GroupListAcceptedsendersParameter, GroupListAcceptedsendersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-acceptedsenders?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync(GroupListAcceptedsendersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListAcceptedsendersResponse> GroupListAcceptedsendersAsync(GroupListAcceptedsendersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListAcceptedsendersParameter, GroupListAcceptedsendersResponse>(parameter, cancellationToken);
         }

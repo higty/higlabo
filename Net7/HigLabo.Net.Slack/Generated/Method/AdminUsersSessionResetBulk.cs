@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.resetBulk
         /// </summary>
-        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string? user_Ids)
+        public async ValueTask<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string? user_Ids)
         {
             var p = new AdminUsersSessionResetBulkParameter();
             p.User_Ids = user_Ids;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.resetBulk
         /// </summary>
-        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string? user_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionResetBulkParameter();
             p.User_Ids = user_Ids;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.resetBulk
         /// </summary>
-        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(AdminUsersSessionResetBulkParameter parameter)
+        public async ValueTask<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(AdminUsersSessionResetBulkParameter parameter)
         {
             return await this.SendAsync<AdminUsersSessionResetBulkParameter, AdminUsersSessionResetBulkResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.resetBulk
         /// </summary>
-        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(AdminUsersSessionResetBulkParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(AdminUsersSessionResetBulkParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSessionResetBulkParameter, AdminUsersSessionResetBulkResponse>(parameter, cancellationToken);
         }

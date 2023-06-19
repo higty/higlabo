@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListMembersResponse> GroupListMembersAsync()
+        public async ValueTask<GroupListMembersResponse> GroupListMembersAsync()
         {
             var p = new GroupListMembersParameter();
             return await this.SendAsync<GroupListMembersParameter, GroupListMembersResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListMembersResponse> GroupListMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListMembersResponse> GroupListMembersAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListMembersParameter();
             return await this.SendAsync<GroupListMembersParameter, GroupListMembersResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListMembersResponse> GroupListMembersAsync(GroupListMembersParameter parameter)
+        public async ValueTask<GroupListMembersResponse> GroupListMembersAsync(GroupListMembersParameter parameter)
         {
             return await this.SendAsync<GroupListMembersParameter, GroupListMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListMembersResponse> GroupListMembersAsync(GroupListMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListMembersResponse> GroupListMembersAsync(GroupListMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListMembersParameter, GroupListMembersResponse>(parameter, cancellationToken);
         }

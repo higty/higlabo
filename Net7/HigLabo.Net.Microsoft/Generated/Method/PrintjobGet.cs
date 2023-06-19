@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobGetResponse> PrintjobGetAsync()
+        public async ValueTask<PrintjobGetResponse> PrintjobGetAsync()
         {
             var p = new PrintjobGetParameter();
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobGetResponse> PrintjobGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintjobGetResponse> PrintjobGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrintjobGetParameter();
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobGetResponse> PrintjobGetAsync(PrintjobGetParameter parameter)
+        public async ValueTask<PrintjobGetResponse> PrintjobGetAsync(PrintjobGetParameter parameter)
         {
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintjobGetResponse> PrintjobGetAsync(PrintjobGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintjobGetResponse> PrintjobGetAsync(PrintjobGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(parameter, cancellationToken);
         }

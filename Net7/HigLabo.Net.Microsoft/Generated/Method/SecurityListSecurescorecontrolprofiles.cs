@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync()
+        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync()
         {
             var p = new SecurityListSecurescorecontrolprofilesParameter();
             return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityListSecurescorecontrolprofilesParameter();
             return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(SecurityListSecurescorecontrolprofilesParameter parameter)
+        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(SecurityListSecurescorecontrolprofilesParameter parameter)
         {
             return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(SecurityListSecurescorecontrolprofilesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(SecurityListSecurescorecontrolprofilesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(parameter, cancellationToken);
         }

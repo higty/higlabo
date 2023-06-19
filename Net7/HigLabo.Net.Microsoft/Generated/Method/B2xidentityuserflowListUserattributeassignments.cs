@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync()
+        public async ValueTask<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync()
         {
             var p = new B2xidentityUserflowListUserattributeAssignmentsParameter();
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new B2xidentityUserflowListUserattributeAssignmentsParameter();
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(B2xidentityUserflowListUserattributeAssignmentsParameter parameter)
+        public async ValueTask<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(B2xidentityUserflowListUserattributeAssignmentsParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(B2xidentityUserflowListUserattributeAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(B2xidentityUserflowListUserattributeAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(parameter, cancellationToken);
         }

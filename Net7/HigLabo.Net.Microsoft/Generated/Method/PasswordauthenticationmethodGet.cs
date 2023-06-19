@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/passwordauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync()
+        public async ValueTask<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync()
         {
             var p = new PasswordauthenticationmethodGetParameter();
             return await this.SendAsync<PasswordauthenticationmethodGetParameter, PasswordauthenticationmethodGetResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/passwordauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync(CancellationToken cancellationToken)
         {
             var p = new PasswordauthenticationmethodGetParameter();
             return await this.SendAsync<PasswordauthenticationmethodGetParameter, PasswordauthenticationmethodGetResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/passwordauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync(PasswordauthenticationmethodGetParameter parameter)
+        public async ValueTask<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync(PasswordauthenticationmethodGetParameter parameter)
         {
             return await this.SendAsync<PasswordauthenticationmethodGetParameter, PasswordauthenticationmethodGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/passwordauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync(PasswordauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PasswordauthenticationmethodGetResponse> PasswordauthenticationmethodGetAsync(PasswordauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PasswordauthenticationmethodGetParameter, PasswordauthenticationmethodGetResponse>(parameter, cancellationToken);
         }

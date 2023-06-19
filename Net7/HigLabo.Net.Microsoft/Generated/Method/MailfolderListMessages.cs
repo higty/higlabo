@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListMessagesResponse> MailfolderListMessagesAsync()
+        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync()
         {
             var p = new MailfolderListMessagesParameter();
             return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(p, CancellationToken.None);
@@ -106,7 +106,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListMessagesResponse> MailfolderListMessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync(CancellationToken cancellationToken)
         {
             var p = new MailfolderListMessagesParameter();
             return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(p, cancellationToken);
@@ -114,14 +114,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListMessagesResponse> MailfolderListMessagesAsync(MailfolderListMessagesParameter parameter)
+        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync(MailfolderListMessagesParameter parameter)
         {
             return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async Task<MailfolderListMessagesResponse> MailfolderListMessagesAsync(MailfolderListMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync(MailfolderListMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(parameter, cancellationToken);
         }

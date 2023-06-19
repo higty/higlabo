@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartImageResponse> ChartImageAsync()
+        public async ValueTask<ChartImageResponse> ChartImageAsync()
         {
             var p = new ChartImageParameter();
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartImageResponse> ChartImageAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartImageResponse> ChartImageAsync(CancellationToken cancellationToken)
         {
             var p = new ChartImageParameter();
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartImageResponse> ChartImageAsync(ChartImageParameter parameter)
+        public async ValueTask<ChartImageResponse> ChartImageAsync(ChartImageParameter parameter)
         {
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartImageResponse> ChartImageAsync(ChartImageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartImageResponse> ChartImageAsync(ChartImageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(parameter, cancellationToken);
         }

@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.sharedPublicURL
         /// </summary>
-        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string? file)
+        public async ValueTask<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string? file)
         {
             var p = new FilesSharedPublicURLParameter();
             p.File = file;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.sharedPublicURL
         /// </summary>
-        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string? file, CancellationToken cancellationToken)
+        public async ValueTask<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesSharedPublicURLParameter();
             p.File = file;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.sharedPublicURL
         /// </summary>
-        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(FilesSharedPublicURLParameter parameter)
+        public async ValueTask<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(FilesSharedPublicURLParameter parameter)
         {
             return await this.SendAsync<FilesSharedPublicURLParameter, FilesSharedPublicURLResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.sharedPublicURL
         /// </summary>
-        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(FilesSharedPublicURLParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(FilesSharedPublicURLParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesSharedPublicURLParameter, FilesSharedPublicURLResponse>(parameter, cancellationToken);
         }

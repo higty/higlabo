@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementDeleteResponse> AgreementDeleteAsync()
+        public async ValueTask<AgreementDeleteResponse> AgreementDeleteAsync()
         {
             var p = new AgreementDeleteParameter();
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementDeleteResponse> AgreementDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementDeleteResponse> AgreementDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementDeleteParameter();
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementDeleteResponse> AgreementDeleteAsync(AgreementDeleteParameter parameter)
+        public async ValueTask<AgreementDeleteResponse> AgreementDeleteAsync(AgreementDeleteParameter parameter)
         {
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementDeleteResponse> AgreementDeleteAsync(AgreementDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementDeleteResponse> AgreementDeleteAsync(AgreementDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(parameter, cancellationToken);
         }

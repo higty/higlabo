@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync()
+        public async ValueTask<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync()
         {
             var p = new AuthenticationstrengthRootListAuthenticationmethodmodesParameter();
             return await this.SendAsync<AuthenticationstrengthRootListAuthenticationmethodmodesParameter, AuthenticationstrengthRootListAuthenticationmethodmodesResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationstrengthRootListAuthenticationmethodmodesParameter();
             return await this.SendAsync<AuthenticationstrengthRootListAuthenticationmethodmodesParameter, AuthenticationstrengthRootListAuthenticationmethodmodesResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync(AuthenticationstrengthRootListAuthenticationmethodmodesParameter parameter)
+        public async ValueTask<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync(AuthenticationstrengthRootListAuthenticationmethodmodesParameter parameter)
         {
             return await this.SendAsync<AuthenticationstrengthRootListAuthenticationmethodmodesParameter, AuthenticationstrengthRootListAuthenticationmethodmodesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync(AuthenticationstrengthRootListAuthenticationmethodmodesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthRootListAuthenticationmethodmodesResponse> AuthenticationstrengthRootListAuthenticationmethodmodesAsync(AuthenticationstrengthRootListAuthenticationmethodmodesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthRootListAuthenticationmethodmodesParameter, AuthenticationstrengthRootListAuthenticationmethodmodesResponse>(parameter, cancellationToken);
         }

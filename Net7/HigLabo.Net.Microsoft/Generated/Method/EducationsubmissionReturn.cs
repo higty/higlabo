@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-return?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync()
+        public async ValueTask<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync()
         {
             var p = new EducationsubmissionReturnParameter();
             return await this.SendAsync<EducationsubmissionReturnParameter, EducationsubmissionReturnResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-return?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync(CancellationToken cancellationToken)
         {
             var p = new EducationsubmissionReturnParameter();
             return await this.SendAsync<EducationsubmissionReturnParameter, EducationsubmissionReturnResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-return?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync(EducationsubmissionReturnParameter parameter)
+        public async ValueTask<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync(EducationsubmissionReturnParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionReturnParameter, EducationsubmissionReturnResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-return?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync(EducationsubmissionReturnParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionReturnResponse> EducationsubmissionReturnAsync(EducationsubmissionReturnParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationsubmissionReturnParameter, EducationsubmissionReturnResponse>(parameter, cancellationToken);
         }

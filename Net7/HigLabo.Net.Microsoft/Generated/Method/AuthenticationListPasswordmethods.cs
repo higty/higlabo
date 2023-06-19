@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-passwordmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync()
+        public async ValueTask<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync()
         {
             var p = new AuthenticationListPasswordmethodsParameter();
             return await this.SendAsync<AuthenticationListPasswordmethodsParameter, AuthenticationListPasswordmethodsResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-passwordmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationListPasswordmethodsParameter();
             return await this.SendAsync<AuthenticationListPasswordmethodsParameter, AuthenticationListPasswordmethodsResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-passwordmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync(AuthenticationListPasswordmethodsParameter parameter)
+        public async ValueTask<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync(AuthenticationListPasswordmethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListPasswordmethodsParameter, AuthenticationListPasswordmethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authentication-list-passwordmethods?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync(AuthenticationListPasswordmethodsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationListPasswordmethodsResponse> AuthenticationListPasswordmethodsAsync(AuthenticationListPasswordmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListPasswordmethodsParameter, AuthenticationListPasswordmethodsResponse>(parameter, cancellationToken);
         }

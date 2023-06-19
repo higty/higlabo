@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.join
         /// </summary>
-        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(string? channel)
+        public async ValueTask<ConversationsJoinResponse> ConversationsJoinAsync(string? channel)
         {
             var p = new ConversationsJoinParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.join
         /// </summary>
-        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsJoinResponse> ConversationsJoinAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsJoinParameter();
             p.Channel = channel;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.join
         /// </summary>
-        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(ConversationsJoinParameter parameter)
+        public async ValueTask<ConversationsJoinResponse> ConversationsJoinAsync(ConversationsJoinParameter parameter)
         {
             return await this.SendAsync<ConversationsJoinParameter, ConversationsJoinResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.join
         /// </summary>
-        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(ConversationsJoinParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsJoinResponse> ConversationsJoinAsync(ConversationsJoinParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsJoinParameter, ConversationsJoinResponse>(parameter, cancellationToken);
         }

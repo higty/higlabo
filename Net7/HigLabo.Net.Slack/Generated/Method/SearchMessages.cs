@@ -37,7 +37,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<SearchMessagesResponse> SearchMessagesAsync(string? query)
+        public async ValueTask<SearchMessagesResponse> SearchMessagesAsync(string? query)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<SearchMessagesResponse> SearchMessagesAsync(string? query, CancellationToken cancellationToken)
+        public async ValueTask<SearchMessagesResponse> SearchMessagesAsync(string? query, CancellationToken cancellationToken)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -55,21 +55,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<SearchMessagesResponse> SearchMessagesAsync(SearchMessagesParameter parameter)
+        public async ValueTask<SearchMessagesResponse> SearchMessagesAsync(SearchMessagesParameter parameter)
         {
             return await this.SendAsync<SearchMessagesParameter, SearchMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<SearchMessagesResponse> SearchMessagesAsync(SearchMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SearchMessagesResponse> SearchMessagesAsync(SearchMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SearchMessagesParameter, SearchMessagesResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context)
+        public async ValueTask<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(SearchMessagesParameter parameter, PagingContext<SearchMessagesResponse> context)
+        public async ValueTask<List<SearchMessagesResponse>> SearchMessagesAsync(SearchMessagesParameter parameter, PagingContext<SearchMessagesResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(SearchMessagesParameter parameter, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<SearchMessagesResponse>> SearchMessagesAsync(SearchMessagesParameter parameter, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync()
+        public async ValueTask<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync()
         {
             var p = new ReportRootGetonedriveusageAccountcountsParameter();
             return await this.SendAsync<ReportRootGetonedriveusageAccountcountsParameter, ReportRootGetonedriveusageAccountcountsResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetonedriveusageAccountcountsParameter();
             return await this.SendAsync<ReportRootGetonedriveusageAccountcountsParameter, ReportRootGetonedriveusageAccountcountsResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync(ReportRootGetonedriveusageAccountcountsParameter parameter)
+        public async ValueTask<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync(ReportRootGetonedriveusageAccountcountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetonedriveusageAccountcountsParameter, ReportRootGetonedriveusageAccountcountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync(ReportRootGetonedriveusageAccountcountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetonedriveusageAccountcountsResponse> ReportRootGetonedriveusageAccountcountsAsync(ReportRootGetonedriveusageAccountcountsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetonedriveusageAccountcountsParameter, ReportRootGetonedriveusageAccountcountsResponse>(parameter, cancellationToken);
         }

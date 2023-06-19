@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.create
         /// </summary>
-        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects)
+        public async ValueTask<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects)
         {
             var p = new AdminBarriersCreateParameter();
             p.Barriered_From_Usergroup_Ids = barriered_From_Usergroup_Ids;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.create
         /// </summary>
-        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects, CancellationToken cancellationToken)
+        public async ValueTask<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersCreateParameter();
             p.Barriered_From_Usergroup_Ids = barriered_From_Usergroup_Ids;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.create
         /// </summary>
-        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(AdminBarriersCreateParameter parameter)
+        public async ValueTask<AdminBarriersCreateResponse> AdminBarriersCreateAsync(AdminBarriersCreateParameter parameter)
         {
             return await this.SendAsync<AdminBarriersCreateParameter, AdminBarriersCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.create
         /// </summary>
-        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(AdminBarriersCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminBarriersCreateResponse> AdminBarriersCreateAsync(AdminBarriersCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminBarriersCreateParameter, AdminBarriersCreateResponse>(parameter, cancellationToken);
         }

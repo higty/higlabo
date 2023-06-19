@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync()
+        public async ValueTask<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync()
         {
             var p = new UnifiedroleAssignmentscheduleinstanceGetParameter();
             return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceGetParameter, UnifiedroleAssignmentscheduleinstanceGetResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroleAssignmentscheduleinstanceGetParameter();
             return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceGetParameter, UnifiedroleAssignmentscheduleinstanceGetResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync(UnifiedroleAssignmentscheduleinstanceGetParameter parameter)
+        public async ValueTask<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync(UnifiedroleAssignmentscheduleinstanceGetParameter parameter)
         {
             return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceGetParameter, UnifiedroleAssignmentscheduleinstanceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync(UnifiedroleAssignmentscheduleinstanceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleAssignmentscheduleinstanceGetResponse> UnifiedroleAssignmentscheduleinstanceGetAsync(UnifiedroleAssignmentscheduleinstanceGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceGetParameter, UnifiedroleAssignmentscheduleinstanceGetResponse>(parameter, cancellationToken);
         }

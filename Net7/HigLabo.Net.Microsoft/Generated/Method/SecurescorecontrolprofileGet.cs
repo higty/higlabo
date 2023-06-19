@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync()
+        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync()
         {
             var p = new SecurescorecontrolprofileGetParameter();
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurescorecontrolprofileGetParameter();
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter)
+        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter)
         {
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(parameter, cancellationToken);
         }

@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync()
+        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync()
         {
             var p = new RbacapplicationListRoleAssignmentsParameter();
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new RbacapplicationListRoleAssignmentsParameter();
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter)
+        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter)
         {
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(parameter, cancellationToken);
         }

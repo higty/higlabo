@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync()
+        public async ValueTask<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync()
         {
             var p = new ExternalConnectorsExternalconnectionDeleteParameter();
             return await this.SendAsync<ExternalConnectorsExternalconnectionDeleteParameter, ExternalConnectorsExternalconnectionDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsExternalconnectionDeleteParameter();
             return await this.SendAsync<ExternalConnectorsExternalconnectionDeleteParameter, ExternalConnectorsExternalconnectionDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync(ExternalConnectorsExternalconnectionDeleteParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync(ExternalConnectorsExternalconnectionDeleteParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionDeleteParameter, ExternalConnectorsExternalconnectionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync(ExternalConnectorsExternalconnectionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalconnectionDeleteResponse> ExternalConnectorsExternalconnectionDeleteAsync(ExternalConnectorsExternalconnectionDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionDeleteParameter, ExternalConnectorsExternalconnectionDeleteResponse>(parameter, cancellationToken);
         }

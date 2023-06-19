@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateEventResponse> GroupUpdateEventAsync()
+        public async ValueTask<GroupUpdateEventResponse> GroupUpdateEventAsync()
         {
             var p = new GroupUpdateEventParameter();
             return await this.SendAsync<GroupUpdateEventParameter, GroupUpdateEventResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateEventResponse> GroupUpdateEventAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupUpdateEventResponse> GroupUpdateEventAsync(CancellationToken cancellationToken)
         {
             var p = new GroupUpdateEventParameter();
             return await this.SendAsync<GroupUpdateEventParameter, GroupUpdateEventResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateEventResponse> GroupUpdateEventAsync(GroupUpdateEventParameter parameter)
+        public async ValueTask<GroupUpdateEventResponse> GroupUpdateEventAsync(GroupUpdateEventParameter parameter)
         {
             return await this.SendAsync<GroupUpdateEventParameter, GroupUpdateEventResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-update-event?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupUpdateEventResponse> GroupUpdateEventAsync(GroupUpdateEventParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupUpdateEventResponse> GroupUpdateEventAsync(GroupUpdateEventParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupUpdateEventParameter, GroupUpdateEventResponse>(parameter, cancellationToken);
         }

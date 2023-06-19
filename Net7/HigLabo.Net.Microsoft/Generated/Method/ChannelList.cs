@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListResponse> ChannelListAsync()
+        public async ValueTask<ChannelListResponse> ChannelListAsync()
         {
             var p = new ChannelListParameter();
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListResponse> ChannelListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelListResponse> ChannelListAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelListParameter();
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListResponse> ChannelListAsync(ChannelListParameter parameter)
+        public async ValueTask<ChannelListResponse> ChannelListAsync(ChannelListParameter parameter)
         {
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelListResponse> ChannelListAsync(ChannelListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelListResponse> ChannelListAsync(ChannelListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(parameter, cancellationToken);
         }

@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListOperationsResponse> ListListOperationsAsync()
+        public async ValueTask<ListListOperationsResponse> ListListOperationsAsync()
         {
             var p = new ListListOperationsParameter();
             return await this.SendAsync<ListListOperationsParameter, ListListOperationsResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListOperationsResponse> ListListOperationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListListOperationsResponse> ListListOperationsAsync(CancellationToken cancellationToken)
         {
             var p = new ListListOperationsParameter();
             return await this.SendAsync<ListListOperationsParameter, ListListOperationsResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListOperationsResponse> ListListOperationsAsync(ListListOperationsParameter parameter)
+        public async ValueTask<ListListOperationsResponse> ListListOperationsAsync(ListListOperationsParameter parameter)
         {
             return await this.SendAsync<ListListOperationsParameter, ListListOperationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListListOperationsResponse> ListListOperationsAsync(ListListOperationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListListOperationsResponse> ListListOperationsAsync(ListListOperationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListListOperationsParameter, ListListOperationsResponse>(parameter, cancellationToken);
         }

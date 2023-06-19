@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamArchiveResponse> TeamArchiveAsync()
+        public async ValueTask<TeamArchiveResponse> TeamArchiveAsync()
         {
             var p = new TeamArchiveParameter();
             return await this.SendAsync<TeamArchiveParameter, TeamArchiveResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamArchiveResponse> TeamArchiveAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamArchiveResponse> TeamArchiveAsync(CancellationToken cancellationToken)
         {
             var p = new TeamArchiveParameter();
             return await this.SendAsync<TeamArchiveParameter, TeamArchiveResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamArchiveResponse> TeamArchiveAsync(TeamArchiveParameter parameter)
+        public async ValueTask<TeamArchiveResponse> TeamArchiveAsync(TeamArchiveParameter parameter)
         {
             return await this.SendAsync<TeamArchiveParameter, TeamArchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-archive?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamArchiveResponse> TeamArchiveAsync(TeamArchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamArchiveResponse> TeamArchiveAsync(TeamArchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamArchiveParameter, TeamArchiveResponse>(parameter, cancellationToken);
         }

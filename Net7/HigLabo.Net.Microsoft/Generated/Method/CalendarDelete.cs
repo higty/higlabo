@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarDeleteResponse> CalendarDeleteAsync()
+        public async ValueTask<CalendarDeleteResponse> CalendarDeleteAsync()
         {
             var p = new CalendarDeleteParameter();
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarDeleteResponse> CalendarDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarDeleteResponse> CalendarDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarDeleteParameter();
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarDeleteResponse> CalendarDeleteAsync(CalendarDeleteParameter parameter)
+        public async ValueTask<CalendarDeleteResponse> CalendarDeleteAsync(CalendarDeleteParameter parameter)
         {
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarDeleteResponse> CalendarDeleteAsync(CalendarDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarDeleteResponse> CalendarDeleteAsync(CalendarDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(parameter, cancellationToken);
         }

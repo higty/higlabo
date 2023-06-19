@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync()
+        public async ValueTask<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync()
         {
             var p = new ScheduleListTimesoffParameter();
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(CancellationToken cancellationToken)
         {
             var p = new ScheduleListTimesoffParameter();
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(ScheduleListTimesoffParameter parameter)
+        public async ValueTask<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(ScheduleListTimesoffParameter parameter)
         {
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(ScheduleListTimesoffParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(ScheduleListTimesoffParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(parameter, cancellationToken);
         }

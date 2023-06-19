@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync()
+        public async ValueTask<InsightsListTrendingResponse> InsightsListTrendingAsync()
         {
             var p = new InsightsListTrendingParameter();
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync(CancellationToken cancellationToken)
+        public async ValueTask<InsightsListTrendingResponse> InsightsListTrendingAsync(CancellationToken cancellationToken)
         {
             var p = new InsightsListTrendingParameter();
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync(InsightsListTrendingParameter parameter)
+        public async ValueTask<InsightsListTrendingResponse> InsightsListTrendingAsync(InsightsListTrendingParameter parameter)
         {
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync(InsightsListTrendingParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InsightsListTrendingResponse> InsightsListTrendingAsync(InsightsListTrendingParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(parameter, cancellationToken);
         }

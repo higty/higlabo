@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync()
+        public async ValueTask<ChannelPostTabsResponse> ChannelPostTabsAsync()
         {
             var p = new ChannelPostTabsParameter();
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelPostTabsResponse> ChannelPostTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelPostTabsParameter();
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync(ChannelPostTabsParameter parameter)
+        public async ValueTask<ChannelPostTabsResponse> ChannelPostTabsAsync(ChannelPostTabsParameter parameter)
         {
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync(ChannelPostTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelPostTabsResponse> ChannelPostTabsAsync(ChannelPostTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(parameter, cancellationToken);
         }

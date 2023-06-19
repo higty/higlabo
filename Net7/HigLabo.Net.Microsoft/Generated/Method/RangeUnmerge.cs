@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUnmergeResponse> RangeUnmergeAsync()
+        public async ValueTask<RangeUnmergeResponse> RangeUnmergeAsync()
         {
             var p = new RangeUnmergeParameter();
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUnmergeResponse> RangeUnmergeAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeUnmergeResponse> RangeUnmergeAsync(CancellationToken cancellationToken)
         {
             var p = new RangeUnmergeParameter();
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUnmergeResponse> RangeUnmergeAsync(RangeUnmergeParameter parameter)
+        public async ValueTask<RangeUnmergeResponse> RangeUnmergeAsync(RangeUnmergeParameter parameter)
         {
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeUnmergeResponse> RangeUnmergeAsync(RangeUnmergeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeUnmergeResponse> RangeUnmergeAsync(RangeUnmergeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(parameter, cancellationToken);
         }

@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.profile.set
         /// </summary>
-        public async Task<UsersProfileSetResponse> UsersProfileSetAsync()
+        public async ValueTask<UsersProfileSetResponse> UsersProfileSetAsync()
         {
             var p = new UsersProfileSetParameter();
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(p, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.profile.set
         /// </summary>
-        public async Task<UsersProfileSetResponse> UsersProfileSetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersProfileSetResponse> UsersProfileSetAsync(CancellationToken cancellationToken)
         {
             var p = new UsersProfileSetParameter();
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(p, cancellationToken);
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.profile.set
         /// </summary>
-        public async Task<UsersProfileSetResponse> UsersProfileSetAsync(UsersProfileSetParameter parameter)
+        public async ValueTask<UsersProfileSetResponse> UsersProfileSetAsync(UsersProfileSetParameter parameter)
         {
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.profile.set
         /// </summary>
-        public async Task<UsersProfileSetResponse> UsersProfileSetAsync(UsersProfileSetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersProfileSetResponse> UsersProfileSetAsync(UsersProfileSetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(parameter, cancellationToken);
         }

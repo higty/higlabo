@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync()
+        public async ValueTask<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync()
         {
             var p = new SecurityEdiscoveryreviewsetqueryApplytagsParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewsetqueryApplytagsParameter, SecurityEdiscoveryreviewsetqueryApplytagsResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoveryreviewsetqueryApplytagsParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewsetqueryApplytagsParameter, SecurityEdiscoveryreviewsetqueryApplytagsResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync(SecurityEdiscoveryreviewsetqueryApplytagsParameter parameter)
+        public async ValueTask<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync(SecurityEdiscoveryreviewsetqueryApplytagsParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewsetqueryApplytagsParameter, SecurityEdiscoveryreviewsetqueryApplytagsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync(SecurityEdiscoveryreviewsetqueryApplytagsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewsetqueryApplytagsResponse> SecurityEdiscoveryreviewsetqueryApplytagsAsync(SecurityEdiscoveryreviewsetqueryApplytagsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewsetqueryApplytagsParameter, SecurityEdiscoveryreviewsetqueryApplytagsResponse>(parameter, cancellationToken);
         }

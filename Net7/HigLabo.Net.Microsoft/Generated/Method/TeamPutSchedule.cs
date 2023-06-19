@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-schedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutScheduleResponse> TeamPutScheduleAsync()
+        public async ValueTask<TeamPutScheduleResponse> TeamPutScheduleAsync()
         {
             var p = new TeamPutScheduleParameter();
             return await this.SendAsync<TeamPutScheduleParameter, TeamPutScheduleResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-schedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutScheduleResponse> TeamPutScheduleAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamPutScheduleResponse> TeamPutScheduleAsync(CancellationToken cancellationToken)
         {
             var p = new TeamPutScheduleParameter();
             return await this.SendAsync<TeamPutScheduleParameter, TeamPutScheduleResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-schedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutScheduleResponse> TeamPutScheduleAsync(TeamPutScheduleParameter parameter)
+        public async ValueTask<TeamPutScheduleResponse> TeamPutScheduleAsync(TeamPutScheduleParameter parameter)
         {
             return await this.SendAsync<TeamPutScheduleParameter, TeamPutScheduleResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-schedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutScheduleResponse> TeamPutScheduleAsync(TeamPutScheduleParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamPutScheduleResponse> TeamPutScheduleAsync(TeamPutScheduleParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamPutScheduleParameter, TeamPutScheduleResponse>(parameter, cancellationToken);
         }

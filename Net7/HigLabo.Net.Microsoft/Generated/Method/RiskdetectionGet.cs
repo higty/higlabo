@@ -135,7 +135,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionGetResponse> RiskdetectionGetAsync()
+        public async ValueTask<RiskdetectionGetResponse> RiskdetectionGetAsync()
         {
             var p = new RiskdetectionGetParameter();
             return await this.SendAsync<RiskdetectionGetParameter, RiskdetectionGetResponse>(p, CancellationToken.None);
@@ -143,7 +143,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionGetResponse> RiskdetectionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskdetectionGetResponse> RiskdetectionGetAsync(CancellationToken cancellationToken)
         {
             var p = new RiskdetectionGetParameter();
             return await this.SendAsync<RiskdetectionGetParameter, RiskdetectionGetResponse>(p, cancellationToken);
@@ -151,14 +151,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionGetResponse> RiskdetectionGetAsync(RiskdetectionGetParameter parameter)
+        public async ValueTask<RiskdetectionGetResponse> RiskdetectionGetAsync(RiskdetectionGetParameter parameter)
         {
             return await this.SendAsync<RiskdetectionGetParameter, RiskdetectionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionGetResponse> RiskdetectionGetAsync(RiskdetectionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskdetectionGetResponse> RiskdetectionGetAsync(RiskdetectionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskdetectionGetParameter, RiskdetectionGetResponse>(parameter, cancellationToken);
         }

@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync()
+        public async ValueTask<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync()
         {
             var p = new FederatedidentitycredentialDeleteParameter();
             return await this.SendAsync<FederatedidentitycredentialDeleteParameter, FederatedidentitycredentialDeleteResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new FederatedidentitycredentialDeleteParameter();
             return await this.SendAsync<FederatedidentitycredentialDeleteParameter, FederatedidentitycredentialDeleteResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync(FederatedidentitycredentialDeleteParameter parameter)
+        public async ValueTask<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync(FederatedidentitycredentialDeleteParameter parameter)
         {
             return await this.SendAsync<FederatedidentitycredentialDeleteParameter, FederatedidentitycredentialDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/federatedidentitycredential-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync(FederatedidentitycredentialDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FederatedidentitycredentialDeleteResponse> FederatedidentitycredentialDeleteAsync(FederatedidentitycredentialDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FederatedidentitycredentialDeleteParameter, FederatedidentitycredentialDeleteResponse>(parameter, cancellationToken);
         }

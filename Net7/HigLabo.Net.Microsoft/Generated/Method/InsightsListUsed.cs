@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListUsedResponse> InsightsListUsedAsync()
+        public async ValueTask<InsightsListUsedResponse> InsightsListUsedAsync()
         {
             var p = new InsightsListUsedParameter();
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListUsedResponse> InsightsListUsedAsync(CancellationToken cancellationToken)
+        public async ValueTask<InsightsListUsedResponse> InsightsListUsedAsync(CancellationToken cancellationToken)
         {
             var p = new InsightsListUsedParameter();
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListUsedResponse> InsightsListUsedAsync(InsightsListUsedParameter parameter)
+        public async ValueTask<InsightsListUsedResponse> InsightsListUsedAsync(InsightsListUsedParameter parameter)
         {
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
-        public async Task<InsightsListUsedResponse> InsightsListUsedAsync(InsightsListUsedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InsightsListUsedResponse> InsightsListUsedAsync(InsightsListUsedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(parameter, cancellationToken);
         }

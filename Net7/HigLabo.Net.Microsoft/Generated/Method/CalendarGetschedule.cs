@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetscheduleResponse> CalendarGetscheduleAsync()
+        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync()
         {
             var p = new CalendarGetscheduleParameter();
             return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarGetscheduleParameter();
             return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CalendarGetscheduleParameter parameter)
+        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CalendarGetscheduleParameter parameter)
         {
             return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CalendarGetscheduleParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CalendarGetscheduleParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(parameter, cancellationToken);
         }

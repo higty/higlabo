@@ -128,7 +128,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListResponse> GroupListAsync()
+        public async ValueTask<GroupListResponse> GroupListAsync()
         {
             var p = new GroupListParameter();
             return await this.SendAsync<GroupListParameter, GroupListResponse>(p, CancellationToken.None);
@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListResponse> GroupListAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListResponse> GroupListAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListParameter();
             return await this.SendAsync<GroupListParameter, GroupListResponse>(p, cancellationToken);
@@ -144,14 +144,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListResponse> GroupListAsync(GroupListParameter parameter)
+        public async ValueTask<GroupListResponse> GroupListAsync(GroupListParameter parameter)
         {
             return await this.SendAsync<GroupListParameter, GroupListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListResponse> GroupListAsync(GroupListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListResponse> GroupListAsync(GroupListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListParameter, GroupListResponse>(parameter, cancellationToken);
         }

@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-post-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintPostSharesResponse> PrintPostSharesAsync()
+        public async ValueTask<PrintPostSharesResponse> PrintPostSharesAsync()
         {
             var p = new PrintPostSharesParameter();
             return await this.SendAsync<PrintPostSharesParameter, PrintPostSharesResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-post-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintPostSharesResponse> PrintPostSharesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintPostSharesResponse> PrintPostSharesAsync(CancellationToken cancellationToken)
         {
             var p = new PrintPostSharesParameter();
             return await this.SendAsync<PrintPostSharesParameter, PrintPostSharesResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-post-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintPostSharesResponse> PrintPostSharesAsync(PrintPostSharesParameter parameter)
+        public async ValueTask<PrintPostSharesResponse> PrintPostSharesAsync(PrintPostSharesParameter parameter)
         {
             return await this.SendAsync<PrintPostSharesParameter, PrintPostSharesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-post-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintPostSharesResponse> PrintPostSharesAsync(PrintPostSharesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintPostSharesResponse> PrintPostSharesAsync(PrintPostSharesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintPostSharesParameter, PrintPostSharesResponse>(parameter, cancellationToken);
         }

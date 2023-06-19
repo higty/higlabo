@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDescription
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(string? description, string? team_Id)
+        public async ValueTask<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(string? description, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetDescriptionParameter();
             p.Description = description;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDescription
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(string? description, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(string? description, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetDescriptionParameter();
             p.Description = description;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDescription
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(AdminTeamsSettingsSetDescriptionParameter parameter)
+        public async ValueTask<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(AdminTeamsSettingsSetDescriptionParameter parameter)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDescriptionParameter, AdminTeamsSettingsSetDescriptionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDescription
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(AdminTeamsSettingsSetDescriptionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetDescriptionResponse> AdminTeamsSettingsSetDescriptionAsync(AdminTeamsSettingsSetDescriptionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDescriptionParameter, AdminTeamsSettingsSetDescriptionResponse>(parameter, cancellationToken);
         }

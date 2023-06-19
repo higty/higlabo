@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync()
+        public async ValueTask<DriveitemDeleteResponse> DriveitemDeleteAsync()
         {
             var p = new DriveitemDeleteParameter();
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemDeleteResponse> DriveitemDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemDeleteParameter();
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync(DriveitemDeleteParameter parameter)
+        public async ValueTask<DriveitemDeleteResponse> DriveitemDeleteAsync(DriveitemDeleteParameter parameter)
         {
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync(DriveitemDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemDeleteResponse> DriveitemDeleteAsync(DriveitemDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(parameter, cancellationToken);
         }

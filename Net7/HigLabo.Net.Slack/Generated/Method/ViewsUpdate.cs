@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.update
         /// </summary>
-        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string? view)
+        public async ValueTask<ViewsUpdateResponse> ViewsUpdateAsync(string? view)
         {
             var p = new ViewsUpdateParameter();
             p.View = view;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.update
         /// </summary>
-        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string? view, CancellationToken cancellationToken)
+        public async ValueTask<ViewsUpdateResponse> ViewsUpdateAsync(string? view, CancellationToken cancellationToken)
         {
             var p = new ViewsUpdateParameter();
             p.View = view;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.update
         /// </summary>
-        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(ViewsUpdateParameter parameter)
+        public async ValueTask<ViewsUpdateResponse> ViewsUpdateAsync(ViewsUpdateParameter parameter)
         {
             return await this.SendAsync<ViewsUpdateParameter, ViewsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/views.update
         /// </summary>
-        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(ViewsUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ViewsUpdateResponse> ViewsUpdateAsync(ViewsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ViewsUpdateParameter, ViewsUpdateResponse>(parameter, cancellationToken);
         }

@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListChildrenResponse> DriveitemListChildrenAsync()
+        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync()
         {
             var p = new DriveitemListChildrenParameter();
             return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(p, CancellationToken.None);
@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListChildrenResponse> DriveitemListChildrenAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemListChildrenParameter();
             return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(p, cancellationToken);
@@ -133,14 +133,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListChildrenResponse> DriveitemListChildrenAsync(DriveitemListChildrenParameter parameter)
+        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync(DriveitemListChildrenParameter parameter)
         {
             return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemListChildrenResponse> DriveitemListChildrenAsync(DriveitemListChildrenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync(DriveitemListChildrenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(parameter, cancellationToken);
         }

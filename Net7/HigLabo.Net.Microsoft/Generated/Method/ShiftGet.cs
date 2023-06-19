@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftGetResponse> ShiftGetAsync()
+        public async ValueTask<ShiftGetResponse> ShiftGetAsync()
         {
             var p = new ShiftGetParameter();
             return await this.SendAsync<ShiftGetParameter, ShiftGetResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftGetResponse> ShiftGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ShiftGetResponse> ShiftGetAsync(CancellationToken cancellationToken)
         {
             var p = new ShiftGetParameter();
             return await this.SendAsync<ShiftGetParameter, ShiftGetResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftGetResponse> ShiftGetAsync(ShiftGetParameter parameter)
+        public async ValueTask<ShiftGetResponse> ShiftGetAsync(ShiftGetParameter parameter)
         {
             return await this.SendAsync<ShiftGetParameter, ShiftGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftGetResponse> ShiftGetAsync(ShiftGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ShiftGetResponse> ShiftGetAsync(ShiftGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ShiftGetParameter, ShiftGetResponse>(parameter, cancellationToken);
         }

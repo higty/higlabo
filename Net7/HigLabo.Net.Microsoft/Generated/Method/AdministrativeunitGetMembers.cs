@@ -200,7 +200,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync()
+        public async ValueTask<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync()
         {
             var p = new AdministrativeunitGetMembersParameter();
             return await this.SendAsync<AdministrativeunitGetMembersParameter, AdministrativeunitGetMembersResponse>(p, CancellationToken.None);
@@ -208,7 +208,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync(CancellationToken cancellationToken)
         {
             var p = new AdministrativeunitGetMembersParameter();
             return await this.SendAsync<AdministrativeunitGetMembersParameter, AdministrativeunitGetMembersResponse>(p, cancellationToken);
@@ -216,14 +216,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync(AdministrativeunitGetMembersParameter parameter)
+        public async ValueTask<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync(AdministrativeunitGetMembersParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitGetMembersParameter, AdministrativeunitGetMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-get-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync(AdministrativeunitGetMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitGetMembersResponse> AdministrativeunitGetMembersAsync(AdministrativeunitGetMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdministrativeunitGetMembersParameter, AdministrativeunitGetMembersResponse>(parameter, cancellationToken);
         }

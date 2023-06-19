@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync()
+        public async ValueTask<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync()
         {
             var p = new PrintUpdateSettingsParameter();
             return await this.SendAsync<PrintUpdateSettingsParameter, PrintUpdateSettingsResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync(CancellationToken cancellationToken)
         {
             var p = new PrintUpdateSettingsParameter();
             return await this.SendAsync<PrintUpdateSettingsParameter, PrintUpdateSettingsResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync(PrintUpdateSettingsParameter parameter)
+        public async ValueTask<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync(PrintUpdateSettingsParameter parameter)
         {
             return await this.SendAsync<PrintUpdateSettingsParameter, PrintUpdateSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-settings?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync(PrintUpdateSettingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintUpdateSettingsResponse> PrintUpdateSettingsAsync(PrintUpdateSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintUpdateSettingsParameter, PrintUpdateSettingsResponse>(parameter, cancellationToken);
         }

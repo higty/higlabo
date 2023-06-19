@@ -139,7 +139,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostContactsResponse> UserPostContactsAsync()
+        public async ValueTask<UserPostContactsResponse> UserPostContactsAsync()
         {
             var p = new UserPostContactsParameter();
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(p, CancellationToken.None);
@@ -147,7 +147,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostContactsResponse> UserPostContactsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostContactsResponse> UserPostContactsAsync(CancellationToken cancellationToken)
         {
             var p = new UserPostContactsParameter();
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(p, cancellationToken);
@@ -155,14 +155,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostContactsResponse> UserPostContactsAsync(UserPostContactsParameter parameter)
+        public async ValueTask<UserPostContactsResponse> UserPostContactsAsync(UserPostContactsParameter parameter)
         {
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostContactsResponse> UserPostContactsAsync(UserPostContactsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostContactsResponse> UserPostContactsAsync(UserPostContactsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(parameter, cancellationToken);
         }

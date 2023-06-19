@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync()
+        public async ValueTask<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync()
         {
             var p = new OrganizationalBrandingPostLocalizationsParameter();
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(CancellationToken cancellationToken)
         {
             var p = new OrganizationalBrandingPostLocalizationsParameter();
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(OrganizationalBrandingPostLocalizationsParameter parameter)
+        public async ValueTask<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(OrganizationalBrandingPostLocalizationsParameter parameter)
         {
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(OrganizationalBrandingPostLocalizationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(OrganizationalBrandingPostLocalizationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(parameter, cancellationToken);
         }

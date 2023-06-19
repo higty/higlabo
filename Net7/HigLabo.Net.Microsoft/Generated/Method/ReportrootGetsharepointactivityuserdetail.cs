@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync()
+        public async ValueTask<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync()
         {
             var p = new ReportRootGetsharepointactivityUserdetailParameter();
             return await this.SendAsync<ReportRootGetsharepointactivityUserdetailParameter, ReportRootGetsharepointactivityUserdetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetsharepointactivityUserdetailParameter();
             return await this.SendAsync<ReportRootGetsharepointactivityUserdetailParameter, ReportRootGetsharepointactivityUserdetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync(ReportRootGetsharepointactivityUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync(ReportRootGetsharepointactivityUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetsharepointactivityUserdetailParameter, ReportRootGetsharepointactivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync(ReportRootGetsharepointactivityUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetsharepointactivityUserdetailResponse> ReportRootGetsharepointactivityUserdetailAsync(ReportRootGetsharepointactivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetsharepointactivityUserdetailParameter, ReportRootGetsharepointactivityUserdetailResponse>(parameter, cancellationToken);
         }

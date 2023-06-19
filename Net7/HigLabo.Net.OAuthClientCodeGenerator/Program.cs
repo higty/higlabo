@@ -15,7 +15,7 @@
             }
             Console.WriteLine($"{startTime.ToString("HH:mm:ss")}-{DateTime.Now.ToString("HH:mm:ss")} executed!");
         }
-        private static async Task Execute()
+        private static async ValueTask Execute()
         {
             if (true)
             {

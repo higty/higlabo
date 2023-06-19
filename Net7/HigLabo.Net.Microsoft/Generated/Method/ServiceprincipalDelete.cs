@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync()
+        public async ValueTask<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync()
         {
             var p = new ServiceprincipalDeleteParameter();
             return await this.SendAsync<ServiceprincipalDeleteParameter, ServiceprincipalDeleteResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalDeleteParameter();
             return await this.SendAsync<ServiceprincipalDeleteParameter, ServiceprincipalDeleteResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync(ServiceprincipalDeleteParameter parameter)
+        public async ValueTask<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync(ServiceprincipalDeleteParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteParameter, ServiceprincipalDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync(ServiceprincipalDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeleteResponse> ServiceprincipalDeleteAsync(ServiceprincipalDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalDeleteParameter, ServiceprincipalDeleteResponse>(parameter, cancellationToken);
         }

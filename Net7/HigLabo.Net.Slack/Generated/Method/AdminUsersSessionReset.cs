@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.reset
         /// </summary>
-        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string? user_Id)
+        public async ValueTask<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string? user_Id)
         {
             var p = new AdminUsersSessionResetParameter();
             p.User_Id = user_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.reset
         /// </summary>
-        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string? user_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionResetParameter();
             p.User_Id = user_Id;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.reset
         /// </summary>
-        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(AdminUsersSessionResetParameter parameter)
+        public async ValueTask<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(AdminUsersSessionResetParameter parameter)
         {
             return await this.SendAsync<AdminUsersSessionResetParameter, AdminUsersSessionResetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.reset
         /// </summary>
-        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(AdminUsersSessionResetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(AdminUsersSessionResetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSessionResetParameter, AdminUsersSessionResetResponse>(parameter, cancellationToken);
         }

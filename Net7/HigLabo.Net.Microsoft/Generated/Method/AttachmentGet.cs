@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentGetResponse> AttachmentGetAsync()
+        public async ValueTask<AttachmentGetResponse> AttachmentGetAsync()
         {
             var p = new AttachmentGetParameter();
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(p, CancellationToken.None);
@@ -144,7 +144,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentGetResponse> AttachmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AttachmentGetResponse> AttachmentGetAsync(CancellationToken cancellationToken)
         {
             var p = new AttachmentGetParameter();
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(p, cancellationToken);
@@ -152,21 +152,21 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentGetResponse> AttachmentGetAsync(AttachmentGetParameter parameter)
+        public async ValueTask<AttachmentGetResponse> AttachmentGetAsync(AttachmentGetParameter parameter)
         {
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttachmentGetResponse> AttachmentGetAsync(AttachmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AttachmentGetResponse> AttachmentGetAsync(AttachmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<Stream> AttachmentGetStreamAsync(AttachmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Stream> AttachmentGetStreamAsync(AttachmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.DownloadStreamAsync(parameter, cancellationToken);
         }

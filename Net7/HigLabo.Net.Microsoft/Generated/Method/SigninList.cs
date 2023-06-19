@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninListResponse> SigninListAsync()
+        public async ValueTask<SigninListResponse> SigninListAsync()
         {
             var p = new SigninListParameter();
             return await this.SendAsync<SigninListParameter, SigninListResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninListResponse> SigninListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SigninListResponse> SigninListAsync(CancellationToken cancellationToken)
         {
             var p = new SigninListParameter();
             return await this.SendAsync<SigninListParameter, SigninListResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninListResponse> SigninListAsync(SigninListParameter parameter)
+        public async ValueTask<SigninListResponse> SigninListAsync(SigninListParameter parameter)
         {
             return await this.SendAsync<SigninListParameter, SigninListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/signin-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SigninListResponse> SigninListAsync(SigninListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SigninListResponse> SigninListAsync(SigninListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SigninListParameter, SigninListResponse>(parameter, cancellationToken);
         }

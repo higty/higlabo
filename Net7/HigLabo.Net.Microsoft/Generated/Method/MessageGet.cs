@@ -159,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageGetResponse> MessageGetAsync()
+        public async ValueTask<MessageGetResponse> MessageGetAsync()
         {
             var p = new MessageGetParameter();
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(p, CancellationToken.None);
@@ -167,7 +167,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageGetResponse> MessageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageGetResponse> MessageGetAsync(CancellationToken cancellationToken)
         {
             var p = new MessageGetParameter();
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(p, cancellationToken);
@@ -175,21 +175,21 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageGetResponse> MessageGetAsync(MessageGetParameter parameter)
+        public async ValueTask<MessageGetResponse> MessageGetAsync(MessageGetParameter parameter)
         {
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageGetResponse> MessageGetAsync(MessageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageGetResponse> MessageGetAsync(MessageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<Stream> MessageGetStreamAsync(MessageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Stream> MessageGetStreamAsync(MessageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.DownloadStreamAsync(parameter, cancellationToken);
         }

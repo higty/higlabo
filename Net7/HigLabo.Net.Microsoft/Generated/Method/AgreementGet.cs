@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementGetResponse> AgreementGetAsync()
+        public async ValueTask<AgreementGetResponse> AgreementGetAsync()
         {
             var p = new AgreementGetParameter();
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementGetResponse> AgreementGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementGetResponse> AgreementGetAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementGetParameter();
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementGetResponse> AgreementGetAsync(AgreementGetParameter parameter)
+        public async ValueTask<AgreementGetResponse> AgreementGetAsync(AgreementGetParameter parameter)
         {
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementGetResponse> AgreementGetAsync(AgreementGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementGetResponse> AgreementGetAsync(AgreementGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(parameter, cancellationToken);
         }

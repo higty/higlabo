@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync()
+        public async ValueTask<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync()
         {
             var p = new PrintConnectorUpdateParameter();
             return await this.SendAsync<PrintConnectorUpdateParameter, PrintConnectorUpdateResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PrintConnectorUpdateParameter();
             return await this.SendAsync<PrintConnectorUpdateParameter, PrintConnectorUpdateResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync(PrintConnectorUpdateParameter parameter)
+        public async ValueTask<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync(PrintConnectorUpdateParameter parameter)
         {
             return await this.SendAsync<PrintConnectorUpdateParameter, PrintConnectorUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync(PrintConnectorUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintConnectorUpdateResponse> PrintConnectorUpdateAsync(PrintConnectorUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintConnectorUpdateParameter, PrintConnectorUpdateResponse>(parameter, cancellationToken);
         }

@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attendancerecord-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttendancerecordListResponse> AttendancerecordListAsync()
+        public async ValueTask<AttendancerecordListResponse> AttendancerecordListAsync()
         {
             var p = new AttendancerecordListParameter();
             return await this.SendAsync<AttendancerecordListParameter, AttendancerecordListResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attendancerecord-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttendancerecordListResponse> AttendancerecordListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AttendancerecordListResponse> AttendancerecordListAsync(CancellationToken cancellationToken)
         {
             var p = new AttendancerecordListParameter();
             return await this.SendAsync<AttendancerecordListParameter, AttendancerecordListResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attendancerecord-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttendancerecordListResponse> AttendancerecordListAsync(AttendancerecordListParameter parameter)
+        public async ValueTask<AttendancerecordListResponse> AttendancerecordListAsync(AttendancerecordListParameter parameter)
         {
             return await this.SendAsync<AttendancerecordListParameter, AttendancerecordListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attendancerecord-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AttendancerecordListResponse> AttendancerecordListAsync(AttendancerecordListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AttendancerecordListResponse> AttendancerecordListAsync(AttendancerecordListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AttendancerecordListParameter, AttendancerecordListResponse>(parameter, cancellationToken);
         }

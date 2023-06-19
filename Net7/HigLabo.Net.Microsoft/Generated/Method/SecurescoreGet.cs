@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescoreGetResponse> SecurescoreGetAsync()
+        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync()
         {
             var p = new SecurescoreGetParameter();
             return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(p, CancellationToken.None);
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescoreGetResponse> SecurescoreGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurescoreGetParameter();
             return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(p, cancellationToken);
@@ -75,14 +75,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescoreGetResponse> SecurescoreGetAsync(SecurescoreGetParameter parameter)
+        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync(SecurescoreGetParameter parameter)
         {
             return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurescoreGetResponse> SecurescoreGetAsync(SecurescoreGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync(SecurescoreGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(parameter, cancellationToken);
         }

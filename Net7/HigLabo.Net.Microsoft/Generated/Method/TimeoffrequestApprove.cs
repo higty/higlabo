@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync()
+        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync()
         {
             var p = new TimeoffrequestApproveParameter();
             return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(CancellationToken cancellationToken)
         {
             var p = new TimeoffrequestApproveParameter();
             return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(TimeoffrequestApproveParameter parameter)
+        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(TimeoffrequestApproveParameter parameter)
         {
             return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(TimeoffrequestApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(TimeoffrequestApproveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(parameter, cancellationToken);
         }

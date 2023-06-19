@@ -201,7 +201,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync()
+        public async ValueTask<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync()
         {
             var p = new UserGetMailboxSettingsParameter();
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(p, CancellationToken.None);
@@ -209,7 +209,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(CancellationToken cancellationToken)
         {
             var p = new UserGetMailboxSettingsParameter();
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(p, cancellationToken);
@@ -217,14 +217,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter)
+        public async ValueTask<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter)
         {
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(parameter, cancellationToken);
         }

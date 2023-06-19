@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync()
+        public async ValueTask<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync()
         {
             var p = new ConditionalAccessPolicyGetParameter();
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new ConditionalAccessPolicyGetParameter();
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter)
+        public async ValueTask<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(parameter, cancellationToken);
         }

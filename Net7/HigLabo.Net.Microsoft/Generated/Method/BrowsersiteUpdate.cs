@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync()
+        public async ValueTask<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync()
         {
             var p = new BrowsersiteUpdateParameter();
             return await this.SendAsync<BrowsersiteUpdateParameter, BrowsersiteUpdateResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersiteUpdateParameter();
             return await this.SendAsync<BrowsersiteUpdateParameter, BrowsersiteUpdateResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync(BrowsersiteUpdateParameter parameter)
+        public async ValueTask<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync(BrowsersiteUpdateParameter parameter)
         {
             return await this.SendAsync<BrowsersiteUpdateParameter, BrowsersiteUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync(BrowsersiteUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersiteUpdateResponse> BrowsersiteUpdateAsync(BrowsersiteUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersiteUpdateParameter, BrowsersiteUpdateResponse>(parameter, cancellationToken);
         }

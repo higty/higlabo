@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionListResponse> SubscriptionListAsync()
+        public async ValueTask<SubscriptionListResponse> SubscriptionListAsync()
         {
             var p = new SubscriptionListParameter();
             return await this.SendAsync<SubscriptionListParameter, SubscriptionListResponse>(p, CancellationToken.None);
@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionListResponse> SubscriptionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionListResponse> SubscriptionListAsync(CancellationToken cancellationToken)
         {
             var p = new SubscriptionListParameter();
             return await this.SendAsync<SubscriptionListParameter, SubscriptionListResponse>(p, cancellationToken);
@@ -105,14 +105,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionListResponse> SubscriptionListAsync(SubscriptionListParameter parameter)
+        public async ValueTask<SubscriptionListResponse> SubscriptionListAsync(SubscriptionListParameter parameter)
         {
             return await this.SendAsync<SubscriptionListParameter, SubscriptionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionListResponse> SubscriptionListAsync(SubscriptionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionListResponse> SubscriptionListAsync(SubscriptionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscriptionListParameter, SubscriptionListResponse>(parameter, cancellationToken);
         }

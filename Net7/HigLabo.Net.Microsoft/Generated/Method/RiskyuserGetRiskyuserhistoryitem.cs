@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync()
+        public async ValueTask<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync()
         {
             var p = new RiskyUserGetRiskyUserhistoryitemParameter();
             return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(p, CancellationToken.None);
@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyUserGetRiskyUserhistoryitemParameter();
             return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(p, cancellationToken);
@@ -133,14 +133,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(RiskyUserGetRiskyUserhistoryitemParameter parameter)
+        public async ValueTask<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(RiskyUserGetRiskyUserhistoryitemParameter parameter)
         {
             return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(RiskyUserGetRiskyUserhistoryitemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(RiskyUserGetRiskyUserhistoryitemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(parameter, cancellationToken);
         }

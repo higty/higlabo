@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync()
+        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync()
         {
             var p = new DriveitemCheckoutParameter();
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemCheckoutParameter();
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter)
+        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter)
         {
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(parameter, cancellationToken);
         }

@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantMuteResponse> ParticipantMuteAsync()
+        public async ValueTask<ParticipantMuteResponse> ParticipantMuteAsync()
         {
             var p = new ParticipantMuteParameter();
             return await this.SendAsync<ParticipantMuteParameter, ParticipantMuteResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantMuteResponse> ParticipantMuteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ParticipantMuteResponse> ParticipantMuteAsync(CancellationToken cancellationToken)
         {
             var p = new ParticipantMuteParameter();
             return await this.SendAsync<ParticipantMuteParameter, ParticipantMuteResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantMuteResponse> ParticipantMuteAsync(ParticipantMuteParameter parameter)
+        public async ValueTask<ParticipantMuteResponse> ParticipantMuteAsync(ParticipantMuteParameter parameter)
         {
             return await this.SendAsync<ParticipantMuteParameter, ParticipantMuteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-mute?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantMuteResponse> ParticipantMuteAsync(ParticipantMuteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ParticipantMuteResponse> ParticipantMuteAsync(ParticipantMuteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ParticipantMuteParameter, ParticipantMuteResponse>(parameter, cancellationToken);
         }

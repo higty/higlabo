@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync()
+        public async ValueTask<PrintConnectorGetResponse> PrintConnectorGetAsync()
         {
             var p = new PrintConnectorGetParameter();
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintConnectorGetResponse> PrintConnectorGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrintConnectorGetParameter();
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync(PrintConnectorGetParameter parameter)
+        public async ValueTask<PrintConnectorGetResponse> PrintConnectorGetAsync(PrintConnectorGetParameter parameter)
         {
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync(PrintConnectorGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintConnectorGetResponse> PrintConnectorGetAsync(PrintConnectorGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(parameter, cancellationToken);
         }

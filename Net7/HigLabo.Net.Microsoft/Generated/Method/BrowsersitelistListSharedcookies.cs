@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync()
+        public async ValueTask<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync()
         {
             var p = new BrowsersitelistListSharedcookiesParameter();
             return await this.SendAsync<BrowsersitelistListSharedcookiesParameter, BrowsersitelistListSharedcookiesResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersitelistListSharedcookiesParameter();
             return await this.SendAsync<BrowsersitelistListSharedcookiesParameter, BrowsersitelistListSharedcookiesResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(BrowsersitelistListSharedcookiesParameter parameter)
+        public async ValueTask<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(BrowsersitelistListSharedcookiesParameter parameter)
         {
             return await this.SendAsync<BrowsersitelistListSharedcookiesParameter, BrowsersitelistListSharedcookiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(BrowsersitelistListSharedcookiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(BrowsersitelistListSharedcookiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersitelistListSharedcookiesParameter, BrowsersitelistListSharedcookiesResponse>(parameter, cancellationToken);
         }

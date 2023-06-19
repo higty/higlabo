@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync()
+        public async ValueTask<ChatmessageDeltaResponse> ChatmessageDeltaAsync()
         {
             var p = new ChatmessageDeltaParameter();
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(p, CancellationToken.None);
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageDeltaResponse> ChatmessageDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new ChatmessageDeltaParameter();
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(p, cancellationToken);
@@ -102,14 +102,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync(ChatmessageDeltaParameter parameter)
+        public async ValueTask<ChatmessageDeltaResponse> ChatmessageDeltaAsync(ChatmessageDeltaParameter parameter)
         {
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync(ChatmessageDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatmessageDeltaResponse> ChatmessageDeltaAsync(ChatmessageDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(parameter, cancellationToken);
         }

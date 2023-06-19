@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync()
+        public async ValueTask<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync()
         {
             var p = new SchedulingGroupDeleteParameter();
             return await this.SendAsync<SchedulingGroupDeleteParameter, SchedulingGroupDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SchedulingGroupDeleteParameter();
             return await this.SendAsync<SchedulingGroupDeleteParameter, SchedulingGroupDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync(SchedulingGroupDeleteParameter parameter)
+        public async ValueTask<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync(SchedulingGroupDeleteParameter parameter)
         {
             return await this.SendAsync<SchedulingGroupDeleteParameter, SchedulingGroupDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync(SchedulingGroupDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulingGroupDeleteResponse> SchedulingGroupDeleteAsync(SchedulingGroupDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchedulingGroupDeleteParameter, SchedulingGroupDeleteResponse>(parameter, cancellationToken);
         }

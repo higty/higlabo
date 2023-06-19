@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync()
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync()
         {
             var p = new WindowshelloforbusinessauthenticationmethodListParameter();
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodListParameter, WindowshelloforbusinessauthenticationmethodListResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync(CancellationToken cancellationToken)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync(CancellationToken cancellationToken)
         {
             var p = new WindowshelloforbusinessauthenticationmethodListParameter();
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodListParameter, WindowshelloforbusinessauthenticationmethodListResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync(WindowshelloforbusinessauthenticationmethodListParameter parameter)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync(WindowshelloforbusinessauthenticationmethodListParameter parameter)
         {
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodListParameter, WindowshelloforbusinessauthenticationmethodListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync(WindowshelloforbusinessauthenticationmethodListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WindowshelloforbusinessauthenticationmethodListResponse> WindowshelloforbusinessauthenticationmethodListAsync(WindowshelloforbusinessauthenticationmethodListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WindowshelloforbusinessauthenticationmethodListParameter, WindowshelloforbusinessauthenticationmethodListResponse>(parameter, cancellationToken);
         }

@@ -109,7 +109,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListEventsResponse> GroupListEventsAsync()
+        public async ValueTask<GroupListEventsResponse> GroupListEventsAsync()
         {
             var p = new GroupListEventsParameter();
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(p, CancellationToken.None);
@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListEventsResponse> GroupListEventsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListEventsResponse> GroupListEventsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListEventsParameter();
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(p, cancellationToken);
@@ -125,14 +125,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListEventsResponse> GroupListEventsAsync(GroupListEventsParameter parameter)
+        public async ValueTask<GroupListEventsResponse> GroupListEventsAsync(GroupListEventsParameter parameter)
         {
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListEventsResponse> GroupListEventsAsync(GroupListEventsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListEventsResponse> GroupListEventsAsync(GroupListEventsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(parameter, cancellationToken);
         }

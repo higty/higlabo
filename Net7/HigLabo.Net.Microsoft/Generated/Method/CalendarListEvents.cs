@@ -123,7 +123,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarListEventsResponse> CalendarListEventsAsync()
+        public async ValueTask<CalendarListEventsResponse> CalendarListEventsAsync()
         {
             var p = new CalendarListEventsParameter();
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(p, CancellationToken.None);
@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarListEventsResponse> CalendarListEventsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarListEventsResponse> CalendarListEventsAsync(CancellationToken cancellationToken)
         {
             var p = new CalendarListEventsParameter();
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(p, cancellationToken);
@@ -139,14 +139,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarListEventsResponse> CalendarListEventsAsync(CalendarListEventsParameter parameter)
+        public async ValueTask<CalendarListEventsResponse> CalendarListEventsAsync(CalendarListEventsParameter parameter)
         {
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendarListEventsResponse> CalendarListEventsAsync(CalendarListEventsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarListEventsResponse> CalendarListEventsAsync(CalendarListEventsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(parameter, cancellationToken);
         }

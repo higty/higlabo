@@ -148,7 +148,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserGetResponse> EducationUserGetAsync()
+        public async ValueTask<EducationUserGetResponse> EducationUserGetAsync()
         {
             var p = new EducationUserGetParameter();
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(p, CancellationToken.None);
@@ -156,7 +156,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserGetResponse> EducationUserGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationUserGetResponse> EducationUserGetAsync(CancellationToken cancellationToken)
         {
             var p = new EducationUserGetParameter();
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(p, cancellationToken);
@@ -164,14 +164,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter)
+        public async ValueTask<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter)
         {
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(parameter, cancellationToken);
         }

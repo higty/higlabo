@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync()
+        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync()
         {
             var p = new AccesspackageFilterbycurrentUserParameter();
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageFilterbycurrentUserParameter();
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

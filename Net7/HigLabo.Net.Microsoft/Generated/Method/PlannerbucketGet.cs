@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync()
+        public async ValueTask<PlannerbucketGetResponse> PlannerbucketGetAsync()
         {
             var p = new PlannerbucketGetParameter();
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerbucketGetResponse> PlannerbucketGetAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerbucketGetParameter();
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync(PlannerbucketGetParameter parameter)
+        public async ValueTask<PlannerbucketGetResponse> PlannerbucketGetAsync(PlannerbucketGetParameter parameter)
         {
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync(PlannerbucketGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerbucketGetResponse> PlannerbucketGetAsync(PlannerbucketGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(parameter, cancellationToken);
         }

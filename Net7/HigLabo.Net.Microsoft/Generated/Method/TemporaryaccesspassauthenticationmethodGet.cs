@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync()
+        public async ValueTask<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync()
         {
             var p = new TemporaryAccesspassauthenticationmethodGetParameter();
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodGetParameter, TemporaryAccesspassauthenticationmethodGetResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync(CancellationToken cancellationToken)
         {
             var p = new TemporaryAccesspassauthenticationmethodGetParameter();
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodGetParameter, TemporaryAccesspassauthenticationmethodGetResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync(TemporaryAccesspassauthenticationmethodGetParameter parameter)
+        public async ValueTask<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync(TemporaryAccesspassauthenticationmethodGetParameter parameter)
         {
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodGetParameter, TemporaryAccesspassauthenticationmethodGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync(TemporaryAccesspassauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TemporaryAccesspassauthenticationmethodGetResponse> TemporaryAccesspassauthenticationmethodGetAsync(TemporaryAccesspassauthenticationmethodGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodGetParameter, TemporaryAccesspassauthenticationmethodGetResponse>(parameter, cancellationToken);
         }

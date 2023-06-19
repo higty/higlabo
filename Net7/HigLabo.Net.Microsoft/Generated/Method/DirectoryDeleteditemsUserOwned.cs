@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-user-owned?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync()
+        public async ValueTask<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync()
         {
             var p = new DirectoryDeleteditemsUserOwnedParameter();
             return await this.SendAsync<DirectoryDeleteditemsUserOwnedParameter, DirectoryDeleteditemsUserOwnedResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-user-owned?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryDeleteditemsUserOwnedParameter();
             return await this.SendAsync<DirectoryDeleteditemsUserOwnedParameter, DirectoryDeleteditemsUserOwnedResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-user-owned?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync(DirectoryDeleteditemsUserOwnedParameter parameter)
+        public async ValueTask<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync(DirectoryDeleteditemsUserOwnedParameter parameter)
         {
             return await this.SendAsync<DirectoryDeleteditemsUserOwnedParameter, DirectoryDeleteditemsUserOwnedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-user-owned?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync(DirectoryDeleteditemsUserOwnedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeleteditemsUserOwnedResponse> DirectoryDeleteditemsUserOwnedAsync(DirectoryDeleteditemsUserOwnedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryDeleteditemsUserOwnedParameter, DirectoryDeleteditemsUserOwnedResponse>(parameter, cancellationToken);
         }

@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync()
+        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync()
         {
             var p = new PrintUpdateTaskdefinitionParameter();
             return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(CancellationToken cancellationToken)
         {
             var p = new PrintUpdateTaskdefinitionParameter();
             return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(PrintUpdateTaskdefinitionParameter parameter)
+        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(PrintUpdateTaskdefinitionParameter parameter)
         {
             return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(PrintUpdateTaskdefinitionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(PrintUpdateTaskdefinitionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(parameter, cancellationToken);
         }

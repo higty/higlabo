@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync()
+        public async ValueTask<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync()
         {
             var p = new WorkbookCreatesessionParameter();
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookCreatesessionParameter();
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(WorkbookCreatesessionParameter parameter)
+        public async ValueTask<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(WorkbookCreatesessionParameter parameter)
         {
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(WorkbookCreatesessionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(WorkbookCreatesessionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(parameter, cancellationToken);
         }

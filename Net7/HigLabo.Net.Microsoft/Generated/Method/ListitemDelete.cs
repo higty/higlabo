@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemDeleteResponse> ListitemDeleteAsync()
+        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync()
         {
             var p = new ListitemDeleteParameter();
             return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemDeleteResponse> ListitemDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ListitemDeleteParameter();
             return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemDeleteResponse> ListitemDeleteAsync(ListitemDeleteParameter parameter)
+        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync(ListitemDeleteParameter parameter)
         {
             return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemDeleteResponse> ListitemDeleteAsync(ListitemDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync(ListitemDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(parameter, cancellationToken);
         }

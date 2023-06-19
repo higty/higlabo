@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync()
+        public async ValueTask<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync()
         {
             var p = new AccessreviewscheduledefinitionFilterbycurrentUserParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionFilterbycurrentUserParameter, AccessreviewscheduledefinitionFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewscheduledefinitionFilterbycurrentUserParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionFilterbycurrentUserParameter, AccessreviewscheduledefinitionFilterbycurrentUserResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync(AccessreviewscheduledefinitionFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync(AccessreviewscheduledefinitionFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionFilterbycurrentUserParameter, AccessreviewscheduledefinitionFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync(AccessreviewscheduledefinitionFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionFilterbycurrentUserResponse> AccessreviewscheduledefinitionFilterbycurrentUserAsync(AccessreviewscheduledefinitionFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionFilterbycurrentUserParameter, AccessreviewscheduledefinitionFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

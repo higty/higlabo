@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleAdditemResponse> BundleAdditemAsync()
+        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync()
         {
             var p = new BundleAdditemParameter();
             return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleAdditemResponse> BundleAdditemAsync(CancellationToken cancellationToken)
+        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync(CancellationToken cancellationToken)
         {
             var p = new BundleAdditemParameter();
             return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleAdditemResponse> BundleAdditemAsync(BundleAdditemParameter parameter)
+        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync(BundleAdditemParameter parameter)
         {
             return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async Task<BundleAdditemResponse> BundleAdditemAsync(BundleAdditemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync(BundleAdditemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(parameter, cancellationToken);
         }

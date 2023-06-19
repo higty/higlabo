@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync()
+        public async ValueTask<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync()
         {
             var p = new Oauth2permissiongrantDeleteParameter();
             return await this.SendAsync<Oauth2permissiongrantDeleteParameter, Oauth2permissiongrantDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new Oauth2permissiongrantDeleteParameter();
             return await this.SendAsync<Oauth2permissiongrantDeleteParameter, Oauth2permissiongrantDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync(Oauth2permissiongrantDeleteParameter parameter)
+        public async ValueTask<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync(Oauth2permissiongrantDeleteParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantDeleteParameter, Oauth2permissiongrantDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync(Oauth2permissiongrantDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Oauth2permissiongrantDeleteResponse> Oauth2permissiongrantDeleteAsync(Oauth2permissiongrantDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Oauth2permissiongrantDeleteParameter, Oauth2permissiongrantDeleteResponse>(parameter, cancellationToken);
         }

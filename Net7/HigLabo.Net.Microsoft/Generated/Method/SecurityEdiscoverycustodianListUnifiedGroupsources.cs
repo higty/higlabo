@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync()
+        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync()
         {
             var p = new SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter parameter)
+        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, cancellationToken);
         }

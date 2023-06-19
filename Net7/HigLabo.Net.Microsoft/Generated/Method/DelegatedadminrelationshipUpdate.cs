@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync()
+        public async ValueTask<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync()
         {
             var p = new DelegatedadminrelationshipUpdateParameter();
             return await this.SendAsync<DelegatedadminrelationshipUpdateParameter, DelegatedadminrelationshipUpdateResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadminrelationshipUpdateParameter();
             return await this.SendAsync<DelegatedadminrelationshipUpdateParameter, DelegatedadminrelationshipUpdateResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync(DelegatedadminrelationshipUpdateParameter parameter)
+        public async ValueTask<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync(DelegatedadminrelationshipUpdateParameter parameter)
         {
             return await this.SendAsync<DelegatedadminrelationshipUpdateParameter, DelegatedadminrelationshipUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync(DelegatedadminrelationshipUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipUpdateResponse> DelegatedadminrelationshipUpdateAsync(DelegatedadminrelationshipUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminrelationshipUpdateParameter, DelegatedadminrelationshipUpdateResponse>(parameter, cancellationToken);
         }

@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListResponse> AppManagementPolicyListAsync()
+        public async ValueTask<AppManagementPolicyListResponse> AppManagementPolicyListAsync()
         {
             var p = new AppManagementPolicyListParameter();
             return await this.SendAsync<AppManagementPolicyListParameter, AppManagementPolicyListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListResponse> AppManagementPolicyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyListResponse> AppManagementPolicyListAsync(CancellationToken cancellationToken)
         {
             var p = new AppManagementPolicyListParameter();
             return await this.SendAsync<AppManagementPolicyListParameter, AppManagementPolicyListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListResponse> AppManagementPolicyListAsync(AppManagementPolicyListParameter parameter)
+        public async ValueTask<AppManagementPolicyListResponse> AppManagementPolicyListAsync(AppManagementPolicyListParameter parameter)
         {
             return await this.SendAsync<AppManagementPolicyListParameter, AppManagementPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyListResponse> AppManagementPolicyListAsync(AppManagementPolicyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyListResponse> AppManagementPolicyListAsync(AppManagementPolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyListParameter, AppManagementPolicyListResponse>(parameter, cancellationToken);
         }

@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<AdminUsersSessionListResponse> AdminUsersSessionListAsync()
+        public async ValueTask<AdminUsersSessionListResponse> AdminUsersSessionListAsync()
         {
             var p = new AdminUsersSessionListParameter();
             return await this.SendAsync<AdminUsersSessionListParameter, AdminUsersSessionListResponse>(p, CancellationToken.None);
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<AdminUsersSessionListResponse> AdminUsersSessionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionListResponse> AdminUsersSessionListAsync(CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionListParameter();
             return await this.SendAsync<AdminUsersSessionListParameter, AdminUsersSessionListResponse>(p, cancellationToken);
@@ -49,21 +49,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<AdminUsersSessionListResponse> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter)
+        public async ValueTask<AdminUsersSessionListResponse> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter)
         {
             return await this.SendAsync<AdminUsersSessionListParameter, AdminUsersSessionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<AdminUsersSessionListResponse> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionListResponse> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSessionListParameter, AdminUsersSessionListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(PagingContext<AdminUsersSessionListResponse> context)
+        public async ValueTask<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(PagingContext<AdminUsersSessionListResponse> context)
         {
             var p = new AdminUsersSessionListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(CancellationToken cancellationToken, PagingContext<AdminUsersSessionListResponse> context)
+        public async ValueTask<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(CancellationToken cancellationToken, PagingContext<AdminUsersSessionListResponse> context)
         {
             var p = new AdminUsersSessionListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter, PagingContext<AdminUsersSessionListResponse> context)
+        public async ValueTask<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter, PagingContext<AdminUsersSessionListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.list
         /// </summary>
-        public async Task<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter, PagingContext<AdminUsersSessionListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminUsersSessionListResponse>> AdminUsersSessionListAsync(AdminUsersSessionListParameter parameter, PagingContext<AdminUsersSessionListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

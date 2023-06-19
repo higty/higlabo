@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListTransitivememberofResponse> UserListTransitivememberofAsync()
+        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync()
         {
             var p = new UserListTransitivememberofParameter();
             return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListTransitivememberofResponse> UserListTransitivememberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync(CancellationToken cancellationToken)
         {
             var p = new UserListTransitivememberofParameter();
             return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListTransitivememberofResponse> UserListTransitivememberofAsync(UserListTransitivememberofParameter parameter)
+        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync(UserListTransitivememberofParameter parameter)
         {
             return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListTransitivememberofResponse> UserListTransitivememberofAsync(UserListTransitivememberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync(UserListTransitivememberofParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(parameter, cancellationToken);
         }

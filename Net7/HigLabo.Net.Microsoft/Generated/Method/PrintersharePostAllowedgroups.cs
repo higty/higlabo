@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedgroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync()
+        public async ValueTask<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync()
         {
             var p = new PrintersharePostAllowedGroupsParameter();
             return await this.SendAsync<PrintersharePostAllowedGroupsParameter, PrintersharePostAllowedGroupsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedgroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new PrintersharePostAllowedGroupsParameter();
             return await this.SendAsync<PrintersharePostAllowedGroupsParameter, PrintersharePostAllowedGroupsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedgroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync(PrintersharePostAllowedGroupsParameter parameter)
+        public async ValueTask<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync(PrintersharePostAllowedGroupsParameter parameter)
         {
             return await this.SendAsync<PrintersharePostAllowedGroupsParameter, PrintersharePostAllowedGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedgroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync(PrintersharePostAllowedGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintersharePostAllowedGroupsResponse> PrintersharePostAllowedGroupsAsync(PrintersharePostAllowedGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintersharePostAllowedGroupsParameter, PrintersharePostAllowedGroupsResponse>(parameter, cancellationToken);
         }

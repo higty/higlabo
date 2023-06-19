@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync()
+        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync()
         {
             var p = new ServiceprincipalDeleteOwnersParameter();
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalDeleteOwnersParameter();
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter)
+        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(parameter, cancellationToken);
         }

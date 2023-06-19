@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync()
+        public async ValueTask<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync()
         {
             var p = new ActivitybasedtimeoutPolicyDeleteParameter();
             return await this.SendAsync<ActivitybasedtimeoutPolicyDeleteParameter, ActivitybasedtimeoutPolicyDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ActivitybasedtimeoutPolicyDeleteParameter();
             return await this.SendAsync<ActivitybasedtimeoutPolicyDeleteParameter, ActivitybasedtimeoutPolicyDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync(ActivitybasedtimeoutPolicyDeleteParameter parameter)
+        public async ValueTask<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync(ActivitybasedtimeoutPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<ActivitybasedtimeoutPolicyDeleteParameter, ActivitybasedtimeoutPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync(ActivitybasedtimeoutPolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ActivitybasedtimeoutPolicyDeleteResponse> ActivitybasedtimeoutPolicyDeleteAsync(ActivitybasedtimeoutPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ActivitybasedtimeoutPolicyDeleteParameter, ActivitybasedtimeoutPolicyDeleteResponse>(parameter, cancellationToken);
         }

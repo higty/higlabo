@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync()
+        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync()
         {
             var p = new UserTranslateExchangeidsParameter();
             return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(CancellationToken cancellationToken)
         {
             var p = new UserTranslateExchangeidsParameter();
             return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter)
+        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter)
         {
             return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(parameter, cancellationToken);
         }

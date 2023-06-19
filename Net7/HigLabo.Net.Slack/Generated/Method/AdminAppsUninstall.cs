@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.uninstall
         /// </summary>
-        public async Task<AdminAppsUninstallResponse> AdminAppsUninstallAsync(string? app_Id)
+        public async ValueTask<AdminAppsUninstallResponse> AdminAppsUninstallAsync(string? app_Id)
         {
             var p = new AdminAppsUninstallParameter();
             p.App_Id = app_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.uninstall
         /// </summary>
-        public async Task<AdminAppsUninstallResponse> AdminAppsUninstallAsync(string? app_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsUninstallResponse> AdminAppsUninstallAsync(string? app_Id, CancellationToken cancellationToken)
         {
             var p = new AdminAppsUninstallParameter();
             p.App_Id = app_Id;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.uninstall
         /// </summary>
-        public async Task<AdminAppsUninstallResponse> AdminAppsUninstallAsync(AdminAppsUninstallParameter parameter)
+        public async ValueTask<AdminAppsUninstallResponse> AdminAppsUninstallAsync(AdminAppsUninstallParameter parameter)
         {
             return await this.SendAsync<AdminAppsUninstallParameter, AdminAppsUninstallResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.uninstall
         /// </summary>
-        public async Task<AdminAppsUninstallResponse> AdminAppsUninstallAsync(AdminAppsUninstallParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAppsUninstallResponse> AdminAppsUninstallAsync(AdminAppsUninstallParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAppsUninstallParameter, AdminAppsUninstallResponse>(parameter, cancellationToken);
         }

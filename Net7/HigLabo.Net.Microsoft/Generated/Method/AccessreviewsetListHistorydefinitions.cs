@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync()
+        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync()
         {
             var p = new AccessreviewsetListHistorydefinitionsParameter();
             return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewsetListHistorydefinitionsParameter();
             return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(AccessreviewsetListHistorydefinitionsParameter parameter)
+        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(AccessreviewsetListHistorydefinitionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(AccessreviewsetListHistorydefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(AccessreviewsetListHistorydefinitionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(parameter, cancellationToken);
         }

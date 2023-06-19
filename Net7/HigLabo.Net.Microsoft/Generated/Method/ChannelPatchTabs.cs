@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync()
+        public async ValueTask<ChannelPatchTabsResponse> ChannelPatchTabsAsync()
         {
             var p = new ChannelPatchTabsParameter();
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelPatchTabsResponse> ChannelPatchTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChannelPatchTabsParameter();
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync(ChannelPatchTabsParameter parameter)
+        public async ValueTask<ChannelPatchTabsResponse> ChannelPatchTabsAsync(ChannelPatchTabsParameter parameter)
         {
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync(ChannelPatchTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelPatchTabsResponse> ChannelPatchTabsAsync(ChannelPatchTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(parameter, cancellationToken);
         }

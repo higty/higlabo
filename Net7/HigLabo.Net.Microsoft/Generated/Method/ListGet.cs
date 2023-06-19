@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListGetResponse> ListGetAsync()
+        public async ValueTask<ListGetResponse> ListGetAsync()
         {
             var p = new ListGetParameter();
             return await this.SendAsync<ListGetParameter, ListGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListGetResponse> ListGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListGetResponse> ListGetAsync(CancellationToken cancellationToken)
         {
             var p = new ListGetParameter();
             return await this.SendAsync<ListGetParameter, ListGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListGetResponse> ListGetAsync(ListGetParameter parameter)
+        public async ValueTask<ListGetResponse> ListGetAsync(ListGetParameter parameter)
         {
             return await this.SendAsync<ListGetParameter, ListGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListGetResponse> ListGetAsync(ListGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListGetResponse> ListGetAsync(ListGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListGetParameter, ListGetResponse>(parameter, cancellationToken);
         }

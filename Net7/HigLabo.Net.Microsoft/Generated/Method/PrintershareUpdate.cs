@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareUpdateResponse> PrintershareUpdateAsync()
+        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync()
         {
             var p = new PrintershareUpdateParameter();
             return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareUpdateResponse> PrintershareUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PrintershareUpdateParameter();
             return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareUpdateResponse> PrintershareUpdateAsync(PrintershareUpdateParameter parameter)
+        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync(PrintershareUpdateParameter parameter)
         {
             return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareUpdateResponse> PrintershareUpdateAsync(PrintershareUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync(PrintershareUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(parameter, cancellationToken);
         }

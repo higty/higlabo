@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync()
+        public async ValueTask<ContactfolderDeltaResponse> ContactfolderDeltaAsync()
         {
             var p = new ContactfolderDeltaParameter();
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderDeltaResponse> ContactfolderDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new ContactfolderDeltaParameter();
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync(ContactfolderDeltaParameter parameter)
+        public async ValueTask<ContactfolderDeltaResponse> ContactfolderDeltaAsync(ContactfolderDeltaParameter parameter)
         {
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync(ContactfolderDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderDeltaResponse> ContactfolderDeltaAsync(ContactfolderDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(parameter, cancellationToken);
         }

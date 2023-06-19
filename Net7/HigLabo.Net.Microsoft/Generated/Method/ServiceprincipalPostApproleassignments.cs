@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync()
+        public async ValueTask<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync()
         {
             var p = new ServiceprincipalPostApproleAssignmentsParameter();
             return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalPostApproleAssignmentsParameter();
             return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(ServiceprincipalPostApproleAssignmentsParameter parameter)
+        public async ValueTask<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(ServiceprincipalPostApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(ServiceprincipalPostApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(ServiceprincipalPostApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(parameter, cancellationToken);
         }

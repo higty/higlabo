@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-reauthorize?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync()
+        public async ValueTask<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync()
         {
             var p = new SubscriptionReauthorizeParameter();
             return await this.SendAsync<SubscriptionReauthorizeParameter, SubscriptionReauthorizeResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-reauthorize?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync(CancellationToken cancellationToken)
         {
             var p = new SubscriptionReauthorizeParameter();
             return await this.SendAsync<SubscriptionReauthorizeParameter, SubscriptionReauthorizeResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-reauthorize?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync(SubscriptionReauthorizeParameter parameter)
+        public async ValueTask<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync(SubscriptionReauthorizeParameter parameter)
         {
             return await this.SendAsync<SubscriptionReauthorizeParameter, SubscriptionReauthorizeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-reauthorize?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync(SubscriptionReauthorizeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionReauthorizeResponse> SubscriptionReauthorizeAsync(SubscriptionReauthorizeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscriptionReauthorizeParameter, SubscriptionReauthorizeResponse>(parameter, cancellationToken);
         }

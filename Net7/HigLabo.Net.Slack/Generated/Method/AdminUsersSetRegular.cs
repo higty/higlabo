@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setRegular
         /// </summary>
-        public async Task<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(string? team_Id, string? user_Id)
+        public async ValueTask<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(string? team_Id, string? user_Id)
         {
             var p = new AdminUsersSetRegularParameter();
             p.Team_Id = team_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setRegular
         /// </summary>
-        public async Task<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetRegularParameter();
             p.Team_Id = team_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setRegular
         /// </summary>
-        public async Task<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(AdminUsersSetRegularParameter parameter)
+        public async ValueTask<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(AdminUsersSetRegularParameter parameter)
         {
             return await this.SendAsync<AdminUsersSetRegularParameter, AdminUsersSetRegularResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setRegular
         /// </summary>
-        public async Task<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(AdminUsersSetRegularParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSetRegularResponse> AdminUsersSetRegularAsync(AdminUsersSetRegularParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSetRegularParameter, AdminUsersSetRegularResponse>(parameter, cancellationToken);
         }

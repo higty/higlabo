@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync()
+        public async ValueTask<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync()
         {
             var p = new VoiceauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<VoiceauthenticationmethodConfigurationUpdateParameter, VoiceauthenticationmethodConfigurationUpdateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new VoiceauthenticationmethodConfigurationUpdateParameter();
             return await this.SendAsync<VoiceauthenticationmethodConfigurationUpdateParameter, VoiceauthenticationmethodConfigurationUpdateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync(VoiceauthenticationmethodConfigurationUpdateParameter parameter)
+        public async ValueTask<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync(VoiceauthenticationmethodConfigurationUpdateParameter parameter)
         {
             return await this.SendAsync<VoiceauthenticationmethodConfigurationUpdateParameter, VoiceauthenticationmethodConfigurationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync(VoiceauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<VoiceauthenticationmethodConfigurationUpdateResponse> VoiceauthenticationmethodConfigurationUpdateAsync(VoiceauthenticationmethodConfigurationUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<VoiceauthenticationmethodConfigurationUpdateParameter, VoiceauthenticationmethodConfigurationUpdateResponse>(parameter, cancellationToken);
         }

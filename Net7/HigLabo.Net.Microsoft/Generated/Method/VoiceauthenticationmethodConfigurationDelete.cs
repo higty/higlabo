@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync()
+        public async ValueTask<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync()
         {
             var p = new VoiceauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<VoiceauthenticationmethodConfigurationDeleteParameter, VoiceauthenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new VoiceauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<VoiceauthenticationmethodConfigurationDeleteParameter, VoiceauthenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync(VoiceauthenticationmethodConfigurationDeleteParameter parameter)
+        public async ValueTask<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync(VoiceauthenticationmethodConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<VoiceauthenticationmethodConfigurationDeleteParameter, VoiceauthenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/voiceauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync(VoiceauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<VoiceauthenticationmethodConfigurationDeleteResponse> VoiceauthenticationmethodConfigurationDeleteAsync(VoiceauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<VoiceauthenticationmethodConfigurationDeleteParameter, VoiceauthenticationmethodConfigurationDeleteResponse>(parameter, cancellationToken);
         }

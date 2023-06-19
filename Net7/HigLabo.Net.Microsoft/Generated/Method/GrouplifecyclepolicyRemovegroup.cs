@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync()
+        public async ValueTask<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync()
         {
             var p = new GrouplifecyclePolicyRemoveGroupParameter();
             return await this.SendAsync<GrouplifecyclePolicyRemoveGroupParameter, GrouplifecyclePolicyRemoveGroupResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync(CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync(CancellationToken cancellationToken)
         {
             var p = new GrouplifecyclePolicyRemoveGroupParameter();
             return await this.SendAsync<GrouplifecyclePolicyRemoveGroupParameter, GrouplifecyclePolicyRemoveGroupResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync(GrouplifecyclePolicyRemoveGroupParameter parameter)
+        public async ValueTask<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync(GrouplifecyclePolicyRemoveGroupParameter parameter)
         {
             return await this.SendAsync<GrouplifecyclePolicyRemoveGroupParameter, GrouplifecyclePolicyRemoveGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync(GrouplifecyclePolicyRemoveGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyRemoveGroupResponse> GrouplifecyclePolicyRemoveGroupAsync(GrouplifecyclePolicyRemoveGroupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GrouplifecyclePolicyRemoveGroupParameter, GrouplifecyclePolicyRemoveGroupResponse>(parameter, cancellationToken);
         }

@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync()
+        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync()
         {
             var p = new OpenshiftchangerequestApproveParameter();
             return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(CancellationToken cancellationToken)
         {
             var p = new OpenshiftchangerequestApproveParameter();
             return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(OpenshiftchangerequestApproveParameter parameter)
+        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(OpenshiftchangerequestApproveParameter parameter)
         {
             return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(OpenshiftchangerequestApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(OpenshiftchangerequestApproveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(parameter, cancellationToken);
         }

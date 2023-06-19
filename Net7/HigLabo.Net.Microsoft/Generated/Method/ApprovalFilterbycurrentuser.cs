@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync()
+        public async ValueTask<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync()
         {
             var p = new ApprovalFilterbycurrentUserParameter();
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new ApprovalFilterbycurrentUserParameter();
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter)
+        public async ValueTask<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync()
+        public async ValueTask<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync()
         {
             var p = new DirectoryobjectCheckmemberGroupsParameter();
             return await this.SendAsync<DirectoryobjectCheckmemberGroupsParameter, DirectoryobjectCheckmemberGroupsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryobjectCheckmemberGroupsParameter();
             return await this.SendAsync<DirectoryobjectCheckmemberGroupsParameter, DirectoryobjectCheckmemberGroupsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync(DirectoryobjectCheckmemberGroupsParameter parameter)
+        public async ValueTask<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync(DirectoryobjectCheckmemberGroupsParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectCheckmemberGroupsParameter, DirectoryobjectCheckmemberGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync(DirectoryobjectCheckmemberGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectCheckmemberGroupsResponse> DirectoryobjectCheckmemberGroupsAsync(DirectoryobjectCheckmemberGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryobjectCheckmemberGroupsParameter, DirectoryobjectCheckmemberGroupsResponse>(parameter, cancellationToken);
         }

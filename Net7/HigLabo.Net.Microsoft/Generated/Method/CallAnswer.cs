@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-answer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAnswerResponse> CallAnswerAsync()
+        public async ValueTask<CallAnswerResponse> CallAnswerAsync()
         {
             var p = new CallAnswerParameter();
             return await this.SendAsync<CallAnswerParameter, CallAnswerResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-answer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAnswerResponse> CallAnswerAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallAnswerResponse> CallAnswerAsync(CancellationToken cancellationToken)
         {
             var p = new CallAnswerParameter();
             return await this.SendAsync<CallAnswerParameter, CallAnswerResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-answer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAnswerResponse> CallAnswerAsync(CallAnswerParameter parameter)
+        public async ValueTask<CallAnswerResponse> CallAnswerAsync(CallAnswerParameter parameter)
         {
             return await this.SendAsync<CallAnswerParameter, CallAnswerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-answer?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAnswerResponse> CallAnswerAsync(CallAnswerParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallAnswerResponse> CallAnswerAsync(CallAnswerParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallAnswerParameter, CallAnswerResponse>(parameter, cancellationToken);
         }

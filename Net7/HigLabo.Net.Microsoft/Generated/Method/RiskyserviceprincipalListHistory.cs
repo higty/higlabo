@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync()
+        public async ValueTask<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync()
         {
             var p = new RiskyserviceprincipalListHistoryParameter();
             return await this.SendAsync<RiskyserviceprincipalListHistoryParameter, RiskyserviceprincipalListHistoryResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyserviceprincipalListHistoryParameter();
             return await this.SendAsync<RiskyserviceprincipalListHistoryParameter, RiskyserviceprincipalListHistoryResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync(RiskyserviceprincipalListHistoryParameter parameter)
+        public async ValueTask<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync(RiskyserviceprincipalListHistoryParameter parameter)
         {
             return await this.SendAsync<RiskyserviceprincipalListHistoryParameter, RiskyserviceprincipalListHistoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-list-history?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync(RiskyserviceprincipalListHistoryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalListHistoryResponse> RiskyserviceprincipalListHistoryAsync(RiskyserviceprincipalListHistoryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyserviceprincipalListHistoryParameter, RiskyserviceprincipalListHistoryResponse>(parameter, cancellationToken);
         }

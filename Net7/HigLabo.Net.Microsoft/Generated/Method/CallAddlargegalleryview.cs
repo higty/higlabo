@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync()
+        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync()
         {
             var p = new CallAddlargegalleryviewParameter();
             return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CancellationToken cancellationToken)
         {
             var p = new CallAddlargegalleryviewParameter();
             return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CallAddlargegalleryviewParameter parameter)
+        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CallAddlargegalleryviewParameter parameter)
         {
             return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CallAddlargegalleryviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CallAddlargegalleryviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(parameter, cancellationToken);
         }

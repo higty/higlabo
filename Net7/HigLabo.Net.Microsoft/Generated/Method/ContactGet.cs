@@ -159,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactGetResponse> ContactGetAsync()
+        public async ValueTask<ContactGetResponse> ContactGetAsync()
         {
             var p = new ContactGetParameter();
             return await this.SendAsync<ContactGetParameter, ContactGetResponse>(p, CancellationToken.None);
@@ -167,7 +167,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactGetResponse> ContactGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactGetResponse> ContactGetAsync(CancellationToken cancellationToken)
         {
             var p = new ContactGetParameter();
             return await this.SendAsync<ContactGetParameter, ContactGetResponse>(p, cancellationToken);
@@ -175,14 +175,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactGetResponse> ContactGetAsync(ContactGetParameter parameter)
+        public async ValueTask<ContactGetResponse> ContactGetAsync(ContactGetParameter parameter)
         {
             return await this.SendAsync<ContactGetParameter, ContactGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactGetResponse> ContactGetAsync(ContactGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactGetResponse> ContactGetAsync(ContactGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactGetParameter, ContactGetResponse>(parameter, cancellationToken);
         }

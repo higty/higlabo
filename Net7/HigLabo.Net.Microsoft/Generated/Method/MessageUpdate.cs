@@ -123,7 +123,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageUpdateResponse> MessageUpdateAsync()
+        public async ValueTask<MessageUpdateResponse> MessageUpdateAsync()
         {
             var p = new MessageUpdateParameter();
             return await this.SendAsync<MessageUpdateParameter, MessageUpdateResponse>(p, CancellationToken.None);
@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageUpdateResponse> MessageUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageUpdateResponse> MessageUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new MessageUpdateParameter();
             return await this.SendAsync<MessageUpdateParameter, MessageUpdateResponse>(p, cancellationToken);
@@ -139,14 +139,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageUpdateResponse> MessageUpdateAsync(MessageUpdateParameter parameter)
+        public async ValueTask<MessageUpdateResponse> MessageUpdateAsync(MessageUpdateParameter parameter)
         {
             return await this.SendAsync<MessageUpdateParameter, MessageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageUpdateResponse> MessageUpdateAsync(MessageUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageUpdateResponse> MessageUpdateAsync(MessageUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageUpdateParameter, MessageUpdateResponse>(parameter, cancellationToken);
         }

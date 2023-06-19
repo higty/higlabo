@@ -130,7 +130,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync()
+        public async ValueTask<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync()
         {
             var p = new EntitlementManagementPostAssignmentrequestsParameter();
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(p, CancellationToken.None);
@@ -138,7 +138,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(CancellationToken cancellationToken)
         {
             var p = new EntitlementManagementPostAssignmentrequestsParameter();
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(p, cancellationToken);
@@ -146,14 +146,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(EntitlementManagementPostAssignmentrequestsParameter parameter)
+        public async ValueTask<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(EntitlementManagementPostAssignmentrequestsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(EntitlementManagementPostAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(EntitlementManagementPostAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(parameter, cancellationToken);
         }

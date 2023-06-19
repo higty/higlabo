@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentGetResponse> LearningContentGetAsync()
+        public async ValueTask<LearningContentGetResponse> LearningContentGetAsync()
         {
             var p = new LearningContentGetParameter();
             return await this.SendAsync<LearningContentGetParameter, LearningContentGetResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentGetResponse> LearningContentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningContentGetResponse> LearningContentGetAsync(CancellationToken cancellationToken)
         {
             var p = new LearningContentGetParameter();
             return await this.SendAsync<LearningContentGetParameter, LearningContentGetResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentGetResponse> LearningContentGetAsync(LearningContentGetParameter parameter)
+        public async ValueTask<LearningContentGetResponse> LearningContentGetAsync(LearningContentGetParameter parameter)
         {
             return await this.SendAsync<LearningContentGetParameter, LearningContentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LearningContentGetResponse> LearningContentGetAsync(LearningContentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningContentGetResponse> LearningContentGetAsync(LearningContentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LearningContentGetParameter, LearningContentGetResponse>(parameter, cancellationToken);
         }

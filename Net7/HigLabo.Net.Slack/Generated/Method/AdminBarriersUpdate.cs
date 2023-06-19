@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.update
         /// </summary>
-        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string? barrier_Id, string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects)
+        public async ValueTask<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string? barrier_Id, string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects)
         {
             var p = new AdminBarriersUpdateParameter();
             p.Barrier_Id = barrier_Id;
@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.update
         /// </summary>
-        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string? barrier_Id, string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects, CancellationToken cancellationToken)
+        public async ValueTask<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string? barrier_Id, string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersUpdateParameter();
             p.Barrier_Id = barrier_Id;
@@ -46,14 +46,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.update
         /// </summary>
-        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter)
+        public async ValueTask<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter)
         {
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.update
         /// </summary>
-        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(parameter, cancellationToken);
         }

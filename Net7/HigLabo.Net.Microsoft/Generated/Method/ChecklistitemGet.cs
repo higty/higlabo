@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync()
+        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync()
         {
             var p = new ChecklistitemGetParameter();
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync(CancellationToken cancellationToken)
         {
             var p = new ChecklistitemGetParameter();
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter)
+        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter)
         {
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(parameter, cancellationToken);
         }

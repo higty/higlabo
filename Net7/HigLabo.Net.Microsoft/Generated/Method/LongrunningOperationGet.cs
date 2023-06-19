@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/longrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LongrunningOperationGetResponse> LongrunningOperationGetAsync()
+        public async ValueTask<LongrunningOperationGetResponse> LongrunningOperationGetAsync()
         {
             var p = new LongrunningOperationGetParameter();
             return await this.SendAsync<LongrunningOperationGetParameter, LongrunningOperationGetResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/longrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LongrunningOperationGetResponse> LongrunningOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<LongrunningOperationGetResponse> LongrunningOperationGetAsync(CancellationToken cancellationToken)
         {
             var p = new LongrunningOperationGetParameter();
             return await this.SendAsync<LongrunningOperationGetParameter, LongrunningOperationGetResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/longrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LongrunningOperationGetResponse> LongrunningOperationGetAsync(LongrunningOperationGetParameter parameter)
+        public async ValueTask<LongrunningOperationGetResponse> LongrunningOperationGetAsync(LongrunningOperationGetParameter parameter)
         {
             return await this.SendAsync<LongrunningOperationGetParameter, LongrunningOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/longrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<LongrunningOperationGetResponse> LongrunningOperationGetAsync(LongrunningOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LongrunningOperationGetResponse> LongrunningOperationGetAsync(LongrunningOperationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<LongrunningOperationGetParameter, LongrunningOperationGetResponse>(parameter, cancellationToken);
         }

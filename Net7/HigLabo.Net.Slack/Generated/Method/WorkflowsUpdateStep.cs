@@ -23,7 +23,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.updateStep
         /// </summary>
-        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string? workflow_Step_Edit_Id)
+        public async ValueTask<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string? workflow_Step_Edit_Id)
         {
             var p = new WorkflowsUpdateStepParameter();
             p.Workflow_Step_Edit_Id = workflow_Step_Edit_Id;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.updateStep
         /// </summary>
-        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string? workflow_Step_Edit_Id, CancellationToken cancellationToken)
+        public async ValueTask<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string? workflow_Step_Edit_Id, CancellationToken cancellationToken)
         {
             var p = new WorkflowsUpdateStepParameter();
             p.Workflow_Step_Edit_Id = workflow_Step_Edit_Id;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.updateStep
         /// </summary>
-        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(WorkflowsUpdateStepParameter parameter)
+        public async ValueTask<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(WorkflowsUpdateStepParameter parameter)
         {
             return await this.SendAsync<WorkflowsUpdateStepParameter, WorkflowsUpdateStepResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/workflows.updateStep
         /// </summary>
-        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(WorkflowsUpdateStepParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(WorkflowsUpdateStepParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkflowsUpdateStepParameter, WorkflowsUpdateStepResponse>(parameter, cancellationToken);
         }

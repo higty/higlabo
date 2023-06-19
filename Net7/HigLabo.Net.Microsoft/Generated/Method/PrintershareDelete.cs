@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync()
+        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync()
         {
             var p = new PrintershareDeleteParameter();
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new PrintershareDeleteParameter();
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter)
+        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter)
         {
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(parameter, cancellationToken);
         }

@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListSharesResponse> PrinterListSharesAsync()
+        public async ValueTask<PrinterListSharesResponse> PrinterListSharesAsync()
         {
             var p = new PrinterListSharesParameter();
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListSharesResponse> PrinterListSharesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterListSharesResponse> PrinterListSharesAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterListSharesParameter();
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListSharesResponse> PrinterListSharesAsync(PrinterListSharesParameter parameter)
+        public async ValueTask<PrinterListSharesResponse> PrinterListSharesAsync(PrinterListSharesParameter parameter)
         {
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterListSharesResponse> PrinterListSharesAsync(PrinterListSharesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterListSharesResponse> PrinterListSharesAsync(PrinterListSharesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync()
+        public async ValueTask<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync()
         {
             var p = new IdentityproviderDeleteParameter();
             return await this.SendAsync<IdentityproviderDeleteParameter, IdentityproviderDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityproviderDeleteParameter();
             return await this.SendAsync<IdentityproviderDeleteParameter, IdentityproviderDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync(IdentityproviderDeleteParameter parameter)
+        public async ValueTask<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync(IdentityproviderDeleteParameter parameter)
         {
             return await this.SendAsync<IdentityproviderDeleteParameter, IdentityproviderDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync(IdentityproviderDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderDeleteResponse> IdentityproviderDeleteAsync(IdentityproviderDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityproviderDeleteParameter, IdentityproviderDeleteResponse>(parameter, cancellationToken);
         }

@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync()
+        public async ValueTask<SitePostPermissionsResponse> SitePostPermissionsAsync()
         {
             var p = new SitePostPermissionsParameter();
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SitePostPermissionsResponse> SitePostPermissionsAsync(CancellationToken cancellationToken)
         {
             var p = new SitePostPermissionsParameter();
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync(SitePostPermissionsParameter parameter)
+        public async ValueTask<SitePostPermissionsResponse> SitePostPermissionsAsync(SitePostPermissionsParameter parameter)
         {
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync(SitePostPermissionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SitePostPermissionsResponse> SitePostPermissionsAsync(SitePostPermissionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(parameter, cancellationToken);
         }

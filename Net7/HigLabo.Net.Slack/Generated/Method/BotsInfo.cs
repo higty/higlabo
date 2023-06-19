@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bots.info
         /// </summary>
-        public async Task<BotsInfoResponse> BotsInfoAsync()
+        public async ValueTask<BotsInfoResponse> BotsInfoAsync()
         {
             var p = new BotsInfoParameter();
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(p, CancellationToken.None);
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bots.info
         /// </summary>
-        public async Task<BotsInfoResponse> BotsInfoAsync(CancellationToken cancellationToken)
+        public async ValueTask<BotsInfoResponse> BotsInfoAsync(CancellationToken cancellationToken)
         {
             var p = new BotsInfoParameter();
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(p, cancellationToken);
@@ -36,14 +36,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bots.info
         /// </summary>
-        public async Task<BotsInfoResponse> BotsInfoAsync(BotsInfoParameter parameter)
+        public async ValueTask<BotsInfoResponse> BotsInfoAsync(BotsInfoParameter parameter)
         {
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/bots.info
         /// </summary>
-        public async Task<BotsInfoResponse> BotsInfoAsync(BotsInfoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BotsInfoResponse> BotsInfoAsync(BotsInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(parameter, cancellationToken);
         }

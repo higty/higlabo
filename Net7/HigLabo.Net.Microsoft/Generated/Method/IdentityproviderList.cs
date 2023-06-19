@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderListResponse> IdentityproviderListAsync()
+        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync()
         {
             var p = new IdentityproviderListParameter();
             return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderListResponse> IdentityproviderListAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityproviderListParameter();
             return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderListResponse> IdentityproviderListAsync(IdentityproviderListParameter parameter)
+        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync(IdentityproviderListParameter parameter)
         {
             return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderListResponse> IdentityproviderListAsync(IdentityproviderListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync(IdentityproviderListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(parameter, cancellationToken);
         }

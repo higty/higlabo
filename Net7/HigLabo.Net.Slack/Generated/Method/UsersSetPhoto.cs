@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setPhoto
         /// </summary>
-        public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync()
+        public async ValueTask<UsersSetPhotoResponse> UsersSetPhotoAsync()
         {
             var p = new UsersSetPhotoParameter();
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(p, CancellationToken.None);
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setPhoto
         /// </summary>
-        public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersSetPhotoResponse> UsersSetPhotoAsync(CancellationToken cancellationToken)
         {
             var p = new UsersSetPhotoParameter();
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(p, cancellationToken);
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setPhoto
         /// </summary>
-        public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync(UsersSetPhotoParameter parameter)
+        public async ValueTask<UsersSetPhotoResponse> UsersSetPhotoAsync(UsersSetPhotoParameter parameter)
         {
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.setPhoto
         /// </summary>
-        public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync(UsersSetPhotoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersSetPhotoResponse> UsersSetPhotoAsync(UsersSetPhotoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(parameter, cancellationToken);
         }

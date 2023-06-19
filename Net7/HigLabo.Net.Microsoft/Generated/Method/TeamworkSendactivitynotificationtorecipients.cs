@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync()
+        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync()
         {
             var p = new TeamworkSendactivitynotificationtorecipientsParameter();
             return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamworkSendactivitynotificationtorecipientsParameter();
             return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(TeamworkSendactivitynotificationtorecipientsParameter parameter)
+        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(TeamworkSendactivitynotificationtorecipientsParameter parameter)
         {
             return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(TeamworkSendactivitynotificationtorecipientsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(TeamworkSendactivitynotificationtorecipientsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(parameter, cancellationToken);
         }

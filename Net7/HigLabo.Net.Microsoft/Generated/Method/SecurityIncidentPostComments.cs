@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync()
+        public async ValueTask<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync()
         {
             var p = new SecurityIncidentPostCommentsParameter();
             return await this.SendAsync<SecurityIncidentPostCommentsParameter, SecurityIncidentPostCommentsResponse>(p, CancellationToken.None);
@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityIncidentPostCommentsParameter();
             return await this.SendAsync<SecurityIncidentPostCommentsParameter, SecurityIncidentPostCommentsResponse>(p, cancellationToken);
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync(SecurityIncidentPostCommentsParameter parameter)
+        public async ValueTask<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync(SecurityIncidentPostCommentsParameter parameter)
         {
             return await this.SendAsync<SecurityIncidentPostCommentsParameter, SecurityIncidentPostCommentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-incident-post-comments?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync(SecurityIncidentPostCommentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityIncidentPostCommentsResponse> SecurityIncidentPostCommentsAsync(SecurityIncidentPostCommentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityIncidentPostCommentsParameter, SecurityIncidentPostCommentsResponse>(parameter, cancellationToken);
         }

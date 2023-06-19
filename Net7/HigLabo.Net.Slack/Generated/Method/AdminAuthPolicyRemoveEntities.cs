@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.removeEntities
         /// </summary>
-        public async Task<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name)
+        public async ValueTask<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name)
         {
             var p = new AdminAuthPolicyRemoveEntitiesParameter();
             p.Entity_Ids = entity_Ids;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.removeEntities
         /// </summary>
-        public async Task<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name, CancellationToken cancellationToken)
         {
             var p = new AdminAuthPolicyRemoveEntitiesParameter();
             p.Entity_Ids = entity_Ids;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.removeEntities
         /// </summary>
-        public async Task<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(AdminAuthPolicyRemoveEntitiesParameter parameter)
+        public async ValueTask<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(AdminAuthPolicyRemoveEntitiesParameter parameter)
         {
             return await this.SendAsync<AdminAuthPolicyRemoveEntitiesParameter, AdminAuthPolicyRemoveEntitiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.removeEntities
         /// </summary>
-        public async Task<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(AdminAuthPolicyRemoveEntitiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuthPolicyRemoveEntitiesResponse> AdminAuthPolicyRemoveEntitiesAsync(AdminAuthPolicyRemoveEntitiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAuthPolicyRemoveEntitiesParameter, AdminAuthPolicyRemoveEntitiesResponse>(parameter, cancellationToken);
         }

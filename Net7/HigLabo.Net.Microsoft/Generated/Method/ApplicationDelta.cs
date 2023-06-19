@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeltaResponse> ApplicationDeltaAsync()
+        public async ValueTask<ApplicationDeltaResponse> ApplicationDeltaAsync()
         {
             var p = new ApplicationDeltaParameter();
             return await this.SendAsync<ApplicationDeltaParameter, ApplicationDeltaResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeltaResponse> ApplicationDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeltaResponse> ApplicationDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationDeltaParameter();
             return await this.SendAsync<ApplicationDeltaParameter, ApplicationDeltaResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeltaResponse> ApplicationDeltaAsync(ApplicationDeltaParameter parameter)
+        public async ValueTask<ApplicationDeltaResponse> ApplicationDeltaAsync(ApplicationDeltaParameter parameter)
         {
             return await this.SendAsync<ApplicationDeltaParameter, ApplicationDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeltaResponse> ApplicationDeltaAsync(ApplicationDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeltaResponse> ApplicationDeltaAsync(ApplicationDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationDeltaParameter, ApplicationDeltaResponse>(parameter, cancellationToken);
         }

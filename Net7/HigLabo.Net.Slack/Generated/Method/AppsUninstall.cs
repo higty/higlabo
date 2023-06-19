@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.uninstall
         /// </summary>
-        public async Task<AppsUninstallResponse> AppsUninstallAsync(string? client_Id, string? client_Secret)
+        public async ValueTask<AppsUninstallResponse> AppsUninstallAsync(string? client_Id, string? client_Secret)
         {
             var p = new AppsUninstallParameter();
             p.Client_Id = client_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.uninstall
         /// </summary>
-        public async Task<AppsUninstallResponse> AppsUninstallAsync(string? client_Id, string? client_Secret, CancellationToken cancellationToken)
+        public async ValueTask<AppsUninstallResponse> AppsUninstallAsync(string? client_Id, string? client_Secret, CancellationToken cancellationToken)
         {
             var p = new AppsUninstallParameter();
             p.Client_Id = client_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.uninstall
         /// </summary>
-        public async Task<AppsUninstallResponse> AppsUninstallAsync(AppsUninstallParameter parameter)
+        public async ValueTask<AppsUninstallResponse> AppsUninstallAsync(AppsUninstallParameter parameter)
         {
             return await this.SendAsync<AppsUninstallParameter, AppsUninstallResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.uninstall
         /// </summary>
-        public async Task<AppsUninstallResponse> AppsUninstallAsync(AppsUninstallParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsUninstallResponse> AppsUninstallAsync(AppsUninstallParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsUninstallParameter, AppsUninstallResponse>(parameter, cancellationToken);
         }

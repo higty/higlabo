@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.connections.open
         /// </summary>
-        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync()
+        public async ValueTask<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync()
         {
             var p = new AppsConnectionsOpenParameter();
             return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(p, CancellationToken.None);
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.connections.open
         /// </summary>
-        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(CancellationToken cancellationToken)
         {
             var p = new AppsConnectionsOpenParameter();
             return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(p, cancellationToken);
@@ -34,14 +34,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.connections.open
         /// </summary>
-        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(AppsConnectionsOpenParameter parameter)
+        public async ValueTask<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(AppsConnectionsOpenParameter parameter)
         {
             return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.connections.open
         /// </summary>
-        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(AppsConnectionsOpenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(AppsConnectionsOpenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(parameter, cancellationToken);
         }

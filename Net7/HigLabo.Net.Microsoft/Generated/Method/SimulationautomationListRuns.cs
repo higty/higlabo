@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-list-runs?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync()
+        public async ValueTask<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync()
         {
             var p = new SimulationautomationListRunsParameter();
             return await this.SendAsync<SimulationautomationListRunsParameter, SimulationautomationListRunsResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-list-runs?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync(CancellationToken cancellationToken)
         {
             var p = new SimulationautomationListRunsParameter();
             return await this.SendAsync<SimulationautomationListRunsParameter, SimulationautomationListRunsResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-list-runs?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync(SimulationautomationListRunsParameter parameter)
+        public async ValueTask<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync(SimulationautomationListRunsParameter parameter)
         {
             return await this.SendAsync<SimulationautomationListRunsParameter, SimulationautomationListRunsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/simulationautomation-list-runs?view=graph-rest-1.0
         /// </summary>
-        public async Task<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync(SimulationautomationListRunsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SimulationautomationListRunsResponse> SimulationautomationListRunsAsync(SimulationautomationListRunsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SimulationautomationListRunsParameter, SimulationautomationListRunsResponse>(parameter, cancellationToken);
         }

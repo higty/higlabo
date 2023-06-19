@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagepages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync()
+        public async ValueTask<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync()
         {
             var p = new ReportRootGetsharepointsiteusagepagesParameter();
             return await this.SendAsync<ReportRootGetsharepointsiteusagepagesParameter, ReportRootGetsharepointsiteusagepagesResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagepages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetsharepointsiteusagepagesParameter();
             return await this.SendAsync<ReportRootGetsharepointsiteusagepagesParameter, ReportRootGetsharepointsiteusagepagesResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagepages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync(ReportRootGetsharepointsiteusagepagesParameter parameter)
+        public async ValueTask<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync(ReportRootGetsharepointsiteusagepagesParameter parameter)
         {
             return await this.SendAsync<ReportRootGetsharepointsiteusagepagesParameter, ReportRootGetsharepointsiteusagepagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagepages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync(ReportRootGetsharepointsiteusagepagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetsharepointsiteusagepagesResponse> ReportRootGetsharepointsiteusagepagesAsync(ReportRootGetsharepointsiteusagepagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetsharepointsiteusagepagesParameter, ReportRootGetsharepointsiteusagepagesResponse>(parameter, cancellationToken);
         }

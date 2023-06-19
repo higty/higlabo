@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRenewResponse> GroupRenewAsync()
+        public async ValueTask<GroupRenewResponse> GroupRenewAsync()
         {
             var p = new GroupRenewParameter();
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRenewResponse> GroupRenewAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupRenewResponse> GroupRenewAsync(CancellationToken cancellationToken)
         {
             var p = new GroupRenewParameter();
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRenewResponse> GroupRenewAsync(GroupRenewParameter parameter)
+        public async ValueTask<GroupRenewResponse> GroupRenewAsync(GroupRenewParameter parameter)
         {
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRenewResponse> GroupRenewAsync(GroupRenewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupRenewResponse> GroupRenewAsync(GroupRenewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(parameter, cancellationToken);
         }

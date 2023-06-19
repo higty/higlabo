@@ -126,7 +126,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeltaResponse> GroupDeltaAsync()
+        public async ValueTask<GroupDeltaResponse> GroupDeltaAsync()
         {
             var p = new GroupDeltaParameter();
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(p, CancellationToken.None);
@@ -134,7 +134,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeltaResponse> GroupDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupDeltaResponse> GroupDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new GroupDeltaParameter();
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(p, cancellationToken);
@@ -142,14 +142,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter)
+        public async ValueTask<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter)
         {
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(parameter, cancellationToken);
         }

@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync()
+        public async ValueTask<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync()
         {
             var p = new TaskfileattachmentGetParameter();
             return await this.SendAsync<TaskfileattachmentGetParameter, TaskfileattachmentGetResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync(CancellationToken cancellationToken)
         {
             var p = new TaskfileattachmentGetParameter();
             return await this.SendAsync<TaskfileattachmentGetParameter, TaskfileattachmentGetResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync(TaskfileattachmentGetParameter parameter)
+        public async ValueTask<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync(TaskfileattachmentGetParameter parameter)
         {
             return await this.SendAsync<TaskfileattachmentGetParameter, TaskfileattachmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/taskfileattachment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync(TaskfileattachmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TaskfileattachmentGetResponse> TaskfileattachmentGetAsync(TaskfileattachmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TaskfileattachmentGetParameter, TaskfileattachmentGetResponse>(parameter, cancellationToken);
         }

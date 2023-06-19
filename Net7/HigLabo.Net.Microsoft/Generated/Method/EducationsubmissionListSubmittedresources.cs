@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync()
+        public async ValueTask<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync()
         {
             var p = new EducationsubmissionListSubmittedResourcesParameter();
             return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(CancellationToken cancellationToken)
         {
             var p = new EducationsubmissionListSubmittedResourcesParameter();
             return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter)
+        public async ValueTask<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(parameter, cancellationToken);
         }

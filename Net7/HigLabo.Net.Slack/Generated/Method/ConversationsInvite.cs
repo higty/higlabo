@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.invite
         /// </summary>
-        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string? channel, string? users)
+        public async ValueTask<ConversationsInviteResponse> ConversationsInviteAsync(string? channel, string? users)
         {
             var p = new ConversationsInviteParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.invite
         /// </summary>
-        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string? channel, string? users, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsInviteResponse> ConversationsInviteAsync(string? channel, string? users, CancellationToken cancellationToken)
         {
             var p = new ConversationsInviteParameter();
             p.Channel = channel;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.invite
         /// </summary>
-        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(ConversationsInviteParameter parameter)
+        public async ValueTask<ConversationsInviteResponse> ConversationsInviteAsync(ConversationsInviteParameter parameter)
         {
             return await this.SendAsync<ConversationsInviteParameter, ConversationsInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.invite
         /// </summary>
-        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(ConversationsInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsInviteResponse> ConversationsInviteAsync(ConversationsInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsInviteParameter, ConversationsInviteResponse>(parameter, cancellationToken);
         }

@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync()
+        public async ValueTask<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync()
         {
             var p = new BrowsersitelistDeleteSharedcookiesParameter();
             return await this.SendAsync<BrowsersitelistDeleteSharedcookiesParameter, BrowsersitelistDeleteSharedcookiesResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersitelistDeleteSharedcookiesParameter();
             return await this.SendAsync<BrowsersitelistDeleteSharedcookiesParameter, BrowsersitelistDeleteSharedcookiesResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync(BrowsersitelistDeleteSharedcookiesParameter parameter)
+        public async ValueTask<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync(BrowsersitelistDeleteSharedcookiesParameter parameter)
         {
             return await this.SendAsync<BrowsersitelistDeleteSharedcookiesParameter, BrowsersitelistDeleteSharedcookiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sharedcookies?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync(BrowsersitelistDeleteSharedcookiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistDeleteSharedcookiesResponse> BrowsersitelistDeleteSharedcookiesAsync(BrowsersitelistDeleteSharedcookiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersitelistDeleteSharedcookiesParameter, BrowsersitelistDeleteSharedcookiesResponse>(parameter, cancellationToken);
         }

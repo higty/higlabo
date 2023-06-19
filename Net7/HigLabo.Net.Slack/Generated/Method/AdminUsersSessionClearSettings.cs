@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.clearSettings
         /// </summary>
-        public async Task<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(string? user_Ids)
+        public async ValueTask<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(string? user_Ids)
         {
             var p = new AdminUsersSessionClearSettingsParameter();
             p.User_Ids = user_Ids;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.clearSettings
         /// </summary>
-        public async Task<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(string? user_Ids, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionClearSettingsParameter();
             p.User_Ids = user_Ids;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.clearSettings
         /// </summary>
-        public async Task<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(AdminUsersSessionClearSettingsParameter parameter)
+        public async ValueTask<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(AdminUsersSessionClearSettingsParameter parameter)
         {
             return await this.SendAsync<AdminUsersSessionClearSettingsParameter, AdminUsersSessionClearSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.clearSettings
         /// </summary>
-        public async Task<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(AdminUsersSessionClearSettingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminUsersSessionClearSettingsResponse> AdminUsersSessionClearSettingsAsync(AdminUsersSessionClearSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSessionClearSettingsParameter, AdminUsersSessionClearSettingsResponse>(parameter, cancellationToken);
         }

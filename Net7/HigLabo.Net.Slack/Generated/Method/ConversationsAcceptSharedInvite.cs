@@ -24,7 +24,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.acceptSharedInvite
         /// </summary>
-        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string? channel_Name)
+        public async ValueTask<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string? channel_Name)
         {
             var p = new ConversationsAcceptSharedInviteParameter();
             p.Channel_Name = channel_Name;
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.acceptSharedInvite
         /// </summary>
-        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string? channel_Name, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string? channel_Name, CancellationToken cancellationToken)
         {
             var p = new ConversationsAcceptSharedInviteParameter();
             p.Channel_Name = channel_Name;
@@ -42,14 +42,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.acceptSharedInvite
         /// </summary>
-        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(ConversationsAcceptSharedInviteParameter parameter)
+        public async ValueTask<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(ConversationsAcceptSharedInviteParameter parameter)
         {
             return await this.SendAsync<ConversationsAcceptSharedInviteParameter, ConversationsAcceptSharedInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.acceptSharedInvite
         /// </summary>
-        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(ConversationsAcceptSharedInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(ConversationsAcceptSharedInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsAcceptSharedInviteParameter, ConversationsAcceptSharedInviteResponse>(parameter, cancellationToken);
         }

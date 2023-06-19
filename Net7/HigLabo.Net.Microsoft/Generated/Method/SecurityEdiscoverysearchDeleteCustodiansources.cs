@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync()
+        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync()
         {
             var p = new SecurityEdiscoverysearchDeleteCustodiansourcesParameter();
             return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverysearchDeleteCustodiansourcesParameter();
             return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(SecurityEdiscoverysearchDeleteCustodiansourcesParameter parameter)
+        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(SecurityEdiscoverysearchDeleteCustodiansourcesParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(SecurityEdiscoverysearchDeleteCustodiansourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(SecurityEdiscoverysearchDeleteCustodiansourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(parameter, cancellationToken);
         }

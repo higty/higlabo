@@ -101,7 +101,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionGetResponse> ColumndefinitionGetAsync()
+        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync()
         {
             var p = new ColumndefinitionGetParameter();
             return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(p, CancellationToken.None);
@@ -109,7 +109,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionGetResponse> ColumndefinitionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync(CancellationToken cancellationToken)
         {
             var p = new ColumndefinitionGetParameter();
             return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(p, cancellationToken);
@@ -117,14 +117,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionGetResponse> ColumndefinitionGetAsync(ColumndefinitionGetParameter parameter)
+        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync(ColumndefinitionGetParameter parameter)
         {
             return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ColumndefinitionGetResponse> ColumndefinitionGetAsync(ColumndefinitionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync(ColumndefinitionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(parameter, cancellationToken);
         }

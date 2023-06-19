@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-purgedata?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync()
+        public async ValueTask<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync()
         {
             var p = new SecurityEdiscoverysearchPurgedataParameter();
             return await this.SendAsync<SecurityEdiscoverysearchPurgedataParameter, SecurityEdiscoverysearchPurgedataResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-purgedata?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverysearchPurgedataParameter();
             return await this.SendAsync<SecurityEdiscoverysearchPurgedataParameter, SecurityEdiscoverysearchPurgedataResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-purgedata?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync(SecurityEdiscoverysearchPurgedataParameter parameter)
+        public async ValueTask<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync(SecurityEdiscoverysearchPurgedataParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverysearchPurgedataParameter, SecurityEdiscoverysearchPurgedataResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-purgedata?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync(SecurityEdiscoverysearchPurgedataParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverysearchPurgedataResponse> SecurityEdiscoverysearchPurgedataAsync(SecurityEdiscoverysearchPurgedataParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverysearchPurgedataParameter, SecurityEdiscoverysearchPurgedataResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteResponse> ApplicationDeleteAsync()
+        public async ValueTask<ApplicationDeleteResponse> ApplicationDeleteAsync()
         {
             var p = new ApplicationDeleteParameter();
             return await this.SendAsync<ApplicationDeleteParameter, ApplicationDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteResponse> ApplicationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteResponse> ApplicationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationDeleteParameter();
             return await this.SendAsync<ApplicationDeleteParameter, ApplicationDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteResponse> ApplicationDeleteAsync(ApplicationDeleteParameter parameter)
+        public async ValueTask<ApplicationDeleteResponse> ApplicationDeleteAsync(ApplicationDeleteParameter parameter)
         {
             return await this.SendAsync<ApplicationDeleteParameter, ApplicationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteResponse> ApplicationDeleteAsync(ApplicationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteResponse> ApplicationDeleteAsync(ApplicationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationDeleteParameter, ApplicationDeleteResponse>(parameter, cancellationToken);
         }

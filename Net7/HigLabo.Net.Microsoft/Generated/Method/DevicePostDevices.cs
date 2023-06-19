@@ -128,7 +128,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-devices?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostDevicesResponse> DevicePostDevicesAsync()
+        public async ValueTask<DevicePostDevicesResponse> DevicePostDevicesAsync()
         {
             var p = new DevicePostDevicesParameter();
             return await this.SendAsync<DevicePostDevicesParameter, DevicePostDevicesResponse>(p, CancellationToken.None);
@@ -136,7 +136,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-devices?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostDevicesResponse> DevicePostDevicesAsync(CancellationToken cancellationToken)
+        public async ValueTask<DevicePostDevicesResponse> DevicePostDevicesAsync(CancellationToken cancellationToken)
         {
             var p = new DevicePostDevicesParameter();
             return await this.SendAsync<DevicePostDevicesParameter, DevicePostDevicesResponse>(p, cancellationToken);
@@ -144,14 +144,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-devices?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostDevicesResponse> DevicePostDevicesAsync(DevicePostDevicesParameter parameter)
+        public async ValueTask<DevicePostDevicesResponse> DevicePostDevicesAsync(DevicePostDevicesParameter parameter)
         {
             return await this.SendAsync<DevicePostDevicesParameter, DevicePostDevicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-post-devices?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostDevicesResponse> DevicePostDevicesAsync(DevicePostDevicesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DevicePostDevicesResponse> DevicePostDevicesAsync(DevicePostDevicesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DevicePostDevicesParameter, DevicePostDevicesResponse>(parameter, cancellationToken);
         }

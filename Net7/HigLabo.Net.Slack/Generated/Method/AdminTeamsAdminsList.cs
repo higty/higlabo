@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string? team_Id)
+        public async ValueTask<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string? team_Id)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter)
+        public async ValueTask<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter)
         {
             return await this.SendAsync<AdminTeamsAdminsListParameter, AdminTeamsAdminsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsAdminsListParameter, AdminTeamsAdminsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string? team_Id, PagingContext<AdminTeamsAdminsListResponse> context)
+        public async ValueTask<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string? team_Id, PagingContext<AdminTeamsAdminsListResponse> context)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string? team_Id, PagingContext<AdminTeamsAdminsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string? team_Id, PagingContext<AdminTeamsAdminsListResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter, PagingContext<AdminTeamsAdminsListResponse> context)
+        public async ValueTask<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter, PagingContext<AdminTeamsAdminsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter, PagingContext<AdminTeamsAdminsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(AdminTeamsAdminsListParameter parameter, PagingContext<AdminTeamsAdminsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreementfile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementfileGetResponse> AgreementfileGetAsync()
+        public async ValueTask<AgreementfileGetResponse> AgreementfileGetAsync()
         {
             var p = new AgreementfileGetParameter();
             return await this.SendAsync<AgreementfileGetParameter, AgreementfileGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreementfile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementfileGetResponse> AgreementfileGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AgreementfileGetResponse> AgreementfileGetAsync(CancellationToken cancellationToken)
         {
             var p = new AgreementfileGetParameter();
             return await this.SendAsync<AgreementfileGetParameter, AgreementfileGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreementfile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementfileGetResponse> AgreementfileGetAsync(AgreementfileGetParameter parameter)
+        public async ValueTask<AgreementfileGetResponse> AgreementfileGetAsync(AgreementfileGetParameter parameter)
         {
             return await this.SendAsync<AgreementfileGetParameter, AgreementfileGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/agreementfile-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AgreementfileGetResponse> AgreementfileGetAsync(AgreementfileGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AgreementfileGetResponse> AgreementfileGetAsync(AgreementfileGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementfileGetParameter, AgreementfileGetResponse>(parameter, cancellationToken);
         }

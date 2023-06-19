@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync()
+        public async ValueTask<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync()
         {
             var p = new CrosstenantAccessPolicyListPartnersParameter();
             return await this.SendAsync<CrosstenantAccessPolicyListPartnersParameter, CrosstenantAccessPolicyListPartnersResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CancellationToken cancellationToken)
         {
             var p = new CrosstenantAccessPolicyListPartnersParameter();
             return await this.SendAsync<CrosstenantAccessPolicyListPartnersParameter, CrosstenantAccessPolicyListPartnersResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CrosstenantAccessPolicyListPartnersParameter parameter)
+        public async ValueTask<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CrosstenantAccessPolicyListPartnersParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyListPartnersParameter, CrosstenantAccessPolicyListPartnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CrosstenantAccessPolicyListPartnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CrosstenantAccessPolicyListPartnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantAccessPolicyListPartnersParameter, CrosstenantAccessPolicyListPartnersResponse>(parameter, cancellationToken);
         }

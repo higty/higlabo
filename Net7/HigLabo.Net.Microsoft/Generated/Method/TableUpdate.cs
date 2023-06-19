@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableUpdateResponse> TableUpdateAsync()
+        public async ValueTask<TableUpdateResponse> TableUpdateAsync()
         {
             var p = new TableUpdateParameter();
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableUpdateResponse> TableUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<TableUpdateResponse> TableUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new TableUpdateParameter();
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableUpdateResponse> TableUpdateAsync(TableUpdateParameter parameter)
+        public async ValueTask<TableUpdateResponse> TableUpdateAsync(TableUpdateParameter parameter)
         {
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableUpdateResponse> TableUpdateAsync(TableUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TableUpdateResponse> TableUpdateAsync(TableUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(parameter, cancellationToken);
         }

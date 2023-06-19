@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.lookupByEmail
         /// </summary>
-        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string? email)
+        public async ValueTask<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string? email)
         {
             var p = new UsersLookupByEmailParameter();
             p.Email = email;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.lookupByEmail
         /// </summary>
-        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string? email, CancellationToken cancellationToken)
+        public async ValueTask<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string? email, CancellationToken cancellationToken)
         {
             var p = new UsersLookupByEmailParameter();
             p.Email = email;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.lookupByEmail
         /// </summary>
-        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(UsersLookupByEmailParameter parameter)
+        public async ValueTask<UsersLookupByEmailResponse> UsersLookupByEmailAsync(UsersLookupByEmailParameter parameter)
         {
             return await this.SendAsync<UsersLookupByEmailParameter, UsersLookupByEmailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.lookupByEmail
         /// </summary>
-        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(UsersLookupByEmailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersLookupByEmailResponse> UsersLookupByEmailAsync(UsersLookupByEmailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersLookupByEmailParameter, UsersLookupByEmailResponse>(parameter, cancellationToken);
         }

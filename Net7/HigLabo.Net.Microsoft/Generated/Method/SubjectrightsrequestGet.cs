@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync()
+        public async ValueTask<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync()
         {
             var p = new SubjectrightsrequestGetParameter();
             return await this.SendAsync<SubjectrightsrequestGetParameter, SubjectrightsrequestGetResponse>(p, CancellationToken.None);
@@ -113,7 +113,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new SubjectrightsrequestGetParameter();
             return await this.SendAsync<SubjectrightsrequestGetParameter, SubjectrightsrequestGetResponse>(p, cancellationToken);
@@ -121,14 +121,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync(SubjectrightsrequestGetParameter parameter)
+        public async ValueTask<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync(SubjectrightsrequestGetParameter parameter)
         {
             return await this.SendAsync<SubjectrightsrequestGetParameter, SubjectrightsrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync(SubjectrightsrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsrequestGetResponse> SubjectrightsrequestGetAsync(SubjectrightsrequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubjectrightsrequestGetParameter, SubjectrightsrequestGetResponse>(parameter, cancellationToken);
         }

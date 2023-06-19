@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync()
+        public async ValueTask<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync()
         {
             var p = new SecurityEdiscoveryreviewtagGetParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewtagGetParameter, SecurityEdiscoveryreviewtagGetResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoveryreviewtagGetParameter();
             return await this.SendAsync<SecurityEdiscoveryreviewtagGetParameter, SecurityEdiscoveryreviewtagGetResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync(SecurityEdiscoveryreviewtagGetParameter parameter)
+        public async ValueTask<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync(SecurityEdiscoveryreviewtagGetParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewtagGetParameter, SecurityEdiscoveryreviewtagGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync(SecurityEdiscoveryreviewtagGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoveryreviewtagGetResponse> SecurityEdiscoveryreviewtagGetAsync(SecurityEdiscoveryreviewtagGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoveryreviewtagGetParameter, SecurityEdiscoveryreviewtagGetResponse>(parameter, cancellationToken);
         }

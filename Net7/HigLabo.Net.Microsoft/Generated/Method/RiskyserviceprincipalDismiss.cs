@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync()
+        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync()
         {
             var p = new RiskyserviceprincipalDismissParameter();
             return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyserviceprincipalDismissParameter();
             return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(RiskyserviceprincipalDismissParameter parameter)
+        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(RiskyserviceprincipalDismissParameter parameter)
         {
             return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(RiskyserviceprincipalDismissParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(RiskyserviceprincipalDismissParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(parameter, cancellationToken);
         }

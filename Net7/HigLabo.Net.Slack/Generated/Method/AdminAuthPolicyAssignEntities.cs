@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.assignEntities
         /// </summary>
-        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name)
+        public async ValueTask<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name)
         {
             var p = new AdminAuthPolicyAssignEntitiesParameter();
             p.Entity_Ids = entity_Ids;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.assignEntities
         /// </summary>
-        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name, CancellationToken cancellationToken)
         {
             var p = new AdminAuthPolicyAssignEntitiesParameter();
             p.Entity_Ids = entity_Ids;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.assignEntities
         /// </summary>
-        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(AdminAuthPolicyAssignEntitiesParameter parameter)
+        public async ValueTask<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(AdminAuthPolicyAssignEntitiesParameter parameter)
         {
             return await this.SendAsync<AdminAuthPolicyAssignEntitiesParameter, AdminAuthPolicyAssignEntitiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.assignEntities
         /// </summary>
-        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(AdminAuthPolicyAssignEntitiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(AdminAuthPolicyAssignEntitiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAuthPolicyAssignEntitiesParameter, AdminAuthPolicyAssignEntitiesResponse>(parameter, cancellationToken);
         }

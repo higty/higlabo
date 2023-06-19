@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceUpdateResponse> DeviceUpdateAsync()
+        public async ValueTask<DeviceUpdateResponse> DeviceUpdateAsync()
         {
             var p = new DeviceUpdateParameter();
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceUpdateResponse> DeviceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceUpdateResponse> DeviceUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new DeviceUpdateParameter();
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceUpdateResponse> DeviceUpdateAsync(DeviceUpdateParameter parameter)
+        public async ValueTask<DeviceUpdateResponse> DeviceUpdateAsync(DeviceUpdateParameter parameter)
         {
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceUpdateResponse> DeviceUpdateAsync(DeviceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceUpdateResponse> DeviceUpdateAsync(DeviceUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(parameter, cancellationToken);
         }

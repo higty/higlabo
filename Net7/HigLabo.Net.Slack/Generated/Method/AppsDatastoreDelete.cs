@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.delete
         /// </summary>
-        public async Task<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(string? datastore, string? id)
+        public async ValueTask<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(string? datastore, string? id)
         {
             var p = new AppsDatastoreDeleteParameter();
             p.Datastore = datastore;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.delete
         /// </summary>
-        public async Task<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(string? datastore, string? id, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(string? datastore, string? id, CancellationToken cancellationToken)
         {
             var p = new AppsDatastoreDeleteParameter();
             p.Datastore = datastore;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.delete
         /// </summary>
-        public async Task<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(AppsDatastoreDeleteParameter parameter)
+        public async ValueTask<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(AppsDatastoreDeleteParameter parameter)
         {
             return await this.SendAsync<AppsDatastoreDeleteParameter, AppsDatastoreDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.delete
         /// </summary>
-        public async Task<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(AppsDatastoreDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreDeleteResponse> AppsDatastoreDeleteAsync(AppsDatastoreDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsDatastoreDeleteParameter, AppsDatastoreDeleteResponse>(parameter, cancellationToken);
         }

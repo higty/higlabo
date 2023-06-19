@@ -23,7 +23,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.get
         /// </summary>
-        public async Task<ReactionsGetResponse> ReactionsGetAsync()
+        public async ValueTask<ReactionsGetResponse> ReactionsGetAsync()
         {
             var p = new ReactionsGetParameter();
             return await this.SendAsync<ReactionsGetParameter, ReactionsGetResponse>(p, CancellationToken.None);
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.get
         /// </summary>
-        public async Task<ReactionsGetResponse> ReactionsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReactionsGetResponse> ReactionsGetAsync(CancellationToken cancellationToken)
         {
             var p = new ReactionsGetParameter();
             return await this.SendAsync<ReactionsGetParameter, ReactionsGetResponse>(p, cancellationToken);
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.get
         /// </summary>
-        public async Task<ReactionsGetResponse> ReactionsGetAsync(ReactionsGetParameter parameter)
+        public async ValueTask<ReactionsGetResponse> ReactionsGetAsync(ReactionsGetParameter parameter)
         {
             return await this.SendAsync<ReactionsGetParameter, ReactionsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/reactions.get
         /// </summary>
-        public async Task<ReactionsGetResponse> ReactionsGetAsync(ReactionsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReactionsGetResponse> ReactionsGetAsync(ReactionsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReactionsGetParameter, ReactionsGetResponse>(parameter, cancellationToken);
         }

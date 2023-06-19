@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.add
         /// </summary>
-        public async Task<PinsAddResponse> PinsAddAsync(string? channel)
+        public async ValueTask<PinsAddResponse> PinsAddAsync(string? channel)
         {
             var p = new PinsAddParameter();
             p.Channel = channel;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.add
         /// </summary>
-        public async Task<PinsAddResponse> PinsAddAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<PinsAddResponse> PinsAddAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new PinsAddParameter();
             p.Channel = channel;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.add
         /// </summary>
-        public async Task<PinsAddResponse> PinsAddAsync(PinsAddParameter parameter)
+        public async ValueTask<PinsAddResponse> PinsAddAsync(PinsAddParameter parameter)
         {
             return await this.SendAsync<PinsAddParameter, PinsAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/pins.add
         /// </summary>
-        public async Task<PinsAddResponse> PinsAddAsync(PinsAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PinsAddResponse> PinsAddAsync(PinsAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PinsAddParameter, PinsAddResponse>(parameter, cancellationToken);
         }

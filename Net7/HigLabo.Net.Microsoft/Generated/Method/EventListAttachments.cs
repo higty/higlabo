@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListAttachmentsResponse> EventListAttachmentsAsync()
+        public async ValueTask<EventListAttachmentsResponse> EventListAttachmentsAsync()
         {
             var p = new EventListAttachmentsParameter();
             return await this.SendAsync<EventListAttachmentsParameter, EventListAttachmentsResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListAttachmentsResponse> EventListAttachmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventListAttachmentsResponse> EventListAttachmentsAsync(CancellationToken cancellationToken)
         {
             var p = new EventListAttachmentsParameter();
             return await this.SendAsync<EventListAttachmentsParameter, EventListAttachmentsResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListAttachmentsResponse> EventListAttachmentsAsync(EventListAttachmentsParameter parameter)
+        public async ValueTask<EventListAttachmentsResponse> EventListAttachmentsAsync(EventListAttachmentsParameter parameter)
         {
             return await this.SendAsync<EventListAttachmentsParameter, EventListAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-list-attachments?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventListAttachmentsResponse> EventListAttachmentsAsync(EventListAttachmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventListAttachmentsResponse> EventListAttachmentsAsync(EventListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventListAttachmentsParameter, EventListAttachmentsResponse>(parameter, cancellationToken);
         }

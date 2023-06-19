@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.remove
         /// </summary>
-        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string? name)
+        public async ValueTask<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string? name)
         {
             var p = new AdminEmojiRemoveParameter();
             p.Name = name;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.remove
         /// </summary>
-        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string? name, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new AdminEmojiRemoveParameter();
             p.Name = name;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.remove
         /// </summary>
-        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(AdminEmojiRemoveParameter parameter)
+        public async ValueTask<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(AdminEmojiRemoveParameter parameter)
         {
             return await this.SendAsync<AdminEmojiRemoveParameter, AdminEmojiRemoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.remove
         /// </summary>
-        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(AdminEmojiRemoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(AdminEmojiRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminEmojiRemoveParameter, AdminEmojiRemoveResponse>(parameter, cancellationToken);
         }

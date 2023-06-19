@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUnmuteResponse> CallUnmuteAsync()
+        public async ValueTask<CallUnmuteResponse> CallUnmuteAsync()
         {
             var p = new CallUnmuteParameter();
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUnmuteResponse> CallUnmuteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallUnmuteResponse> CallUnmuteAsync(CancellationToken cancellationToken)
         {
             var p = new CallUnmuteParameter();
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUnmuteResponse> CallUnmuteAsync(CallUnmuteParameter parameter)
+        public async ValueTask<CallUnmuteResponse> CallUnmuteAsync(CallUnmuteParameter parameter)
         {
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUnmuteResponse> CallUnmuteAsync(CallUnmuteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallUnmuteResponse> CallUnmuteAsync(CallUnmuteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(parameter, cancellationToken);
         }

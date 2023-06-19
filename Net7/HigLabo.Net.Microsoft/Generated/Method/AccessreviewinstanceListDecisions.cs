@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync()
+        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync()
         {
             var p = new AccessreviewinstanceListDecisionsParameter();
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(p, CancellationToken.None);
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewinstanceListDecisionsParameter();
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(p, cancellationToken);
@@ -91,14 +91,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter)
+        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(parameter, cancellationToken);
         }

@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync()
+        public async ValueTask<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync()
         {
             var p = new NotebookPostSectionGroupsParameter();
             return await this.SendAsync<NotebookPostSectionGroupsParameter, NotebookPostSectionGroupsResponse>(p, CancellationToken.None);
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookPostSectionGroupsParameter();
             return await this.SendAsync<NotebookPostSectionGroupsParameter, NotebookPostSectionGroupsResponse>(p, cancellationToken);
@@ -100,14 +100,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync(NotebookPostSectionGroupsParameter parameter)
+        public async ValueTask<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync(NotebookPostSectionGroupsParameter parameter)
         {
             return await this.SendAsync<NotebookPostSectionGroupsParameter, NotebookPostSectionGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync(NotebookPostSectionGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookPostSectionGroupsResponse> NotebookPostSectionGroupsAsync(NotebookPostSectionGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookPostSectionGroupsParameter, NotebookPostSectionGroupsResponse>(parameter, cancellationToken);
         }

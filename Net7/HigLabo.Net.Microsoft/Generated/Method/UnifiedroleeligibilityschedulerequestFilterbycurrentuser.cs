@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync()
+        public async ValueTask<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync()
         {
             var p = new UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter();
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter, UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter();
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter, UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse>(p, cancellationToken);
@@ -97,14 +97,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync(UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter parameter)
+        public async ValueTask<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync(UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter, UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync(UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse> UnifiedroleeligibilityschedulerequestFilterbycurrentUserAsync(UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestFilterbycurrentUserParameter, UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

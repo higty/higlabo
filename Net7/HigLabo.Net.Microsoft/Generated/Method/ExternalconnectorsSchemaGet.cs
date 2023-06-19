@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync()
+        public async ValueTask<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync()
         {
             var p = new ExternalConnectorsSchemaGetParameter();
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsSchemaGetParameter();
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter)
+        public async ValueTask<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(parameter, cancellationToken);
         }

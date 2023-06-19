@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync()
+        public async ValueTask<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync()
         {
             var p = new TeamDeleteIncomingchannelsParameter();
             return await this.SendAsync<TeamDeleteIncomingchannelsParameter, TeamDeleteIncomingchannelsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamDeleteIncomingchannelsParameter();
             return await this.SendAsync<TeamDeleteIncomingchannelsParameter, TeamDeleteIncomingchannelsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync(TeamDeleteIncomingchannelsParameter parameter)
+        public async ValueTask<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync(TeamDeleteIncomingchannelsParameter parameter)
         {
             return await this.SendAsync<TeamDeleteIncomingchannelsParameter, TeamDeleteIncomingchannelsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-delete-incomingchannels?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync(TeamDeleteIncomingchannelsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamDeleteIncomingchannelsResponse> TeamDeleteIncomingchannelsAsync(TeamDeleteIncomingchannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamDeleteIncomingchannelsParameter, TeamDeleteIncomingchannelsResponse>(parameter, cancellationToken);
         }

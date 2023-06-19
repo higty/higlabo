@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(string? channel_Id)
+        public async ValueTask<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(string? channel_Id)
         {
             var p = new AdminConversationsGetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsGetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter)
+        public async ValueTask<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter)
         {
             return await this.SendAsync<AdminConversationsGetTeamsParameter, AdminConversationsGetTeamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsGetTeamsResponse> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsGetTeamsParameter, AdminConversationsGetTeamsResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context)
+        public async ValueTask<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context)
         {
             var p = new AdminConversationsGetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsGetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter, PagingContext<AdminConversationsGetTeamsResponse> context)
+        public async ValueTask<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter, PagingContext<AdminConversationsGetTeamsResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async Task<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter, PagingContext<AdminConversationsGetTeamsResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(AdminConversationsGetTeamsParameter parameter, PagingContext<AdminConversationsGetTeamsResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

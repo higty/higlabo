@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync()
+        public async ValueTask<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync()
         {
             var p = new TeamGetPrimarychannelParameter();
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(p, CancellationToken.None);
@@ -118,7 +118,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(CancellationToken cancellationToken)
         {
             var p = new TeamGetPrimarychannelParameter();
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(p, cancellationToken);
@@ -126,14 +126,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(TeamGetPrimarychannelParameter parameter)
+        public async ValueTask<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(TeamGetPrimarychannelParameter parameter)
         {
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(TeamGetPrimarychannelParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(TeamGetPrimarychannelParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(parameter, cancellationToken);
         }

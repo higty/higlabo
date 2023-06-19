@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListOwnersResponse> ApplicationListOwnersAsync()
+        public async ValueTask<ApplicationListOwnersResponse> ApplicationListOwnersAsync()
         {
             var p = new ApplicationListOwnersParameter();
             return await this.SendAsync<ApplicationListOwnersParameter, ApplicationListOwnersResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListOwnersResponse> ApplicationListOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListOwnersResponse> ApplicationListOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationListOwnersParameter();
             return await this.SendAsync<ApplicationListOwnersParameter, ApplicationListOwnersResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListOwnersResponse> ApplicationListOwnersAsync(ApplicationListOwnersParameter parameter)
+        public async ValueTask<ApplicationListOwnersResponse> ApplicationListOwnersAsync(ApplicationListOwnersParameter parameter)
         {
             return await this.SendAsync<ApplicationListOwnersParameter, ApplicationListOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListOwnersResponse> ApplicationListOwnersAsync(ApplicationListOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListOwnersResponse> ApplicationListOwnersAsync(ApplicationListOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListOwnersParameter, ApplicationListOwnersResponse>(parameter, cancellationToken);
         }

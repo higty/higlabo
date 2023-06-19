@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryauditListResponse> DirectoryauditListAsync()
+        public async ValueTask<DirectoryauditListResponse> DirectoryauditListAsync()
         {
             var p = new DirectoryauditListParameter();
             return await this.SendAsync<DirectoryauditListParameter, DirectoryauditListResponse>(p, CancellationToken.None);
@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryauditListResponse> DirectoryauditListAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryauditListResponse> DirectoryauditListAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryauditListParameter();
             return await this.SendAsync<DirectoryauditListParameter, DirectoryauditListResponse>(p, cancellationToken);
@@ -87,14 +87,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryauditListResponse> DirectoryauditListAsync(DirectoryauditListParameter parameter)
+        public async ValueTask<DirectoryauditListResponse> DirectoryauditListAsync(DirectoryauditListParameter parameter)
         {
             return await this.SendAsync<DirectoryauditListParameter, DirectoryauditListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryauditListResponse> DirectoryauditListAsync(DirectoryauditListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryauditListResponse> DirectoryauditListAsync(DirectoryauditListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryauditListParameter, DirectoryauditListResponse>(parameter, cancellationToken);
         }

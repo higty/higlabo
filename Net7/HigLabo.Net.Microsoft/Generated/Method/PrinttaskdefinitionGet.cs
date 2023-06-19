@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync()
+        public async ValueTask<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync()
         {
             var p = new PrinttaskdefinitionGetParameter();
             return await this.SendAsync<PrinttaskdefinitionGetParameter, PrinttaskdefinitionGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync(CancellationToken cancellationToken)
         {
             var p = new PrinttaskdefinitionGetParameter();
             return await this.SendAsync<PrinttaskdefinitionGetParameter, PrinttaskdefinitionGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync(PrinttaskdefinitionGetParameter parameter)
+        public async ValueTask<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync(PrinttaskdefinitionGetParameter parameter)
         {
             return await this.SendAsync<PrinttaskdefinitionGetParameter, PrinttaskdefinitionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync(PrinttaskdefinitionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinttaskdefinitionGetResponse> PrinttaskdefinitionGetAsync(PrinttaskdefinitionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinttaskdefinitionGetParameter, PrinttaskdefinitionGetResponse>(parameter, cancellationToken);
         }

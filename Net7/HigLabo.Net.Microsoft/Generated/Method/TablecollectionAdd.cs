@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableCollectionAddResponse> TableCollectionAddAsync()
+        public async ValueTask<TableCollectionAddResponse> TableCollectionAddAsync()
         {
             var p = new TableCollectionAddParameter();
             return await this.SendAsync<TableCollectionAddParameter, TableCollectionAddResponse>(p, CancellationToken.None);
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableCollectionAddResponse> TableCollectionAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<TableCollectionAddResponse> TableCollectionAddAsync(CancellationToken cancellationToken)
         {
             var p = new TableCollectionAddParameter();
             return await this.SendAsync<TableCollectionAddParameter, TableCollectionAddResponse>(p, cancellationToken);
@@ -104,14 +104,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableCollectionAddResponse> TableCollectionAddAsync(TableCollectionAddParameter parameter)
+        public async ValueTask<TableCollectionAddResponse> TableCollectionAddAsync(TableCollectionAddParameter parameter)
         {
             return await this.SendAsync<TableCollectionAddParameter, TableCollectionAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tablecollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<TableCollectionAddResponse> TableCollectionAddAsync(TableCollectionAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TableCollectionAddResponse> TableCollectionAddAsync(TableCollectionAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableCollectionAddParameter, TableCollectionAddResponse>(parameter, cancellationToken);
         }

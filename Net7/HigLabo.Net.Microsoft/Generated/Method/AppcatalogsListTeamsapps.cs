@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync()
+        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync()
         {
             var p = new AppcatalogsListTeamsappsParameter();
             return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(CancellationToken cancellationToken)
         {
             var p = new AppcatalogsListTeamsappsParameter();
             return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(AppcatalogsListTeamsappsParameter parameter)
+        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(AppcatalogsListTeamsappsParameter parameter)
         {
             return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(AppcatalogsListTeamsappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(AppcatalogsListTeamsappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(parameter, cancellationToken);
         }

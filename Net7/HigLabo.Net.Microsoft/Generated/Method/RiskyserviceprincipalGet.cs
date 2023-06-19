@@ -99,7 +99,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync()
+        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync()
         {
             var p = new RiskyserviceprincipalGetParameter();
             return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(p, CancellationToken.None);
@@ -107,7 +107,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(CancellationToken cancellationToken)
         {
             var p = new RiskyserviceprincipalGetParameter();
             return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(p, cancellationToken);
@@ -115,14 +115,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(RiskyserviceprincipalGetParameter parameter)
+        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(RiskyserviceprincipalGetParameter parameter)
         {
             return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(RiskyserviceprincipalGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(RiskyserviceprincipalGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(parameter, cancellationToken);
         }

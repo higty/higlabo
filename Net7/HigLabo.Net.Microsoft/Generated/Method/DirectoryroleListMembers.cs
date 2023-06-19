@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync()
+        public async ValueTask<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync()
         {
             var p = new DirectoryroleListMembersParameter();
             return await this.SendAsync<DirectoryroleListMembersParameter, DirectoryroleListMembersResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryroleListMembersParameter();
             return await this.SendAsync<DirectoryroleListMembersParameter, DirectoryroleListMembersResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync(DirectoryroleListMembersParameter parameter)
+        public async ValueTask<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync(DirectoryroleListMembersParameter parameter)
         {
             return await this.SendAsync<DirectoryroleListMembersParameter, DirectoryroleListMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync(DirectoryroleListMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleListMembersResponse> DirectoryroleListMembersAsync(DirectoryroleListMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleListMembersParameter, DirectoryroleListMembersResponse>(parameter, cancellationToken);
         }

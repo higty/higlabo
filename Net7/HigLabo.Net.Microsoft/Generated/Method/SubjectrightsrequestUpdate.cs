@@ -98,7 +98,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync()
+        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync()
         {
             var p = new SubjectrightsrequestUpdateParameter();
             return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(p, CancellationToken.None);
@@ -106,7 +106,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new SubjectrightsrequestUpdateParameter();
             return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(p, cancellationToken);
@@ -114,14 +114,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(SubjectrightsrequestUpdateParameter parameter)
+        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(SubjectrightsrequestUpdateParameter parameter)
         {
             return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(SubjectrightsrequestUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(SubjectrightsrequestUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(parameter, cancellationToken);
         }

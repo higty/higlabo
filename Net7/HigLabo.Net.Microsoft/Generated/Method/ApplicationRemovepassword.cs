@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync()
+        public async ValueTask<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync()
         {
             var p = new ApplicationRemovepasswordParameter();
             return await this.SendAsync<ApplicationRemovepasswordParameter, ApplicationRemovepasswordResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationRemovepasswordParameter();
             return await this.SendAsync<ApplicationRemovepasswordParameter, ApplicationRemovepasswordResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync(ApplicationRemovepasswordParameter parameter)
+        public async ValueTask<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync(ApplicationRemovepasswordParameter parameter)
         {
             return await this.SendAsync<ApplicationRemovepasswordParameter, ApplicationRemovepasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync(ApplicationRemovepasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationRemovepasswordResponse> ApplicationRemovepasswordAsync(ApplicationRemovepasswordParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationRemovepasswordParameter, ApplicationRemovepasswordResponse>(parameter, cancellationToken);
         }

@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync()
+        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync()
         {
             var p = new ProfilephotoGetParameter();
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(p, CancellationToken.None);
@@ -108,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync(CancellationToken cancellationToken)
         {
             var p = new ProfilephotoGetParameter();
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(p, cancellationToken);
@@ -116,14 +116,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter)
+        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter)
         {
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(parameter, cancellationToken);
         }

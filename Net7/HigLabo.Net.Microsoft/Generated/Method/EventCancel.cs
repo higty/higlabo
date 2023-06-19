@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventCancelResponse> EventCancelAsync()
+        public async ValueTask<EventCancelResponse> EventCancelAsync()
         {
             var p = new EventCancelParameter();
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventCancelResponse> EventCancelAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventCancelResponse> EventCancelAsync(CancellationToken cancellationToken)
         {
             var p = new EventCancelParameter();
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventCancelResponse> EventCancelAsync(EventCancelParameter parameter)
+        public async ValueTask<EventCancelResponse> EventCancelAsync(EventCancelParameter parameter)
         {
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventCancelResponse> EventCancelAsync(EventCancelParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventCancelResponse> EventCancelAsync(EventCancelParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(parameter, cancellationToken);
         }

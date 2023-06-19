@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync()
+        public async ValueTask<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync()
         {
             var p = new EducationclassListCategoriesParameter();
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassListCategoriesParameter();
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(EducationclassListCategoriesParameter parameter)
+        public async ValueTask<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(EducationclassListCategoriesParameter parameter)
         {
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(EducationclassListCategoriesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(EducationclassListCategoriesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(parameter, cancellationToken);
         }

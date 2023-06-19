@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync()
+        public async ValueTask<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync()
         {
             var p = new ApplicationListTokenlifetimepoliciesParameter();
             return await this.SendAsync<ApplicationListTokenlifetimepoliciesParameter, ApplicationListTokenlifetimepoliciesResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationListTokenlifetimepoliciesParameter();
             return await this.SendAsync<ApplicationListTokenlifetimepoliciesParameter, ApplicationListTokenlifetimepoliciesResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync(ApplicationListTokenlifetimepoliciesParameter parameter)
+        public async ValueTask<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync(ApplicationListTokenlifetimepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationListTokenlifetimepoliciesParameter, ApplicationListTokenlifetimepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync(ApplicationListTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationListTokenlifetimepoliciesResponse> ApplicationListTokenlifetimepoliciesAsync(ApplicationListTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListTokenlifetimepoliciesParameter, ApplicationListTokenlifetimepoliciesResponse>(parameter, cancellationToken);
         }

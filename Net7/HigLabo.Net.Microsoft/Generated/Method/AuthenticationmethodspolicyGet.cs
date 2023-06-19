@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync()
+        public async ValueTask<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync()
         {
             var p = new AuthenticationmethodsPolicyGetParameter();
             return await this.SendAsync<AuthenticationmethodsPolicyGetParameter, AuthenticationmethodsPolicyGetResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationmethodsPolicyGetParameter();
             return await this.SendAsync<AuthenticationmethodsPolicyGetParameter, AuthenticationmethodsPolicyGetResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync(AuthenticationmethodsPolicyGetParameter parameter)
+        public async ValueTask<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync(AuthenticationmethodsPolicyGetParameter parameter)
         {
             return await this.SendAsync<AuthenticationmethodsPolicyGetParameter, AuthenticationmethodsPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync(AuthenticationmethodsPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationmethodsPolicyGetResponse> AuthenticationmethodsPolicyGetAsync(AuthenticationmethodsPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationmethodsPolicyGetParameter, AuthenticationmethodsPolicyGetResponse>(parameter, cancellationToken);
         }

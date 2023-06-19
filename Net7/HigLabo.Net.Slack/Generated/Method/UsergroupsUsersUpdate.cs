@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.users.update
         /// </summary>
-        public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(string? usergroup, string? users)
+        public async ValueTask<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(string? usergroup, string? users)
         {
             var p = new UsergroupsUsersUpdateParameter();
             p.Usergroup = usergroup;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.users.update
         /// </summary>
-        public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(string? usergroup, string? users, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(string? usergroup, string? users, CancellationToken cancellationToken)
         {
             var p = new UsergroupsUsersUpdateParameter();
             p.Usergroup = usergroup;
@@ -42,14 +42,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.users.update
         /// </summary>
-        public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(UsergroupsUsersUpdateParameter parameter)
+        public async ValueTask<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(UsergroupsUsersUpdateParameter parameter)
         {
             return await this.SendAsync<UsergroupsUsersUpdateParameter, UsergroupsUsersUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/usergroups.users.update
         /// </summary>
-        public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(UsergroupsUsersUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(UsergroupsUsersUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsergroupsUsersUpdateParameter, UsergroupsUsersUpdateResponse>(parameter, cancellationToken);
         }

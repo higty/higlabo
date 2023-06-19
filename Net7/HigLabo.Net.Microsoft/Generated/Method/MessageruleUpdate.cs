@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleUpdateResponse> MessageruleUpdateAsync()
+        public async ValueTask<MessageruleUpdateResponse> MessageruleUpdateAsync()
         {
             var p = new MessageruleUpdateParameter();
             return await this.SendAsync<MessageruleUpdateParameter, MessageruleUpdateResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleUpdateResponse> MessageruleUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageruleUpdateResponse> MessageruleUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new MessageruleUpdateParameter();
             return await this.SendAsync<MessageruleUpdateParameter, MessageruleUpdateResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleUpdateResponse> MessageruleUpdateAsync(MessageruleUpdateParameter parameter)
+        public async ValueTask<MessageruleUpdateResponse> MessageruleUpdateAsync(MessageruleUpdateParameter parameter)
         {
             return await this.SendAsync<MessageruleUpdateParameter, MessageruleUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/messagerule-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<MessageruleUpdateResponse> MessageruleUpdateAsync(MessageruleUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageruleUpdateResponse> MessageruleUpdateAsync(MessageruleUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageruleUpdateParameter, MessageruleUpdateResponse>(parameter, cancellationToken);
         }

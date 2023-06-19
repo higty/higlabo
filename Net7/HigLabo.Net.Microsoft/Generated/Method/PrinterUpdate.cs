@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterUpdateResponse> PrinterUpdateAsync()
+        public async ValueTask<PrinterUpdateResponse> PrinterUpdateAsync()
         {
             var p = new PrinterUpdateParameter();
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterUpdateResponse> PrinterUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterUpdateResponse> PrinterUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PrinterUpdateParameter();
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterUpdateResponse> PrinterUpdateAsync(PrinterUpdateParameter parameter)
+        public async ValueTask<PrinterUpdateResponse> PrinterUpdateAsync(PrinterUpdateParameter parameter)
         {
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrinterUpdateResponse> PrinterUpdateAsync(PrinterUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterUpdateResponse> PrinterUpdateAsync(PrinterUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(parameter, cancellationToken);
         }

@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync()
+        public async ValueTask<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync()
         {
             var p = new AuthenticationstrengthRootListPoliciesParameter();
             return await this.SendAsync<AuthenticationstrengthRootListPoliciesParameter, AuthenticationstrengthRootListPoliciesResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationstrengthRootListPoliciesParameter();
             return await this.SendAsync<AuthenticationstrengthRootListPoliciesParameter, AuthenticationstrengthRootListPoliciesResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(AuthenticationstrengthRootListPoliciesParameter parameter)
+        public async ValueTask<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(AuthenticationstrengthRootListPoliciesParameter parameter)
         {
             return await this.SendAsync<AuthenticationstrengthRootListPoliciesParameter, AuthenticationstrengthRootListPoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(AuthenticationstrengthRootListPoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(AuthenticationstrengthRootListPoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthRootListPoliciesParameter, AuthenticationstrengthRootListPoliciesResponse>(parameter, cancellationToken);
         }

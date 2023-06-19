@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync()
+        public async ValueTask<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync()
         {
             var p = new BrowsersitelistDeleteSitesParameter();
             return await this.SendAsync<BrowsersitelistDeleteSitesParameter, BrowsersitelistDeleteSitesResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersitelistDeleteSitesParameter();
             return await this.SendAsync<BrowsersitelistDeleteSitesParameter, BrowsersitelistDeleteSitesResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync(BrowsersitelistDeleteSitesParameter parameter)
+        public async ValueTask<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync(BrowsersitelistDeleteSitesParameter parameter)
         {
             return await this.SendAsync<BrowsersitelistDeleteSitesParameter, BrowsersitelistDeleteSitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync(BrowsersitelistDeleteSitesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersitelistDeleteSitesResponse> BrowsersitelistDeleteSitesAsync(BrowsersitelistDeleteSitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersitelistDeleteSitesParameter, BrowsersitelistDeleteSitesResponse>(parameter, cancellationToken);
         }

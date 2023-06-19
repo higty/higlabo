@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync()
+        public async ValueTask<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync()
         {
             var p = new NotebookListSectionGroupsParameter();
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(CancellationToken cancellationToken)
         {
             var p = new NotebookListSectionGroupsParameter();
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter)
+        public async ValueTask<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter)
         {
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(parameter, cancellationToken);
         }

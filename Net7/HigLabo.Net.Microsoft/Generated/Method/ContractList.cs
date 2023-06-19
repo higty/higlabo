@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractListResponse> ContractListAsync()
+        public async ValueTask<ContractListResponse> ContractListAsync()
         {
             var p = new ContractListParameter();
             return await this.SendAsync<ContractListParameter, ContractListResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractListResponse> ContractListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContractListResponse> ContractListAsync(CancellationToken cancellationToken)
         {
             var p = new ContractListParameter();
             return await this.SendAsync<ContractListParameter, ContractListResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractListResponse> ContractListAsync(ContractListParameter parameter)
+        public async ValueTask<ContractListResponse> ContractListAsync(ContractListParameter parameter)
         {
             return await this.SendAsync<ContractListParameter, ContractListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContractListResponse> ContractListAsync(ContractListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContractListResponse> ContractListAsync(ContractListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContractListParameter, ContractListResponse>(parameter, cancellationToken);
         }

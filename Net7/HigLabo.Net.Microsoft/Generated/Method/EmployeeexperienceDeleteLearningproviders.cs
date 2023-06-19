@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-delete-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync()
+        public async ValueTask<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync()
         {
             var p = new EmployeeexperienceDeleteLearningprovidersParameter();
             return await this.SendAsync<EmployeeexperienceDeleteLearningprovidersParameter, EmployeeexperienceDeleteLearningprovidersResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-delete-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync(CancellationToken cancellationToken)
         {
             var p = new EmployeeexperienceDeleteLearningprovidersParameter();
             return await this.SendAsync<EmployeeexperienceDeleteLearningprovidersParameter, EmployeeexperienceDeleteLearningprovidersResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-delete-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync(EmployeeexperienceDeleteLearningprovidersParameter parameter)
+        public async ValueTask<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync(EmployeeexperienceDeleteLearningprovidersParameter parameter)
         {
             return await this.SendAsync<EmployeeexperienceDeleteLearningprovidersParameter, EmployeeexperienceDeleteLearningprovidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-delete-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync(EmployeeexperienceDeleteLearningprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperienceDeleteLearningprovidersResponse> EmployeeexperienceDeleteLearningprovidersAsync(EmployeeexperienceDeleteLearningprovidersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EmployeeexperienceDeleteLearningprovidersParameter, EmployeeexperienceDeleteLearningprovidersResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync()
+        public async ValueTask<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync()
         {
             var p = new B2xidentityUserflowDeleteParameter();
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new B2xidentityUserflowDeleteParameter();
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(B2xidentityUserflowDeleteParameter parameter)
+        public async ValueTask<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(B2xidentityUserflowDeleteParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(B2xidentityUserflowDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(B2xidentityUserflowDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(parameter, cancellationToken);
         }

@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync()
+        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync()
         {
             var p = new UnifiedroledefinitionUpdateParameter();
             return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroledefinitionUpdateParameter();
             return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(UnifiedroledefinitionUpdateParameter parameter)
+        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(UnifiedroledefinitionUpdateParameter parameter)
         {
             return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(UnifiedroledefinitionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(UnifiedroledefinitionUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(parameter, cancellationToken);
         }

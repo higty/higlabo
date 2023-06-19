@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync()
+        public async ValueTask<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync()
         {
             var p = new ExternalConnectorsIdentityDeleteParameter();
             return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(p, CancellationToken.None);
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new ExternalConnectorsIdentityDeleteParameter();
             return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(p, cancellationToken);
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(ExternalConnectorsIdentityDeleteParameter parameter)
+        public async ValueTask<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(ExternalConnectorsIdentityDeleteParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(ExternalConnectorsIdentityDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(ExternalConnectorsIdentityDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(parameter, cancellationToken);
         }

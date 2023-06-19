@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync()
+        public async ValueTask<ChartCollectionAddResponse> ChartCollectionAddAsync()
         {
             var p = new ChartCollectionAddParameter();
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartCollectionAddResponse> ChartCollectionAddAsync(CancellationToken cancellationToken)
         {
             var p = new ChartCollectionAddParameter();
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync(ChartCollectionAddParameter parameter)
+        public async ValueTask<ChartCollectionAddResponse> ChartCollectionAddAsync(ChartCollectionAddParameter parameter)
         {
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync(ChartCollectionAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartCollectionAddResponse> ChartCollectionAddAsync(ChartCollectionAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(parameter, cancellationToken);
         }

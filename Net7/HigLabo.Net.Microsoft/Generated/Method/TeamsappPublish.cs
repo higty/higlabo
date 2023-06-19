@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappPublishResponse> TeamsappPublishAsync()
+        public async ValueTask<TeamsappPublishResponse> TeamsappPublishAsync()
         {
             var p = new TeamsappPublishParameter();
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappPublishResponse> TeamsappPublishAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamsappPublishResponse> TeamsappPublishAsync(CancellationToken cancellationToken)
         {
             var p = new TeamsappPublishParameter();
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappPublishResponse> TeamsappPublishAsync(TeamsappPublishParameter parameter)
+        public async ValueTask<TeamsappPublishResponse> TeamsappPublishAsync(TeamsappPublishParameter parameter)
         {
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappPublishResponse> TeamsappPublishAsync(TeamsappPublishParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamsappPublishResponse> TeamsappPublishAsync(TeamsappPublishParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(parameter, cancellationToken);
         }

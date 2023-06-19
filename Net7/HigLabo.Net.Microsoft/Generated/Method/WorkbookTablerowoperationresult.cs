@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync()
+        public async ValueTask<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync()
         {
             var p = new WorkbookTablerowOperationResultParameter();
             return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookTablerowOperationResultParameter();
             return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(WorkbookTablerowOperationResultParameter parameter)
+        public async ValueTask<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(WorkbookTablerowOperationResultParameter parameter)
         {
             return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(WorkbookTablerowOperationResultParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(WorkbookTablerowOperationResultParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(parameter, cancellationToken);
         }

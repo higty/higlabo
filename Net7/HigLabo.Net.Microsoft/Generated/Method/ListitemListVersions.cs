@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync()
+        public async ValueTask<ListitemListVersionsResponse> ListitemListVersionsAsync()
         {
             var p = new ListitemListVersionsParameter();
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListitemListVersionsResponse> ListitemListVersionsAsync(CancellationToken cancellationToken)
         {
             var p = new ListitemListVersionsParameter();
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync(ListitemListVersionsParameter parameter)
+        public async ValueTask<ListitemListVersionsResponse> ListitemListVersionsAsync(ListitemListVersionsParameter parameter)
         {
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync(ListitemListVersionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListitemListVersionsResponse> ListitemListVersionsAsync(ListitemListVersionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(parameter, cancellationToken);
         }

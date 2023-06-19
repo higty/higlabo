@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync()
+        public async ValueTask<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync()
         {
             var p = new Fido2authenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<Fido2authenticationmethodConfigurationDeleteParameter, Fido2authenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new Fido2authenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<Fido2authenticationmethodConfigurationDeleteParameter, Fido2authenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync(Fido2authenticationmethodConfigurationDeleteParameter parameter)
+        public async ValueTask<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync(Fido2authenticationmethodConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<Fido2authenticationmethodConfigurationDeleteParameter, Fido2authenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync(Fido2authenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Fido2authenticationmethodConfigurationDeleteResponse> Fido2authenticationmethodConfigurationDeleteAsync(Fido2authenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Fido2authenticationmethodConfigurationDeleteParameter, Fido2authenticationmethodConfigurationDeleteResponse>(parameter, cancellationToken);
         }

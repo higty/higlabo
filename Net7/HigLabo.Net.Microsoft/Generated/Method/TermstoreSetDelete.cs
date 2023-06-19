@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync()
+        public async ValueTask<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync()
         {
             var p = new TermStoreSetDeleteParameter();
             return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TermStoreSetDeleteParameter();
             return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(TermStoreSetDeleteParameter parameter)
+        public async ValueTask<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(TermStoreSetDeleteParameter parameter)
         {
             return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(TermStoreSetDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(TermStoreSetDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(parameter, cancellationToken);
         }

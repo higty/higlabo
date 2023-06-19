@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync()
+        public async ValueTask<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync()
         {
             var p = new SmsauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<SmsauthenticationmethodConfigurationDeleteParameter, SmsauthenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new SmsauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<SmsauthenticationmethodConfigurationDeleteParameter, SmsauthenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync(SmsauthenticationmethodConfigurationDeleteParameter parameter)
+        public async ValueTask<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync(SmsauthenticationmethodConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<SmsauthenticationmethodConfigurationDeleteParameter, SmsauthenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/smsauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync(SmsauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SmsauthenticationmethodConfigurationDeleteResponse> SmsauthenticationmethodConfigurationDeleteAsync(SmsauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SmsauthenticationmethodConfigurationDeleteParameter, SmsauthenticationmethodConfigurationDeleteResponse>(parameter, cancellationToken);
         }

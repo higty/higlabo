@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync()
+        public async ValueTask<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync()
         {
             var p = new OrgcontactListDirectreportsParameter();
             return await this.SendAsync<OrgcontactListDirectreportsParameter, OrgcontactListDirectreportsResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync(CancellationToken cancellationToken)
         {
             var p = new OrgcontactListDirectreportsParameter();
             return await this.SendAsync<OrgcontactListDirectreportsParameter, OrgcontactListDirectreportsResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync(OrgcontactListDirectreportsParameter parameter)
+        public async ValueTask<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync(OrgcontactListDirectreportsParameter parameter)
         {
             return await this.SendAsync<OrgcontactListDirectreportsParameter, OrgcontactListDirectreportsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-directreports?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync(OrgcontactListDirectreportsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactListDirectreportsResponse> OrgcontactListDirectreportsAsync(OrgcontactListDirectreportsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrgcontactListDirectreportsParameter, OrgcontactListDirectreportsResponse>(parameter, cancellationToken);
         }

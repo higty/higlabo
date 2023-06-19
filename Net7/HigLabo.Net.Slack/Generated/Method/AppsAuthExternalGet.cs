@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.get
         /// </summary>
-        public async Task<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(string? external_Token_Id)
+        public async ValueTask<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(string? external_Token_Id)
         {
             var p = new AppsAuthExternalGetParameter();
             p.External_Token_Id = external_Token_Id;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.get
         /// </summary>
-        public async Task<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(string? external_Token_Id, CancellationToken cancellationToken)
+        public async ValueTask<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(string? external_Token_Id, CancellationToken cancellationToken)
         {
             var p = new AppsAuthExternalGetParameter();
             p.External_Token_Id = external_Token_Id;
@@ -38,14 +38,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.get
         /// </summary>
-        public async Task<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(AppsAuthExternalGetParameter parameter)
+        public async ValueTask<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(AppsAuthExternalGetParameter parameter)
         {
             return await this.SendAsync<AppsAuthExternalGetParameter, AppsAuthExternalGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.auth.external.get
         /// </summary>
-        public async Task<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(AppsAuthExternalGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsAuthExternalGetResponse> AppsAuthExternalGetAsync(AppsAuthExternalGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsAuthExternalGetParameter, AppsAuthExternalGetResponse>(parameter, cancellationToken);
         }

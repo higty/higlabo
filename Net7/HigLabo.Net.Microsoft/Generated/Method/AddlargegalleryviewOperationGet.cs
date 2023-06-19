@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync()
+        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync()
         {
             var p = new AddlargegalleryviewOperationGetParameter();
             return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(CancellationToken cancellationToken)
         {
             var p = new AddlargegalleryviewOperationGetParameter();
             return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(AddlargegalleryviewOperationGetParameter parameter)
+        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(AddlargegalleryviewOperationGetParameter parameter)
         {
             return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(AddlargegalleryviewOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(AddlargegalleryviewOperationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(parameter, cancellationToken);
         }

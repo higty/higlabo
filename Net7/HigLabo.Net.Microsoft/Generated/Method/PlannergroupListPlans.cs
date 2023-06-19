@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync()
+        public async ValueTask<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync()
         {
             var p = new PlannerGroupListPlansParameter();
             return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(CancellationToken cancellationToken)
         {
             var p = new PlannerGroupListPlansParameter();
             return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(PlannerGroupListPlansParameter parameter)
+        public async ValueTask<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(PlannerGroupListPlansParameter parameter)
         {
             return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(PlannerGroupListPlansParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(PlannerGroupListPlansParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(parameter, cancellationToken);
         }

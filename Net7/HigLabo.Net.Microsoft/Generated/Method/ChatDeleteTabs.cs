@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync()
+        public async ValueTask<ChatDeleteTabsResponse> ChatDeleteTabsAsync()
         {
             var p = new ChatDeleteTabsParameter();
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteTabsResponse> ChatDeleteTabsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatDeleteTabsParameter();
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync(ChatDeleteTabsParameter parameter)
+        public async ValueTask<ChatDeleteTabsResponse> ChatDeleteTabsAsync(ChatDeleteTabsParameter parameter)
         {
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync(ChatDeleteTabsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatDeleteTabsResponse> ChatDeleteTabsAsync(ChatDeleteTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(parameter, cancellationToken);
         }

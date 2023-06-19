@@ -67,7 +67,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-conversations?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListConversationsResponse> GroupListConversationsAsync()
+        public async ValueTask<GroupListConversationsResponse> GroupListConversationsAsync()
         {
             var p = new GroupListConversationsParameter();
             return await this.SendAsync<GroupListConversationsParameter, GroupListConversationsResponse>(p, CancellationToken.None);
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-conversations?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListConversationsResponse> GroupListConversationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListConversationsResponse> GroupListConversationsAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListConversationsParameter();
             return await this.SendAsync<GroupListConversationsParameter, GroupListConversationsResponse>(p, cancellationToken);
@@ -83,14 +83,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-conversations?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListConversationsResponse> GroupListConversationsAsync(GroupListConversationsParameter parameter)
+        public async ValueTask<GroupListConversationsResponse> GroupListConversationsAsync(GroupListConversationsParameter parameter)
         {
             return await this.SendAsync<GroupListConversationsParameter, GroupListConversationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-conversations?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListConversationsResponse> GroupListConversationsAsync(GroupListConversationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListConversationsResponse> GroupListConversationsAsync(GroupListConversationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListConversationsParameter, GroupListConversationsResponse>(parameter, cancellationToken);
         }

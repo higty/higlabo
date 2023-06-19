@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/emoji.list
         /// </summary>
-        public async Task<EmojiListResponse> EmojiListAsync()
+        public async ValueTask<EmojiListResponse> EmojiListAsync()
         {
             var p = new EmojiListParameter();
             return await this.SendAsync<EmojiListParameter, EmojiListResponse>(p, CancellationToken.None);
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/emoji.list
         /// </summary>
-        public async Task<EmojiListResponse> EmojiListAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmojiListResponse> EmojiListAsync(CancellationToken cancellationToken)
         {
             var p = new EmojiListParameter();
             return await this.SendAsync<EmojiListParameter, EmojiListResponse>(p, cancellationToken);
@@ -35,14 +35,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/emoji.list
         /// </summary>
-        public async Task<EmojiListResponse> EmojiListAsync(EmojiListParameter parameter)
+        public async ValueTask<EmojiListResponse> EmojiListAsync(EmojiListParameter parameter)
         {
             return await this.SendAsync<EmojiListParameter, EmojiListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/emoji.list
         /// </summary>
-        public async Task<EmojiListResponse> EmojiListAsync(EmojiListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmojiListResponse> EmojiListAsync(EmojiListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EmojiListParameter, EmojiListResponse>(parameter, cancellationToken);
         }

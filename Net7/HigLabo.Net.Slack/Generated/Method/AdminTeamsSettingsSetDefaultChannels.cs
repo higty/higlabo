@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDefaultChannels
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(string? channel_Ids, string? team_Id)
+        public async ValueTask<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(string? channel_Ids, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetDefaultChannelsParameter();
             p.Channel_Ids = channel_Ids;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDefaultChannels
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(string? channel_Ids, string? team_Id, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(string? channel_Ids, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetDefaultChannelsParameter();
             p.Channel_Ids = channel_Ids;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDefaultChannels
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(AdminTeamsSettingsSetDefaultChannelsParameter parameter)
+        public async ValueTask<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(AdminTeamsSettingsSetDefaultChannelsParameter parameter)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDefaultChannelsParameter, AdminTeamsSettingsSetDefaultChannelsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDefaultChannels
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(AdminTeamsSettingsSetDefaultChannelsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminTeamsSettingsSetDefaultChannelsResponse> AdminTeamsSettingsSetDefaultChannelsAsync(AdminTeamsSettingsSetDefaultChannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDefaultChannelsParameter, AdminTeamsSettingsSetDefaultChannelsResponse>(parameter, cancellationToken);
         }

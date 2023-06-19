@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync()
+        public async ValueTask<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync()
         {
             var p = new TokenissuancePolicyUpdateParameter();
             return await this.SendAsync<TokenissuancePolicyUpdateParameter, TokenissuancePolicyUpdateResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new TokenissuancePolicyUpdateParameter();
             return await this.SendAsync<TokenissuancePolicyUpdateParameter, TokenissuancePolicyUpdateResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync(TokenissuancePolicyUpdateParameter parameter)
+        public async ValueTask<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync(TokenissuancePolicyUpdateParameter parameter)
         {
             return await this.SendAsync<TokenissuancePolicyUpdateParameter, TokenissuancePolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync(TokenissuancePolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TokenissuancePolicyUpdateResponse> TokenissuancePolicyUpdateAsync(TokenissuancePolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenissuancePolicyUpdateParameter, TokenissuancePolicyUpdateResponse>(parameter, cancellationToken);
         }

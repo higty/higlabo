@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync()
+        public async ValueTask<ItemanalyticsGetResponse> ItemanalyticsGetAsync()
         {
             var p = new ItemanalyticsGetParameter();
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ItemanalyticsGetResponse> ItemanalyticsGetAsync(CancellationToken cancellationToken)
         {
             var p = new ItemanalyticsGetParameter();
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter)
+        public async ValueTask<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter)
         {
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(parameter, cancellationToken);
         }

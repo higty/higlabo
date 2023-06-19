@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync()
+        public async ValueTask<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync()
         {
             var p = new ApplicationPostOwnersParameter();
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationPostOwnersParameter();
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(ApplicationPostOwnersParameter parameter)
+        public async ValueTask<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(ApplicationPostOwnersParameter parameter)
         {
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(ApplicationPostOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(ApplicationPostOwnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(parameter, cancellationToken);
         }

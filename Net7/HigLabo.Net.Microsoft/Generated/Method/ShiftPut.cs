@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftPutResponse> ShiftPutAsync()
+        public async ValueTask<ShiftPutResponse> ShiftPutAsync()
         {
             var p = new ShiftPutParameter();
             return await this.SendAsync<ShiftPutParameter, ShiftPutResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftPutResponse> ShiftPutAsync(CancellationToken cancellationToken)
+        public async ValueTask<ShiftPutResponse> ShiftPutAsync(CancellationToken cancellationToken)
         {
             var p = new ShiftPutParameter();
             return await this.SendAsync<ShiftPutParameter, ShiftPutResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftPutResponse> ShiftPutAsync(ShiftPutParameter parameter)
+        public async ValueTask<ShiftPutResponse> ShiftPutAsync(ShiftPutParameter parameter)
         {
             return await this.SendAsync<ShiftPutParameter, ShiftPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/shift-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<ShiftPutResponse> ShiftPutAsync(ShiftPutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ShiftPutResponse> ShiftPutAsync(ShiftPutParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ShiftPutParameter, ShiftPutResponse>(parameter, cancellationToken);
         }

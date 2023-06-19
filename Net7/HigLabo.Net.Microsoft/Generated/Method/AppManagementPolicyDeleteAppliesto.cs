@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync()
+        public async ValueTask<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync()
         {
             var p = new AppManagementPolicyDeleteAppliestoParameter();
             return await this.SendAsync<AppManagementPolicyDeleteAppliestoParameter, AppManagementPolicyDeleteAppliestoResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync(CancellationToken cancellationToken)
         {
             var p = new AppManagementPolicyDeleteAppliestoParameter();
             return await this.SendAsync<AppManagementPolicyDeleteAppliestoParameter, AppManagementPolicyDeleteAppliestoResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync(AppManagementPolicyDeleteAppliestoParameter parameter)
+        public async ValueTask<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync(AppManagementPolicyDeleteAppliestoParameter parameter)
         {
             return await this.SendAsync<AppManagementPolicyDeleteAppliestoParameter, AppManagementPolicyDeleteAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync(AppManagementPolicyDeleteAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppManagementPolicyDeleteAppliestoResponse> AppManagementPolicyDeleteAppliestoAsync(AppManagementPolicyDeleteAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyDeleteAppliestoParameter, AppManagementPolicyDeleteAppliestoResponse>(parameter, cancellationToken);
         }

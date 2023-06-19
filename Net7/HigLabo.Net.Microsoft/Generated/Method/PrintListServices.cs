@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-services?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListServicesResponse> PrintListServicesAsync()
+        public async ValueTask<PrintListServicesResponse> PrintListServicesAsync()
         {
             var p = new PrintListServicesParameter();
             return await this.SendAsync<PrintListServicesParameter, PrintListServicesResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-services?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListServicesResponse> PrintListServicesAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintListServicesResponse> PrintListServicesAsync(CancellationToken cancellationToken)
         {
             var p = new PrintListServicesParameter();
             return await this.SendAsync<PrintListServicesParameter, PrintListServicesResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-services?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListServicesResponse> PrintListServicesAsync(PrintListServicesParameter parameter)
+        public async ValueTask<PrintListServicesResponse> PrintListServicesAsync(PrintListServicesParameter parameter)
         {
             return await this.SendAsync<PrintListServicesParameter, PrintListServicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-services?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintListServicesResponse> PrintListServicesAsync(PrintListServicesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintListServicesResponse> PrintListServicesAsync(PrintListServicesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintListServicesParameter, PrintListServicesResponse>(parameter, cancellationToken);
         }

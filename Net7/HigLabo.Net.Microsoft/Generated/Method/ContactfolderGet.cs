@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderGetResponse> ContactfolderGetAsync()
+        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync()
         {
             var p = new ContactfolderGetParameter();
             return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderGetResponse> ContactfolderGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync(CancellationToken cancellationToken)
         {
             var p = new ContactfolderGetParameter();
             return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderGetResponse> ContactfolderGetAsync(ContactfolderGetParameter parameter)
+        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync(ContactfolderGetParameter parameter)
         {
             return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderGetResponse> ContactfolderGetAsync(ContactfolderGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync(ContactfolderGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(parameter, cancellationToken);
         }

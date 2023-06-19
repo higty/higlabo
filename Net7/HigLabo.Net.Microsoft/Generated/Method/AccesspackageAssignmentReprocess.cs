@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync()
+        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync()
         {
             var p = new AccesspackageAssignmentReprocessParameter();
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(p, CancellationToken.None);
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(CancellationToken cancellationToken)
         {
             var p = new AccesspackageAssignmentReprocessParameter();
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(p, cancellationToken);
@@ -101,14 +101,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter)
+        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(parameter, cancellationToken);
         }

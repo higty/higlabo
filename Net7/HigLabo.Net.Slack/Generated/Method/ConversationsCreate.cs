@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.create
         /// </summary>
-        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(string? name)
+        public async ValueTask<ConversationsCreateResponse> ConversationsCreateAsync(string? name)
         {
             var p = new ConversationsCreateParameter();
             p.Name = name;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.create
         /// </summary>
-        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(string? name, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsCreateResponse> ConversationsCreateAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new ConversationsCreateParameter();
             p.Name = name;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.create
         /// </summary>
-        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(ConversationsCreateParameter parameter)
+        public async ValueTask<ConversationsCreateResponse> ConversationsCreateAsync(ConversationsCreateParameter parameter)
         {
             return await this.SendAsync<ConversationsCreateParameter, ConversationsCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.create
         /// </summary>
-        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(ConversationsCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsCreateResponse> ConversationsCreateAsync(ConversationsCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsCreateParameter, ConversationsCreateResponse>(parameter, cancellationToken);
         }

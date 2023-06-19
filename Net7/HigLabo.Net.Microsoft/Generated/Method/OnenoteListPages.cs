@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListPagesResponse> OnenoteListPagesAsync()
+        public async ValueTask<OnenoteListPagesResponse> OnenoteListPagesAsync()
         {
             var p = new OnenoteListPagesParameter();
             return await this.SendAsync<OnenoteListPagesParameter, OnenoteListPagesResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListPagesResponse> OnenoteListPagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListPagesResponse> OnenoteListPagesAsync(CancellationToken cancellationToken)
         {
             var p = new OnenoteListPagesParameter();
             return await this.SendAsync<OnenoteListPagesParameter, OnenoteListPagesResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListPagesResponse> OnenoteListPagesAsync(OnenoteListPagesParameter parameter)
+        public async ValueTask<OnenoteListPagesResponse> OnenoteListPagesAsync(OnenoteListPagesParameter parameter)
         {
             return await this.SendAsync<OnenoteListPagesParameter, OnenoteListPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onenote-list-pages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnenoteListPagesResponse> OnenoteListPagesAsync(OnenoteListPagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnenoteListPagesResponse> OnenoteListPagesAsync(OnenoteListPagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnenoteListPagesParameter, OnenoteListPagesResponse>(parameter, cancellationToken);
         }

@@ -29,7 +29,7 @@ namespace HigLabo.Net.OAuth
                 , this.ClientID, WebUtility.UrlEncode(String.Join(",", scopes)), redirectUrl);
         }
 
-        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
+        public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
             var cl = this;
             var mg = new HttpRequestMessage(HttpMethod.Post, cl.Url);
@@ -44,7 +44,7 @@ namespace HigLabo.Net.OAuth
             var res = await cl.SendAsync(mg);
             return await ParseResponse<SlackOAuthTokenGetRequestResult>(res);
         }
-        protected override async Task<T> ParseResponse<T>(HttpResponseMessage responseMessage)
+        protected override async ValueTask<T> ParseResponse<T>(HttpResponseMessage responseMessage)
            where T : class
         {
             var res = responseMessage;

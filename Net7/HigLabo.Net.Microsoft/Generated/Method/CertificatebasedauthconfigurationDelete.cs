@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync()
+        public async ValueTask<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync()
         {
             var p = new CertificatebasedauthConfigurationDeleteParameter();
             return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new CertificatebasedauthConfigurationDeleteParameter();
             return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CertificatebasedauthConfigurationDeleteParameter parameter)
+        public async ValueTask<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CertificatebasedauthConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CertificatebasedauthConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CertificatebasedauthConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(parameter, cancellationToken);
         }

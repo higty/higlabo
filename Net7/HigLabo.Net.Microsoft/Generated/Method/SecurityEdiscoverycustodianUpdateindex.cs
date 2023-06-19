@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync()
+        public async ValueTask<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync()
         {
             var p = new SecurityEdiscoverycustodianUpdateindexParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianUpdateindexParameter, SecurityEdiscoverycustodianUpdateindexResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycustodianUpdateindexParameter();
             return await this.SendAsync<SecurityEdiscoverycustodianUpdateindexParameter, SecurityEdiscoverycustodianUpdateindexResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync(SecurityEdiscoverycustodianUpdateindexParameter parameter)
+        public async ValueTask<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync(SecurityEdiscoverycustodianUpdateindexParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianUpdateindexParameter, SecurityEdiscoverycustodianUpdateindexResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync(SecurityEdiscoverycustodianUpdateindexParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycustodianUpdateindexResponse> SecurityEdiscoverycustodianUpdateindexAsync(SecurityEdiscoverycustodianUpdateindexParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycustodianUpdateindexParameter, SecurityEdiscoverycustodianUpdateindexResponse>(parameter, cancellationToken);
         }

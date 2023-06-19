@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(string? event_Context)
+        public async ValueTask<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(string? event_Context)
         {
             var p = new AppsEventAuthorizationsListParameter();
             p.Event_Context = event_Context;
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(string? event_Context, CancellationToken cancellationToken)
+        public async ValueTask<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(string? event_Context, CancellationToken cancellationToken)
         {
             var p = new AppsEventAuthorizationsListParameter();
             p.Event_Context = event_Context;
@@ -50,21 +50,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter)
+        public async ValueTask<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter)
         {
             return await this.SendAsync<AppsEventAuthorizationsListParameter, AppsEventAuthorizationsListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsEventAuthorizationsListResponse> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsEventAuthorizationsListParameter, AppsEventAuthorizationsListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context)
+        public async ValueTask<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context)
         {
             var p = new AppsEventAuthorizationsListParameter();
             p.Event_Context = event_Context;
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context, CancellationToken cancellationToken)
         {
             var p = new AppsEventAuthorizationsListParameter();
             p.Event_Context = event_Context;
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter, PagingContext<AppsEventAuthorizationsListResponse> context)
+        public async ValueTask<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter, PagingContext<AppsEventAuthorizationsListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async Task<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter, PagingContext<AppsEventAuthorizationsListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(AppsEventAuthorizationsListParameter parameter, PagingContext<AppsEventAuthorizationsListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

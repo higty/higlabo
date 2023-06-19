@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync()
+        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync()
         {
             var p = new AccessreviewscheduledefinitionListInstancesParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewscheduledefinitionListInstancesParameter();
             return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(AccessreviewscheduledefinitionListInstancesParameter parameter)
+        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(AccessreviewscheduledefinitionListInstancesParameter parameter)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(AccessreviewscheduledefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(AccessreviewscheduledefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(parameter, cancellationToken);
         }

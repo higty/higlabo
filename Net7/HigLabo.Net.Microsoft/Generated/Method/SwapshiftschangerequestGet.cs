@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync()
+        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync()
         {
             var p = new SwapshiftschangerequestGetParameter();
             return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(CancellationToken cancellationToken)
         {
             var p = new SwapshiftschangerequestGetParameter();
             return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(SwapshiftschangerequestGetParameter parameter)
+        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(SwapshiftschangerequestGetParameter parameter)
         {
             return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(SwapshiftschangerequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(SwapshiftschangerequestGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(parameter, cancellationToken);
         }

@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync()
+        public async ValueTask<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync()
         {
             var p = new UserUpdateMailboxSettingsParameter();
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(p, CancellationToken.None);
@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(CancellationToken cancellationToken)
         {
             var p = new UserUpdateMailboxSettingsParameter();
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(p, cancellationToken);
@@ -105,14 +105,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(UserUpdateMailboxSettingsParameter parameter)
+        public async ValueTask<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(UserUpdateMailboxSettingsParameter parameter)
         {
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(UserUpdateMailboxSettingsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(UserUpdateMailboxSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(parameter, cancellationToken);
         }

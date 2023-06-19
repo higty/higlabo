@@ -110,7 +110,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteGetResponse> BrowsersiteGetAsync()
+        public async ValueTask<BrowsersiteGetResponse> BrowsersiteGetAsync()
         {
             var p = new BrowsersiteGetParameter();
             return await this.SendAsync<BrowsersiteGetParameter, BrowsersiteGetResponse>(p, CancellationToken.None);
@@ -118,7 +118,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteGetResponse> BrowsersiteGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowsersiteGetResponse> BrowsersiteGetAsync(CancellationToken cancellationToken)
         {
             var p = new BrowsersiteGetParameter();
             return await this.SendAsync<BrowsersiteGetParameter, BrowsersiteGetResponse>(p, cancellationToken);
@@ -126,14 +126,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteGetResponse> BrowsersiteGetAsync(BrowsersiteGetParameter parameter)
+        public async ValueTask<BrowsersiteGetResponse> BrowsersiteGetAsync(BrowsersiteGetParameter parameter)
         {
             return await this.SendAsync<BrowsersiteGetParameter, BrowsersiteGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersite-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<BrowsersiteGetResponse> BrowsersiteGetAsync(BrowsersiteGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowsersiteGetResponse> BrowsersiteGetAsync(BrowsersiteGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersiteGetParameter, BrowsersiteGetResponse>(parameter, cancellationToken);
         }

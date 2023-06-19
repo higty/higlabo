@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostManagerResponse> UserPostManagerAsync()
+        public async ValueTask<UserPostManagerResponse> UserPostManagerAsync()
         {
             var p = new UserPostManagerParameter();
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostManagerResponse> UserPostManagerAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostManagerResponse> UserPostManagerAsync(CancellationToken cancellationToken)
         {
             var p = new UserPostManagerParameter();
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostManagerResponse> UserPostManagerAsync(UserPostManagerParameter parameter)
+        public async ValueTask<UserPostManagerResponse> UserPostManagerAsync(UserPostManagerParameter parameter)
         {
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostManagerResponse> UserPostManagerAsync(UserPostManagerParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostManagerResponse> UserPostManagerAsync(UserPostManagerParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(parameter, cancellationToken);
         }

@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync()
+        public async ValueTask<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync()
         {
             var p = new ContactfolderListChildfoldersParameter();
             return await this.SendAsync<ContactfolderListChildfoldersParameter, ContactfolderListChildfoldersResponse>(p, CancellationToken.None);
@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync(CancellationToken cancellationToken)
         {
             var p = new ContactfolderListChildfoldersParameter();
             return await this.SendAsync<ContactfolderListChildfoldersParameter, ContactfolderListChildfoldersResponse>(p, cancellationToken);
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync(ContactfolderListChildfoldersParameter parameter)
+        public async ValueTask<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync(ContactfolderListChildfoldersParameter parameter)
         {
             return await this.SendAsync<ContactfolderListChildfoldersParameter, ContactfolderListChildfoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync(ContactfolderListChildfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactfolderListChildfoldersResponse> ContactfolderListChildfoldersAsync(ContactfolderListChildfoldersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactfolderListChildfoldersParameter, ContactfolderListChildfoldersResponse>(parameter, cancellationToken);
         }

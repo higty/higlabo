@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync()
+        public async ValueTask<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync()
         {
             var p = new OnlinemeetingDeleteParameter();
             return await this.SendAsync<OnlinemeetingDeleteParameter, OnlinemeetingDeleteResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new OnlinemeetingDeleteParameter();
             return await this.SendAsync<OnlinemeetingDeleteParameter, OnlinemeetingDeleteResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync(OnlinemeetingDeleteParameter parameter)
+        public async ValueTask<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync(OnlinemeetingDeleteParameter parameter)
         {
             return await this.SendAsync<OnlinemeetingDeleteParameter, OnlinemeetingDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync(OnlinemeetingDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OnlinemeetingDeleteResponse> OnlinemeetingDeleteAsync(OnlinemeetingDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnlinemeetingDeleteParameter, OnlinemeetingDeleteResponse>(parameter, cancellationToken);
         }

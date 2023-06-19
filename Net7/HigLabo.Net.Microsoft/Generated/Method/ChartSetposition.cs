@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetpositionResponse> ChartSetpositionAsync()
+        public async ValueTask<ChartSetpositionResponse> ChartSetpositionAsync()
         {
             var p = new ChartSetpositionParameter();
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(p, CancellationToken.None);
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetpositionResponse> ChartSetpositionAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChartSetpositionResponse> ChartSetpositionAsync(CancellationToken cancellationToken)
         {
             var p = new ChartSetpositionParameter();
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(p, cancellationToken);
@@ -71,14 +71,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetpositionResponse> ChartSetpositionAsync(ChartSetpositionParameter parameter)
+        public async ValueTask<ChartSetpositionResponse> ChartSetpositionAsync(ChartSetpositionParameter parameter)
         {
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChartSetpositionResponse> ChartSetpositionAsync(ChartSetpositionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChartSetpositionResponse> ChartSetpositionAsync(ChartSetpositionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(parameter, cancellationToken);
         }

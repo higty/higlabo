@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync()
+        public async ValueTask<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync()
         {
             var p = new EducationclassDeleteMembersParameter();
             return await this.SendAsync<EducationclassDeleteMembersParameter, EducationclassDeleteMembersResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync(CancellationToken cancellationToken)
         {
             var p = new EducationclassDeleteMembersParameter();
             return await this.SendAsync<EducationclassDeleteMembersParameter, EducationclassDeleteMembersResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync(EducationclassDeleteMembersParameter parameter)
+        public async ValueTask<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync(EducationclassDeleteMembersParameter parameter)
         {
             return await this.SendAsync<EducationclassDeleteMembersParameter, EducationclassDeleteMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delete-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync(EducationclassDeleteMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationclassDeleteMembersResponse> EducationclassDeleteMembersAsync(EducationclassDeleteMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationclassDeleteMembersParameter, EducationclassDeleteMembersResponse>(parameter, cancellationToken);
         }

@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync()
+        public async ValueTask<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync()
         {
             var p = new DirectoryroleDeltaParameter();
             return await this.SendAsync<DirectoryroleDeltaParameter, DirectoryroleDeltaResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryroleDeltaParameter();
             return await this.SendAsync<DirectoryroleDeltaParameter, DirectoryroleDeltaResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(DirectoryroleDeltaParameter parameter)
+        public async ValueTask<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(DirectoryroleDeltaParameter parameter)
         {
             return await this.SendAsync<DirectoryroleDeltaParameter, DirectoryroleDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(DirectoryroleDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(DirectoryroleDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleDeltaParameter, DirectoryroleDeltaResponse>(parameter, cancellationToken);
         }

@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync()
+        public async ValueTask<PrintersharePostJobsResponse> PrintersharePostJobsAsync()
         {
             var p = new PrintersharePostJobsParameter();
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintersharePostJobsResponse> PrintersharePostJobsAsync(CancellationToken cancellationToken)
         {
             var p = new PrintersharePostJobsParameter();
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync(PrintersharePostJobsParameter parameter)
+        public async ValueTask<PrintersharePostJobsResponse> PrintersharePostJobsAsync(PrintersharePostJobsParameter parameter)
         {
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync(PrintersharePostJobsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintersharePostJobsResponse> PrintersharePostJobsAsync(PrintersharePostJobsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(parameter, cancellationToken);
         }

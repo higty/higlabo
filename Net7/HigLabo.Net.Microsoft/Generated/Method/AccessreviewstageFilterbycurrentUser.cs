@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync()
+        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync()
         {
             var p = new AccessreviewstageFilterbycurrentUserParameter();
             return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
             var p = new AccessreviewstageFilterbycurrentUserParameter();
             return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(AccessreviewstageFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(AccessreviewstageFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(AccessreviewstageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(AccessreviewstageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(parameter, cancellationToken);
         }

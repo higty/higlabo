@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync()
+        public async ValueTask<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync()
         {
             var p = new WorkforceintegrationDeleteParameter();
             return await this.SendAsync<WorkforceintegrationDeleteParameter, WorkforceintegrationDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new WorkforceintegrationDeleteParameter();
             return await this.SendAsync<WorkforceintegrationDeleteParameter, WorkforceintegrationDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync(WorkforceintegrationDeleteParameter parameter)
+        public async ValueTask<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync(WorkforceintegrationDeleteParameter parameter)
         {
             return await this.SendAsync<WorkforceintegrationDeleteParameter, WorkforceintegrationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync(WorkforceintegrationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkforceintegrationDeleteResponse> WorkforceintegrationDeleteAsync(WorkforceintegrationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkforceintegrationDeleteParameter, WorkforceintegrationDeleteResponse>(parameter, cancellationToken);
         }

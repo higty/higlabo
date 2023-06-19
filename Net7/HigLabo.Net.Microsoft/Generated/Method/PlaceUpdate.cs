@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceUpdateResponse> PlaceUpdateAsync()
+        public async ValueTask<PlaceUpdateResponse> PlaceUpdateAsync()
         {
             var p = new PlaceUpdateParameter();
             return await this.SendAsync<PlaceUpdateParameter, PlaceUpdateResponse>(p, CancellationToken.None);
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceUpdateResponse> PlaceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PlaceUpdateResponse> PlaceUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PlaceUpdateParameter();
             return await this.SendAsync<PlaceUpdateParameter, PlaceUpdateResponse>(p, cancellationToken);
@@ -89,14 +89,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceUpdateResponse> PlaceUpdateAsync(PlaceUpdateParameter parameter)
+        public async ValueTask<PlaceUpdateResponse> PlaceUpdateAsync(PlaceUpdateParameter parameter)
         {
             return await this.SendAsync<PlaceUpdateParameter, PlaceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/place-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlaceUpdateResponse> PlaceUpdateAsync(PlaceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PlaceUpdateResponse> PlaceUpdateAsync(PlaceUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlaceUpdateParameter, PlaceUpdateResponse>(parameter, cancellationToken);
         }

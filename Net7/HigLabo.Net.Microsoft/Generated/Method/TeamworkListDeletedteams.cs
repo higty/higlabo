@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync()
+        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync()
         {
             var p = new TeamworkListDeletedteamsParameter();
             return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamworkListDeletedteamsParameter();
             return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(TeamworkListDeletedteamsParameter parameter)
+        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(TeamworkListDeletedteamsParameter parameter)
         {
             return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(TeamworkListDeletedteamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(TeamworkListDeletedteamsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(parameter, cancellationToken);
         }

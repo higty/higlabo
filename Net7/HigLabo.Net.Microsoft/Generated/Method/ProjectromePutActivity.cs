@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-activity?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromePutActivityResponse> ProjectromePutActivityAsync()
+        public async ValueTask<ProjectromePutActivityResponse> ProjectromePutActivityAsync()
         {
             var p = new ProjectromePutActivityParameter();
             return await this.SendAsync<ProjectromePutActivityParameter, ProjectromePutActivityResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-activity?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromePutActivityResponse> ProjectromePutActivityAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProjectromePutActivityResponse> ProjectromePutActivityAsync(CancellationToken cancellationToken)
         {
             var p = new ProjectromePutActivityParameter();
             return await this.SendAsync<ProjectromePutActivityParameter, ProjectromePutActivityResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-activity?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromePutActivityResponse> ProjectromePutActivityAsync(ProjectromePutActivityParameter parameter)
+        public async ValueTask<ProjectromePutActivityResponse> ProjectromePutActivityAsync(ProjectromePutActivityParameter parameter)
         {
             return await this.SendAsync<ProjectromePutActivityParameter, ProjectromePutActivityResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-activity?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProjectromePutActivityResponse> ProjectromePutActivityAsync(ProjectromePutActivityParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProjectromePutActivityResponse> ProjectromePutActivityAsync(ProjectromePutActivityParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ProjectromePutActivityParameter, ProjectromePutActivityResponse>(parameter, cancellationToken);
         }

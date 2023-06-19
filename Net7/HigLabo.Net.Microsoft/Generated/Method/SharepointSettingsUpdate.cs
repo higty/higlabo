@@ -143,7 +143,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync()
+        public async ValueTask<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync()
         {
             var p = new SharepointSettingsUpdateParameter();
             return await this.SendAsync<SharepointSettingsUpdateParameter, SharepointSettingsUpdateResponse>(p, CancellationToken.None);
@@ -151,7 +151,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new SharepointSettingsUpdateParameter();
             return await this.SendAsync<SharepointSettingsUpdateParameter, SharepointSettingsUpdateResponse>(p, cancellationToken);
@@ -159,14 +159,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync(SharepointSettingsUpdateParameter parameter)
+        public async ValueTask<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync(SharepointSettingsUpdateParameter parameter)
         {
             return await this.SendAsync<SharepointSettingsUpdateParameter, SharepointSettingsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharepointsettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync(SharepointSettingsUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SharepointSettingsUpdateResponse> SharepointSettingsUpdateAsync(SharepointSettingsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SharepointSettingsUpdateParameter, SharepointSettingsUpdateResponse>(parameter, cancellationToken);
         }

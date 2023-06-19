@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync()
+        public async ValueTask<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync()
         {
             var p = new OrgcontactGetManagerParameter();
             return await this.SendAsync<OrgcontactGetManagerParameter, OrgcontactGetManagerResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync(CancellationToken cancellationToken)
         {
             var p = new OrgcontactGetManagerParameter();
             return await this.SendAsync<OrgcontactGetManagerParameter, OrgcontactGetManagerResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync(OrgcontactGetManagerParameter parameter)
+        public async ValueTask<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync(OrgcontactGetManagerParameter parameter)
         {
             return await this.SendAsync<OrgcontactGetManagerParameter, OrgcontactGetManagerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get-manager?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync(OrgcontactGetManagerParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactGetManagerResponse> OrgcontactGetManagerAsync(OrgcontactGetManagerParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrgcontactGetManagerParameter, OrgcontactGetManagerResponse>(parameter, cancellationToken);
         }

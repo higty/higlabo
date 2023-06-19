@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync()
+        public async ValueTask<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync()
         {
             var p = new SecurityEdiscoverycaseSettingsUpdateParameter();
             return await this.SendAsync<SecurityEdiscoverycaseSettingsUpdateParameter, SecurityEdiscoverycaseSettingsUpdateResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverycaseSettingsUpdateParameter();
             return await this.SendAsync<SecurityEdiscoverycaseSettingsUpdateParameter, SecurityEdiscoverycaseSettingsUpdateResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync(SecurityEdiscoverycaseSettingsUpdateParameter parameter)
+        public async ValueTask<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync(SecurityEdiscoverycaseSettingsUpdateParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverycaseSettingsUpdateParameter, SecurityEdiscoverycaseSettingsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync(SecurityEdiscoverycaseSettingsUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverycaseSettingsUpdateResponse> SecurityEdiscoverycaseSettingsUpdateAsync(SecurityEdiscoverycaseSettingsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverycaseSettingsUpdateParameter, SecurityEdiscoverycaseSettingsUpdateResponse>(parameter, cancellationToken);
         }

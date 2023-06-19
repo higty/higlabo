@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync()
+        public async ValueTask<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync()
         {
             var p = new SubscriptionPostSubscriptionsParameter();
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(p, CancellationToken.None);
@@ -85,7 +85,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(CancellationToken cancellationToken)
         {
             var p = new SubscriptionPostSubscriptionsParameter();
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(p, cancellationToken);
@@ -93,14 +93,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(SubscriptionPostSubscriptionsParameter parameter)
+        public async ValueTask<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(SubscriptionPostSubscriptionsParameter parameter)
         {
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
-        public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(SubscriptionPostSubscriptionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(SubscriptionPostSubscriptionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(parameter, cancellationToken);
         }

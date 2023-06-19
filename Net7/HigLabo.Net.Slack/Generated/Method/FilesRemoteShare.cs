@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.share
         /// </summary>
-        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(string? channels)
+        public async ValueTask<FilesRemoteShareResponse> FilesRemoteShareAsync(string? channels)
         {
             var p = new FilesRemoteShareParameter();
             p.Channels = channels;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.share
         /// </summary>
-        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(string? channels, CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteShareResponse> FilesRemoteShareAsync(string? channels, CancellationToken cancellationToken)
         {
             var p = new FilesRemoteShareParameter();
             p.Channels = channels;
@@ -39,14 +39,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.share
         /// </summary>
-        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(FilesRemoteShareParameter parameter)
+        public async ValueTask<FilesRemoteShareResponse> FilesRemoteShareAsync(FilesRemoteShareParameter parameter)
         {
             return await this.SendAsync<FilesRemoteShareParameter, FilesRemoteShareResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.remote.share
         /// </summary>
-        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(FilesRemoteShareParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteShareResponse> FilesRemoteShareAsync(FilesRemoteShareParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteShareParameter, FilesRemoteShareResponse>(parameter, cancellationToken);
         }

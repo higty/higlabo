@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync()
+        public async ValueTask<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync()
         {
             var p = new IdentityUserflowattributeUpdateParameter();
             return await this.SendAsync<IdentityUserflowattributeUpdateParameter, IdentityUserflowattributeUpdateResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new IdentityUserflowattributeUpdateParameter();
             return await this.SendAsync<IdentityUserflowattributeUpdateParameter, IdentityUserflowattributeUpdateResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync(IdentityUserflowattributeUpdateParameter parameter)
+        public async ValueTask<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync(IdentityUserflowattributeUpdateParameter parameter)
         {
             return await this.SendAsync<IdentityUserflowattributeUpdateParameter, IdentityUserflowattributeUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync(IdentityUserflowattributeUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowattributeUpdateResponse> IdentityUserflowattributeUpdateAsync(IdentityUserflowattributeUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityUserflowattributeUpdateParameter, IdentityUserflowattributeUpdateResponse>(parameter, cancellationToken);
         }

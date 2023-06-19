@@ -24,7 +24,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.add
         /// </summary>
-        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string? external_Id, string? external_Url, string? title)
+        public async ValueTask<FilesRemoteAddResponse> FilesRemoteAddAsync(string? external_Id, string? external_Url, string? title)
         {
             var p = new FilesRemoteAddParameter();
             p.External_Id = external_Id;
@@ -35,7 +35,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.add
         /// </summary>
-        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string? external_Id, string? external_Url, string? title, CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteAddResponse> FilesRemoteAddAsync(string? external_Id, string? external_Url, string? title, CancellationToken cancellationToken)
         {
             var p = new FilesRemoteAddParameter();
             p.External_Id = external_Id;
@@ -46,14 +46,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.add
         /// </summary>
-        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(FilesRemoteAddParameter parameter)
+        public async ValueTask<FilesRemoteAddResponse> FilesRemoteAddAsync(FilesRemoteAddParameter parameter)
         {
             return await this.SendAsync<FilesRemoteAddParameter, FilesRemoteAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/files.remote.add
         /// </summary>
-        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(FilesRemoteAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<FilesRemoteAddResponse> FilesRemoteAddAsync(FilesRemoteAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteAddParameter, FilesRemoteAddResponse>(parameter, cancellationToken);
         }

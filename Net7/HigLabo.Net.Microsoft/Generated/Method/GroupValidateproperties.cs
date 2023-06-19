@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync()
+        public async ValueTask<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync()
         {
             var p = new GroupValidatepropertiesParameter();
             return await this.SendAsync<GroupValidatepropertiesParameter, GroupValidatepropertiesResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync(CancellationToken cancellationToken)
         {
             var p = new GroupValidatepropertiesParameter();
             return await this.SendAsync<GroupValidatepropertiesParameter, GroupValidatepropertiesResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync(GroupValidatepropertiesParameter parameter)
+        public async ValueTask<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync(GroupValidatepropertiesParameter parameter)
         {
             return await this.SendAsync<GroupValidatepropertiesParameter, GroupValidatepropertiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync(GroupValidatepropertiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupValidatepropertiesResponse> GroupValidatepropertiesAsync(GroupValidatepropertiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupValidatepropertiesParameter, GroupValidatepropertiesResponse>(parameter, cancellationToken);
         }

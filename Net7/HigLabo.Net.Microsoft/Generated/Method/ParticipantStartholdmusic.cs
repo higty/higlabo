@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync()
+        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync()
         {
             var p = new ParticipantStartholdmusicParameter();
             return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(CancellationToken cancellationToken)
+        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(CancellationToken cancellationToken)
         {
             var p = new ParticipantStartholdmusicParameter();
             return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(ParticipantStartholdmusicParameter parameter)
+        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(ParticipantStartholdmusicParameter parameter)
         {
             return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async Task<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(ParticipantStartholdmusicParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(ParticipantStartholdmusicParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(parameter, cancellationToken);
         }

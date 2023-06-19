@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync()
+        public async ValueTask<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync()
         {
             var p = new UnifiedroleAssignmentschedulerequestCancelParameter();
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(CancellationToken cancellationToken)
         {
             var p = new UnifiedroleAssignmentschedulerequestCancelParameter();
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(UnifiedroleAssignmentschedulerequestCancelParameter parameter)
+        public async ValueTask<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(UnifiedroleAssignmentschedulerequestCancelParameter parameter)
         {
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(UnifiedroleAssignmentschedulerequestCancelParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(UnifiedroleAssignmentschedulerequestCancelParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(parameter, cancellationToken);
         }

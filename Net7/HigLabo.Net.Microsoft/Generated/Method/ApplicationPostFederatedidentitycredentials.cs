@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync()
+        public async ValueTask<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync()
         {
             var p = new ApplicationPostFederatedidentitycredentialsParameter();
             return await this.SendAsync<ApplicationPostFederatedidentitycredentialsParameter, ApplicationPostFederatedidentitycredentialsResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationPostFederatedidentitycredentialsParameter();
             return await this.SendAsync<ApplicationPostFederatedidentitycredentialsParameter, ApplicationPostFederatedidentitycredentialsResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync(ApplicationPostFederatedidentitycredentialsParameter parameter)
+        public async ValueTask<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync(ApplicationPostFederatedidentitycredentialsParameter parameter)
         {
             return await this.SendAsync<ApplicationPostFederatedidentitycredentialsParameter, ApplicationPostFederatedidentitycredentialsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-post-federatedidentitycredentials?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync(ApplicationPostFederatedidentitycredentialsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationPostFederatedidentitycredentialsResponse> ApplicationPostFederatedidentitycredentialsAsync(ApplicationPostFederatedidentitycredentialsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationPostFederatedidentitycredentialsParameter, ApplicationPostFederatedidentitycredentialsResponse>(parameter, cancellationToken);
         }

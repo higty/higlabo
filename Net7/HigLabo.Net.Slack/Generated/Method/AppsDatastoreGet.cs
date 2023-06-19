@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.get
         /// </summary>
-        public async Task<AppsDatastoreGetResponse> AppsDatastoreGetAsync(string? datastore, string? id)
+        public async ValueTask<AppsDatastoreGetResponse> AppsDatastoreGetAsync(string? datastore, string? id)
         {
             var p = new AppsDatastoreGetParameter();
             p.Datastore = datastore;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.get
         /// </summary>
-        public async Task<AppsDatastoreGetResponse> AppsDatastoreGetAsync(string? datastore, string? id, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreGetResponse> AppsDatastoreGetAsync(string? datastore, string? id, CancellationToken cancellationToken)
         {
             var p = new AppsDatastoreGetParameter();
             p.Datastore = datastore;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.get
         /// </summary>
-        public async Task<AppsDatastoreGetResponse> AppsDatastoreGetAsync(AppsDatastoreGetParameter parameter)
+        public async ValueTask<AppsDatastoreGetResponse> AppsDatastoreGetAsync(AppsDatastoreGetParameter parameter)
         {
             return await this.SendAsync<AppsDatastoreGetParameter, AppsDatastoreGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.get
         /// </summary>
-        public async Task<AppsDatastoreGetResponse> AppsDatastoreGetAsync(AppsDatastoreGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreGetResponse> AppsDatastoreGetAsync(AppsDatastoreGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsDatastoreGetParameter, AppsDatastoreGetResponse>(parameter, cancellationToken);
         }

@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync()
+        public async ValueTask<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync()
         {
             var p = new UserflowlanguageConfigurationGetParameter();
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(CancellationToken cancellationToken)
         {
             var p = new UserflowlanguageConfigurationGetParameter();
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(UserflowlanguageConfigurationGetParameter parameter)
+        public async ValueTask<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(UserflowlanguageConfigurationGetParameter parameter)
         {
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(UserflowlanguageConfigurationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(UserflowlanguageConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(parameter, cancellationToken);
         }

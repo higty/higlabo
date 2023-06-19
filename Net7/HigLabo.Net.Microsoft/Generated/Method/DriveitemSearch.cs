@@ -116,7 +116,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemSearchResponse> DriveitemSearchAsync()
+        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync()
         {
             var p = new DriveitemSearchParameter();
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(p, CancellationToken.None);
@@ -124,7 +124,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemSearchResponse> DriveitemSearchAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemSearchParameter();
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(p, cancellationToken);
@@ -132,14 +132,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter)
+        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter)
         {
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(parameter, cancellationToken);
         }

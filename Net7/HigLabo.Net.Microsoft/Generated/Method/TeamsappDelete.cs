@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync()
+        public async ValueTask<TeamsappDeleteResponse> TeamsappDeleteAsync()
         {
             var p = new TeamsappDeleteParameter();
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(p, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamsappDeleteResponse> TeamsappDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TeamsappDeleteParameter();
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(p, cancellationToken);
@@ -68,14 +68,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync(TeamsappDeleteParameter parameter)
+        public async ValueTask<TeamsappDeleteResponse> TeamsappDeleteAsync(TeamsappDeleteParameter parameter)
         {
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync(TeamsappDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamsappDeleteResponse> TeamsappDeleteAsync(TeamsappDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(parameter, cancellationToken);
         }

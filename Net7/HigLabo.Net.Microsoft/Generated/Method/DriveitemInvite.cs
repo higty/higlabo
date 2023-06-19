@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemInviteResponse> DriveitemInviteAsync()
+        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync()
         {
             var p = new DriveitemInviteParameter();
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(p, CancellationToken.None);
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemInviteResponse> DriveitemInviteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemInviteParameter();
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(p, cancellationToken);
@@ -84,14 +84,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter)
+        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter)
         {
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(parameter, cancellationToken);
         }

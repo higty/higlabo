@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageUpdateResponse> PageUpdateAsync()
+        public async ValueTask<PageUpdateResponse> PageUpdateAsync()
         {
             var p = new PageUpdateParameter();
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageUpdateResponse> PageUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PageUpdateResponse> PageUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new PageUpdateParameter();
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageUpdateResponse> PageUpdateAsync(PageUpdateParameter parameter)
+        public async ValueTask<PageUpdateResponse> PageUpdateAsync(PageUpdateParameter parameter)
         {
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<PageUpdateResponse> PageUpdateAsync(PageUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PageUpdateResponse> PageUpdateAsync(PageUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(parameter, cancellationToken);
         }

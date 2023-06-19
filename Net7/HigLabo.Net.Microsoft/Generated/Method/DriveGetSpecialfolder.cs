@@ -123,7 +123,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync()
+        public async ValueTask<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync()
         {
             var p = new DriveGetSpecialfolderParameter();
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(p, CancellationToken.None);
@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(CancellationToken cancellationToken)
         {
             var p = new DriveGetSpecialfolderParameter();
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(p, cancellationToken);
@@ -139,14 +139,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(DriveGetSpecialfolderParameter parameter)
+        public async ValueTask<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(DriveGetSpecialfolderParameter parameter)
         {
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(DriveGetSpecialfolderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(DriveGetSpecialfolderParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(parameter, cancellationToken);
         }

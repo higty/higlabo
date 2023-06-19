@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync()
+        public async ValueTask<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync()
         {
             var p = new ChatListPinnedmessagesParameter();
             return await this.SendAsync<ChatListPinnedmessagesParameter, ChatListPinnedmessagesResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync(CancellationToken cancellationToken)
         {
             var p = new ChatListPinnedmessagesParameter();
             return await this.SendAsync<ChatListPinnedmessagesParameter, ChatListPinnedmessagesResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync(ChatListPinnedmessagesParameter parameter)
+        public async ValueTask<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync(ChatListPinnedmessagesParameter parameter)
         {
             return await this.SendAsync<ChatListPinnedmessagesParameter, ChatListPinnedmessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-pinnedmessages?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync(ChatListPinnedmessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatListPinnedmessagesResponse> ChatListPinnedmessagesAsync(ChatListPinnedmessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatListPinnedmessagesParameter, ChatListPinnedmessagesResponse>(parameter, cancellationToken);
         }

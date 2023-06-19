@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync()
+        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync()
         {
             var p = new DirectoryobjectGetParameter();
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(p, CancellationToken.None);
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync(CancellationToken cancellationToken)
         {
             var p = new DirectoryobjectGetParameter();
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(p, cancellationToken);
@@ -77,14 +77,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter)
+        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(parameter, cancellationToken);
         }

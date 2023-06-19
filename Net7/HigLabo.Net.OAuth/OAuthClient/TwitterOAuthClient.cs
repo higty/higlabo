@@ -36,7 +36,7 @@ namespace HigLabo.Net.OAuth
             mg.Headers.Add("Accept-Encoding", "gzip");
             return mg;
         }
-        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
+        public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
             var cl = this;
             var mg = this.CreateHttpRequestMessage(cl.Url);

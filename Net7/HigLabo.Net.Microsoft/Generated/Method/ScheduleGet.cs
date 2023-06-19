@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleGetResponse> ScheduleGetAsync()
+        public async ValueTask<ScheduleGetResponse> ScheduleGetAsync()
         {
             var p = new ScheduleGetParameter();
             return await this.SendAsync<ScheduleGetParameter, ScheduleGetResponse>(p, CancellationToken.None);
@@ -113,7 +113,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleGetResponse> ScheduleGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ScheduleGetResponse> ScheduleGetAsync(CancellationToken cancellationToken)
         {
             var p = new ScheduleGetParameter();
             return await this.SendAsync<ScheduleGetParameter, ScheduleGetResponse>(p, cancellationToken);
@@ -121,14 +121,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleGetResponse> ScheduleGetAsync(ScheduleGetParameter parameter)
+        public async ValueTask<ScheduleGetResponse> ScheduleGetAsync(ScheduleGetParameter parameter)
         {
             return await this.SendAsync<ScheduleGetParameter, ScheduleGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleGetResponse> ScheduleGetAsync(ScheduleGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ScheduleGetResponse> ScheduleGetAsync(ScheduleGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleGetParameter, ScheduleGetResponse>(parameter, cancellationToken);
         }

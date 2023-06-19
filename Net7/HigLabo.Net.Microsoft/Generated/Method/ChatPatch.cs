@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchResponse> ChatPatchAsync()
+        public async ValueTask<ChatPatchResponse> ChatPatchAsync()
         {
             var p = new ChatPatchParameter();
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchResponse> ChatPatchAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatPatchResponse> ChatPatchAsync(CancellationToken cancellationToken)
         {
             var p = new ChatPatchParameter();
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchResponse> ChatPatchAsync(ChatPatchParameter parameter)
+        public async ValueTask<ChatPatchResponse> ChatPatchAsync(ChatPatchParameter parameter)
         {
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatPatchResponse> ChatPatchAsync(ChatPatchParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatPatchResponse> ChatPatchAsync(ChatPatchParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(parameter, cancellationToken);
         }

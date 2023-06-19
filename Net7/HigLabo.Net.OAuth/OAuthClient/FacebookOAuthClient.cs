@@ -21,7 +21,7 @@ namespace HigLabo.Net.OAuth
                 + "?client_id={0}&redirect_uri={1}&scope={2}"
                 , this.ClientID, redirectUrl, WebUtility.UrlEncode(String.Join(",", scopes)));
         }
-        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
+        public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
             var cl = this;
             var url = String.Format("{0}?client_id={1}&redirect_uri={2}&client_secret={3}&code={4}"

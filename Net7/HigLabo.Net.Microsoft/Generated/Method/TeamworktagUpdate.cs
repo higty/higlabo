@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagUpdateResponse> TeamworktagUpdateAsync()
+        public async ValueTask<TeamworktagUpdateResponse> TeamworktagUpdateAsync()
         {
             var p = new TeamworktagUpdateParameter();
             return await this.SendAsync<TeamworktagUpdateParameter, TeamworktagUpdateResponse>(p, CancellationToken.None);
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagUpdateResponse> TeamworktagUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagUpdateResponse> TeamworktagUpdateAsync(CancellationToken cancellationToken)
         {
             var p = new TeamworktagUpdateParameter();
             return await this.SendAsync<TeamworktagUpdateParameter, TeamworktagUpdateResponse>(p, cancellationToken);
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagUpdateResponse> TeamworktagUpdateAsync(TeamworktagUpdateParameter parameter)
+        public async ValueTask<TeamworktagUpdateResponse> TeamworktagUpdateAsync(TeamworktagUpdateParameter parameter)
         {
             return await this.SendAsync<TeamworktagUpdateParameter, TeamworktagUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktag-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamworktagUpdateResponse> TeamworktagUpdateAsync(TeamworktagUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagUpdateResponse> TeamworktagUpdateAsync(TeamworktagUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamworktagUpdateParameter, TeamworktagUpdateResponse>(parameter, cancellationToken);
         }

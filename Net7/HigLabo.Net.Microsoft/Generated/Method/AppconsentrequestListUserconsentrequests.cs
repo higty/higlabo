@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync()
+        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync()
         {
             var p = new AppconsentrequestListUserconsentrequestsParameter();
             return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(p, CancellationToken.None);
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(CancellationToken cancellationToken)
         {
             var p = new AppconsentrequestListUserconsentrequestsParameter();
             return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(p, cancellationToken);
@@ -85,14 +85,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(AppconsentrequestListUserconsentrequestsParameter parameter)
+        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(AppconsentrequestListUserconsentrequestsParameter parameter)
         {
             return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(AppconsentrequestListUserconsentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(AppconsentrequestListUserconsentrequestsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(parameter, cancellationToken);
         }

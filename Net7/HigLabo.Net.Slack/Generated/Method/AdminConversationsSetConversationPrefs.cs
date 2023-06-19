@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string? channel_Id, string? prefs)
+        public async ValueTask<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string? channel_Id, string? prefs)
         {
             var p = new AdminConversationsSetConversationPrefsParameter();
             p.Channel_Id = channel_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string? channel_Id, string? prefs, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string? channel_Id, string? prefs, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSetConversationPrefsParameter();
             p.Channel_Id = channel_Id;
@@ -40,14 +40,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(AdminConversationsSetConversationPrefsParameter parameter)
+        public async ValueTask<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(AdminConversationsSetConversationPrefsParameter parameter)
         {
             return await this.SendAsync<AdminConversationsSetConversationPrefsParameter, AdminConversationsSetConversationPrefsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(AdminConversationsSetConversationPrefsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(AdminConversationsSetConversationPrefsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsSetConversationPrefsParameter, AdminConversationsSetConversationPrefsResponse>(parameter, cancellationToken);
         }

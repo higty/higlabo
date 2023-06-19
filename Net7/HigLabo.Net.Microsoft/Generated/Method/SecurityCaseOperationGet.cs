@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-caseoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync()
+        public async ValueTask<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync()
         {
             var p = new SecurityCaseOperationGetParameter();
             return await this.SendAsync<SecurityCaseOperationGetParameter, SecurityCaseOperationGetResponse>(p, CancellationToken.None);
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-caseoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityCaseOperationGetParameter();
             return await this.SendAsync<SecurityCaseOperationGetParameter, SecurityCaseOperationGetResponse>(p, cancellationToken);
@@ -103,14 +103,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-caseoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync(SecurityCaseOperationGetParameter parameter)
+        public async ValueTask<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync(SecurityCaseOperationGetParameter parameter)
         {
             return await this.SendAsync<SecurityCaseOperationGetParameter, SecurityCaseOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-caseoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync(SecurityCaseOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityCaseOperationGetResponse> SecurityCaseOperationGetAsync(SecurityCaseOperationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityCaseOperationGetParameter, SecurityCaseOperationGetResponse>(parameter, cancellationToken);
         }

@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventForwardResponse> EventForwardAsync()
+        public async ValueTask<EventForwardResponse> EventForwardAsync()
         {
             var p = new EventForwardParameter();
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(p, CancellationToken.None);
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventForwardResponse> EventForwardAsync(CancellationToken cancellationToken)
+        public async ValueTask<EventForwardResponse> EventForwardAsync(CancellationToken cancellationToken)
         {
             var p = new EventForwardParameter();
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(p, cancellationToken);
@@ -90,14 +90,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventForwardResponse> EventForwardAsync(EventForwardParameter parameter)
+        public async ValueTask<EventForwardResponse> EventForwardAsync(EventForwardParameter parameter)
         {
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
-        public async Task<EventForwardResponse> EventForwardAsync(EventForwardParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EventForwardResponse> EventForwardAsync(EventForwardParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(parameter, cancellationToken);
         }

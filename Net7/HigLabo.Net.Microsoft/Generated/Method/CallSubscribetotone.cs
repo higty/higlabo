@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-subscribetotone?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallSubscribetotoneResponse> CallSubscribetotoneAsync()
+        public async ValueTask<CallSubscribetotoneResponse> CallSubscribetotoneAsync()
         {
             var p = new CallSubscribetotoneParameter();
             return await this.SendAsync<CallSubscribetotoneParameter, CallSubscribetotoneResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-subscribetotone?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallSubscribetotoneResponse> CallSubscribetotoneAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallSubscribetotoneResponse> CallSubscribetotoneAsync(CancellationToken cancellationToken)
         {
             var p = new CallSubscribetotoneParameter();
             return await this.SendAsync<CallSubscribetotoneParameter, CallSubscribetotoneResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-subscribetotone?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallSubscribetotoneResponse> CallSubscribetotoneAsync(CallSubscribetotoneParameter parameter)
+        public async ValueTask<CallSubscribetotoneResponse> CallSubscribetotoneAsync(CallSubscribetotoneParameter parameter)
         {
             return await this.SendAsync<CallSubscribetotoneParameter, CallSubscribetotoneResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-subscribetotone?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallSubscribetotoneResponse> CallSubscribetotoneAsync(CallSubscribetotoneParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallSubscribetotoneResponse> CallSubscribetotoneAsync(CallSubscribetotoneParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallSubscribetotoneParameter, CallSubscribetotoneResponse>(parameter, cancellationToken);
         }

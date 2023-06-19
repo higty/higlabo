@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGetResponse> PermissionGetAsync()
+        public async ValueTask<PermissionGetResponse> PermissionGetAsync()
         {
             var p = new PermissionGetParameter();
             return await this.SendAsync<PermissionGetParameter, PermissionGetResponse>(p, CancellationToken.None);
@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGetResponse> PermissionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PermissionGetResponse> PermissionGetAsync(CancellationToken cancellationToken)
         {
             var p = new PermissionGetParameter();
             return await this.SendAsync<PermissionGetParameter, PermissionGetResponse>(p, cancellationToken);
@@ -108,14 +108,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGetResponse> PermissionGetAsync(PermissionGetParameter parameter)
+        public async ValueTask<PermissionGetResponse> PermissionGetAsync(PermissionGetParameter parameter)
         {
             return await this.SendAsync<PermissionGetParameter, PermissionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/permission-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissionGetResponse> PermissionGetAsync(PermissionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PermissionGetResponse> PermissionGetAsync(PermissionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PermissionGetParameter, PermissionGetResponse>(parameter, cancellationToken);
         }

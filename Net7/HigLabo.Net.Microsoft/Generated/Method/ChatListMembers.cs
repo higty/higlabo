@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListMembersResponse> ChatListMembersAsync()
+        public async ValueTask<ChatListMembersResponse> ChatListMembersAsync()
         {
             var p = new ChatListMembersParameter();
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListMembersResponse> ChatListMembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatListMembersResponse> ChatListMembersAsync(CancellationToken cancellationToken)
         {
             var p = new ChatListMembersParameter();
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListMembersResponse> ChatListMembersAsync(ChatListMembersParameter parameter)
+        public async ValueTask<ChatListMembersResponse> ChatListMembersAsync(ChatListMembersParameter parameter)
         {
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatListMembersResponse> ChatListMembersAsync(ChatListMembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatListMembersResponse> ChatListMembersAsync(ChatListMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(parameter, cancellationToken);
         }

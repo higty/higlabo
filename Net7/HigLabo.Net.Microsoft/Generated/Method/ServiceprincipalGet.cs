@@ -117,7 +117,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalGetResponse> ServiceprincipalGetAsync()
+        public async ValueTask<ServiceprincipalGetResponse> ServiceprincipalGetAsync()
         {
             var p = new ServiceprincipalGetParameter();
             return await this.SendAsync<ServiceprincipalGetParameter, ServiceprincipalGetResponse>(p, CancellationToken.None);
@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalGetResponse> ServiceprincipalGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalGetResponse> ServiceprincipalGetAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceprincipalGetParameter();
             return await this.SendAsync<ServiceprincipalGetParameter, ServiceprincipalGetResponse>(p, cancellationToken);
@@ -133,14 +133,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalGetResponse> ServiceprincipalGetAsync(ServiceprincipalGetParameter parameter)
+        public async ValueTask<ServiceprincipalGetResponse> ServiceprincipalGetAsync(ServiceprincipalGetParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalGetParameter, ServiceprincipalGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalGetResponse> ServiceprincipalGetAsync(ServiceprincipalGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceprincipalGetResponse> ServiceprincipalGetAsync(ServiceprincipalGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceprincipalGetParameter, ServiceprincipalGetResponse>(parameter, cancellationToken);
         }

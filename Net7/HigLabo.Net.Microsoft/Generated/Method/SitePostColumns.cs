@@ -114,7 +114,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostColumnsResponse> SitePostColumnsAsync()
+        public async ValueTask<SitePostColumnsResponse> SitePostColumnsAsync()
         {
             var p = new SitePostColumnsParameter();
             return await this.SendAsync<SitePostColumnsParameter, SitePostColumnsResponse>(p, CancellationToken.None);
@@ -122,7 +122,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostColumnsResponse> SitePostColumnsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SitePostColumnsResponse> SitePostColumnsAsync(CancellationToken cancellationToken)
         {
             var p = new SitePostColumnsParameter();
             return await this.SendAsync<SitePostColumnsParameter, SitePostColumnsResponse>(p, cancellationToken);
@@ -130,14 +130,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostColumnsResponse> SitePostColumnsAsync(SitePostColumnsParameter parameter)
+        public async ValueTask<SitePostColumnsResponse> SitePostColumnsAsync(SitePostColumnsParameter parameter)
         {
             return await this.SendAsync<SitePostColumnsParameter, SitePostColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/site-post-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<SitePostColumnsResponse> SitePostColumnsAsync(SitePostColumnsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SitePostColumnsResponse> SitePostColumnsAsync(SitePostColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SitePostColumnsParameter, SitePostColumnsResponse>(parameter, cancellationToken);
         }

@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync()
+        public async ValueTask<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync()
         {
             var p = new GroupRemovefavoriteParameter();
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(CancellationToken cancellationToken)
         {
             var p = new GroupRemovefavoriteParameter();
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(GroupRemovefavoriteParameter parameter)
+        public async ValueTask<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(GroupRemovefavoriteParameter parameter)
         {
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(GroupRemovefavoriteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(GroupRemovefavoriteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(parameter, cancellationToken);
         }

@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<UsersListResponse> UsersListAsync()
+        public async ValueTask<UsersListResponse> UsersListAsync()
         {
             var p = new UsersListParameter();
             return await this.SendAsync<UsersListParameter, UsersListResponse>(p, CancellationToken.None);
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<UsersListResponse> UsersListAsync(CancellationToken cancellationToken)
+        public async ValueTask<UsersListResponse> UsersListAsync(CancellationToken cancellationToken)
         {
             var p = new UsersListParameter();
             return await this.SendAsync<UsersListParameter, UsersListResponse>(p, cancellationToken);
@@ -49,21 +49,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<UsersListResponse> UsersListAsync(UsersListParameter parameter)
+        public async ValueTask<UsersListResponse> UsersListAsync(UsersListParameter parameter)
         {
             return await this.SendAsync<UsersListParameter, UsersListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<UsersListResponse> UsersListAsync(UsersListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UsersListResponse> UsersListAsync(UsersListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersListParameter, UsersListResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<List<UsersListResponse>> UsersListAsync(PagingContext<UsersListResponse> context)
+        public async ValueTask<List<UsersListResponse>> UsersListAsync(PagingContext<UsersListResponse> context)
         {
             var p = new UsersListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<List<UsersListResponse>> UsersListAsync(CancellationToken cancellationToken, PagingContext<UsersListResponse> context)
+        public async ValueTask<List<UsersListResponse>> UsersListAsync(CancellationToken cancellationToken, PagingContext<UsersListResponse> context)
         {
             var p = new UsersListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<List<UsersListResponse>> UsersListAsync(UsersListParameter parameter, PagingContext<UsersListResponse> context)
+        public async ValueTask<List<UsersListResponse>> UsersListAsync(UsersListParameter parameter, PagingContext<UsersListResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/users.list
         /// </summary>
-        public async Task<List<UsersListResponse>> UsersListAsync(UsersListParameter parameter, PagingContext<UsersListResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<UsersListResponse>> UsersListAsync(UsersListParameter parameter, PagingContext<UsersListResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

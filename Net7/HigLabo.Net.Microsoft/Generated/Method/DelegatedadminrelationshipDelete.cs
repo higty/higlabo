@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync()
+        public async ValueTask<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync()
         {
             var p = new DelegatedadminrelationshipDeleteParameter();
             return await this.SendAsync<DelegatedadminrelationshipDeleteParameter, DelegatedadminrelationshipDeleteResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadminrelationshipDeleteParameter();
             return await this.SendAsync<DelegatedadminrelationshipDeleteParameter, DelegatedadminrelationshipDeleteResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync(DelegatedadminrelationshipDeleteParameter parameter)
+        public async ValueTask<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync(DelegatedadminrelationshipDeleteParameter parameter)
         {
             return await this.SendAsync<DelegatedadminrelationshipDeleteParameter, DelegatedadminrelationshipDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync(DelegatedadminrelationshipDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminrelationshipDeleteResponse> DelegatedadminrelationshipDeleteAsync(DelegatedadminrelationshipDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminrelationshipDeleteParameter, DelegatedadminrelationshipDeleteResponse>(parameter, cancellationToken);
         }

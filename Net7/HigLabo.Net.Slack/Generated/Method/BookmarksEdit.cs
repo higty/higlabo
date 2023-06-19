@@ -23,7 +23,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.edit
         /// </summary>
-        public async Task<BookmarksEditResponse> BookmarksEditAsync(string? bookmark_Id, string? channel_Id)
+        public async ValueTask<BookmarksEditResponse> BookmarksEditAsync(string? bookmark_Id, string? channel_Id)
         {
             var p = new BookmarksEditParameter();
             p.Bookmark_Id = bookmark_Id;
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.edit
         /// </summary>
-        public async Task<BookmarksEditResponse> BookmarksEditAsync(string? bookmark_Id, string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksEditResponse> BookmarksEditAsync(string? bookmark_Id, string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksEditParameter();
             p.Bookmark_Id = bookmark_Id;
@@ -43,14 +43,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.edit
         /// </summary>
-        public async Task<BookmarksEditResponse> BookmarksEditAsync(BookmarksEditParameter parameter)
+        public async ValueTask<BookmarksEditResponse> BookmarksEditAsync(BookmarksEditParameter parameter)
         {
             return await this.SendAsync<BookmarksEditParameter, BookmarksEditResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.edit
         /// </summary>
-        public async Task<BookmarksEditResponse> BookmarksEditAsync(BookmarksEditParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksEditResponse> BookmarksEditAsync(BookmarksEditParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksEditParameter, BookmarksEditResponse>(parameter, cancellationToken);
         }

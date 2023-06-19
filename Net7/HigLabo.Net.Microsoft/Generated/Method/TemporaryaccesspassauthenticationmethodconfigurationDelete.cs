@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync()
+        public async ValueTask<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync()
         {
             var p = new TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
             var p = new TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter();
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
@@ -63,14 +63,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter parameter)
+        public async ValueTask<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(parameter, cancellationToken);
         }

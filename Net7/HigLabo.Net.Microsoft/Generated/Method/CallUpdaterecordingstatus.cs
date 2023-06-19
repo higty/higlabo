@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync()
+        public async ValueTask<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync()
         {
             var p = new CallUpdaterecordingStatusParameter();
             return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(p, CancellationToken.None);
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CancellationToken cancellationToken)
         {
             var p = new CallUpdaterecordingStatusParameter();
             return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(p, cancellationToken);
@@ -72,14 +72,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CallUpdaterecordingStatusParameter parameter)
+        public async ValueTask<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CallUpdaterecordingStatusParameter parameter)
         {
             return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CallUpdaterecordingStatusParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CallUpdaterecordingStatusParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(parameter, cancellationToken);
         }

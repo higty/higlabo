@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-teams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutTeamsResponse> TeamPutTeamsAsync()
+        public async ValueTask<TeamPutTeamsResponse> TeamPutTeamsAsync()
         {
             var p = new TeamPutTeamsParameter();
             return await this.SendAsync<TeamPutTeamsParameter, TeamPutTeamsResponse>(p, CancellationToken.None);
@@ -84,7 +84,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-teams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutTeamsResponse> TeamPutTeamsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamPutTeamsResponse> TeamPutTeamsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamPutTeamsParameter();
             return await this.SendAsync<TeamPutTeamsParameter, TeamPutTeamsResponse>(p, cancellationToken);
@@ -92,14 +92,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-teams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutTeamsResponse> TeamPutTeamsAsync(TeamPutTeamsParameter parameter)
+        public async ValueTask<TeamPutTeamsResponse> TeamPutTeamsAsync(TeamPutTeamsParameter parameter)
         {
             return await this.SendAsync<TeamPutTeamsParameter, TeamPutTeamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-put-teams?view=graph-rest-1.0
         /// </summary>
-        public async Task<TeamPutTeamsResponse> TeamPutTeamsAsync(TeamPutTeamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamPutTeamsResponse> TeamPutTeamsAsync(TeamPutTeamsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamPutTeamsParameter, TeamPutTeamsResponse>(parameter, cancellationToken);
         }

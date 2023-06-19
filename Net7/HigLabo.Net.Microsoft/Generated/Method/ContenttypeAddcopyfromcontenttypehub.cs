@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync()
+        public async ValueTask<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync()
         {
             var p = new ContentTypeAddcopyfromContentTypehubParameter();
             return await this.SendAsync<ContentTypeAddcopyfromContentTypehubParameter, ContentTypeAddcopyfromContentTypehubResponse>(p, CancellationToken.None);
@@ -100,7 +100,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeAddcopyfromContentTypehubParameter();
             return await this.SendAsync<ContentTypeAddcopyfromContentTypehubParameter, ContentTypeAddcopyfromContentTypehubResponse>(p, cancellationToken);
@@ -108,14 +108,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync(ContentTypeAddcopyfromContentTypehubParameter parameter)
+        public async ValueTask<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync(ContentTypeAddcopyfromContentTypehubParameter parameter)
         {
             return await this.SendAsync<ContentTypeAddcopyfromContentTypehubParameter, ContentTypeAddcopyfromContentTypehubResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync(ContentTypeAddcopyfromContentTypehubParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeAddcopyfromContentTypehubResponse> ContentTypeAddcopyfromContentTypehubAsync(ContentTypeAddcopyfromContentTypehubParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeAddcopyfromContentTypehubParameter, ContentTypeAddcopyfromContentTypehubResponse>(parameter, cancellationToken);
         }

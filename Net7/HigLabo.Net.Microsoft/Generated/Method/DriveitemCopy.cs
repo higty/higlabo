@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCopyResponse> DriveitemCopyAsync()
+        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync()
         {
             var p = new DriveitemCopyParameter();
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(p, CancellationToken.None);
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCopyResponse> DriveitemCopyAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemCopyParameter();
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(p, cancellationToken);
@@ -78,14 +78,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter)
+        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter)
         {
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(parameter, cancellationToken);
         }

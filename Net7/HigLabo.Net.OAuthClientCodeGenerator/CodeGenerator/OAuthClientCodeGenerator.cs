@@ -44,7 +44,7 @@ namespace HigLabo.Net.CodeGenerator
             Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")} {text}");
         }
 
-        protected async Task<IDocument> GetDocumentAsync(string url)
+        protected async ValueTask<IDocument> GetDocumentAsync(string url)
         {
             if (this.UseSelenium)
             {
@@ -100,7 +100,7 @@ namespace HigLabo.Net.CodeGenerator
             }
         }
 
-        public async Task Execute()
+        public async ValueTask Execute()
         {
             var random = new Random();
             await CreateScopeSourceCode();
@@ -132,10 +132,10 @@ namespace HigLabo.Net.CodeGenerator
             }
             ConsoleWriteText("Completed!");
         }
-        public abstract Task CreateScopeSourceCode();
+        public abstract ValueTask CreateScopeSourceCode();
 
         protected abstract IEnumerable<String> GetEntiryUrlList();
-        public async Task CreateEntitySourceCodeFile(string url, CreateEntityClassContext context)
+        public async ValueTask CreateEntitySourceCodeFile(string url, CreateEntityClassContext context)
         {
             var doc = await this.GetDocumentAsync(url);
             var cName = this.GetClassName(url, doc);
@@ -159,7 +159,7 @@ namespace HigLabo.Net.CodeGenerator
                 ConsoleWriteText(filePath);
             }
         }
-        public async Task<Class> CreateEntityClass(string url, CreateEntityClassContext context)
+        public async ValueTask<Class> CreateEntityClass(string url, CreateEntityClassContext context)
         {
             context.UrlList.Add(url);
 
@@ -197,10 +197,10 @@ namespace HigLabo.Net.CodeGenerator
             }
             return c;
         }
-        protected abstract Task<List<ApiParameter>> GetEntityParameterList(IDocument document);
+        protected abstract ValueTask<List<ApiParameter>> GetEntityParameterList(IDocument document);
 
         protected abstract IEnumerable<String> GetMethodUrlList();
-        public async Task CreateMethodSourceCodeFile(string url)
+        public async ValueTask CreateMethodSourceCodeFile(string url)
         {
             ConsoleWriteText(url);
 
@@ -213,7 +213,7 @@ namespace HigLabo.Net.CodeGenerator
 
             ConsoleWriteText(filePath);
         }
-        public virtual async Task<SourceCode> CreateMethodSourceCode(string url, IDocument document, string className)
+        public virtual async ValueTask<SourceCode> CreateMethodSourceCode(string url, IDocument document, string className)
         {
             var doc = document;
             var cName = className;
@@ -239,7 +239,7 @@ namespace HigLabo.Net.CodeGenerator
                 var md = new Method(MethodAccessModifier.Public, cName + "Async");
                 md.Parameters.Add(new MethodParameter(cName + "Parameter", "parameter"));
                 md.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
-                md.ReturnTypeName.Name = "async Task";
+                md.ReturnTypeName.Name = "async ValueTask";
                 md.ReturnTypeName.GenericTypes.Add(new TypeName(cName + "Response"));
                 md.Body.Add(SourceCodeLanguage.CSharp, $"return await this.SendAsync<{cName}Parameter, {cName}Response>(parameter, cancellationToken);");
                 cClient.Methods.Add(md);
@@ -255,7 +255,7 @@ namespace HigLabo.Net.CodeGenerator
             cParameter.Properties.Add(this.CreateHttpMethodProperty(url, doc));
 
             var mdAsync = new Method(MethodAccessModifier.Public, cName + "Async");
-            mdAsync.ReturnTypeName.Name = "async Task";
+            mdAsync.ReturnTypeName.Name = "async ValueTask";
             mdAsync.ReturnTypeName.GenericTypes.Add(new TypeName(cName + "Response"));
             mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"var p = new {cName}Parameter();");
 
@@ -301,7 +301,7 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var mdBatch = cClient.Methods[0].Copy();
                 mdBatch.Parameters.Insert(1, new MethodParameter($"PagingContext<{cName}Response>", "context"));
-                mdBatch.ReturnTypeName = new TypeName("async Task");
+                mdBatch.ReturnTypeName = new TypeName("async ValueTask");
                 mdBatch.ReturnTypeName.GenericTypes.Add(new TypeName($"List<{cName}Response>"));
                 mdBatch.Body.Clear();
                 mdBatch.Body.Add(SourceCodeLanguage.CSharp, $"return await this.SendBatchAsync(parameter, context, cancellationToken);");
@@ -335,7 +335,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             return sc;
         }
-        private async Task<Property> AddProperty(Class @class, string className, ApiParameter parameter)
+        private async ValueTask<Property> AddProperty(Class @class, string className, ApiParameter parameter)
         {
             var c = @class;
             var cName = className;
@@ -393,7 +393,7 @@ namespace HigLabo.Net.CodeGenerator
 
         protected abstract string GetClassName(string url, IDocument document);
 
-        protected abstract Task<List<ApiParameter>> GetMethodParameterList(IDocument document);
+        protected abstract ValueTask<List<ApiParameter>> GetMethodParameterList(IDocument document);
         protected abstract Property CreateParameterProperty(ApiParameter parameter);
         protected abstract String GetClassName(string className, string propertyName);
         protected abstract String GetEnumName(string className, string propertyName);

@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-closesession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookClosesessionResponse> WorkbookClosesessionAsync()
+        public async ValueTask<WorkbookClosesessionResponse> WorkbookClosesessionAsync()
         {
             var p = new WorkbookClosesessionParameter();
             return await this.SendAsync<WorkbookClosesessionParameter, WorkbookClosesessionResponse>(p, CancellationToken.None);
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-closesession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookClosesessionResponse> WorkbookClosesessionAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookClosesessionResponse> WorkbookClosesessionAsync(CancellationToken cancellationToken)
         {
             var p = new WorkbookClosesessionParameter();
             return await this.SendAsync<WorkbookClosesessionParameter, WorkbookClosesessionResponse>(p, cancellationToken);
@@ -67,14 +67,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-closesession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookClosesessionResponse> WorkbookClosesessionAsync(WorkbookClosesessionParameter parameter)
+        public async ValueTask<WorkbookClosesessionResponse> WorkbookClosesessionAsync(WorkbookClosesessionParameter parameter)
         {
             return await this.SendAsync<WorkbookClosesessionParameter, WorkbookClosesessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbook-closesession?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookClosesessionResponse> WorkbookClosesessionAsync(WorkbookClosesessionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookClosesessionResponse> WorkbookClosesessionAsync(WorkbookClosesessionParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkbookClosesessionParameter, WorkbookClosesessionResponse>(parameter, cancellationToken);
         }

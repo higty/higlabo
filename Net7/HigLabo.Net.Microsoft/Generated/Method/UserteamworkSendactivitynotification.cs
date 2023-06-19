@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync()
+        public async ValueTask<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync()
         {
             var p = new UserteamworkSendactivitynotificationParameter();
             return await this.SendAsync<UserteamworkSendactivitynotificationParameter, UserteamworkSendactivitynotificationResponse>(p, CancellationToken.None);
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync(CancellationToken cancellationToken)
         {
             var p = new UserteamworkSendactivitynotificationParameter();
             return await this.SendAsync<UserteamworkSendactivitynotificationParameter, UserteamworkSendactivitynotificationResponse>(p, cancellationToken);
@@ -69,14 +69,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync(UserteamworkSendactivitynotificationParameter parameter)
+        public async ValueTask<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync(UserteamworkSendactivitynotificationParameter parameter)
         {
             return await this.SendAsync<UserteamworkSendactivitynotificationParameter, UserteamworkSendactivitynotificationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync(UserteamworkSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserteamworkSendactivitynotificationResponse> UserteamworkSendactivitynotificationAsync(UserteamworkSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserteamworkSendactivitynotificationParameter, UserteamworkSendactivitynotificationResponse>(parameter, cancellationToken);
         }

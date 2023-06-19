@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync()
+        public async ValueTask<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync()
         {
             var p = new ChatGetInstalledappsParameter();
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(p, CancellationToken.None);
@@ -88,7 +88,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(CancellationToken cancellationToken)
         {
             var p = new ChatGetInstalledappsParameter();
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(p, cancellationToken);
@@ -96,14 +96,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(ChatGetInstalledappsParameter parameter)
+        public async ValueTask<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(ChatGetInstalledappsParameter parameter)
         {
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(ChatGetInstalledappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(ChatGetInstalledappsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(parameter, cancellationToken);
         }

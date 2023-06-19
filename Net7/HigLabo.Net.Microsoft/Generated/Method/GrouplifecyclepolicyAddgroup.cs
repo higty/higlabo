@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync()
+        public async ValueTask<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync()
         {
             var p = new GrouplifecyclePolicyAddGroupParameter();
             return await this.SendAsync<GrouplifecyclePolicyAddGroupParameter, GrouplifecyclePolicyAddGroupResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync(CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync(CancellationToken cancellationToken)
         {
             var p = new GrouplifecyclePolicyAddGroupParameter();
             return await this.SendAsync<GrouplifecyclePolicyAddGroupParameter, GrouplifecyclePolicyAddGroupResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync(GrouplifecyclePolicyAddGroupParameter parameter)
+        public async ValueTask<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync(GrouplifecyclePolicyAddGroupParameter parameter)
         {
             return await this.SendAsync<GrouplifecyclePolicyAddGroupParameter, GrouplifecyclePolicyAddGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync(GrouplifecyclePolicyAddGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GrouplifecyclePolicyAddGroupResponse> GrouplifecyclePolicyAddGroupAsync(GrouplifecyclePolicyAddGroupParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GrouplifecyclePolicyAddGroupParameter, GrouplifecyclePolicyAddGroupResponse>(parameter, cancellationToken);
         }

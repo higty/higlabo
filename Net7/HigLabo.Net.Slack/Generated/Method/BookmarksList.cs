@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.list
         /// </summary>
-        public async Task<BookmarksListResponse> BookmarksListAsync(string? channel_Id)
+        public async ValueTask<BookmarksListResponse> BookmarksListAsync(string? channel_Id)
         {
             var p = new BookmarksListParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.list
         /// </summary>
-        public async Task<BookmarksListResponse> BookmarksListAsync(string? channel_Id, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksListResponse> BookmarksListAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksListParameter();
             p.Channel_Id = channel_Id;
@@ -37,14 +37,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.list
         /// </summary>
-        public async Task<BookmarksListResponse> BookmarksListAsync(BookmarksListParameter parameter)
+        public async ValueTask<BookmarksListResponse> BookmarksListAsync(BookmarksListParameter parameter)
         {
             return await this.SendAsync<BookmarksListParameter, BookmarksListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.list
         /// </summary>
-        public async Task<BookmarksListResponse> BookmarksListAsync(BookmarksListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookmarksListResponse> BookmarksListAsync(BookmarksListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksListParameter, BookmarksListResponse>(parameter, cancellationToken);
         }

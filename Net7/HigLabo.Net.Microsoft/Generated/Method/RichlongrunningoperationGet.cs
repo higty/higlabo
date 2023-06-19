@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync()
+        public async ValueTask<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync()
         {
             var p = new RichlongrunningOperationGetParameter();
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(p, CancellationToken.None);
@@ -90,7 +90,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(CancellationToken cancellationToken)
         {
             var p = new RichlongrunningOperationGetParameter();
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(p, cancellationToken);
@@ -98,14 +98,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(RichlongrunningOperationGetParameter parameter)
+        public async ValueTask<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(RichlongrunningOperationGetParameter parameter)
         {
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(RichlongrunningOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(RichlongrunningOperationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(parameter, cancellationToken);
         }

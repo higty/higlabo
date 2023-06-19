@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPhotosResponse> GroupListPhotosAsync()
+        public async ValueTask<GroupListPhotosResponse> GroupListPhotosAsync()
         {
             var p = new GroupListPhotosParameter();
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(p, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPhotosResponse> GroupListPhotosAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListPhotosResponse> GroupListPhotosAsync(CancellationToken cancellationToken)
         {
             var p = new GroupListPhotosParameter();
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(p, cancellationToken);
@@ -82,14 +82,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPhotosResponse> GroupListPhotosAsync(GroupListPhotosParameter parameter)
+        public async ValueTask<GroupListPhotosResponse> GroupListPhotosAsync(GroupListPhotosParameter parameter)
         {
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListPhotosResponse> GroupListPhotosAsync(GroupListPhotosParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListPhotosResponse> GroupListPhotosAsync(GroupListPhotosParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(parameter, cancellationToken);
         }

@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftGetResponse> OpenshiftGetAsync()
+        public async ValueTask<OpenshiftGetResponse> OpenshiftGetAsync()
         {
             var p = new OpenshiftGetParameter();
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftGetResponse> OpenshiftGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftGetResponse> OpenshiftGetAsync(CancellationToken cancellationToken)
         {
             var p = new OpenshiftGetParameter();
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftGetResponse> OpenshiftGetAsync(OpenshiftGetParameter parameter)
+        public async ValueTask<OpenshiftGetResponse> OpenshiftGetAsync(OpenshiftGetParameter parameter)
         {
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpenshiftGetResponse> OpenshiftGetAsync(OpenshiftGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenshiftGetResponse> OpenshiftGetAsync(OpenshiftGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(parameter, cancellationToken);
         }

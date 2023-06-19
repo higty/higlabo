@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync()
+        public async ValueTask<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync()
         {
             var p = new ServiceupdatemessageUnarchiveParameter();
             return await this.SendAsync<ServiceupdatemessageUnarchiveParameter, ServiceupdatemessageUnarchiveResponse>(p, CancellationToken.None);
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync(CancellationToken cancellationToken)
         {
             var p = new ServiceupdatemessageUnarchiveParameter();
             return await this.SendAsync<ServiceupdatemessageUnarchiveParameter, ServiceupdatemessageUnarchiveResponse>(p, cancellationToken);
@@ -64,14 +64,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync(ServiceupdatemessageUnarchiveParameter parameter)
+        public async ValueTask<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync(ServiceupdatemessageUnarchiveParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageUnarchiveParameter, ServiceupdatemessageUnarchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync(ServiceupdatemessageUnarchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServiceupdatemessageUnarchiveResponse> ServiceupdatemessageUnarchiveAsync(ServiceupdatemessageUnarchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageUnarchiveParameter, ServiceupdatemessageUnarchiveResponse>(parameter, cancellationToken);
         }

@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync()
+        public async ValueTask<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync()
         {
             var p = new ReportRootGetm365appUserdetailParameter();
             return await this.SendAsync<ReportRootGetm365appUserdetailParameter, ReportRootGetm365appUserdetailResponse>(p, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync(CancellationToken cancellationToken)
         {
             var p = new ReportRootGetm365appUserdetailParameter();
             return await this.SendAsync<ReportRootGetm365appUserdetailParameter, ReportRootGetm365appUserdetailResponse>(p, cancellationToken);
@@ -74,14 +74,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync(ReportRootGetm365appUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync(ReportRootGetm365appUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetm365appUserdetailParameter, ReportRootGetm365appUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync(ReportRootGetm365appUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetm365appUserdetailResponse> ReportRootGetm365appUserdetailAsync(ReportRootGetm365appUserdetailParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootGetm365appUserdetailParameter, ReportRootGetm365appUserdetailResponse>(parameter, cancellationToken);
         }

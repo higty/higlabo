@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync()
+        public async ValueTask<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync()
         {
             var p = new ContentTypeIspublishedParameter();
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(p, CancellationToken.None);
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(CancellationToken cancellationToken)
         {
             var p = new ContentTypeIspublishedParameter();
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(p, cancellationToken);
@@ -76,14 +76,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(ContentTypeIspublishedParameter parameter)
+        public async ValueTask<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(ContentTypeIspublishedParameter parameter)
         {
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(ContentTypeIspublishedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(ContentTypeIspublishedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(parameter, cancellationToken);
         }

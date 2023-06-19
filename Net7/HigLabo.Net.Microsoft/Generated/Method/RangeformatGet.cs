@@ -97,7 +97,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatGetResponse> RangeformatGetAsync()
+        public async ValueTask<RangeformatGetResponse> RangeformatGetAsync()
         {
             var p = new RangeformatGetParameter();
             return await this.SendAsync<RangeformatGetParameter, RangeformatGetResponse>(p, CancellationToken.None);
@@ -105,7 +105,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatGetResponse> RangeformatGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<RangeformatGetResponse> RangeformatGetAsync(CancellationToken cancellationToken)
         {
             var p = new RangeformatGetParameter();
             return await this.SendAsync<RangeformatGetParameter, RangeformatGetResponse>(p, cancellationToken);
@@ -113,14 +113,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatGetResponse> RangeformatGetAsync(RangeformatGetParameter parameter)
+        public async ValueTask<RangeformatGetResponse> RangeformatGetAsync(RangeformatGetParameter parameter)
         {
             return await this.SendAsync<RangeformatGetParameter, RangeformatGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rangeformat-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RangeformatGetResponse> RangeformatGetAsync(RangeformatGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RangeformatGetResponse> RangeformatGetAsync(RangeformatGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RangeformatGetParameter, RangeformatGetResponse>(parameter, cancellationToken);
         }

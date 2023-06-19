@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync()
+        public async ValueTask<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync()
         {
             var p = new CountrynamedLocationGetParameter();
             return await this.SendAsync<CountrynamedLocationGetParameter, CountrynamedLocationGetResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync(CancellationToken cancellationToken)
         {
             var p = new CountrynamedLocationGetParameter();
             return await this.SendAsync<CountrynamedLocationGetParameter, CountrynamedLocationGetResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync(CountrynamedLocationGetParameter parameter)
+        public async ValueTask<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync(CountrynamedLocationGetParameter parameter)
         {
             return await this.SendAsync<CountrynamedLocationGetParameter, CountrynamedLocationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync(CountrynamedLocationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CountrynamedLocationGetResponse> CountrynamedLocationGetAsync(CountrynamedLocationGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CountrynamedLocationGetParameter, CountrynamedLocationGetResponse>(parameter, cancellationToken);
         }

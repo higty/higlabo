@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync()
+        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync()
         {
             var p = new DelegatedadmincustomerListServiceManagementdetailsParameter();
             return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(CancellationToken cancellationToken)
         {
             var p = new DelegatedadmincustomerListServiceManagementdetailsParameter();
             return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(DelegatedadmincustomerListServiceManagementdetailsParameter parameter)
+        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(DelegatedadmincustomerListServiceManagementdetailsParameter parameter)
         {
             return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async Task<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(DelegatedadmincustomerListServiceManagementdetailsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(DelegatedadmincustomerListServiceManagementdetailsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(parameter, cancellationToken);
         }

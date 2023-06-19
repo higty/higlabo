@@ -78,7 +78,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetResponse> OrgcontactGetAsync()
+        public async ValueTask<OrgcontactGetResponse> OrgcontactGetAsync()
         {
             var p = new OrgcontactGetParameter();
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(p, CancellationToken.None);
@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetResponse> OrgcontactGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactGetResponse> OrgcontactGetAsync(CancellationToken cancellationToken)
         {
             var p = new OrgcontactGetParameter();
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(p, cancellationToken);
@@ -94,14 +94,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetResponse> OrgcontactGetAsync(OrgcontactGetParameter parameter)
+        public async ValueTask<OrgcontactGetResponse> OrgcontactGetAsync(OrgcontactGetParameter parameter)
         {
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrgcontactGetResponse> OrgcontactGetAsync(OrgcontactGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OrgcontactGetResponse> OrgcontactGetAsync(OrgcontactGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(parameter, cancellationToken);
         }

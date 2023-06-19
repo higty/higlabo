@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionListResponse> SchemaextensionListAsync()
+        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync()
         {
             var p = new SchemaextensionListParameter();
             return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(p, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionListResponse> SchemaextensionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync(CancellationToken cancellationToken)
         {
             var p = new SchemaextensionListParameter();
             return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(p, cancellationToken);
@@ -81,14 +81,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionListResponse> SchemaextensionListAsync(SchemaextensionListParameter parameter)
+        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync(SchemaextensionListParameter parameter)
         {
             return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchemaextensionListResponse> SchemaextensionListAsync(SchemaextensionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync(SchemaextensionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(parameter, cancellationToken);
         }

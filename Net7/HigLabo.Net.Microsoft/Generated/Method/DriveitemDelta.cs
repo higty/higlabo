@@ -116,7 +116,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeltaResponse> DriveitemDeltaAsync()
+        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync()
         {
             var p = new DriveitemDeltaParameter();
             return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(p, CancellationToken.None);
@@ -124,7 +124,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeltaResponse> DriveitemDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync(CancellationToken cancellationToken)
         {
             var p = new DriveitemDeltaParameter();
             return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(p, cancellationToken);
@@ -132,14 +132,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeltaResponse> DriveitemDeltaAsync(DriveitemDeltaParameter parameter)
+        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync(DriveitemDeltaParameter parameter)
         {
             return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<DriveitemDeltaResponse> DriveitemDeltaAsync(DriveitemDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync(DriveitemDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(parameter, cancellationToken);
         }

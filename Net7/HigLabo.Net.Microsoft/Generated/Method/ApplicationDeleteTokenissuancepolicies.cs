@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync()
+        public async ValueTask<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync()
         {
             var p = new ApplicationDeleteTokenissuancepoliciesParameter();
             return await this.SendAsync<ApplicationDeleteTokenissuancepoliciesParameter, ApplicationDeleteTokenissuancepoliciesResponse>(p, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync(CancellationToken cancellationToken)
         {
             var p = new ApplicationDeleteTokenissuancepoliciesParameter();
             return await this.SendAsync<ApplicationDeleteTokenissuancepoliciesParameter, ApplicationDeleteTokenissuancepoliciesResponse>(p, cancellationToken);
@@ -65,14 +65,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync(ApplicationDeleteTokenissuancepoliciesParameter parameter)
+        public async ValueTask<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync(ApplicationDeleteTokenissuancepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationDeleteTokenissuancepoliciesParameter, ApplicationDeleteTokenissuancepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/application-delete-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync(ApplicationDeleteTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationDeleteTokenissuancepoliciesResponse> ApplicationDeleteTokenissuancepoliciesAsync(ApplicationDeleteTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationDeleteTokenissuancepoliciesParameter, ApplicationDeleteTokenissuancepoliciesResponse>(parameter, cancellationToken);
         }

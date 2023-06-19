@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionListResponse> RiskdetectionListAsync()
+        public async ValueTask<RiskdetectionListResponse> RiskdetectionListAsync()
         {
             var p = new RiskdetectionListParameter();
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionListResponse> RiskdetectionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskdetectionListResponse> RiskdetectionListAsync(CancellationToken cancellationToken)
         {
             var p = new RiskdetectionListParameter();
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionListResponse> RiskdetectionListAsync(RiskdetectionListParameter parameter)
+        public async ValueTask<RiskdetectionListResponse> RiskdetectionListAsync(RiskdetectionListParameter parameter)
         {
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskdetectionListResponse> RiskdetectionListAsync(RiskdetectionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskdetectionListResponse> RiskdetectionListAsync(RiskdetectionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(parameter, cancellationToken);
         }

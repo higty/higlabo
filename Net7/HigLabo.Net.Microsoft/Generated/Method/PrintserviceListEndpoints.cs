@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printservice-list-endpoints?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync()
+        public async ValueTask<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync()
         {
             var p = new PrintserviceListEndpointsParameter();
             return await this.SendAsync<PrintserviceListEndpointsParameter, PrintserviceListEndpointsResponse>(p, CancellationToken.None);
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printservice-list-endpoints?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync(CancellationToken cancellationToken)
         {
             var p = new PrintserviceListEndpointsParameter();
             return await this.SendAsync<PrintserviceListEndpointsParameter, PrintserviceListEndpointsResponse>(p, cancellationToken);
@@ -79,14 +79,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printservice-list-endpoints?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync(PrintserviceListEndpointsParameter parameter)
+        public async ValueTask<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync(PrintserviceListEndpointsParameter parameter)
         {
             return await this.SendAsync<PrintserviceListEndpointsParameter, PrintserviceListEndpointsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printservice-list-endpoints?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync(PrintserviceListEndpointsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintserviceListEndpointsResponse> PrintserviceListEndpointsAsync(PrintserviceListEndpointsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintserviceListEndpointsParameter, PrintserviceListEndpointsResponse>(parameter, cancellationToken);
         }

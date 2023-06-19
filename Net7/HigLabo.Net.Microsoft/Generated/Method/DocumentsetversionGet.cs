@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionGetResponse> DocumentsetversionGetAsync()
+        public async ValueTask<DocumentsetversionGetResponse> DocumentsetversionGetAsync()
         {
             var p = new DocumentsetversionGetParameter();
             return await this.SendAsync<DocumentsetversionGetParameter, DocumentsetversionGetResponse>(p, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionGetResponse> DocumentsetversionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DocumentsetversionGetResponse> DocumentsetversionGetAsync(CancellationToken cancellationToken)
         {
             var p = new DocumentsetversionGetParameter();
             return await this.SendAsync<DocumentsetversionGetParameter, DocumentsetversionGetResponse>(p, cancellationToken);
@@ -88,14 +88,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionGetResponse> DocumentsetversionGetAsync(DocumentsetversionGetParameter parameter)
+        public async ValueTask<DocumentsetversionGetResponse> DocumentsetversionGetAsync(DocumentsetversionGetParameter parameter)
         {
             return await this.SendAsync<DocumentsetversionGetParameter, DocumentsetversionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/documentsetversion-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<DocumentsetversionGetResponse> DocumentsetversionGetAsync(DocumentsetversionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DocumentsetversionGetResponse> DocumentsetversionGetAsync(DocumentsetversionGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DocumentsetversionGetParameter, DocumentsetversionGetResponse>(parameter, cancellationToken);
         }

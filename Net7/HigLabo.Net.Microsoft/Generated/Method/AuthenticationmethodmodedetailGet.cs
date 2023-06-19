@@ -79,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodmodedetail-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync()
+        public async ValueTask<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync()
         {
             var p = new AuthenticationmethodmodedetailGetParameter();
             return await this.SendAsync<AuthenticationmethodmodedetailGetParameter, AuthenticationmethodmodedetailGetResponse>(p, CancellationToken.None);
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodmodedetail-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync(CancellationToken cancellationToken)
         {
             var p = new AuthenticationmethodmodedetailGetParameter();
             return await this.SendAsync<AuthenticationmethodmodedetailGetParameter, AuthenticationmethodmodedetailGetResponse>(p, cancellationToken);
@@ -95,14 +95,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodmodedetail-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync(AuthenticationmethodmodedetailGetParameter parameter)
+        public async ValueTask<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync(AuthenticationmethodmodedetailGetParameter parameter)
         {
             return await this.SendAsync<AuthenticationmethodmodedetailGetParameter, AuthenticationmethodmodedetailGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodmodedetail-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync(AuthenticationmethodmodedetailGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationmethodmodedetailGetResponse> AuthenticationmethodmodedetailGetAsync(AuthenticationmethodmodedetailGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationmethodmodedetailGetParameter, AuthenticationmethodmodedetailGetResponse>(parameter, cancellationToken);
         }

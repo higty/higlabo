@@ -36,7 +36,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<ConversationsHistoryResponse> ConversationsHistoryAsync(string? channel)
+        public async ValueTask<ConversationsHistoryResponse> ConversationsHistoryAsync(string? channel)
         {
             var p = new ConversationsHistoryParameter();
             p.Channel = channel;
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<ConversationsHistoryResponse> ConversationsHistoryAsync(string? channel, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsHistoryResponse> ConversationsHistoryAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsHistoryParameter();
             p.Channel = channel;
@@ -54,21 +54,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<ConversationsHistoryResponse> ConversationsHistoryAsync(ConversationsHistoryParameter parameter)
+        public async ValueTask<ConversationsHistoryResponse> ConversationsHistoryAsync(ConversationsHistoryParameter parameter)
         {
             return await this.SendAsync<ConversationsHistoryParameter, ConversationsHistoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<ConversationsHistoryResponse> ConversationsHistoryAsync(ConversationsHistoryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationsHistoryResponse> ConversationsHistoryAsync(ConversationsHistoryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsHistoryParameter, ConversationsHistoryResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context)
+        public async ValueTask<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context)
         {
             var p = new ConversationsHistoryParameter();
             p.Channel = channel;
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context, CancellationToken cancellationToken)
         {
             var p = new ConversationsHistoryParameter();
             p.Channel = channel;
@@ -86,14 +86,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(ConversationsHistoryParameter parameter, PagingContext<ConversationsHistoryResponse> context)
+        public async ValueTask<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(ConversationsHistoryParameter parameter, PagingContext<ConversationsHistoryResponse> context)
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async Task<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(ConversationsHistoryParameter parameter, PagingContext<ConversationsHistoryResponse> context, CancellationToken cancellationToken)
+        public async ValueTask<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(ConversationsHistoryParameter parameter, PagingContext<ConversationsHistoryResponse> context, CancellationToken cancellationToken)
         {
             return await this.SendBatchAsync(parameter, context, cancellationToken);
         }

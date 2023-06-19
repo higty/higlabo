@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.update
         /// </summary>
-        public async Task<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(string? datastore, object? item)
+        public async ValueTask<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(string? datastore, object? item)
         {
             var p = new AppsDatastoreUpdateParameter();
             p.Datastore = datastore;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.update
         /// </summary>
-        public async Task<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(string? datastore, object? item, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(string? datastore, object? item, CancellationToken cancellationToken)
         {
             var p = new AppsDatastoreUpdateParameter();
             p.Datastore = datastore;
@@ -41,14 +41,14 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.update
         /// </summary>
-        public async Task<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(AppsDatastoreUpdateParameter parameter)
+        public async ValueTask<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(AppsDatastoreUpdateParameter parameter)
         {
             return await this.SendAsync<AppsDatastoreUpdateParameter, AppsDatastoreUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.update
         /// </summary>
-        public async Task<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(AppsDatastoreUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppsDatastoreUpdateResponse> AppsDatastoreUpdateAsync(AppsDatastoreUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsDatastoreUpdateParameter, AppsDatastoreUpdateResponse>(parameter, cancellationToken);
         }

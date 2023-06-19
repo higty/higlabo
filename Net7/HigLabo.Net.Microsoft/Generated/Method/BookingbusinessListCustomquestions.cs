@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync()
+        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync()
         {
             var p = new BookingbusinessListCustomquestionsParameter();
             return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(p, CancellationToken.None);
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(CancellationToken cancellationToken)
         {
             var p = new BookingbusinessListCustomquestionsParameter();
             return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(p, cancellationToken);
@@ -80,14 +80,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(BookingbusinessListCustomquestionsParameter parameter)
+        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(BookingbusinessListCustomquestionsParameter parameter)
         {
             return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async Task<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(BookingbusinessListCustomquestionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(BookingbusinessListCustomquestionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(parameter, cancellationToken);
         }

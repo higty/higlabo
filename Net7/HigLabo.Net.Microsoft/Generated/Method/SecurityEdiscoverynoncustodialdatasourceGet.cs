@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync()
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync()
         {
             var p = new SecurityEdiscoverynoncustodialdatasourceGetParameter();
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceGetParameter, SecurityEdiscoverynoncustodialdatasourceGetResponse>(p, CancellationToken.None);
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync(CancellationToken cancellationToken)
         {
             var p = new SecurityEdiscoverynoncustodialdatasourceGetParameter();
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceGetParameter, SecurityEdiscoverynoncustodialdatasourceGetResponse>(p, cancellationToken);
@@ -99,14 +99,14 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync(SecurityEdiscoverynoncustodialdatasourceGetParameter parameter)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync(SecurityEdiscoverynoncustodialdatasourceGetParameter parameter)
         {
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceGetParameter, SecurityEdiscoverynoncustodialdatasourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync(SecurityEdiscoverynoncustodialdatasourceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceGetResponse> SecurityEdiscoverynoncustodialdatasourceGetAsync(SecurityEdiscoverynoncustodialdatasourceGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceGetParameter, SecurityEdiscoverynoncustodialdatasourceGetResponse>(parameter, cancellationToken);
         }
