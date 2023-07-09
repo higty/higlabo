@@ -1,0 +1,24 @@
+import { reactive } from '../lib/vue/vue.esm-browser.js';
+const COLS = 5;
+const ROWS = 20;
+export const cells = reactive(Array.from(Array(COLS).keys()).map((i) => Array.from(Array(ROWS).keys()).map((i) => '')));
+export function evalCell(exp) {
+    if (!exp.startsWith('=')) {
+        return exp;
+    }
+    exp = exp
+        .slice(1)
+        .replace(/\b([A-Z])(\d{1,2})\b/g, (_, c, r) => `get(${c.charCodeAt(0) - 65},${r})`);
+    try {
+        return new Function('get', `return ${exp}`)(getCellValue);
+    }
+    catch (e) {
+        return `#ERROR ${e}`;
+    }
+}
+function getCellValue(c, r) {
+    const val = evalCell(cells[c][r]);
+    const num = Number(val);
+    return Number.isFinite(num) ? num : val;
+}
+//# sourceMappingURL=store.js.map

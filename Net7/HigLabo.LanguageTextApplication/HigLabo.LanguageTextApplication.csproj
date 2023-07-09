@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<Version>7.0.0.0</Version>
+		<Authors>Higty</Authors>
+		<Company>HigLabo</Company>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CsvHelper" Version="30.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
+		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+		<ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
+		<ProjectReference Include="..\HigLabo.ObjectModel\HigLabo.ObjectModel.csproj" />
+		<ProjectReference Include="..\HigLabo.Service\HigLabo.Service.csproj" />
+	</ItemGroup>
+
+</Project>

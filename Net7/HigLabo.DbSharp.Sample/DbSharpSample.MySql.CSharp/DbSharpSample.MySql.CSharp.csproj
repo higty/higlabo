@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MySql.Data" Version="8.0.33" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="HigLabo.Core">
+			<HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="HigLabo.Data">
+			<HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+		</Reference>
+		<Reference Include="HigLabo.Data.MySql">
+			<HintPath>..\Reference\HigLabo.Data.MySql.dll</HintPath>
+		</Reference>
+		<Reference Include="HigLabo.DbSharp">
+			<HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,58 @@
+﻿@page
+@model HigLaboVueExamples.Pages.AttributeBindingsModel
+@{
+}
+
+
+
+<style>
+    .red {
+        color: red;
+    }
+</style>
+
+<script type="module">
+    import { createApp, ref } from './lib/vue/vue.esm-browser.js'
+
+createApp({
+  setup() {
+    const message = ref('Hello World!')
+    const isRed = ref(true)
+    const color = ref('green')
+
+    function toggleRed() {
+      isRed.value = !isRed.value
+    }
+
+    function toggleColor() {
+      color.value = color.value === 'green' ? 'blue' : 'green'
+    }
+
+    return {
+      message,
+      isRed,
+      color,
+      toggleRed,
+      toggleColor
+    }
+  }
+}).mount('#app')
+</script>
+
+<div id="app">
+  <p>
+    <span :title="message">
+      Hover your mouse over me for a few seconds to see my dynamically bound title!
+    </span>
+  </p>
+
+  <p :class="{ red: isRed }" @@click="toggleRed">
+    This should be red... but click me to toggle it.
+  </p>
+
+  <p :style="{ color }" @@click="toggleColor">
+    This should be green, and should toggle between green and blue on click.
+  </p>
+
+
+</div>

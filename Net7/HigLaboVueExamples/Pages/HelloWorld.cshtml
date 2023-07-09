@@ -1,0 +1,24 @@
+﻿@page
+@model HigLaboVueExamples.Pages.HelloWorldModel
+@{
+}
+
+
+
+<script type="module">
+    import { createApp, ref } from './lib/vue/vue.esm-browser.js'
+
+    createApp({
+        setup() {
+            const message = ref('Hello World!')
+
+            return {
+                message
+            }
+        }
+    }).mount('#app')
+</script>
+
+<div id="app">
+    <h1>{{ message }}</h1>
+</div>

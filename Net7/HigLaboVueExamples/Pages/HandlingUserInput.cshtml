@@ -1,0 +1,53 @@
+﻿@page
+@model HigLaboVueExamples.Pages.HandlingUserInputModel
+@{
+}
+
+<style>
+    button, a {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+</style>
+
+<script type="module">
+import { createApp, ref } from './lib/vue/vue.esm-browser.js'
+
+createApp({
+  setup() {
+    const message = ref('Hello World!')
+
+    function reverseMessage() {
+      // Access/mutate the value of a ref via
+      // its .value property.
+      message.value = message.value.split('').reverse().join('')
+    }
+
+    function notify() {
+      alert('navigation was prevented.')
+    }
+
+    return {
+      message,
+      reverseMessage,
+      notify
+    }
+  }
+}).mount('#app')
+</script>
+
+<div id="app">
+  <h1>{{ message }}</h1>
+
+  <button @@click="reverseMessage">Reverse Message</button>
+
+  <!-- Can also be an inline expression statement -->
+  <button @@click="message += '!'">Append "!"</button>
+
+  <a href="https://vuejs.org" @@click.prevent="notify">
+    A link with e.preventDefault()
+  </a>
+</div>
+
+

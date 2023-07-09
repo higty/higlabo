@@ -1,0 +1,39 @@
+﻿@page
+@model HigLaboVueExamples.Pages.CounterModel
+@{
+}
+
+
+
+
+
+
+
+<script type="module">
+    import { createApp, ref } from './lib/vue/vue.esm-browser.js'
+
+createApp({
+  setup() {
+    const count = ref(0)
+
+    return {
+      count
+    }
+  }
+}).mount('#app')
+</script>
+
+<div id="app">
+  {{ count }}
+  <button @@click="count++">Count</button>
+</div>
+
+
+
+
+
+
+
+
+
+
