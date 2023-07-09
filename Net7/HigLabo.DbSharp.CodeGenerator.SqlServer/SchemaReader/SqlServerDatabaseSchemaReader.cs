@@ -10,6 +10,7 @@ using HigLabo.CodeGenerator;
 using System.Reflection;
 using System.Data.Common;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace HigLabo.DbSharp.MetaData
 {
@@ -86,8 +87,9 @@ namespace HigLabo.DbSharp.MetaData
                         db.RollBackTransaction();
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.ToString());
                     System.Diagnostics.Debugger.Break();
                     if (db.OnTransaction == true)
                     {
@@ -154,7 +156,7 @@ namespace HigLabo.DbSharp.MetaData
                 sp.ResultSets.Add(item);
             }
         }
-        public override async Task<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
+        public override async ValueTask<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
         {
             var l = new List<DatabaseObject>();
 
@@ -173,7 +175,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public override async Task<UserDefinedTableType> GetUserDefinedTableTypeAsync(String name)
+        public override async ValueTask<UserDefinedTableType> GetUserDefinedTableTypeAsync(String name)
         {
             UserDefinedTableType st = new UserDefinedTableType(name);
             foreach (var column in await this.GetUserDefinedTableTypeColumnsAsync(name))
@@ -182,7 +184,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return st;
         }
-        public override async Task<List<DataType>> GetUserDefinedTableTypeColumnsAsync(String name)
+        public override async ValueTask<List<DataType>> GetUserDefinedTableTypeColumnsAsync(String name)
         {
             List<DataType> l = new List<DataType>();
 

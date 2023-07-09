@@ -25,5 +25,14 @@ namespace HigLabo.DbSharp
             }
             return l;
         }
+
+        public void AddRecord(T record)
+        {
+            this.Records.Add(record);
+        }
+        public void AddRecords(IEnumerable<T> records)
+        {
+            this.Records.AddRange(records);
+        }
     }
 }

@@ -38,15 +38,15 @@ namespace HigLabo.DbSharp
             var results = this.GetResultSets(databases);
             return results.FirstOrDefault() as T;
         }
-        public new async Task<T?> GetFirstResultSetAsync()
+        public new async ValueTask<T?> GetFirstResultSetAsync()
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase()).ConfigureAwait(false);
         }
-        public new async Task<T?> GetFirstResultSetAsync(Database database)
+        public new async ValueTask<T?> GetFirstResultSetAsync(Database database)
         {
             return await this.GetFirstResultSetAsync(database, CancellationToken.None);
         }
-        public new async Task<T?> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
+        public new async ValueTask<T?> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
         {
             return (await this.GetResultSetsAsync(database, cancellationToken)).FirstOrDefault() as T;
         }
@@ -72,31 +72,31 @@ namespace HigLabo.DbSharp
         {
             return base.GetResultSets(databases).Cast<T>().ToList();
         }
-        public new async Task<List<T>> GetResultSetsAsync()
+        public new async ValueTask<List<T>> GetResultSetsAsync()
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
         }
-        public new async Task<List<T>> GetResultSetsAsync(CommandBehavior commandBehavior)
+        public new async ValueTask<List<T>> GetResultSetsAsync(CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), commandBehavior, CancellationToken.None);
         }
-        public new async Task<List<T>> GetResultSetsAsync(CancellationToken cancellationToken)
+        public new async ValueTask<List<T>> GetResultSetsAsync(CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, cancellationToken);
         }
-        public new async Task<List<T>> GetResultSetsAsync(Database database)
+        public new async ValueTask<List<T>> GetResultSetsAsync(Database database)
         {
             return await this.GetResultSetsAsync(database, CommandBehavior.Default, CancellationToken.None);
         }
-        public new async Task<List<T>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior)
+        public new async ValueTask<List<T>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(database, commandBehavior, CancellationToken.None);
         }
-        public new async Task<List<T>> GetResultSetsAsync(Database database, CancellationToken cancellationToken)
+        public new async ValueTask<List<T>> GetResultSetsAsync(Database database, CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(database, CommandBehavior.Default, cancellationToken);
         }
-        public new async Task<List<T>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public new async ValueTask<List<T>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var l = new List<T>();
             foreach (var item in await base.GetResultSetsAsync(database, commandBehavior, cancellationToken))

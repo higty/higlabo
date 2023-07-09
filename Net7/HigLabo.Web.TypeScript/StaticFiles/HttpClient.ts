@@ -4,6 +4,9 @@
         const req = request;
         const xReq = new XMLHttpRequest();
         xReq.open(req.httpMethod, req.url, true);
+        req.headers.forEach(header => {
+            xReq.setRequestHeader(header.name, header.value);
+        });
         this.setProperty(xReq, req);
         if (req.progressCallback != null) {
             xReq.upload.addEventListener("progress", req.progressCallback);
@@ -78,6 +81,7 @@ export class HttpRequest {
     public httpMethod = "";
     public url = "";
     public contentType = "";
+    public headers = new Array<HttpRequestHeader>();
     public data: any;
     public context: any;
     public callback = new Array<HttpRequestCallback>();
@@ -95,6 +99,15 @@ export class HttpRequest {
         }
     }
 }
+export class HttpRequestHeader {
+    public name = "";
+    public value = "";
+
+    constructor(name: string, value: string) {
+        this.name = name;
+        this.value = value;
+    }
+}
 
 export class HttpPostJsonRequest extends HttpRequest {
     constructor(url: string, data: any, callback?: HttpRequestCallback, errorCallback?: HttpRequestCallback) {
@@ -107,10 +120,6 @@ export class HttpPostFormRequest extends HttpRequest {
     constructor(url: string, data: FormData, callback: HttpRequestCallback, errorCallback?: HttpRequestCallback) {
         super("post", url, callback, errorCallback);
         this.data = data;
-        this.callback.push(callback);
-        if (errorCallback != null) {
-            this.errorCallback.push(errorCallback);
-        }
     }
 }
 

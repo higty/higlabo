@@ -150,6 +150,16 @@ export class HtmlElementQuery {
         }
         return this;
     }
+    appendValue(value) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            const element = this._elementList[i];
+            if (element === null) {
+                continue;
+            }
+            element.value += value;
+        }
+        return this;
+    }
     setSelectedValue(value) {
         for (var i = 0; i < this._elementList.length; i++) {
             if (this._elementList[i] instanceof HTMLSelectElement) {
@@ -201,10 +211,16 @@ export class HtmlElementQuery {
     select() {
         if (this._elementList.length > 0) {
             const element = this._elementList[0];
-            if (element === null) {
-                return;
+            if (element.tagName.toLowerCase() == "input") {
+                element.select();
             }
-            element.select();
+            else if ($(element).getAttribute("contenteditable") == "true") {
+                const range = document.createRange();
+                range.selectNodeContents(element);
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
         }
         return this;
     }
@@ -606,13 +622,12 @@ export class HtmlElementQuery {
         if (event instanceof Event) {
             for (var i = 0; i < this._elementList.length; i++) {
                 var element = this._elementList[i];
-                element.dispatchEvent(e);
+                element.dispatchEvent(event);
             }
         }
         else if (typeof event === "string") {
             if (document.createEvent) {
-                var e = document.createEvent("HTMLEvents");
-                e.initEvent(event, true, true);
+                var e = new Event(event, { bubbles: true, cancelable: true });
                 for (var i = 0; i < this._elementList.length; i++) {
                     var element = this._elementList[i];
                     element.dispatchEvent(e);

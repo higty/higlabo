@@ -20,7 +20,7 @@ namespace HigLabo.DbSharp.MetaData
         public abstract Boolean SupportUserDefinedTableType { get; }
 
         public abstract Database CreateDatabase();
-        public virtual async Task<List<DatabaseObject>> GetTablesAsync()
+        public virtual async ValueTask<List<DatabaseObject>> GetTablesAsync()
         {
             var l = new List<DatabaseObject>();
 
@@ -39,7 +39,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<Table> GetTableAsync(String name)
+        public virtual async ValueTask<Table> GetTableAsync(String name)
         {
             var t = new Table(name);
             using (Database db = this.CreateDatabase())
@@ -90,7 +90,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return t;
         }
-        public virtual async Task<List<PrimaryKeyConstraint>> GetPrimaryKeyAsync(String tableName)
+        public virtual async ValueTask<List<PrimaryKeyConstraint>> GetPrimaryKeyAsync(String tableName)
         {
             var l = new List<PrimaryKeyConstraint>();
 
@@ -110,7 +110,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<List<Index>> GetIndexAsync(String tableName)
+        public virtual async ValueTask<List<Index>> GetIndexAsync(String tableName)
         {
             var l = new List<Index>();
 
@@ -138,7 +138,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<List<DefaultCostraint>> GetDefaultCostraintAsync(String tableName)
+        public virtual async ValueTask<List<DefaultCostraint>> GetDefaultCostraintAsync(String tableName)
         {
             var l = new List<DefaultCostraint>();
 
@@ -158,7 +158,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<List<ForeignKeyColumn>> GetForeignKeyColumnAsync(String tableName)
+        public virtual async ValueTask<List<ForeignKeyColumn>> GetForeignKeyColumnAsync(String tableName)
         {
             var l = new List<ForeignKeyColumn>();
 
@@ -181,7 +181,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<List<CheckConstraint>> GetCheckConstraintAsync(String tableName)
+        public virtual async ValueTask<List<CheckConstraint>> GetCheckConstraintAsync(String tableName)
         {
             var l = new List<CheckConstraint>();
 
@@ -200,7 +200,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<List<Column>> GetColumnListAsync(String tableName)
+        public virtual async ValueTask<List<Column>> GetColumnListAsync(String tableName)
         {
             var l = new List<Column>();
 
@@ -244,7 +244,7 @@ namespace HigLabo.DbSharp.MetaData
             return l;
         }
 
-        public virtual async Task<List<DatabaseObject>> GetViewsAsync()
+        public virtual async ValueTask<List<DatabaseObject>> GetViewsAsync()
         {
             var l = new List<DatabaseObject>();
 
@@ -264,7 +264,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<List<DatabaseObject>> GetStoredProceduresAsync()
+        public virtual async ValueTask<List<DatabaseObject>> GetStoredProceduresAsync()
         {
             var l = new List<DatabaseObject>();
 
@@ -284,7 +284,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public virtual async Task<Boolean> ExistStoredProcedure(String name)
+        public virtual async ValueTask<Boolean> ExistStoredProcedure(String name)
         {
             var q = this.QueryBuilder;
             using (var db = this.CreateDatabase())
@@ -298,7 +298,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return false;
         }
-        public virtual async Task<StoredProcedure> GetStoredProcedureAsync(String name)
+        public virtual async ValueTask<StoredProcedure> GetStoredProcedureAsync(String name)
         {
             var sp = new StoredProcedure(this.DatabaseServer, name);
             
@@ -320,7 +320,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return sp;
         }
-        public virtual async Task<List<SqlInputParameter>> GetParametersAsync(String storedProcedureName)
+        public virtual async ValueTask<List<SqlInputParameter>> GetParametersAsync(String storedProcedureName)
         {
             var l = new List<SqlInputParameter>();
             Int32 name = 1;
@@ -371,7 +371,7 @@ namespace HigLabo.DbSharp.MetaData
         }
         public abstract Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values);
 
-        public virtual async Task<List<DatabaseObject>> GetStoredFunctionsAsync()
+        public virtual async ValueTask<List<DatabaseObject>> GetStoredFunctionsAsync()
         {
             var l = new List<DatabaseObject>();
 
@@ -391,15 +391,15 @@ namespace HigLabo.DbSharp.MetaData
             return l;
         }
 
-        public virtual async Task<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
+        public virtual async ValueTask<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
         {
             return await Task.FromResult(new List<DatabaseObject>());
         }
-        public virtual async Task<UserDefinedTableType> GetUserDefinedTableTypeAsync(string name)
+        public virtual async ValueTask<UserDefinedTableType> GetUserDefinedTableTypeAsync(string name)
         {
             return await Task.FromResult(new UserDefinedTableType());
         }
-        public virtual async Task<List<DataType>> GetUserDefinedTableTypeColumnsAsync(string name)
+        public virtual async ValueTask<List<DataType>> GetUserDefinedTableTypeColumnsAsync(string name)
         {
             return await Task.FromResult(new List<DataType>());
         }

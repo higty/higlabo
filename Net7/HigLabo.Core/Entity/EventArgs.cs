@@ -2,13 +2,20 @@
 
 namespace HigLabo.Core
 {
-    public class EventArgs<T> : EventArgs
+    public class ValueEventArgs<T> : EventArgs
     {
-        public T Info { get; init; }
+        public T Value { get; init; }
 
-        public EventArgs(T info)
+        public ValueEventArgs(T value)
         {
-            this.Info = info;
+            this.Value = value;
         }
     }
+    public class ValueEventArgs
+	{
+		public static ValueEventArgs<T> Create<T>(T value)
+		{
+			return new ValueEventArgs<T>(value);
+		}
+	}
 }

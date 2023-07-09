@@ -7,6 +7,24 @@ namespace HigLabo.Core
 {
     public static class DateTimeOffsetExtensions
     {
+        public static DateTimeOffset GetPreviouseDate(this DateTimeOffset value, DayOfWeek dayOfWeek)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var dtime = value.AddDays(-i);
+                if (dtime.DayOfWeek == dayOfWeek) { return dtime; }
+            }
+            throw new InvalidOperationException();
+        }
+        public static DateTimeOffset GetNextDate(this DateTimeOffset value, DayOfWeek dayOfWeek)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var dtime = value.AddDays(i);
+                if (dtime.DayOfWeek == dayOfWeek) { return dtime; }
+            }
+            throw new InvalidOperationException();
+        }
         public static DateOnly ToDateOnly(this DateTimeOffset value)
         {
             return DateOnly.FromDateTime(value.Date);
@@ -33,5 +51,9 @@ namespace HigLabo.Core
             var dtime = new DateTimeOffset((value + ts).Ticks, timeZone);
             return dtime;
         }
-    }
+		public static DateTimeOffset TrimSeconds(this DateTimeOffset value)
+		{
+			return new DateTimeOffset(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0, value.Offset);
+		}
+	}
 }

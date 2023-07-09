@@ -32,31 +32,31 @@ namespace HigLabo.DbSharp
             var results = this.GetResultSets(databases);
             return results.FirstOrDefault();
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync()
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync()
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(CommandBehavior commandBehavior)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(CommandBehavior commandBehavior)
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase(), commandBehavior, CancellationToken.None);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(CancellationToken cancellationToken)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(CancellationToken cancellationToken)
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase(), CommandBehavior.Default, cancellationToken);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database)
         {
             return await this.GetFirstResultSetAsync(database, CancellationToken.None);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior)
         {
             return await this.GetFirstResultSetAsync(database, commandBehavior, CancellationToken.None);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
         {
             return await this.GetFirstResultSetAsync(database, CommandBehavior.Default, cancellationToken);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var results = await this.GetResultSetsAsync(database, commandBehavior, cancellationToken);
             return results.FirstOrDefault();
@@ -91,31 +91,31 @@ namespace HigLabo.DbSharp
         {
             return this.GetResultSetsAsync(databases).GetAwaiter().GetResult().ToList();
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync()
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync()
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(CommandBehavior commandBehavior)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), commandBehavior, CancellationToken.None);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(CancellationToken cancellationToken)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, cancellationToken);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database)
         {
             return await this.GetResultSetsAsync(database, CommandBehavior.Default, CancellationToken.None);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(database, commandBehavior, CancellationToken.None);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CancellationToken cancellationToken)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(database, CommandBehavior.Default, cancellationToken);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             if (database == null) throw new ArgumentNullException("database");
             DbDataReader? dr = null;
@@ -162,7 +162,7 @@ namespace HigLabo.DbSharp
             var tt = new List<Task<List<StoredProcedureResultSet>>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetResultSetsAsync(db, commandBehavior, cancellationToken));
+                tt.Add(this.GetResultSetsAsync(db, commandBehavior, cancellationToken).AsTask());
             }
             if (tt.Count == 0) { return Array.Empty<StoredProcedureResultSet>().ToList(); }
 

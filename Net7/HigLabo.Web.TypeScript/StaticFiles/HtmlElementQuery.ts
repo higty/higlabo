@@ -149,6 +149,14 @@ export class HtmlElementQuery {
         }
         return this;
     }
+    public appendValue(value: string): HtmlElementQuery {
+        for (var i = 0; i < this._elementList.length; i++) {
+            const element = this._elementList[i] as HTMLInputElement;
+            if (element === null) { continue; }
+            element.value += value;
+        }
+        return this;
+    }
     public setSelectedValue(value: string) {
         for (var i = 0; i < this._elementList.length; i++) {
             if (this._elementList[i] instanceof HTMLSelectElement) {
@@ -198,9 +206,17 @@ export class HtmlElementQuery {
     }
     public select(): HtmlElementQuery {
         if (this._elementList.length > 0) {
-            const element = this._elementList[0] as HTMLInputElement;
-            if (element === null) { return; }
-            element.select();
+            const element = this._elementList[0];
+            if (element.tagName.toLowerCase() == "input") {
+                (element as HTMLInputElement).select();
+            }
+            else if ($(element).getAttribute("contenteditable") == "true") {
+                const range = document.createRange();
+                range.selectNodeContents(element);
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
         }
         return this;
     }
@@ -607,13 +623,12 @@ export class HtmlElementQuery {
         if (event instanceof Event) {
             for (var i = 0; i < this._elementList.length; i++) {
                 var element = this._elementList[i];
-                element.dispatchEvent(e);
+                element.dispatchEvent(event);
             }
         }
         else if (typeof event === "string") {
             if (document.createEvent) {
-                var e = document.createEvent("HTMLEvents");
-                e.initEvent(event, true, true);
+                var e = new Event(event, { bubbles: true, cancelable: true });
                 for (var i = 0; i < this._elementList.length; i++) {
                     var element = this._elementList[i];
                     element.dispatchEvent(e);

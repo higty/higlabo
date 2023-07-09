@@ -49,5 +49,23 @@ namespace HigLabo.Core
                 return now.Year - birthNow.Year;
             }
         }
+        public static DateOnly GetPreviouseDate(this DateOnly value, DayOfWeek dayOfWeek)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var dtime = value.AddDays(-i);
+                if (dtime.DayOfWeek == dayOfWeek) { return dtime; }
+            }
+            throw new InvalidOperationException();
+        }
+        public static DateOnly GetNextDate(this DateOnly value, DayOfWeek dayOfWeek)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var dtime = value.AddDays(i);
+                if (dtime.DayOfWeek == dayOfWeek) { return dtime; }
+            }
+            throw new InvalidOperationException();
+        }
     }
 }

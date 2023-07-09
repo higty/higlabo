@@ -1,7 +1,6 @@
 SET path=C:\GitHub\higty\HigLabo\Net7\
 SET targetPath=C:\GitHub\higty\HigLabo\Net7\HigLabo.DbSharp.Sample\Reference\
 
-Copy "%path%HigLabo.Converter\bin\Release\net7.0\HigLabo.Converter.dll" "%targetPath%HigLabo.Converter.dll"
 Copy "%path%HigLabo.Core\bin\Release\net7.0\HigLabo.Core.dll" "%targetPath%HigLabo.Core.dll"
 
 Copy "%path%HigLabo.Data\bin\Release\net7.0\HigLabo.Data.dll" "%targetPath%HigLabo.Data.dll"

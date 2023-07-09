@@ -24,13 +24,13 @@
                 <DataGrid.Columns>
                     <StaticResource ResourceKey="DataTypeOrdinal"/>
                     <StaticResource ResourceKey="DataTypeColumnName"/>
+                    <StaticResource ResourceKey="DataTypeEnumName"/>
                     <StaticResource ResourceKey="DataTypeDbType"/>
                     <StaticResource ResourceKey="DataTypeLength"/>
                     <StaticResource ResourceKey="DataTypePrecision"/>
                     <StaticResource ResourceKey="DataTypeScale"/>
                     <StaticResource ResourceKey="DataTypeAllowNull"/>
                     <StaticResource ResourceKey="DataTypeUdtTypeName"/>
-                    <StaticResource ResourceKey="DataTypeEnumName"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -45,7 +45,7 @@ namespace HigLabo.LanguageTextApplication
             this.FolderSetting = folderSetting;
         }
 
-        public override async Task ExecuteAsync()
+        public override async ValueTask ExecuteAsync()
         {
             var l = new List<CsvLine>();
 
@@ -165,7 +165,7 @@ namespace HigLabo.LanguageTextApplication
             }
 
             {
-                var md = new Method(MethodAccessModifier.Public, "GetText");
+                var md = new Method(MethodAccessModifier.Protected, "GetText");
                 cText.Methods.Add(md);
                 md.Modifier.Polymophism = MethodPolymophism.Override;
                 md.ReturnTypeName = new TypeName("string");
@@ -178,7 +178,7 @@ namespace HigLabo.LanguageTextApplication
                     var key = kv.Key;
                     cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"case \"{key}\": return this.{key};"));
                 }
-                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"default: return key;"));
+                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"default: return \"\";"));
             }
 
             var filePath = Path.Combine(copyFolderPath, this.FolderSetting.CSharpFileName);

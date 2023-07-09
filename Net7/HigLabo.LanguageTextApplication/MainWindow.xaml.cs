@@ -24,6 +24,7 @@ namespace LanguageTextApplication
             this.AddButton.Content = T.Text.Add;
             this.DeleteButton.Content = T.Text.Delete;
             this.ExecuteButton.Content = T.Text.Execute;
+            this.ShowSettingPanelButton.Content = T.Text.Close;
         }
 
         private void UpdateFolderListView()

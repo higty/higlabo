@@ -25,7 +25,7 @@ namespace HigLabo.Service
         {
             this.Title = title;
         }
-        public abstract Task ExecuteAsync();
+        public abstract ValueTask ExecuteAsync();
 
         public override string ToString()
         {

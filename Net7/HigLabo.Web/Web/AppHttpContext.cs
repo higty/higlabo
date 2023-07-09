@@ -15,12 +15,6 @@ namespace HigLabo.Web
     }
     public class AppHttpContext
     {
-        public static class HttpContextItemsKey
-        {
-            public static String HttpRequestContext = "AppHttpContext";
-            public static String BeginRequestTime = "AppHttpContext.BeginRequestTime";
-            public static String EndRequestTime = "AppHttpContext.EndRequestTime";
-        }
         public static readonly AppHttpContextDefaultSetting DefaultSetting = new AppHttpContextDefaultSetting();
 
         public HttpContext HttpContext { get; init; }
@@ -29,22 +23,6 @@ namespace HigLabo.Web
             get { return this.HttpContext.Request; }
         }
         public String RawRequestPathAndQuery { get; set; } = "";
-        public DateTimeOffset? BeginRequestTime
-        {
-            get { return this.HttpContext.Items[HttpContextItemsKey.BeginRequestTime] as DateTimeOffset?; }
-            set
-            {
-                this.HttpContext.Items[HttpContextItemsKey.BeginRequestTime] = value;
-            }
-        }
-        public DateTimeOffset? EndRequestTime
-        {
-            get { return this.HttpContext.Items[HttpContextItemsKey.EndRequestTime] as DateTimeOffset?; }
-            set
-            {
-                this.HttpContext.Items[HttpContextItemsKey.EndRequestTime] = value;
-            }
-        }
         public AppHttpContext(IHttpContextAccessor accessor)
         {
             if (accessor.HttpContext == null) { throw new InvalidOperationException("HttpContext must not be null."); }

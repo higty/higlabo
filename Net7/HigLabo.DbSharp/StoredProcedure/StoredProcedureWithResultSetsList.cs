@@ -83,31 +83,31 @@ namespace HigLabo.DbSharp
             return this.GetResultSetsListAsync(databases, commandBehavior, cancellation).GetAwaiter().GetResult();
         }
 
-        public async Task<TResultSetList> GetResultSetsListAsync()
+        public async ValueTask<TResultSetList> GetResultSetsListAsync()
         {
             return await this.GetResultSetsListAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None).ConfigureAwait(false);
         }
-        public async Task<TResultSetList> GetResultSetsListAsync(CommandBehavior commandBehavior)
+        public async ValueTask<TResultSetList> GetResultSetsListAsync(CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsListAsync(this.GetDatabase(), commandBehavior, CancellationToken.None).ConfigureAwait(false);
         }
-        public async Task<TResultSetList> GetResultSetsListAsync(CancellationToken cancellation)
+        public async ValueTask<TResultSetList> GetResultSetsListAsync(CancellationToken cancellation)
         {
             return await this.GetResultSetsListAsync(this.GetDatabase(), CommandBehavior.Default, cancellation).ConfigureAwait(false);
         }
-        public async Task<TResultSetList> GetResultSetsListAsync(Database database)
+        public async ValueTask<TResultSetList> GetResultSetsListAsync(Database database)
         {
             return await GetResultSetsListAsync(database, CommandBehavior.Default, CancellationToken.None);
         }
-        public async Task<TResultSetList> GetResultSetsListAsync(Database database, CommandBehavior commandBehavior)
+        public async ValueTask<TResultSetList> GetResultSetsListAsync(Database database, CommandBehavior commandBehavior)
         {
             return await GetResultSetsListAsync(database, commandBehavior, CancellationToken.None);
         }
-        public async Task<TResultSetList> GetResultSetsListAsync(Database database, CancellationToken cancellation)
+        public async ValueTask<TResultSetList> GetResultSetsListAsync(Database database, CancellationToken cancellation)
         {
             return await GetResultSetsListAsync(database, CommandBehavior.Default, cancellation);
         }
-        public async Task<TResultSetList> GetResultSetsListAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellation)
+        public async ValueTask<TResultSetList> GetResultSetsListAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellation)
         {
             var rsl = new TResultSetList();
             List<List<StoredProcedureResultSet>> l = new List<List<StoredProcedureResultSet>>();
@@ -159,12 +159,12 @@ namespace HigLabo.DbSharp
             var tt = new List<Task<TResultSetList>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetResultSetsListAsync(db, commandBehavior, cancellation));
+                tt.Add(this.GetResultSetsListAsync(db, commandBehavior, cancellation).AsTask());
             }
             var result = new TResultSetList();
             foreach (var item in await Task.WhenAll(tt).ConfigureAwait(false))
             {
-                //Set by generated code.
+                //It will be set by generated code. So, null is ok.
                 _MergeMethod!(item, result);
             }
             return result;

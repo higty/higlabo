@@ -38,7 +38,7 @@ namespace HigLabo.DbSharp
         }
         public abstract DbCommand CreateCommand(Database database);
 
-        private async Task<ExecuteNonQueryResult> GetExecuteNonQueryResultAsync(Database database, CancellationToken cancellationToken)
+        private async ValueTask<ExecuteNonQueryResult> GetExecuteNonQueryResultAsync(Database database, CancellationToken cancellationToken)
         {
             if (database == null) throw new ArgumentNullException("database");
             var affectedRecordCount = -1;
@@ -101,33 +101,33 @@ namespace HigLabo.DbSharp
             var tt = new List<Task<ExecuteNonQueryResult>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetExecuteNonQueryResultAsync(db, cancellationToken));
+                tt.Add(this.GetExecuteNonQueryResultAsync(db, cancellationToken).AsTask());
             }
             var l = new List<ExecuteNonQueryResult>();
             return Task.WhenAll(tt).GetAwaiter().GetResult();
         }
 
-        public async Task<Int32> ExecuteNonQueryAsync()
+        public async ValueTask<Int32> ExecuteNonQueryAsync()
         {
             return await this.ExecuteNonQueryAsync(this.GetDatabase(), CancellationToken.None);
         }
-        public async Task<Int32> ExecuteNonQueryAsync(CancellationToken cancellationToken)
+        public async ValueTask<Int32> ExecuteNonQueryAsync(CancellationToken cancellationToken)
         {
             return await this.ExecuteNonQueryAsync(this.GetDatabase(), cancellationToken);
         }
-        public async Task<Int32> ExecuteNonQueryAsync(TransactionContext context)
+        public async ValueTask<Int32> ExecuteNonQueryAsync(TransactionContext context)
         {
             return await this.ExecuteNonQueryAsync(context.Database);
         }
-        public async Task<Int32> ExecuteNonQueryAsync(TransactionContext context, CancellationToken cancellationToken)
+        public async ValueTask<Int32> ExecuteNonQueryAsync(TransactionContext context, CancellationToken cancellationToken)
         {
             return await this.ExecuteNonQueryAsync(context.Database, cancellationToken);
         }
-        public async Task<Int32> ExecuteNonQueryAsync(Database database)
+        public async ValueTask<Int32> ExecuteNonQueryAsync(Database database)
         {
             return await this.ExecuteNonQueryAsync(database, CancellationToken.None);
         }
-        public async Task<Int32> ExecuteNonQueryAsync(Database database, CancellationToken cancellationToken)
+        public async ValueTask<Int32> ExecuteNonQueryAsync(Database database, CancellationToken cancellationToken)
         {
             var rs = await this.GetExecuteNonQueryResultAsync(database, cancellationToken).ConfigureAwait(false);
             return rs.AffectedRecordCount;
@@ -141,7 +141,7 @@ namespace HigLabo.DbSharp
             var tt = new List<Task<ExecuteNonQueryResult>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetExecuteNonQueryResultAsync(db, cancellationToken));
+                tt.Add(this.GetExecuteNonQueryResultAsync(db, cancellationToken).AsTask());
             }
             var results = await Task.WhenAll(tt).ConfigureAwait(false);
             return results;

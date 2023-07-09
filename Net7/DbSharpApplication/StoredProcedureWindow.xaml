@@ -54,15 +54,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="24"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="24"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <ComboBox Name="ResultSetListBox" ItemsSource="{Binding Path=ResultSets}"
-                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="24">
+                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="200">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                        <Grid>
+                                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                        </Grid>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -70,6 +71,10 @@
                              Text="{Binding Path=Name}"  PreviewKeyDown="ResultSetNameTextBox_PreviewKeyDown"
                              VerticalContentAlignment="Center" Height="24" TextWrapping="Wrap" 
                              Width="240" />
+                            <Button Name="SetAllowNullButton" Click="SetAllowNullButton_Click" 
+                            Width="100" Content="AllowNull" Height="24"></Button>
+                            <Button Name="SetNotNullButton" Click="SetNotNullButton_Click"
+                            Width="100" Content="NotNull" Height="24"></Button>
                         </StackPanel>
                     </StackPanel>
                     <Grid Grid.Row="1" DataContext="{Binding ElementName=ResultSetListBox, Path=SelectedItem}">
@@ -89,12 +94,6 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal">
-                        <Button Name="SetAllowNullButton" Click="SetAllowNullButton_Click" 
-                            Width="100" Content="AllowNull" Height="24"></Button>
-                        <Button Name="SetNotNullButton" Click="SetNotNullButton_Click"
-                            Width="100" Content="NotNull" Height="24"></Button>
-                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>
