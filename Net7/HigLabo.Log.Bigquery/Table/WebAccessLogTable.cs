@@ -34,7 +34,7 @@ namespace HigLabo.Core
             public String ThreadName { get; set; } = "";
             public Int32 ThreadId { get; set; }
 
-            public Guid? UserId { get; set; }
+            public String UserId { get; set; } = "";
             public String UserHostAddress { get; set; } = "";
             public String UserHostName { get; set; } = "";
             public String UserAgent { get; set; } = "";

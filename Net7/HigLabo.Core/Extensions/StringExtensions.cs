@@ -61,8 +61,9 @@ namespace HigLabo.Core
             }
             return text.Substring(startIndex, text.Length - startIndex);
         }
-        public static Boolean IsNullOrEmpty(this String text)
+        public static Boolean IsNullOrEmpty(this String? text)
         {
+            if (text == null) { return true; }
             return String.IsNullOrEmpty(text);
         }
 

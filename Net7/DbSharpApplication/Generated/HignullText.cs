@@ -207,6 +207,19 @@ namespace Hignull.Core
                 }
             }
         }
+        public string Billing
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Billing";
+                    case "ja-JP": return "請求";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Birthday
         {
             get
@@ -870,6 +883,19 @@ namespace Hignull.Core
                 }
             }
         }
+        public string Export
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Export";
+                    case "ja-JP": return "出力";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Execute
         {
             get
@@ -879,6 +905,19 @@ namespace Hignull.Core
                 {
                     case "en-US": return "Execute";
                     case "ja-JP": return "実行";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string File
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "File";
+                    case "ja-JP": return "ファイル";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -1074,6 +1113,19 @@ namespace Hignull.Core
                 {
                     case "en-US": return "Image url";
                     case "ja-JP": return "画像URL";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Import
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Import";
+                    case "ja-JP": return "インポート";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -1337,6 +1389,19 @@ namespace Hignull.Core
                 }
             }
         }
+        public string ManageUser
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "ManageUser";
+                    case "ja-JP": return "ユーザーの管理";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Maximize
         {
             get
@@ -1580,6 +1645,19 @@ namespace Hignull.Core
                 {
                     case "en-US": return "Previous month";
                     case "ja-JP": return "先月";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Processing_
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Processing...";
+                    case "ja-JP": return "実行中...";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2551,6 +2629,279 @@ namespace Hignull.Core
                 }
             }
         }
+        public string ChatAgentType_Prompton
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Prompton";
+                    case "ja-JP": return "ぷろんぷとん";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ChatAgentType_ChatGPT
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "ChatGPT";
+                    case "ja-JP": return "ChatGPT";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ChatAgentType_Search
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Search agent";
+                    case "ja-JP": return "検索エージェント";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string CreateArticle
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Create article";
+                    case "ja-JP": return "記事の作成";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string EmployeeId
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Employee Id";
+                    case "ja-JP": return "従業員ID";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string EmptyDataMessage
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "No data available.";
+                    case "ja-JP": return "データがありません。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string EmptyDataMessage_Article
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "No articles.";
+                    case "ja-JP": return "記事がありません。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string EmptyDataMessage_Comment
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "No comments.";
+                    case "ja-JP": return "コメントがありません。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string EmptyDataMessage_User
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "There is no users.";
+                    case "ja-JP": return "ユーザーがいません。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_NotFound
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "May I help you?";
+                    case "ja-JP": return "何をしますか？";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_TaskAdd
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Add a task";
+                    case "ja-JP": return "タスクの追加をします。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_ScheduleAdd
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Add a appointment";
+                    case "ja-JP": return "予定の追加をします。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_Translate
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Translate. Enter text.";
+                    case "ja-JP": return "翻訳します。テキストを入力してください。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_Proofreading
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Proofreading. Enter text.";
+                    case "ja-JP": return "校正します。テキストを入力してください。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_Summarize
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Summarize. Enter text.";
+                    case "ja-JP": return "要約します。テキストを入力してください。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_Rewrite
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Rewrite. Enter text.";
+                    case "ja-JP": return "書き換えます。テキストを入力してください。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FunctionCallStartMessage_Review
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Review. Enter text.";
+                    case "ja-JP": return "文章のレビューをします。テキストを入力してください。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string GanttChart
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "GanttChart";
+                    case "ja-JP": return "ガントチャート";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string GenerateArticle
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Generate article";
+                    case "ja-JP": return "記事の生成";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string GenerateStructure
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Generate structure";
+                    case "ja-JP": return "構成の生成";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string HelpDesk
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "HelpDesk";
+                    case "ja-JP": return "ヘルプデスク";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Install
         {
             get
@@ -2560,6 +2911,58 @@ namespace Hignull.Core
                 {
                     case "en-US": return "Install";
                     case "ja-JP": return "インストール";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Kanban
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Kanban";
+                    case "ja-JP": return "かんばん";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Marketing
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Marketing";
+                    case "ja-JP": return "マーケティング";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string OpenAIOops
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Oops...";
+                    case "ja-JP": return "...（気絶）";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string OpenAIQuotaExceeded
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "OpenAI API exceeded. Please check current status of your account below url.";
+                    case "ja-JP": return "OpenAIのAPIの利用回数の上限を超えています。OpenAIのページで利用状況を確認してみてください。";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2668,6 +3071,19 @@ namespace Hignull.Core
                 }
             }
         }
+        public string Proofreading
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Proofreading";
+                    case "ja-JP": return "校正";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string RecentCommentList
         {
             get
@@ -2772,6 +3188,19 @@ namespace Hignull.Core
                 }
             }
         }
+        public string Portal
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Portal";
+                    case "ja-JP": return "ポータル";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string PleaseSelect_
         {
             get
@@ -2785,41 +3214,54 @@ namespace Hignull.Core
                 }
             }
         }
-        public string EmptyDataMessage
+        public string Rewrite
         {
             get
             {
                 var language = this.GetLanguage();
                 switch (language)
                 {
-                    case "en-US": return "No data available.";
-                    case "ja-JP": return "データがありません。";
+                    case "en-US": return "Rewrite";
+                    case "ja-JP": return "書き換え";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
         }
-        public string EmptyDataMessage_Comment
+        public string ShortName
         {
             get
             {
                 var language = this.GetLanguage();
                 switch (language)
                 {
-                    case "en-US": return "No comments.";
-                    case "ja-JP": return "コメントがありません。";
+                    case "en-US": return "Short name";
+                    case "ja-JP": return "名前（短い表示）";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
         }
-        public string EmptyDataMessage_User
+        public string Summarize
         {
             get
             {
                 var language = this.GetLanguage();
                 switch (language)
                 {
-                    case "en-US": return "There is no users.";
-                    case "ja-JP": return "ユーザーがいません。";
+                    case "en-US": return "Summarize";
+                    case "ja-JP": return "要約";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Theme
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Theme";
+                    case "ja-JP": return "テーマ";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2833,6 +3275,19 @@ namespace Hignull.Core
                 {
                     case "en-US": return "This page is under constructing.";
                     case "ja-JP": return "このページは現在作成中です。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Translate
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Translate";
+                    case "ja-JP": return "翻訳";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2872,6 +3327,19 @@ namespace Hignull.Core
                 {
                     case "en-US": return "Unconfirmed";
                     case "ja-JP": return "未確認";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string UserReading
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "User reading";
+                    case "ja-JP": return "ユーザー閲覧";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2987,6 +3455,7 @@ namespace Hignull.Core
                 case "AuthenticateExpired": return this.AuthenticateExpired;
                 case "AuthenticateRequired": return this.AuthenticateRequired;
                 case "AuthenticationFailure": return this.AuthenticationFailure;
+                case "Billing": return this.Billing;
                 case "Birthday": return this.Birthday;
                 case "Birthplace": return this.Birthplace;
                 case "BloodType": return this.BloodType;
@@ -3038,7 +3507,9 @@ namespace Hignull.Core
                 case "Encoding": return this.Encoding;
                 case "EndDate": return this.EndDate;
                 case "EndTime": return this.EndTime;
+                case "Export": return this.Export;
                 case "Execute": return this.Execute;
+                case "File": return this.File;
                 case "FileNotFound": return this.FileNotFound;
                 case "FileSizeMustBeSmallerThan_": return this.FileSizeMustBeSmallerThan_;
                 case "Filter": return this.Filter;
@@ -3054,6 +3525,7 @@ namespace Hignull.Core
                 case "IAgreeTermsOfUse": return this.IAgreeTermsOfUse;
                 case "IAgreeTermsOfUseAndPrivacyPolicy": return this.IAgreeTermsOfUseAndPrivacyPolicy;
                 case "ImageUrl": return this.ImageUrl;
+                case "Import": return this.Import;
                 case "InComplete": return this.InComplete;
                 case "InputForm": return this.InputForm;
                 case "InputSample": return this.InputSample;
@@ -3074,6 +3546,7 @@ namespace Hignull.Core
                 case "MailIsSent": return this.MailIsSent;
                 case "MainImage": return this.MainImage;
                 case "Man": return this.Man;
+                case "ManageUser": return this.ManageUser;
                 case "Maximize": return this.Maximize;
                 case "Minimize": return this.Minimize;
                 case "Member": return this.Member;
@@ -3093,6 +3566,7 @@ namespace Hignull.Core
                 case "PasswordSettings": return this.PasswordSettings;
                 case "PleaseSelect": return this.PleaseSelect;
                 case "PreviousMonth": return this.PreviousMonth;
+                case "Processing_": return this.Processing_;
                 case "Price": return this.Price;
                 case "Profile": return this.Profile;
                 case "Project": return this.Project;
@@ -3168,7 +3642,32 @@ namespace Hignull.Core
                 case "SignupMailSendFailure": return this.SignupMailSendFailure;
                 case "ThisUserIdAlreadyUsed": return this.ThisUserIdAlreadyUsed;
                 case "TopPixel": return this.TopPixel;
+                case "ChatAgentType_Prompton": return this.ChatAgentType_Prompton;
+                case "ChatAgentType_ChatGPT": return this.ChatAgentType_ChatGPT;
+                case "ChatAgentType_Search": return this.ChatAgentType_Search;
+                case "CreateArticle": return this.CreateArticle;
+                case "EmployeeId": return this.EmployeeId;
+                case "EmptyDataMessage": return this.EmptyDataMessage;
+                case "EmptyDataMessage_Article": return this.EmptyDataMessage_Article;
+                case "EmptyDataMessage_Comment": return this.EmptyDataMessage_Comment;
+                case "EmptyDataMessage_User": return this.EmptyDataMessage_User;
+                case "FunctionCallStartMessage_NotFound": return this.FunctionCallStartMessage_NotFound;
+                case "FunctionCallStartMessage_TaskAdd": return this.FunctionCallStartMessage_TaskAdd;
+                case "FunctionCallStartMessage_ScheduleAdd": return this.FunctionCallStartMessage_ScheduleAdd;
+                case "FunctionCallStartMessage_Translate": return this.FunctionCallStartMessage_Translate;
+                case "FunctionCallStartMessage_Proofreading": return this.FunctionCallStartMessage_Proofreading;
+                case "FunctionCallStartMessage_Summarize": return this.FunctionCallStartMessage_Summarize;
+                case "FunctionCallStartMessage_Rewrite": return this.FunctionCallStartMessage_Rewrite;
+                case "FunctionCallStartMessage_Review": return this.FunctionCallStartMessage_Review;
+                case "GanttChart": return this.GanttChart;
+                case "GenerateArticle": return this.GenerateArticle;
+                case "GenerateStructure": return this.GenerateStructure;
+                case "HelpDesk": return this.HelpDesk;
                 case "Install": return this.Install;
+                case "Kanban": return this.Kanban;
+                case "Marketing": return this.Marketing;
+                case "OpenAIOops": return this.OpenAIOops;
+                case "OpenAIQuotaExceeded": return this.OpenAIQuotaExceeded;
                 case "PleaseInput": return this.PleaseInput;
                 case "PleaseInputNegativeNumber": return this.PleaseInputNegativeNumber;
                 case "PleaseInputPositiveNumber": return this.PleaseInputPositiveNumber;
@@ -3177,6 +3676,7 @@ namespace Hignull.Core
                 case "PleaseSelectFile": return this.PleaseSelectFile;
                 case "PleaseSelectUser": return this.PleaseSelectUser;
                 case "PleaseSelectImage": return this.PleaseSelectImage;
+                case "Proofreading": return this.Proofreading;
                 case "RecentCommentList": return this.RecentCommentList;
                 case "RequestEntityTooLarge": return this.RequestEntityTooLarge;
                 case "SeeAll": return this.SeeAll;
@@ -3185,14 +3685,18 @@ namespace Hignull.Core
                 case "SeeMore": return this.SeeMore;
                 case "SorryInconvenience": return this.SorryInconvenience;
                 case "PersonInCharge": return this.PersonInCharge;
+                case "Portal": return this.Portal;
                 case "PleaseSelect_": return this.PleaseSelect_;
-                case "EmptyDataMessage": return this.EmptyDataMessage;
-                case "EmptyDataMessage_Comment": return this.EmptyDataMessage_Comment;
-                case "EmptyDataMessage_User": return this.EmptyDataMessage_User;
+                case "Rewrite": return this.Rewrite;
+                case "ShortName": return this.ShortName;
+                case "Summarize": return this.Summarize;
+                case "Theme": return this.Theme;
                 case "ThisPageIsUnderConstructing": return this.ThisPageIsUnderConstructing;
+                case "Translate": return this.Translate;
                 case "UnAssigned": return this.UnAssigned;
                 case "UnConfirm": return this.UnConfirm;
                 case "UnConfirmed": return this.UnConfirmed;
+                case "UserReading": return this.UserReading;
                 case "WidthPixel": return this.WidthPixel;
                 case "YouDontHaveLicense": return this.YouDontHaveLicense;
                 case "YouDontHaveAuthority": return this.YouDontHaveAuthority;
@@ -3200,7 +3704,7 @@ namespace Hignull.Core
                 case "YouDontHaveAuthorityToDelete": return this.YouDontHaveAuthorityToDelete;
                 case "YouDontHaveAuthorityToEdit": return this.YouDontHaveAuthorityToEdit;
                 case "YouDontHaveAuthorityToManage": return this.YouDontHaveAuthorityToManage;
-                default: return key;
+                default: return "";
             }
         }
     }

@@ -39,7 +39,7 @@
                 </DataGridTextColumn.HeaderTemplate>
             </ctrl:DataGridTextColumn>
 
-            <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeAllowNull" Header="AllowNull}" Binding="{Binding Path=AllowNull, Converter={StaticResource DataTypeBooleanTextConverter}}" IsReadOnly="True"></ctrl:DataGridTextColumn>
+            <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeAllowNull" Header="AllowNull" Binding="{Binding Path=AllowNull, Converter={StaticResource DataTypeBooleanTextConverter}}" IsReadOnly="True"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTemplateColumn x:Shared="False" x:Key="DataTypeAllowNullEditable" Header="AllowNull}">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>

@@ -32,25 +32,21 @@ namespace HigLabo.Core
             public Int32 ProcessId { get; set; }
             public String ThreadName { get; set; } = "";
             public Int32 ThreadId { get; set; }
-            public Guid? UserId { get; set; }
+            public String UserId { get; set; } = "";
 
-            public static Record Create(Exception exception, Guid? userId)
+            public static Record Create(Exception exception, String userId)
             {
                 return Create(exception, 0, userId, "");
             }
             public static Record Create(Exception exception, Int32 errorLevel)
             {
-                return Create(exception, errorLevel, null, "");
+                return Create(exception, errorLevel, "", "");
             }
-            public static Record Create(Exception exception, Int32 errorLevel, String message)
-            {
-                return Create(exception, errorLevel, null, message);
-            }
-            public static Record Create(Exception exception, Int32 errorLevel, Guid? userId)
+            public static Record Create(Exception exception, Int32 errorLevel, string userId)
             {
                 return Create(exception, errorLevel, userId, "");
             }
-            public static Record Create(Exception exception, Int32 errorLevel, Guid? userId, String message)
+            public static Record Create(Exception exception, Int32 errorLevel, string userId, String message)
             {
                 var r = new Record();
                 r.LogId = SequentialGuid.NewGuid();

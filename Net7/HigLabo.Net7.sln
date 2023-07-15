@@ -62,7 +62,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.NewtonsoftJson", "H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.Api", "HigLabo.Web.Api\HigLabo.Web.Api.csproj", "{6915A7B9-974B-4789-8985-FF02F163C4F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Log.Bigquery", "HigLabo.Log.Bigquery\HigLabo.Log.Bigquery.csproj", "{8AFCA957-2519-44BE-9728-0C86A021A64F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Log.Bigquery", "HigLabo.Log.Bigquery\HigLabo.Log.Bigquery.csproj", "{8AFCA957-2519-44BE-9728-0C86A021A64F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Web.Log", "HigLabo.Web.Log\HigLabo.Web.Log.csproj", "{00B589CB-67EE-4842-8DA8-CEAEE050075C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -182,6 +184,10 @@ Global
 		{8AFCA957-2519-44BE-9728-0C86A021A64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AFCA957-2519-44BE-9728-0C86A021A64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AFCA957-2519-44BE-9728-0C86A021A64F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B589CB-67EE-4842-8DA8-CEAEE050075C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B589CB-67EE-4842-8DA8-CEAEE050075C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B589CB-67EE-4842-8DA8-CEAEE050075C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B589CB-67EE-4842-8DA8-CEAEE050075C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

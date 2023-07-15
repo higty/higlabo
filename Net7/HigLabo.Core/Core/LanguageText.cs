@@ -57,7 +57,12 @@ namespace HigLabo.Core
 			{
 				return text;
 			}
-			return GetText(key.ToStringFromEnum());
+			text = GetText(key.ToStringFromEnum());
+            if (text.IsNullOrEmpty() == false)
+            {
+                return text;
+            }
+            return key.ToStringFromEnum();
         }
     }
 
