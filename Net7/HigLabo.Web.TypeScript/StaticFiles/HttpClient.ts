@@ -33,12 +33,12 @@
         req.context = context;
         this.send(req);
     }
-    public postJson(url: string, data: any, callback: HttpRequestCallback, errorCallback?: HttpRequestCallback, context?: any) {
+    public postJson(url: string, data: any, callback?: HttpRequestCallback, errorCallback?: HttpRequestCallback, context?: any) {
         const req = new HttpPostJsonRequest(url, data, callback, errorCallback);
         req.context = context;
         this.send(req);
     }
-    public postForm(url: string, formData: FormData, callback: HttpRequestCallback, errorCallback?: HttpRequestCallback, progressCallback?: EventListener, context?: any) {
+    public postForm(url: string, formData: FormData, callback?: HttpRequestCallback, errorCallback?: HttpRequestCallback, progressCallback?: EventListener, context?: any) {
         const req = new HttpPostFormRequest(url, formData, callback, errorCallback);
         if (progressCallback != null) {
             req.progressCallback = progressCallback;

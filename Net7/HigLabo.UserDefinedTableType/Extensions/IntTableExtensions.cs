@@ -14,5 +14,14 @@ namespace HigLabo.DbSharp
             r.Value = value;
             table.AddRecord(r);
         }
+        public static void AddRecords(this IntTable table, IEnumerable<Int32> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new IntTable.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
     }
 }

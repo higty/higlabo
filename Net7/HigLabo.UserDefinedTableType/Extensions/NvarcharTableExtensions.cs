@@ -44,5 +44,60 @@ namespace HigLabo.DbSharp
             r.Value = value;
             table.AddRecord(r);
         }
+
+        public static void AddRecords(this Nvarchar32Table table, IEnumerable<String> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new Nvarchar32Table.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
+        public static void AddRecords(this Nvarchar64Table table, IEnumerable<String> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new Nvarchar64Table.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
+        public static void AddRecords(this Nvarchar128Table table, IEnumerable<String> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new Nvarchar128Table.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
+        public static void AddRecords(this Nvarchar256Table table, IEnumerable<String> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new Nvarchar256Table.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
+        public static void AddRecords(this Nvarchar400Table table, IEnumerable<String> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new Nvarchar400Table.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
+        public static void AddRecords(this NvarcharMaxTable table, IEnumerable<String> values)
+        {
+            foreach (var value in values)
+            {
+                var r = new NvarcharMaxTable.Record();
+                r.Value = value;
+                table.AddRecord(r);
+            }
+        }
     }
 }

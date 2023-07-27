@@ -59,7 +59,7 @@ namespace HigLabo.Service
                     _LatestExecuteTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
                     if (this.Available == false)
                     {
-                        Thread.Sleep(this.GetNextExecuteTimeSpan());
+                        this.ThreadSleep();
                         continue;
                     }
                     Trace.WriteLine(String.Format("{0} {1} started.", now.ToString("yyyy/MM/dd HH:mm:ss"), this.Name));
@@ -90,12 +90,12 @@ namespace HigLabo.Service
                             Trace.WriteLine(ex.ToString());
                         }
                     }
-                    Thread.Sleep(this.GetNextExecuteTimeSpan());
+                    this.ThreadSleep();
                 }
                 catch (Exception ex)
                 {
                     Trace.WriteLine(ex.ToString());
-                    Thread.Sleep(this.GetNextExecuteTimeSpan());
+                    this.ThreadSleep();
                 }
             }
         }
@@ -104,6 +104,12 @@ namespace HigLabo.Service
             var now = DateTime.UtcNow;
             var scheduleTime = _LatestExecuteTime.AddSeconds(this.IntervalSeconds);
             return scheduleTime - now;
+        }
+        private void ThreadSleep()
+        {
+            var ts = this.GetNextExecuteTimeSpan();
+            if (ts <= TimeSpan.Zero) { return; }
+            Thread.Sleep(ts);
         }
 
         public void AddCommand(PeriodicCommand command)
