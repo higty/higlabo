@@ -393,15 +393,15 @@ namespace HigLabo.DbSharp.MetaData
 
         public virtual async ValueTask<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
         {
-            return await Task.FromResult(new List<DatabaseObject>());
+            return await ValueTask.FromResult(new List<DatabaseObject>());
         }
         public virtual async ValueTask<UserDefinedTableType> GetUserDefinedTableTypeAsync(string name)
         {
-            return await Task.FromResult(new UserDefinedTableType());
+            return await ValueTask.FromResult(new UserDefinedTableType());
         }
         public virtual async ValueTask<List<DataType>> GetUserDefinedTableTypeColumnsAsync(string name)
         {
-            return await Task.FromResult(new List<DataType>());
+            return await ValueTask.FromResult(new List<DataType>());
         }
         protected abstract MetaData.DbType CreateDbType(Object value);
 

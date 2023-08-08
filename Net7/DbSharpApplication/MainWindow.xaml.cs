@@ -81,6 +81,7 @@ namespace DbSharpApplication
 
             this.LoadStoredProcedureButton.Content = T.Text.LoadStoredProcedure + "(_S)";
             this.LoadUserDefinedTypeButton.Content = T.Text.LoadUserDefinedType + "(_U)";
+            this.GenerateDefinitionButton.Content = T.Text.GenerateDefinition + "(_D)";
             this.OpenOutputFolderButton.Content = T.Text.OpenOutputFolder + "(_F)";
             this.GenerateButton.Content = T.Text.Generate + "(_G)";
         }
@@ -167,6 +168,14 @@ namespace DbSharpApplication
             {
                 MessageBox.Show(T.Text.ConnectionFailed);
             }
+        }
+        private void GenerateDefinitionButton_Click(object sender, RoutedEventArgs e)
+        {
+            var setting = this.GetSelectedGenerateSetting();
+            if (setting == null) { return; }
+
+            var w = new DatabaseDefinitionWindow(setting.ConnectionString);
+            w.ShowDialog();
         }
         private void OpenOutputFolderButton_Click(object sender, RoutedEventArgs e)
         {

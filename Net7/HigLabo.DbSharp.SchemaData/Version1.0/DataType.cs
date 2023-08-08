@@ -106,7 +106,6 @@ namespace HigLabo.DbSharp.MetaData
             switch (this.DbType!.DatabaseServer)
             {
                 case DatabaseServer.SqlServer:
-                    #region
                     {
                         if (KeywordList.Contains(name, StringComparer.OrdinalIgnoreCase))
                         {
@@ -139,9 +138,7 @@ namespace HigLabo.DbSharp.MetaData
                         }
                         return String.Format("{0} {1}", name, this.GetDeclareTypeName());
                     }
-                    #endregion
                 case DatabaseServer.MySql:
-                    #region
                     {
                         var tp = this.DbType;
                         if (tp.CanDeclareLength() == true && this.Length.HasValue == true)
@@ -163,11 +160,11 @@ namespace HigLabo.DbSharp.MetaData
                         //Unsigned type are UIntX and it does not have length,precision,scale.
                         if (tp.CanDeclareUnsigned() == true)
                         {
-                            return String.Format("{0} {1} unsigned", name, this.GetDeclareTypeName());
+                            return String.Format("{0} {1} UNSIGNED", name, this.GetDeclareTypeName());
                         }
                         if (tp.MySqlServerDbType!.Value == MySqlDbType.Year)
                         {
-                            return String.Format("{0} year(4)", name);
+                            return String.Format("{0} YEAR(4)", name);
                         }
                         if (tp.MySqlServerDbType.Value == MySqlDbType.Enum ||
                             tp.MySqlServerDbType.Value == MySqlDbType.Set)
@@ -176,7 +173,6 @@ namespace HigLabo.DbSharp.MetaData
                         }
                         return String.Format("{0} {1}", name, this.GetDeclareTypeName());
                     }
-                    #endregion
                 case DatabaseServer.Oracle:
                 case DatabaseServer.PostgreSql:
                 default: throw new InvalidOperationException();
@@ -197,25 +193,31 @@ namespace HigLabo.DbSharp.MetaData
                         {
                             return this.UdtTypeName;
                         }
-                        else if (tp == SqlServer2022DbType.Variant) { return "sql_variant"; }
-                        return tp.ToString();
+                        else if (tp == SqlServer2022DbType.Variant) { return "SQL_VARIANT"; }
+                        else if (tp == SqlServer2022DbType.DateTime ||
+                            tp == SqlServer2022DbType.DateTime2 ||
+                            tp == SqlServer2022DbType.DateTimeOffset)
+                        {
+                            return tp.ToString();
+                        }
+                        return tp.ToString().ToUpper();
                     }
                 case DatabaseServer.Oracle: return this.DbType.OracleServerDbType.ToString()!;
                 case DatabaseServer.MySql:
                     {
                         var tp = this.DbType.MySqlServerDbType!.Value;
-                        if (tp == MySqlDbType.String) return "char";
-                        if (tp == MySqlDbType.Byte) return "tinyint";
-                        if (tp == MySqlDbType.Int16) return "smallint";
-                        if (tp == MySqlDbType.Int24) return "mediumint";
-                        if (tp == MySqlDbType.Int32) return "int";
-                        if (tp == MySqlDbType.Int64) return "bigint";
-                        if (tp == MySqlDbType.String) return "char";
-                        if (tp == MySqlDbType.UByte) return "tinyint";
-                        if (tp == MySqlDbType.UInt16) return "smallint";
-                        if (tp == MySqlDbType.UInt24) return "mediumint";
-                        if (tp == MySqlDbType.UInt32) return "int";
-                        if (tp == MySqlDbType.UInt64) return "bigint";
+                        if (tp == MySqlDbType.String) return "CHAR";
+                        if (tp == MySqlDbType.Byte) return "TINYINT";
+                        if (tp == MySqlDbType.Int16) return "SMALLINT";
+                        if (tp == MySqlDbType.Int24) return "MEDIUMINT";
+                        if (tp == MySqlDbType.Int32) return "INT";
+                        if (tp == MySqlDbType.Int64) return "BIGINT";
+                        if (tp == MySqlDbType.String) return "CHAR";
+                        if (tp == MySqlDbType.UByte) return "TINYINT";
+                        if (tp == MySqlDbType.UInt16) return "SMALLINT";
+                        if (tp == MySqlDbType.UInt24) return "MEDIUMINT";
+                        if (tp == MySqlDbType.UInt32) return "INT";
+                        if (tp == MySqlDbType.UInt64) return "BIGINT";
                         return this.DbType.MySqlServerDbType.ToString()!.ToLower();
                     }
                 case DatabaseServer.PostgreSql: return this.DbType.PostgreSqlServerDbType.ToString()!;

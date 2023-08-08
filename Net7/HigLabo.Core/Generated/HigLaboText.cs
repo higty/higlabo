@@ -662,6 +662,97 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string DayOfWeek_Monday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Monday";
+                    case "ja-JP": return "月曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DayOfWeek_Tuesday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Tuesday";
+                    case "ja-JP": return "火曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DayOfWeek_Wednesday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Wednesday";
+                    case "ja-JP": return "水曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DayOfWeek_Thursday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Thursday";
+                    case "ja-JP": return "木曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DayOfWeek_Friday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Friday";
+                    case "ja-JP": return "金曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DayOfWeek_Saturday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Saturday";
+                    case "ja-JP": return "土曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DayOfWeek_Sunday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Sunday";
+                    case "ja-JP": return "日曜日";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Decide
         {
             get
@@ -883,6 +974,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string Export
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Export";
+                    case "ja-JP": return "出力";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Execute
         {
             get
@@ -892,6 +996,19 @@ namespace HigLabo.Core
                 {
                     case "en-US": return "Execute";
                     case "ja-JP": return "実行";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string File
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "File";
+                    case "ja-JP": return "ファイル";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -1087,6 +1204,19 @@ namespace HigLabo.Core
                 {
                     case "en-US": return "Image url";
                     case "ja-JP": return "画像URL";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Import
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Import";
+                    case "ja-JP": return "インポート";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -1606,6 +1736,19 @@ namespace HigLabo.Core
                 {
                     case "en-US": return "Previous month";
                     case "ja-JP": return "先月";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Processing_
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Processing...";
+                    case "ja-JP": return "実行中...";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2632,6 +2775,13 @@ namespace HigLabo.Core
                 case "DataUpdatedSuccessfully": return this.DataUpdatedSuccessfully;
                 case "DataProcessedSuccessfully": return this.DataProcessedSuccessfully;
                 case "Date": return this.Date;
+                case "DayOfWeek_Monday": return this.DayOfWeek_Monday;
+                case "DayOfWeek_Tuesday": return this.DayOfWeek_Tuesday;
+                case "DayOfWeek_Wednesday": return this.DayOfWeek_Wednesday;
+                case "DayOfWeek_Thursday": return this.DayOfWeek_Thursday;
+                case "DayOfWeek_Friday": return this.DayOfWeek_Friday;
+                case "DayOfWeek_Saturday": return this.DayOfWeek_Saturday;
+                case "DayOfWeek_Sunday": return this.DayOfWeek_Sunday;
                 case "Decide": return this.Decide;
                 case "Delete": return this.Delete;
                 case "Description": return this.Description;
@@ -2649,7 +2799,9 @@ namespace HigLabo.Core
                 case "Encoding": return this.Encoding;
                 case "EndDate": return this.EndDate;
                 case "EndTime": return this.EndTime;
+                case "Export": return this.Export;
                 case "Execute": return this.Execute;
+                case "File": return this.File;
                 case "FileNotFound": return this.FileNotFound;
                 case "FileSizeMustBeSmallerThan_": return this.FileSizeMustBeSmallerThan_;
                 case "Filter": return this.Filter;
@@ -2665,6 +2817,7 @@ namespace HigLabo.Core
                 case "IAgreeTermsOfUse": return this.IAgreeTermsOfUse;
                 case "IAgreeTermsOfUseAndPrivacyPolicy": return this.IAgreeTermsOfUseAndPrivacyPolicy;
                 case "ImageUrl": return this.ImageUrl;
+                case "Import": return this.Import;
                 case "InComplete": return this.InComplete;
                 case "InputForm": return this.InputForm;
                 case "InputSample": return this.InputSample;
@@ -2705,6 +2858,7 @@ namespace HigLabo.Core
                 case "PasswordSettings": return this.PasswordSettings;
                 case "PleaseSelect": return this.PleaseSelect;
                 case "PreviousMonth": return this.PreviousMonth;
+                case "Processing_": return this.Processing_;
                 case "Price": return this.Price;
                 case "Profile": return this.Profile;
                 case "Project": return this.Project;

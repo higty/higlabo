@@ -22,10 +22,10 @@
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.Row="0" x:Name="LanguageListComboBox" Height="40" VerticalAlignment="Top">
+                <ComboBox Grid.Row="0" x:Name="LanguageListComboBox" Height="32">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Name}"></TextBlock>
                             </Grid>
                         </DataTemplate>
@@ -91,6 +91,8 @@
                                     Click="LoadStoredProcedureButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
                                 <Button x:Name="LoadUserDefinedTypeButton" Content="Load user defined type" 
                                     Click="LoadUserDefinedTypeButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                                <Button x:Name="GenerateDefinitionButton" Content="Generate definition" 
+                                    Click="GenerateDefinitionButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
                                 <Button x:Name="OpenOutputFolderButton" Content="Open output folder" Visibility="{Binding OpenOutputFolderButtonVisible}"
                                     Click="OpenOutputFolderButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
                             </StackPanel>

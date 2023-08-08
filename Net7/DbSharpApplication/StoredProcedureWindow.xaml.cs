@@ -99,9 +99,9 @@ namespace DbSharpApplication
             {
                 await this.LoadResultSet();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show(T.Text.LoadResultSetFailed);
+                MessageBox.Show(T.Text.LoadResultSetFailed + Environment.NewLine + ex.ToString());
             }
         }
         private async ValueTask LoadResultSet()

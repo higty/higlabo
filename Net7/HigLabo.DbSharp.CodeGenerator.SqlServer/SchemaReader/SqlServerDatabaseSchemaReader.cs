@@ -314,7 +314,7 @@ namespace HigLabo.DbSharp.MetaData
             var t = table;
             var sb = new StringBuilder();
 
-            sb.AppendFormat("create table {0}", t.Name).AppendLine();
+            sb.AppendFormat("CREATE TABLE {0}", t.Name).AppendLine();
             for (int i = 0; i < t.Columns.Count; i++)
             {
                 var c = t.Columns[i];
@@ -330,11 +330,11 @@ namespace HigLabo.DbSharp.MetaData
                 }
                 if (c.AllowNull == false)
                 {
-                    sb.Append(" not null");
+                    sb.Append(" NOT NULL");
                 }
                 if (c.DefaultCostraint != null)
                 {
-                    sb.AppendFormat(" constraint {0} default {1}"
+                    sb.AppendFormat(" CONSTRAINT {0} DEFAULT {1}"
                         , c.DefaultCostraint.Name, c.DefaultCostraint.Definition);
                 }
                 sb.AppendLine();
@@ -345,7 +345,7 @@ namespace HigLabo.DbSharp.MetaData
                 var cc = t.GetPrimaryKeyColumns().ToList();
                 if (cc.Count > 0)
                 {
-                    sb.AppendFormat(",constraint {0}_PrimaryKey primary key {1}(", t.Name, cc[0].Clustered);
+                    sb.AppendFormat(",CONSTRAINT {0}_PRIMARYKEY PRIMARY KEY {1}(", t.Name, cc[0].Clustered);
                     for (int i = 0; i < cc.Count; i++)
                     {
                         if (i > 0)
@@ -359,15 +359,10 @@ namespace HigLabo.DbSharp.MetaData
             }
             foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
             {
-                sb.AppendFormat(",constraint {0}_Fk_{1} foreign key({1}) references {2}({3}) on update {4} on delete {5}"
+                sb.AppendFormat(",CONSTRAINT {0}_Fk_{1} FOREIGN KEY({1}) REFERENCES {2}({3}) ON UPDATE {4} ON DELETE {5}"
                     , t.Name, c.Name, c.ForeignKey!.ParentTableName, c.ForeignKey.ParentColumnName
                     , c.ForeignKey.OnUpdate.Replace("_", " ")
                     , c.ForeignKey.OnDelete.Replace("_", " "));
-                sb.AppendLine();
-            }
-            foreach (var cc in t.CheckConstraintList)
-            {
-                sb.AppendFormat(",constraint {0} check({1})", cc.Name, cc.Definition);
                 sb.AppendLine();
             }
             foreach (var ix in t.IndexList)
@@ -375,10 +370,10 @@ namespace HigLabo.DbSharp.MetaData
                 //Pass PrimaryKey
                 if (ix.IsUnique == true) { continue; }
                 //Index only
-                if (String.Equals(ix.IndexType, "clustered", StringComparison.OrdinalIgnoreCase) == false &&
-                    String.Equals(ix.IndexType, "nonClustered", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+                if (String.Equals(ix.IndexType, "CLUSTERED", StringComparison.OrdinalIgnoreCase) == false &&
+                    String.Equals(ix.IndexType, "NONCLUSTERED", StringComparison.OrdinalIgnoreCase) == false) { continue; }
 
-                sb.AppendFormat(",index {0} {1} ({2})"
+                sb.AppendFormat(",INDEX {0} {1} ({2})"
                     , ix.Name
                     , ix.IndexType
                     , String.Join(',', ix.Columns.Select(el => el.Name)));
@@ -386,8 +381,38 @@ namespace HigLabo.DbSharp.MetaData
             }
 
             sb.AppendLine(")");
+            sb.AppendLine("GO");
+            sb.AppendLine();
+
+            var checkDefinition = new StringBuilder(256);
+            foreach (var cc in t.CheckConstraintList)
+            {
+                sb.AppendLine($"ALTER TABLE {t.Name} DROP CONSTRAINT IF EXISTS {cc.Name}");
+                sb.AppendLine("GO");
+                sb.AppendLine($"ALTER TABLE {t.Name} ADD CONSTRAINT {cc.Name} CHECK(");
+                sb.AppendLine(FormatCheckDefinition(cc.Definition));
+                sb.AppendLine(")");
+                sb.AppendLine("GO");
+            }
 
             return sb.ToString();
+        }
+        private string FormatCheckDefinition(string text)
+        {
+            var sb = new StringBuilder(256);
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (i == text.Length - 1 && text[i] == ')')
+                {
+                    sb.AppendLine();
+                }
+                sb.Append(text[i]);
+                if (i == 0 && text[i] == '(')
+                {
+                    sb.AppendLine();
+                }
+            }
+            return sb.ToString().Replace(" OR ", " OR " + Environment.NewLine);
         }
 
         private class SqlServerDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
@@ -434,11 +459,11 @@ SELECT T1.TABLE_NAME AS TableName
 			When N'sql_variant' Then N'variant'
 			Else T1.DATA_TYPE End 
 		End 
-	End As DbType
+	End AS DbType
 ,T1.CHARACTER_MAXIMUM_LENGTH AS ColumnLength
 ,T1.NUMERIC_PRECISION AS ColumnPrecision
 ,IsNull(T1.NUMERIC_SCALE,T1.DATETIME_PRECISION) AS ColumnScale
-,Case T1.IS_NULLABLE When N'YES' Then convert(bit, 1) Else convert(bit, 0) End As AllowNull
+,Case T1.IS_NULLABLE When N'YES' Then convert(bit, 1) Else convert(bit, 0) End AS AllowNull
 ,convert(bit, COLUMNPROPERTY(OBJECT_ID(QUOTENAME(T1.TABLE_SCHEMA) + N'.' + QUOTENAME(T1.TABLE_NAME)), T1.COLUMN_NAME, N'IsIdentity')) as IsIdentity
 ,convert(bit, COLUMNPROPERTY(OBJECT_ID(QUOTENAME(T1.TABLE_SCHEMA) + N'.' + QUOTENAME(T1.TABLE_NAME)), T1.COLUMN_NAME, N'IsRowGuidCol')) as IsRowGuid
 ,CASE T6.is_table_type 
@@ -557,7 +582,7 @@ order by T1.name
             public override String GetUserDefinedTypes()
             {
                 var q = @"
-Select T02.name As Name 
+Select T02.name AS Name 
 From sys.columns AS T01 with(nolock)
 Inner Join sys.table_types AS T02 with(nolock) ON T01.object_id = T02.type_table_object_id
 Inner Join sys.types AS T03 with(nolock) ON T01.system_type_id = T03.system_type_id and T01.user_type_id = T03.user_type_id 
@@ -582,7 +607,7 @@ Select T01.name AS ColumnName
 			When N'sql_variant' Then N'variant'
 			Else T03.name End 
 		End 
-	End As ColumnType
+	End AS ColumnType
 , CAST(
 	CASE WHEN T03.name IN (N'nchar', N'nvarchar') AND T01.max_length <> -1 THEN T01.max_length/2 
 	ELSE T01.max_length 
@@ -661,7 +686,7 @@ End as IsOutput
 When 1 Then T04.name
 Else N'' 
 End as UdtTypeName 
-FROM INFORMATION_SCHEMA.PARAMETERS As T01 with(nolock) 
+FROM INFORMATION_SCHEMA.PARAMETERS AS T01 with(nolock) 
 Inner Join sys.procedures as T02 with(nolock) ON T01.SPECIFIC_NAME = T02.name 
 Inner Join sys.parameters as T03 with(nolock) ON T02.object_id = T03.object_id and T01.PARAMETER_NAME = T03.name
 Inner Join sys.types as T04 with(nolock) ON T03.user_type_id = T04.user_type_id

@@ -37,7 +37,7 @@ namespace HigLabo.DbSharp.MetaData
             var u = this;
             var sb = new StringBuilder();
 
-            sb.AppendFormat("Create Type {0} As Table", u.Name).AppendLine();
+            sb.AppendFormat("CREATE TYPE {0} AS TABLE", u.Name).AppendLine();
             for (int i = 0; i < u.Columns.Count; i++)
             {
                 var c = u.Columns[i];
@@ -53,7 +53,7 @@ namespace HigLabo.DbSharp.MetaData
                 }
                 if (c.AllowNull == false)
                 {
-                    sb.Append(" Not Null");
+                    sb.Append(" NOT NULL");
                 }
                 sb.AppendLine();
             }
