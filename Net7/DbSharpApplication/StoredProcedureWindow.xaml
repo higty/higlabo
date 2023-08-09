@@ -72,9 +72,9 @@
                              VerticalContentAlignment="Center" Height="24" TextWrapping="Wrap" 
                              Width="240" />
                             <Button Name="SetAllowNullButton" Click="SetAllowNullButton_Click" 
-                            Width="100" Content="AllowNull" Height="24"></Button>
+                            Width="100" Content="_AllowNull" Height="24"></Button>
                             <Button Name="SetNotNullButton" Click="SetNotNullButton_Click"
-                            Width="100" Content="NotNull" Height="24"></Button>
+                            Width="100" Content="_NotNull" Height="24"></Button>
                         </StackPanel>
                     </StackPanel>
                     <Grid Grid.Row="1" DataContext="{Binding ElementName=ResultSetListBox, Path=SelectedItem}">
