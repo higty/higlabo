@@ -392,7 +392,7 @@ namespace HigLabo.DbSharp.MetaData
                 sb.AppendLine($"ALTER TABLE {t.Name} ADD CONSTRAINT {cc.Name} CHECK(");
                 sb.AppendLine(FormatCheckDefinition(cc.Definition));
                 sb.AppendLine(")");
-                sb.AppendLine("GO");
+                sb.AppendLine("GO").AppendLine();
             }
 
             return sb.ToString();

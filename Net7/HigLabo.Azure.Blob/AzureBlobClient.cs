@@ -65,6 +65,26 @@ namespace HigLabo.Core
             }
             return l;
         }
+        public async Task<List<BlobItem>> GetBlobList(String containerName, string prefix)
+        {
+            var container = GetBlobContainer(containerName);
+            var l = new List<BlobItem>();
+            await foreach (BlobItem item in container.GetBlobsAsync(BlobTraits.None, BlobStates.None, prefix))
+            {
+                l.Add(item);
+            }
+            return l;
+        }
+        public async Task<List<BlobItem>> GetBlobList(String containerName, string prefix, BlobTraits blobTraits)
+        {
+            var container = GetBlobContainer(containerName);
+            var l = new List<BlobItem>();
+            await foreach (BlobItem item in container.GetBlobsAsync(blobTraits, BlobStates.None, prefix))
+            {
+                l.Add(item);
+            }
+            return l;
+        }
 
         public async Task<BlobContentInfo> UploadBlobAsync(String containerName, String blobName, Stream data)
         {
@@ -88,6 +108,13 @@ namespace HigLabo.Core
             var container = this.GetBlobContainer(containerName);
             var blob = container.GetBlobClient(blobName);
             var res = await blob.DeleteAsync(deleteSnapshotsOption, blobRequestConditions, cancellationToken);
+            return res;
+        }
+        public async Task<Response<Boolean>> DeleteBlobIfExistsAsync(String containerName, String blobName)
+        {
+            var container = this.GetBlobContainer(containerName);
+            var blob = container.GetBlobClient(blobName);
+            var res = await blob.DeleteIfExistsAsync();
             return res;
         }
         public async Task<Response<Boolean>> DeleteBlobIfExistsAsync(String containerName, String blobName
