@@ -13,10 +13,10 @@ namespace HigLabo.DbSharp
         {
             return storedProcedure.ExecuteNonQuery(database);
         }
-        public static List<T> GetResultSets<T>(this Database database, StoredProcedureWithResultSet<T> storedProcedure)
+        public static async ValueTask<List<T>> GetResultSetsAsync<T>(this Database database, StoredProcedureWithResultSet<T> storedProcedure)
             where T : StoredProcedureResultSet, new()
         {
-            return storedProcedure.GetResultSets(database);
+            return await storedProcedure.GetResultSetsAsync(database);
         }   
     }
 }

@@ -19,19 +19,7 @@ namespace HigLabo.DbSharp
         {
         }
         protected abstract StoredProcedureResultSet CreateResultSets(IDataReader reader);
-        public StoredProcedureResultSet? GetFirstResultSet()
-        {
-            return this.GetResultSets().FirstOrDefault();
-        }
-        public StoredProcedureResultSet? GetFirstResultSet(Database database)
-        {
-            return this.GetResultSets(database).FirstOrDefault();
-        }
-        public StoredProcedureResultSet? GetFirstResultSet(IEnumerable<Database> databases)
-        {
-            var results = this.GetResultSets(databases);
-            return results.FirstOrDefault();
-        }
+
         public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync()
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
@@ -79,18 +67,6 @@ namespace HigLabo.DbSharp
             return results.FirstOrDefault();
         }
 
-        public List<StoredProcedureResultSet> GetResultSets()
-        {
-            return EnumerateResultSets().ToList();
-        }
-        public List<StoredProcedureResultSet> GetResultSets(Database database)
-        {
-            return EnumerateResultSets(database).ToList();
-        }
-        public List<StoredProcedureResultSet> GetResultSets(IEnumerable<Database> databases)
-        {
-            return this.GetResultSetsAsync(databases).GetAwaiter().GetResult().ToList();
-        }
         public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync()
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
@@ -164,7 +140,7 @@ namespace HigLabo.DbSharp
             {
                 tt.Add(this.GetResultSetsAsync(db, commandBehavior, cancellationToken).AsTask());
             }
-            if (tt.Count == 0) { return Array.Empty<StoredProcedureResultSet>().ToList(); }
+            if (tt.Count == 0) { return await this.GetResultSetsAsync(); }
 
             var results = await Task.WhenAll(tt).ConfigureAwait(false);
             return results.SelectMany(el => el).ToList();

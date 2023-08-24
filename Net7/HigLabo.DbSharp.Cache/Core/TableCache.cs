@@ -16,9 +16,9 @@ namespace HigLabo.DbSharp
         event EventHandler<TableCacheUpdatedEventArgs>? Loaded;
 		string TableName { get; }
 		int GetRecordCount();
-        Task LoadDataAsync();
-        Task LoadDataAsync(Database database);
-        Task LoadDataAsync(IEnumerable<Database> databaseList);
+        ValueTask LoadDataAsync();
+        ValueTask LoadDataAsync(Database database);
+        ValueTask LoadDataAsync(IEnumerable<Database> databaseList);
         List<object> SelectAll();
         object SelectByPrimaryKey(object primaryKey);
         object? SelectByPrimaryKeyOrNull(object primaryKey);
@@ -33,7 +33,7 @@ namespace HigLabo.DbSharp
         where TStoredProcedure : StoredProcedureWithResultSet, new()
         where TResultSet : class, new()
     {
-        public	event EventHandler<TableCacheUpdatedEventArgs>? Loaded;
+        public event EventHandler<TableCacheUpdatedEventArgs>? Loaded;
 		
         private Int32 _RecordCount = 0;
         private ConcurrentDictionary<TPrimaryKey, TResultSet> _Records = new();
@@ -56,23 +56,15 @@ namespace HigLabo.DbSharp
         {
 
         }
-        public async Task LoadDataAsync()
+        public async ValueTask LoadDataAsync()
         {
-            var l = new List<TResultSet>();
-            var sp = new TStoredProcedure();
-            this.SetProperty(sp);
-            foreach (var item in await sp.GetResultSetsAsync())
-            {
-                var r = item.Map(new TResultSet());
-                l.Add(r);
-            }
-            this.ReplaceRecordList(l);
+            await this.LoadDataAsync(Array.Empty<Database>());
         }
-        public async Task LoadDataAsync(Database database)
+        public async ValueTask LoadDataAsync(Database database)
         {
             await this.LoadDataAsync(new Database[] { database });
         }
-        public async Task LoadDataAsync(IEnumerable<Database> databaseList)
+        public async ValueTask LoadDataAsync(IEnumerable<Database> databaseList)
         {
             var l = new List<TResultSet>();
             var sp = new TStoredProcedure();
@@ -83,7 +75,10 @@ namespace HigLabo.DbSharp
                 l.Add(r);
             }
             this.ReplaceRecordList(l);
-            this.OnLoaded();
+
+            var e = new TableCacheUpdatedEventArgs();
+            e.TableNameList.Add(this.TableName);
+            this.Loaded?.Invoke(this, e);
         }
         private void ReplaceRecordList(IEnumerable<TResultSet> records)
         {
@@ -98,14 +93,6 @@ namespace HigLabo.DbSharp
             }
             Interlocked.Exchange(ref _Records, d);
         }
-        protected void OnLoaded()
-        {
-            var md = this.Loaded;
-            if (md == null) { return; }
-            var e = new TableCacheUpdatedEventArgs();
-            e.TableNameList.Add(this.TableName);
-			md(this, e);
-		}
 
 		List<object> ITableCache.SelectAll()
         {

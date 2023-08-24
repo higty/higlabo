@@ -25,19 +25,6 @@ namespace HigLabo.DbSharp
             return rs;
         }
 
-        public new T? GetFirstResultSet()
-        {
-            return base.GetFirstResultSet() as T;
-        }
-        public new T? GetFirstResultSet(Database database)
-        {
-            return base.GetFirstResultSet(database) as T;
-        }
-        public new T? GetFirstResultSet(IEnumerable<Database> databases)
-        {
-            var results = this.GetResultSets(databases);
-            return results.FirstOrDefault() as T;
-        }
         public new async ValueTask<T?> GetFirstResultSetAsync()
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase()).ConfigureAwait(false);
@@ -60,18 +47,6 @@ namespace HigLabo.DbSharp
             return results.FirstOrDefault() as T;
         }
 
-        public new List<T> GetResultSets()
-        {
-            return EnumerateResultSets().ToList();
-        }
-        public new List<T> GetResultSets(Database database)
-        {
-            return EnumerateResultSets(database).ToList();
-        }
-        public new List<T> GetResultSets(IEnumerable<Database> databases)
-        {
-            return base.GetResultSets(databases).Cast<T>().ToList();
-        }
         public new async ValueTask<List<T>> GetResultSetsAsync()
         {
             return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);

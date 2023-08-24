@@ -17,7 +17,8 @@ namespace HigLabo.DbSharp
 		public static event EventHandler<RedisEventSubscribeTimeoutEventArgs>? Timeout;
 
 		private bool _IsDisposed = false;
-		private AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
+        private Boolean _Loaded = false;
+        private AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
 
 		public ITableCache Table { get; init; }
 
@@ -32,6 +33,7 @@ namespace HigLabo.DbSharp
 			if (_IsDisposed == true) { return; }
 			if (e.TableNameList.Contains(this.Table.TableName))
 			{
+				_Loaded = true;
 				_AutoResetEvent.Set();
 			}
 
@@ -46,6 +48,8 @@ namespace HigLabo.DbSharp
 		}
 		public RedisEventWaitResult Wait(TimeSpan timeout)
 		{
+			if (_Loaded) { return RedisEventWaitResult.Success; }
+
 			if (_AutoResetEvent.WaitOne(timeout) == true)
 			{
 				//Cache updated within timeout
