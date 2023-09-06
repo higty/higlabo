@@ -10,7 +10,6 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class DataType : INotifyPropertyChanged
     {
-        public static readonly String[] KeywordList = new[] { "when", "case" };
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private String _Name = "";
@@ -107,10 +106,7 @@ namespace HigLabo.DbSharp.MetaData
             {
                 case DatabaseServer.SqlServer:
                     {
-                        if (KeywordList.Contains(name, StringComparer.OrdinalIgnoreCase))
-                        {
-                            name = "[" + name + "]";
-                        }
+                        name = "[" + name + "]";
                         var tp = this.DbType;
                         if (tp.CanDeclareLength() == true && this.Length.HasValue == true)
                         {

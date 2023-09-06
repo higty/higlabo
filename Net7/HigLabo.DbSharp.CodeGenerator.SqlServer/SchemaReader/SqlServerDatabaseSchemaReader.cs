@@ -359,7 +359,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
             {
-                sb.AppendFormat(",CONSTRAINT {0}_Fk_{1} FOREIGN KEY({1}) REFERENCES {2}({3}) ON UPDATE {4} ON DELETE {5}"
+                sb.AppendFormat(",CONSTRAINT {0}_Fk_{1} FOREIGN KEY({1}) REFERENCES [{2}]({3}) ON UPDATE {4} ON DELETE {5}"
                     , t.Name, c.Name, c.ForeignKey!.ParentTableName, c.ForeignKey.ParentColumnName
                     , c.ForeignKey.OnUpdate.Replace("_", " ")
                     , c.ForeignKey.OnDelete.Replace("_", " "));

@@ -60,7 +60,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteReader, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteReader, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return null; }
                 if (e != null)
                 {
@@ -81,7 +81,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteReader, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteReader, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return dr;
@@ -108,7 +108,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteScalar, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteScalar, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return null; }
                 if (e != null)
                 {
@@ -135,7 +135,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteScalar, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteScalar, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return o;
@@ -162,7 +162,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return -1; }
                 if (e != null)
                 {
@@ -189,7 +189,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommand, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommand, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return affectRecordNumber;

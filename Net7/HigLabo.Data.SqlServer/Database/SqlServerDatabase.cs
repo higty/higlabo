@@ -127,7 +127,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = SqlServerDatabase.OnCommandExecuting(new SqlServerCommandExecutingEventArgs(MethodName.BulkCopy, ConnectionString, sqlBulkCopyContext));
+                var e = this.OnCommandExecuting(new SqlServerCommandExecutingEventArgs(MethodName.BulkCopy, ConnectionString, sqlBulkCopyContext));
                 if (e != null)
                 {
                     if (e.Cancel == true) { return; }
@@ -155,7 +155,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                SqlServerDatabase.OnCommandExecuted(new SqlServerCommandExecutedEventArgs(MethodName.BulkCopy, this.ConnectionString
+                this.OnCommandExecuted(new SqlServerCommandExecutedEventArgs(MethodName.BulkCopy, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, sqlBulkCopyContext));
             }
         }
@@ -163,7 +163,7 @@ namespace HigLabo.Data
         private void CatchException(MethodName methodName, String connectionString, Exception exception, Object? executionContext, SqlBulkCopyContext sqlBulkCopyContext)
         {
             var e = new SqlServerCommandErrorEventArgs(methodName, connectionString, exception, executionContext, sqlBulkCopyContext);
-            SqlServerDatabase.OnCommandError(e);
+            this.OnCommandError(e);
             if (e.ThrowException == true)
             {
                 var ex = CreateException(e);

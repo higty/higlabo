@@ -63,7 +63,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new MySqlScriptExecutingEventArgs(this.ConnectionString, script));
+                var e = this.OnCommandExecuting(new MySqlScriptExecutingEventArgs(this.ConnectionString, script));
                 if (e != null && e.Cancel == true) { return -1; }
                 if (e != null)
                 {
@@ -89,7 +89,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new MySqlScriptExecutedEventArgs(this.ConnectionString
+                this.OnCommandExecuted(new MySqlScriptExecutedEventArgs(this.ConnectionString
                     , startTime.Value, endTime.Value, ec, script));
             }
             return affectRecordNumber;

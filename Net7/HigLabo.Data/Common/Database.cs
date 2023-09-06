@@ -11,9 +11,9 @@ namespace HigLabo.Data
 {
     public abstract partial class Database : IDisposable
     {
-        public static event EventHandler<CommandExecutingEventArgs>? CommandExecuting;
-        public static event EventHandler<CommandExecutedEventArgs>? CommandExecuted;
-        public static event EventHandler<CommandErrorEventArgs>? CommandError;
+        public event EventHandler<CommandExecutingEventArgs>? CommandExecuting;
+        public event EventHandler<CommandExecutedEventArgs>? CommandExecuted;
+        public event EventHandler<CommandErrorEventArgs>? CommandError;
 
         public event EventHandler<ConnectionCreatedEventArgs>? ConnectionCreated;
         public event EventHandler<CommandCreatedEventArgs>? CommandCreated;
@@ -200,7 +200,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.GetDataSet, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.GetDataSet, this.ConnectionString, cm));
                 if (e != null)
                 {
                     if (e.Cancel == true) { return null; }
@@ -232,7 +232,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataSet, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataSet, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return ds;
@@ -254,7 +254,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.GetDataTable, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.GetDataTable, this.ConnectionString, cm));
                 if (e != null)
                 {
                     if (e.Cancel == true) { return null; }
@@ -286,7 +286,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataTable, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataTable, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return dt;
@@ -315,7 +315,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteReader, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteReader, this.ConnectionString, cm));
                 if (e != null)
                 {
                     if (e.Cancel == true) { return null; }
@@ -336,7 +336,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteReader, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteReader, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return dr;
@@ -358,7 +358,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteScalar, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteScalar, this.ConnectionString, cm));
                 if (e != null)
                 {
                     if (e.Cancel == true) { return null; }
@@ -385,7 +385,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteScalar, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteScalar, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return o;
@@ -407,7 +407,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, this.ConnectionString, cm));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return -1; }
                 if (e != null)
                 {
@@ -434,7 +434,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommand, this.ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommand, this.ConnectionString
                     , startTime.Value, endTime.Value, ec, cm));
             }
             return affectRecordNumber;
@@ -464,7 +464,7 @@ namespace HigLabo.Data
                 for (Int32 i = 0; i < commands.Length; i++)
                 {
                     cm = commands[i];
-                    e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommandList, this.ConnectionString, cm));
+                    e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommandList, this.ConnectionString, cm));
                     if (e != null && e.Cancel == true) { continue; }
                     if (e != null)
                     {
@@ -476,7 +476,7 @@ namespace HigLabo.Data
                     var startTime = DateTimeOffset.Now;
                     affectRecordNumber[i] = cm.ExecuteNonQuery();
                     var endTime = DateTimeOffset.Now;
-                    Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommandList, this.ConnectionString
+                    this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommandList, this.ConnectionString
                         , startTime, endTime, ec, cm));
                 }
                 this.Transaction!.Commit();
@@ -508,7 +508,7 @@ namespace HigLabo.Data
 
             try
             {
-                var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.Save, ConnectionString, dataAdapter));
+                var e = this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.Save, ConnectionString, dataAdapter));
                 if (e != null)
                 {
                     if (e.Cancel == true) { return -1; }
@@ -549,7 +549,7 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.Save, ConnectionString
+                this.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.Save, ConnectionString
                     , startTime.Value, endTime.Value, ec, dataAdapter));
             }
             return affectedRecordCount;
@@ -575,7 +575,7 @@ namespace HigLabo.Data
 
         protected void CatchException(CommandErrorEventArgs e)
         {
-            Database.OnCommandError(e);
+            this.OnCommandError(e);
             if (e.ThrowException == true)
             {
                 var ex = this.CreateException(e);
@@ -583,27 +583,27 @@ namespace HigLabo.Data
             }
         }
 
-        protected static CommandExecutingEventArgs OnCommandExecuting(CommandExecutingEventArgs e)
+        protected CommandExecutingEventArgs OnCommandExecuting(CommandExecutingEventArgs e)
         {
-            var eh = Database.CommandExecuting;
+            var eh = this.CommandExecuting;
             if (eh != null)
             {
                 eh(null, e);
             }
             return e;
         }
-        protected static CommandExecutedEventArgs OnCommandExecuted(CommandExecutedEventArgs e)
+        protected CommandExecutedEventArgs OnCommandExecuted(CommandExecutedEventArgs e)
         {
-            var eh = Database.CommandExecuted;
+            var eh = this.CommandExecuted;
             if (eh != null)
             {
                 eh(null, e);
             }
             return e;
         }
-        protected static CommandErrorEventArgs OnCommandError(CommandErrorEventArgs e)
+        protected CommandErrorEventArgs OnCommandError(CommandErrorEventArgs e)
         {
-            var eh = Database.CommandError;
+            var eh = this.CommandError;
             if (eh != null)
             {
                 eh(null, e);

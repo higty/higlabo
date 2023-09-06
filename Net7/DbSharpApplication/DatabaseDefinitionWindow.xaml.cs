@@ -78,7 +78,10 @@ namespace DbSharpApplication
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            _WorkerThreadService.Generator.Loaded -= DatabaseDefinitionFileGenerator_Loaded;
+            if (_WorkerThreadService.Generator != null)
+            {
+                _WorkerThreadService.Generator.Loaded -= DatabaseDefinitionFileGenerator_Loaded;
+            }
             _WorkerThreadService.Completed -= WorkerThreadService_Completed;
             this.Close();
         }
@@ -93,12 +96,12 @@ namespace DbSharpApplication
     {
         private Thread? _Thread = null;
 
-        public event EventHandler<WorkerThreadServiceCompletedEventArgs> Completed;
+        public event EventHandler<WorkerThreadServiceCompletedEventArgs>? Completed;
         public Boolean IsExecuting
         {
             get { return _Thread != null; }
         }
-        public DatabaseDefinitionFileGenerator Generator { get; set; }
+        public DatabaseDefinitionFileGenerator? Generator { get; set; }
 
         public void StartThread()
         {
@@ -112,8 +115,11 @@ namespace DbSharpApplication
             try
             {
                 var e = new WorkerThreadServiceCompletedEventArgs();
-                e.TableFileText = await this.Generator.CreateTableFile();
-                e.StoredProcedureFileText = await this.Generator.CreateStoredProcedureFile();
+                if (this.Generator != null)
+                {
+                    e.TableFileText = await this.Generator.CreateTableFile();
+                    e.StoredProcedureFileText = await this.Generator.CreateStoredProcedureFile();
+                }
                 this.Completed?.Invoke(this, e);
             }
             catch(Exception ex)
