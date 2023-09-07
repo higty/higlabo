@@ -66,7 +66,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Log.Bigquery", "Hig
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.Log", "HigLabo.Web.Log\HigLabo.Web.Log.csproj", "{00B589CB-67EE-4842-8DA8-CEAEE050075C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Azure.Blob", "HigLabo.Azure.Blob\HigLabo.Azure.Blob.csproj", "{8A827185-AA6B-4CBA-A4E5-AB050A375A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Azure.Blob", "HigLabo.Azure.Blob\HigLabo.Azure.Blob.csproj", "{8A827185-AA6B-4CBA-A4E5-AB050A375A8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.BlobToEnumApplication", "HigLabo.BlobToEnumApplication\HigLabo.BlobToEnumApplication.csproj", "{E073950A-4EE1-49DE-9DA9-61B74944A4C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -194,6 +196,10 @@ Global
 		{8A827185-AA6B-4CBA-A4E5-AB050A375A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A827185-AA6B-4CBA-A4E5-AB050A375A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A827185-AA6B-4CBA-A4E5-AB050A375A8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E073950A-4EE1-49DE-9DA9-61B74944A4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E073950A-4EE1-49DE-9DA9-61B74944A4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E073950A-4EE1-49DE-9DA9-61B74944A4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E073950A-4EE1-49DE-9DA9-61B74944A4C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
