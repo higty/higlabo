@@ -49,6 +49,11 @@ namespace BlobToEnumApplication
         }
         private void BlobContainerListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            var setting = this.BlobContainerListView.SelectedItem as BlobContainerSetting;
+            if (setting == null)
+            {
+                return;
+            }
             this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Edit);
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -65,7 +70,7 @@ namespace BlobToEnumApplication
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            var setting =this.BlobContainerListView.SelectedItem as BlobContainerSetting;
+            var setting = this.BlobContainerListView.SelectedItem as BlobContainerSetting;
             if (setting == null)
             {
                 MessageBox.Show(T.Text.PleaseSelect);
@@ -73,6 +78,7 @@ namespace BlobToEnumApplication
             }
 
             this.ViewModel.ProgressPercentage = 0;
+            this.ViewModel.ProgressPercentageText = "0%";
             this.ViewModel.GenerateLogList.Clear();
             this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Generating);
 
@@ -87,6 +93,7 @@ namespace BlobToEnumApplication
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.ViewModel.ProgressPercentage = e.Percentage * 100;
+                this.ViewModel.ProgressPercentageText = (e.Percentage * 100).ToString("##0") + "%";
             }));
         }
 

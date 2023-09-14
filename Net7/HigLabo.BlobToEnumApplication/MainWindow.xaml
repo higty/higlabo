@@ -61,6 +61,11 @@
                          Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
                 </Grid>
                 <Grid VerticalAlignment="Top" Height="70">
+                    <Label Content="Extension" Height="30" Margin="6,0,0,0" VerticalAlignment="Top"></Label>
+                    <TextBox Text="{Binding Extension}" VerticalContentAlignment="Center" 
+                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
+                </Grid>
+                <Grid VerticalAlignment="Top" Height="70">
                     <Button x:Name="DeleteButton" Click="DeleteButton_Click" 
                     Content="Delete" Height="40" Margin="10,15,90,15" HorizontalAlignment="Right" Width="80" />
                     <Button x:Name="CloseButton" Click="CloseButton_Click" 
@@ -83,7 +88,9 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Grid Grid.Row="1">
-                <ProgressBar Minimum="0" Maximum="100" Value="{Binding ProgressPercentage}" Margin="10,0,100,0" VerticalAlignment="Center" Height="16"/>
+                <ProgressBar Minimum="0" Maximum="100" Value="{Binding ProgressPercentage}" Margin="10,0,200,0" VerticalAlignment="Center" Height="20"/>
+                <Label Content="{Binding ProgressPercentageText}" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" 
+                       HorizontalAlignment="Left" Width="60" Margin="800,6,0,10"/>
                 <Button x:Name="GenerateCloseButton" Click="GenerateCloseButton_Click" 
                     Content="Close" Height="40" Margin="0,10,10,10" HorizontalAlignment="Right" Width="80" />
             </Grid>

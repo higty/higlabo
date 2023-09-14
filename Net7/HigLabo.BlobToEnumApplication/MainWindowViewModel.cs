@@ -20,7 +20,7 @@ namespace BlobToEnumApplication
     public partial class MainWindowViewModel
     {
         [ObservableProperty]
-        public MainWindowDisplayMode displayMode = MainWindowDisplayMode.Generating;
+        public MainWindowDisplayMode displayMode = MainWindowDisplayMode.List;
         [ObservableProperty]
         public Visibility blobContainerListViewVisible = Visibility.Visible;
         [ObservableProperty]
@@ -31,6 +31,8 @@ namespace BlobToEnumApplication
         public ObservableCollection<ClassGenerateCommand.ExecutedEventArgs> GenerateLogList { get; init; } = new();
         [ObservableProperty]
         public double progressPercentage = 0;
+        [ObservableProperty]
+        public string progressPercentageText = "";
 
         public void SetDisplayMode(MainWindowDisplayMode displayMode)
         {

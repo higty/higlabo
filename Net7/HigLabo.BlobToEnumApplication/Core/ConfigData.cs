@@ -12,10 +12,11 @@ namespace BlobToEnumApplication
 {
     public class BlobContainerSetting
     {
-        public String ConnectionString { get; set; } = "";
-        public String ContainerName { get; set; } = "";
-        public String RootNamespaceName { get; init; } = "";
-        public String OutputFileName { get; set; } = "";
+        public string ConnectionString { get; set; } = "";
+        public string ContainerName { get; set; } = "";
+        public string RootNamespaceName { get; init; } = "";
+        public string OutputFileName { get; set; } = "";
+        public string Extension { get; set; } = "";
     }
     public class ConfigData
     {

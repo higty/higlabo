@@ -59,11 +59,21 @@ namespace HigLabo.LanguageTextApplication
             {
                 var cl = new AzureBlobClient(this.Setting.ConnectionString);
                 var container = cl.GetBlobContainer(this.Setting.ContainerName);
+                var extensionList = new List<string>();
+                if (this.Setting.Extension.IsNullOrEmpty() == false)
+                {
+                    extensionList.AddRange(this.Setting.Extension.Split(","));
+                }
 
                 await foreach (var item in container.GetBlobsAsync())
                 {
                     var folderName = Path.GetDirectoryName(item.Name);
                     if (folderName == null) { continue; }
+                    if (extensionList.Count > 0)
+                    {
+                        var extension = Path.GetExtension(item.Name);
+                        if (extensionList.Contains(extension, StringComparer.OrdinalIgnoreCase) == false) { continue; }
+                    }
 
                     var enumName = this.Setting.ContainerName.ToPascalCase() + "__" + folderName.Replace("-", "_").Replace("\\", "__");
                     var enumValueName = Path.GetFileName(item.Name).Replace("-", "_").Replace(" ", "_").Replace(".", "__");
@@ -100,7 +110,7 @@ namespace HigLabo.LanguageTextApplication
                     var e = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, enumName);
                     ns.Enums.Add(e);
 
-                    var c = new Class(AccessModifier.Public, enumName + "Extensions");
+                    var c = new Class(AccessModifier.Public, enumName + "_Extensions");
                     c.Modifier.Static = true;
                     ns.Classes.Add(c);
 
