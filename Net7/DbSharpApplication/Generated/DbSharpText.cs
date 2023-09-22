@@ -3,7 +3,7 @@ using HigLabo.Core;
 
 namespace DbSharpApplication
 {
-    public class DbSharpText : LanguageText
+    public partial class DbSharpText : LanguageText
     {
         protected override string[] LanguageList
         {
@@ -203,6 +203,32 @@ namespace DbSharpApplication
                 {
                     case "en-US": return "Authenticate failure.";
                     case "ja-JP": return "認証に失敗しました。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Authority
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Authority";
+                    case "ja-JP": return "権限";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string AuthoritySetting
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "AuthoritySetting";
+                    case "ja-JP": return "権限の設定";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -437,6 +463,19 @@ namespace DbSharpApplication
                 {
                     case "en-US": return "Complete";
                     case "ja-JP": return "完了";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Confirm
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Confirm";
+                    case "ja-JP": return "確認";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -1009,6 +1048,19 @@ namespace DbSharpApplication
                 {
                     case "en-US": return "File";
                     case "ja-JP": return "ファイル";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string FileName
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "File name";
+                    case "ja-JP": return "ファイル名";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -1649,6 +1701,19 @@ namespace DbSharpApplication
                 }
             }
         }
+        public string NotificationSettings
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Notification settings";
+                    case "ja-JP": return "通知の設定";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string NotConfirmed
         {
             get
@@ -1792,6 +1857,19 @@ namespace DbSharpApplication
                 }
             }
         }
+        public string PricePlan
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Price plan";
+                    case "ja-JP": return "価格プラン";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Profile
         {
             get
@@ -1801,6 +1879,19 @@ namespace DbSharpApplication
                 {
                     case "en-US": return "Profile";
                     case "ja-JP": return "プロフィール";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ProfileImage
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Profile image";
+                    case "ja-JP": return "プロフィール画像";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2269,6 +2360,19 @@ namespace DbSharpApplication
                 {
                     case "en-US": return "This field is required.";
                     case "ja-JP": return "この項目は入力必須です。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ThisFieldIsRequiredAndMaxLength_
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "This field is required.Max length is {0} char.";
+                    case "ja-JP": return "この項目は入力必須です。{0}文字までです。";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2922,6 +3026,8 @@ namespace DbSharpApplication
                 case "AuthenticateExpired": return this.AuthenticateExpired;
                 case "AuthenticateRequired": return this.AuthenticateRequired;
                 case "AuthenticationFailure": return this.AuthenticationFailure;
+                case "Authority": return this.Authority;
+                case "AuthoritySetting": return this.AuthoritySetting;
                 case "Billing": return this.Billing;
                 case "Birthday": return this.Birthday;
                 case "Birthplace": return this.Birthplace;
@@ -2940,6 +3046,7 @@ namespace DbSharpApplication
                 case "CommentList": return this.CommentList;
                 case "CompanyName": return this.CompanyName;
                 case "Complete": return this.Complete;
+                case "Confirm": return this.Confirm;
                 case "Confirm_DeleteThisData": return this.Confirm_DeleteThisData;
                 case "Confirm_No": return this.Confirm_No;
                 case "Confirm_Yes": return this.Confirm_Yes;
@@ -2984,6 +3091,7 @@ namespace DbSharpApplication
                 case "Export": return this.Export;
                 case "Execute": return this.Execute;
                 case "File": return this.File;
+                case "FileName": return this.FileName;
                 case "FileNotFound": return this.FileNotFound;
                 case "FileSize": return this.FileSize;
                 case "FileSizeMustBeSmallerThan_": return this.FileSizeMustBeSmallerThan_;
@@ -3033,6 +3141,7 @@ namespace DbSharpApplication
                 case "NewPassword": return this.NewPassword;
                 case "NextMonth": return this.NextMonth;
                 case "Notification": return this.Notification;
+                case "NotificationSettings": return this.NotificationSettings;
                 case "NotConfirmed": return this.NotConfirmed;
                 case "NowRedirecting": return this.NowRedirecting;
                 case "Other": return this.Other;
@@ -3044,7 +3153,9 @@ namespace DbSharpApplication
                 case "PreviousMonth": return this.PreviousMonth;
                 case "Processing_": return this.Processing_;
                 case "Price": return this.Price;
+                case "PricePlan": return this.PricePlan;
                 case "Profile": return this.Profile;
+                case "ProfileImage": return this.ProfileImage;
                 case "Project": return this.Project;
                 case "Receive": return this.Receive;
                 case "Remarks": return this.Remarks;
@@ -3081,6 +3192,7 @@ namespace DbSharpApplication
                 case "TextCopied": return this.TextCopied;
                 case "ThisDataMayBeDeleted": return this.ThisDataMayBeDeleted;
                 case "ThisFieldIsRequired": return this.ThisFieldIsRequired;
+                case "ThisFieldIsRequiredAndMaxLength_": return this.ThisFieldIsRequiredAndMaxLength_;
                 case "ThisFileFormatIsNotSupported": return this.ThisFileFormatIsNotSupported;
                 case "ThisMailAddressAlreadyUsed": return this.ThisMailAddressAlreadyUsed;
                 case "ThisMailAddressNotExists": return this.ThisMailAddressNotExists;

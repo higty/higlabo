@@ -14,5 +14,10 @@
             }
             return result;
         }
+        public string GetHtml(string html)
+        {
+            var rs = this.Process(html);
+            return rs.Html;
+        }
     }
 }

@@ -42,6 +42,24 @@ namespace HigLabo.Core
             if (text.IsNullOrEmpty()) { return key; }
             return text;
         }
+        public string Get(params string[] textList)
+        {
+            for (int i = 0; i < this.LanguageList.Length; i++)
+            {
+                if (this.GetCurrentLanguage() == this.LanguageList[i])
+                {
+                    if (textList.Length > i)
+                    {
+                        return textList[i];
+                    }
+                }
+            }
+            if (textList.Length > 0)
+            {
+                return textList[0];
+            }
+            return "";
+        }
         public string Get<T>(T key)
             where T: Enum
         {

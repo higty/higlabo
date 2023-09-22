@@ -128,6 +128,7 @@ namespace HigLabo.LanguageTextApplication
             sc.Namespaces.Add(ns);
 
             var cText = new Class(AccessModifier.Public, this.FolderSetting.ClassName);
+            cText.Modifier.Partial = true;
             ns.Classes.Add(cText);
             cText.BaseClass = new TypeName("LanguageText");
 

@@ -4,17 +4,14 @@ using System.Data.Common;
 
 namespace HigLabo.Data
 {
-    /// <summary>
-    /// 外部キー制約違反を表現するクラスです。
-    /// </summary>
     [Serializable]
-    public class ForeignKeyException : DatabaseException
+    public class ConstraintException : DatabaseException
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="ex"></param>
-        public ForeignKeyException(Exception ex)
+        public ConstraintException(Exception ex)
             : base(ex)
         {
         }

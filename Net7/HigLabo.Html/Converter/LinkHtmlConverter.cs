@@ -5,9 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
-using HigLabo.Html;
 
-namespace TinyBetter.Core
+namespace HigLabo.Html
 {
     public class LinkHtmlConverter : RegexHtmlConverter
     {

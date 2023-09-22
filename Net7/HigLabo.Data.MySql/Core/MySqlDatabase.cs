@@ -116,7 +116,7 @@ namespace HigLabo.Data
                 case 1215:
                 case 1216:
                 case 1217:
-                    return new ForeignKeyException(ex);
+                    return new ConstraintException(ex);
                 case 2002:
                 case 2003:
                     return new ConnectionException(ex);

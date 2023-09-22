@@ -72,7 +72,7 @@ namespace HigLabo.Data
                         return new LoginException(ex);
                     case 547:
                         // ForeignKey Violation 
-                        return new ForeignKeyException(ex);
+                        return new ConstraintException(ex);
                     case 1205:
                         // DeadLock Victim 
                         return new DeadLockException(ex);
