@@ -36,28 +36,16 @@ namespace HigLabo.Net.Smtp
         private SmtpEncryptedCommunication _EncryptedCommunication = Default.EncryptedCommunication;
         private Pop3Client _Pop3Client = new Pop3Client("127.0.0.1");
         private SmtpConnectionState _State = SmtpConnectionState.Disconnected;
-        /// 認証の方法を取得または設定します。
-        /// <summary>
-        /// 認証の方法を取得または設定します。
-        /// </summary>
         public SmtpAuthenticateMode AuthenticateMode
         {
             get { return this._Mode; }
             set { this._Mode = value; }
         }
-        /// 送信元マシンのホスト名を取得または設定します。
-        /// <summary>
-        /// 送信元マシンのホスト名を取得または設定します。
-        /// </summary>
         public String HostName
         {
             get { return this._HostName; }
             set { this._HostName = value; }
         }
-        /// 通信を暗号化するかどうかを示す値を取得または設定します。
-        /// <summary>
-        /// 通信を暗号化するかどうかを示す値を取得または設定します。
-        /// </summary>
         public SmtpEncryptedCommunication EncryptedCommunication
         {
             get { return _EncryptedCommunication; }
@@ -70,62 +58,31 @@ namespace HigLabo.Net.Smtp
                 }
             }
         }
-        /// 通信をSSLで暗号化するかどうかを示す値を取得します。
-        /// <summary>
-        /// Get use ssl protocol.
-        /// To set use ssl or tls protocol, set EncryptedCommunication property.
-        /// 通信をSSLで暗号化するかどうかを示す値を取得します。
-        /// </summary>
         public new Boolean Ssl
         {
             get { return base.Ssl; }
         }
-        /// 接続の状態を示す値を取得します。
-        /// <summary>
-        /// 接続の状態を示す値を取得します。
-        /// </summary>
         public SmtpConnectionState State
         {
             get { return this._State; }
         }
-        /// サーバーへ接続済みかどうかを示す値を取得します。
-        /// <summary>
-        /// サーバーへ接続済みかどうかを示す値を取得します。
-        /// </summary>
         public Boolean Available
         {
             get { return this._State != SmtpConnectionState.Disconnected; }
         }
-        /// PopBeforeSmtp認証を行う場合に使用されるPop3Clientを取得します。
-        /// <summary>
-        /// PopBeforeSmtp認証を行う場合に使用されるPop3Clientを取得します。
-        /// </summary>
         public Pop3Client Pop3Client
         {
             get { return this._Pop3Client; }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public SmtpClient()
             : base(Default.ServerName, Default.Port)
         {
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="provider"></param>
         public SmtpClient(EmailServiceProvider provider)
             : this(provider, Default.UserName, Default.Password)
         {
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="provider"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
         public SmtpClient(EmailServiceProvider provider, String userName, String password)
             : this()
         {
@@ -133,30 +90,15 @@ namespace HigLabo.Net.Smtp
             this.UserName = userName;
             this.Password = password;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serverName"></param>
         public SmtpClient(String serverName)
             : this(serverName, Default.Port, Default.UserName, Default.Password)
         {
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serverName"></param>
-        /// <param name="port"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
         public SmtpClient(String serverName, Int32 port, String userName, String password)
             : base(serverName, port, userName, password, Default)
         {
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="provider"></param>
         public void SetProperty(EmailServiceProvider provider)
         {
             String serverName = "";
@@ -185,10 +127,6 @@ namespace HigLabo.Net.Smtp
             this.Port = port;
             this.EncryptedCommunication = encryptedCommunication;
         }
-        /// サーバーへの接続を開きます。
-        /// <summary>
-        /// サーバーへの接続を開きます。
-        /// </summary>
         public SmtpConnectionState Open()
         {
             if (this.Connect() == true)
@@ -209,10 +147,6 @@ namespace HigLabo.Net.Smtp
             }
             return this._State;
         }
-        /// サーバーへの接続が開かれていない場合、サーバーへの接続を開きます。
-        /// <summary>
-        /// サーバーへの接続が開かれていない場合、サーバーへの接続を開きます。
-        /// </summary>
         public SmtpConnectionState EnsureOpen()
         {
             if (this.Socket != null)
@@ -238,11 +172,6 @@ namespace HigLabo.Net.Smtp
             this.SetSmtpCommandState();
             return new SmtpCommandResult(l.ToArray());
         }
-        /// SMTPコマンドの種類に基づいて状態を変化させます。
-        /// <summary>
-        /// SMTPコマンドの種類に基づいて状態を変化させます。
-        /// </summary>
-        /// <param name="command"></param>
         private void SetSmtpCommandState(SmtpCommand command)
         {
             if (command is MailCommand)
@@ -258,10 +187,6 @@ namespace HigLabo.Net.Smtp
                 this._State = SmtpConnectionState.DataCommandExecuting;
             }
         }
-        /// サーバーからのレスポンスの受信時に現在の状態に基づいて状態を変化させます。
-        /// <summary>
-        /// サーバーからのレスポンスの受信時に現在の状態に基づいて状態を変化させます。
-        /// </summary>
         private void SetSmtpCommandState()
         {
             this.Commnicating = false;
@@ -272,40 +197,10 @@ namespace HigLabo.Net.Smtp
                 case SmtpConnectionState.DataCommandExecuting: this._State = SmtpConnectionState.DataCommandExecuted; break;
             }
         }
-        /// SMTPサーバーに認証が必要かどうかを示す値を取得します。
-        /// <summary>
-        /// SMTPサーバーに認証が必要かどうかを示す値を取得します。
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
         private static Boolean NeedAuthenticate(String text)
         {
             return text.IndexOf("auth", StringComparison.OrdinalIgnoreCase) > -1;
         }
-        /// StartTLSコマンドをサーバーに対して送信し、暗号化された通信を開始します。
-        /// <summary>
-        /// StartTLSコマンドをサーバーに対して送信し、暗号化された通信を開始します。
-        /// </summary>
-#if NETFX_CORE
-        private Boolean StartTls()
-        {
-            SmtpCommandResult rs = null;
-
-            if (this.EnsureOpen() == SmtpConnectionState.Connected)
-            {
-                rs = this.Execute("STARTTLS");
-                if (rs.StatusCode != SmtpCommandResultCode.ServiceReady)
-                { return false; }
-
-                base.Ssl = true;
-                this.EncryptedCommunication = SmtpEncryptedCommunication.Tls;
-                var t = this.Socket.UpgradeToSslAsync(SocketProtectionLevel.Ssl, new HostName(this.ServerName)).AsTask();
-                t.Wait();
-                return true;
-            }
-            return false;
-        }
-#else
         private Boolean StartTls()
         {
             if (this.EnsureOpen() == SmtpConnectionState.Connected)
@@ -323,10 +218,7 @@ namespace HigLabo.Net.Smtp
             }
             return false;
         }
-#endif
-        /// <summary>
-        /// Log in to smtp server.Please use TryAuthenticate method if you don't want to throw exception.
-        /// </summary>
+
         public void Authenticate()
         {
             if (this.TryAuthenticate() == false)
@@ -334,11 +226,6 @@ namespace HigLabo.Net.Smtp
                 throw new SmtpAuthenticateException();
             }
         }
-        /// SMTPメールサーバーへログインします。
-        /// <summary>
-        /// SMTPメールサーバーへログインします。
-        /// </summary>
-        /// <returns></returns>
         public Boolean TryAuthenticate()
         {
             if (this._Mode == SmtpAuthenticateMode.Auto)
@@ -392,11 +279,6 @@ namespace HigLabo.Net.Smtp
             }
             return false;
         }
-        /// SMTPメールサーバーへPlain認証でログインします。
-        /// <summary>
-        /// SMTPメールサーバーへPlain認証でログインします。
-        /// </summary>
-        /// <returns></returns>
         public Boolean AuthenticateByPlain()
         {
             if (this.EnsureOpen() == SmtpConnectionState.Connected)
@@ -413,11 +295,6 @@ namespace HigLabo.Net.Smtp
             }
             return this._State == SmtpConnectionState.Authenticated;
         }
-        /// SMTPメールサーバーへLogin認証でログインします。
-        /// <summary>
-        /// SMTPメールサーバーへLogin認証でログインします。
-        /// </summary>
-        /// <returns></returns>
         public Boolean AuthenticateByLogin()
         {
             if (this.EnsureOpen() == SmtpConnectionState.Connected)
@@ -438,11 +315,6 @@ namespace HigLabo.Net.Smtp
             }
             return this._State == SmtpConnectionState.Authenticated;
         }
-        /// SMTPメールサーバーへCRAM-MD5認証でログインします。
-        /// <summary>
-        /// SMTPメールサーバーへCRAM-MD5認証でログインします。
-        /// </summary>
-        /// <returns></returns>
         public Boolean AuthenticateByCramMD5()
         {
             if (this.EnsureOpen() == SmtpConnectionState.Connected)
@@ -460,12 +332,6 @@ namespace HigLabo.Net.Smtp
             }
             return this._State == SmtpConnectionState.Authenticated;
         }
-        /// 同期でSMTPメールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して返します。
-        /// <summary>
-        /// 同期でSMTPメールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して返します。
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         public SmtpCommandResult Execute(SmtpCommand command)
         {
             return this.Execute(command.GetCommandString());
@@ -487,21 +353,11 @@ namespace HigLabo.Net.Smtp
             this.Commnicating = true;
             return this.GetResponse();
         }
-        /// SMTPメールサーバーへEHLOコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへEHLOコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteEhlo()
         {
             this.EnsureOpen();
             return this.Execute(new EhloCommand(this._HostName));
         }
-        /// SMTPメールサーバーへHELOコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへHELOコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteHelo()
         {
             this.EnsureOpen();
@@ -517,91 +373,46 @@ namespace HigLabo.Net.Smtp
             }
             return rs;
         }
-        /// SMTPメールサーバーへMAILコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへMAILコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteMail(String reversePath)
         {
             this.EnsureOpen();
             return this.Execute(new MailCommand(reversePath));
         }
-        /// SMTPメールサーバーへRCPTコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへRCPTコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteRcpt(String forwardPath)
         {
             this.EnsureOpen();
             return this.Execute(new RcptCommand(forwardPath));
         }
-        /// SMTPメールサーバーへDATAコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへDATAコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteData()
         {
             this.EnsureOpen();
             return this.Execute(new DataCommand());
         }
-        /// SMTPメールサーバーへRESETコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへRESETコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteRset()
         {
             this.EnsureOpen();
             return this.Execute(new RsetCommand());
         }
-        /// SMTPメールサーバーへVRFYコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへVRFYコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteVrfy(String userName)
         {
             this.EnsureOpen();
             return this.Execute(new VrfyCommand(userName));
         }
-        /// SMTPメールサーバーへEXPNコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへEXPNコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteExpn(String mailingList)
         {
             this.EnsureOpen();
             return this.Execute(new ExpnCommand(mailingList));
         }
-        /// SMTPメールサーバーへHELPコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへHELPコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteHelp()
         {
             this.EnsureOpen();
             return this.Execute(new HelpCommand());
         }
-        /// SMTPメールサーバーへNOOPコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへNOOPコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteNoop()
         {
             this.EnsureOpen();
             return this.Execute("Noop");
         }
-        /// SMTPメールサーバーへQUITコマンドを送信します。
-        /// <summary>
-        /// SMTPメールサーバーへQUITコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
         public SmtpCommandResult ExecuteQuit()
         {
             this.EnsureOpen();
@@ -613,16 +424,6 @@ namespace HigLabo.Net.Smtp
             }
             return rs;
         }
-        /// メールを送信し、送信結果となるSendMailResultを取得します。
-        /// <summary>
-        /// メールを送信し、送信結果となるSendMailResultを取得します。
-        /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="cc"></param>
-        /// <param name="bcc"></param>
-        /// <param name="text"></param>
-        /// <returns></returns>
         public SendMailResult SendMail(String from, String to, String cc, String bcc, Byte[] data)
         {
             List<MailAddress> l = new List<MailAddress>();
@@ -650,33 +451,14 @@ namespace HigLabo.Net.Smtp
             }
             return this.SendMail(new SendMailCommand(from, data, l));
         }
-        /// メールを送信し、送信結果となるSendMailResultを取得します。
-        /// <summary>
-        /// メールを送信し、送信結果となるSendMailResultを取得します。
-        /// </summary>
-        /// <param name="from"></param>
-        /// <param name="message"></param>
-        /// <returns></returns>
         public SendMailResult SendMail(String from, SmtpMessage message)
         {
             return this.SendMail(new SendMailCommand(from, message));
         }
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// <summary>
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
         public SendMailResult SendMail(SmtpMessage message)
         {
             return this.SendMail(new SendMailCommand(message));
         }
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// <summary>
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// </summary>
-        /// <param name="messages"></param>
-        /// <returns></returns>
         public SendMailListResult SendMailList(IEnumerable<SmtpMessage> messages)
         {
             List<SendMailCommand> l = new List<SendMailCommand>();
@@ -686,12 +468,6 @@ namespace HigLabo.Net.Smtp
             }
             return this.SendMailList(l.ToArray());
         }
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// <summary>
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         public SendMailResult SendMail(SendMailCommand command)
         {
             var l = this.SendMailList(new[] { command });
@@ -701,12 +477,6 @@ namespace HigLabo.Net.Smtp
             }
             return new SendMailResult(l.State, command);
         }
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// <summary>
-        /// メールを送信し、送信結果となるSendMailListResultを取得します。
-        /// </summary>
-        /// <param name="commandList"></param>
-        /// <returns></returns>
         public SendMailListResult SendMailList(IEnumerable<SendMailCommand> commandList)
         {
             SmtpCommandResult rs;
@@ -826,22 +596,11 @@ namespace HigLabo.Net.Smtp
             }
             return new SendMailListResult(SendMailResultState.Success, results);
         }
-        /// <summary>
-        /// 
-        /// </summary>
         ~SmtpClient()
         {
             this.Dispose(false);
         }
 
-        /// Cram-MD5に従って文字列を変換します。
-        /// <summary>
-        /// Cram-MD5に従って文字列を変換します。
-        /// </summary>
-        /// <param name="challenge"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
         private static String ToCramMd5String(String challenge, String userName, String password)
         {
             // ユーザ名と計算したHMAC-MD5ハッシュ値をBase64エンコードしてレスポンスとして返す

@@ -7,4 +7,30 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DbSharpSample.MySql.CSharp\DbSharpSample.MySql.CSharp.csproj" />
+    <ProjectReference Include="..\DbSharpSample.SqlServer.CSharp\DbSharpSample.SqlServer.CSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\..\..\..\Hignull\Hignull.Net7\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\..\..\..\Hignull\Hignull.Net7\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.MySql">
+      <HintPath>..\..\..\..\Hignull\Hignull.Net7\Reference\HigLabo.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.SqlServer">
+      <HintPath>..\..\..\..\Hignull\Hignull.Net7\Reference\HigLabo.Data.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp">
+      <HintPath>..\..\..\..\Hignull\Hignull.Net7\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp.SqlServer">
+      <HintPath>..\..\..\..\Hignull\Hignull.Net7\Reference\HigLabo.DbSharp.SqlServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

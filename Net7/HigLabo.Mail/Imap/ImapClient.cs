@@ -17,40 +17,15 @@ using HigLabo.Core;
 
 namespace HigLabo.Net.Imap
 {
-    /// Represent and probide functionality about IMAP command.
-    /// <summary>
-    /// Represent and probide functionality about IMAP command.
-    /// </summary>
     public class ImapClient : SocketClient, IDisposable
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public class RegexList
         {
-            /// <summary>
-            /// 
-            /// </summary>
             public static readonly Regex SelectFolderResultFlagsLine = new Regex(@"^\* FLAGS \((?<Flags>[^)]*)\)\r\n", RegexOptions.Singleline | RegexOptions.IgnoreCase);
-            /// <summary>
-            /// 
-            /// </summary>
             public static readonly Regex SelectFolderResult = new Regex(@"^\* (?<exst>\d+) EXISTS\r\n\* (?<rcnt>\d+) RECENT\r\n", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            /// <summary>
-            /// 
-            /// </summary>
             public static readonly Regex GetListFolderResult = new Regex("^\\* LIST \\(((?<opt>\\\\\\w+)\\s?)*\\) \".\" ((\"(?<name>.*)\")|(?<name>[^\r\n]*))", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            /// <summary>
-            /// 
-            /// </summary>
             public static readonly Regex GetXListFolderResult = new Regex("^\\* XLIST \\(((?<opt>\\\\\\w+)\\s?)*\\) \".\" ((\"(?<name>.*)\")|(?<name>[^\r\n]*))", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            /// <summary>
-            /// 
-            /// </summary>
             public static readonly Regex GetLsubFolderResult = new Regex("^\\* LSUB \\(((?<opt>\\\\\\w+)\\s?)*\\) \".\" ((\"(?<name>.*)\")|(?<name>[^\r\n]*))", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            /// <summary>
-            /// 
-            /// </summary>
             public static readonly Regex GetRlsubFolderResult = new Regex("^\\* RLSUB \\(((?<opt>\\\\\\w+)\\s?)*\\) \".\" ((\"(?<name>.*)\")|(?<name>[^\r\n]*))", RegexOptions.Multiline | RegexOptions.IgnoreCase);
         }
         private static readonly Byte[] NewlineBytes = new Byte[] { 13, 10 };
@@ -77,13 +52,7 @@ namespace HigLabo.Net.Imap
                 return this._State;
             }
         }
-        /// <summary>
-        /// Get selected folder
-        /// </summary>
         public ImapFolder? CurrentFolder { get; private set; }
-        /// <summary>
-        /// Get connection is ready.
-        /// </summary>
         public Boolean Available
         {
             get { return this._State != ImapConnectionState.Disconnected; }
@@ -93,9 +62,6 @@ namespace HigLabo.Net.Imap
             get { return _TagNo; }
             set { _TagNo = value; }
         }
-        /// <summary>
-        /// Throw exception when invalid mime format message received.
-        /// </summary>
         public Boolean ThrowExceptionOnInvalidMailMessage { get; set; } = false;
 
         public ImapClient(EmailServiceProvider provider)
@@ -204,9 +170,6 @@ namespace HigLabo.Net.Imap
             stream.Write(bb, 0, bb.Length);
             this.Commnicating = false;
         }
-        /// <summary>
-        /// Log in to imap server.Please use TryAuthenticate method if you don't want to throw exception.
-        /// </summary>
         public void Authenticate()
         {
             if (this.TryAuthenticate() == false)
@@ -214,10 +177,6 @@ namespace HigLabo.Net.Imap
                 throw new ImapAuthenticateException();
             }
         }
-        /// <summary>
-        /// Log in to IMAP server and return login success or failure as bool.
-        /// </summary>
-        /// <returns></returns>
         public Boolean TryAuthenticate()
         {
             if (this._State == ImapConnectionState.Authenticated) { return true; }
@@ -275,10 +234,6 @@ namespace HigLabo.Net.Imap
             return bytes;
         }
         
-        /// <summary>
-        /// Send capability command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public CapabilityResult ExecuteCapability()
         {
             var rs = this.Execute(this.Tag + " CAPABILITY");
@@ -301,10 +256,6 @@ namespace HigLabo.Net.Imap
             }
             return rs;
         }
-        /// <summary>
-        /// Send Logout command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteLogout()
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -315,10 +266,6 @@ namespace HigLabo.Net.Imap
             }
             return rs;
         }
-        /// <summary>
-        /// Send select command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public SelectResult ExecuteSelect(String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -328,10 +275,6 @@ namespace HigLabo.Net.Imap
             this.CurrentFolder = new ImapFolder(srs);
             return srs;
         }
-        /// <summary>
-        /// Send examine command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public SelectResult ExecuteExamine(String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -371,30 +314,18 @@ namespace HigLabo.Net.Imap
             }
             throw new MailClientException(text);
         }
-        /// <summary>
-        /// Send create folder command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteCreate(String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
             String commandText = String.Format(this.Tag + " Create \"{0}\"", _ModifiedUtf7Converter.Encode(folderName));
             return this.Execute(commandText);
         }
-        /// <summary>
-        /// Send delete folder command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteDelete(String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
             String commandText = String.Format(this.Tag + " Delete \"{0}\"", _ModifiedUtf7Converter.Encode(folderName));
             return this.Execute(commandText);
         }
-        /// <summary>
-        /// Send close command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteClose()
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -402,12 +333,6 @@ namespace HigLabo.Net.Imap
             this.CurrentFolder = null;
             return rs;
         }
-        /// <summary>
-        /// Send list command to IMAP server.
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <param name="recursive"></param>
-        /// <returns></returns>
         public ListResult ExecuteList(String folderName, Boolean recursive)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -444,12 +369,6 @@ namespace HigLabo.Net.Imap
             }
             return new ListResult(l);
         }
-        /// <summary>
-        /// Send xlist command to IMAP server.
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <param name="recursive"></param>
-        /// <returns></returns>
         public XListResult ExecuteXList(String folderName, Boolean recursive)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -492,32 +411,18 @@ namespace HigLabo.Net.Imap
             }
             return new XListResult(l);
         }
-        /// <summary>
-        /// Send subscribe command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteSubscribe(String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
             String commandText = String.Format(this.Tag + " Subscribe \"{0}\"", _ModifiedUtf7Converter.Encode(folderName));
             return this.Execute(commandText);
         }
-        /// <summary>
-        /// Send unsubscribe command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteUnsubscribe(String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
             String commandText = String.Format(this.Tag + " Unsubscribe \"{0}\"", _ModifiedUtf7Converter.Encode(folderName));
             return this.Execute(commandText);
         }
-        /// <summary>
-        /// Send list command to IMAP server.
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <param name="recursive"></param>
-        /// <returns></returns>
         public ListResult ExecuteLsub(String folderName, Boolean recursive)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -554,20 +459,11 @@ namespace HigLabo.Net.Imap
             }
             return new ListResult(l);
         }
-        /// <summary>
-        /// Send Fetch command to IMAP server.
-        /// </summary>
-        /// <param name="mailIndex"></param>
-        /// <returns></returns>
         public ImapCommandResult ExecuteFetch(Int64 mailIndex)
         {
             this.ValidateState(ImapConnectionState.Authenticated, true);
             return this.Execute(String.Format(this.Tag + " FETCH {0} (BODY[])", mailIndex));
         }
-        /// <summary>
-        /// Send search command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public SearchResult ExecuteSearch(String searchText)
         {
             String commandText = String.Format(this.Tag + " SEARCH {0}", searchText);
@@ -658,10 +554,6 @@ namespace HigLabo.Net.Imap
             var text = this.Execute(commandText, mailData);
             return new ImapCommandResult(this.Tag, text);
         }
-        /// <summary>
-        /// Send rename folder command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteRename(String oldFolderName, String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -675,12 +567,6 @@ namespace HigLabo.Net.Imap
             }
             return rs;
         }
-        /// <summary>
-        /// Send rlsub command to IMAP server.
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <param name="recursive"></param>
-        /// <returns></returns>
         public ListResult ExecuteRlsub(String folderName, Boolean recursive)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -718,16 +604,6 @@ namespace HigLabo.Net.Imap
             return new ListResult(l);
 
         }
-        /// <summary>
-        /// Send status command to IMAP server.
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <param name="message"></param>
-        /// <param name="recent"></param>
-        /// <param name="uidnext"></param>
-        /// <param name="uidvalidity"></param>
-        /// <param name="unseen"></param>
-        /// <returns></returns>
         public ImapCommandResult ExecuteStatus(String folderName, Boolean message, Boolean recent, Boolean uidnext, Boolean uidvalidity, Boolean unseen)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -775,22 +651,11 @@ namespace HigLabo.Net.Imap
             }
             return rs;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteCheck()
         {
             this.ValidateState(ImapConnectionState.Authenticated, true);
             return this.Execute(this.Tag + " Check");
         }
-        /// <summary>
-        /// Send copy command to IMAP server.
-        /// </summary>
-        /// <param name="mailindexstart"></param>
-        /// <param name="mailindexend"></param>
-        /// <param name="folderName"></param>
-        /// <returns></returns>
         public ImapCommandResult ExecuteCopy(Int32 mailindexstart, Int32 mailindexend, String folderName)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -822,38 +687,20 @@ namespace HigLabo.Net.Imap
             return rs;
 
         }
-        /// <summary>
-        /// Send UID command to IMAP server.
-        /// <param name="command"></param>
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteUid(String command)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
             return this.Execute(this.Tag + " UID " + command);
         }
-        /// <summary>
-        /// Send NAMESPACE command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteNamespace()
         {
             this.ValidateState(ImapConnectionState.Authenticated);
             return this.Execute(this.Tag + " NAMESPACE");
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public ImapIdleCommand CreateImapIdleCommand()
         {
             return new ImapIdleCommand(this.Tag, this.ResponseEncoding);
         }
-        /// <summary>
-        /// Send IDLE command to IMAP server.
-        /// You can receive message from server by register event handler to MessageReceived event of ImapIdleCommand object
-        /// </summary>
-        /// <returns></returns>
         public void ExecuteIdle(ImapIdleCommand command)
         {
             this.ValidateState(ImapConnectionState.Authenticated);
@@ -900,10 +747,6 @@ namespace HigLabo.Net.Imap
                 }
             }
         }
-        /// <summary>
-        /// Send done command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteDone(ImapIdleCommand command)
         {
             this.ValidateState(ImapConnectionState.Idle);
@@ -915,38 +758,19 @@ namespace HigLabo.Net.Imap
             this._State = ImapConnectionState.Authenticated;
             return rs;
         }
-        /// <summary>
-        /// Send GetQuota command to IMAP server.
-        /// <param name="resourceName"></param>
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteGetQuota(String resourceName)
         {
             return this.Execute(this.Tag + " GetQuota " + resourceName);
         }
-        /// <summary>
-        /// Send SETQUOTA command to IMAP server.
-        /// <param name="resourceName"></param>
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteSetQuota(String resourceName)
         {
             return this.Execute(this.Tag + " SETQUOTA " + resourceName);
         }
-        /// <summary>
-        /// Send GETQUOTAROOT command to IMAP server.
-        /// <param name="folderName"></param>
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteGetQuotaRoot(String folderName)
         {
             String commandText = String.Format(this.Tag + " GETQUOTAROOT \"{0}\"", _ModifiedUtf7Converter.Encode(folderName));
             return this.Execute(commandText);
         }
-        /// <summary>
-        /// Send noop command to IMAP server.
-        /// </summary>
-        /// <returns></returns>
         public ImapCommandResult ExecuteNoop()
         {
             this.ValidateState(ImapConnectionState.Authenticated);

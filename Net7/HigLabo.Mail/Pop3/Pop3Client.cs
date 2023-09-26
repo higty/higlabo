@@ -12,10 +12,6 @@ using HigLabo.Mime;
 
 namespace HigLabo.Net.Pop3
 {
-	/// Represent and probide functionality about pop3 command.
-	/// <summary>
-	/// Represent and probide functionality about pop3 command.
-	/// </summary>
 	public partial class Pop3Client : SocketClient, IDisposable
 	{
         public new static readonly Pop3ClientDefaultSettings Default = new Pop3ClientDefaultSettings();
@@ -83,11 +79,6 @@ namespace HigLabo.Net.Pop3
             this.Port = 995;
             this.Ssl = true;
         }
-        /// サーバーへの接続を開きます。
-		/// <summary>
-		/// Open connection to a server.
-		/// サーバーへの接続を開きます。
-		/// </summary>
 		public Pop3ConnectionState Open()
 		{
             if (this.Connect() == true)
@@ -108,11 +99,6 @@ namespace HigLabo.Net.Pop3
             }
             return this._State;
 		}
-		/// サーバーへの接続が開かれていない場合、サーバーへの接続を開きます。
-		/// <summary>
-		/// Ensure connection is opened.
-		/// サーバーへの接続が開かれていない場合、サーバーへの接続を開きます。
-		/// </summary>
 		public Pop3ConnectionState EnsureOpen()
 		{
 			if (this.Socket != null)
@@ -150,9 +136,6 @@ namespace HigLabo.Net.Pop3
             this.GetResponseStream(new Pop3DataReceiveContext(stream, this.ResponseEncoding, isMultiLine));
             this.Commnicating = false;
 		}
-        /// <summary>
-        /// Log in to pop3 server.Please use TryAuthenticate method if you don't want to throw exception.
-        /// </summary>
         public void Authenticate()
         {
             if (this.TryAuthenticate() == false)
@@ -160,9 +143,6 @@ namespace HigLabo.Net.Pop3
                 throw new Pop3AuthenticateException();
             }
         }
-        /// <summary>
-        /// Log in to pop3 server by POP authenticate.
-        /// </summary>
         public void AuthenticateByPop()
         {
             if (this.TryAuthenticateByPop() == false)
@@ -170,9 +150,6 @@ namespace HigLabo.Net.Pop3
                 throw new Pop3AuthenticateException();
             }
         }
-        /// <summary>
-        /// Log in to pop3 server by A-POP authenticate.
-        /// </summary>
         public void AuthenticateByAPop()
         {
             if (this.TryAuthenticateByAPop() == false)
@@ -180,12 +157,6 @@ namespace HigLabo.Net.Pop3
                 throw new Pop3AuthenticateException();
             }
         }
-        /// POP3メールサーバーへログインします。
-		/// <summary>
-		/// Log in to pop3 server and return login success or failure as bool.
-		/// POP3メールサーバーへログインします。
-		/// </summary>
-		/// <returns></returns>
 		public Boolean TryAuthenticate()
 		{
 			if (this._Mode == Pop3AuthenticateMode.Auto)
@@ -212,12 +183,6 @@ namespace HigLabo.Net.Pop3
 			}
 			return false;
 		}
-		/// POP3メールサーバーへPOP認証でログインします。
-		/// <summary>
-        /// Log in to pop3 server by POP authenticate and return login success or failure as bool.
-		/// POP3メールサーバーへPOP認証でログインします。
-		/// </summary>
-		/// <returns></returns>
         public Boolean TryAuthenticateByPop()
 		{
 			if (this.EnsureOpen() == Pop3ConnectionState.Connected)
@@ -236,12 +201,6 @@ namespace HigLabo.Net.Pop3
 			}
 			return this._State == Pop3ConnectionState.Authenticated;
 		}
-		/// POP3メールサーバーへAPOP認証でログインします。
-		/// <summary>
-        /// Log in to pop3 server by A-POP authenticate and return login success or failure as bool.
-		/// POP3メールサーバーへAPOP認証でログインします。
-		/// </summary>
-		/// <returns></returns>
         public Boolean TryAuthenticateByAPop()
 		{
 			String TimeStamp = "";
@@ -271,13 +230,6 @@ namespace HigLabo.Net.Pop3
 			}
 			return this._State == Pop3ConnectionState.Authenticated;
 		}
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// <summary>
-		/// Send a command with synchronous and get response data as string text if the command is a type to get response.
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// </summary>
-		/// <param name="command"></param>
-		/// <returns></returns>
         public Pop3CommandResult Execute(Pop3Command command)
 		{
 			Boolean IsResponseMultiLine = false;
@@ -291,28 +243,12 @@ namespace HigLabo.Net.Pop3
 			}
 			return this.Execute(command.GetCommandString(), IsResponseMultiLine);
 		}
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// <summary>
-		/// Send a command with synchronous and get response data as string text if the command is a type to get response.
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// </summary>
-		/// <param name="command"></param>
-		/// <param name="isMultiLine"></param>
-		/// <returns></returns>
         private Pop3CommandResult Execute(String command, Boolean isMultiLine)
 		{
 			this.Send(command);
 			this.Commnicating = true;
 			return this.GetResponse(isMultiLine);
 		}
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// <summary>
-		/// Send a command with synchronous and get response data as string text if the command is a type to get response.
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// </summary>
-		/// <param name="stream"></param>
-		/// <param name="command"></param>
-		/// <returns></returns>
 		public void Execute(Stream stream, Pop3Command command)
 		{
 			Boolean IsResponseMultiLine = false;
@@ -326,39 +262,17 @@ namespace HigLabo.Net.Pop3
 			}
 			this.Execute(stream, command.GetCommandString(), IsResponseMultiLine);
 		}
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// <summary>
-		/// Send a command with synchronous and get response data as string text if the command is a type to get response.
-		/// 同期でPOP3メールサーバーへコマンドを送信し、コマンドの種類によってはレスポンスデータを受信して文字列として返します。
-		/// </summary>
-		/// <param name="stream"></param>
-		/// <param name="command"></param>
-		/// <param name="isMultiLine"></param>
-		/// <returns></returns>
 		private void Execute(Stream stream, String command, Boolean isMultiLine)
 		{
 			this.Send(command);
 			this.Commnicating = true;
 			this.GetResponse(stream, isMultiLine);
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="isMultiLine"></param>
-        /// <param name="callbackFunction"></param>
         public void BeginExecute(String command, Boolean isMultiLine, Action<Pop3CommandResult> callbackFunction)
         {
             this.BeginSend(command, new Pop3DataReceiveContext(this.ResponseEncoding, isMultiLine, s => callbackFunction(new Pop3CommandResult(s)))
                 , s => callbackFunction(new Pop3CommandResult(s)));
         }
-		/// 非同期でPOP3メールサーバーへコマンドを送信します。受信したレスポンスの文字列はcallbackFunctionの引数として取得できます。
-		/// <summary>
-		/// Send a command with asynchronous and get response text by first parameter of callbackFunction.
-		/// 非同期でPOP3メールサーバーへコマンドを送信します。受信したレスポンスの文字列はcallbackFunctionの引数として取得できます。
-		/// </summary>
-		/// <param name="command"></param>
-		/// <param name="callbackFunction"></param>
         public void BeginExecute(Pop3Command command, Action<Pop3CommandResult> callbackFunction)
 		{
             Boolean isMultiLine = false;
@@ -372,13 +286,6 @@ namespace HigLabo.Net.Pop3
 			}
             this.BeginExecute(command.GetCommandString(), isMultiLine, callbackFunction);
 		}
-		/// POP3メールサーバーへListコマンドを送信します。
-		/// <summary>
-		/// Send list command to pop3 server.
-		/// POP3メールサーバーへListコマンドを送信します。
-		/// </summary>
-		/// <param name="command"></param>
-		/// <returns></returns>
 		public List<ListCommandResult> ExecuteList(ListCommand command)
 		{
 			List<ListCommandResult> l = new List<ListCommandResult>();
@@ -393,13 +300,6 @@ namespace HigLabo.Net.Pop3
 			}
 			return l;
 		}
-		/// POP3メールサーバーへListコマンドを送信します。
-		/// <summary>
-		/// Send list command to pop3 server.
-		/// POP3メールサーバーへListコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
 		public ListCommandResult ExecuteList(Int64 mailIndex)
 		{
 			ListCommand cm = new ListCommand(mailIndex);
@@ -409,12 +309,6 @@ namespace HigLabo.Net.Pop3
             this.CheckResponseError(rs);
 			return new ListCommandResult(rs.Text);
 		}
-		/// POP3メールサーバーへListコマンドを送信します。
-		/// <summary>
-		/// Send list command to pop3 server.
-		/// POP3メールサーバーへListコマンドを送信します。
-		/// </summary>
-		/// <returns></returns>
 		public List<ListCommandResult> ExecuteList()
 		{
 			ListCommand cm = new ListCommand();
@@ -437,13 +331,6 @@ namespace HigLabo.Net.Pop3
 			}
 			return l;
 		}
-		/// POP3メールサーバーへUIDLコマンドを送信します。
-		/// <summary>
-		/// Send uidl command to pop3 server.
-		/// POP3メールサーバーへUIDLコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
 		public UidlCommandResult ExecuteUidl(Int64 mailIndex)
 		{
 			UidlCommand cm = new UidlCommand(mailIndex);
@@ -454,12 +341,6 @@ namespace HigLabo.Net.Pop3
 
             return new UidlCommandResult(rs.Text);
 		}
-		/// POP3メールサーバーへUIDLコマンドを送信します。
-		/// <summary>
-		/// Send uidl command to pop3 server.
-		/// POP3メールサーバーへUIDLコマンドを送信します。
-		/// </summary>
-		/// <returns></returns>
 		public List<UidlCommandResult> ExecuteUidl()
 		{
 			UidlCommand cm = new UidlCommand();
@@ -482,25 +363,10 @@ namespace HigLabo.Net.Pop3
 			}
 			return l;
 		}
-		/// POP3メールサーバーへRETRコマンドを送信します。
-		/// <summary>
-		/// Send retr command to pop3 server.
-		/// POP3メールサーバーへRETRコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
 		public MailMessage ExecuteRetr(Int64 mailIndex)
 		{
 			return this.GetMessage(mailIndex);
 		}
-		/// POP3メールサーバーへTOPコマンドを送信します。
-		/// <summary>
-		/// Send top command to pop3 server.
-		/// POP3メールサーバーへTOPコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="lineCount"></param>
-		/// <returns></returns>
 		public Pop3CommandResult ExecuteTop(Int64 mailIndex, Int32 lineCount)
 		{
             this.CheckAuthenticate();
@@ -508,13 +374,6 @@ namespace HigLabo.Net.Pop3
             this.CheckResponseError(rs);
             return rs;
         }
-		/// POP3メールサーバーへDELEコマンドを送信します。
-		/// <summary>
-		/// Send dele command to pop3 server.
-		/// POP3メールサーバーへDELEコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
 		public Pop3CommandResult ExecuteDele(Int64 mailIndex)
 		{
 			DeleCommand cm = new DeleCommand(mailIndex);
@@ -524,12 +383,6 @@ namespace HigLabo.Net.Pop3
             this.CheckResponseError(rs);
 			return rs;
 		}
-		/// POP3メールサーバーへSTATコマンドを送信します。
-		/// <summary>
-		/// Send stat command to pop3 server.
-		/// POP3メールサーバーへSTATコマンドを送信します。
-		/// </summary>
-		/// <returns></returns>
 		public StatCommandResult ExecuteStat()
 		{
 			this.CheckAuthenticate();
@@ -537,24 +390,12 @@ namespace HigLabo.Net.Pop3
             this.CheckResponseError(rs);
             return new StatCommandResult(rs.Text);
 		}
-		/// POP3メールサーバーへNOOPコマンドを送信します。
-		/// <summary>
-		/// Send noop command to pop3 server.
-		/// POP3メールサーバーへNOOPコマンドを送信します。
-		/// </summary>
-		/// <returns></returns>
 		public Pop3CommandResult ExecuteNoop()
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Noop", false);
 			return new Pop3CommandResult(rs.Text);
 		}
-		/// POP3メールサーバーへRESETコマンドを送信します。
-		/// <summary>
-		/// Send reset command to pop3 server.
-		/// POP3メールサーバーへRESETコマンドを送信します。
-		/// </summary>
-		/// <returns></returns>
 		public Pop3CommandResult ExecuteRset()
 		{
 			this.CheckAuthenticate();
@@ -562,12 +403,6 @@ namespace HigLabo.Net.Pop3
             this.CheckResponseError(rs);
 			return rs;
 		}
-		/// POP3メールサーバーへQUITコマンドを送信します。
-		/// <summary>
-		/// Send quit command to pop3 server.
-		/// POP3メールサーバーへQUITコマンドを送信します。
-		/// </summary>
-		/// <returns></returns>
 		public Pop3CommandResult ExecuteQuit()
 		{	
 			this.EnsureOpen();
@@ -577,24 +412,11 @@ namespace HigLabo.Net.Pop3
             this.Close();
             return rs;
 		}
-		/// メールボックスの総メール数を取得します。
-		/// <summary>
-		/// Get total mail count at mailbox.
-		/// メールボックスの総メール数を取得します。
-		/// </summary>
-		/// <returns></returns>
 		public Int64 GetTotalMessageCount()
 		{
 			var rs = this.ExecuteStat();
 			return rs.TotalMessageCount;
 		}
-        /// 指定したMailIndexのメールデータを取得します。
-        /// <summary>
-        /// Get mail data of specified mail index.
-        /// 指定したMailIndexのメールデータを取得します。
-        /// </summary>
-        /// <param name="mailIndex"></param>
-        /// <returns></returns>
         public Byte[] GetMessageData(Int64 mailIndex)
         {
             this.CheckAuthenticate();
@@ -606,13 +428,6 @@ namespace HigLabo.Net.Pop3
             str.Position = 0;
             return str.ToArray();
         }
-        /// 指定したMailIndexのメールデータを取得します。
-		/// <summary>
-		/// Get mail data of specified mail index.
-		/// 指定したMailIndexのメールデータを取得します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
         public MailMessage GetMessage(Int64 mailIndex)
         {
             this.CheckAuthenticate();
@@ -624,13 +439,6 @@ namespace HigLabo.Net.Pop3
             str.Position = 0;
             return this.MimeParser.ToMailMessage(str);
         }
-		/// 指定したMailIndexのメールデータの文字列を取得します。
-		/// <summary>
-		/// Get mail text of specified mail index.
-		/// 指定したMailIndexのメールデータの文字列を取得します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
 		public String GetMessageText(Int64 mailIndex)
 		{
 			this.CheckAuthenticate();
@@ -645,14 +453,6 @@ namespace HigLabo.Net.Pop3
                 throw new MailClientException(ex);
 			}
 		}
-		/// 指定したMailIndexのメールデータの文字列を本文の行数を指定して取得します。
-		/// <summary>
-		/// Get mail text of specified mail index with indicate body line count.
-		/// 指定したMailIndexのメールデータの文字列を本文の行数を指定して取得します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="lineCount"></param>
-		/// <returns></returns>
 		public String GetMessageText(Int64 mailIndex, Int32 lineCount)
 		{
 			this.CheckAuthenticate();
@@ -667,14 +467,6 @@ namespace HigLabo.Net.Pop3
                 throw new MailClientException(ex);
 			}
 		}
-		/// 指定したMailIndexのメールデータの文字列を本文の行数を指定してストリームに出力します。
-		/// <summary>
-		/// Get mail text of specified mail index with indicate body line count.
-		/// 指定したMailIndexのメールデータの文字列を本文の行数を指定してストリームに出力します。
-		/// </summary>
-		/// <param name="stream"></param>
-		/// <param name="mailIndex"></param>
-		/// <returns></returns>
 		public void GetMessageText(Stream stream, Int64 mailIndex)
 		{
 			this.CheckAuthenticate();
@@ -688,15 +480,6 @@ namespace HigLabo.Net.Pop3
                 throw new MailClientException(ex);
 			}
 		}
-		/// 指定したMailIndexのメールデータの文字列を本文の行数を指定してストリームに出力します。
-		/// <summary>
-		/// Get mail text of specified mail index with indicate body line count.
-		/// 指定したMailIndexのメールデータの文字列を本文の行数を指定してストリームに出力します。
-		/// </summary>
-		/// <param name="stream"></param>
-		/// <param name="mailIndex"></param>
-		/// <param name="lineCount"></param>
-		/// <returns></returns>
 		public void GetMessageText(Stream stream, Int64 mailIndex, Int32 lineCount)
 		{
 			this.CheckAuthenticate();
@@ -710,13 +493,6 @@ namespace HigLabo.Net.Pop3
                 throw new MailClientException(ex);
 			}
 		}
-		/// 非同期で指定したMailIndexのメールデータの文字列を取得します。
-		/// <summary>
-		/// Get mail text of specified mail index by asynchronous request.
-		/// 非同期で指定したMailIndexのメールデータの文字列を取得します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="callbackFunction"></param>
         public void GetMessageText(Int64 mailIndex, Action<Pop3CommandResult> callbackFunction)
 		{
 			var md = callbackFunction;
@@ -725,15 +501,6 @@ namespace HigLabo.Net.Pop3
 			var cm = new RetrCommand(mailIndex);
 			this.BeginExecute(cm, md);
 		}
-        /// 指定したMailIndexのメールをメールサーバーから削除します。
-        /// <summary>
-        /// Set delete flag to specify mail index.
-        /// To complete delete execution,call quit command after calling dele command.
-        /// 指定したMailIndexのメールに削除フラグをたてます。
-        /// 実際に削除するにはさらにQUITコマンドで削除処理を完了させる必要があります。
-        /// </summary>
-        /// <param name="indexList"></param>
-        /// <returns></returns>
         public Boolean DeleteMail(params Int32[] indexList)
         {
             var newIndexList = new Int64[indexList.Length];
@@ -743,15 +510,6 @@ namespace HigLabo.Net.Pop3
             }
             return DeleteMail(newIndexList);
         }
-        /// 指定したMailIndexのメールをメールサーバーから削除します。
-		/// <summary>
-		/// Set delete flag to specify mail index.
-		/// To complete delete execution,call quit command after calling dele command.
-		/// 指定したMailIndexのメールに削除フラグをたてます。
-		/// 実際に削除するにはさらにQUITコマンドで削除処理を完了させる必要があります。
-		/// </summary>
-        /// <param name="indexList"></param>
-		/// <returns></returns>
 		public Boolean DeleteMail(params Int64[] indexList)
 		{
             if (this.EnsureOpen() == Pop3ConnectionState.Disconnected) { return false; }
@@ -765,14 +523,6 @@ namespace HigLabo.Net.Pop3
             this.ExecuteQuit();
             return true;
 		}
-		/// 非同期でPOP3メールサーバーへListコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous list command to pop3 server.
-		/// 非同期でPOP3メールサーバーへListコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="callbackFunction"></param>
-		/// <returns></returns>
 		public void ExecuteList(Int64 mailIndex, Action<List<ListCommandResult>> callbackFunction)
 		{
 			ListCommand cm = new ListCommand(mailIndex);
@@ -788,13 +538,6 @@ namespace HigLabo.Net.Pop3
 			this.CheckAuthenticate();
 			this.BeginExecute(cm, md);
 		}
-		/// 非同期でPOP3メールサーバーへListコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous list command to pop3 server.
-		/// 非同期でPOP3メールサーバーへListコマンドを送信します。
-		/// </summary>
-		/// <param name="callbackFunction"></param>
-		/// <returns></returns>
 		public void ExecuteList(Action<List<ListCommandResult>> callbackFunction)
 		{
 			ListCommand cm = new ListCommand();
@@ -820,13 +563,6 @@ namespace HigLabo.Net.Pop3
 			this.CheckAuthenticate();
 			this.BeginExecute(cm, md);
 		}
-		/// 非同期でPOP3メールサーバーへUIDLコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous uidl command to pop3 server.
-		/// 非同期でPOP3メールサーバーへUIDLコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteUidl(Int64 mailIndex, Action<UidlCommandResult[]> callbackFunction)
 		{
 			UidlCommand cm = new UidlCommand(mailIndex);
@@ -841,12 +577,6 @@ namespace HigLabo.Net.Pop3
 			this.CheckAuthenticate();
 			this.BeginExecute(cm, md);
 		}
-		/// 非同期でPOP3メールサーバーへUIDLコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous uidl command to pop3 server.
-		/// 非同期でPOP3メールサーバーへUIDLコマンドを送信します。
-		/// </summary>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteUidl(Action<List<UidlCommandResult>> callbackFunction)
 		{
 			UidlCommand cm = new UidlCommand();
@@ -872,13 +602,6 @@ namespace HigLabo.Net.Pop3
 			this.CheckAuthenticate();
 			this.BeginExecute(cm, md);
 		}
-		/// 非同期で指定したMailIndexのメールデータを取得します。
-		/// <summary>
-		/// Get mail data by asynchronous request.
-		/// 非同期で指定したMailIndexのメールデータを取得します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="callbackFunction"></param>
 		public void GetMessage(Int64 mailIndex, Action<MailMessage> callbackFunction)
 		{
 			Action<Pop3CommandResult> md = response =>
@@ -892,13 +615,6 @@ namespace HigLabo.Net.Pop3
 			var cm = new RetrCommand(mailIndex);
 			this.BeginExecute(cm, md);
 		}
-		/// 非同期でPOP3メールサーバーへRETRコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous retr command to pop3 server.
-		/// 非同期でPOP3メールサーバーへRETRコマンドを送信します。
-		/// </summary>
-		/// <param name="mailIndex"></param>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteRetr(Int64 mailIndex, Action<MailMessage> callbackFunction)
 		{
 			Action<Pop3CommandResult> md = response =>
@@ -912,12 +628,6 @@ namespace HigLabo.Net.Pop3
 			var cm = new RetrCommand(mailIndex);
 			this.BeginExecute(cm, md);
 		}
-		/// 非同期でPOP3メールサーバーへSTATコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous stat command to pop3 server.
-		/// 非同期でPOP3メールサーバーへSTATコマンドを送信します。
-		/// </summary>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteStat(Action<StatCommandResult> callbackFunction)
 		{
 			Action<Pop3CommandResult> md = response =>
@@ -928,12 +638,6 @@ namespace HigLabo.Net.Pop3
 			this.CheckAuthenticate();
 			this.BeginExecute("Stat", false, md);
 		}
-		/// 非同期でPOP3メールサーバーへNOOPコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous noop command to pop3 server.
-		/// 非同期でPOP3メールサーバーへNOOPコマンドを送信します。
-		/// </summary>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteNoop(Action<Pop3CommandResult> callbackFunction)
 		{
 			Action<Pop3CommandResult> md = response =>
@@ -944,12 +648,6 @@ namespace HigLabo.Net.Pop3
 			this.EnsureOpen();
             this.BeginExecute("Noop", false, md);
         }
-		/// 非同期でPOP3メールサーバーへRESETコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous reset command to pop3 server.
-		/// 非同期でPOP3メールサーバーへRESETコマンドを送信します。
-		/// </summary>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteRset(Action<Pop3CommandResult> callbackFunction)
 		{
 			Action<Pop3CommandResult> md = response =>
@@ -960,12 +658,6 @@ namespace HigLabo.Net.Pop3
 			this.CheckAuthenticate();
             this.BeginExecute("Rset", false, md);
 		}
-		/// 非同期でPOP3メールサーバーへQUITコマンドを送信します。
-		/// <summary>
-		/// Send asynchronous quit command to pop3 server.
-		/// 非同期でPOP3メールサーバーへQUITコマンドを送信します。
-		/// </summary>
-		/// <param name="callbackFunction"></param>
 		public void ExecuteQuit(Action<Pop3CommandResult> callbackFunction)
 		{
             Action<Pop3CommandResult> md = response =>
@@ -976,19 +668,11 @@ namespace HigLabo.Net.Pop3
 			this.EnsureOpen();
             this.BeginExecute("Quit", false, md);
 		}
-		/// メールサーバーとの接続を切断します。
-		/// <summary>
-		/// disconnect connection to pop3 server.
-		/// メールサーバーとの接続を切断します。
-		/// </summary>
 		public override void Close()
 		{
             base.Close();
 			this._State = Pop3ConnectionState.Disconnected;
 		}
-		/// <summary>
-		/// 
-		/// </summary>
 		~Pop3Client()
 		{
 			this.Dispose(false);
