@@ -11,6 +11,8 @@
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
 		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<ApplicationIcon>Icon\DbSharp.ico</ApplicationIcon>
+		<Title>DbSharpApplication</Title>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -41,6 +43,10 @@
 	  <ProjectReference Include="..\HigLabo.DbSharp.SqlServer\HigLabo.DbSharp.SqlServer.csproj" />
 	  <ProjectReference Include="..\HigLabo.DbSharp\HigLabo.DbSharp.csproj" />
 	  <ProjectReference Include="..\HigLabo.ObjectModel\HigLabo.ObjectModel.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
 	</ItemGroup>
 
 </Project>
