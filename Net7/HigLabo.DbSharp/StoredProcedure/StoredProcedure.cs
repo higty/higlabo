@@ -14,29 +14,26 @@ using System.Threading;
 
 namespace HigLabo.DbSharp
 {
-    public abstract class StoredProcedure : IDatabaseContext
+    public abstract class StoredProcedure : IDatabaseKey
     {
-        public static event EventHandler<StoredProcedureExecutingEventArgs>? Executing;
-        public static event EventHandler<StoredProcedureExecutedEventArgs>? Executed;
-        public static HigLabo.Core.TypeConverter TypeConverter { get; set; }
-
-        static StoredProcedure()
-        {
-            TypeConverter = new HigLabo.Core.TypeConverter();
-        }
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        String IDatabaseContext.DatabaseKey { get; set; } = "";
+        public static DatabaseFactory DatabaseFactory { get; private set; } = new DatabaseFactory();
+        public static HigLabo.Core.TypeConverter TypeConverter { get; set; } = new HigLabo.Core.TypeConverter();
+        String IDatabaseKey.DatabaseKey { get; set; } = "";
 
         protected StoredProcedure()
         {
         }
+
         public abstract string GetStoredProcedureName();
         public DbCommand CreateCommand()
         {
             return this.CreateCommand(this.GetDatabase());
         }
         public abstract DbCommand CreateCommand(Database database);
+        public Database GetDatabase()
+        {
+            return DatabaseFactory.CreateDatabase((this as IDatabaseKey).DatabaseKey);
+        }
 
         private async ValueTask<ExecuteNonQueryResult> GetExecuteNonQueryResultAsync(Database database, CancellationToken cancellationToken)
         {
@@ -47,9 +44,6 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand(database);
-                var e = new StoredProcedureExecutingEventArgs(this, cm);
-                StoredProcedure.OnExecuting(e);
-                if (e.Cancel == true) { return new ExecuteNonQueryResult(database, affectedRecordCount); }
                 affectedRecordCount = await database.ExecuteCommandAsync(cm, cancellationToken).ConfigureAwait(false);
                 this.SetOutputParameterValue(cm);
             }
@@ -58,7 +52,6 @@ namespace HigLabo.DbSharp
                 if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
                 if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
             }
-            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return new ExecuteNonQueryResult(database, affectedRecordCount);
         }
         public Int32 ExecuteNonQuery()
@@ -74,9 +67,6 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand(database);
-                var e = new StoredProcedureExecutingEventArgs(this, cm);
-                StoredProcedure.OnExecuting(e);
-                if (e.Cancel == true) { return affectedRecordCount; }
                 affectedRecordCount = database.ExecuteCommand(cm);
                 this.SetOutputParameterValue(cm);
             }
@@ -85,7 +75,6 @@ namespace HigLabo.DbSharp
                 if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
                 if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
             }
-            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return affectedRecordCount;
         }
         public Int32 ExecuteNonQuery(TransactionContext context)
@@ -156,35 +145,6 @@ namespace HigLabo.DbSharp
             where T : struct
         {
             return TypeConverter.ToEnum<T>(value);
-        }
-
-        protected PropertyChangedEventHandler? GetPropertyChangedEventHandler()
-        {
-            return this.PropertyChanged;
-        }
-        protected void OnPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            var eh = PropertyChanged;
-            if (eh != null)
-            {
-                eh(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        protected static void OnExecuting(StoredProcedureExecutingEventArgs e)
-        {
-            var eh = StoredProcedure.Executing;
-            if (eh != null)
-            {
-                eh(null, e);
-            }
-        }
-        protected static void OnExecuted(StoredProcedureExecutedEventArgs e)
-        {
-            var eh = StoredProcedure.Executed;
-            if (eh != null)
-            {
-                eh(null, e);
-            }
         }
     }
 }

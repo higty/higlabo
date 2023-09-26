@@ -1186,17 +1186,17 @@ namespace HigLabo.DbSharpSample.SqlServer
         {
             get
             {
-                return ((IDatabaseContext)this).DatabaseKey;
+                return ((IDatabaseKey)this).DatabaseKey;
             }
             set
             {
-                ((IDatabaseContext)this).DatabaseKey = value;
+                ((IDatabaseKey)this).DatabaseKey = value;
             }
         }
 
         public Usp_SelectMultiTable()
         {
-            ((IDatabaseContext)this).DatabaseKey = "DatabaseKey";
+            ((IDatabaseKey)this).DatabaseKey = "DatabaseKey";
             ConstructorExecuted();
             _MergeMethod = Merge;
             _CreateResultSetMethodList.Add(CreateCreateResultSetMethod<ResultSet>(this.SetResultSet));

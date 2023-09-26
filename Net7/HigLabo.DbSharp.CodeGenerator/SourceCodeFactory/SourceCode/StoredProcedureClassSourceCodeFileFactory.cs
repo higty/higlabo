@@ -136,8 +136,8 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             Property p = new Property("String", "DatabaseKey");
             p.Modifier.AccessModifier = MethodAccessModifier.Public;
-            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).DatabaseKey;");
-            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = value;");
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseKey)this).DatabaseKey;");
+            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseKey)this).DatabaseKey = value;");
 
             return p;
         }
@@ -145,8 +145,8 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             var p = new Property("String", "TransactionKey");
             p.Modifier.AccessModifier = MethodAccessModifier.Public;
-            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).TransactionKey;");
-            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).TransactionKey = value;");
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseKey)this).TransactionKey;");
+            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseKey)this).TransactionKey = value;");
 
             return p;
         }
@@ -167,7 +167,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             var sp = this.StoredProcedure;
             Constructor ct = new Constructor(AccessModifier.Public, sp.Name);
 
-            ct.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = \"{0}\";", this.DatabaseKey);
+            ct.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseKey)this).DatabaseKey = \"{0}\";", this.DatabaseKey);
             ct.Body.Add(SourceCodeLanguage.CSharp, "ConstructorExecuted();");
             if (sp.ResultSets.Count > 1)
             {

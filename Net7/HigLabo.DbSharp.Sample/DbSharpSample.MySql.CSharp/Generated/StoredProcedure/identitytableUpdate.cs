@@ -24,11 +24,11 @@ namespace HigLabo.DbSharpSample.MySql
         {
             get
             {
-                return ((IDatabaseContext)this).DatabaseKey;
+                return ((IDatabaseKey)this).DatabaseKey;
             }
             set
             {
-                ((IDatabaseContext)this).DatabaseKey = value;
+                ((IDatabaseKey)this).DatabaseKey = value;
             }
         }
         public Int32? IntColumn
@@ -89,7 +89,7 @@ namespace HigLabo.DbSharpSample.MySql
 
         public identitytableUpdate()
         {
-            ((IDatabaseContext)this).DatabaseKey = "DbSharpSample";
+            ((IDatabaseKey)this).DatabaseKey = "DbSharpSample";
             ConstructorExecuted();
         }
 

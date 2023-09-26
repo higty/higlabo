@@ -101,8 +101,6 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand(database);
-                var e = new StoredProcedureExecutingEventArgs(this, cm);
-                StoredProcedure.OnExecuting(e);
                 dr = await database.ExecuteReaderAsync(cm, commandBehavior, cancellationToken);
                 while (dr!.Read())
                 {
@@ -118,7 +116,6 @@ namespace HigLabo.DbSharp
                 if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
                 if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
             }
-            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return resultsets;
         }
         public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
@@ -159,8 +156,6 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand(database);
-                var e = new StoredProcedureExecutingEventArgs(this, cm);
-                StoredProcedure.OnExecuting(e);
                 dr = database.ExecuteReader(cm);
                 while (dr!.Read())
                 {
@@ -176,7 +171,6 @@ namespace HigLabo.DbSharp
                 if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
                 if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
             }
-            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
         }
 
         public DataTable? GetDataTable()

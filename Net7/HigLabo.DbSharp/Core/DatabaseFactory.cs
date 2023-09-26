@@ -10,13 +10,7 @@ namespace HigLabo.DbSharp
 {
     public class DatabaseFactory
     {
-        private static readonly DatabaseFactory _Current = new DatabaseFactory();
         private Hashtable _CreateDatabaseMethodList = new ();
-
-        public static DatabaseFactory Current
-        {
-            get { return _Current; }
-        }
 
         public void SetCreateDatabaseMethod(String databaseKey, Func<Database> func)
         {
@@ -30,8 +24,8 @@ namespace HigLabo.DbSharp
             {
                 return f();
             }
-            throw new InvalidOperationException("You must set up DatabaseFactory class."
-            + "Please call SetCreateDatabaseMethod method of HigLabo.DbSharp.DatabaseFactory class." + Environment.NewLine
+            throw new InvalidOperationException("You must set up DatabaseFactory."
+            + "Please call HigLabo.DbSharp..StoredProcedure.DatabaseFactory.SetCreateDatabaseMethod static method." + Environment.NewLine
             + "DatabaseKey=" + databaseKey);
         }
     }

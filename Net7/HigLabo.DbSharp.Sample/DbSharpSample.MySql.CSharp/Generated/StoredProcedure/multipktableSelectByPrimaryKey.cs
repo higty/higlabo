@@ -172,11 +172,11 @@ namespace HigLabo.DbSharpSample.MySql
         {
             get
             {
-                return ((IDatabaseContext)this).DatabaseKey;
+                return ((IDatabaseKey)this).DatabaseKey;
             }
             set
             {
-                ((IDatabaseContext)this).DatabaseKey = value;
+                ((IDatabaseKey)this).DatabaseKey = value;
             }
         }
         public Int64? PK_BigIntColumn
@@ -215,7 +215,7 @@ namespace HigLabo.DbSharpSample.MySql
 
         public multipktableSelectByPrimaryKey()
         {
-            ((IDatabaseContext)this).DatabaseKey = "DbSharpSample";
+            ((IDatabaseKey)this).DatabaseKey = "DbSharpSample";
             ConstructorExecuted();
         }
 

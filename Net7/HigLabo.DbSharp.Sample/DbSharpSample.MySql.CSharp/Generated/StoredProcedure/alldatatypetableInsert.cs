@@ -89,11 +89,11 @@ namespace HigLabo.DbSharpSample.MySql
         {
             get
             {
-                return ((IDatabaseContext)this).DatabaseKey;
+                return ((IDatabaseKey)this).DatabaseKey;
             }
             set
             {
-                ((IDatabaseContext)this).DatabaseKey = value;
+                ((IDatabaseKey)this).DatabaseKey = value;
             }
         }
         public Int64? PrimaryKeyColumn
@@ -869,7 +869,7 @@ namespace HigLabo.DbSharpSample.MySql
 
         public alldatatypetableInsert()
         {
-            ((IDatabaseContext)this).DatabaseKey = "DbSharpSample";
+            ((IDatabaseKey)this).DatabaseKey = "DbSharpSample";
             ConstructorExecuted();
         }
 

@@ -32,11 +32,11 @@ namespace HigLabo.DbSharpSample.MySql
         {
             get
             {
-                return ((IDatabaseContext)this).DatabaseKey;
+                return ((IDatabaseKey)this).DatabaseKey;
             }
             set
             {
-                ((IDatabaseContext)this).DatabaseKey = value;
+                ((IDatabaseKey)this).DatabaseKey = value;
             }
         }
         public Int64? BigIntColumn
@@ -185,7 +185,7 @@ namespace HigLabo.DbSharpSample.MySql
 
         public multipktableUpdate()
         {
-            ((IDatabaseContext)this).DatabaseKey = "DbSharpSample";
+            ((IDatabaseKey)this).DatabaseKey = "DbSharpSample";
             ConstructorExecuted();
         }
 
