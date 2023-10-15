@@ -36,8 +36,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.ObjectModel", "HigL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Service", "HigLabo.Service\HigLabo.Service.csproj", "{3D315B8D-C2B1-4884-9622-B0396F8E3FF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Nuget", "HigLabo.Nuget\HigLabo.Nuget.csproj", "{8EF2DA7E-3E43-4503-8F13-D9708130ADA5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.Microsoft", "HigLabo.Net.Microsoft\HigLabo.Net.Microsoft.csproj", "{A3C70FCD-6F1F-4A1B-A29E-73EE315E567D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.OAuth", "HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj", "{32EF049E-95CF-4D14-917F-45A576CC7EE1}"
@@ -134,10 +132,6 @@ Global
 		{3D315B8D-C2B1-4884-9622-B0396F8E3FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D315B8D-C2B1-4884-9622-B0396F8E3FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D315B8D-C2B1-4884-9622-B0396F8E3FF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EF2DA7E-3E43-4503-8F13-D9708130ADA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EF2DA7E-3E43-4503-8F13-D9708130ADA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EF2DA7E-3E43-4503-8F13-D9708130ADA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EF2DA7E-3E43-4503-8F13-D9708130ADA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3C70FCD-6F1F-4A1B-A29E-73EE315E567D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3C70FCD-6F1F-4A1B-A29E-73EE315E567D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3C70FCD-6F1F-4A1B-A29E-73EE315E567D}.Release|Any CPU.ActiveCfg = Release|Any CPU
