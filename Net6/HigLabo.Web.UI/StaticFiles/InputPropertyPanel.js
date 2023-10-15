@@ -427,28 +427,39 @@ export class InputPropertyPanel {
         this.recordChanged(ipl);
     }
     addRecordButton_Click(target, e) {
-        const ipl = $(target).getParent("[input-property-panel]");
-        const mode = $(ipl).find("[search-record-list-panel]").getAttribute("add-record-mode");
+        const ipl = $(target).getParent("[input-property-panel]").getFirstElement();
+        const spl = this.getSearchRecordListPanel(ipl);
+        const mode = $(spl).getAttribute("add-record-mode");
         switch (mode) {
             case "None":
-                this.setDefaultRecord(ipl.getFirstElement(), {});
+                this.setDefaultRecord(ipl, {});
                 break;
             case "Search":
                 $(target).getParent("[button-list-panel]").hide();
                 this.showSearchRecordListPanel(target);
                 break;
             case "Api":
-                const apiPath = ipl.find("[search-record-list-panel]").getAttribute("api-path-default-get");
-                HttpClient.postJson(apiPath, {}, this.getDefaultRecordCallback.bind(this), null, ipl.getFirstElement());
+                const apiPath = $(spl).getAttribute("api-path-default-get");
+                HttpClient.postJson(apiPath, {}, this.getDefaultRecordCallback.bind(this), null, ipl);
                 break;
             default:
         }
+    }
+    getSearchRecordListPanel(inputPropertyPanel) {
+        const ee = $(inputPropertyPanel).find("[search-record-list-panel]").getElementList();
+        for (var i = 0; i < ee.length; i++) {
+            if ($(ee[i]).getFirstParent("[input-property-panel]").getFirstElement() == inputPropertyPanel) {
+                return ee[i];
+            }
+        }
+        return null;
     }
     setDefaultRecord(inputPropertyPanel, record) {
         const r = record;
         const ipl = inputPropertyPanel;
         const rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
-        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
+        const spl = this.getSearchRecordListPanel(ipl);
+        const templateID = $(spl).getAttribute("template-id");
         const element = HigLaboVue.append(rpl, templateID, r)[0];
         if ($(element).getAttribute("header-mode") == "Label") {
             $(element).setAttribute("toggle-state", "Expand");

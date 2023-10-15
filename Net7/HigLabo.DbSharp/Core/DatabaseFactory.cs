@@ -16,7 +16,7 @@ namespace HigLabo.DbSharp
         {
             _CreateDatabaseMethodList[databaseKey] = func;
         }
-        public Database CreateDatabase(String databaseKey)
+        public virtual Database CreateDatabase(String databaseKey)
         {
             var f = _CreateDatabaseMethodList[databaseKey] as Func<Database>;
 

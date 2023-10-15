@@ -18,7 +18,7 @@ namespace HigLabo.Core
         {
             var l = new List<Dictionary<String, Object?>>();
             var res = response;
-            if (res.Schema == null || res.Schema.Fields == null) { return l; }
+            if (res == null || res.Schema == null || res.Schema.Fields == null) { return l; }
 
             var cc = res.Schema.Fields.ToList();
             if (res.Rows != null)
@@ -32,11 +32,14 @@ namespace HigLabo.Core
                     {
                         var c = cc[i];
                         var columnName = c.Name;
-                        var v = oo[i].V.ToString() ?? "";
+                        var v = oo[i]?.V?.ToString() ?? "";
 
                         if (c.Type == "DATE")
                         {
-                            d[columnName] = DateOnly.Parse(v);
+                            if (DateOnly.TryParse(v, out var date))
+                            {
+                                d[columnName] = date;
+                            }
                         }
                         else if (c.Type == "DATETIME")
                         {
@@ -44,9 +47,9 @@ namespace HigLabo.Core
                         }
                         else if (c.Type == "TIMESTAMP")
                         {
-                            if (Decimal.TryParse(v, NumberStyles.AllowExponent | NumberStyles.Float, null, out var dValue))
+                            if (Double.TryParse(v, NumberStyles.AllowExponent | NumberStyles.Float, null, out var dValue))
                             {
-                                d[columnName] = FromBigQueryTimestamp((Int64)(dValue * 1000));
+                                d[columnName] = FromBigQueryTimestamp(dValue * 1000);
                             }
                             else
                             {
@@ -71,7 +74,7 @@ namespace HigLabo.Core
                         }
                         else
                         {
-                            d[c.Name] = oo[i].V;
+                            d[columnName] = v;
                         }
                     }
                     l.Add(d);
@@ -79,7 +82,7 @@ namespace HigLabo.Core
             }
             return l;
         }
-        private static DateTimeOffset FromBigQueryTimestamp(Int64 timestamp)
+        private static DateTimeOffset FromBigQueryTimestamp(double timestamp)
         {
             var date = UnixEpochDateTimeOffset.AddMilliseconds(timestamp);
             return date;

@@ -17,7 +17,7 @@ namespace HigLabo.Core
             public Guid LogId { get; set; }
             public DateTimeOffset BeginRequestTime { get; set; }
             public DateTimeOffset EndRequestTime { get; set; }
-            public Int32 RequestDurationMilliSeconds { get; set; }
+            public Double RequestDurationMilliSeconds { get; set; }
 
             public String RequestUrl { get; set; } = "";
             public String HttpMethodName { get; set; } = "";
@@ -89,7 +89,7 @@ namespace HigLabo.Core
             l.Add(new TableFieldSchema() { Name = "LogId", Type = "STRING", Mode = "REQUIRED" });
             l.Add(new TableFieldSchema() { Name = "BeginRequestTime", Type = "TIMESTAMP", Mode = "REQUIRED" });
             l.Add(new TableFieldSchema() { Name = "EndRequestTime", Type = "TIMESTAMP" });
-            l.Add(new TableFieldSchema() { Name = "RequestDurationMilliSeconds", Type = "INTEGER" });
+            l.Add(new TableFieldSchema() { Name = "RequestDurationMilliSeconds", Type = "FLOAT64" });
 
             l.AddRange(CreateTableFields("STRING", new String[] { "RequestUrl", "HttpMethodName" }));
             l.Add(new TableFieldSchema() { Name = "IsAjaxRequest", Type = "BOOL" });
@@ -145,14 +145,7 @@ namespace HigLabo.Core
                 }
                 catch 
                 {
-                    if (await this.ExistsAsync(date) == false)
-                    {
-                        try
-                        {
-                            await this.CreateAsync(date);
-                        }
-                        catch { }
-                    }
+                    await this.EnsureTable(date);
                     var res = await base.InsertAsync(CreateTableName(date)
                         , records.Select(el => el.Map(new Dictionary<string, object>())));
                     l.Add(res);
@@ -160,14 +153,30 @@ namespace HigLabo.Core
             }
             return l;
         }
+        private async ValueTask EnsureTable(DateOnly date)
+        {
+            if (await this.ExistsAsync(date) == false)
+            {
+                try
+                {
+                    await this.CreateAsync(date);
+                }
+                catch { }
+            }
+        }
 
 
-        public async Task<(List<Record> Records, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount
+        public async Task<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount)
+        {
+            return await this.List_Data_Get(date, userId, startTime, endTime, startIndex, recordCount, Array.Empty<string>());
+        }
+        public async Task<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount
             , IEnumerable<String> whereConditionList)
         {
+            await this.EnsureTable(date);
             return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, startTime, endTime, startIndex, recordCount, whereConditionList);
         }
-        public async Task<(List<Record> Records, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount
+        public async Task<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount
             , IEnumerable<String> whereConditionList)
         {
             if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
@@ -221,11 +230,12 @@ namespace HigLabo.Core
                     var d = dd[0];
                     totalRecordCount = d["RecordCount"]?.ToString()?.ToUInt64() ?? 0;
                 }
-                return (l, totalRecordCount);
+                return (l, req.Query, totalRecordCount);
             }
         }
         public async Task<(List<Record> records, UInt64 totalRecordCount)> Search_RequestBody_Get(DateOnly date, String searchText, Int32 startIndex, Int32 recordCount)
         {
+            await this.EnsureTable(date);
             return await this.Search_RequestBody_Get(date.ToString("yyyyMMdd"), searchText, startIndex, recordCount);
         }
         public async Task<(List<Record> records, UInt64 totalRecordCount)> Search_RequestBody_Get(String dateSuffix, String searchText, Int32 startIndex, Int32 recordCount)
@@ -276,6 +286,7 @@ namespace HigLabo.Core
 
         public async Task<Record?> Data_Get(DateOnly date, Guid logId)
         {
+            await this.EnsureTable(date);
             return await Data_Get(date.ToString("yyyyMMdd"), logId);
         }
         public async Task<Record?> Data_Get(String dateSuffix, Guid logId)
@@ -299,6 +310,7 @@ namespace HigLabo.Core
         }
         public async Task<Record?> Error_Data_Get(DateOnly date, Guid errorLogId)
         {
+            await this.EnsureTable(date);
             return await Error_Data_Get(date.ToString("yyyyMMdd"), errorLogId);
         }
         public async Task<Record?> Error_Data_Get(String dateSuffix, Guid errorLogId)

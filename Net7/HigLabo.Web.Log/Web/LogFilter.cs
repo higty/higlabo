@@ -30,8 +30,11 @@ namespace HigLabo.Web
 
         public HttpContext HttpContext { get; init; }
         public LogBackgroundService BackgroundService { get; init; }
+
         public DateTimeOffset BeginRequestTime { get; private set; }
         public String RawRequestPathAndQuery { get; private set; } = "";
+
+        public bool IsAddWebAccessLog { get; set; } = true;
 
         public LogFilter(IHttpContextAccessor accessor, LogBackgroundService backgroundService)
         {
@@ -101,7 +104,7 @@ namespace HigLabo.Web
             r.BeginRequestTime = this.BeginRequestTime;
             r.EndRequestTime = endRequestTime;
             var ts = endRequestTime - this.BeginRequestTime;
-            r.RequestDurationMilliSeconds = (Int32)ts.TotalMilliseconds;
+            r.RequestDurationMilliSeconds = ts.TotalMilliseconds;
             r.MachineName = Environment.MachineName;
             var process = Process.GetCurrentProcess();
             r.ProcessName = process.ProcessName;
@@ -173,8 +176,11 @@ namespace HigLabo.Web
 
                 if (ex == null)
                 {
-                    var rWebAccessLog = await this.CreateWebAccessLogRecordAsync(null);
-                    this.BackgroundService.AddWebAccessLog(rWebAccessLog);
+                    if (this.IsAddWebAccessLog)
+                    {
+                        var rWebAccessLog = await this.CreateWebAccessLogRecordAsync(null);
+                        this.BackgroundService.AddWebAccessLog(rWebAccessLog);
+                    }
                 }
                 else
                 {

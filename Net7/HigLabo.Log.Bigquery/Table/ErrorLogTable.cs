@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace HigLabo.Core
 {
@@ -164,14 +165,7 @@ namespace HigLabo.Core
                 }
                 catch
                 {
-                    if (await this.ExistsAsync(date) == false)
-                    {
-                        try
-                        {
-                            await this.CreateAsync(date);
-                        }
-                        catch { }
-                    }
+                    await this.EnsureTable(date);
                     var res = await base.InsertAsync(CreateTableName(date)
                         , records.Select(el => el.Map(new Dictionary<string, object>())));
                     l.Add(res);
@@ -179,14 +173,30 @@ namespace HigLabo.Core
             }
             return l;
         }
+        private async ValueTask EnsureTable(DateOnly date)
+        {
+            if (await this.ExistsAsync(date) == false)
+            {
+                try
+                {
+                    await this.CreateAsync(date);
+                }
+                catch { }
+            }
+        }
 
-        public async ValueTask<(List<Record> Records, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, String exceptionType, Int32? errorLevel
+        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, String exceptionType, Int32? errorLevel
             , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount)
         {
-            return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, exceptionType, errorLevel, startTime, endTime, startIndex, recordCount);
+            return await this.List_Data_Get(date, userId, exceptionType, errorLevel, startTime, endTime, startIndex, recordCount, Array.Empty<string>());
         }
-        public async ValueTask<(List<Record> Records, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, String exceptionType, Int32? errorLevel
-            , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount)
+        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, String exceptionType, Int32? errorLevel
+            , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList)
+        {
+            return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, exceptionType, errorLevel, startTime, endTime, startIndex, recordCount, whereConditionList);
+        }
+        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, String exceptionType, Int32? errorLevel
+            , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList)
         {
             if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
             if (recordCount < 0) { throw new ArgumentOutOfRangeException("recordCount must be larger than zero."); }
@@ -213,7 +223,10 @@ namespace HigLabo.Core
             {
                 where.AppendFormat("and ExceptionType = '{0}' ", exceptionType).AppendLine();
             }
-
+            foreach (var item in whereConditionList)
+            {
+                where.AppendLine(item);
+            }
 
             var sb = new StringBuilder();
             sb.AppendLine(CreateSelectFromClause(dateSuffix));
@@ -240,11 +253,11 @@ namespace HigLabo.Core
                 var rr = res.CreateRecords();
                 if (rr.Count == 0)
                 {
-                    return (l, 0);
+                    return (l, req.Query, 0);
                 }
                 var d = rr[0];
                 var totalRecordCount = d["RecordCount"]?.ToString()?.ToUInt64() ?? 0;
-                return (l, totalRecordCount);
+                return (l, req.Query, totalRecordCount);
             }
         }
         public async ValueTask<Record?> Data_Get(DateOnly date, Guid logId)
@@ -272,6 +285,7 @@ namespace HigLabo.Core
         }
         public async ValueTask<(List<Record> records, UInt64 totalRecordCount)> Search_Description_Get(DateOnly date, String searchText, Int32 startIndex, Int32 recordCount)
         {
+            await this.EnsureTable(date);
             return await this.Search_Description_Get(date.ToString("yyyyMMdd"), searchText, startIndex, recordCount);
         }
         public async ValueTask<(List<Record> records, UInt64 totalRecordCount)> Search_Description_Get(String dateSuffix, String searchText, Int32 startIndex, Int32 recordCount)

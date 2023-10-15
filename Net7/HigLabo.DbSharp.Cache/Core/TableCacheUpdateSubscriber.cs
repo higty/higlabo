@@ -14,7 +14,7 @@ namespace HigLabo.DbSharp
 	public class TableCacheUpdateSubscriber : IDisposable
 	{
 		public static TableCacheUpdateSubscriberDefaultSettings DefaultSettings { get; set; } = new();
-		public static event EventHandler<RedisEventSubscribeTimeoutEventArgs>? Timeout;
+		public static event EventHandler<TableCacheUpdateSubscribeTimeoutEventArgs>? Timeout;
 
 		private bool _IsDisposed = false;
         private Boolean _Loaded = false;
@@ -38,28 +38,28 @@ namespace HigLabo.DbSharp
 			}
 
 		}
-		public RedisEventWaitResult Wait()
+		public TableCacheUpdateWaitResult Wait()
 		{
 			return this.Wait(TimeSpan.FromMilliseconds(DefaultSettings.WaitMilliSeconds));
 		}
-		public RedisEventWaitResult Wait(Int32 milliSeconds)
+		public TableCacheUpdateWaitResult Wait(Int32 milliSeconds)
 		{
 			return this.Wait(TimeSpan.FromMilliseconds(milliSeconds));
 		}
-		public RedisEventWaitResult Wait(TimeSpan timeout)
+		public TableCacheUpdateWaitResult Wait(TimeSpan timeout)
 		{
-			if (_Loaded) { return RedisEventWaitResult.Success; }
+			if (_Loaded) { return TableCacheUpdateWaitResult.Success; }
 
 			if (_AutoResetEvent.WaitOne(timeout) == true)
 			{
 				//Cache updated within timeout
-				return RedisEventWaitResult.Success;
+				return TableCacheUpdateWaitResult.Success;
 			}
 			else
 			{
 				//Timeout occured...
-				Timeout?.Invoke(null, new RedisEventSubscribeTimeoutEventArgs(this.Table.TableName));
-				return RedisEventWaitResult.Timeout;
+				Timeout?.Invoke(null, new TableCacheUpdateSubscribeTimeoutEventArgs(this.Table.TableName));
+				return TableCacheUpdateWaitResult.Timeout;
 			}
 		}
 

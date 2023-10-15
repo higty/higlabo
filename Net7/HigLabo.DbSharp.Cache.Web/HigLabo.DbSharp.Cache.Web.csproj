@@ -13,13 +13,8 @@
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
-
-	<ItemGroup>
-		<ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
-		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
-		<ProjectReference Include="..\HigLabo.Data\HigLabo.Data.csproj" />
-		<ProjectReference Include="..\HigLabo.DbSharp\HigLabo.DbSharp.csproj" />
-		<ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.DbSharp.Cache\HigLabo.DbSharp.Cache.csproj" />
+  </ItemGroup>
 
 </Project>
