@@ -65,7 +65,7 @@ namespace HigLabo.NugetUploadCommandFileGenerator
             }
             sb.AppendLine("pause");
             var text = sb.ToString();
-            var fileName = String.Format("UploadPackage{0}.cmd", DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            var fileName = $"UploadPackage{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.cmd";
             var folderPath = Path.Combine(NugetPackageFolderPath, fileName);
             Console.WriteLine(folderPath);
             File.WriteAllText(folderPath, text);
