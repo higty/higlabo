@@ -25,20 +25,16 @@ namespace HigLabo.DbSharp
 		public TableCacheUpdateSubscriber(ITableCache table)
 		{
 			this.Table = table;
-			this.Table.Loaded += Table_Loaded;
+			this.Table.Loaded += this.Table_Loaded;
 		}
 
-		private void Table_Loaded(object? sender, TableCacheUpdatedEventArgs e)
+		private void Table_Loaded(object? sender, EventArgs e)
 		{
-			if (_IsDisposed == true) { return; }
-			if (e.TableNameList.Contains(this.Table.TableName))
-			{
-				_Loaded = true;
-				_AutoResetEvent.Set();
-			}
-
-		}
-		public TableCacheUpdateWaitResult Wait()
+			if (_IsDisposed == true) { throw new ObjectDisposedException("TableCacheUpdateSubscriber"); }
+            _Loaded = true;
+            _AutoResetEvent.Set();
+        }
+        public TableCacheUpdateWaitResult Wait()
 		{
 			return this.Wait(TimeSpan.FromMilliseconds(DefaultSettings.WaitMilliSeconds));
 		}
@@ -65,13 +61,13 @@ namespace HigLabo.DbSharp
 
 		public void Dispose()
 		{
-			_IsDisposed = true;
-			this.Table.Loaded -= Table_Loaded;
 			try
 			{
-				_AutoResetEvent.Dispose();
+                this.Table.Loaded -= this.Table_Loaded;
+                _AutoResetEvent.Dispose();
 			}
 			catch { }
-		}
-	}
+            _IsDisposed = true;
+        }
+    }
 }

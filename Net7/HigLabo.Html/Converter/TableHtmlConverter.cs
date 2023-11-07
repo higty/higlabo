@@ -64,7 +64,7 @@ namespace HigLabo.Html
             {
                 sb.Append(CreateTable(context));
             }
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
         private String CreateTable(ParseContext context)
         {

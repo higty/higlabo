@@ -13,7 +13,7 @@ namespace HigLabo.DbSharp
 {
     public interface ITableCache
     {
-        event EventHandler<TableCacheUpdatedEventArgs>? Loaded;
+        event EventHandler<EventArgs>? Loaded;
 		string TableName { get; }
 		int GetRecordCount();
         ValueTask LoadDataAsync();
@@ -33,7 +33,7 @@ namespace HigLabo.DbSharp
         where TStoredProcedure : StoredProcedureWithResultSet, new()
         where TResultSet : class, new()
     {
-        public event EventHandler<TableCacheUpdatedEventArgs>? Loaded;
+        public event EventHandler<EventArgs>? Loaded;
 		
         private Int32 _RecordCount = 0;
         private ConcurrentDictionary<TPrimaryKey, TResultSet> _Records = new();
@@ -76,9 +76,7 @@ namespace HigLabo.DbSharp
             }
             this.ReplaceRecordList(l);
 
-            var e = new TableCacheUpdatedEventArgs();
-            e.TableNameList.Add(this.TableName);
-            this.Loaded?.Invoke(this, e);
+            this.Loaded?.Invoke(this, EventArgs.Empty);
         }
         private void ReplaceRecordList(IEnumerable<TResultSet> records)
         {

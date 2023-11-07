@@ -185,18 +185,18 @@ namespace HigLabo.Core
             }
         }
 
-        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, String exceptionType, Int32? errorLevel
-            , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount)
+        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
+            , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, CancellationToken cancellationToken)
         {
-            return await this.List_Data_Get(date, userId, exceptionType, errorLevel, startTime, endTime, startIndex, recordCount, Array.Empty<string>());
+            return await this.List_Data_Get(date, userId, startTime, endTime, exceptionType, errorLevel, startIndex, recordCount, Array.Empty<string>(), cancellationToken);
         }
-        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, String exceptionType, Int32? errorLevel
-            , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList)
+        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
+            , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
         {
-            return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, exceptionType, errorLevel, startTime, endTime, startIndex, recordCount, whereConditionList);
+            return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, startTime, endTime, exceptionType, errorLevel, startIndex, recordCount, whereConditionList, cancellationToken);
         }
-        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, String exceptionType, Int32? errorLevel
-            , DateTime startTime, DateTime endTime, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList)
+        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime
+            , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
         {
             if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
             if (recordCount < 0) { throw new ArgumentOutOfRangeException("recordCount must be larger than zero."); }
@@ -235,7 +235,7 @@ namespace HigLabo.Core
             sb.AppendFormat("limit {0} offset {1}", recordCount, startIndex).AppendLine();
             req.Query = sb.ToString();
             {
-                var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync();
+                var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync(cancellationToken);
                 foreach (var d in res.CreateRecords())
                 {
                     var r = d.Map(new Record());
@@ -249,7 +249,7 @@ namespace HigLabo.Core
             sb.AppendLine(where.ToString());
             req.Query = sb.ToString();
             {
-                var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync();
+                var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync(cancellationToken);
                 var rr = res.CreateRecords();
                 if (rr.Count == 0)
                 {

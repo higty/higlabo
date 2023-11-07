@@ -15,7 +15,7 @@ namespace HigLabo.Web
             this.AppHttpContext = appHttpContext;
         }
 
-        public abstract ValueTask<object> ExecuteAsync();
+        public abstract ValueTask<object> ExecuteAsync(CancellationToken cancellationToken);
     }
 
 }

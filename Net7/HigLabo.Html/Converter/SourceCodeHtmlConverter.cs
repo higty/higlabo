@@ -82,7 +82,7 @@ namespace HigLabo.Html
                     }
                 }
             }
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
         private String CreateSourceCodePanel(String sourceCode, String language)
         {
