@@ -8,6 +8,7 @@ namespace HigLabo.CodeGenerator
 {
     public class Property
     {
+        public string Comment { get; set; } = "";
         public List<String> Attributes { get; private set; }
         public MethodModifier Modifier { get; private set; }
         public TypeName TypeName { get; set; }

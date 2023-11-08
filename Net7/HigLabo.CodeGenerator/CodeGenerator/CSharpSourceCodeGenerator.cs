@@ -382,6 +382,22 @@ namespace HigLabo.CodeGenerator
         {
             var writer = this.TextWriter;
 
+            if (string.IsNullOrEmpty(property.Comment) == false)
+            {
+                this.WriteIndent();
+                writer.WriteLine("/// <summary>");
+                using (var sr = new StringReader(property.Comment))
+                {
+                    while (sr.Peek() > -1)
+                    {
+                        this.WriteIndent();
+                        writer.Write("/// ");
+                        writer.WriteLine(sr.ReadLine());
+                    }
+                }
+                this.WriteIndent();
+                writer.WriteLine("/// </summary>");
+            }
             this.WriteIndent();
             foreach (var item in property.Attributes)
             {
@@ -469,9 +485,15 @@ namespace HigLabo.CodeGenerator
             {
                 this.WriteIndent();
                 writer.WriteLine("/// <summary>");
-                this.WriteIndent();
-                writer.Write("/// ");
-                writer.WriteLine(c.Comment);
+                using (var sr = new StringReader(c.Comment))
+                {
+                    while (sr.Peek() > -1)
+                    {
+                        this.WriteIndent();
+                        writer.Write("/// ");
+                        writer.WriteLine(sr.ReadLine());
+                    }
+                }
                 this.WriteIndent();
                 writer.WriteLine("/// </summary>");
             }
