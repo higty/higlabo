@@ -20,7 +20,7 @@ namespace HigLabo.OpenAI
 {
     public interface IRestApiParameter
     {
-        string ApiPath { get; }
+        string GetApiPath();
         string HttpMethod { get; }
     }
     public interface IJsonConverter
@@ -30,6 +30,7 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public string ApiUrl { get; set; } = "https://api.openai.com/v1";
         public HttpClient HttpClient { get; set; } = new();
         public string ApiKey { get; set; } = "";
         public string Organization { get; set; } = "";
@@ -46,6 +47,7 @@ namespace HigLabo.OpenAI
         {
             this.SetProperty(null, jsonConverter, apiKey);
         }
+
         private void SetProperty(HttpClient? httpClient, IJsonConverter? jsonConverter, string apiKey)
         {
             if (httpClient == null)
@@ -63,6 +65,57 @@ namespace HigLabo.OpenAI
             this.ApiKey = apiKey;
 
         }
+        private static bool IsErrorResponse(byte[] buffer)
+        {
+            var bb = buffer;
+            if (bb.Length < 8) { return false; }
+            var index = 0;
+            if (bb[index++] == 123 &&
+                bb[index++] == 34 &&
+                bb[index++] == 101 &&
+                bb[index++] == 114 &&
+                bb[index++] == 114 &&
+                bb[index++] == 111 &&
+                bb[index++] == 114)
+            { return true; }
+            return false;
+        }
+        public static string RemoveIfStartWith(string text, string search)
+        {
+            var pos = text.IndexOf(search, StringComparison.Ordinal);
+            return pos != 0 ? text : text.Substring(search.Length);
+        }
+        private HttpRequestMessage CreateRequestMessage<TParameter>(TParameter parameter)
+                 where TParameter : IRestApiParameter
+        {
+            var p = parameter as IRestApiParameter;
+            var req = p.HttpMethod.ToUpper() switch
+            {
+                "GET" => new HttpRequestMessage(HttpMethod.Get, this.ApiUrl + p.GetApiPath()),
+                "POST" => new HttpRequestMessage(HttpMethod.Post, this.ApiUrl + p.GetApiPath()),
+                _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
+            };
+            req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.ApiKey);
+
+            return req;
+        }
+        private async Task<TResponse> CreateResponse<TResponse>(object parameter, HttpRequestMessage request, string requestBodyText, HttpResponseMessage response)
+                 where TResponse : RestApiResponse
+        {
+            var res = response;
+            var bodyText = await res.Content.ReadAsStringAsync();
+            if (res.IsSuccessStatusCode)
+            {
+                var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
+                o.SetProperty(parameter, requestBodyText, request, res, bodyText);
+                return o;
+            }
+            else
+            {
+                var errorResponse = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(bodyText);
+                throw new OpenAIServerException(bodyText, errorResponse.Error);
+            }
+        }
 
         public async ValueTask<TResponse> SendJsonAsync<TParameter, TResponse>(TParameter parameter)
             where TParameter : IRestApiParameter
@@ -75,7 +128,13 @@ namespace HigLabo.OpenAI
             where TResponse: RestApiResponse
         {
             var p = parameter as IRestApiParameter;
-            var (requestBodyText, req) = this.CreateRequestMessage(parameter);
+            var req = this.CreateRequestMessage(parameter);
+            var requestBodyText = "";
+            if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false && requestBodyText.IsNullOrEmpty() == false)
+            {
+                requestBodyText = JsonConverter.SerializeObject(parameter);
+                req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
+            }
             var res = await this.HttpClient.SendAsync(req);
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
         }
@@ -91,13 +150,19 @@ namespace HigLabo.OpenAI
             where TParameter : IRestApiParameter
         {
             var p = parameter as IRestApiParameter;
-            var (requestBodyText, req)= this.CreateRequestMessage(parameter);
+            var req= this.CreateRequestMessage(parameter);
             req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
+            var requestBodyText = "";
+            if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
+            {
+                requestBodyText = JsonConverter.SerializeObject(parameter);
+            }
 
             var res = await this.HttpClient.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
             var sseResponse = new ServerSentEventResponse();
             var previousLineList = new List<ServerSentEventLine>();
+
             try
             {
                 using (var stream = await res.Content.ReadAsStreamAsync())
@@ -108,7 +173,8 @@ namespace HigLabo.OpenAI
                         sseResponse.Clear();
                         var readCount = await stream.ReadAsync(sseResponse.Buffer, cancellationToken);
                         sseResponse.BufferLength = readCount;
-                        Debug.WriteLine(Encoding.UTF8.GetString(sseResponse.Buffer));
+
+                        Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
                         if (readCount == 0) { break; }
 
                         if (IsErrorResponse(sseResponse.Buffer))
@@ -142,67 +208,12 @@ namespace HigLabo.OpenAI
             {
             }
         }
-        private static bool IsErrorResponse(byte[] buffer)
-        {
-            var bb = buffer;
-            if (bb.Length < 8) { return false; }
-            var index = 0;
-            if (bb[index++] == 123 &&
-                bb[index++] == 34 &&
-                bb[index++] == 101 &&
-                bb[index++] == 114 &&
-                bb[index++] == 114 &&
-                bb[index++] == 111 &&
-                bb[index++] == 114)
-            { return true; }
-            return false;
-        }
-        public static string RemoveIfStartWith(string text, string search)
-        {
-            var pos = text.IndexOf(search, StringComparison.Ordinal);
-            return pos != 0 ? text : text.Substring(search.Length);
-        }
-        private (string requestBodyText, HttpRequestMessage request) CreateRequestMessage<TParameter>(TParameter parameter)
-                 where TParameter : IRestApiParameter
-        {
-            var p = parameter as IRestApiParameter;
-            var req = p.HttpMethod.ToUpper() switch
-            {
-                "GET" => new HttpRequestMessage(HttpMethod.Get, p.ApiPath),
-                "POST" => new HttpRequestMessage(HttpMethod.Post, p.ApiPath),
-                _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
-            };
-            req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.ApiKey);
-            var requestBodyText = "";
-            if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
-            {
-                requestBodyText = JsonConverter.SerializeObject(parameter);
-            }
-            req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
-
-            return (requestBodyText, req);
-        }
-        private async Task<TResponse> CreateResponse<TResponse>(object parameter, HttpRequestMessage request, string requestBodyText, HttpResponseMessage response)
-                 where TResponse : RestApiResponse
-        {
-            var res = response;
-            var bodyText = await res.Content.ReadAsStringAsync();
-            var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
-            o.SetProperty(parameter, requestBodyText, request, res, bodyText);
-            return o;
-        }
         public async ValueTask<TResponse> SendFormDataAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
             where TParameter : IRestApiParameter, IFormDataParameter
             where TResponse : RestApiResponse
         {
             var p = parameter as IRestApiParameter;
-            var req = p.HttpMethod.ToUpper() switch
-            {
-                "GET" => new HttpRequestMessage(HttpMethod.Get, p.ApiPath),
-                "POST" => new HttpRequestMessage(HttpMethod.Post, p.ApiPath),
-                _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
-            };
-            req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.ApiKey);
+            var req = this.CreateRequestMessage(parameter);
 
             var requestContent = new MultipartFormDataContent();
             var fileParameter = p as IFileParameter;
@@ -229,6 +240,25 @@ namespace HigLabo.OpenAI
             o.SetProperty(parameter, requestBodyText, req, res, bodyText);
 
             return o;
+        }
+
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.user, message), model, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatMessage message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var p = new ChatCompletionsParameter();
+            p.Messages.Add(message);
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            {
+                yield return item;
+            }
         }
     }
 }

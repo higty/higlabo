@@ -78,6 +78,7 @@ namespace HigLabo.Core
 
             var sb = new StringBuilder(value.Length);
 
+            var previousIsUnderscore = false;
             for (var i = 0; i < value.Length; i++)
             {
                 if (i == 0)
@@ -86,7 +87,22 @@ namespace HigLabo.Core
                 }
                 else
                 {
-                    sb.Append(value[i]);
+                    if (previousIsUnderscore)
+                    {
+                        sb.Append(value[i].ToString().ToUpper());
+                    }
+                    else
+                    {
+                        sb.Append(value[i]);
+                    }
+                }
+                if (value[i] == '_')
+                {
+                    previousIsUnderscore = true;
+                }
+                else
+                {
+                    previousIsUnderscore = false;
                 }
             }
             return sb.ToString();

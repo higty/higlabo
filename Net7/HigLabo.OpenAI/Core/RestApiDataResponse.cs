@@ -8,6 +8,6 @@ namespace HigLabo.OpenAI
 {
     public class RestApiDataResponse<T> : RestApiResponse
     {
-        public List<T> Data { get; set; } = new();
+        public T Data { get; set; }
     }
 }

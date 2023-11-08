@@ -1,14 +1,14 @@
-﻿
+﻿using System.Runtime.CompilerServices;
+
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// https://api.openai.com/v1/audio/translations
     /// Translates audio into English.
+    /// <seealso href="https://api.openai.com/v1/audio/translations">https://api.openai.com/v1/audio/translations</seealso>
     /// </summary>
     public partial class AudioTranslationsParameter : IRestApiParameter, IFormDataParameter, IFileParameter
     {
-        string IRestApiParameter.HttpMethod { get; } = "post";
-        string IRestApiParameter.ApiPath { get; } = "https://api.openai.com/v1/audio/translations";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         string IFileParameter.ParameterName
         {
             get
@@ -32,18 +32,22 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
         /// </summary>
-        public string Response_format { get; set; } = "";
+        public string Response_Format { get; set; } = "";
         /// <summary>
         /// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
         /// </summary>
         public double Temperature { get; set; }
 
+        string IRestApiParameter.GetApiPath()
+        {
+            return $"/audio/translations";
+        }
         Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
         {
             var d = new Dictionary<string, string>();
             d["model"] = this.Model;
             d["prompt"] = this.Prompt;
-            d["response_format"] = this.Response_format;
+            d["response_format"] = this.Response_Format;
             d["temperature"] = this.Temperature.ToString();
             return d;
         }

@@ -37,7 +37,7 @@ namespace HigLabo.OpenAI
         }
         public bool IsDone()
         {
-            if (this.Data.Length != 12)
+            if (this.Data.Length < 12)
             {
                 return false;
             }

@@ -1,14 +1,14 @@
-﻿
+﻿using System.Runtime.CompilerServices;
+
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// https://api.openai.com/v1/audio/speech
     /// Generates audio from the input text.
+    /// <seealso href="https://api.openai.com/v1/audio/speech">https://api.openai.com/v1/audio/speech</seealso>
     /// </summary>
     public partial class AudioSpeechParameter : IRestApiParameter
     {
-        string IRestApiParameter.HttpMethod { get; } = "post";
-        string IRestApiParameter.ApiPath { get; } = "https://api.openai.com/v1/audio/speech";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
         /// One of the available TTS models: tts-1 or tts-1-hd
         /// </summary>
@@ -24,11 +24,16 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// The format to audio in. Supported formats are mp3, opus, aac, and flac.
         /// </summary>
-        public string Response_format { get; set; } = "";
+        public string Response_Format { get; set; } = "";
         /// <summary>
         /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
         /// </summary>
         public double Speed { get; set; }
+
+        string IRestApiParameter.GetApiPath()
+        {
+            return $"/audio/speech";
+        }
     }
     public partial class AudioSpeechResponse : RestApiResponse
     {

@@ -12,7 +12,7 @@ namespace HigLabo.OpenAI
 {
     public class ServerSentEventResponse
     {
-        internal Byte[] Buffer = new byte[512];
+        internal Byte[] Buffer = new byte[1024];
         internal int BufferLength = 0;
 
         public IEnumerable<ServerSentEventLine> GetLines(List<ServerSentEventLine> previousDataList)
@@ -27,6 +27,7 @@ namespace HigLabo.OpenAI
                     var line = new ServerSentEventLine(i - startIndex + previousLength, true);
                     this.SetPreviousData(line, previousDataList, startIndex, i);
                     previousDataList.Clear();
+                    previousLength = 0;
 
                     if (i < BufferLength - 1 && Buffer[i + 1] == 10)
                     {
