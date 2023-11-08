@@ -33,10 +33,10 @@ namespace HigLabo.OpenAI.CodeGenerator
             driver.Navigate().GoToUrl("https://platform.openai.com/docs/api-reference/audio");
 
             var ee = driver.FindElements(By.CssSelector("div[class='section endpoint']"));
-            //CreateSourceCode(ee[22]);
+            //createsourcecode(ee[24]);
             //return;
 
-            for (int i = 0; i < 23; i++)
+            for (int i = 0; i < 25; i++)
             {
                 CreateSourceCode(ee[i]);
             }
@@ -145,42 +145,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             var cResponse = new Class(AccessModifier.Public, cName + "Response");
             sc.Namespaces[0].Classes.Add(cResponse);
             cResponse.Modifier.Partial = true;
-            if (cName == "Embeddings")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("RestApiDataResponse<List<EmbeddingObject>>"));
-            }
-            else if (cName == "FineTuningJobCreate")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("RestApiDataResponse<FineTuningJob>"));
-            }
-            else if (cName == "FineTuningJobs")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("RestApiDataResponse<List<FineTuningJob>>"));
-            }
-            else if (cName == "FineTuningJobCancel")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("FineTuningJobResponse"));
-            }
-            else if (cName == "FineTuningJobEvents")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("RestApiDataResponse<List<FineTuningJob>>"));
-            }
-            else if (cName == "Files")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("RestApiDataResponse<List<FileObject>>"));
-            }
-            else if (cName == "FileUpload")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("FileObjectResponse"));
-            }
-            else if (cName == "FileRetrieve")
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("FileObjectResponse"));
-            }
-            else
-            {
-                cResponse.ImplementInterfaces.Add(new TypeName("RestApiResponse"));
-            }
+            cResponse.ImplementInterfaces.Add(new TypeName(this.GetResponseClassName(cName)));
 
             var cClient = new Class(AccessModifier.Public, "OpenAIClient");
             sc.Namespaces[0].Classes.Add(cClient);
@@ -260,7 +225,14 @@ namespace HigLabo.OpenAI.CodeGenerator
                         p.Name = p.Name.ToPascalCase();
                         if (p.TypeName.Name == "string")
                         {
-                            p.Initializer = "\"\"";
+                            if (pRequired)
+                            {
+                                p.Initializer = "\"\"";
+                            }
+                            else
+                            {
+                                p.TypeName.Name += "?";
+                            }
                         }
                         if (cName == "ChatCompletions" && p.TypeName.Name.StartsWith("List<"))
                         {
@@ -432,7 +404,52 @@ namespace HigLabo.OpenAI.CodeGenerator
 
             return typeName;
         }
-        protected Property CreateHttpMethodProperty(string httpMethod)
+        private string GetResponseClassName(string className)
+        {
+            var cName = className;
+            if (cName == "Embeddings")
+            {
+                return "RestApiDataResponse<List<EmbeddingObject>>";
+            }
+            else if (cName == "FineTuningJobCreate")
+            {
+                return "RestApiDataResponse<FineTuningJob>";
+            }
+            else if (cName == "FineTuningJobs")
+            {
+                return "RestApiDataResponse<List<FineTuningJob>>";
+            }
+            else if (cName == "FineTuningJobCancel")
+            {
+                return "FineTuningJobResponse";
+            }
+            else if (cName == "FineTuningJobEvents")
+            {
+                return "RestApiDataResponse<List<FineTuningJob>>";
+            }
+            else if (cName == "Files")
+            {
+                return "RestApiDataResponse<List<FileObject>>";
+            }
+            else if (cName == "FileUpload")
+            {
+                return "FileObjectResponse";
+            }
+            else if (cName == "FileRetrieve")
+            {
+                return "FileObjectResponse";
+            }
+            else if (cName == "ImagesGenerations")
+            {
+                return "RestApiDataResponse<List<ImageObject>>";
+            }
+            else
+            {
+                return "RestApiResponse";
+            }
+
+        }
+        private Property CreateHttpMethodProperty(string httpMethod)
         {
             var p = new Property("string", "IRestApiParameter.HttpMethod", true);
             p.Modifier.AccessModifier = MethodAccessModifier.None;
@@ -441,7 +458,7 @@ namespace HigLabo.OpenAI.CodeGenerator
 
             return p;
         }
-        protected Method CreateGetApiPathMethod(string url)
+        private Method CreateGetApiPathMethod(string url)
         {
             var md = new Method(MethodAccessModifier.None, "IRestApiParameter.GetApiPath");
             md.Modifier.AccessModifier = MethodAccessModifier.None;

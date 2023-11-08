@@ -11,9 +11,13 @@
             //var embedding = await cl.EmbeddingsAsync("新しいユーザーはどこかに加入しようと考えるとき、ユーザーが多いサービスに登録した方が自分がUPした写真へのいいねもたくさんつくし、釣り場の情報交換なども活発にできます。サービス自体の機能の魅力もありますがそれよりも多くのユーザーがいることの方が価値が高いことが多いです。"
             //    , "text-embedding-ada-002", CancellationToken.None);
 
-            await FileUpload(cl);
+            await ImageGeneration(cl);
 
             Console.ReadLine();
+        }
+        private static async ValueTask ImageGeneration(OpenAIClient client)
+        {
+            var res = await client.ImagesGenerationsAsync("青い空と緑の草原の画像", CancellationToken.None);
         }
         private static async ValueTask FileUpload(OpenAIClient client)
         {

@@ -20,11 +20,11 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// The format to return the embeddings in. Can be either float or base64.
         /// </summary>
-        public string Encoding_Format { get; set; } = "";
+        public string? Encoding_Format { get; set; }
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
         /// </summary>
-        public string User { get; set; } = "";
+        public string? User { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {

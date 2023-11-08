@@ -77,7 +77,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
         /// </summary>
-        public string User { get; set; } = "";
+        public string? User { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {

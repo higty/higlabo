@@ -130,7 +130,7 @@ namespace HigLabo.OpenAI
             var p = parameter as IRestApiParameter;
             var req = this.CreateRequestMessage(parameter);
             var requestBodyText = "";
-            if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false && requestBodyText.IsNullOrEmpty() == false)
+            if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false)
             {
                 requestBodyText = JsonConverter.SerializeObject(parameter);
                 req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
