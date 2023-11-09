@@ -13,4 +13,12 @@ namespace HigLabo.OpenAI
         Stream GetFileStream();
         void SetFile(string fileName, Stream stream);
     }
+    public static class IFileParameterExtensions
+    {
+        public static void SetFile(this IFileParameter parameter, string fileName, byte[] data)
+        {
+            var p = parameter;
+            p.SetFile(fileName, new MemoryStream(data));
+        }
+    }
 }

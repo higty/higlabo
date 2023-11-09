@@ -66,7 +66,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
         /// </summary>
-        public List<Tool>? Tools { get; set; }
+        public List<ToolObject>? Tools { get; set; }
         /// <summary>
         /// Controls which (if any) function is called by the model.
         /// none means the model will not call a function and instead generates a message.
@@ -94,7 +94,6 @@ namespace HigLabo.OpenAI
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
-            p.Stream = true;
             await foreach (var item in this.ChatCompletionsStreamAsync(p, cancellationToken))
             {
                 yield return item;
@@ -109,6 +108,7 @@ namespace HigLabo.OpenAI
         }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
+            parameter.Stream = true;
             await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))
             {
                 yield return item;

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
-    public class Tool
+    public class ToolObject
     {
         public string Type { get; set; } = "";
-        public object Function { get; set; }
+        public FunctionObject? Function { get; set; }
 
-        public Tool(string type, object function)
+        public ToolObject() { }
+        public ToolObject(string type)
         {
-            Type = type;
-            Function = function;
+            this.Type = type;
         }
     }
 }

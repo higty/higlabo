@@ -13,10 +13,25 @@ namespace HigLabo.OpenAI
     public class FineTuningJob
     {
         public string Id { get; set; } = "";
-        public int CreateAt { get; set; }
+        public int Created_At { get; set; }
+        public DateTimeOffset CreateTime
+        {
+            get
+            {
+                return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Created_At), TimeSpan.Zero);
+            }
+        }
         public string Error { get; set; } = "";
         public string Fine_Tuned_Model { get; set; } = "";
         public int? Finished_At { get; set; }
+        public DateTimeOffset? FinishTime
+        {
+            get
+            {
+                if (this.Finished_At == null) { return null; }
+                return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Finished_At.Value), TimeSpan.Zero);
+            }
+        }
         public HyperParameter? HyperParameters { get; set; }
         public string Model { get; set; } = "";
         public string Object { get; set; } = "";
@@ -30,10 +45,25 @@ namespace HigLabo.OpenAI
     public class FineTuningJobResponse : RestApiResponse
     {
         public string Id { get; set; } = "";
-        public int CreateAt { get; set; }
+        public int Created_At { get; set; }
+        public DateTimeOffset CreateTime
+        {
+            get
+            {
+                return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Created_At), TimeSpan.Zero);
+            }
+        }
         public string Error { get; set; } = "";
         public string Fine_Tuned_Model { get; set; } = "";
         public int? Finished_At { get; set; }
+        public DateTimeOffset? FinishTime
+        {
+            get
+            {
+                if (this.Finished_At == null) { return null; }
+                return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Finished_At.Value), TimeSpan.Zero);
+            }
+        }
         public HyperParameter? HyperParameters { get; set; }
         public string Model { get; set; } = "";
         public string Organization_Id { get; set; } = "";

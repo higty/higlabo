@@ -135,78 +135,9 @@ namespace HigLabo.OpenAI
                 requestBodyText = JsonConverter.SerializeObject(parameter);
                 req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
             }
+            Debug.WriteLine(requestBodyText);
             var res = await this.HttpClient.SendAsync(req);
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
-        }
-        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter)
-            where TParameter : IRestApiParameter
-        {
-            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-            where TParameter : IRestApiParameter
-        {
-            var p = parameter as IRestApiParameter;
-            var req= this.CreateRequestMessage(parameter);
-            req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
-            var requestBodyText = "";
-            if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
-            {
-                requestBodyText = JsonConverter.SerializeObject(parameter);
-            }
-
-            var res = await this.HttpClient.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-
-            var sseResponse = new ServerSentEventResponse();
-            var previousLineList = new List<ServerSentEventLine>();
-
-            try
-            {
-                using (var stream = await res.Content.ReadAsStreamAsync())
-                {
-                    var loopIndex = 0;
-                    while (true)
-                    {
-                        sseResponse.Clear();
-                        var readCount = await stream.ReadAsync(sseResponse.Buffer, cancellationToken);
-                        sseResponse.BufferLength = readCount;
-
-                        Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
-                        if (readCount == 0) { break; }
-
-                        if (IsErrorResponse(sseResponse.Buffer))
-                        {
-                            var json = Encoding.UTF8.GetString(sseResponse.Buffer);
-                            var eRes = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(json);
-                            throw new OpenAIServerException(json, eRes.Error);
-                        }
-
-                        foreach (var line in sseResponse.GetLines(previousLineList))
-                        {
-                            if (line.IsEmpty()) { continue; }
-                            if (line.IsDone()) { yield break; }
-                            if (line.Complete == false)
-                            {
-                                previousLineList.Add(line);
-                                continue;
-                            }
-                            if (line.IsData())
-                            {
-                                var text = Encoding.UTF8.GetString(line.GetValue());
-                                yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
-                            }
-                        }
-                        loopIndex++;
-                    }
-
-                }
-            }
-            finally
-            {
-            }
         }
         public async ValueTask<TResponse> SendFormDataAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
             where TParameter : IRestApiParameter, IFormDataParameter
@@ -234,12 +165,79 @@ namespace HigLabo.OpenAI
 
             var requestBodyText = JsonConverter.SerializeObject(d);
 
+            Debug.WriteLine(requestBodyText);
             var res = await this.HttpClient.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
             var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
             o.SetProperty(parameter, requestBodyText, req, res, bodyText);
 
             return o;
+        }
+
+        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter)
+            where TParameter : IRestApiParameter
+        {
+            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+            where TParameter : IRestApiParameter
+        {
+            var p = parameter as IRestApiParameter;
+            var req= this.CreateRequestMessage(parameter);
+            req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
+            var requestBodyText = "";
+            if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
+            {
+                requestBodyText = JsonConverter.SerializeObject(parameter);
+            }
+            req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
+
+            Debug.WriteLine(requestBodyText);
+            var res = await this.HttpClient.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            if (res.IsSuccessStatusCode == false)
+            {
+                var json = await res.Content.ReadAsStringAsync();
+                var eRes = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(json);
+                throw new OpenAIServerException(json, eRes.Error);
+            }
+
+            var sseResponse = new ServerSentEventResponse();
+            var previousLineList = new List<ServerSentEventLine>();
+
+            using (var stream = await res.Content.ReadAsStreamAsync())
+            {
+                var loopIndex = 0;
+                while (true)
+                {
+                    sseResponse.Clear();
+                    var readCount = await stream.ReadAsync(sseResponse.Buffer, cancellationToken);
+                    sseResponse.BufferLength = readCount;
+
+                    Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
+                    if (readCount == 0) { break; }
+
+
+                    foreach (var line in sseResponse.GetLines(previousLineList))
+                    {
+                        if (line.IsEmpty()) { continue; }
+                        if (line.IsDone()) { yield break; }
+                        if (line.Complete == false)
+                        {
+                            previousLineList.Add(line);
+                            continue;
+                        }
+                        if (line.IsData())
+                        {
+                            var text = Encoding.UTF8.GetString(line.GetValue());
+                            yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
+                        }
+                    }
+                    loopIndex++;
+                }
+            }
         }
 
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)

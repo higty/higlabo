@@ -40,7 +40,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
         /// </summary>
-        public double Temperature { get; set; }
+        public double? Temperature { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -50,10 +50,10 @@ namespace HigLabo.OpenAI
         {
             var d = new Dictionary<string, string>();
             d["model"] = this.Model;
-            d["language"] = this.Language;
-            d["prompt"] = this.Prompt;
-            d["response_format"] = this.Response_Format;
-            d["temperature"] = this.Temperature.ToString();
+            if (this.Language != null) d["language"] = this.Language;
+            if (this.Prompt != null) d["prompt"] = this.Prompt;
+            if (this.Response_Format != null) d["response_format"] = this.Response_Format;
+            if (this.Temperature != null) d["temperature"] = this.Temperature.Value.ToString();
             return d;
         }
         Stream IFileParameter.GetFileStream()

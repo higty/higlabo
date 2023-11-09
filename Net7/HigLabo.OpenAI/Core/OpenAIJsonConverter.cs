@@ -33,6 +33,7 @@ namespace HigLabo.OpenAI
             catch (Exception ex) 
             {
                 Debugger.Break();
+                Debug.Write(ex.ToString());
             }
             return default(T)!;
         }

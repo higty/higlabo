@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
-    public class ToolChoice
+    public class ToolChoiceObject
     {
         public string Type { get; set; } = "";
         public object? Function { get; set; }

@@ -32,7 +32,7 @@ namespace HigLabo.OpenAI
             public int Index { get; set; }
             public string Id { get; set; } = "";
             public string Type { get; set; } = "";
-            public object? Function { get; set; }
+            public FunctionCall? Function { get; set; }
         }
         public string Id { get; set; } = "";
         public List<Choice> Choices { get; set; } = new();

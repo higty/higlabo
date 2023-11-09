@@ -19,7 +19,7 @@ namespace HigLabo.OpenAI
             return $"/files/{File_Id}";
         }
     }
-    public partial class FileDeleteResponse : RestApiResponse
+    public partial class FileDeleteResponse : DeleteObjectResponse
     {
     }
     public partial class OpenAIClient
