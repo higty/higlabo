@@ -12,29 +12,32 @@ using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace HigLabo.OpenAI
 {
-    public interface IRestApiParameter
+    public class HttpRequestMessageEventArgs
     {
-        string GetApiPath();
-        string HttpMethod { get; }
-    }
-    public interface IJsonConverter
-    {
-        string SerializeObject(object obj);
-        T DeserializeObject<T>(String json);
+        public HttpRequestMessage RequestMessage { get; init; }
+
+        public HttpRequestMessageEventArgs(HttpRequestMessage requestMessage)
+        {
+            this.RequestMessage = requestMessage;
+        }
     }
     public partial class OpenAIClient
     {
+        public event EventHandler<HttpRequestMessageEventArgs>? PreSendRequest;
+
         public string ApiUrl { get; set; } = "https://api.openai.com/v1";
         public HttpClient HttpClient { get; set; } = new();
         public string ApiKey { get; set; } = "";
         public string Organization { get; set; } = "";
         public IJsonConverter JsonConverter { get; set; } = new OpenAIJsonConverter();
+        public bool UseBetaEndpoint { get; set; } = true;
 
         public OpenAIClient()
         {
@@ -43,9 +46,13 @@ namespace HigLabo.OpenAI
         {
             this.SetProperty(null, null, apiKey);
         }
+        public OpenAIClient(HttpClient httpClient, string apiKey)
+        {
+            this.SetProperty(httpClient, null, apiKey);
+        }
         public OpenAIClient(HttpClient httpClient, IJsonConverter jsonConverter, string apiKey)
         {
-            this.SetProperty(null, jsonConverter, apiKey);
+            this.SetProperty(httpClient, jsonConverter, apiKey);
         }
 
         private void SetProperty(HttpClient? httpClient, IJsonConverter? jsonConverter, string apiKey)
@@ -65,39 +72,36 @@ namespace HigLabo.OpenAI
             this.ApiKey = apiKey;
 
         }
-        private static bool IsErrorResponse(byte[] buffer)
-        {
-            var bb = buffer;
-            if (bb.Length < 8) { return false; }
-            var index = 0;
-            if (bb[index++] == 123 &&
-                bb[index++] == 34 &&
-                bb[index++] == 101 &&
-                bb[index++] == 114 &&
-                bb[index++] == 114 &&
-                bb[index++] == 111 &&
-                bb[index++] == 114)
-            { return true; }
-            return false;
-        }
-        public static string RemoveIfStartWith(string text, string search)
-        {
-            var pos = text.IndexOf(search, StringComparison.Ordinal);
-            return pos != 0 ? text : text.Substring(search.Length);
-        }
+ 
         private HttpRequestMessage CreateRequestMessage<TParameter>(TParameter parameter)
                  where TParameter : IRestApiParameter
         {
             var p = parameter as IRestApiParameter;
-            var req = p.HttpMethod.ToUpper() switch
+            var httpMethod = p.HttpMethod.ToUpper() switch
             {
-                "GET" => new HttpRequestMessage(HttpMethod.Get, this.ApiUrl + p.GetApiPath()),
-                "POST" => new HttpRequestMessage(HttpMethod.Post, this.ApiUrl + p.GetApiPath()),
+                "GET" => HttpMethod.Get,
+                "POST" => HttpMethod.Post,
                 _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
             };
+            var apiPath = p.GetApiPath();
+            var req = new HttpRequestMessage(httpMethod, this.ApiUrl + apiPath);
             req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.ApiKey);
 
+            if (this.UseBetaEndpoint)
+            {
+                if (apiPath.StartsWith("/assistants", StringComparison.OrdinalIgnoreCase) ||
+                    apiPath.StartsWith("/threads", StringComparison.OrdinalIgnoreCase))
+                {
+                    req.Headers.TryAddWithoutValidation("OpenAI-Beta", "assistants=v1");
+                }
+            }
             return req;
+        }
+        private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, HttpCompletionOption httpCompletionOption, CancellationToken cancellationToken)
+        {
+            this.PreSendRequest?.Invoke(this, new HttpRequestMessageEventArgs(request));
+            var res = await this.HttpClient.SendAsync(request, httpCompletionOption, cancellationToken);
+            return res;
         }
         private async Task<TResponse> CreateResponse<TResponse>(object parameter, HttpRequestMessage request, string requestBodyText, HttpResponseMessage response)
                  where TResponse : RestApiResponse
@@ -132,11 +136,11 @@ namespace HigLabo.OpenAI
             var requestBodyText = "";
             if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false)
             {
-                requestBodyText = JsonConverter.SerializeObject(parameter);
+                requestBodyText = this.JsonConverter.SerializeObject(parameter);
                 req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
             }
             Debug.WriteLine(requestBodyText);
-            var res = await this.HttpClient.SendAsync(req);
+            var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
         }
         public async ValueTask<TResponse> SendFormDataAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
@@ -153,8 +157,7 @@ namespace HigLabo.OpenAI
                 var stream = fileParameter.GetFileStream();
                 stream.Position = 0;
                 var fileContent = new StreamContent(stream);
-                //fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/wav");
-                requestContent.Add(fileContent, fileParameter.ParameterName, "MyFile.mp3");
+                requestContent.Add(fileContent, fileParameter.ParameterName, fileParameter.FileName);
             }
             var d = parameter.CreateFormDataParameter();
             foreach (var key in d.Keys)
@@ -166,7 +169,8 @@ namespace HigLabo.OpenAI
             var requestBodyText = JsonConverter.SerializeObject(d);
 
             Debug.WriteLine(requestBodyText);
-            var res = await this.HttpClient.SendAsync(req);
+            var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
+
             var bodyText = await res.Content.ReadAsStringAsync();
             var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
             o.SetProperty(parameter, requestBodyText, req, res, bodyText);
@@ -196,7 +200,8 @@ namespace HigLabo.OpenAI
             req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
 
             Debug.WriteLine(requestBodyText);
-            var res = await this.HttpClient.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+
             if (res.IsSuccessStatusCode == false)
             {
                 var json = await res.Content.ReadAsStringAsync();
@@ -219,7 +224,6 @@ namespace HigLabo.OpenAI
                     Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
                     if (readCount == 0) { break; }
 
-
                     foreach (var line in sseResponse.GetLines(previousLineList))
                     {
                         if (line.IsEmpty()) { continue; }
@@ -240,6 +244,13 @@ namespace HigLabo.OpenAI
             }
         }
 
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model)
+        {
+            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.user, message), model, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.user, message), model, cancellationToken))

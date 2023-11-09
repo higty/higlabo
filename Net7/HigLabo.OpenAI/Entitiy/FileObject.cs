@@ -13,7 +13,15 @@ namespace HigLabo.OpenAI
         public int CreateAt { get; set; }
         public string FileName { get; set; } = "";
         public string Object { get; set; } = "";
+        /// <summary>
+        /// The intended purpose of the file. Supported values are fine-tune, fine-tune-results, assistants, and assistants_output.
+        /// </summary>
         public string Purpose { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.FileName}";
+        }
     }
     public class FileObjectResponse: RestApiResponse
     {
@@ -22,5 +30,10 @@ namespace HigLabo.OpenAI
         public int CreateAt { get; set; }
         public string FileName { get; set; } = "";
         public string Purpose { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.FileName}";
+        }
     }
 }

@@ -48,6 +48,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<AssistantCreateResponse> AssistantCreateAsync(string model)
+        {
+            var p = new AssistantCreateParameter();
+            p.Model = model;
+            return await this.SendJsonAsync<AssistantCreateParameter, AssistantCreateResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<AssistantCreateResponse> AssistantCreateAsync(string model, CancellationToken cancellationToken)
         {
             var p = new AssistantCreateParameter();

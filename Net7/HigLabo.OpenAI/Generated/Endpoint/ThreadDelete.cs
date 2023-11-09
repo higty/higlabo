@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ThreadDeleteResponse> ThreadDeleteAsync(string thread_Id)
+        {
+            var p = new ThreadDeleteParameter();
+            p.Thread_Id = thread_Id;
+            return await this.SendJsonAsync<ThreadDeleteParameter, ThreadDeleteResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ThreadDeleteResponse> ThreadDeleteAsync(string thread_Id, CancellationToken cancellationToken)
         {
             var p = new ThreadDeleteParameter();

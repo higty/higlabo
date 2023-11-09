@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<AssistantDeleteResponse> AssistantDeleteAsync(string assistant_Id)
+        {
+            var p = new AssistantDeleteParameter();
+            p.Assistant_Id = assistant_Id;
+            return await this.SendJsonAsync<AssistantDeleteParameter, AssistantDeleteResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<AssistantDeleteResponse> AssistantDeleteAsync(string assistant_Id, CancellationToken cancellationToken)
         {
             var p = new AssistantDeleteParameter();

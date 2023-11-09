@@ -32,6 +32,14 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(string thread_Id, string run_Id, List<string>? tool_Outputs)
+        {
+            var p = new SubmitToolOutputsParameter();
+            p.Thread_Id = thread_Id;
+            p.Run_Id = run_Id;
+            p.Tool_Outputs = tool_Outputs;
+            return await this.SendJsonAsync<SubmitToolOutputsParameter, SubmitToolOutputsResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(string thread_Id, string run_Id, List<string>? tool_Outputs, CancellationToken cancellationToken)
         {
             var p = new SubmitToolOutputsParameter();

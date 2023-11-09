@@ -36,6 +36,13 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<EmbeddingsResponse> EmbeddingsAsync(string input, string model)
+        {
+            var p = new EmbeddingsParameter();
+            p.Input = input;
+            p.Model = model;
+            return await this.SendJsonAsync<EmbeddingsParameter, EmbeddingsResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<EmbeddingsResponse> EmbeddingsAsync(string input, string model, CancellationToken cancellationToken)
         {
             var p = new EmbeddingsParameter();

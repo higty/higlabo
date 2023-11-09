@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<FineTuningJobCancelResponse> FineTuningJobCancelAsync(string fine_Tuning_Job_Id)
+        {
+            var p = new FineTuningJobCancelParameter();
+            p.Fine_Tuning_Job_Id = fine_Tuning_Job_Id;
+            return await this.SendJsonAsync<FineTuningJobCancelParameter, FineTuningJobCancelResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<FineTuningJobCancelResponse> FineTuningJobCancelAsync(string fine_Tuning_Job_Id, CancellationToken cancellationToken)
         {
             var p = new FineTuningJobCancelParameter();

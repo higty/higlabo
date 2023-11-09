@@ -32,6 +32,14 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<MessageFileRetrieveResponse> MessageFileRetrieveAsync(string thread_Id, string message_Id, string file_Id)
+        {
+            var p = new MessageFileRetrieveParameter();
+            p.Thread_Id = thread_Id;
+            p.Message_Id = message_Id;
+            p.File_Id = file_Id;
+            return await this.SendJsonAsync<MessageFileRetrieveParameter, MessageFileRetrieveResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<MessageFileRetrieveResponse> MessageFileRetrieveAsync(string thread_Id, string message_Id, string file_Id, CancellationToken cancellationToken)
         {
             var p = new MessageFileRetrieveParameter();

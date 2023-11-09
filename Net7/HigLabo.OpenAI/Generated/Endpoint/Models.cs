@@ -20,6 +20,11 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ModelsResponse> ModelsAsync()
+        {
+            var p = new ModelsParameter();
+            return await this.SendJsonAsync<ModelsParameter, ModelsResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ModelsResponse> ModelsAsync(CancellationToken cancellationToken)
         {
             var p = new ModelsParameter();

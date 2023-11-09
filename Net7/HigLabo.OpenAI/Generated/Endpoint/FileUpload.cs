@@ -52,6 +52,13 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<FileUploadResponse> FileUploadAsync(string fileName, Stream file, string purpose)
+        {
+            var p = new FileUploadParameter();
+            p.SetFile(fileName, file);
+            p.Purpose = purpose;
+            return await this.SendFormDataAsync<FileUploadParameter, FileUploadResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<FileUploadResponse> FileUploadAsync(string fileName, Stream file, string purpose, CancellationToken cancellationToken)
         {
             var p = new FileUploadParameter();

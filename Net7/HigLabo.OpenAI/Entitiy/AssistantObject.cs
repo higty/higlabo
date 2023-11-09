@@ -25,6 +25,11 @@ namespace HigLabo.OpenAI
         public List<ToolObject> Tools { get; set; } = new();
         public List<string>? File_Ids { get; set; }
         public object? MetaData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id}\r\n{this.Name}\r\n{this.Instructions}";
+        }
     }
     public class AssistantObjectResponse: RestApiResponse
     {
@@ -44,5 +49,10 @@ namespace HigLabo.OpenAI
         public List<ToolObject> Tools { get; set; } = new();
         public List<string>? File_Ids { get; set; }
         public object? MetaData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id}\r\n{this.Name}\r\n{this.Instructions}";
+        }
     }
 }

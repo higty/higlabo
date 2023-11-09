@@ -37,10 +37,18 @@ namespace HigLabo.OpenAI
         public string Object { get; set; } = "";
         public string Organization_Id { get; set; } = "";
         public List<string> Result_Files { get; set; } = new();
+        /// <summary>
+        /// The current status of the fine-tuning job, which can be either validating_files, queued, running, succeeded, failed, or cancelled.
+        /// </summary>
         public string Status { get; set; } = "";
         public int? Trained_Tokens { get; set; }
         public string Training_File { get; set; } = "";
         public string Validation_File { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Model}";
+        }
     }
     public class FineTuningJobResponse : RestApiResponse
     {
@@ -72,5 +80,10 @@ namespace HigLabo.OpenAI
         public int? Trained_Tokens { get; set; }
         public string Training_File { get; set; } = "";
         public string Validation_File { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Model}";
+        }
     }
 }

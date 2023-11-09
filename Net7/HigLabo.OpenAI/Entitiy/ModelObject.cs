@@ -20,19 +20,27 @@ namespace HigLabo.OpenAI
         }
         public string Owned_By { get; set; } = "";
 
+        public override string ToString()
+        {
+            return $"{this.Id}";
+        }
     }
     public class ModelObjectResponse : RestApiResponse
     {
         public string Id { get; set; } = "";
         public Int64 Created { get; set; }
-        public string Owned_By { get; set; } = "";
-
         public DateTimeOffset CreateTime
         {
             get
             {
                 return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Created), TimeSpan.Zero);
             }
+        }
+        public string Owned_By { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Id}";
         }
     }
 }

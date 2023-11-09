@@ -40,6 +40,14 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<MessageCreateResponse> MessageCreateAsync(string thread_Id, string role, string content)
+        {
+            var p = new MessageCreateParameter();
+            p.Thread_Id = thread_Id;
+            p.Role = role;
+            p.Content = content;
+            return await this.SendJsonAsync<MessageCreateParameter, MessageCreateResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<MessageCreateResponse> MessageCreateAsync(string thread_Id, string role, string content, CancellationToken cancellationToken)
         {
             var p = new MessageCreateParameter();

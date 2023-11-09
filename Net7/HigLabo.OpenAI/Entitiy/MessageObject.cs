@@ -25,6 +25,11 @@ namespace HigLabo.OpenAI
         public string? Run_Id { get; set; }
         public List<string>? File_Ids { get; set; }
         public string? MetaData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Role} {this.Content?.Text}";
+        }
     }
     public class MessageObjectResponse : RestApiResponse
     {
@@ -44,6 +49,11 @@ namespace HigLabo.OpenAI
         public string? Run_Id { get; set; }
         public List<string>? File_Ids { get; set; }
         public string? MetaData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Role} {this.Content?.Text}";
+        }
     }
 
     public enum MessageContentType

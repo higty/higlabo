@@ -28,6 +28,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(string input)
+        {
+            var p = new ModerationCreateParameter();
+            p.Input = input;
+            return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(string input, CancellationToken cancellationToken)
         {
             var p = new ModerationCreateParameter();

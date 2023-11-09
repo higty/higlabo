@@ -28,6 +28,11 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ThreadCreateResponse> ThreadCreateAsync()
+        {
+            var p = new ThreadCreateParameter();
+            return await this.SendJsonAsync<ThreadCreateParameter, ThreadCreateResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ThreadCreateResponse> ThreadCreateAsync(CancellationToken cancellationToken)
         {
             var p = new ThreadCreateParameter();

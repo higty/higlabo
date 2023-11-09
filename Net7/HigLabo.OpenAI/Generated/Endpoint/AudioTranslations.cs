@@ -67,6 +67,13 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileName, Stream file, string model)
+        {
+            var p = new AudioTranslationsParameter();
+            p.SetFile(fileName, file);
+            p.Model = model;
+            return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileName, Stream file, string model, CancellationToken cancellationToken)
         {
             var p = new AudioTranslationsParameter();

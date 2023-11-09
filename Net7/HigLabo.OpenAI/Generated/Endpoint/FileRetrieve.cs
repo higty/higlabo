@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<FileRetrieveResponse> FileRetrieveAsync(string file_Id)
+        {
+            var p = new FileRetrieveParameter();
+            p.File_Id = file_Id;
+            return await this.SendJsonAsync<FileRetrieveParameter, FileRetrieveResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<FileRetrieveResponse> FileRetrieveAsync(string file_Id, CancellationToken cancellationToken)
         {
             var p = new FileRetrieveParameter();

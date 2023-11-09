@@ -89,12 +89,47 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<ChatMessage> messages, string model)
+        {
+            var p = new ChatCompletionsParameter();
+            p.Messages = messages;
+            p.Model = model;
+            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(p, CancellationToken.None);
+        }
+        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<ChatMessage> messages, string model, CancellationToken cancellationToken)
+        {
+            var p = new ChatCompletionsParameter();
+            p.Messages = messages;
+            p.Model = model;
+            p.Stream = null;
+            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(p, cancellationToken);
+        }
+        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(ChatCompletionsParameter parameter)
+        {
+            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, CancellationToken.None);
+        }
+        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(ChatCompletionsParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, cancellationToken);
+        }
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<ChatMessage> messages, string model)
+        {
+            var p = new ChatCompletionsParameter();
+            p.Messages = messages;
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<ChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
-            await foreach (var item in this.ChatCompletionsStreamAsync(p, cancellationToken))
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
             {
                 yield return item;
             }
@@ -113,22 +148,6 @@ namespace HigLabo.OpenAI
             {
                 yield return item;
             }
-        }
-        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<ChatMessage> messages, string model, CancellationToken cancellationToken)
-        {
-            var p = new ChatCompletionsParameter();
-            p.Messages = messages;
-            p.Model = model;
-            p.Stream = null;
-            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(p, cancellationToken);
-        }
-        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(ChatCompletionsParameter parameter)
-        {
-            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, CancellationToken.None);
-        }
-        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(ChatCompletionsParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, cancellationToken);
         }
     }
 }

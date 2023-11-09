@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ModelRetrieveResponse> ModelRetrieveAsync(string model)
+        {
+            var p = new ModelRetrieveParameter();
+            p.Model = model;
+            return await this.SendJsonAsync<ModelRetrieveParameter, ModelRetrieveResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ModelRetrieveResponse> ModelRetrieveAsync(string model, CancellationToken cancellationToken)
         {
             var p = new ModelRetrieveParameter();

@@ -28,6 +28,13 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<RunCancelResponse> RunCancelAsync(string thread_Id, string run_Id)
+        {
+            var p = new RunCancelParameter();
+            p.Thread_Id = thread_Id;
+            p.Run_Id = run_Id;
+            return await this.SendJsonAsync<RunCancelParameter, RunCancelResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<RunCancelResponse> RunCancelAsync(string thread_Id, string run_Id, CancellationToken cancellationToken)
         {
             var p = new RunCancelParameter();

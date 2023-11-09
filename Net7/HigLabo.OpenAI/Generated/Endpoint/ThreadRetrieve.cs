@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ThreadRetrieveResponse> ThreadRetrieveAsync(string thread_Id)
+        {
+            var p = new ThreadRetrieveParameter();
+            p.Thread_Id = thread_Id;
+            return await this.SendJsonAsync<ThreadRetrieveParameter, ThreadRetrieveResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ThreadRetrieveResponse> ThreadRetrieveAsync(string thread_Id, CancellationToken cancellationToken)
         {
             var p = new ThreadRetrieveParameter();

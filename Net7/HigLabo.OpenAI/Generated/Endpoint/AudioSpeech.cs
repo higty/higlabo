@@ -40,6 +40,14 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(string model, string input, string voice)
+        {
+            var p = new AudioSpeechParameter();
+            p.Model = model;
+            p.Input = input;
+            p.Voice = voice;
+            return await this.SendJsonAsync<AudioSpeechParameter, AudioSpeechResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(string model, string input, string voice, CancellationToken cancellationToken)
         {
             var p = new AudioSpeechParameter();

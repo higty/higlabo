@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HigLabo.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,11 @@ namespace HigLabo.OpenAI
         {
             this.Role = role;
             this.Content = content;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Role.ToStringFromEnum()} {this.Content}";
         }
     }
 }

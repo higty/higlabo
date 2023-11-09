@@ -52,6 +52,13 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string image, string prompt)
+        {
+            var p = new ImagesEditsParameter();
+            p.Image = image;
+            p.Prompt = prompt;
+            return await this.SendJsonAsync<ImagesEditsParameter, ImagesEditsResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string image, string prompt, CancellationToken cancellationToken)
         {
             var p = new ImagesEditsParameter();

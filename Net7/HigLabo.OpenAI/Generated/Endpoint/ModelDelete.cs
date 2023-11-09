@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ModelDeleteResponse> ModelDeleteAsync(string model)
+        {
+            var p = new ModelDeleteParameter();
+            p.Model = model;
+            return await this.SendJsonAsync<ModelDeleteParameter, ModelDeleteResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ModelDeleteResponse> ModelDeleteAsync(string model, CancellationToken cancellationToken)
         {
             var p = new ModelDeleteParameter();

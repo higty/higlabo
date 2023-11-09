@@ -44,6 +44,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string image)
+        {
+            var p = new ImagesVariationsParameter();
+            p.Image = image;
+            return await this.SendJsonAsync<ImagesVariationsParameter, ImagesVariationsResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string image, CancellationToken cancellationToken)
         {
             var p = new ImagesVariationsParameter();

@@ -24,6 +24,12 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
+        public async ValueTask<FileDeleteResponse> FileDeleteAsync(string file_Id)
+        {
+            var p = new FileDeleteParameter();
+            p.File_Id = file_Id;
+            return await this.SendJsonAsync<FileDeleteParameter, FileDeleteResponse>(p, CancellationToken.None);
+        }
         public async ValueTask<FileDeleteResponse> FileDeleteAsync(string file_Id, CancellationToken cancellationToken)
         {
             var p = new FileDeleteParameter();
