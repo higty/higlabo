@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
     /// <seealso href="https://api.openai.com/v1/models/{model}">https://api.openai.com/v1/models/{model}</seealso>
     /// </summary>
-    public partial class ModelDeleteParameter : IRestApiParameter
+    public partial class ModelDeleteParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
@@ -17,6 +17,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/models/{Model}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class ModelDeleteResponse : DeleteObjectResponse

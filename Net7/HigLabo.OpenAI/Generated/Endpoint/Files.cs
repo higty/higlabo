@@ -6,13 +6,18 @@ namespace HigLabo.OpenAI
     /// Returns a list of files that belong to the user's organization.
     /// <seealso href="https://api.openai.com/v1/files">https://api.openai.com/v1/files</seealso>
     /// </summary>
-    public partial class FilesParameter : IRestApiParameter
+    public partial class FilesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
+        public IQueryParameter QueryParameter { get; set; } = new FileListQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/files";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class FilesResponse : RestApiDataResponse<List<FileObject>>

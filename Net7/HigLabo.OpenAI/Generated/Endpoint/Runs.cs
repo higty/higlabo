@@ -6,21 +6,29 @@ namespace HigLabo.OpenAI
     /// Returns a list of runs belonging to a thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs">https://api.openai.com/v1/threads/{thread_id}/runs</seealso>
     /// </summary>
-    public partial class RunsParameter : IRestApiParameter
+    public partial class RunsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the thread the run belongs to.
         /// </summary>
         public string Thread_Id { get; set; } = "";
+        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/runs";
         }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
+        }
     }
     public partial class RunsResponse : RestApiDataResponse<List<RunObject>>
     {
+        public string First_Id { get; set; } = "";
+        public string Last_Id { get; set; } = "";
+        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

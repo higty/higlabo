@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Returns information about a specific file.
     /// <seealso href="https://api.openai.com/v1/files/{file_id}">https://api.openai.com/v1/files/{file_id}</seealso>
     /// </summary>
-    public partial class FileRetrieveParameter : IRestApiParameter
+    public partial class FileRetrieveParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,6 +17,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/files/{File_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class FileRetrieveResponse : FileObjectResponse

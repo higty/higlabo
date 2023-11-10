@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Returns a list of message files.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}/files">https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}/files</seealso>
     /// </summary>
-    public partial class MessageFilesParameter : IRestApiParameter
+    public partial class MessageFilesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,14 +17,22 @@ namespace HigLabo.OpenAI
         /// The ID of the message that the files belongs to.
         /// </summary>
         public string Message_Id { get; set; } = "";
+        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/messages/{Message_Id}/files";
         }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
+        }
     }
     public partial class MessageFilesResponse : RestApiDataResponse<List<MessageFileObject>>
     {
+        public string First_Id { get; set; } = "";
+        public string Last_Id { get; set; } = "";
+        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

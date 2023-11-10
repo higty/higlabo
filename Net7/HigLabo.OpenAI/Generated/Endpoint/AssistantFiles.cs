@@ -6,21 +6,29 @@ namespace HigLabo.OpenAI
     /// Returns a list of assistant files.
     /// <seealso href="https://api.openai.com/v1/assistants/{assistant_id}/files">https://api.openai.com/v1/assistants/{assistant_id}/files</seealso>
     /// </summary>
-    public partial class AssistantFilesParameter : IRestApiParameter
+    public partial class AssistantFilesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the assistant the file belongs to.
         /// </summary>
         public string Assistant_Id { get; set; } = "";
+        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/assistants/{Assistant_Id}/files";
         }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
+        }
     }
     public partial class AssistantFilesResponse : RestApiDataResponse<List<AssistantFileObject>>
     {
+        public string First_Id { get; set; } = "";
+        public string Last_Id { get; set; } = "";
+        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

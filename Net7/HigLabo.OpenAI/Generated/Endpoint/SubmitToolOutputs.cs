@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// When a run has the status: "requires_action" and required_action.type is submit_tool_outputs, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs">https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs</seealso>
     /// </summary>
-    public partial class SubmitToolOutputsParameter : IRestApiParameter
+    public partial class SubmitToolOutputsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -25,6 +25,12 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/runs/{Run_Id}/submit_tool_outputs";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	tool_outputs = this.Tool_Outputs,
+            };
         }
     }
     public partial class SubmitToolOutputsResponse : RunObjectResponse

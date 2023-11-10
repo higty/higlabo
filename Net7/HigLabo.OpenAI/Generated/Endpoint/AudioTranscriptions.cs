@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Transcribes audio into the input language.
     /// <seealso href="https://api.openai.com/v1/audio/transcriptions">https://api.openai.com/v1/audio/transcriptions</seealso>
     /// </summary>
-    public partial class AudioTranscriptionsParameter : IRestApiParameter, IFormDataParameter, IFileParameter
+    public partial class AudioTranscriptionsParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         string IFileParameter.ParameterName
@@ -46,16 +46,6 @@ namespace HigLabo.OpenAI
         {
             return $"/audio/transcriptions";
         }
-        Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
-        {
-            var d = new Dictionary<string, string>();
-            d["model"] = this.Model;
-            if (this.Language != null) d["language"] = this.Language;
-            if (this.Prompt != null) d["prompt"] = this.Prompt;
-            if (this.Response_Format != null) d["response_format"] = this.Response_Format;
-            if (this.Temperature != null) d["temperature"] = this.Temperature.Value.ToString();
-            return d;
-        }
         Stream IFileParameter.GetFileStream()
         {
             if (this.File == null) throw new InvalidOperationException("File property must be set.");
@@ -65,6 +55,27 @@ namespace HigLabo.OpenAI
         {
             ((IFileParameter)this).FileName = fileName;
             this.File = stream;
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	file = this.File,
+            	model = this.Model,
+            	language = this.Language,
+            	prompt = this.Prompt,
+            	response_format = this.Response_Format,
+            	temperature = this.Temperature,
+            };
+        }
+        Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
+        {
+            var d = new Dictionary<string, string>();
+            d["model"] = this.Model;
+            if (this.Language != null) d["language"] = this.Language;
+            if (this.Prompt != null) d["prompt"] = this.Prompt;
+            if (this.Response_Format != null) d["response_format"] = this.Response_Format;
+            if (this.Temperature != null) d["temperature"] = this.Temperature.Value.ToString();
+            return d;
         }
     }
     public partial class AudioTranscriptionsResponse : RestApiResponse

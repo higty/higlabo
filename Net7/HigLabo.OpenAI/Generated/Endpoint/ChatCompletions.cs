@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Creates a model response for the given chat conversation.
     /// <seealso href="https://api.openai.com/v1/chat/completions">https://api.openai.com/v1/chat/completions</seealso>
     /// </summary>
-    public partial class ChatCompletionsParameter : IRestApiParameter
+    public partial class ChatCompletionsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -38,7 +38,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Presence_Penalty { get; set; }
         /// <summary>
-        /// An object specifying the format that the model must output.Setting to { "type": "json_object" } enables JSON mode, which guarantees the message the model generates is valid JSON.Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in increased latency and appearance of a "stuck" request. Also note that the message content may be partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
+        /// An object specifying the format that the model must output.Setting to { "type": "json_object" } enables JSON mode, which guarantees the message the model generates is valid JSON.Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
         /// </summary>
         public object? Response_Format { get; set; }
         /// <summary>
@@ -82,6 +82,27 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/chat/completions";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	messages = this.Messages,
+            	model = this.Model,
+            	frequency_penalty = this.Frequency_Penalty,
+            	logit_bias = this.Logit_Bias,
+            	max_tokens = this.Max_Tokens,
+            	n = this.N,
+            	presence_penalty = this.Presence_Penalty,
+            	response_format = this.Response_Format,
+            	seed = this.Seed,
+            	stop = this.Stop,
+            	stream = this.Stream,
+            	temperature = this.Temperature,
+            	top_p = this.Top_P,
+            	tools = this.Tools,
+            	tool_choice = this.Tool_Choice,
+            	user = this.User,
+            };
         }
     }
     public partial class ChatCompletionsResponse : RestApiResponse

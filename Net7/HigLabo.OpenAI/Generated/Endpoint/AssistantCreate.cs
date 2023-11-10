@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Create an assistant with a model and instructions.
     /// <seealso href="https://api.openai.com/v1/assistants">https://api.openai.com/v1/assistants</seealso>
     /// </summary>
-    public partial class AssistantCreateParameter : IRestApiParameter
+    public partial class AssistantCreateParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -41,6 +41,18 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/assistants";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	model = this.Model,
+            	name = this.Name,
+            	description = this.Description,
+            	instructions = this.Instructions,
+            	tools = this.Tools,
+            	file_ids = this.File_Ids,
+            	metadata = this.Metadata,
+            };
         }
     }
     public partial class AssistantCreateResponse : AssistantObjectResponse

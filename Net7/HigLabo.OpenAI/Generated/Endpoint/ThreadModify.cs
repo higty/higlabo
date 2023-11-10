@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Modifies a thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}">https://api.openai.com/v1/threads/{thread_id}</seealso>
     /// </summary>
-    public partial class ThreadModifyParameter : IRestApiParameter
+    public partial class ThreadModifyParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -21,6 +21,12 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	metadata = this.Metadata,
+            };
         }
     }
     public partial class ThreadModifyResponse : ThreadObjectResponse

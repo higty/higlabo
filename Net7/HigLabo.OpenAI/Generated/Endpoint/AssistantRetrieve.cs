@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Retrieves an assistant.
     /// <seealso href="https://api.openai.com/v1/assistants/{assistant_id}">https://api.openai.com/v1/assistants/{assistant_id}</seealso>
     /// </summary>
-    public partial class AssistantRetrieveParameter : IRestApiParameter
+    public partial class AssistantRetrieveParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,6 +17,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/assistants/{Assistant_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class AssistantRetrieveResponse : AssistantObjectResponse

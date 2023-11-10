@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Creates an embedding vector representing the input text.
     /// <seealso href="https://api.openai.com/v1/embeddings">https://api.openai.com/v1/embeddings</seealso>
     /// </summary>
-    public partial class EmbeddingsParameter : IRestApiParameter
+    public partial class EmbeddingsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -29,6 +29,15 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/embeddings";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	input = this.Input,
+            	model = this.Model,
+            	encoding_format = this.Encoding_Format,
+            	user = this.User,
+            };
         }
     }
     public partial class EmbeddingsResponse : RestApiDataResponse<List<EmbeddingObject>>

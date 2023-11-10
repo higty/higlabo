@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Delete an assistant file.
     /// <seealso href="https://api.openai.com/v1/assistants/{assistant_id}/files/{file_id}">https://api.openai.com/v1/assistants/{assistant_id}/files/{file_id}</seealso>
     /// </summary>
-    public partial class AssistantFileDeleteParameter : IRestApiParameter
+    public partial class AssistantFileDeleteParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
@@ -21,6 +21,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/assistants/{Assistant_Id}/files/{File_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class AssistantFileDeleteResponse : DeleteObjectResponse

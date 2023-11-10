@@ -20,15 +20,15 @@ namespace HigLabo.OpenAI
         }
         public string Thread_Id { get; set; } = "";
         public string Role { get; set; } = "";
-        public MessageContentObject? Content { get; set; }
+        public List<MessageContentObject> Content { get; set; } = new();
         public string Assistant_Id { get; set; } = "";
         public string? Run_Id { get; set; }
         public List<string>? File_Ids { get; set; }
-        public string? MetaData { get; set; }
+        public object? MetaData { get; set; }
 
         public override string ToString()
         {
-            return $"{this.Id} {this.Role} {this.Content?.Text}";
+            return $"{this.Id} {this.Role} {this.Content?.ToString()}";
         }
     }
     public class MessageObjectResponse : RestApiResponse
@@ -44,15 +44,15 @@ namespace HigLabo.OpenAI
         }
         public string Thread_Id { get; set; } = "";
         public string Role { get; set; } = "";
-        public MessageContentObject? Content { get; set; }
+        public List<MessageContentObject> Content { get; set; } = new();
         public string Assistant_Id { get; set; } = "";
         public string? Run_Id { get; set; }
         public List<string>? File_Ids { get; set; }
-        public string? MetaData { get; set; }
+        public object? MetaData { get; set; }
 
         public override string ToString()
         {
-            return $"{this.Id} {this.Role} {this.Content?.Text}";
+            return $"{this.Id} {this.Role} {this.Content?.ToString()}";
         }
     }
 
@@ -64,16 +64,36 @@ namespace HigLabo.OpenAI
     public class MessageContentObject
     {
         public MessageContentType Type { get; set; } = MessageContentType.Text;
-        public string Image_File { get; set; } = "";
+        public MessageImageObject? Image_File { get; set; }
         public MessageTextObject? Text { get; set; }
+
+        public override string ToString()
+        {
+            switch (this.Type)
+            {
+                case MessageContentType.Image_File: return this.Image_File?.File_Id ?? "";
+                case MessageContentType.Text: return this.Text?.Value ?? "";
+                default: return "";
+            };
+        }
     }
     public class MessageImageObject
     {
         public string File_Id { get; set; } = "";
+
+        public override string ToString()
+        {
+            return this.File_Id;
+        }
     }
     public class MessageTextObject
     {
         public string Value { get; set; } = "";
-        public object? Annotations { get; set; }
+        public string[]? Annotations { get; set; }
+
+        public override string ToString()
+        {
+            return this.Value;
+        }
     }
 }

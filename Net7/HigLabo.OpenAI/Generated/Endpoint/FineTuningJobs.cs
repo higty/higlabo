@@ -6,17 +6,23 @@ namespace HigLabo.OpenAI
     /// List your organization's fine-tuning jobs
     /// <seealso href="https://api.openai.com/v1/fine_tuning/jobs">https://api.openai.com/v1/fine_tuning/jobs</seealso>
     /// </summary>
-    public partial class FineTuningJobsParameter : IRestApiParameter
+    public partial class FineTuningJobsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
+        public IQueryParameter QueryParameter { get; set; } = new FineTuningQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/fine_tuning/jobs";
         }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
+        }
     }
     public partial class FineTuningJobsResponse : RestApiDataResponse<List<FineTuningJob>>
     {
+        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

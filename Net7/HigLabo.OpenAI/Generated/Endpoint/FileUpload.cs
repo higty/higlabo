@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Upload a file that can be used across various endpoints/features. The size of all the files uploaded by one organization can be up to 100 GB.The size of individual files for can be a maximum of 512MB. See the Assistants Tools guide to learn more about the types of files supported. The Fine-tuning API only supports .jsonl files.Please contact us if you need to increase these storage limits.
     /// <seealso href="https://api.openai.com/v1/files">https://api.openai.com/v1/files</seealso>
     /// </summary>
-    public partial class FileUploadParameter : IRestApiParameter, IFormDataParameter, IFileParameter
+    public partial class FileUploadParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         string IFileParameter.ParameterName
@@ -30,12 +30,6 @@ namespace HigLabo.OpenAI
         {
             return $"/files";
         }
-        Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
-        {
-            var d = new Dictionary<string, string>();
-            d["purpose"] = this.Purpose;
-            return d;
-        }
         Stream IFileParameter.GetFileStream()
         {
             if (this.File == null) throw new InvalidOperationException("File property must be set.");
@@ -45,6 +39,19 @@ namespace HigLabo.OpenAI
         {
             ((IFileParameter)this).FileName = fileName;
             this.File = stream;
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	file = this.File,
+            	purpose = this.Purpose,
+            };
+        }
+        Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
+        {
+            var d = new Dictionary<string, string>();
+            d["purpose"] = this.Purpose;
+            return d;
         }
     }
     public partial class FileUploadResponse : FileObjectResponse

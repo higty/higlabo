@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Create a message.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/messages">https://api.openai.com/v1/threads/{thread_id}/messages</seealso>
     /// </summary>
-    public partial class MessageCreateParameter : IRestApiParameter
+    public partial class MessageCreateParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -33,6 +33,15 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/messages";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	role = this.Role,
+            	content = this.Content,
+            	file_ids = this.File_Ids,
+            	metadata = this.Metadata,
+            };
         }
     }
     public partial class MessageCreateResponse : MessageObjectResponse

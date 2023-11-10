@@ -15,7 +15,6 @@ namespace HigLabo.OpenAI
         HttpStatusCode StatusCode { get; }
         Dictionary<String, String> Headers { get; }
         string ResponseBodyText { get; }
-        bool IsThrowException();
     }
     public abstract class RestApiResponse : IRestApiResponse
     {
@@ -80,9 +79,9 @@ namespace HigLabo.OpenAI
             return _ResponseBodyText;
         }
 
-        public bool IsThrowException()
+        public override string ToString()
         {
-            return this._StatusCode != HttpStatusCode.OK;
+            return this._ResponseBodyText;
         }
     }
 }

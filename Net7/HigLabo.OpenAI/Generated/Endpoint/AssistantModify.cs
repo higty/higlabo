@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Modifies an assistant.
     /// <seealso href="https://api.openai.com/v1/assistants/{assistant_id}">https://api.openai.com/v1/assistants/{assistant_id}</seealso>
     /// </summary>
-    public partial class AssistantModifyParameter : IRestApiParameter
+    public partial class AssistantModifyParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -45,6 +45,18 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/assistants/{Assistant_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	model = this.Model,
+            	name = this.Name,
+            	description = this.Description,
+            	instructions = this.Instructions,
+            	tools = this.Tools,
+            	file_ids = this.File_Ids,
+            	metadata = this.Metadata,
+            };
         }
     }
     public partial class AssistantModifyResponse : RestApiResponse

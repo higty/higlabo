@@ -64,21 +64,6 @@ namespace HigLabo.OpenAI.CodeGenerator
             {
                 httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-get']")).First().GetAttribute("innerHTML") ?? "";
             }
-            var contentType = "";
-            foreach (var item in endpointPanel.FindElements(By.CssSelector("[class='hljs-string']")))
-            {
-                var text = item.GetAttribute("textContent").Trim('\"');
-                if (text.StartsWith("Content-Type:"))
-                {
-                    contentType = text.Replace("Content-Type: ", "");
-                    break;
-                }
-            }
-            var hasStreamMethod = false;
-            if (endpointUrl == "https://api.openai.com/v1/chat/completions")
-            {
-                hasStreamMethod = true;
-            }
             var endpointPath = endpointUrl.Replace("https://api.openai.com/v1/", "");
             var cName = this.GetClassName(endpointAnchor);
             if (cName.IsNullOrEmpty())
@@ -112,29 +97,21 @@ namespace HigLabo.OpenAI.CodeGenerator
                     }
                 }
             }
-            if (cName == "FileUpload") { contentType = "multipart/form-data"; }
+            var hasStreamMethod = false;
+            if (endpointUrl == "https://api.openai.com/v1/chat/completions")
+            {
+                hasStreamMethod = true;
+            }
 
             var cParameter = new Class(AccessModifier.Public, cName + "Parameter");
             sc.Namespaces[0].Classes.Add(cParameter);
             cParameter.Comment = endpointPanel.FindElement(By.CssSelector("[class='endpoint-summary']")).GetAttribute("textContent") + Environment.NewLine
                 + $"<seealso href=\"{endpointUrl}\">{endpointUrl}</seealso>";
             cParameter.Modifier.Partial = true;
+            cParameter.BaseClass = new TypeName("RestApiParameter");
             cParameter.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
             cParameter.Properties.Add(this.CreateHttpMethodProperty(httpMethod));
             cParameter.Methods.Add(this.CreateGetApiPathMethod(endpointUrl));
-
-            var sendAsyncMethodName = "SendJsonAsync";
-            Method? mdCreateFormDataParameter = null;
-            if (contentType == "multipart/form-data")
-            {
-                sendAsyncMethodName = "SendFormDataAsync";
-
-                cParameter.ImplementInterfaces.Add(new TypeName("IFormDataParameter"));
-                mdCreateFormDataParameter = new Method(MethodAccessModifier.None, "IFormDataParameter.CreateFormDataParameter");
-                cParameter.Methods.Add(mdCreateFormDataParameter);
-                mdCreateFormDataParameter.ReturnTypeName = new TypeName("Dictionary<string, string>");
-                mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"var d = new Dictionary<string, string>();");
-            }
 
             var cResponse = new Class(AccessModifier.Public, cName + "Response");
             sc.Namespaces[0].Classes.Add(cResponse);
@@ -155,11 +132,48 @@ namespace HigLabo.OpenAI.CodeGenerator
             mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName("ChatCompletionChunk"));
             mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"var p = new {cName}Parameter();");
 
+            var mdCreateFormDataParameter = new Method(MethodAccessModifier.None, "IFormDataParameter.CreateFormDataParameter");
+            mdCreateFormDataParameter.ReturnTypeName = new TypeName("Dictionary<string, string>");
+            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"var d = new Dictionary<string, string>();");
+
+            var hasFileProperty = false;
+            var requestBodyPropertyNameList = new List<string>();
+            var propertyList = new List<Property>();
             foreach (var paramSection in endpointPanel.FindElements(By.CssSelector("div[class='param-section']")))
             {
                 var h3 = paramSection.FindElement(By.CssSelector("h3")).GetAttribute("innerHTML");
+                if (h3 == "Query parameters")
+                {
+                    cParameter.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
+                    if (cName == "Files")
+                    {
+                        var q = new Property("IQueryParameter", "QueryParameter", true);
+                        q.Initializer = "new FileListQueryParameter()";
+                        cParameter.Properties.Add(q);
+                    }
+                    else if (cName == "FineTuningJobs" || cName == "FineTuningJobsEvents")
+                    {
+                        var q = new Property("IQueryParameter", "QueryParameter", true);
+                        q.Initializer = "new FineTuningQueryParameter()";
+                        cParameter.Properties.Add(q);
+
+                        cResponse.Properties.Add(new Property("bool", "Has_More", true));
+                    }
+                    else
+                    {
+                        var q = new Property("IQueryParameter", "QueryParameter", true);
+                        q.Initializer = "new QueryParameter()";
+                        cParameter.Properties.Add(q);
+
+                        cResponse.Properties.Add(new Property("string", "First_Id", true) { Initializer = "\"\"" });
+                        cResponse.Properties.Add(new Property("string", "Last_Id", true) { Initializer = "\"\"" });
+                        cResponse.Properties.Add(new Property("bool", "Has_More", true));
+                    }
+                }
                 if (h3 == "Request body" || h3 == "Path parameters")
                 {
+                    var isPathParameter = h3 == "Path parameters";
+
                     foreach (var paramRow in paramSection.FindElements(By.CssSelector("div[class='param-row']")))
                     {
                         if (paramRow.FindElements(By.CssSelector("[class='param-depr']")).FirstOrDefault()?.GetAttribute("textContent") == "Deprecated") { continue; }
@@ -207,6 +221,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                         }
                         if (pType == "Stream?")
                         {
+                            hasFileProperty = true;
                             if (p.Set != null)
                             {
                                 p.Set.Modifier = AccessModifier.Private;
@@ -242,6 +257,12 @@ namespace HigLabo.OpenAI.CodeGenerator
                         }
                         p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.GetAttribute("textContent") ?? "";
                         cParameter.Properties.Add(p);
+                        propertyList.Add(p);
+
+                        if (isPathParameter == false)
+                        {
+                            requestBodyPropertyNameList.Add(p.Name);
+                        }
 
                         if (pRequired)
                         {
@@ -260,41 +281,69 @@ namespace HigLabo.OpenAI.CodeGenerator
                                 mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
                             }
                         }
-                        if (mdCreateFormDataParameter != null && pType != "Stream?")
+                    }
+                }
+            }
+
+            {
+                var md = new Method(MethodAccessModifier.Public, "GetRequestBody");
+                md.Modifier.Polymophism = MethodPolymophism.Override;
+                md.ReturnTypeName = new TypeName("object");
+                if (requestBodyPropertyNameList.Count == 0)
+                {
+                    md.Body.Add(SourceCodeLanguage.CSharp, "return EmptyParameter;");
+                }
+                else
+                {
+                    md.Body.Add(SourceCodeLanguage.CSharp, "return new {");
+                    foreach (var pName in requestBodyPropertyNameList)
+                    {
+                        md.Body.Add(SourceCodeLanguage.CSharp, $"\t{pName.ToString().ToLower()} = this.{pName},");
+                    }
+                    md.Body.Add(SourceCodeLanguage.CSharp, "};");
+                }
+                cParameter.Methods.Add(md);
+            }
+
+
+            var sendAsyncMethodName = "SendJsonAsync";
+            if (hasFileProperty)
+            {
+                sendAsyncMethodName = "SendFormDataAsync";
+
+                foreach (var item in propertyList)
+                {
+                    var pName = item.Name;
+                    var pType = item.TypeName.Name;
+                    if (hasFileProperty && pType != "Stream?")
+                    {
+                        if (pType.EndsWith("?"))
                         {
-                            if (pType.EndsWith("?"))
+                            if (pType == "string?")
                             {
-                                if (pType == "string?")
-                                {
-                                    mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName};");
-                                }
-                                else
-                                {
-                                    mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName}.Value.ToString();");
-                                }
+                                mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName};");
                             }
                             else
                             {
-                                if (pType == "string")
-                                {
-                                    mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName};");
-                                }
-                                else
-                                {
-                                    mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName}.ToString();");
-                                }
+                                mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName}.Value.ToString();");
+                            }
+                        }
+                        else
+                        {
+                            if (pType == "string")
+                            {
+                                mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName};");
+                            }
+                            else
+                            {
+                                mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName}.ToString();");
                             }
                         }
                     }
                 }
-                if (h3 == "Returns")
-                {
-
-                }
-            }
-            if (mdCreateFormDataParameter != null)
-            {
                 mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"return d;");
+                cParameter.Methods.Add(mdCreateFormDataParameter);
+                cParameter.ImplementInterfaces.Add(new TypeName("IFormDataParameter"));
             }
 
             {
@@ -437,6 +486,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (className == "ChatCompletions" && propertyName == "Messages") { return "List<ChatMessage>"; }
             if (className == "Embeddings" && typeName == "string or array") { return "string"; }
             if (className == "FileUpload" && propertyName == "File") { return "Stream?"; }
+            if (className == "ImagesVariations" && propertyName == "Image") { return "Stream?"; }
             if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
             if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
 

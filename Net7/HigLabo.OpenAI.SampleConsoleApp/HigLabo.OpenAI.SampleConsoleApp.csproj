@@ -6,6 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="File\FinetuneSample.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="File\FinetuneSample.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />

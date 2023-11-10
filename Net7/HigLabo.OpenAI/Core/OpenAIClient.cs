@@ -32,47 +32,59 @@ namespace HigLabo.OpenAI
     {
         public event EventHandler<HttpRequestMessageEventArgs>? PreSendRequest;
 
-        public string ApiUrl { get; set; } = "https://api.openai.com/v1";
+        public ServiceProvider ServiceProvider { get; init; } = ServiceProvider.OpenAI;
+        public string ApiUrl
+        {
+            get
+            {
+                switch (this.ServiceProvider)
+                {
+                    case ServiceProvider.OpenAI: return "https://api.openai.com/v1";
+                    case ServiceProvider.Azure: return $"{this.AzureSettings!.EndpointUrl}/openai/deployments/{this.AzureSettings!.DeploymentId}";
+                    default: throw SwitchStatementNotImplementException.Create(this.ServiceProvider);
+                }
+            }
+        }
         public HttpClient HttpClient { get; set; } = new();
-        public string ApiKey { get; set; } = "";
-        public string Organization { get; set; } = "";
         public IJsonConverter JsonConverter { get; set; } = new OpenAIJsonConverter();
-        public bool UseBetaEndpoint { get; set; } = true;
+
+        public OpenAISettings OpenAISettings { get; init; } = new();
+        public AzureSettings AzureSettings { get; init; } = new();
 
         public OpenAIClient()
         {
         }
         public OpenAIClient(string apiKey)
         {
-            this.SetProperty(null, null, apiKey);
+            this.ServiceProvider = ServiceProvider.OpenAI;
+            this.OpenAISettings.ApiKey = apiKey;
+            this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
         }
-        public OpenAIClient(HttpClient httpClient, string apiKey)
+        public OpenAIClient(OpenAISettings settings)
         {
-            this.SetProperty(httpClient, null, apiKey);
+            this.ServiceProvider = ServiceProvider.OpenAI;
+            this.OpenAISettings = settings;
+            this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
         }
-        public OpenAIClient(HttpClient httpClient, IJsonConverter jsonConverter, string apiKey)
+        public OpenAIClient(OpenAISettings settings, HttpClient httpClient)
         {
-            this.SetProperty(httpClient, jsonConverter, apiKey);
+            this.ServiceProvider = ServiceProvider.OpenAI;
+            this.OpenAISettings = settings;
+            this.HttpClient = httpClient;
+        }
+        public OpenAIClient(AzureSettings setting)
+        {
+            this.ServiceProvider = ServiceProvider.Azure;
+            this.AzureSettings = setting;
+            this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
+        }
+        public OpenAIClient(AzureSettings setting, HttpClient httpClient)
+        {
+            this.ServiceProvider = ServiceProvider.Azure;
+            this.AzureSettings = setting;
+            this.HttpClient = httpClient;
         }
 
-        private void SetProperty(HttpClient? httpClient, IJsonConverter? jsonConverter, string apiKey)
-        {
-            if (httpClient == null)
-            {
-                this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
-            }
-            else
-            {
-                this.HttpClient = httpClient;
-            }
-            if (jsonConverter != null)
-            {
-                this.JsonConverter = jsonConverter;
-            }
-            this.ApiKey = apiKey;
-
-        }
- 
         private HttpRequestMessage CreateRequestMessage<TParameter>(TParameter parameter)
                  where TParameter : IRestApiParameter
         {
@@ -84,10 +96,46 @@ namespace HigLabo.OpenAI
                 _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
             };
             var apiPath = p.GetApiPath();
-            var req = new HttpRequestMessage(httpMethod, this.ApiUrl + apiPath);
-            req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.ApiKey);
+            var q = p as IQueryParameterProperty;
+            if (q != null)
+            {
+                var queryString = q.QueryParameter.GetQueryString();
+                if (queryString.IsNullOrEmpty() == false)
+                {
+                    apiPath += "?" + queryString;
+                }
+            }
+            if (this.ServiceProvider == ServiceProvider.Azure)
+            {
+                if (apiPath.Contains("?"))
+                {
+                    apiPath += "&";
+                }
+                else
+                {
+                    apiPath += "?";
+                }
+                apiPath += $"api-version={this.AzureSettings!.ApiVersion}";
+            }
 
-            if (this.UseBetaEndpoint)
+            var req = new HttpRequestMessage(httpMethod, this.ApiUrl + apiPath);
+            switch (this.ServiceProvider)
+            {
+                case ServiceProvider.OpenAI:
+                    req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.OpenAISettings.ApiKey);
+                    break;
+                case ServiceProvider.Azure:
+                    req.Headers.TryAddWithoutValidation("API-Key", this.AzureSettings.ApiKey);
+                    break;
+                default:
+                    break;
+            }
+            if (this.OpenAISettings.Organization.IsNullOrEmpty() == false)
+            {
+                req.Headers.TryAddWithoutValidation("OpenAI-Organization", this.OpenAISettings.Organization);
+            }
+
+            if (this.OpenAISettings.UseBetaEndpoint)
             {
                 if (apiPath.StartsWith("/assistants", StringComparison.OrdinalIgnoreCase) ||
                     apiPath.StartsWith("/threads", StringComparison.OrdinalIgnoreCase))
@@ -104,39 +152,43 @@ namespace HigLabo.OpenAI
             return res;
         }
         private async Task<TResponse> CreateResponse<TResponse>(object parameter, HttpRequestMessage request, string requestBodyText, HttpResponseMessage response)
-                 where TResponse : RestApiResponse
+                 where TResponse : RestApiResponse, new()
         {
             var res = response;
             var bodyText = await res.Content.ReadAsStringAsync();
             if (res.IsSuccessStatusCode)
             {
-                var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
+                TResponse o = parameter switch
+                {
+                    FileContentGetParameter => new TResponse(),
+                    _ => this.JsonConverter.DeserializeObject<TResponse>(bodyText),
+                };
                 o.SetProperty(parameter, requestBodyText, request, res, bodyText);
                 return o;
             }
             else
             {
                 var errorResponse = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(bodyText);
-                throw new OpenAIServerException(bodyText, errorResponse.Error);
+                throw new OpenAIServerException(parameter, request, requestBodyText, response, bodyText, errorResponse.Error);
             }
         }
 
         public async ValueTask<TResponse> SendJsonAsync<TParameter, TResponse>(TParameter parameter)
-            where TParameter : IRestApiParameter
-            where TResponse : RestApiResponse
+            where TParameter : RestApiParameter, IRestApiParameter
+            where TResponse : RestApiResponse, new()
         {
             return await this.SendJsonAsync<TParameter, TResponse>(parameter, CancellationToken.None);
         }
         public async ValueTask<TResponse> SendJsonAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
-            where TParameter: IRestApiParameter
-            where TResponse: RestApiResponse
+            where TParameter: RestApiParameter, IRestApiParameter
+            where TResponse: RestApiResponse, new()
         {
             var p = parameter as IRestApiParameter;
             var req = this.CreateRequestMessage(parameter);
             var requestBodyText = "";
             if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false)
             {
-                requestBodyText = this.JsonConverter.SerializeObject(parameter);
+                requestBodyText = this.JsonConverter.SerializeObject(parameter.GetRequestBody());
                 req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
             }
             Debug.WriteLine(requestBodyText);
@@ -144,7 +196,7 @@ namespace HigLabo.OpenAI
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
         }
         public async ValueTask<TResponse> SendFormDataAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
-            where TParameter : IRestApiParameter, IFormDataParameter
+            where TParameter : RestApiParameter, IRestApiParameter, IFormDataParameter
             where TResponse : RestApiResponse
         {
             var p = parameter as IRestApiParameter;
@@ -179,7 +231,7 @@ namespace HigLabo.OpenAI
         }
 
         public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter)
-            where TParameter : IRestApiParameter
+            where TParameter : RestApiParameter, IRestApiParameter
         {
             await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
             {
@@ -187,7 +239,7 @@ namespace HigLabo.OpenAI
             }
         }
         public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-            where TParameter : IRestApiParameter
+            where TParameter :RestApiParameter, IRestApiParameter
         {
             var p = parameter as IRestApiParameter;
             var req= this.CreateRequestMessage(parameter);
@@ -195,7 +247,7 @@ namespace HigLabo.OpenAI
             var requestBodyText = "";
             if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
             {
-                requestBodyText = JsonConverter.SerializeObject(parameter);
+                requestBodyText = JsonConverter.SerializeObject(parameter.GetRequestBody());
             }
             req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
 
@@ -204,9 +256,9 @@ namespace HigLabo.OpenAI
 
             if (res.IsSuccessStatusCode == false)
             {
-                var json = await res.Content.ReadAsStringAsync();
-                var eRes = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(json);
-                throw new OpenAIServerException(json, eRes.Error);
+                var responseBodyText = await res.Content.ReadAsStringAsync();
+                var errorRes = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
+                throw new OpenAIServerException(parameter, req, requestBodyText, res, responseBodyText, errorRes.Error);
             }
 
             var sseResponse = new ServerSentEventResponse();

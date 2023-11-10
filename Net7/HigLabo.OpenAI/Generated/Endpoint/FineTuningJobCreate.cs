@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Creates a job that fine-tunes a specified model from a given dataset.Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.Learn more about fine-tuning
     /// <seealso href="https://api.openai.com/v1/fine_tuning/jobs">https://api.openai.com/v1/fine_tuning/jobs</seealso>
     /// </summary>
-    public partial class FineTuningJobCreateParameter : IRestApiParameter
+    public partial class FineTuningJobCreateParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -37,6 +37,16 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/fine_tuning/jobs";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	model = this.Model,
+            	training_file = this.Training_File,
+            	hyperparameters = this.Hyperparameters,
+            	suffix = this.Suffix,
+            	validation_file = this.Validation_File,
+            };
         }
     }
     public partial class FineTuningJobCreateResponse : RestApiDataResponse<FineTuningJob>

@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Get info about a fine-tuning job.Learn more about fine-tuning
     /// <seealso href="https://api.openai.com/v1/fine_tuning/jobs/{fine_tuning_job_id}">https://api.openai.com/v1/fine_tuning/jobs/{fine_tuning_job_id}</seealso>
     /// </summary>
-    public partial class FineTuningJobRetrieveParameter : IRestApiParameter
+    public partial class FineTuningJobRetrieveParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,6 +17,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/fine_tuning/jobs/{Fine_Tuning_Job_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class FineTuningJobRetrieveResponse : RestApiResponse

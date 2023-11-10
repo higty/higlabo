@@ -20,13 +20,22 @@ namespace HigLabo.OpenAI
     }
     public class OpenAIServerException : Exception
     {
-        public string RawJson { get; set; } = "";
+        public object Parameter { get; set; }
+        public HttpRequestMessage Request { get; set; }
+        public string RequestBodyText { get; set; } 
+        public HttpResponseMessage Response { get; set; }
+        public string ResponseBodyText { get; set; } = "";
         public OpenAIServerError Error { get; set; }
 
-        public OpenAIServerException(string rawJson, OpenAIServerError error)
+        public OpenAIServerException(object parameter, HttpRequestMessage request, string requestBodyText
+            , HttpResponseMessage response, string responseBodyText, OpenAIServerError error)
             : base(error.Message)
         {
-            this.RawJson = rawJson;
+            this.Parameter = parameter;
+            this.Request = request;
+            this.RequestBodyText = requestBodyText;
+            this.Response = response;
+            this.ResponseBodyText = responseBodyText;
             this.Error = error;
         }
     }

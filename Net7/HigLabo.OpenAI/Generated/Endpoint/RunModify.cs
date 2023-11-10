@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Modifies a run.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}">https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}</seealso>
     /// </summary>
-    public partial class RunModifyParameter : IRestApiParameter
+    public partial class RunModifyParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -25,6 +25,12 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/runs/{Run_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	metadata = this.Metadata,
+            };
         }
     }
     public partial class RunModifyResponse : RunObjectResponse

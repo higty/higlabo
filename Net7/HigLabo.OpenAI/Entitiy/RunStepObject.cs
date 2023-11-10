@@ -14,20 +14,42 @@ namespace HigLabo.OpenAI
         {
             public string Type { get; set; } = "";
             public MessageCreation? Message_Creation { get; set; }
+            public List<ToolCal>? Tool_Calls { get; set; }
+
+            public override string ToString()
+            {
+                return $"{this.Type}";
+            }
         }
         public class MessageCreation
         {
             public string Message_Id { get; set; } = "";
+
+            public override string ToString()
+            {
+                return this.Message_Id;
+            }
         }
         public class ToolCal
         {
             public string Id { get; set; } = "";
             public string Type { get; set; } = "";
             public CodeInterpreter? Code_Interpreter { get; set; }
+
+            public override string ToString()
+            {
+                return this.Id;
+            }
         }
         public class CodeInterpreter
         {
             public string Input { get; set; } = "";
+            public List<CodeInterpreterImageOutput>? Outputs { get; set; }
+
+            public override string ToString()
+            {
+                return this.Input;
+            }
         }
         public class CodeInterpreterOutput
         {
@@ -38,29 +60,54 @@ namespace HigLabo.OpenAI
         public class CodeInterpreterImageOutput
         {
             public string File_Id { get; set; } = "";
+
+            public override string ToString()
+            {
+                return this.File_Id;
+            }
         }
         public class RunStepRetrievalToolCall
         {
             public string Id { get; set; } = "";
             public string Type { get; set; } = "";
             public Object? Retrieval { get; set; }
+
+            public override string ToString()
+            {
+                return this.Id;
+            }
         }
         public class RunStepFunctionCall
         {
             public string Id { get; set; } = "";
             public string Type { get; set; } = "";
             public RunStepFunction? Function { get; set; }
+
+            public override string ToString()
+            {
+                return this.Id;
+            }
         }
         public class RunStepFunction
         {
             public string Name { get; set; } = "";
             public string Arguments { get; set; } = "";
             public string? Output { get; set; }
+
+            public override string ToString()
+            {
+                return $"{this.Name} {this.Arguments}";
+            }
         }
         public class RunStepError
         {
             public string Code { get; set; } = "";
             public string Message { get; set; } = "";
+
+            public override string ToString()
+            {
+                return $"{this.Code} {this.Message}";
+            }
         }
         public string Id { get; set; } = "";
         public string Object { get; set; } = "";
@@ -77,7 +124,7 @@ namespace HigLabo.OpenAI
         public string Run_Id { get; set; } = "";
         public string Type { get; set; } = "";
         public string Status { get; set; } = "";
-        public StepDetail? Step_details { get; set; }
+        public StepDetail? Step_Details { get; set; }
         public RunStepError? Last_Error { get; set; }
 
         public Int64 Expires_At { get; set; }
@@ -113,6 +160,11 @@ namespace HigLabo.OpenAI
             }
         }
         public string? MetaData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Status} {this.Step_Details?.ToString()}";
+        }
     }
     public class RunStepObjectResponse: RestApiResponse
     {
@@ -130,7 +182,7 @@ namespace HigLabo.OpenAI
         public string Run_Id { get; set; } = "";
         public string Type { get; set; } = "";
         public string Status { get; set; } = "";
-        public StepDetail? Step_details { get; set; }
+        public StepDetail? Step_Details { get; set; }
         public RunStepError? Last_Error { get; set; }
 
         public Int64 Expires_At { get; set; }
@@ -166,5 +218,10 @@ namespace HigLabo.OpenAI
             }
         }
         public string? MetaData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Status} {this.Step_Details?.ToString()}";
+        }
     }
 }

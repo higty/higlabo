@@ -66,7 +66,7 @@ namespace HigLabo.OpenAI
         public string Instructions { get; set; } = "";
         public List<ToolObject> Tools { get; set; } = new();
         public List<string>? File_Ids { get; set; }
-        public string MetaData { get; set; } = "";
+        public object? MetaData { get; set; } 
     }
     public class RunObjectResponse: RestApiResponse
     {
@@ -127,6 +127,6 @@ namespace HigLabo.OpenAI
         public string Instructions { get; set; } = "";
         public List<ToolObject> Tools { get; set; } = new();
         public List<string>? File_Ids { get; set; }
-        public string MetaData { get; set; } = "";
+        public object? MetaData { get; set; }
     }
 }

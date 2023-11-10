@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Classifies if text violates OpenAI's Content Policy
     /// <seealso href="https://api.openai.com/v1/moderations">https://api.openai.com/v1/moderations</seealso>
     /// </summary>
-    public partial class ModerationCreateParameter : IRestApiParameter
+    public partial class ModerationCreateParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -21,6 +21,13 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/moderations";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	input = this.Input,
+            	model = this.Model,
+            };
         }
     }
     public partial class ModerationCreateResponse : ModerationObjectResponse

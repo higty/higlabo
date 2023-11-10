@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}">https://api.openai.com/v1/threads/{thread_id}</seealso>
     /// </summary>
-    public partial class ThreadRetrieveParameter : IRestApiParameter
+    public partial class ThreadRetrieveParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,6 +17,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class ThreadRetrieveResponse : ThreadObjectResponse

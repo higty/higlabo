@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Returns a list of run steps belonging to a run.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/steps">https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/steps</seealso>
     /// </summary>
-    public partial class RunStepsParameter : IRestApiParameter
+    public partial class RunStepsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,14 +17,22 @@ namespace HigLabo.OpenAI
         /// The ID of the run the run steps belong to.
         /// </summary>
         public string Run_Id { get; set; } = "";
+        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/runs/{Run_Id}/steps";
         }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
+        }
     }
     public partial class RunStepsResponse : RestApiDataResponse<List<RunStepObject>>
     {
+        public string First_Id { get; set; } = "";
+        public string Last_Id { get; set; } = "";
+        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

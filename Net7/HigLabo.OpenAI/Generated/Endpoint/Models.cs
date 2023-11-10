@@ -6,13 +6,17 @@ namespace HigLabo.OpenAI
     /// Lists the currently available models, and provides basic information about each one such as the owner and availability.
     /// <seealso href="https://api.openai.com/v1/models">https://api.openai.com/v1/models</seealso>
     /// </summary>
-    public partial class ModelsParameter : IRestApiParameter
+    public partial class ModelsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/models";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class ModelsResponse : RestApiDataResponse<List<ModelObject>>

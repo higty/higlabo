@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a message file.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}">https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}</seealso>
     /// </summary>
-    public partial class MessageFileRetrieveParameter : IRestApiParameter
+    public partial class MessageFileRetrieveParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -25,6 +25,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/messages/{Message_Id}/files/{File_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class MessageFileRetrieveResponse : RestApiResponse

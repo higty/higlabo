@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Create an assistant file by attaching a File to an assistant.
     /// <seealso href="https://api.openai.com/v1/assistants/{assistant_id}/files">https://api.openai.com/v1/assistants/{assistant_id}/files</seealso>
     /// </summary>
-    public partial class AssistantFileCreateParameter : IRestApiParameter
+    public partial class AssistantFileCreateParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -21,6 +21,12 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/assistants/{Assistant_Id}/files";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	file_id = this.File_Id,
+            };
         }
     }
     public partial class AssistantFileCreateResponse : AssistantFileObjectResponse

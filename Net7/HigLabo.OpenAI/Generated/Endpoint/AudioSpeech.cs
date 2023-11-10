@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Generates audio from the input text.
     /// <seealso href="https://api.openai.com/v1/audio/speech">https://api.openai.com/v1/audio/speech</seealso>
     /// </summary>
-    public partial class AudioSpeechParameter : IRestApiParameter
+    public partial class AudioSpeechParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -33,6 +33,16 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/audio/speech";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	model = this.Model,
+            	input = this.Input,
+            	voice = this.Voice,
+            	response_format = this.Response_Format,
+            	speed = this.Speed,
+            };
         }
     }
     public partial class AudioSpeechResponse : RestApiResponse

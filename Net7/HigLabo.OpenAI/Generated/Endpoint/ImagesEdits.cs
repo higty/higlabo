@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Creates an edited or extended image given an original image and a prompt.
     /// <seealso href="https://api.openai.com/v1/images/edits">https://api.openai.com/v1/images/edits</seealso>
     /// </summary>
-    public partial class ImagesEditsParameter : IRestApiParameter
+    public partial class ImagesEditsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -45,6 +45,19 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/images/edits";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	image = this.Image,
+            	prompt = this.Prompt,
+            	mask = this.Mask,
+            	model = this.Model,
+            	n = this.N,
+            	size = this.Size,
+            	response_format = this.Response_Format,
+            	user = this.User,
+            };
         }
     }
     public partial class ImagesEditsResponse : RestApiDataResponse<List<ImageObject>>

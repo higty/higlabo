@@ -14,10 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Generated\Endpoint\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
     <ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
   </ItemGroup>

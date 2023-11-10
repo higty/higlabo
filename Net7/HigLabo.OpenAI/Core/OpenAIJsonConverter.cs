@@ -34,6 +34,9 @@ namespace HigLabo.OpenAI
             {
                 Debugger.Break();
                 Debug.Write(ex.ToString());
+#if !DEBUG
+                throw;
+#endif
             }
             return default(T)!;
         }

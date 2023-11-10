@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
     /// <seealso href="https://api.openai.com/v1/models/{model}">https://api.openai.com/v1/models/{model}</seealso>
     /// </summary>
-    public partial class ModelRetrieveParameter : IRestApiParameter
+    public partial class ModelRetrieveParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
@@ -17,6 +17,10 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/models/{Model}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
         }
     }
     public partial class ModelRetrieveResponse : ModelObjectResponse

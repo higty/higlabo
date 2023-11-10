@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
-    public class ChatCompletionChunkProcessor
+    public class FunctionCallResult
+    {
+        public string Name { get; set; } = "";
+        public string Arguments { get; set; } = "";
+    }
+    public class FunctionCallingProcessor
     {
         public List<ChatCompletionChunk> ChunkList { get; init; } = new();
 
@@ -15,9 +20,9 @@ namespace HigLabo.OpenAI
         {
             this.ChunkList.Add(chunk);
         }
-        public ChatCompletionChunk.FunctionCall? GetFunctionCall()
+        public FunctionCallResult? GetFunctionCall()
         {
-            var f = new ChatCompletionChunk.FunctionCall();
+            var f = new FunctionCallResult();
             var functionCallExists = false;
 
             var sb = new StringBuilder();

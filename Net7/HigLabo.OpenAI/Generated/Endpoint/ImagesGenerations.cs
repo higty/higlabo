@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Creates an image given a prompt.
     /// <seealso href="https://api.openai.com/v1/images/generations">https://api.openai.com/v1/images/generations</seealso>
     /// </summary>
-    public partial class ImagesGenerationsParameter : IRestApiParameter
+    public partial class ImagesGenerationsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -45,6 +45,19 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/images/generations";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	prompt = this.Prompt,
+            	model = this.Model,
+            	n = this.N,
+            	quality = this.Quality,
+            	response_format = this.Response_Format,
+            	size = this.Size,
+            	style = this.Style,
+            	user = this.User,
+            };
         }
     }
     public partial class ImagesGenerationsResponse : RestApiDataResponse<List<ImageObject>>

@@ -6,7 +6,7 @@ namespace HigLabo.OpenAI
     /// Create a run.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs">https://api.openai.com/v1/threads/{thread_id}/runs</seealso>
     /// </summary>
-    public partial class RunCreateParameter : IRestApiParameter
+    public partial class RunCreateParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -37,6 +37,16 @@ namespace HigLabo.OpenAI
         string IRestApiParameter.GetApiPath()
         {
             return $"/threads/{Thread_Id}/runs";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	assistant_id = this.Assistant_Id,
+            	model = this.Model,
+            	instructions = this.Instructions,
+            	tools = this.Tools,
+            	metadata = this.Metadata,
+            };
         }
     }
     public partial class RunCreateResponse : RunObjectResponse
