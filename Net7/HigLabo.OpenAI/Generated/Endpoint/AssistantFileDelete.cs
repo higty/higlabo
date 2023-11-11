@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class AssistantFileDeleteParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly AssistantFileDeleteParameter Empty = new AssistantFileDeleteParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
         /// The ID of the assistant that the file belongs to.

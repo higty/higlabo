@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class ThreadDeleteParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly ThreadDeleteParameter Empty = new ThreadDeleteParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
         /// The ID of the thread to delete.

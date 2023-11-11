@@ -59,7 +59,7 @@ namespace HigLabo.OpenAI
             };
         }
     }
-    public partial class AssistantModifyResponse : RestApiResponse
+    public partial class AssistantModifyResponse : AssistantObjectResponse
     {
     }
     public partial class OpenAIClient

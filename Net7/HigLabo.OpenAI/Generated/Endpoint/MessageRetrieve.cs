@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class MessageRetrieveParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly MessageRetrieveParameter Empty = new MessageRetrieveParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the thread to which this message belongs.

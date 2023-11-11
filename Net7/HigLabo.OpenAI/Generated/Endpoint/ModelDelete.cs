@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class ModelDeleteParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly ModelDeleteParameter Empty = new ModelDeleteParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
         /// The model to delete

@@ -14,8 +14,25 @@ namespace HigLabo.OpenAI
         {
             public string Type { get; set; } = "";
             public MessageCreation? Message_Creation { get; set; }
-            public List<ToolCal>? Tool_Calls { get; set; }
+            public List<ToolCal> Tool_Calls { get; set; } = new();
 
+            public string GetDescription()
+            {
+                var sb = new StringBuilder();
+                foreach (var toolCall in this.Tool_Calls)
+                {
+                    sb.AppendLine(toolCall.Type);
+                    if (toolCall.Code_Interpreter != null)
+                    {
+                        sb.AppendLine(toolCall.Code_Interpreter.Input);
+                        foreach (var output in toolCall.Code_Interpreter.Outputs)
+                        {
+                            sb.AppendLine(output.Logs);
+                        }
+                    }
+                }
+                return sb.ToString();
+            }
             public override string ToString()
             {
                 return $"{this.Type}";
@@ -44,7 +61,7 @@ namespace HigLabo.OpenAI
         public class CodeInterpreter
         {
             public string Input { get; set; } = "";
-            public List<CodeInterpreterImageOutput>? Outputs { get; set; }
+            public List<CodeInterpreterImageOutput> Outputs { get; set; } = new();
 
             public override string ToString()
             {
@@ -60,6 +77,7 @@ namespace HigLabo.OpenAI
         public class CodeInterpreterImageOutput
         {
             public string File_Id { get; set; } = "";
+            public string Logs { get; set; } = "";
 
             public override string ToString()
             {

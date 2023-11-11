@@ -105,7 +105,7 @@ namespace HigLabo.OpenAI
             };
         }
     }
-    public partial class ChatCompletionsResponse : RestApiResponse
+    public partial class ChatCompletionsResponse : ChatCompletionObjectResponse
     {
     }
     public partial class OpenAIClient

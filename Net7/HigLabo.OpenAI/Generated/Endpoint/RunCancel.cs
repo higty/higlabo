@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class RunCancelParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly RunCancelParameter Empty = new RunCancelParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
         /// The ID of the thread to which this run belongs.

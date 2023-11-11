@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class RunRetrieveParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly RunRetrieveParameter Empty = new RunRetrieveParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the thread that was run.

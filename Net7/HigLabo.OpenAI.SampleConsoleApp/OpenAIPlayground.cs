@@ -14,11 +14,12 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await Runs();
         }
         private void SetOpenAISetting()
         {
-            OpenAIClient = new OpenAIClient(File.ReadAllText("C:\\Dev\\ChatGPTApiKey.txt"));
+            var apiKey = File.ReadAllText("C:\\Dev\\ChatGPTApiKey.txt");
+            OpenAIClient = new OpenAIClient(apiKey);
         }
         private void SetAzureSetting()
         {
@@ -55,6 +56,28 @@ namespace HigLabo.OpenAI
                 , "text-embedding-ada-002");
             Console.WriteLine(res);
         }
+        private async ValueTask ChatCompletion()
+        {
+            var cl = OpenAIClient;
+
+            var p = new ChatCompletionsParameter();
+            var theme = "How to enjoy coffee";
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User
+                , $"Can you provide me with some ideas for blog posts about {theme}?"));
+            p.Model = "gpt-3.5-turbo";
+            var res = await cl.ChatCompletionsAsync(p);
+            foreach (var choice in res.Choices)
+            {
+                Console.Write(choice.Message.Content);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            var iRes = res as IRestApiResponse;
+            Console.WriteLine(iRes.RequestBodyText);
+            Console.WriteLine();
+            Console.WriteLine(iRes.ResponseBodyText);
+        }
         private async ValueTask ChatCompletionStream()
         {
             var cl = OpenAIClient;
@@ -75,7 +98,8 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new ChatCompletionsParameter();
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"Can you provide me famous location list of USA for trip? Please return parameter as JSON for function calling."));
+            //ChatGPT can correct Newyork,Sanflansisco to New york and San Flancisco.
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of these locations. Newyork, Sanflansisco, Paris, Tokyo."));
             p.Model = "gpt-3.5-turbo";
 
             var tool = new ToolObject("function");
@@ -101,7 +125,7 @@ namespace HigLabo.OpenAI
             p.Tools = new List<ToolObject>();
             p.Tools.Add(tool);
 
-            var processor = new FunctionCallingProcessor();
+            var processor = new ChatCompletionFunctionCallingProcessor();
             //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
             p.Stream = true;
             await foreach (var chunk in cl.GetStreamAsync(p))
@@ -136,16 +160,15 @@ namespace HigLabo.OpenAI
                 Console.WriteLine($"{item.Purpose} {item.FileName}");
             }
         }
-        private async ValueTask<string> FileUpload_Assistant()
+        private async ValueTask FileUpload_Assistant()
         {
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.SetFile("my_file.pdf", File.ReadAllBytes("D:\\Data\\my_file.pdf"));
+            p.SetFile("092332_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\092332_hanrei.pdf"));
             p.Purpose = "assistants";
             var res = await cl.FileUploadAsync(p);
-
-            return res.Id;
+            Console.WriteLine(res);
         }
         private async ValueTask FileUpload_Finetune()
         {
@@ -203,7 +226,7 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
             //Test terrible text for moderation api.
-            var res = await cl.ModerationCreateAsync("We must kill all activist who attack museum.");
+            var res = await cl.ModerationCreateAsync("We must kill all activist who attack museum. I will kill them and shoot myself after that.");
             Console.WriteLine(res);
         }
         private async ValueTask AssistantCreate()
@@ -258,6 +281,27 @@ namespace HigLabo.OpenAI
                 }
             }
         }
+        private async ValueTask AssistantModify()
+        {
+            var cl = OpenAIClient;
+
+            var res = await cl.AssistantsAsync();
+            var id = "";
+            foreach (var item in res.Data)
+            {
+                Console.WriteLine(item);
+                id = item.Id;
+                break;
+            }
+
+            var p = new AssistantModifyParameter();
+            p.Assistant_Id = id;
+            p.Metadata = new {
+                MyKey1 = "MyValue1",
+                CreateTime = DateTimeOffset.Now,
+            };
+            var res2 = await cl.AssistantModifyAsync(p);
+        }
         private async ValueTask Runs()
         {
             var cl = OpenAIClient;
@@ -269,7 +313,10 @@ namespace HigLabo.OpenAI
                 var res1 = await cl.RunStepsAsync(threadId, item.Id);
                 foreach (var step in res1.Data)
                 {
-                    Console.WriteLine(step.Step_Details);
+                    if (step.Step_Details != null)
+                    {
+                        Console.WriteLine(step.Step_Details.GetDescription());
+                    }
                 }
             }
         }

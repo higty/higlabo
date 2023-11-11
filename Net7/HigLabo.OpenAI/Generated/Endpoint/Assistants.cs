@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class AssistantsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
+        internal static readonly AssistantsParameter Empty = new AssistantsParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         IQueryParameter IQueryParameterProperty.QueryParameter
         {
@@ -37,13 +39,11 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<AssistantsResponse> AssistantsAsync()
         {
-            var p = new AssistantsParameter();
-            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(AssistantsParameter.Empty, CancellationToken.None);
         }
         public async ValueTask<AssistantsResponse> AssistantsAsync(CancellationToken cancellationToken)
         {
-            var p = new AssistantsParameter();
-            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(p, cancellationToken);
+            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(AssistantsParameter.Empty, cancellationToken);
         }
         public async ValueTask<AssistantsResponse> AssistantsAsync(AssistantsParameter parameter)
         {

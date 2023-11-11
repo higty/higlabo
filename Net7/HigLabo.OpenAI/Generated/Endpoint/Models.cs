@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class ModelsParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly ModelsParameter Empty = new ModelsParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
 
         string IRestApiParameter.GetApiPath()
@@ -26,13 +28,11 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<ModelsResponse> ModelsAsync()
         {
-            var p = new ModelsParameter();
-            return await this.SendJsonAsync<ModelsParameter, ModelsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ModelsParameter, ModelsResponse>(ModelsParameter.Empty, CancellationToken.None);
         }
         public async ValueTask<ModelsResponse> ModelsAsync(CancellationToken cancellationToken)
         {
-            var p = new ModelsParameter();
-            return await this.SendJsonAsync<ModelsParameter, ModelsResponse>(p, cancellationToken);
+            return await this.SendJsonAsync<ModelsParameter, ModelsResponse>(ModelsParameter.Empty, cancellationToken);
         }
         public async ValueTask<ModelsResponse> ModelsAsync(ModelsParameter parameter)
         {

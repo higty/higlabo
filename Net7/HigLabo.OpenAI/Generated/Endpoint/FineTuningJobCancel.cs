@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class FineTuningJobCancelParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly FineTuningJobCancelParameter Empty = new FineTuningJobCancelParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
         /// The ID of the fine-tuning job to cancel.

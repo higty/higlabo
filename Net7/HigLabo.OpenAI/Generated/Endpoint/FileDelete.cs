@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class FileDeleteParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly FileDeleteParameter Empty = new FileDeleteParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
         /// The ID of the file to use for this request.

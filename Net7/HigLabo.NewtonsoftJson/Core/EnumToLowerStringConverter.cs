@@ -1,14 +1,17 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HigLabo.Core
 {
-    public class EnumToLowerStringConverter : JsonConverter
+    public class EnumToLowerStringConverter : StringEnumConverter
     {
         public EnumToLowerStringConverter()
         {
@@ -16,8 +19,7 @@ namespace HigLabo.Core
 
         public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
-            if (reader.Value == null) { return null; }
-            return ((Enum)reader.Value).ToStringFromEnum();
+            return base.ReadJson(reader, objectType, existingValue, serializer); 
         }
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {

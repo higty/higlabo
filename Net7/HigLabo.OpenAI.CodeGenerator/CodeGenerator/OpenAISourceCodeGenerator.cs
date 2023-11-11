@@ -353,18 +353,46 @@ namespace HigLabo.OpenAI.CodeGenerator
                 cParameter.ImplementInterfaces.Add(new TypeName("IFormDataParameter"));
             }
 
+            if (requestBodyPropertyNameList.Count == 0)
+            {
+                var f = new Field($"{cName}Parameter", "Empty", $"new {cName}Parameter()");
+                f.Modifier.AccessModifier = AccessModifier.Internal;
+                f.Modifier.Static = true;
+                f.Modifier.ReadOnly = true;
+                cParameter.Fields.Add(f);
+            }
             {
                 var mdAsync0 = mdAsync.Copy();
-                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, CancellationToken.None);");
+                if (propertyList.Count == 0)
+                {
+                    mdAsync0.Body.Clear();
+                    mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>({cName}Parameter.Empty, CancellationToken.None);");
+                }
+                else
+                {
+                    mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, CancellationToken.None);");
+                }
                 cClient.Methods.Add(mdAsync0);
             }
             {
                 mdAsync.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
-                if (hasStreamMethod)
+                if (propertyList.Count == 0)
                 {
-                    mdAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = null;");
+                    mdAsync.Body.Clear();
+                    if (hasStreamMethod)
+                    {
+                        mdAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = null;");
+                    }
+                    mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>({cName}Parameter.Empty, cancellationToken);");
                 }
-                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, cancellationToken);");
+                else
+                {
+                    if (hasStreamMethod)
+                    {
+                        mdAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = null;");
+                    }
+                    mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, cancellationToken);");
+                }
                 cClient.Methods.Add(mdAsync);
             }
             {
@@ -446,45 +474,45 @@ namespace HigLabo.OpenAI.CodeGenerator
         private string GetClassName(string endpointAnchor)
         {
             var cName = "";
-            if (endpointAnchor == "Create fine-tuning job") { cName = "FineTuningJobCreate"; }
-            if (endpointAnchor == "List fine-tuning jobs") { cName = "FineTuningJobs"; }
-            if (endpointAnchor == "Retrieve fine-tuning job") { cName = "FineTuningJobRetrieve"; }
-            if (endpointAnchor == "Cancel fine-tuning") { cName = "FineTuningJobCancel"; }
-            if (endpointAnchor == "List fine-tuning events") { cName = "FineTuningJobEvents"; }
-            if (endpointAnchor == "Upload file") { cName = "FileUpload"; }
-            if (endpointAnchor == "Delete file") { cName = "FileDelete"; }
-            if (endpointAnchor == "Retrieve file") { cName = "FileRetrieve"; }
-            if (endpointAnchor == "Retrieve file content") { cName = "FileContentGet"; }
-            if (endpointAnchor == "Retrieve model") { cName = "ModelRetrieve"; }
-            if (endpointAnchor == "Delete fine-tune model") { cName = "ModelDelete"; }
-            if (endpointAnchor == "Create moderation") { cName = "ModerationCreate"; }
-            if (endpointAnchor == "Create assistantBeta") { cName = "AssistantCreate"; }
-            if (endpointAnchor == "Retrieve assistantBeta") { cName = "AssistantRetrieve"; }
-            if (endpointAnchor == "Modify assistantBeta") { cName = "AssistantModify"; }
-            if (endpointAnchor == "Delete assistantBeta") { cName = "AssistantDelete"; }
-            if (endpointAnchor == "Create assistant fileBeta") { cName = "AssistantFileCreate"; }
-            if (endpointAnchor == "Retrieve assistant fileBeta") { cName = "AssistantFileRetrieve"; }
-            if (endpointAnchor == "Delete assistant fileBeta") { cName = "AssistantFileDelete"; }
-            if (endpointAnchor == "List assistant filesBeta") { cName = "AssistantFiles"; }
-            if (endpointAnchor == "Create threadBeta") { cName = "ThreadCreate"; }
-            if (endpointAnchor == "Retrieve threadBeta") { cName = "ThreadRetrieve"; }
-            if (endpointAnchor == "Modify threadBeta") { cName = "ThreadModify"; }
-            if (endpointAnchor == "Delete threadBeta") { cName = "ThreadDelete"; }
-            if (endpointAnchor == "Create messageBeta") { cName = "MessageCreate"; }
-            if (endpointAnchor == "Retrieve messageBeta") { cName = "MessageRetrieve"; }
-            if (endpointAnchor == "Modify messageBeta") { cName = "MessageModify"; }
-            if (endpointAnchor == "List messagesBeta") { cName = "Messages"; }
-            if (endpointAnchor == "Create runBeta") { cName = "RunCreate"; }
-            if (endpointAnchor == "Retrieve runBeta") { cName = "RunRetrieve"; }
-            if (endpointAnchor == "Modify runBeta") { cName = "RunModify"; }
-            if (endpointAnchor == "List runsBeta") { cName = "Runs"; }
-            if (endpointAnchor == "Retrieve message fileBeta") { cName = "MessageFileRetrieve"; }
-            if (endpointAnchor == "List message filesBeta") { cName = "MessageFiles"; }
-            if (endpointAnchor == "Submit tool outputs to runBeta") { cName = "SubmitToolOutputs"; }
-            if (endpointAnchor == "Cancel a runBeta") { cName = "RunCancel"; }
-            if (endpointAnchor == "Create thread and runBeta") { cName = "ThreadRun"; }
-            if (endpointAnchor == "Retrieve run stepBeta") { cName = "RunStepRetrieve"; }
-            if (endpointAnchor == "List run stepsBeta") { cName = "RunSteps"; }
+            if (endpointAnchor == "Create fine-tuning job") { return "FineTuningJobCreate"; }
+            if (endpointAnchor == "List fine-tuning jobs") { return "FineTuningJobs"; }
+            if (endpointAnchor == "Retrieve fine-tuning job") { return "FineTuningJobRetrieve"; }
+            if (endpointAnchor == "Cancel fine-tuning") { return "FineTuningJobCancel"; }
+            if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
+            if (endpointAnchor == "Upload file") { return "FileUpload"; }
+            if (endpointAnchor == "Delete file") { return "FileDelete"; }
+            if (endpointAnchor == "Retrieve file") { return "FileRetrieve"; }
+            if (endpointAnchor == "Retrieve file content") { return "FileContentGet"; }
+            if (endpointAnchor == "Retrieve model") { return "ModelRetrieve"; }
+            if (endpointAnchor == "Delete fine-tune model") { return "ModelDelete"; }
+            if (endpointAnchor == "Create moderation") { return "ModerationCreate"; }
+            if (endpointAnchor == "Create assistantBeta") { return "AssistantCreate"; }
+            if (endpointAnchor == "Retrieve assistantBeta") { return "AssistantRetrieve"; }
+            if (endpointAnchor == "Modify assistantBeta") { return "AssistantModify"; }
+            if (endpointAnchor == "Delete assistantBeta") { return "AssistantDelete"; }
+            if (endpointAnchor == "Create assistant fileBeta") { return "AssistantFileCreate"; }
+            if (endpointAnchor == "Retrieve assistant fileBeta") { return "AssistantFileRetrieve"; }
+            if (endpointAnchor == "Delete assistant fileBeta") { return "AssistantFileDelete"; }
+            if (endpointAnchor == "List assistant filesBeta") { return "AssistantFiles"; }
+            if (endpointAnchor == "Create threadBeta") { return "ThreadCreate"; }
+            if (endpointAnchor == "Retrieve threadBeta") { return "ThreadRetrieve"; }
+            if (endpointAnchor == "Modify threadBeta") { return "ThreadModify"; }
+            if (endpointAnchor == "Delete threadBeta") { return "ThreadDelete"; }
+            if (endpointAnchor == "Create messageBeta") { return "MessageCreate"; }
+            if (endpointAnchor == "Retrieve messageBeta") { return "MessageRetrieve"; }
+            if (endpointAnchor == "Modify messageBeta") { return "MessageModify"; }
+            if (endpointAnchor == "List messagesBeta") { return "Messages"; }
+            if (endpointAnchor == "Create runBeta") { return "RunCreate"; }
+            if (endpointAnchor == "Retrieve runBeta") { return "RunRetrieve"; }
+            if (endpointAnchor == "Modify runBeta") { return "RunModify"; }
+            if (endpointAnchor == "List runsBeta") { return "Runs"; }
+            if (endpointAnchor == "Retrieve message fileBeta") { return "MessageFileRetrieve"; }
+            if (endpointAnchor == "List message filesBeta") { return "MessageFiles"; }
+            if (endpointAnchor == "Submit tool outputs to runBeta") { return "SubmitToolOutputs"; }
+            if (endpointAnchor == "Cancel a runBeta") { return "RunCancel"; }
+            if (endpointAnchor == "Create thread and runBeta") { return "ThreadRun"; }
+            if (endpointAnchor == "Retrieve run stepBeta") { return "RunStepRetrieve"; }
+            if (endpointAnchor == "List run stepsBeta") { return "RunSteps"; }
 
             return cName;
         }
@@ -525,21 +553,23 @@ namespace HigLabo.OpenAI.CodeGenerator
         private string GetResponseClassName(string className)
         {
             var cName = className;
-            if (cName == "Embeddings")
+            if (cName == "ChatCompletions")
+            {
+                return "ChatCompletionObjectResponse";
+            }
+            else if (cName == "Embeddings")
             {
                 return "RestApiDataResponse<List<EmbeddingObject>>";
             }
-            else if (cName == "FineTuningJobCreate")
+            else if (cName == "FineTuningJobCreate" |
+                cName == "FineTuningJobRetrieve" ||
+                cName == "FineTuningJobCancel")
             {
-                return "RestApiDataResponse<FineTuningJob>";
+                return "FineTuningJobResponse";
             }
             else if (cName == "FineTuningJobs")
             {
                 return "RestApiDataResponse<List<FineTuningJob>>";
-            }
-            else if (cName == "FineTuningJobCancel")
-            {
-                return "FineTuningJobResponse";
             }
             else if (cName == "FineTuningJobEvents")
             {
@@ -584,6 +614,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 return "ModerationObjectResponse";
             }
             else if (cName == "AssistantCreate" ||
+                cName == "AssistantModify" ||
                 cName == "AssistantRetrieve")
             {
                 return "AssistantObjectResponse";
@@ -649,6 +680,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                 return "DeleteObjectResponse";
             }
             else if (cName == "MessageFileCreate")
+            {
+                return "MessageFileObjectResponse";
+            }
+            else if (cName == "MessageFileRetrieve")
             {
                 return "MessageFileObjectResponse";
             }

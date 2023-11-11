@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
-    public class FunctionCallResult
+    public class ChatCompletionFunctionCallingProcessor
     {
-        public string Name { get; set; } = "";
-        public string Arguments { get; set; } = "";
-    }
-    public class FunctionCallingProcessor
-    {
+        public class FunctionCallResult
+        {
+            public string Name { get; set; } = "";
+            public string Arguments { get; set; } = "";
+        }
         public List<ChatCompletionChunk> ChunkList { get; init; } = new();
 
         public void Process(ChatCompletionChunk chunk)

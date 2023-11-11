@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class AssistantFilesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
+        internal static readonly AssistantFilesParameter Empty = new AssistantFilesParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the assistant the file belongs to.

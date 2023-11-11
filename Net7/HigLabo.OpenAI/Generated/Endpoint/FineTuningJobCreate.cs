@@ -49,7 +49,7 @@ namespace HigLabo.OpenAI
             };
         }
     }
-    public partial class FineTuningJobCreateResponse : RestApiDataResponse<FineTuningJob>
+    public partial class FineTuningJobCreateResponse : FineTuningJobResponse
     {
     }
     public partial class OpenAIClient

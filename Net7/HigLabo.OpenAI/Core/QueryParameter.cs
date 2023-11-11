@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HigLabo.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -65,6 +66,11 @@ namespace HigLabo.OpenAI
         /// Only return files with the given purpose.
         /// </summary>
         public string? Purpose { get; set; }
+
+        public void SetPurpose(FilePurpose purpose)
+        {
+            this.Purpose = purpose.GetValue();
+        }
 
         string IQueryParameter.GetQueryString()
         {

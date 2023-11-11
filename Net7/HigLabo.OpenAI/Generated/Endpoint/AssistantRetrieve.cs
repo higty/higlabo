@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class AssistantRetrieveParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly AssistantRetrieveParameter Empty = new AssistantRetrieveParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the assistant to retrieve.

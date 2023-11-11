@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class AssistantDeleteParameter : RestApiParameter, IRestApiParameter
     {
+        internal static readonly AssistantDeleteParameter Empty = new AssistantDeleteParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
         /// The ID of the assistant to delete.

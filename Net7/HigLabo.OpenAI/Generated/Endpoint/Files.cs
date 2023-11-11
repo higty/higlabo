@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class FilesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
+        internal static readonly FilesParameter Empty = new FilesParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         IQueryParameter IQueryParameterProperty.QueryParameter
         {
@@ -34,13 +36,11 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<FilesResponse> FilesAsync()
         {
-            var p = new FilesParameter();
-            return await this.SendJsonAsync<FilesParameter, FilesResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FilesParameter, FilesResponse>(FilesParameter.Empty, CancellationToken.None);
         }
         public async ValueTask<FilesResponse> FilesAsync(CancellationToken cancellationToken)
         {
-            var p = new FilesParameter();
-            return await this.SendJsonAsync<FilesParameter, FilesResponse>(p, cancellationToken);
+            return await this.SendJsonAsync<FilesParameter, FilesResponse>(FilesParameter.Empty, cancellationToken);
         }
         public async ValueTask<FilesResponse> FilesAsync(FilesParameter parameter)
         {

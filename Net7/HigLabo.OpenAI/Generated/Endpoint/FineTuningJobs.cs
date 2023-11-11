@@ -8,6 +8,8 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class FineTuningJobsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
+        internal static readonly FineTuningJobsParameter Empty = new FineTuningJobsParameter();
+
         string IRestApiParameter.HttpMethod { get; } = "GET";
         IQueryParameter IQueryParameterProperty.QueryParameter
         {
@@ -35,13 +37,11 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync()
         {
-            var p = new FineTuningJobsParameter();
-            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(FineTuningJobsParameter.Empty, CancellationToken.None);
         }
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync(CancellationToken cancellationToken)
         {
-            var p = new FineTuningJobsParameter();
-            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(p, cancellationToken);
+            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(FineTuningJobsParameter.Empty, cancellationToken);
         }
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync(FineTuningJobsParameter parameter)
         {
