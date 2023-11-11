@@ -1,12 +1,17 @@
 # higlabo
 HigLabo library provide features 
-1. Object Mapper(fastest in the world)
-2. DbSharp(DAL generator)
-3. And other.(Mail, Ftp, Rss, Twitter...etc)
+
+1. OpenAI client library
+2. Object Mapper(fastest in the world)
+3. DbSharp(DAL generator)
+4. And other.(Mail, Ftp, Rss, Twitter...etc)
 
 I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
+## HigLabo.OpenAI
+A client library for OpenAI API (including assistants endpoint that opened 2023.11.06 at OpenAI event)
+https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
 
 ## HigLabo.Mapper
 A mapper library like AutoMapper,EmitMapper,FastMapper,ExpressMapper..etc.
