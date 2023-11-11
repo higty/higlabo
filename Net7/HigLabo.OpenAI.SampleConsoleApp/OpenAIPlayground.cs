@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await Runs();
+            await AssistantRetrieve();
         }
         private void SetOpenAISetting()
         {
