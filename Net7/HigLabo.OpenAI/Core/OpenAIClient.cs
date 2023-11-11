@@ -298,14 +298,14 @@ namespace HigLabo.OpenAI
 
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model)
         {
-            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.user, message), model, CancellationToken.None))
+            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.User, message), model, CancellationToken.None))
             {
                 yield return item;
             }
         }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
-            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.user, message), model, cancellationToken))
+            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.User, message), model, cancellationToken))
             {
                 yield return item;
             }

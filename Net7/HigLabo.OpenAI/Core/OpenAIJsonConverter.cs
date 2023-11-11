@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HigLabo.Core;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -18,7 +19,7 @@ namespace HigLabo.OpenAI
         {
             this.Setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
             this.Setting.NullValueHandling = NullValueHandling.Ignore;
-            this.Setting.Converters.Add(new StringEnumConverter());
+            this.Setting.Converters.Add(new EnumToLowerStringConverter());
         }
         public string SerializeObject(object obj)
         {

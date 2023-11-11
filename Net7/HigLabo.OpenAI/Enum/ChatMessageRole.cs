@@ -9,9 +9,9 @@ namespace HigLabo.OpenAI
 {
     public enum ChatMessageRole
     {
-        assistant,
-        system,
-        user,
-        function,
+        Assistant,
+        System,
+        User,
+        Function,
     }
 }

@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ThreadMessage();
+            await ChatCompletionStream();
         }
         private void SetOpenAISetting()
         {
@@ -75,7 +75,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new ChatCompletionsParameter();
-            p.Messages.Add(new ChatMessage(ChatMessageRole.user, $"Can you provide me famous location list of USA for trip? Please return parameter as JSON for function calling."));
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"Can you provide me famous location list of USA for trip? Please return parameter as JSON for function calling."));
             p.Model = "gpt-3.5-turbo";
 
             var tool = new ToolObject("function");
