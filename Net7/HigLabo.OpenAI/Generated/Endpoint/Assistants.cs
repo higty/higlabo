@@ -9,7 +9,14 @@ namespace HigLabo.OpenAI
     public partial class AssistantsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
+        IQueryParameter IQueryParameterProperty.QueryParameter
+        {
+            get
+            {
+                return this.QueryParameter;
+            }
+        }
+        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {

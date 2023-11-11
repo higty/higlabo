@@ -145,29 +145,36 @@ namespace HigLabo.OpenAI.CodeGenerator
                 if (h3 == "Query parameters")
                 {
                     cParameter.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
+
+                    string? qName = null;
                     if (cName == "Files")
                     {
-                        var q = new Property("IQueryParameter", "QueryParameter", true);
-                        q.Initializer = "new FileListQueryParameter()";
-                        cParameter.Properties.Add(q);
+                        qName = "FileList";
                     }
                     else if (cName == "FineTuningJobs" || cName == "FineTuningJobsEvents")
                     {
-                        var q = new Property("IQueryParameter", "QueryParameter", true);
-                        q.Initializer = "new FineTuningQueryParameter()";
-                        cParameter.Properties.Add(q);
-
+                        qName = "FineTuning";
                         cResponse.Properties.Add(new Property("bool", "Has_More", true));
                     }
                     else
                     {
-                        var q = new Property("IQueryParameter", "QueryParameter", true);
-                        q.Initializer = "new QueryParameter()";
-                        cParameter.Properties.Add(q);
-
+                        qName = "";
                         cResponse.Properties.Add(new Property("string", "First_Id", true) { Initializer = "\"\"" });
                         cResponse.Properties.Add(new Property("string", "Last_Id", true) { Initializer = "\"\"" });
                         cResponse.Properties.Add(new Property("bool", "Has_More", true));
+                    }
+                    {
+                        var q = new Property("IQueryParameter", "IQueryParameterProperty.QueryParameter");
+                        q.Modifier.AccessModifier = MethodAccessModifier.None;
+                        q.Get = new PropertyBody(PropertyBodyType.Get);
+                        q.Get.Body.Add(SourceCodeLanguage.CSharp, "return this.QueryParameter;");
+                        q.Set = null;
+                        cParameter.Properties.Add(q);
+                    }
+                    {
+                        var q = new Property($"{qName}QueryParameter", "QueryParameter", true);
+                        q.Initializer = $"new {qName}QueryParameter()";
+                        cParameter.Properties.Add(q);
                     }
                 }
                 if (h3 == "Request body" || h3 == "Path parameters")

@@ -9,7 +9,14 @@ namespace HigLabo.OpenAI
     public partial class FineTuningJobsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public IQueryParameter QueryParameter { get; set; } = new FineTuningQueryParameter();
+        IQueryParameter IQueryParameterProperty.QueryParameter
+        {
+            get
+            {
+                return this.QueryParameter;
+            }
+        }
+        public FineTuningQueryParameter QueryParameter { get; set; } = new FineTuningQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {

@@ -17,7 +17,14 @@ namespace HigLabo.OpenAI
         /// The ID of the run the run steps belong to.
         /// </summary>
         public string Run_Id { get; set; } = "";
-        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
+        IQueryParameter IQueryParameterProperty.QueryParameter
+        {
+            get
+            {
+                return this.QueryParameter;
+            }
+        }
+        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {

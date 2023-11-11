@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStreamWithFunctionCalling();
+            await ThreadMessage();
         }
         private void SetOpenAISetting()
         {
@@ -148,6 +148,18 @@ namespace HigLabo.OpenAI
 
             Console.WriteLine();
             Console.WriteLine("DONE");
+        }
+        private async ValueTask FileList()
+        {
+            var cl = OpenAIClient;
+
+            var p = new FilesParameter();
+            p.QueryParameter.Purpose = "assistants";
+            var res = await cl.FilesAsync(p);
+            foreach (var item in res.Data)
+            {
+                Console.WriteLine($"{item.Purpose} {item.FileName}");
+            }
         }
         private async ValueTask<string> FileUpload_Assistant()
         {
@@ -290,15 +302,27 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            //Get thread_id from your playground. https://platform.openai.com/playground
-            var threadId = "thread_BjrO0VCLuPhbGKS5t3EY5ANh";
-            var res2 = await cl.MessagesAsync(threadId);
-            foreach (var rMessage in res2.Data)
+            int pageNumbuer = 1;
+            var p = new MessagesParameter();
+            p.Thread_Id = "thread_BjrO0VCLuPhbGKS5t3EY5ANh";
+            p.QueryParameter.Limit = 4;
+            p.QueryParameter.Order = "asc";
+
+            while (true)
             {
-                foreach (var content in rMessage.Content)
+                var res = await cl.MessagesAsync(p);
+                Console.WriteLine("■Page " + pageNumbuer);
+                foreach (var rMessage in res.Data)
                 {
-                    Console.WriteLine(content.Text);
+                    foreach (var content in rMessage.Content)
+                    {
+                        Console.WriteLine(content.Text);
+                        Console.WriteLine("--------------------------------------------------------");
+                    }
                 }
+                pageNumbuer++;
+                if (res.Has_More == false) { break; }
+                p.QueryParameter.After = res.Last_Id;
             }
         }
     }

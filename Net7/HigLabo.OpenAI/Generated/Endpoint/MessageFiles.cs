@@ -17,7 +17,14 @@ namespace HigLabo.OpenAI
         /// The ID of the message that the files belongs to.
         /// </summary>
         public string Message_Id { get; set; } = "";
-        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
+        IQueryParameter IQueryParameterProperty.QueryParameter
+        {
+            get
+            {
+                return this.QueryParameter;
+            }
+        }
+        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {

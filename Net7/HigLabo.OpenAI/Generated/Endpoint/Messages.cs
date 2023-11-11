@@ -13,7 +13,14 @@ namespace HigLabo.OpenAI
         /// The ID of the thread the messages belong to.
         /// </summary>
         public string Thread_Id { get; set; } = "";
-        public IQueryParameter QueryParameter { get; set; } = new QueryParameter();
+        IQueryParameter IQueryParameterProperty.QueryParameter
+        {
+            get
+            {
+                return this.QueryParameter;
+            }
+        }
+        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {

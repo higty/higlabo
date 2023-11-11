@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,11 +37,11 @@ namespace HigLabo.OpenAI
         string IQueryParameter.GetQueryString()
         {
             var sb = new StringBuilder();
-            if (this.Limit != null) { sb.Append(this.Limit.ToString()); }
-            if (this.Order != null) { sb.Append(this.Order.ToString()); }
-            if (this.After != null) { sb.Append(this.After.ToString()); }
-            if (this.Before != null) { sb.Append(this.Before.ToString()); }
-            return sb.ToString().ToLower();
+            if (this.Limit != null) { sb.Append($"limit={this.Limit}&"); }
+            if (this.Order != null) { sb.Append($"order={WebUtility.UrlEncode(this.Order)}&"); }
+            if (this.After != null) { sb.Append($"after={WebUtility.UrlEncode(this.After)}&"); }
+            if (this.Before != null) { sb.Append($"before={WebUtility.UrlEncode(this.Before)}&"); }
+            return sb.ToString().ToLower().TrimEnd('&');
         }
     }
     public class FineTuningQueryParameter : IQueryParameter
@@ -54,9 +55,8 @@ namespace HigLabo.OpenAI
 
         string IQueryParameter.GetQueryString()
         {
-            var sb = new StringBuilder();
-            if (this.Stream != null) { sb.Append(this.Stream.ToString()); }
-            return sb.ToString().ToLower();
+            if (this.Stream != null) { return $"stream={this.Stream}"; }
+            return "";
         }
     }
     public class FileListQueryParameter : IQueryParameter
@@ -64,14 +64,12 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// Only return files with the given purpose.
         /// </summary>
-        public string? Purpuse { get; set; }
+        public string? Purpose { get; set; }
 
         string IQueryParameter.GetQueryString()
         {
-            var sb = new StringBuilder();
-            if (this.Purpuse != null) { sb.Append(this.Purpuse.ToString()); }
-            return sb.ToString().ToLower();
+            if (this.Purpose != null) {return $"purpose={WebUtility.UrlEncode(this.Purpose)}"; }
+            return "";
         }
     }
-
 }

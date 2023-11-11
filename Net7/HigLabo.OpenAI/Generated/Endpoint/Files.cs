@@ -9,7 +9,14 @@ namespace HigLabo.OpenAI
     public partial class FilesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public IQueryParameter QueryParameter { get; set; } = new FileListQueryParameter();
+        IQueryParameter IQueryParameterProperty.QueryParameter
+        {
+            get
+            {
+                return this.QueryParameter;
+            }
+        }
+        public FileListQueryParameter QueryParameter { get; set; } = new FileListQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
