@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await AssistantRetrieve();
+            await ChatCompletionStream();
         }
         private void SetOpenAISetting()
         {
@@ -45,7 +45,7 @@ namespace HigLabo.OpenAI
             var p = new AudioTranscriptionsParameter();
             p.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
             p.Model = "whisper-1";
-
+            
             var res = await cl.AudioTranscriptionsAsync(p);
             Console.WriteLine(res.GetResponseBodyText());
         }
@@ -83,15 +83,19 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var theme = "How to enjoy coffee";
+            var processor = new ChatCompletionStreamProcessor();
             await foreach (var chunk in cl.ChatCompletionsStreamAsync($"Can you provide me with some ideas for blog posts about {theme}?", "gpt-3.5-turbo"))
             {
                 foreach (var choice in chunk.Choices)
                 {
                     Console.Write(choice.Delta.Content);
+                    processor.Process(chunk);
                 }
             }
             Console.WriteLine();
             Console.WriteLine("DONE");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine(processor.GetContent());
         }
         private async ValueTask ChatCompletionStreamWithFunctionCalling()
         {
@@ -125,7 +129,7 @@ namespace HigLabo.OpenAI
             p.Tools = new List<ToolObject>();
             p.Tools.Add(tool);
 
-            var processor = new ChatCompletionFunctionCallingProcessor();
+            var processor = new ChatCompletionStreamProcessor();
             //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
             p.Stream = true;
             await foreach (var chunk in cl.GetStreamAsync(p))

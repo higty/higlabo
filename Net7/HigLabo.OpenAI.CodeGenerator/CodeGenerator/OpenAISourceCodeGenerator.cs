@@ -353,7 +353,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 cParameter.ImplementInterfaces.Add(new TypeName("IFormDataParameter"));
             }
 
-            if (requestBodyPropertyNameList.Count == 0)
+            if (propertyList.Count == 0)
             {
                 var f = new Field($"{cName}Parameter", "Empty", $"new {cName}Parameter()");
                 f.Modifier.AccessModifier = AccessModifier.Internal;
