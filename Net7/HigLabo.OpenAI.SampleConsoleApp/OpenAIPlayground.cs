@@ -36,7 +36,6 @@ namespace HigLabo.OpenAI
 
             var res = await cl.AudioTranslationsAsync(p);
             Console.WriteLine(res.GetResponseBodyText());
-
         }
         private async ValueTask AudioTranscriptions()
         {
@@ -48,7 +47,6 @@ namespace HigLabo.OpenAI
 
             var res = await cl.AudioTranscriptionsAsync(p);
             Console.WriteLine(res.GetResponseBodyText());
-
         }
         private async ValueTask Embeddings()
         {
@@ -56,25 +54,6 @@ namespace HigLabo.OpenAI
             var res = await cl.EmbeddingsAsync("Crafting prompts\r\nWe generally recommend taking the set of instructions and prompts that you found worked best for the model prior to fine-tuning, and including them in every training example. This should let you reach the best and most general results, especially if you have relatively few (e.g. under a hundred) training examples.\r\n\r\nIf you would like to shorten the instructions or prompts that are repeated in every example to save costs, keep in mind that the model will likely behave as if those instructions were included, and it may be hard to get the model to ignore those \"baked-in\" instructions at inference time.\r\n\r\nIt may take more training examples to arrive at good results, as the model has to learn entirely through demonstration and without guided instructions."
                 , "text-embedding-ada-002");
             Console.WriteLine(res);
-        }
-        private async ValueTask ChatCompletion()
-        {
-            var cl = OpenAIClient;
-
-            var p = new ChatCompletionsParameter();
-            p.Model = "gpt-3.5-turbo";
-            p.Stream = true;
-            p.Messages.Add(new ChatMessage(ChatMessageRole.system, "You are proffesional engineer. You navigate user with "));
-
-            var theme = "How to enjoy coffee";
-            p.Messages.Add(new ChatMessage(ChatMessageRole.user, $"Can you provide me with some ideas for blog posts about {theme}?"));
-
-            await foreach (var choice in cl.GetStreamAsync(p))
-            {
-                Console.Write(choice.Choices[0].Delta.Content);
-            }
-            Console.WriteLine();
-            Console.WriteLine("DONE");
         }
         private async ValueTask ChatCompletionStream()
         {
@@ -86,10 +65,6 @@ namespace HigLabo.OpenAI
                 foreach (var choice in chunk.Choices)
                 {
                     Console.Write(choice.Delta.Content);
-                    foreach (var toolCall in choice.Message.Tool_Calls)
-                    {
-                        Console.WriteLine("■Function name is " + toolCall.Id);
-                    }
                 }
             }
             Console.WriteLine();
@@ -166,7 +141,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.SetFile("076153_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\076153_hanrei.pdf"));
+            p.SetFile("my_file.pdf", File.ReadAllBytes("D:\\Data\\my_file.pdf"));
             p.Purpose = "assistants";
             var res = await cl.FileUploadAsync(p);
 
@@ -236,7 +211,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new AssistantCreateParameter();
-            p.Name = "Legal tutor1";
+            p.Name = "Legal tutor";
             p.Instructions = "You are a personal legal tutor. Write and run code to legal questions based on passed files.";
             p.Model = "gpt-4-1106-preview";
 
@@ -287,7 +262,7 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var threadId = "thread_BjrO0VCLuPhbGKS5t3EY5ANh";
+            var threadId = "thread_xxxxxxxxxxxx";
             var res = await cl.RunsAsync(threadId);
             foreach (var item in res.Data)
             {
@@ -304,7 +279,7 @@ namespace HigLabo.OpenAI
 
             int pageNumbuer = 1;
             var p = new MessagesParameter();
-            p.Thread_Id = "thread_BjrO0VCLuPhbGKS5t3EY5ANh";
+            p.Thread_Id = "thread_xxxxxxxxxxxx";
             p.QueryParameter.Limit = 4;
             p.QueryParameter.Order = "asc";
 
