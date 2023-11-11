@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
-    public class ChatCompletionFunctionCallingProcessor
+    public class ChatCompletionStreamProcessor
     {
         public class FunctionCallResult
         {
@@ -19,6 +19,22 @@ namespace HigLabo.OpenAI
         public void Process(ChatCompletionChunk chunk)
         {
             this.ChunkList.Add(chunk);
+        }
+        public string GetContent()
+        {
+            var sb = new StringBuilder(this.ChunkList.Count * 32);
+            for (int i = 0; i < this.ChunkList.Count; i++)
+            {
+                for (int cIndex = 0; cIndex < this.ChunkList[i].Choices.Count; cIndex++)
+                {
+                    var delta = this.ChunkList[i].Choices[cIndex].Delta;
+                    if(delta != null)
+                    {
+                        sb.Append(delta.Content);
+                    }
+                }
+            }
+            return sb.ToString();
         }
         public FunctionCallResult? GetFunctionCall()
         {

@@ -266,32 +266,39 @@ namespace HigLabo.OpenAI
 
             using (var stream = await res.Content.ReadAsStreamAsync())
             {
-                var loopIndex = 0;
-                while (true)
+                try
                 {
-                    sseResponse.Clear();
-                    var readCount = await stream.ReadAsync(sseResponse.Buffer, cancellationToken);
-                    sseResponse.BufferLength = readCount;
-
-                    Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
-                    if (readCount == 0) { break; }
-
-                    foreach (var line in sseResponse.GetLines(previousLineList))
+                    var loopIndex = 0;
+                    while (true)
                     {
-                        if (line.IsEmpty()) { continue; }
-                        if (line.IsDone()) { yield break; }
-                        if (line.Complete == false)
+                        sseResponse.Clear();
+                        var readCount = await stream.ReadAsync(sseResponse.Buffer, cancellationToken);
+                        sseResponse.BufferLength = readCount;
+
+                        Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
+                        if (readCount == 0) { break; }
+
+                        foreach (var line in sseResponse.GetLines(previousLineList))
                         {
-                            previousLineList.Add(line);
-                            continue;
+                            if (line.IsEmpty()) { continue; }
+                            if (line.IsDone()) { yield break; }
+                            if (line.Complete == false)
+                            {
+                                previousLineList.Add(line);
+                                continue;
+                            }
+                            if (line.IsData())
+                            {
+                                var text = Encoding.UTF8.GetString(line.GetValue());
+                                yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
+                            }
                         }
-                        if (line.IsData())
-                        {
-                            var text = Encoding.UTF8.GetString(line.GetValue());
-                            yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
-                        }
+                        loopIndex++;
                     }
-                    loopIndex++;
+                }
+                finally
+                {
+                    stream.Close();
                 }
             }
         }
