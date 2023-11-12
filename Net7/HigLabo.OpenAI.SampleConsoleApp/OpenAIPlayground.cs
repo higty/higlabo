@@ -14,7 +14,8 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await ThreadMessage();
+            Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
         {
@@ -306,33 +307,15 @@ namespace HigLabo.OpenAI
             };
             var res2 = await cl.AssistantModifyAsync(p);
         }
-        private async ValueTask Runs()
-        {
-            var cl = OpenAIClient;
-
-            var threadId = "thread_xxxxxxxxxxxx";
-            var res = await cl.RunsAsync(threadId);
-            foreach (var item in res.Data)
-            {
-                var res1 = await cl.RunStepsAsync(threadId, item.Id);
-                foreach (var step in res1.Data)
-                {
-                    if (step.Step_Details != null)
-                    {
-                        Console.WriteLine(step.Step_Details.GetDescription());
-                    }
-                }
-            }
-        }
         private async ValueTask ThreadMessage()
         {
             var cl = OpenAIClient;
 
             int pageNumbuer = 1;
             var p = new MessagesParameter();
-            p.Thread_Id = "thread_xxxxxxxxxxxx";
-            p.QueryParameter.Limit = 4;
-            p.QueryParameter.Order = "asc";
+            p.Thread_Id = "thread_xxxxxx";
+            //p.QueryParameter.Limit = 4;
+            p.QueryParameter.Order = "desc";
 
             while (true)
             {
@@ -349,6 +332,25 @@ namespace HigLabo.OpenAI
                 pageNumbuer++;
                 if (res.Has_More == false) { break; }
                 p.QueryParameter.After = res.Last_Id;
+            }
+        }
+        private async ValueTask Runs()
+        {
+            var cl = OpenAIClient;
+
+            var threadId = "thread_xxxxxxxxxxxxxxx";
+            var res = await cl.RunsAsync(threadId);
+            foreach (var item in res.Data)
+            {
+                var res1 = await cl.RunStepsAsync(threadId, item.Id);
+                foreach (var step in res1.Data)
+                {
+                    if (step.Step_Details != null)
+                    {
+                        Console.WriteLine(step.Step_Details.GetDescription());
+                        Console.WriteLine("--------------------------------------------------------");
+                    }
+                }
             }
         }
     }

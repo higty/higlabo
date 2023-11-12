@@ -222,6 +222,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                             p.TypeName.Name = "List<ChatMessage>";
                             p.Initializer = "new ()";
                         }
+                        if (cName == "ThreadCreate" && p.Name == "Messages")
+                        {
+                            p.TypeName.Name = "List<Message>?";
+                        }
                         if (cName == "Embeddings" && p.Name == "Encoding_format")
                         {
                             p.Initializer = "\"float\"";

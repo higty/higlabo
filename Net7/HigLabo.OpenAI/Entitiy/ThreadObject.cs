@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
                 return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Created_At), TimeSpan.Zero);
             }
         }
-        public string MetaData { get; set; } = "";
+        public object? MetaData { get; set; }
     }
     public class ThreadObjectResponse: RestApiResponse
     {
@@ -31,6 +31,6 @@ namespace HigLabo.OpenAI
                 return new DateTimeOffset(DateTime.UnixEpoch.AddSeconds(this.Created_At), TimeSpan.Zero);
             }
         }
-        public string MetaData { get; set; } = "";
+        public object? MetaData { get; set; } 
     }
 }
