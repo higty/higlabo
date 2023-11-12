@@ -8,8 +8,6 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class FineTuningJobRetrieveParameter : RestApiParameter, IRestApiParameter
     {
-        internal static readonly FineTuningJobRetrieveParameter Empty = new FineTuningJobRetrieveParameter();
-
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the fine-tuning job.

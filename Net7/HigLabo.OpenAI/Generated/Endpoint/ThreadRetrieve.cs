@@ -8,8 +8,6 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class ThreadRetrieveParameter : RestApiParameter, IRestApiParameter
     {
-        internal static readonly ThreadRetrieveParameter Empty = new ThreadRetrieveParameter();
-
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the thread to retrieve.

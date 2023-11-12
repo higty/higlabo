@@ -8,8 +8,6 @@ namespace HigLabo.OpenAI
     /// </summary>
     public partial class FileRetrieveParameter : RestApiParameter, IRestApiParameter
     {
-        internal static readonly FileRetrieveParameter Empty = new FileRetrieveParameter();
-
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
         /// The ID of the file to use for this request.
