@@ -9,9 +9,9 @@ namespace HigLabo.Html
 {
     public class NewLineHtmlConverter : IHtmlConverter
     {
-        public String Convert(String html)
+        public async ValueTask<String> ConvertAsync(String html)
         {
-            return html.Replace("\r","");
+            return await ValueTask.FromResult(html.Replace("\r",""));
         }
     }
 }

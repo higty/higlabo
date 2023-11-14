@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ThreadMessage();
+            await ImageGeneration();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -198,7 +198,11 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var res = await cl.ImagesGenerationsAsync("Blue sky and green field.");
+            var p = new ImagesGenerationsParameter();
+            p.Prompt = "A photorealistic image of a beautiful landscape under a blue sky. The scene features a wide, lush green field, with the sun shining brightly and casting soft shadows. The sky is a clear, deep blue with a few fluffy white clouds scattered around. The field is vibrant and green, giving a sense of calm and tranquility. The image should have a high-resolution, 4K-like quality, capturing the details of the grass, the texture of the clouds, and the vividness of the blue sky.";
+            p.Model = "dall-e-3";
+            p.Quality = "hd";
+            var res = await cl.ImagesGenerationsAsync(p);
             foreach (var item in res.Data)
             {
                 Console.WriteLine(item.Url);
@@ -313,7 +317,7 @@ namespace HigLabo.OpenAI
 
             int pageNumbuer = 1;
             var p = new MessagesParameter();
-            p.Thread_Id = "thread_xxxxxx";
+            p.Thread_Id = "thread_xxxxxxxxxxxxxxx";
             //p.QueryParameter.Limit = 4;
             p.QueryParameter.Order = "desc";
 

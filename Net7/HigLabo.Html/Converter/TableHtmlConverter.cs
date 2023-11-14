@@ -18,7 +18,7 @@ namespace HigLabo.Html
             public ParseContextState State { get; set; } = ParseContextState.Ready;
             public List<string[]> Rows { get; init; } = new();
         }
-        public String Convert(String html)
+        public async ValueTask<String> ConvertAsync(String html)
         {
             var sb = new StringBuilder();
             var context = new ParseContext();
@@ -64,7 +64,7 @@ namespace HigLabo.Html
             {
                 sb.Append(CreateTable(context));
             }
-            return sb.ToString().TrimEnd();
+            return await ValueTask.FromResult(sb.ToString().TrimEnd());
         }
         private String CreateTable(ParseContext context)
         {

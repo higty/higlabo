@@ -8,6 +8,6 @@ namespace HigLabo.Html
 {
     public interface IHtmlConverter
     {
-        String Convert(String html);
+        ValueTask<String> ConvertAsync(String html);
     }
 }

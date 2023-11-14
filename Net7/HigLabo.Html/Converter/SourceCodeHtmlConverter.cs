@@ -28,7 +28,7 @@ namespace HigLabo.Html
             public StringBuilder Text { get; init; } = new();
         }
 
-        public String Convert(String html)
+        public async ValueTask<String> ConvertAsync(String html)
         {
             var sb = new StringBuilder();
             var context = new ParseContext();
@@ -82,7 +82,7 @@ namespace HigLabo.Html
                     }
                 }
             }
-            return sb.ToString().TrimEnd();
+            return await ValueTask.FromResult(sb.ToString().TrimEnd());
         }
         private String CreateSourceCodePanel(String sourceCode, String language)
         {
