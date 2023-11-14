@@ -4,19 +4,19 @@
     {
         public List<IHtmlConverter> Converters { get; init; } = new();
 
-        public HtmlProcessResult Process(String html)
+        public async ValueTask<HtmlProcessResult> ProcessAsync(String html)
         {
             var result = new HtmlProcessResult(html);
 
             foreach (var converter in this.Converters)
             {
-                result.Html = converter.Convert(result.Html);
+                result.Html = await converter.ConvertAsync(result.Html);
             }
             return result;
         }
-        public string GetHtml(string html)
+        public async ValueTask<string> GetHtmlAsync(string html)
         {
-            var rs = this.Process(html);
+            var rs = await this.ProcessAsync(html);
             return rs.Html;
         }
     }
