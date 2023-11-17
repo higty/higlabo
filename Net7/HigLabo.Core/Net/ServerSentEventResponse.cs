@@ -6,9 +6,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.Core
 {
     public class ServerSentEventResponse
     {

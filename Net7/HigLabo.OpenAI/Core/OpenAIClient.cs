@@ -261,39 +261,14 @@ namespace HigLabo.OpenAI
                 throw new OpenAIServerException(parameter, req, requestBodyText, res, responseBodyText, errorRes.Error);
             }
 
-            var sseResponse = new ServerSentEventResponse();
-            var previousLineList = new List<ServerSentEventLine>();
-
             using (var stream = await res.Content.ReadAsStreamAsync())
             {
                 try
                 {
-                    var loopIndex = 0;
-                    while (true)
+                    var processor = new ServerSentEventProcessor(stream);
+                    await foreach (var line in processor.Process(cancellationToken))
                     {
-                        sseResponse.Clear();
-                        var readCount = await stream.ReadAsync(sseResponse.Buffer, cancellationToken);
-                        sseResponse.BufferLength = readCount;
-
-                        Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
-                        if (readCount == 0) { break; }
-
-                        foreach (var line in sseResponse.GetLines(previousLineList))
-                        {
-                            if (line.IsEmpty()) { continue; }
-                            if (line.IsDone()) { yield break; }
-                            if (line.Complete == false)
-                            {
-                                previousLineList.Add(line);
-                                continue;
-                            }
-                            if (line.IsData())
-                            {
-                                var text = Encoding.UTF8.GetString(line.GetValue());
-                                yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
-                            }
-                        }
-                        loopIndex++;
+                        yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(line);
                     }
                 }
                 finally
