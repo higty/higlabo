@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <Version>7.0.1.0</Version>
+	  <Version>7.0.1.1</Version>
 	  <Authors>Higty</Authors>
 	  <Company>HigLabo</Company>
 	  <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Cloud.BigQuery.V2" Version="3.4.0" />
+    <PackageReference Include="Google.Cloud.BigQuery.V2" Version="3.5.0" />
   </ItemGroup>
 
   <ItemGroup>
