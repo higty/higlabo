@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/reactions.list
+    /// </summary>
     public partial class ReactionsListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.list";
@@ -66,7 +69,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async ValueTask<List<ReactionsListResponse>> ReactionsListAsync(PagingContext<ReactionsListResponse> context)
+        public async Task<List<ReactionsListResponse>> ReactionsListAsync(PagingContext<ReactionsListResponse> context)
         {
             var p = new ReactionsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -74,7 +77,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.list
         /// </summary>
-        public async ValueTask<List<ReactionsListResponse>> ReactionsListAsync(CancellationToken cancellationToken, PagingContext<ReactionsListResponse> context)
+        public async Task<List<ReactionsListResponse>> ReactionsListAsync(CancellationToken cancellationToken, PagingContext<ReactionsListResponse> context)
         {
             var p = new ReactionsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

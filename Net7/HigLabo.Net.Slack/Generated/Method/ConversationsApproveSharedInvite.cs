@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.approveSharedInvite
+    /// </summary>
     public partial class ConversationsApproveSharedInviteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.approveSharedInvite";

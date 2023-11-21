@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.comments.delete
+    /// </summary>
     public partial class FilesCommentsDeleteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.comments.delete";

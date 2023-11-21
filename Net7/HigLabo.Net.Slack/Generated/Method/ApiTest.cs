@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/api.test
+    /// </summary>
     public partial class ApiTestParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "api.test";

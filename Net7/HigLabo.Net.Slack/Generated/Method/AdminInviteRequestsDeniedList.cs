@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.inviteRequests.denied.list
+    /// </summary>
     public partial class AdminInviteRequestsDeniedListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.denied.list";
@@ -62,7 +65,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async ValueTask<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(PagingContext<AdminInviteRequestsDeniedListResponse> context)
+        public async Task<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(PagingContext<AdminInviteRequestsDeniedListResponse> context)
         {
             var p = new AdminInviteRequestsDeniedListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.denied.list
         /// </summary>
-        public async ValueTask<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(CancellationToken cancellationToken, PagingContext<AdminInviteRequestsDeniedListResponse> context)
+        public async Task<List<AdminInviteRequestsDeniedListResponse>> AdminInviteRequestsDeniedListAsync(CancellationToken cancellationToken, PagingContext<AdminInviteRequestsDeniedListResponse> context)
         {
             var p = new AdminInviteRequestsDeniedListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/dnd.endDnd
+    /// </summary>
     public partial class DndEndDndParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "dnd.endDnd";

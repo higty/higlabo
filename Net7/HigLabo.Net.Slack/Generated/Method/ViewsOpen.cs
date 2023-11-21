@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/views.open
+    /// </summary>
     public partial class ViewsOpenParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "views.open";

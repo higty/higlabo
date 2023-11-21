@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.leave
+    /// </summary>
     public partial class ConversationsLeaveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.leave";

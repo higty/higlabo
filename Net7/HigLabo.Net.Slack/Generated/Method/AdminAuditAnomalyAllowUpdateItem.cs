@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
+    /// </summary>
     public partial class AdminAuditAnomalyAllowUpdateItemParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.audit.anomaly.allow.updateItem";

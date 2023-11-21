@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/usergroups.enable
+    /// </summary>
     public partial class UsergroupsEnableParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "usergroups.enable";

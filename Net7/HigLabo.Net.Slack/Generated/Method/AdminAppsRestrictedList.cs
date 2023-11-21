@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.apps.restricted.list
+    /// </summary>
     public partial class AdminAppsRestrictedListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.apps.restricted.list";
@@ -64,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async ValueTask<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(PagingContext<AdminAppsRestrictedListResponse> context)
+        public async Task<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(PagingContext<AdminAppsRestrictedListResponse> context)
         {
             var p = new AdminAppsRestrictedListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.apps.restricted.list
         /// </summary>
-        public async ValueTask<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsRestrictedListResponse> context)
+        public async Task<List<AdminAppsRestrictedListResponse>> AdminAppsRestrictedListAsync(CancellationToken cancellationToken, PagingContext<AdminAppsRestrictedListResponse> context)
         {
             var p = new AdminAppsRestrictedListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.getUploadURLExternal
+    /// </summary>
     public partial class FilesGetUploadURLExternalParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.getUploadURLExternal";

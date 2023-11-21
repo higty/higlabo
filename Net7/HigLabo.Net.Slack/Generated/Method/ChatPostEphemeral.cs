@@ -2,16 +2,19 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/chat.postEphemeral
+    /// </summary>
     public partial class ChatPostEphemeralParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "chat.postEphemeral";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Channel { get; set; }
-        public string? Text { get; set; }
         public string? User { get; set; }
-        public bool? As_User { get; set; }
         public string? Attachments { get; set; }
         public string? Blocks { get; set; }
+        public string? Text { get; set; }
+        public bool? As_User { get; set; }
         public string? Icon_Emoji { get; set; }
         public string? Icon_Url { get; set; }
         public bool? Link_Names { get; set; }
@@ -30,22 +33,20 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user)
+        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? user)
         {
             var p = new ChatPostEphemeralParameter();
             p.Channel = channel;
-            p.Text = text;
             p.User = user;
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user, CancellationToken cancellationToken)
+        public async ValueTask<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? user, CancellationToken cancellationToken)
         {
             var p = new ChatPostEphemeralParameter();
             p.Channel = channel;
-            p.Text = text;
             p.User = user;
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(p, cancellationToken);
         }

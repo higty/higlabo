@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.datastore.delete
+    /// </summary>
     public partial class AppsDatastoreDeleteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.datastore.delete";

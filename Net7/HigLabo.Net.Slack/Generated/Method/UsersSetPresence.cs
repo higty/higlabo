@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/users.setPresence
+    /// </summary>
     public partial class UsersSetPresenceParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "users.setPresence";

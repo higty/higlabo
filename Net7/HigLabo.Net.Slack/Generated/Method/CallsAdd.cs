@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/calls.add
+    /// </summary>
     public partial class CallsAddParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "calls.add";

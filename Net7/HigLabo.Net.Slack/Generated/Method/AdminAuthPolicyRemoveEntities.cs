@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.auth.policy.removeEntities
+    /// </summary>
     public partial class AdminAuthPolicyRemoveEntitiesParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.auth.policy.removeEntities";

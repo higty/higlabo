@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.apps.uninstall
+    /// </summary>
     public partial class AdminAppsUninstallParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.apps.uninstall";

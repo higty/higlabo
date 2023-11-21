@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.manifest.validate
+    /// </summary>
     public partial class AppsManifestValidateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.manifest.validate";

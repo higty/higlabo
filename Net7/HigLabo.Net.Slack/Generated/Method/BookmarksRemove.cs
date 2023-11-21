@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/bookmarks.remove
+    /// </summary>
     public partial class BookmarksRemoveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "bookmarks.remove";

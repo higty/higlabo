@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.session.reset
+    /// </summary>
     public partial class AdminUsersSessionResetParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.reset";

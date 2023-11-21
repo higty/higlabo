@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.roles.removeAssignments
+    /// </summary>
     public partial class AdminRolesRemoveAssignmentsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.roles.removeAssignments";

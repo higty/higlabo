@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.datastore.update
+    /// </summary>
     public partial class AppsDatastoreUpdateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.datastore.update";

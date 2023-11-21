@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.unsupportedVersions.export
+    /// </summary>
     public partial class AdminUsersUnsupportedVersionsExportParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.unsupportedVersions.export";

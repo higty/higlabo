@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/tooling.tokens.rotate
+    /// </summary>
     public partial class ToolingTokensRotateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "tooling.tokens.rotate";

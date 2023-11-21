@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/users.setPhoto
+    /// </summary>
     public partial class UsersSetPhotoParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "users.setPhoto";

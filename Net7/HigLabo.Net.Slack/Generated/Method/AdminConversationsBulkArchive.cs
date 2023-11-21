@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.bulkArchive
+    /// </summary>
     public partial class AdminConversationsBulkArchiveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.bulkArchive";

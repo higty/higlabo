@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/dnd.info
+    /// </summary>
     public partial class DndInfoParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "dnd.info";

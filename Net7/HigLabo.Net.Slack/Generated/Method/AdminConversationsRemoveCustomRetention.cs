@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.removeCustomRetention
+    /// </summary>
     public partial class AdminConversationsRemoveCustomRetentionParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.removeCustomRetention";

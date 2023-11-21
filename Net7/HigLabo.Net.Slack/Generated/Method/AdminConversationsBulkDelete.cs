@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.bulkDelete
+    /// </summary>
     public partial class AdminConversationsBulkDeleteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.bulkDelete";

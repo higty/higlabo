@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.auth.external.delete
+    /// </summary>
     public partial class AppsAuthExternalDeleteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.auth.external.delete";

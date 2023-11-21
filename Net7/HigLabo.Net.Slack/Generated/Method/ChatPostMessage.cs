@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/chat.postMessage
+    /// </summary>
     public partial class ChatPostMessageParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "chat.postMessage";
@@ -18,6 +21,7 @@ namespace HigLabo.Net.Slack
         public bool? Mrkdwn { get; set; }
         public string? Parse { get; set; }
         public bool? Reply_Broadcast { get; set; }
+        public string? Service_Team_Id { get; set; }
         public string? Thread_Ts { get; set; }
         public bool? Unfurl_Links { get; set; }
         public bool? Unfurl_Media { get; set; }

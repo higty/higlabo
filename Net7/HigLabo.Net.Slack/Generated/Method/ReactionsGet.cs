@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/reactions.get
+    /// </summary>
     public partial class ReactionsGetParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.get";

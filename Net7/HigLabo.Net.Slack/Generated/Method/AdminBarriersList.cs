@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.barriers.list
+    /// </summary>
     public partial class AdminBarriersListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.barriers.list";
@@ -61,7 +64,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async ValueTask<List<AdminBarriersListResponse>> AdminBarriersListAsync(PagingContext<AdminBarriersListResponse> context)
+        public async Task<List<AdminBarriersListResponse>> AdminBarriersListAsync(PagingContext<AdminBarriersListResponse> context)
         {
             var p = new AdminBarriersListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -69,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.list
         /// </summary>
-        public async ValueTask<List<AdminBarriersListResponse>> AdminBarriersListAsync(CancellationToken cancellationToken, PagingContext<AdminBarriersListResponse> context)
+        public async Task<List<AdminBarriersListResponse>> AdminBarriersListAsync(CancellationToken cancellationToken, PagingContext<AdminBarriersListResponse> context)
         {
             var p = new AdminBarriersListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

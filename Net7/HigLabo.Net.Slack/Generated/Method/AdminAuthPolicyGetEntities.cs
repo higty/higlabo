@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.auth.policy.getEntities
+    /// </summary>
     public partial class AdminAuthPolicyGetEntitiesParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.auth.policy.getEntities";
@@ -65,7 +68,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async ValueTask<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context)
+        public async Task<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context)
         {
             var p = new AdminAuthPolicyGetEntitiesParameter();
             p.Policy_Name = policy_Name;
@@ -74,7 +77,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.getEntities
         /// </summary>
-        public async ValueTask<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context, CancellationToken cancellationToken)
+        public async Task<List<AdminAuthPolicyGetEntitiesResponse>> AdminAuthPolicyGetEntitiesAsync(string? policy_Name, PagingContext<AdminAuthPolicyGetEntitiesResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminAuthPolicyGetEntitiesParameter();
             p.Policy_Name = policy_Name;

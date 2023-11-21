@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.barriers.create
+    /// </summary>
     public partial class AdminBarriersCreateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.barriers.create";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
+    /// </summary>
     public partial class AdminTeamsSettingsSetDiscoverabilityParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setDiscoverability";

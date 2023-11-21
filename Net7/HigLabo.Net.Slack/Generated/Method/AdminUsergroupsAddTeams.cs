@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.usergroups.addTeams
+    /// </summary>
     public partial class AdminUsergroupsAddTeamsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.usergroups.addTeams";

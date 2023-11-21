@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/auth.teams.list
+    /// </summary>
     public partial class AuthTeamsListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "auth.teams.list";
@@ -62,7 +65,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async ValueTask<List<AuthTeamsListResponse>> AuthTeamsListAsync(PagingContext<AuthTeamsListResponse> context)
+        public async Task<List<AuthTeamsListResponse>> AuthTeamsListAsync(PagingContext<AuthTeamsListResponse> context)
         {
             var p = new AuthTeamsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/auth.teams.list
         /// </summary>
-        public async ValueTask<List<AuthTeamsListResponse>> AuthTeamsListAsync(CancellationToken cancellationToken, PagingContext<AuthTeamsListResponse> context)
+        public async Task<List<AuthTeamsListResponse>> AuthTeamsListAsync(CancellationToken cancellationToken, PagingContext<AuthTeamsListResponse> context)
         {
             var p = new AuthTeamsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

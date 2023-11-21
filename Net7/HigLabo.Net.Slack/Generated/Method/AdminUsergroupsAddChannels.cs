@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.usergroups.addChannels
+    /// </summary>
     public partial class AdminUsergroupsAddChannelsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.usergroups.addChannels";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.update
+    /// </summary>
     public partial class FilesRemoteUpdateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.remote.update";

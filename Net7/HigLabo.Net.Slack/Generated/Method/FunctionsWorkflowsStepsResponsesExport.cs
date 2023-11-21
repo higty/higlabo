@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/functions.workflows.steps.responses.export
+    /// </summary>
     public partial class FunctionsWorkflowsStepsResponsesExportParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "functions.workflows.steps.responses.export";

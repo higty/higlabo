@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/stars.list
+    /// </summary>
     public partial class StarsListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "stars.list";
@@ -64,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async ValueTask<List<StarsListResponse>> StarsListAsync(PagingContext<StarsListResponse> context)
+        public async Task<List<StarsListResponse>> StarsListAsync(PagingContext<StarsListResponse> context)
         {
             var p = new StarsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/stars.list
         /// </summary>
-        public async ValueTask<List<StarsListResponse>> StarsListAsync(CancellationToken cancellationToken, PagingContext<StarsListResponse> context)
+        public async Task<List<StarsListResponse>> StarsListAsync(CancellationToken cancellationToken, PagingContext<StarsListResponse> context)
         {
             var p = new StarsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

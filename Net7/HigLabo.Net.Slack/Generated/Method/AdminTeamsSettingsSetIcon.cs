@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.teams.settings.setIcon
+    /// </summary>
     public partial class AdminTeamsSettingsSetIconParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setIcon";

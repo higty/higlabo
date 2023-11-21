@@ -6,6 +6,7 @@ namespace HigLabo.Net.Slack
     {
         Admin,
         AdminAnalyticsRead,
+        AdminApp_activitiesRead,
         AdminAppsRead,
         AdminAppsWrite,
         AdminBarriersRead,
@@ -53,6 +54,8 @@ namespace HigLabo.Net.Slack
         ConversationsConnectWrite,
         ConversationsWriteInvites,
         ConversationsWriteTopic,
+        DatastoreRead,
+        DatastoreWrite,
         DndRead,
         DndWrite,
         DndWriteUser,
@@ -129,6 +132,7 @@ namespace HigLabo.Net.Slack
             {
                 case Scope.Admin: return "admin";
                 case Scope.AdminAnalyticsRead: return "admin.analytics:read";
+                case Scope.AdminApp_activitiesRead: return "admin.app_activities:read";
                 case Scope.AdminAppsRead: return "admin.apps:read";
                 case Scope.AdminAppsWrite: return "admin.apps:write";
                 case Scope.AdminBarriersRead: return "admin.barriers:read";
@@ -176,6 +180,8 @@ namespace HigLabo.Net.Slack
                 case Scope.ConversationsConnectWrite: return "conversations.connect:write";
                 case Scope.ConversationsWriteInvites: return "conversations:write.invites";
                 case Scope.ConversationsWriteTopic: return "conversations:write.topic";
+                case Scope.DatastoreRead: return "datastore:read";
+                case Scope.DatastoreWrite: return "datastore:write";
                 case Scope.DndRead: return "dnd:read";
                 case Scope.DndWrite: return "dnd:write";
                 case Scope.DndWriteUser: return "dnd:write:user";

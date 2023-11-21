@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.datastore.get
+    /// </summary>
     public partial class AppsDatastoreGetParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.datastore.get";

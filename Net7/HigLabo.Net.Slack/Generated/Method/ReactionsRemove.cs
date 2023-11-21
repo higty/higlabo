@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/reactions.remove
+    /// </summary>
     public partial class ReactionsRemoveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.remove";

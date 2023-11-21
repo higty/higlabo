@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.barriers.delete
+    /// </summary>
     public partial class AdminBarriersDeleteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.barriers.delete";

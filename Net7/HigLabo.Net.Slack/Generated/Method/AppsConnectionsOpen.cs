@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.connections.open
+    /// </summary>
     public partial class AppsConnectionsOpenParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.connections.open";

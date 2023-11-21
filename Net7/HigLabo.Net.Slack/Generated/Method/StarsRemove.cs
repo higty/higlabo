@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/stars.remove
+    /// </summary>
     public partial class StarsRemoveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "stars.remove";

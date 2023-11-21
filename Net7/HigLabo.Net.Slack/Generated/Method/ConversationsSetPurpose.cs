@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.setPurpose
+    /// </summary>
     public partial class ConversationsSetPurposeParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.setPurpose";

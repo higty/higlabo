@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/openid.connect.token
+    /// </summary>
     public partial class OpenidConnectTokenParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "openid.connect.token";

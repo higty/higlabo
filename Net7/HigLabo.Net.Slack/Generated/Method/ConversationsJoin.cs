@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.join
+    /// </summary>
     public partial class ConversationsJoinParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.join";

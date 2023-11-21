@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.auth.policy.assignEntities
+    /// </summary>
     public partial class AdminAuthPolicyAssignEntitiesParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.auth.policy.assignEntities";

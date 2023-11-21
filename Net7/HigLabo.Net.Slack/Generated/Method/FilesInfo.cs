@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.info
+    /// </summary>
     public partial class FilesInfoParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.info";
@@ -66,7 +69,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async ValueTask<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context)
+        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -75,7 +78,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async ValueTask<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
+        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
         {
             var p = new FilesInfoParameter();
             p.File = file;

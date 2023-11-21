@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.listConnectInvites
+    /// </summary>
     public partial class ConversationsListConnectInvitesParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.listConnectInvites";
@@ -62,7 +65,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async ValueTask<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(PagingContext<ConversationsListConnectInvitesResponse> context)
+        public async Task<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(PagingContext<ConversationsListConnectInvitesResponse> context)
         {
             var p = new ConversationsListConnectInvitesParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.listConnectInvites
         /// </summary>
-        public async ValueTask<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(CancellationToken cancellationToken, PagingContext<ConversationsListConnectInvitesResponse> context)
+        public async Task<List<ConversationsListConnectInvitesResponse>> ConversationsListConnectInvitesAsync(CancellationToken cancellationToken, PagingContext<ConversationsListConnectInvitesResponse> context)
         {
             var p = new ConversationsListConnectInvitesParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

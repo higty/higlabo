@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/bookmarks.add
+    /// </summary>
     public partial class BookmarksAddParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "bookmarks.add";

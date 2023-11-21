@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/migration.exchange
+    /// </summary>
     public partial class MigrationExchangeParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "migration.exchange";

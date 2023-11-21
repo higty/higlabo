@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.usergroups.removeChannels
+    /// </summary>
     public partial class AdminUsergroupsRemoveChannelsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.usergroups.removeChannels";

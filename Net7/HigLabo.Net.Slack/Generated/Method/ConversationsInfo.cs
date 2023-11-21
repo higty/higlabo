@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.info
+    /// </summary>
     public partial class ConversationsInfoParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.info";

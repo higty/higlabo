@@ -21,10 +21,10 @@
             {
                 var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Slack\\Generated\\");
                 //await g.CreateEntitySourceCodeFile("", new CreateEntityClassContext());
-                await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/reminders.add");
-                //await g.Execute();
+                //await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/reminders.add");
+                await g.Execute();
             }
-            if (true)
+            if (false)
             {
                 var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Microsoft\\Generated\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";

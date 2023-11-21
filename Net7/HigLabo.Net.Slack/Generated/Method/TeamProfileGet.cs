@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/team.profile.get
+    /// </summary>
     public partial class TeamProfileGetParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "team.profile.get";

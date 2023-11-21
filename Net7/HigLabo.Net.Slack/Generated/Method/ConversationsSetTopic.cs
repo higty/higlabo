@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.setTopic
+    /// </summary>
     public partial class ConversationsSetTopicParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.setTopic";

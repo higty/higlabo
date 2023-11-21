@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.session.setSettings
+    /// </summary>
     public partial class AdminUsersSessionSetSettingsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.setSettings";

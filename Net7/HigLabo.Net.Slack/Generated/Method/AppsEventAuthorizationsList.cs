@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.event.authorizations.list
+    /// </summary>
     public partial class AppsEventAuthorizationsListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.event.authorizations.list";
@@ -64,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async ValueTask<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context)
+        public async Task<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context)
         {
             var p = new AppsEventAuthorizationsListParameter();
             p.Event_Context = event_Context;
@@ -73,7 +76,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.event.authorizations.list
         /// </summary>
-        public async ValueTask<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context, CancellationToken cancellationToken)
+        public async Task<List<AppsEventAuthorizationsListResponse>> AppsEventAuthorizationsListAsync(string? event_Context, PagingContext<AppsEventAuthorizationsListResponse> context, CancellationToken cancellationToken)
         {
             var p = new AppsEventAuthorizationsListParameter();
             p.Event_Context = event_Context;

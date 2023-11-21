@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/calls.participants.remove
+    /// </summary>
     public partial class CallsParticipantsRemoveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "calls.participants.remove";

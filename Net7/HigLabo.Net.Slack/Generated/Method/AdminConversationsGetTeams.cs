@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.getTeams
+    /// </summary>
     public partial class AdminConversationsGetTeamsParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.getTeams";
@@ -64,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async ValueTask<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context)
+        public async Task<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context)
         {
             var p = new AdminConversationsGetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -73,7 +76,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.getTeams
         /// </summary>
-        public async ValueTask<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context, CancellationToken cancellationToken)
+        public async Task<List<AdminConversationsGetTeamsResponse>> AdminConversationsGetTeamsAsync(string? channel_Id, PagingContext<AdminConversationsGetTeamsResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsGetTeamsParameter();
             p.Channel_Id = channel_Id;

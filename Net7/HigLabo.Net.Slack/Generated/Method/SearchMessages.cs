@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/search.messages
+    /// </summary>
     public partial class SearchMessagesParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "search.messages";
@@ -69,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async ValueTask<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context)
+        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -78,7 +81,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async ValueTask<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
+        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;

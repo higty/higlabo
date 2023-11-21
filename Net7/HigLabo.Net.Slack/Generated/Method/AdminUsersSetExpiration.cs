@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.setExpiration
+    /// </summary>
     public partial class AdminUsersSetExpirationParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.setExpiration";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/users.deletePhoto
+    /// </summary>
     public partial class UsersDeletePhotoParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "users.deletePhoto";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.inviteRequests.deny
+    /// </summary>
     public partial class AdminInviteRequestsDenyParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.deny";
