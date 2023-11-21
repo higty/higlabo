@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.history
+    /// </summary>
     public partial class ConversationsHistoryParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.history";
@@ -68,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async ValueTask<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context)
+        public async Task<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context)
         {
             var p = new ConversationsHistoryParameter();
             p.Channel = channel;
@@ -77,7 +80,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.history
         /// </summary>
-        public async ValueTask<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context, CancellationToken cancellationToken)
+        public async Task<List<ConversationsHistoryResponse>> ConversationsHistoryAsync(string? channel, PagingContext<ConversationsHistoryResponse> context, CancellationToken cancellationToken)
         {
             var p = new ConversationsHistoryParameter();
             p.Channel = channel;

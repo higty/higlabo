@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.session.resetBulk
+    /// </summary>
     public partial class AdminUsersSessionResetBulkParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.resetBulk";

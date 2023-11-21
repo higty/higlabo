@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/chat.meMessage
+    /// </summary>
     public partial class ChatMeMessageParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "chat.meMessage";

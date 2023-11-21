@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/team.info
+    /// </summary>
     public partial class TeamInfoParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "team.info";

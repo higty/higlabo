@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.archive
+    /// </summary>
     public partial class ConversationsArchiveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.archive";

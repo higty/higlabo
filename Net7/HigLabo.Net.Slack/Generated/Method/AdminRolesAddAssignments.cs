@@ -2,10 +2,13 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.roles.addAssignments
+    /// </summary>
     public partial class AdminRolesAddAssignmentsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.roles.addAssignments";
-        string IRestApiParameter.HttpMethod { get; } = "GET";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Entity_Ids { get; set; }
         public string? Role_Id { get; set; }
         public string? User_Ids { get; set; }

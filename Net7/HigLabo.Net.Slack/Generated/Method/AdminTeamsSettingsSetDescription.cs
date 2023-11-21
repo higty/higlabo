@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.teams.settings.setDescription
+    /// </summary>
     public partial class AdminTeamsSettingsSetDescriptionParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setDescription";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.close
+    /// </summary>
     public partial class ConversationsCloseParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.close";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/rtm.start
+    /// </summary>
     public partial class RtmStartParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "rtm.start";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.restrictAccess.removeGroup
+    /// </summary>
     public partial class AdminConversationsRestrictAccessRemoveGroupParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.restrictAccess.removeGroup";

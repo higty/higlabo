@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>8.0.0.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Company>HigLabo</Company>
+		<Authors>Higty</Authors>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="TableStoredProcedureFactory\**" />
+	  <EmbeddedResource Remove="TableStoredProcedureFactory\**" />
+	  <None Remove="TableStoredProcedureFactory\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="CodeGenerator\SqlScript\SqlScriptFileGeneratedEventArgs.cs" />
+	  <Compile Remove="CodeGenerator\SqlScript\SqlScriptFileGenerator.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
+		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+		<ProjectReference Include="..\HigLabo.Data\HigLabo.Data.csproj" />
+		<ProjectReference Include="..\HigLabo.DbSharp.SchemaData\HigLabo.DbSharp.SchemaData.csproj" />
+	</ItemGroup>
+
+</Project>

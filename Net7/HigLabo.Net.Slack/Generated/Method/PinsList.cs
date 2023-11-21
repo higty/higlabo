@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/pins.list
+    /// </summary>
     public partial class PinsListParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "pins.list";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.inviteRequests.approve
+    /// </summary>
     public partial class AdminInviteRequestsApproveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.approve";

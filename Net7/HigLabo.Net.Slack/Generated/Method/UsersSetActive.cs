@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/users.setActive
+    /// </summary>
     public partial class UsersSetActiveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "users.setActive";

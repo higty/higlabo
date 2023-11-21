@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/reminders.list
+    /// </summary>
     public partial class RemindersListParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "reminders.list";

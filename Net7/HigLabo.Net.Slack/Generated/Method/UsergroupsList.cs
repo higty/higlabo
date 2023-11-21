@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/usergroups.list
+    /// </summary>
     public partial class UsergroupsListParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "usergroups.list";

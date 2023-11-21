@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.emoji.list
+    /// </summary>
     public partial class AdminEmojiListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.emoji.list";
@@ -61,7 +64,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async ValueTask<List<AdminEmojiListResponse>> AdminEmojiListAsync(PagingContext<AdminEmojiListResponse> context)
+        public async Task<List<AdminEmojiListResponse>> AdminEmojiListAsync(PagingContext<AdminEmojiListResponse> context)
         {
             var p = new AdminEmojiListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -69,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.list
         /// </summary>
-        public async ValueTask<List<AdminEmojiListResponse>> AdminEmojiListAsync(CancellationToken cancellationToken, PagingContext<AdminEmojiListResponse> context)
+        public async Task<List<AdminEmojiListResponse>> AdminEmojiListAsync(CancellationToken cancellationToken, PagingContext<AdminEmojiListResponse> context)
         {
             var p = new AdminEmojiListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

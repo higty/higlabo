@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.emoji.addAlias
+    /// </summary>
     public partial class AdminEmojiAddAliasParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.emoji.addAlias";

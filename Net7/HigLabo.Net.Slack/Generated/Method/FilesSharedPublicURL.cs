@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.sharedPublicURL
+    /// </summary>
     public partial class FilesSharedPublicURLParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.sharedPublicURL";

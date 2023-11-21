@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>7.0.0.0</Version>
+		<Version>7.0.0.1</Version>
 		<Authors>Higty</Authors>
 		<Company>HigLabo</Company>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
@@ -22,7 +22,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.3" />
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

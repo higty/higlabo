@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
+    /// </summary>
     public partial class AdminConversationsRestrictAccessListGroupsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.restrictAccess.listGroups";

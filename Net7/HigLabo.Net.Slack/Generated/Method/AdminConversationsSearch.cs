@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.search
+    /// </summary>
     public partial class AdminConversationsSearchParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.search";
@@ -25,6 +28,7 @@ namespace HigLabo.Net.Slack
         public Sort Sort { get; set; }
         public SortDirection Sort_Dir { get; set; }
         public string? Team_Ids { get; set; }
+        public bool? Total_Count_Only { get; set; }
     }
     public partial class AdminConversationsSearchResponse : RestApiResponse
     {
@@ -67,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async ValueTask<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(PagingContext<AdminConversationsSearchResponse> context)
+        public async Task<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(PagingContext<AdminConversationsSearchResponse> context)
         {
             var p = new AdminConversationsSearchParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -75,7 +79,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.search
         /// </summary>
-        public async ValueTask<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsSearchResponse> context)
+        public async Task<List<AdminConversationsSearchResponse>> AdminConversationsSearchAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsSearchResponse> context)
         {
             var p = new AdminConversationsSearchParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

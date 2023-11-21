@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/team.billableInfo
+    /// </summary>
     public partial class TeamBillableInfoParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "team.billableInfo";
@@ -63,7 +66,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async ValueTask<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(PagingContext<TeamBillableInfoResponse> context)
+        public async Task<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(PagingContext<TeamBillableInfoResponse> context)
         {
             var p = new TeamBillableInfoParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -71,7 +74,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.billableInfo
         /// </summary>
-        public async ValueTask<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(CancellationToken cancellationToken, PagingContext<TeamBillableInfoResponse> context)
+        public async Task<List<TeamBillableInfoResponse>> TeamBillableInfoAsync(CancellationToken cancellationToken, PagingContext<TeamBillableInfoResponse> context)
         {
             var p = new TeamBillableInfoParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.revokePublicURL
+    /// </summary>
     public partial class FilesRevokePublicURLParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.revokePublicURL";

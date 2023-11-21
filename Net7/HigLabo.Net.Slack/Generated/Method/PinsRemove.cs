@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/pins.remove
+    /// </summary>
     public partial class PinsRemoveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "pins.remove";

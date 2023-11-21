@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/dialog.open
+    /// </summary>
     public partial class DialogOpenParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "dialog.open";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/stars.add
+    /// </summary>
     public partial class StarsAddParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "stars.add";

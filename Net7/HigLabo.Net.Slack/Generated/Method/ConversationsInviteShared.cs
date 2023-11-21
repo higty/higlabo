@@ -2,10 +2,13 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.inviteShared
+    /// </summary>
     public partial class ConversationsInviteSharedParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.inviteShared";
-        string IRestApiParameter.HttpMethod { get; } = "GET";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Channel { get; set; }
         public string? Emails { get; set; }
         public bool? External_Limited { get; set; }

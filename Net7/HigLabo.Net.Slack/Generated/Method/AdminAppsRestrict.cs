@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.apps.restrict
+    /// </summary>
     public partial class AdminAppsRestrictParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.apps.restrict";

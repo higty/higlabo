@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/calls.end
+    /// </summary>
     public partial class CallsEndParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "calls.end";

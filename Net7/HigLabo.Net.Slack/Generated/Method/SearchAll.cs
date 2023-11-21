@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/search.all
+    /// </summary>
     public partial class SearchAllParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "search.all";

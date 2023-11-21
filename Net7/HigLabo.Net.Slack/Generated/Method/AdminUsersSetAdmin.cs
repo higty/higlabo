@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.setAdmin
+    /// </summary>
     public partial class AdminUsersSetAdminParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.setAdmin";

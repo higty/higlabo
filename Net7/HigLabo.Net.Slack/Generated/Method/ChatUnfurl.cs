@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/chat.unfurl
+    /// </summary>
     public partial class ChatUnfurlParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "chat.unfurl";

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/team.integrationLogs
+    /// </summary>
     public partial class TeamIntegrationLogsParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "team.integrationLogs";

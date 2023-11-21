@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.inviteRequests.list
+    /// </summary>
     public partial class AdminInviteRequestsListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.list";
@@ -62,7 +65,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.list
         /// </summary>
-        public async ValueTask<List<AdminInviteRequestsListResponse>> AdminInviteRequestsListAsync(PagingContext<AdminInviteRequestsListResponse> context)
+        public async Task<List<AdminInviteRequestsListResponse>> AdminInviteRequestsListAsync(PagingContext<AdminInviteRequestsListResponse> context)
         {
             var p = new AdminInviteRequestsListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +73,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.list
         /// </summary>
-        public async ValueTask<List<AdminInviteRequestsListResponse>> AdminInviteRequestsListAsync(CancellationToken cancellationToken, PagingContext<AdminInviteRequestsListResponse> context)
+        public async Task<List<AdminInviteRequestsListResponse>> AdminInviteRequestsListAsync(CancellationToken cancellationToken, PagingContext<AdminInviteRequestsListResponse> context)
         {
             var p = new AdminInviteRequestsListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

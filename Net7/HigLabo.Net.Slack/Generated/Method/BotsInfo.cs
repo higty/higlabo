@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/bots.info
+    /// </summary>
     public partial class BotsInfoParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "bots.info";

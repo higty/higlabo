@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/team.accessLogs
+    /// </summary>
     public partial class TeamAccessLogsParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "team.accessLogs";
@@ -65,7 +68,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async ValueTask<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(PagingContext<TeamAccessLogsResponse> context)
+        public async Task<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(PagingContext<TeamAccessLogsResponse> context)
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -73,7 +76,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/team.accessLogs
         /// </summary>
-        public async ValueTask<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(CancellationToken cancellationToken, PagingContext<TeamAccessLogsResponse> context)
+        public async Task<List<TeamAccessLogsResponse>> TeamAccessLogsAsync(CancellationToken cancellationToken, PagingContext<TeamAccessLogsResponse> context)
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

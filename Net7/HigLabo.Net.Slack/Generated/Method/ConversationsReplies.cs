@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.replies
+    /// </summary>
     public partial class ConversationsRepliesParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.replies";
@@ -71,7 +74,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async ValueTask<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts)
+        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -81,7 +84,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async ValueTask<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts, CancellationToken cancellationToken)
+        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/chat.scheduledMessages.list
+    /// </summary>
     public partial class ChatScheduledMessagesListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "chat.scheduledMessages.list";
@@ -65,7 +68,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async ValueTask<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(PagingContext<ChatScheduledMessagesListResponse> context)
+        public async Task<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(PagingContext<ChatScheduledMessagesListResponse> context)
         {
             var p = new ChatScheduledMessagesListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -73,7 +76,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduledMessages.list
         /// </summary>
-        public async ValueTask<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(CancellationToken cancellationToken, PagingContext<ChatScheduledMessagesListResponse> context)
+        public async Task<List<ChatScheduledMessagesListResponse>> ChatScheduledMessagesListAsync(CancellationToken cancellationToken, PagingContext<ChatScheduledMessagesListResponse> context)
         {
             var p = new ChatScheduledMessagesListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

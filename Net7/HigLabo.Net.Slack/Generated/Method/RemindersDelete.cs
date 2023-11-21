@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/reminders.delete
+    /// </summary>
     public partial class RemindersDeleteParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "reminders.delete";

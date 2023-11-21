@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.auth.external.get
+    /// </summary>
     public partial class AppsAuthExternalGetParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.auth.external.get";

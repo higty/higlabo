@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.analytics.getFile
+    /// </summary>
     public partial class AdminAnalyticsGetFileParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.analytics.getFile";

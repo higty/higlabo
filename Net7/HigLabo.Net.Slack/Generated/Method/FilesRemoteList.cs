@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
     public partial class FilesRemoteListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.remote.list";
@@ -64,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(PagingContext<FilesRemoteListResponse> context)
+        public async Task<List<FilesRemoteListResponse>> FilesRemoteListAsync(PagingContext<FilesRemoteListResponse> context)
         {
             var p = new FilesRemoteListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.list
         /// </summary>
-        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(CancellationToken cancellationToken, PagingContext<FilesRemoteListResponse> context)
+        public async Task<List<FilesRemoteListResponse>> FilesRemoteListAsync(CancellationToken cancellationToken, PagingContext<FilesRemoteListResponse> context)
         {
             var p = new FilesRemoteListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

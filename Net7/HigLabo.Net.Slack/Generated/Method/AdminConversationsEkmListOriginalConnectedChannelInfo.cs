@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
+    /// </summary>
     public partial class AdminConversationsEkmListOriginalConnectedChannelInfoParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.ekm.listOriginalConnectedChannelInfo";
@@ -63,7 +66,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async ValueTask<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
+        public async Task<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
         {
             var p = new AdminConversationsEkmListOriginalConnectedChannelInfoParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -71,7 +74,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.ekm.listOriginalConnectedChannelInfo
         /// </summary>
-        public async ValueTask<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
+        public async Task<List<AdminConversationsEkmListOriginalConnectedChannelInfoResponse>> AdminConversationsEkmListOriginalConnectedChannelInfoAsync(CancellationToken cancellationToken, PagingContext<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> context)
         {
             var p = new AdminConversationsEkmListOriginalConnectedChannelInfoParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

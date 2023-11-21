@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.manifest.update
+    /// </summary>
     public partial class AppsManifestUpdateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.manifest.update";

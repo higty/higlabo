@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/search.files
+    /// </summary>
     public partial class SearchFilesParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "search.files";

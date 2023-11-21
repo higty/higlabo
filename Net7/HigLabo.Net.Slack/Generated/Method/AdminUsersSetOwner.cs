@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.setOwner
+    /// </summary>
     public partial class AdminUsersSetOwnerParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.setOwner";

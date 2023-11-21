@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/views.publish
+    /// </summary>
     public partial class ViewsPublishParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "views.publish";

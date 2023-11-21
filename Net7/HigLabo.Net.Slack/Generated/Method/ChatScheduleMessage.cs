@@ -2,16 +2,19 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/chat.scheduleMessage
+    /// </summary>
     public partial class ChatScheduleMessageParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "chat.scheduleMessage";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Channel { get; set; }
         public int? Post_At { get; set; }
-        public string? Text { get; set; }
-        public bool? As_User { get; set; }
         public string? Attachments { get; set; }
         public string? Blocks { get; set; }
+        public string? Text { get; set; }
+        public bool? As_User { get; set; }
         public bool? Link_Names { get; set; }
         public string? Metadata { get; set; }
         public string? Parse { get; set; }
@@ -31,23 +34,21 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduleMessage
         /// </summary>
-        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, string? text)
+        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At)
         {
             var p = new ChatScheduleMessageParameter();
             p.Channel = channel;
             p.Post_At = post_At;
-            p.Text = text;
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://api.slack.com/methods/chat.scheduleMessage
         /// </summary>
-        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, string? text, CancellationToken cancellationToken)
+        public async ValueTask<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string? channel, int? post_At, CancellationToken cancellationToken)
         {
             var p = new ChatScheduleMessageParameter();
             p.Channel = channel;
             p.Post_At = post_At;
-            p.Text = text;
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(p, cancellationToken);
         }
         /// <summary>

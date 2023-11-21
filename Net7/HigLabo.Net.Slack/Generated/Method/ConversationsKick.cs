@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/conversations.kick
+    /// </summary>
     public partial class ConversationsKickParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.kick";

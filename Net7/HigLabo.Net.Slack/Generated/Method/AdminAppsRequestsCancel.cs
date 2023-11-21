@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.apps.requests.cancel
+    /// </summary>
     public partial class AdminAppsRequestsCancelParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.apps.requests.cancel";

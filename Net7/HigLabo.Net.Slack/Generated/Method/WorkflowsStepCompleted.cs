@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/workflows.stepCompleted
+    /// </summary>
     public partial class WorkflowsStepCompletedParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "workflows.stepCompleted";

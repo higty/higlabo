@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.remove
+    /// </summary>
     public partial class FilesRemoteRemoveParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "files.remote.remove";

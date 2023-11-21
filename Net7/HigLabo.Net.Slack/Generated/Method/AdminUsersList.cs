@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.users.list
+    /// </summary>
     public partial class AdminUsersListParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.list";
@@ -18,6 +21,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
+        public bool? Include_Deactivated_User_Workspaces { get; set; }
+        public bool? Is_Active { get; set; }
         public int? Limit { get; set; }
         public string? Team_Id { get; set; }
     }
@@ -62,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.list
         /// </summary>
-        public async ValueTask<List<AdminUsersListResponse>> AdminUsersListAsync(PagingContext<AdminUsersListResponse> context)
+        public async Task<List<AdminUsersListResponse>> AdminUsersListAsync(PagingContext<AdminUsersListResponse> context)
         {
             var p = new AdminUsersListParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -70,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.list
         /// </summary>
-        public async ValueTask<List<AdminUsersListResponse>> AdminUsersListAsync(CancellationToken cancellationToken, PagingContext<AdminUsersListResponse> context)
+        public async Task<List<AdminUsersListResponse>> AdminUsersListAsync(CancellationToken cancellationToken, PagingContext<AdminUsersListResponse> context)
         {
             var p = new AdminUsersListParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);

@@ -2,12 +2,14 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/pins.add
+    /// </summary>
     public partial class PinsAddParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "pins.add";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Channel { get; set; }
-        public string? Quip_Component_Id { get; set; }
         public string? Timestamp { get; set; }
     }
     public partial class PinsAddResponse : RestApiResponse

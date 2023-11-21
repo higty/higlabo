@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/apps.datastore.query
+    /// </summary>
     public partial class AppsDatastoreQueryParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "apps.datastore.query";
@@ -68,7 +71,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async ValueTask<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context)
+        public async Task<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context)
         {
             var p = new AppsDatastoreQueryParameter();
             p.Datastore = datastore;
@@ -77,7 +80,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.datastore.query
         /// </summary>
-        public async ValueTask<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context, CancellationToken cancellationToken)
+        public async Task<List<AppsDatastoreQueryResponse>> AppsDatastoreQueryAsync(string? datastore, PagingContext<AppsDatastoreQueryResponse> context, CancellationToken cancellationToken)
         {
             var p = new AppsDatastoreQueryParameter();
             p.Datastore = datastore;

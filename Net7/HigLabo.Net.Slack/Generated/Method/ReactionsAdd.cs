@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/reactions.add
+    /// </summary>
     public partial class ReactionsAddParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.add";

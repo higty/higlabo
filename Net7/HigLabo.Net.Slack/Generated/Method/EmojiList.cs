@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/emoji.list
+    /// </summary>
     public partial class EmojiListParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "emoji.list";

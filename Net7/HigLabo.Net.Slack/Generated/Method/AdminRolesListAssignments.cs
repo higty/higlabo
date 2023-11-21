@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Slack
 {
+    /// <summary>
+    /// https://api.slack.com/methods/admin.roles.listAssignments
+    /// </summary>
     public partial class AdminRolesListAssignmentsParameter : IRestApiParameter, IRestApiPagingParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.roles.listAssignments";
@@ -64,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async ValueTask<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(PagingContext<AdminRolesListAssignmentsResponse> context)
+        public async Task<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(PagingContext<AdminRolesListAssignmentsResponse> context)
         {
             var p = new AdminRolesListAssignmentsParameter();
             return await this.SendBatchAsync(p, context, CancellationToken.None);
@@ -72,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.roles.listAssignments
         /// </summary>
-        public async ValueTask<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(CancellationToken cancellationToken, PagingContext<AdminRolesListAssignmentsResponse> context)
+        public async Task<List<AdminRolesListAssignmentsResponse>> AdminRolesListAssignmentsAsync(CancellationToken cancellationToken, PagingContext<AdminRolesListAssignmentsResponse> context)
         {
             var p = new AdminRolesListAssignmentsParameter();
             return await this.SendBatchAsync(p, context, cancellationToken);
