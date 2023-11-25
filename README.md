@@ -63,7 +63,7 @@ A code generator to call stored procedure on database(SQL server, MySQL)
 https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
 
 ## HigLabo.Mime
-A library of Mime parser.World fastest parser of MIME.It is used for HigLabo.Mail.
+A library of Mime parser. Fastest parser in the world for MIME format. It is used for HigLabo.Mail.
 
 ## HigLabo.Mail
 A mail library of SMTP,POP3,IMAP.
@@ -81,13 +81,4 @@ Converter library for Base64,QueryString,QuotedPrintable,Rfc2047,ModifiedUtf7,IS
 ## HigLabo.Net.Slack
 Slack client library to call Slack API.
 https://www.codeproject.com/Articles/5336184/Creating-best-Csharp-Slack-client-library-in-the-w
-
-## HigLabo.Bot.Facebook
-A library to call Facebook Messenger API.
-
-## HigLabo.Bot.LINE
-A library to call LINE API.LINE is most used messaging app in Japan.
-
-
-
 
