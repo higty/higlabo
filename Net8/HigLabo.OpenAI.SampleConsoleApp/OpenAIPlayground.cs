@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await ChatCompletionStreamWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -107,44 +107,69 @@ namespace HigLabo.OpenAI
             p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of these locations. Newyork, Sanflansisco, Paris, Tokyo."));
             p.Model = "gpt-3.5-turbo";
 
-            var tool = new ToolObject("function");
-            tool.Function = new FunctionObject();
-            tool.Function.Name = "getWhether";
-            tool.Function.Description = "This service can get whether of specified location.";
-            tool.Function.Parameters = new
             {
-                type = "object",
-                properties = new
+                var tool = new ToolObject("function");
+                tool.Function = new FunctionObject();
+                tool.Function.Name = "getWhether";
+                tool.Function.Description = "This service can get whether of specified location.";
+                tool.Function.Parameters = new
                 {
-                    locationList = new
+                    type = "object",
+                    properties = new
                     {
-                        type = "array",
-                        description = "Location list that you want to know.",
-                        items = new
+                        locationList = new
                         {
-                            type = "string",
+                            type = "array",
+                            description = "Location list that you want to know.",
+                            items = new
+                            {
+                                type = "string",
+                            }
                         }
                     }
-                }
-            };
-            p.Tools = new List<ToolObject>();
-            p.Tools.Add(tool);
+                };
+                p.Tools = new List<ToolObject>();
+                p.Tools.Add(tool);
+            }
+            {
+                var tool = new ToolObject("function");
+                tool.Function = new FunctionObject();
+                tool.Function.Name = "getLatLong";
+                tool.Function.Description = "This service can get latitude and longitude of specified location.";
+                tool.Function.Parameters = new
+                {
+                    type = "object",
+                    properties = new
+                    {
+                        locationList = new
+                        {
+                            type = "array",
+                            description = "Location list that you want to know.",
+                            items = new
+                            {
+                                type = "string",
+                            }
+                        }
+                    }
+                };
+                p.Tools = new List<ToolObject>();
+                p.Tools.Add(tool);
+            }
 
             var processor = new ChatCompletionStreamProcessor();
             //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
             p.Stream = true;
             await foreach (var chunk in cl.GetStreamAsync(p))
             {
+                processor.Process(chunk);
                 foreach (var choice in chunk.Choices)
                 {
                     Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
                 }
             }
             Console.WriteLine();
 
-            var f = processor.GetFunctionCall();
-            if (f != null)
+            foreach (var f in processor.GetFunctionCallList())
             {
                 Console.WriteLine("■Function name is " + f.Name);
                 Console.WriteLine("■Arguments is " + f.Arguments);

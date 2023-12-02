@@ -38,10 +38,13 @@ namespace HigLabo.OpenAI
         }
         public FunctionCallResult? GetFunctionCall()
         {
-            var f = new FunctionCallResult();
-            var functionCallExists = false;
+            return this.GetFunctionCallList().FirstOrDefault();
+        }
+        public List<FunctionCallResult> GetFunctionCallList()
+        {
+            var l = new List<FunctionCallResult>();
+            FunctionCallResult? f = null;
 
-            var sb = new StringBuilder();
             foreach (var chunk in this.ChunkList)
             {
                 foreach (var choice in chunk.Choices)
@@ -51,24 +54,28 @@ namespace HigLabo.OpenAI
                     {
                         if (toolCall.Function != null)
                         {
-                            functionCallExists = true;
                             if (toolCall.Function.Name.IsNullOrEmpty() == false)
                             {
-                                f.Name = toolCall.Function.Name;
+                                f = l.Find(el => el.Name == toolCall.Function.Name);
+                                if (f == null)
+                                {
+                                    f = new FunctionCallResult();
+                                    f.Name = toolCall.Function.Name;
+                                    l.Add(f);
+                                }
                             }
-                            if (toolCall.Function.Arguments.IsNullOrEmpty() == false)
+                            if (f != null)
                             {
-                                sb.Append(toolCall.Function.Arguments);
+                                if (toolCall.Function.Arguments.IsNullOrEmpty() == false)
+                                {
+                                    f.Arguments += toolCall.Function.Arguments;
+                                }
                             }
                         }
                     }
                 }
             }
-            if (functionCallExists == false) { return null; }
-
-            f.Arguments = sb.ToString();
-
-            return f;
+            return l;
         }
     }
 }
