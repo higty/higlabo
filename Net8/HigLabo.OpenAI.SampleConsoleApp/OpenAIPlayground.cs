@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await SendMessage();
+            await ThreadMessage();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -401,8 +401,8 @@ namespace HigLabo.OpenAI
 
             int pageNumbuer = 1;
             var p = new MessagesParameter();
-            p.Thread_Id = "thread_xxxxxxxxxxxxx";
-            //p.QueryParameter.Limit = 4;
+            p.Thread_Id = "thread_SLRZuUllau88ZWojp09K8B0U";
+            p.QueryParameter.Limit = 2;
             p.QueryParameter.Order = "desc";
 
             var messageId = "";
