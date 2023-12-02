@@ -17,7 +17,7 @@ namespace HigLabo.DbSharp
             this.TableName = tableName;
         }
         public TableRecordNotFoundException(String tableName, params Object[] values)
-            : base("TableName=" + tableName)
+            : base($"TableName={tableName} values=" + string.Join(',', values))
         {
             this.TableName = tableName;
             this.Values = values;

@@ -42,7 +42,7 @@ namespace HigLabo.OpenAI
             if (this.Order != null) { sb.Append($"order={WebUtility.UrlEncode(this.Order)}&"); }
             if (this.After != null) { sb.Append($"after={WebUtility.UrlEncode(this.After)}&"); }
             if (this.Before != null) { sb.Append($"before={WebUtility.UrlEncode(this.Before)}&"); }
-            return sb.ToString().ToLower().TrimEnd('&');
+            return sb.ToString().TrimEnd('&');
         }
     }
     public class FineTuningQueryParameter : IQueryParameter
