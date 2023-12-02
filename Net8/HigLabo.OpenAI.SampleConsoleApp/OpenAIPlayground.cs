@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStreamWithFunctionCalling();
+            await SendMessage();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -336,16 +336,76 @@ namespace HigLabo.OpenAI
             };
             var res2 = await cl.AssistantModifyAsync(p);
         }
+        private async ValueTask SendMessage()
+        {
+            var cl = OpenAIClient;
+
+            var now = DateTimeOffset.Now;
+            var threadId = "";
+            if (threadId.Length == 0)
+            {
+                var res = await cl.ThreadCreateAsync();
+                threadId = res.Id;
+            }
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = "Hello! I want to know how to use OpenAI assistant API.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = "asst_xxxxxxxxxxxxxx";
+                p.Thread_Id = threadId;
+                var res = await cl.RunCreateAsync(p);
+                runId = res.Id;
+            }
+            var loopCount = 0;
+            Thread.Sleep(3000);
+            var interval = 1000;
+            while (true)
+            {
+                Thread.Sleep(interval);
+                var p = new RunRetrieveParameter();
+                p.Thread_Id = threadId;
+                p.Run_Id = runId;
+                var res = await cl.RunRetrieveAsync(p);
+                if (res.Status != "queued" &&
+                    res.Status != "in_progress" &&
+                    res.Status != "cancelling")
+                {
+                    var p1 = new MessagesParameter();
+                    p1.Thread_Id = threadId;
+                    p1.QueryParameter.Order = "desc";
+                    var res1 = await cl.MessagesAsync(p1);
+                    foreach (var item in res1.Data)
+                    {
+                        foreach (var content in item.Content)
+                        {
+                            if (content.Text == null) { continue; }
+                            Console.WriteLine(content.Text.Value);
+                        }
+                    }
+                    break;
+                }
+                loopCount++;
+                if (loopCount > 120) { break; }
+            }
+
+        }
         private async ValueTask ThreadMessage()
         {
             var cl = OpenAIClient;
 
             int pageNumbuer = 1;
             var p = new MessagesParameter();
-            p.Thread_Id = "thread_xxxxxxxxxxxxxxx";
+            p.Thread_Id = "thread_xxxxxxxxxxxxx";
             //p.QueryParameter.Limit = 4;
             p.QueryParameter.Order = "desc";
 
+            var messageId = "";
             while (true)
             {
                 var res = await cl.MessagesAsync(p);
@@ -357,11 +417,16 @@ namespace HigLabo.OpenAI
                         Console.WriteLine(content.Text);
                         Console.WriteLine("--------------------------------------------------------");
                     }
+                    messageId = rMessage.Id;
                 }
                 pageNumbuer++;
                 if (res.Has_More == false) { break; }
                 p.QueryParameter.After = res.Last_Id;
             }
+
+            //Retrieve latest message.
+            var m = await cl.MessageRetrieveAsync(p.Thread_Id, messageId);
+
         }
         private async ValueTask Runs()
         {
