@@ -185,17 +185,17 @@ namespace HigLabo.Core
             }
         }
 
-        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
+        public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
             , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, CancellationToken cancellationToken)
         {
             return await this.List_Data_Get(date, userId, startTime, endTime, exceptionType, errorLevel, startIndex, recordCount, Array.Empty<string>(), cancellationToken);
         }
-        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
+        public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
             , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
         {
             return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, startTime, endTime, exceptionType, errorLevel, startIndex, recordCount, whereConditionList, cancellationToken);
         }
-        public async ValueTask<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime
+        public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime
             , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
         {
             if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }

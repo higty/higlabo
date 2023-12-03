@@ -421,16 +421,6 @@ export class Stack extends ArrayQueryable {
     }
 }
 export class Dictionary extends EnumerableCollection {
-    constructor(keyValuePairs) {
-        super();
-        this.clear();
-        if (keyValuePairs !== undefined) {
-            for (let i = 0; i < keyValuePairs.length; ++i) {
-                const pair = keyValuePairs[i];
-                this.set(pair.key, pair.value);
-            }
-        }
-    }
     static fromArray(array, keySelector, valueSelector) {
         const keyValuePairs = array.map(v => {
             return {
@@ -444,6 +434,16 @@ export class Dictionary extends EnumerableCollection {
         const keys = new List(Object.getOwnPropertyNames(object));
         const keyValues = keys.select(k => ({ key: k, value: object[k] }));
         return new Dictionary(keyValues.toArray());
+    }
+    constructor(keyValuePairs) {
+        super();
+        this.clear();
+        if (keyValuePairs !== undefined) {
+            for (let i = 0; i < keyValuePairs.length; ++i) {
+                const pair = keyValuePairs[i];
+                this.set(pair.key, pair.value);
+            }
+        }
     }
     copy() {
         return new Dictionary(this.toArray());

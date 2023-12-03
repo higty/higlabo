@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.0.0.1</Version>
+    <Version>6.0.0.2</Version>
     <Authors>Higty</Authors>
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
     <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
 
   <ItemGroup>

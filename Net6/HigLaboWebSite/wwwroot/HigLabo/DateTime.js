@@ -1,32 +1,4 @@
 export class DateTime {
-    constructor(value) {
-        this.dateFormat = {
-            default: "ddd mmm dd yyyy HH:MM:ss",
-            shortDate: "m/d/yy",
-            mediumDate: "mmm d, yyyy",
-            longDate: "mmmm d, yyyy",
-            fullDate: "dddd, mmmm d, yyyy",
-            shortTime: "h:MM TT",
-            mediumTime: "h:MM:ss TT",
-            longTime: "h:MM:ss TT Z",
-            isoDate: "yyyy-mm-dd",
-            isoTime: "HH:MM:ss",
-            isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
-            isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
-        };
-        if (value instanceof Date) {
-            this.rawValue = value;
-        }
-        else if (typeof value === "number") {
-            this.rawValue = new Date(value);
-        }
-        else if (typeof value === "string") {
-            this.rawValue = new Date(value);
-        }
-        else if (value != null && value.Year != null && value.Month != null && value.Day != null) {
-            this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
-        }
-    }
     get value() {
         return this.rawValue;
     }
@@ -66,6 +38,34 @@ export class DateTime {
             case 6: return DayOfWeek.Saturday;
         }
         throw new Error("Invalid dayOfWeek");
+    }
+    constructor(value) {
+        this.dateFormat = {
+            default: "ddd mmm dd yyyy HH:MM:ss",
+            shortDate: "m/d/yy",
+            mediumDate: "mmm d, yyyy",
+            longDate: "mmmm d, yyyy",
+            fullDate: "dddd, mmmm d, yyyy",
+            shortTime: "h:MM TT",
+            mediumTime: "h:MM:ss TT",
+            longTime: "h:MM:ss TT Z",
+            isoDate: "yyyy-mm-dd",
+            isoTime: "HH:MM:ss",
+            isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
+            isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
+        };
+        if (value instanceof Date) {
+            this.rawValue = value;
+        }
+        else if (typeof value === "number") {
+            this.rawValue = new Date(value);
+        }
+        else if (typeof value === "string") {
+            this.rawValue = new Date(value);
+        }
+        else if (value != null && value.Year != null && value.Month != null && value.Day != null) {
+            this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
+        }
     }
     addMilliSecond(value) {
         const v = this.rawValue.valueOf() + value;
@@ -231,9 +231,6 @@ export class DateTime {
 DateTime.timeZoneMinute = 9 * 60;
 DateTime.dayOfWeekList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export class TimeSpan {
-    constructor(milliseconds) {
-        this._TotalMilliSeconds = milliseconds;
-    }
     get totalMilliSeconds() {
         return this._TotalMilliSeconds;
     }
@@ -251,6 +248,9 @@ export class TimeSpan {
     }
     get days() {
         return Math.floor(this._TotalMilliSeconds / (24 * 3600 * 1000));
+    }
+    constructor(milliseconds) {
+        this._TotalMilliSeconds = milliseconds;
     }
     static substract(value1, value2) {
         return new TimeSpan(value1.ticks - value2.ticks);

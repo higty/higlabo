@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core", "HigLabo.Core\HigLabo.Core.csproj", "{C0073E38-BA0E-4089-95A6-5F0C3B3AE07C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Core", "HigLabo.Core\HigLabo.Core.csproj", "{C0073E38-BA0E-4089-95A6-5F0C3B3AE07C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.CodeGenerator", "HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj", "{397C8BF7-A4D3-4917-842B-C4DB383E7C93}"
 EndProject
@@ -96,6 +96,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbSharpApplication", "DbSharpApplication\DbSharpApplication.csproj", "{5015B98C-3639-4248-9410-B5D45F0C77B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.BlobToEnumApplication", "HigLabo.BlobToEnumApplication\HigLabo.BlobToEnumApplication.csproj", "{0FCEC6C6-C387-481C-AC4D-A7180B07B8B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Bigquery", "HigLabo.Bigquery\HigLabo.Bigquery.csproj", "{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -291,6 +293,10 @@ Global
 		{0FCEC6C6-C387-481C-AC4D-A7180B07B8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FCEC6C6-C387-481C-AC4D-A7180B07B8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FCEC6C6-C387-481C-AC4D-A7180B07B8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

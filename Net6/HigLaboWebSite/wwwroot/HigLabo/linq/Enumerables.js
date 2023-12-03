@@ -307,10 +307,6 @@ export class EnumerableBase {
     }
 }
 export class Enumerable extends EnumerableBase {
-    constructor(source) {
-        super(source);
-        this.currentValue = new Cached();
-    }
     static fromSource(source) {
         if (source instanceof Array) {
             return new ArrayEnumerable(source);
@@ -344,6 +340,10 @@ export class Enumerable extends EnumerableBase {
             source[i] = element;
         }
         return new ArrayEnumerable(source);
+    }
+    constructor(source) {
+        super(source);
+        this.currentValue = new Cached();
     }
     copy() {
         return new Enumerable(this.source.copy());
