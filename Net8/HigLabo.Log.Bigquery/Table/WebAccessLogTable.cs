@@ -166,18 +166,18 @@ namespace HigLabo.Core
         }
 
 
-        public async Task<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
+        public async Task<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
             , Int32 startIndex, Int32 recordCount, CancellationToken cancellationToken)
         {
             return await this.List_Data_Get(date, userId, startTime, endTime, startIndex, recordCount, Array.Empty<string>(), cancellationToken);
         }
-        public async Task<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
+        public async Task<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime
             , Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
         {
             await this.EnsureTable(date);
             return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, startTime, endTime, startIndex, recordCount, whereConditionList, cancellationToken);
         }
-        public async Task<(List<Record> Records, string query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime
+        public async Task<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime
             , Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
         {
             if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
