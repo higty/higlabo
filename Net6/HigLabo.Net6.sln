@@ -65,11 +65,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.ObjectModel", "HigL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Data.Mapper", "HigLabo.Data.Mapper\HigLabo.Data.Mapper.csproj", "{49EE1E0B-E2AE-4928-A8F3-2C09509697ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.OpenAI", "HigLabo.OpenAI\HigLabo.OpenAI.csproj", "{B1D5D09B-2546-4EDD-A909-9130BE472728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI", "HigLabo.OpenAI\HigLabo.OpenAI.csproj", "{B1D5D09B-2546-4EDD-A909-9130BE472728}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.NewtonsoftJson", "HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj", "{BA0C4C6A-7A73-418B-A9BC-B42230DDB4A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.NewtonsoftJson", "HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj", "{BA0C4C6A-7A73-418B-A9BC-B42230DDB4A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.OpenAI.SampleConsoleApp", "HigLabo.OpenAI.SampleConsoleApp\HigLabo.OpenAI.SampleConsoleApp.csproj", "{D5B3A945-30C4-4573-8351-72FBC5F9B549}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI.SampleConsoleApp", "HigLabo.OpenAI.SampleConsoleApp\HigLabo.OpenAI.SampleConsoleApp.csproj", "{D5B3A945-30C4-4573-8351-72FBC5F9B549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

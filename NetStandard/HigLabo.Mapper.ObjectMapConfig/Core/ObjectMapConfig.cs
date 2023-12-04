@@ -244,7 +244,7 @@ namespace HigLabo.Core
         private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
         {
             Dictionary<String, Object> d = new Dictionary<String, Object>(this.DictionaryKeyStringComparer);
-            d.SetValues((IDataReader)source);
+            source.SetToDisctionary(d);
             return this.Map(d, target, context);
         }
 

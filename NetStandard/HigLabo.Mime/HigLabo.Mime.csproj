@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>2.0.0.8</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <TargetFramework>netstandard2.1</TargetFramework>
+	  <Version>2.1.0.0</Version>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>HigLabo.Mime is a mime parser.Ultimately fast to parse large EMail.You can easily use parsed object as strongly typed class.</Description>
     <Product />
     <Company />

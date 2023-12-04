@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0.2</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <TargetFramework>netstandard2.1</TargetFramework>
+	  <Version>2.1.0.0</Version>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>HigLabo.Data.SQLite provide database access for SQLite.</Description>
     <Product />
     <Company />
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.106" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
   </ItemGroup>
 
   <ItemGroup>

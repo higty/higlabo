@@ -10,7 +10,7 @@ namespace HigLabo.Core
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public static class Enum<T>
-            where T : struct
+            where T : struct, Enum
     {
         /// <summary>
         /// 
