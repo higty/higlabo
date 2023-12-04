@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29324.140
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Converter", "HigLabo.Converter\HigLabo.Converter.csproj", "{7DFEE95C-8A1C-47F1-B432-3A36F031627C}"
 EndProject
@@ -45,7 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Csv", "HigLabo.Csv\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Debug", "HigLabo.Debug\HigLabo.Debug.csproj", "{63755FAD-5692-4DC5-B60F-F4298F091E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mapper.ObjectMapConfig", "HigLabo.Mapper.ObjectMapConfig\HigLabo.Mapper.ObjectMapConfig.csproj", "{E97106FC-7E7E-4E81-BE58-B078EEF899E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Mapper.ObjectMapConfig", "HigLabo.Mapper.ObjectMapConfig\HigLabo.Mapper.ObjectMapConfig.csproj", "{E97106FC-7E7E-4E81-BE58-B078EEF899E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.OpenAI", "HigLabo.OpenAI\HigLabo.OpenAI.csproj", "{72988E0A-B305-4232-B635-9DFF4041E005}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.NewtonsoftJson", "HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj", "{6F3570BF-FAEC-4858-A39A-6080CB951975}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,14 @@ Global
 		{E97106FC-7E7E-4E81-BE58-B078EEF899E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97106FC-7E7E-4E81-BE58-B078EEF899E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E97106FC-7E7E-4E81-BE58-B078EEF899E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72988E0A-B305-4232-B635-9DFF4041E005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72988E0A-B305-4232-B635-9DFF4041E005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72988E0A-B305-4232-B635-9DFF4041E005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72988E0A-B305-4232-B635-9DFF4041E005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3570BF-FAEC-4858-A39A-6080CB951975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3570BF-FAEC-4858-A39A-6080CB951975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3570BF-FAEC-4858-A39A-6080CB951975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3570BF-FAEC-4858-A39A-6080CB951975}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

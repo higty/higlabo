@@ -20,7 +20,12 @@ namespace HigLabo.Wpf
         public Boolean IsChecked
         {
             get { return _IsChecked; }
-            set { this.SetPropertyValue(ref _IsChecked, value, PropertyChanged); }
+            set
+            {
+                if (_IsChecked ==  value) return;   
+                _IsChecked = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
+            }
         }
         public T Item { get; set; }
         public CheckedItem(T item)

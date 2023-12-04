@@ -56,11 +56,5 @@
     <Compile Include="UI\ListBox.AutoScrollHandler.cs" />
     <Compile Include="UI\WindowStateInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj">
-      <Project>{e0defd9c-79d9-45f2-ba43-56616c5d13a6}</Project>
-      <Name>HigLabo.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
