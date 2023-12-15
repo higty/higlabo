@@ -93,6 +93,7 @@ namespace HigLabo.OpenAI
             {
                 "GET" => HttpMethod.Get,
                 "POST" => HttpMethod.Post,
+                "DELETE" => HttpMethod.Delete,
                 _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
             };
             var apiPath = p.GetApiPath();
