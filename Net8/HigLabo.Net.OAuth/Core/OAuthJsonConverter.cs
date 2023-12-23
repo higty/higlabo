@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using HigLabo.Net.OAuth;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -9,13 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.Net.OAuth
 {
-    public class OpenAIJsonConverter : IJsonConverter
+    public class OAuthJsonConverter : IJsonConverter
     {
         public JsonSerializerSettings Setting = new JsonSerializerSettings();
 
-        public OpenAIJsonConverter()
+        public OAuthJsonConverter()
         {
             this.Setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
             this.Setting.NullValueHandling = NullValueHandling.Ignore;

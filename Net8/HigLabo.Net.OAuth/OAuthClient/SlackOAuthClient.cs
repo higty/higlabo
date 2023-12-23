@@ -16,7 +16,7 @@ namespace HigLabo.Net.OAuth
 
         }
 
-        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes)
+        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
         {
             return String.Format("https://slack.com/oauth/v2/authorize?"
                 + "client_id={0}&scope={1}&redirect_uri={2}"

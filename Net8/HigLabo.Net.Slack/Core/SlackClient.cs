@@ -13,21 +13,15 @@ namespace HigLabo.Net.Slack
     {
         public static String ApiUrl = "https://slack.com/api/";
 
-        public SlackClient(IJsonConverter jsonConverter, string accessToken)
-            : base(jsonConverter)
+        public event EventHandler<AccessTokenUpdatedEventArgs<RequestCodeResponse>>? AccessTokenUpdated;
+
+        public SlackClient(HttpClient httpClient)
+            : base(httpClient, new OAuthJsonConverter())
         {
-            this.AccessToken = accessToken;
         }
-        public SlackClient(IJsonConverter jsonConverter, OAuthSetting setting)
-            : base(jsonConverter)
+        public SlackClient(HttpClient httpClient, OAuthSetting setting)
+            : base(httpClient, new OAuthJsonConverter())
         {
-            this.OAuthSetting = setting;
-        }
-        public SlackClient(IJsonConverter jsonConverter, string accessToken, string refreshToken, OAuthSetting setting)
-            : base(jsonConverter)
-        {
-            this.AccessToken = accessToken;
-            this.RefreshToken = refreshToken;
             this.OAuthSetting = setting;
         }
 
@@ -40,7 +34,6 @@ namespace HigLabo.Net.Slack
 
         public override async ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            Func<ValueTask<TResponse>>? f = null;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
                 //Use POST method with FormUrlEncodedContent for GET endpoint.
@@ -49,16 +42,31 @@ namespace HigLabo.Net.Slack
                 {
                     d["Recurrence"] = p.Recurrence.ToString();
                 }
-                f = () => this.SendFormAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), d, cancellationToken);
+                try
+                {
+                    return await this.SendFormAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), d, cancellationToken);
+                }
+                catch
+                {
+                    await this.UpdateAccessTokenAsync();
+                }
+                return await this.SendFormAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), d, cancellationToken);
             }
             else
             {
-                f = () => this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), parameter, cancellationToken);
+                try
+                {
+                    return await this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), parameter, cancellationToken);
+                }
+                catch
+                {
+                    await this.UpdateAccessTokenAsync();
+                }
+                return await this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), parameter, cancellationToken);
             }
-            return await this.ProcessRequest(f);
         }
 
-        protected override async Task ProcessAccessTokenAsync()
+        protected async Task ProcessAccessTokenAsync()
         {
             var result = await this.UpdateAccessTokenAsync();
             if (result.Ok)
@@ -72,7 +80,7 @@ namespace HigLabo.Net.Slack
             if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
 
-            var cl = this;
+            var cl = this.HttpClient;
             var b = this.OAuthSetting;
             var req = new HttpRequestMessage(HttpMethod.Post, "https://slack.com/api/oauth.v2.access");
 
@@ -92,7 +100,7 @@ namespace HigLabo.Net.Slack
             if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
 
-            var cl = this;
+            var cl = this.HttpClient;
             var b = this.OAuthSetting;
             var req = new HttpRequestMessage(HttpMethod.Post, "https://slack.com/api/oauth.v2.access");
 
@@ -110,10 +118,14 @@ namespace HigLabo.Net.Slack
             var o = this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
             if (o.Ok)
             {
-                this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs(o));
+                this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs<RequestCodeResponse>(o));
             }
             return o;
         }
 
+        protected void OnAccessTokenUpdated(AccessTokenUpdatedEventArgs<RequestCodeResponse> e)
+        {
+            this.AccessTokenUpdated?.Invoke(this, e);
+        }
     }
 }

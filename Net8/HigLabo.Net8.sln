@@ -97,7 +97,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbSharpApplication", "DbSha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.BlobToEnumApplication", "HigLabo.BlobToEnumApplication\HigLabo.BlobToEnumApplication.csproj", "{0FCEC6C6-C387-481C-AC4D-A7180B07B8B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Bigquery", "HigLabo.Bigquery\HigLabo.Bigquery.csproj", "{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Bigquery", "HigLabo.Bigquery\HigLabo.Bigquery.csproj", "{1C614D7D-9461-4A3E-8AFD-E12BC4CBA7C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

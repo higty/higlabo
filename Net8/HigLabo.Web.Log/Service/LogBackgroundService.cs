@@ -33,8 +33,12 @@ namespace HigLabo.Service
         }
         public void AddErrorLog(Exception exception, Int32 errorLevel)
         {
+            this.AddErrorLog(exception, errorLevel, "", "");
+        }
+        public void AddErrorLog(Exception exception, Int32 errorLevel, string userId, string message)
+        {
             var cm = new LogAddCommand(this.WebAccessLogTable, this.ErrorLogTable);
-            var r = ErrorLogTable.Record.Create(exception, errorLevel);
+            var r = ErrorLogTable.Record.Create(exception, errorLevel, userId, message);
             cm.ErrorList.Add(r);
             this.AddCommand(cm);
         }

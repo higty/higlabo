@@ -69,6 +69,7 @@ namespace HigLabo.Net.Microsoft
             {
                 if (this.SelectList.Count > 0)
                 {
+                    if (sb.Length > 0) { sb.Append("&"); }
                     sb.Append("$select=");
                     for (int i = 0; i < this.SelectList.Count; i++)
                     {
@@ -82,6 +83,7 @@ namespace HigLabo.Net.Microsoft
             }
             else
             {
+                if (sb.Length > 0) { sb.Append("&"); }
                 sb.Append("$select=").Append(WebUtility.UrlEncode(this.Select));
             }
             if (this.Skip.HasValue)

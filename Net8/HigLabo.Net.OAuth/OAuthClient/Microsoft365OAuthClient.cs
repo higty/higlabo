@@ -16,12 +16,10 @@ namespace HigLabo.Net.OAuth
 
         }
 
-        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes)
+        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
         {
-            return String.Format("https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=code"
-                + "&client_id={0}&redirect_uri={1}&scope={2}&state={3}"
-                , this.ClientID, redirectUrl, WebUtility.UrlEncode(String.Join(" ", scopes))
-                , new Random().Next(0, 100000));
+            return "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=code"
+                + $"&client_id={this.ClientID}&redirect_uri={redirectUrl}&scope={WebUtility.UrlEncode(String.Join(" ", scopes))}&state ={state}";
         }
         public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {

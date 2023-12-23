@@ -22,9 +22,9 @@ namespace HigLabo.Net.OAuth
         /// <param name="redirectUrl"></param>
         /// <param name="scopes"></param>
         /// <returns></returns>
-        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes)
+        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
         {
-            return CreateAuthorizeUrl(redirectUrl, scopes, "", "");
+            return CreateAuthorizeUrl(redirectUrl, scopes, state, "");
         }
         public String CreateAuthorizeUrl(String redirectUrl, String[] scopes, String state, String code_challenge)
         {

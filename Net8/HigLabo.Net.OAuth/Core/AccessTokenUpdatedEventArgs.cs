@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Net.OAuth
 {
-    public class AccessTokenUpdatedEventArgs
+    public class AccessTokenUpdatedEventArgs<T>
+        where T : RestApiResponse
     {
-        public RestApiResponse Response { get; init; }
+        public T Response { get; init; }
 
-        public AccessTokenUpdatedEventArgs(RestApiResponse response)
+        public AccessTokenUpdatedEventArgs(T response)
         {
             this.Response = response;
         }

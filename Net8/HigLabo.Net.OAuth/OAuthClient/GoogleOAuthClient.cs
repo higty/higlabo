@@ -13,7 +13,7 @@ namespace HigLabo.Net.OAuth
          : base("https://www.googleapis.com/oauth2/v4/token", clientID, clientSecret)
         {
         }
-        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes)
+        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
         {
             return String.Format("https://accounts.google.com/o/oauth2/v2/auth?response_type=code&access_type=offline"
                 + "&client_id={0}&redirect_uri={1}&scope={2}"

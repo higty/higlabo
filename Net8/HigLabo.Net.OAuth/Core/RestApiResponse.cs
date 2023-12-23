@@ -18,7 +18,7 @@ namespace HigLabo.Net.OAuth
         bool IsThrowException();
     }
 
-    public abstract class RestApiResponse : IRestApiResponse
+    public class RestApiResponse : IRestApiResponse
     {
         private Object? _Parameter = null; 
         private HttpRequestMessage? _Request = null;
@@ -82,6 +82,9 @@ namespace HigLabo.Net.OAuth
         {
             return "";
         }
-        public abstract bool IsThrowException();
+        public virtual bool IsThrowException()
+        {
+            return this._StatusCode != HttpStatusCode.OK;
+        }
     }
 }

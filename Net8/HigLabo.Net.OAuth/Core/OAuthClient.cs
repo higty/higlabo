@@ -7,25 +7,20 @@ using HigLabo.Core;
 
 namespace HigLabo.Net.OAuth
 {
-    public abstract class OAuthClient : HttpClient
+    public abstract class OAuthClient
     {
+        public HttpClient HttpClient { get; init; }
         public IJsonConverter JsonConverter { get; init; }
-
-        public event EventHandler<AccessTokenUpdatedEventArgs>? AccessTokenUpdated;
 
         public string AccessToken { get; set; } = "";
         public string RefreshToken { get; set; } = "";
         public OAuthSetting? OAuthSetting { get; set; }
         public Boolean IsThrowException { get; set; } = true;
 
-        protected OAuthClient(IJsonConverter jsonConverter)
+        protected OAuthClient(HttpClient httpClient, IJsonConverter jsonConverter)
         {
+            this.HttpClient = httpClient;
             this.JsonConverter = jsonConverter;
-        }
-
-        protected void OnAccessTokenUpdated(AccessTokenUpdatedEventArgs e)
-        {
-            this.AccessTokenUpdated?.Invoke(this, e);
         }
 
         protected string SerializeObject(object obj)
@@ -62,35 +57,11 @@ namespace HigLabo.Net.OAuth
             return o;
         }
 
-        protected async ValueTask<TResponse> ProcessRequest<TResponse>(Func<ValueTask<TResponse>> func)
-        {
-            var isFirst = true;
-
-            while (true)
-            {
-                try
-                {
-                    return await func();
-                }
-                catch
-                {
-                    if (isFirst == false) { throw; }
-                    isFirst = false;
-                }
-                try
-                {
-                    await this.ProcessAccessTokenAsync();
-                }
-                catch { }
-            }
-        }
-        protected abstract Task ProcessAccessTokenAsync();
-
         protected async ValueTask<TResponse> SendAsync<TResponse>(HttpRequestMessage request, CancellationToken cancellationToken)
             where TResponse : RestApiResponse
         {
             var req = request;
-            var res = await this.SendAsync(req);
+            var res = await this.HttpClient.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(req, res, bodyText);
         }
@@ -104,7 +75,7 @@ namespace HigLabo.Net.OAuth
                 d[key.ToLower()] = parameter[key];
             }
             req.Content = new FormUrlEncodedContent(d);
-            var res = await this.SendAsync(req);
+            var res = await this.HttpClient.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(d, req, res, bodyText);
         }
@@ -114,14 +85,14 @@ namespace HigLabo.Net.OAuth
             var req = request;
             var json = this.SerializeObject(parameter);
             req.Content = new StringContent(json, Encoding.UTF8, "application/json");
-            var res = await this.SendAsync(req);
+            var res = await this.HttpClient.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(parameter, json, req, res, bodyText);
         }
         protected async ValueTask<Stream> DownloadStreamAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var req = request;
-            var res = await this.SendAsync(req, cancellationToken);
+            var res = await this.HttpClient.SendAsync(req, cancellationToken);
             return await res.Content.ReadAsStreamAsync(cancellationToken);
         }
 
