@@ -31,7 +31,11 @@ namespace HigLabo.Net.OAuth
             this.ClientSecret = clientSecret;
         }
 
-        public abstract String CreateAuthorizeUrl(String redirectUrl, String[] scopes);
+        public string CreateAuthorizeUrl(String redirectUrl, String[] scopes)
+        {
+            return CreateAuthorizeUrl(redirectUrl, scopes, "");
+        }
+        public abstract String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state);
         public abstract ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(String code, String redirectUrl);
 
         protected async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync_Common(String code, String redirectUrl)

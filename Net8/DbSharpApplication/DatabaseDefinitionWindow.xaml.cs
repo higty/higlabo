@@ -65,6 +65,7 @@ namespace DbSharpApplication
                 this.StatusBarLabel.Content = "Completed";
                 this.TableTextBox.Text = e.TableFileText;
                 this.StoredProcedureTextBox.Text = e.StoredProcedureFileText;
+                this.TableSchemeTextBox.Text = e.TableSchemeJsonText;
             });
         }
 
@@ -91,6 +92,7 @@ namespace DbSharpApplication
     {
         public String TableFileText { get; set; } = "";
         public String StoredProcedureFileText { get; set; } = "";
+        public String TableSchemeJsonText { get; set; } = "";
     }
     public class WorkerThreadService 
     {
@@ -119,6 +121,7 @@ namespace DbSharpApplication
                 {
                     e.TableFileText = await this.Generator.CreateTableFile();
                     e.StoredProcedureFileText = await this.Generator.CreateStoredProcedureFile();
+                    e.TableSchemeJsonText = await this.Generator.CreateTableSchemeJsonText();
                 }
                 this.Completed?.Invoke(this, e);
             }

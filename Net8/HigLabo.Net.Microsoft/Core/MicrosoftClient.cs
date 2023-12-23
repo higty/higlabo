@@ -12,6 +12,8 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MicrosoftClient : OAuthClient
     {
+        public event EventHandler<AccessTokenUpdatedEventArgs<RequestCodeResponse>>? AccessTokenUpdated;
+
         public RestApiDomainName DomainName { get; set; } = RestApiDomainName.Graph;
         public String TenantName { get; set; } = "";
 
@@ -28,21 +30,13 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public MicrosoftClient(IJsonConverter jsonConverter, string accessToken)
-               : base(jsonConverter)
+        public MicrosoftClient(HttpClient httpClient)
+          : base(httpClient, new OAuthJsonConverter())
         {
-            this.AccessToken = accessToken;
         }
-        public MicrosoftClient(IJsonConverter jsonConverter, OAuthSetting setting)
-            : base(jsonConverter)
+        public MicrosoftClient(HttpClient httpClient, OAuthSetting setting)
+          : base(httpClient, new OAuthJsonConverter())
         {
-            this.OAuthSetting = setting;
-        }
-        public MicrosoftClient(IJsonConverter jsonConverter, string accessToken, string refreshToken, OAuthSetting setting)
-            : base(jsonConverter)
-        {
-            this.AccessToken = accessToken;
-            this.RefreshToken = refreshToken;
             this.OAuthSetting = setting;
         }
 
@@ -52,23 +46,42 @@ namespace HigLabo.Net.Microsoft
             mg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
             return mg;
         }
+
         public override async ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            Func<ValueTask<TResponse>>? f = null;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
-                var queryString = "";
+                var url = this.ApiDomain + parameter.ApiPath;
                 if (parameter is IQueryParameterProperty q)
                 {
-                    queryString = q.Query.GetQueryString();
+                    var queryString = q.Query.GetQueryString();
+                    if (queryString.IsNullOrEmpty() == false)
+                    {
+                        url = url + "?" + queryString;
+                    }
                 }
-                f = () => this.SendAsync<TResponse>(this.CreateHttpRequestMessage(this.ApiDomain + parameter.ApiPath + "?" + queryString, new HttpMethod(parameter.HttpMethod)), cancellationToken);
+                try
+                {
+                    return await this.SendAsync<TResponse>(this.CreateHttpRequestMessage(url, new HttpMethod(parameter.HttpMethod)), cancellationToken);
+                }
+                catch
+                {
+                    await this.ProcessAccessTokenAsync();
+                }
+                return await this.SendAsync<TResponse>(this.CreateHttpRequestMessage(url, new HttpMethod(parameter.HttpMethod)), cancellationToken);
             }
             else
             {
-                f = () => this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(this.ApiDomain + parameter.ApiPath, new HttpMethod(parameter.HttpMethod)), parameter, cancellationToken);
+                try
+                {
+                    return await this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(this.ApiDomain + parameter.ApiPath, new HttpMethod(parameter.HttpMethod)), parameter, cancellationToken);
+                }
+                catch
+                {
+                    await this.ProcessAccessTokenAsync();
+                }
+                return await this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(this.ApiDomain + parameter.ApiPath, new HttpMethod(parameter.HttpMethod)), parameter, cancellationToken);
             }
-            return await this.ProcessRequest(f);
         }
         public async ValueTask<Stream> DownloadStreamAsync(IRestApiParameter parameter, CancellationToken cancellationToken)
         {
@@ -78,11 +91,18 @@ namespace HigLabo.Net.Microsoft
             {
                 queryString = q.Query.GetQueryString();
             }
-            var f = () => this.DownloadStreamAsync(this.CreateHttpRequestMessage(this.ApiDomain + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
-            return await this.ProcessRequest(f);
+            try
+            {
+                return await this.DownloadStreamAsync(this.CreateHttpRequestMessage(this.ApiDomain + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
+            }
+            catch
+            {
+                await this.ProcessAccessTokenAsync();
+            }
+            return await this.DownloadStreamAsync(this.CreateHttpRequestMessage(this.ApiDomain + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
         }
 
-        protected override async Task ProcessAccessTokenAsync()
+        protected async Task ProcessAccessTokenAsync()
         {
             var result = await this.UpdateAccessTokenAsync();
             if (((IRestApiResponse)result).StatusCode == HttpStatusCode.OK)
@@ -94,9 +114,9 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<RequestCodeResponse> RequestCodeAsync(string code)
         {
             if (this.OAuthSetting == null)
-            { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
+            { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set MicrosoftClient.OAuthSetting property."); }
 
-            var cl = this;
+            var cl = this.HttpClient;
             var b = (OAuthSetting)this.OAuthSetting;
             var req = new HttpRequestMessage(HttpMethod.Post, "https://login.microsoftonline.com/common/oauth2/v2.0/token");
 
@@ -116,9 +136,9 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<RequestCodeResponse> UpdateAccessTokenAsync()
         {
             if (this.OAuthSetting == null)
-            { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
+            { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set MicrosoftClient.OAuthSetting property."); }
 
-            var cl = this;
+            var cl = this.HttpClient;
             var b = (OAuthSetting)this.OAuthSetting;
             var req = new HttpRequestMessage(HttpMethod.Post, "https://login.microsoftonline.com/common/oauth2/v2.0/token");
 
@@ -136,10 +156,14 @@ namespace HigLabo.Net.Microsoft
             var o = this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
             if (o is IRestApiResponse iRes && iRes.StatusCode == HttpStatusCode.OK)
             {
-                this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs(o));
+                this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs<RequestCodeResponse>(o));
             }
             return o;
         }
 
+        protected void OnAccessTokenUpdated(AccessTokenUpdatedEventArgs<RequestCodeResponse> e)
+        {
+            this.AccessTokenUpdated?.Invoke(this, e);
+        }
     }
 }

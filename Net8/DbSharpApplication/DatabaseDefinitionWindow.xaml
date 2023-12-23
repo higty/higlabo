@@ -20,6 +20,9 @@
             <TabItem Header="StoredProcedure" FontSize="20" Padding="10,5">
                 <TextBox x:Name="StoredProcedureTextBox" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontSize="12"></TextBox>
             </TabItem>
+            <TabItem Header="Scheme" FontSize="20" Padding="10,5">
+                <TextBox x:Name="TableSchemeTextBox" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontSize="12"></TextBox>
+            </TabItem>
         </TabControl>
         <Grid Grid.Row="1">
             <Label Name="StatusBarLabel" Margin="10,10,180,10"/>

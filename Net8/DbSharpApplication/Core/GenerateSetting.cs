@@ -10,8 +10,7 @@ using System.Windows;
 
 namespace DbSharpApplication
 {
-    [ObservableObject]
-    public partial class GenerateSetting
+    public partial class GenerateSetting : ObservableObject
     {
         [ObservableProperty]
         public String name = "";
@@ -29,7 +28,7 @@ namespace DbSharpApplication
 
         public Visibility OpenOutputFolderButtonVisible
         {
-            get { return this.outputFolderPath.IsNullOrEmpty() ? Visibility.Hidden : Visibility.Visible; }
+            get { return this.OutputFolderPath.IsNullOrEmpty() ? Visibility.Hidden : Visibility.Visible; }
         }
 
         public ObservableCollection<StoredProcedure> StoredProcedureList { get; init; } = new();
@@ -37,11 +36,11 @@ namespace DbSharpApplication
 
         public DatabaseSchemaReader CreateDatabaseSchemaReader()
         {
-            switch (this.databaseServer)
+            switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return new SqlServerDatabaseSchemaReader(this.connectionString);
+                case DatabaseServer.SqlServer: return new SqlServerDatabaseSchemaReader(this.ConnectionString);
                 case DatabaseServer.Oracle: throw new NotImplementedException();
-                case DatabaseServer.MySql: return new MySqlDatabaseSchemaReader(this.connectionString);
+                case DatabaseServer.MySql: return new MySqlDatabaseSchemaReader(this.ConnectionString);
                 case DatabaseServer.PostgreSql: throw new NotImplementedException();
                 default: throw new InvalidOperationException();
             }

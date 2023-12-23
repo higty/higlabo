@@ -1,5 +1,6 @@
 ﻿using HigLabo.Core;
 using HigLabo.DbSharp.MetaData;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,10 @@ namespace DbSharpApplication
         public static class RegexList
         {
             public static Regex From_Object = new Regex("from[\\s]+(?<Name>[^\\s]*)\\s");
+        }
+        public class SchemeData
+        {
+            public List<Table> Tables { get; init; } = new();
         }
         public event EventHandler<DatabaseObjectDefinitionLoadedEventArgs>? Loaded;
 
@@ -224,6 +229,23 @@ namespace DbSharpApplication
             sb.AppendLine("");
 
             return sb.ToString();
+        }
+
+        public async Task<String> CreateTableSchemeJsonText()
+        {
+            var l = new List<DatabaseObjectDefinition>();
+            var reader = new SqlServerDatabaseSchemaReader(this.ConnectionString);
+            var tableList = await reader.GetTablesAsync();
+
+            var schemeData = new SchemeData();
+            foreach (var item in tableList)
+            {
+                var t = await reader.GetTableAsync(item.Name);
+                if (t.HasPrimaryKeyColumn() == false) { continue; }
+                schemeData.Tables.Add(t);
+                this.Loaded?.Invoke(this, new DatabaseObjectDefinitionLoadedEventArgs(t.Name));
+            }
+            return JsonConvert.SerializeObject(schemeData);
         }
     }
 }

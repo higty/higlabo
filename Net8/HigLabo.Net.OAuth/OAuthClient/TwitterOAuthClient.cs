@@ -15,7 +15,7 @@ namespace HigLabo.Net.OAuth
 
         }
 
-        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes)
+        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
         {
             return String.Format("https://twitter.com/i/oauth2/authorize?response_type=code&access_type=offline"
                 + "&client_id={0}&redirect_uri={1}&scope={2}"
