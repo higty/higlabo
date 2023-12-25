@@ -345,7 +345,7 @@ namespace HigLabo.DbSharp.MetaData
                 var cc = t.GetPrimaryKeyColumns().ToList();
                 if (cc.Count > 0)
                 {
-                    sb.AppendFormat(",CONSTRAINT {0}_PRIMARYKEY PRIMARY KEY {1}(", t.Name, cc[0].Clustered);
+                    sb.AppendFormat(",CONSTRAINT {0}_PrimaryKey PRIMARY KEY {1}(", t.Name, cc[0].Clustered);
                     for (int i = 0; i < cc.Count; i++)
                     {
                         if (i > 0)
