@@ -1311,13 +1311,24 @@ namespace HigLabo.Core
                         if (sourceProperty.PropertyType.IsICollectionT())
                         {
                             var index = Expression.Variable(typeof(Int32), "i");
-                            loopBlock.Add(Expression.IfThen(
-                                        Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
-                                        Expression.Break(endLoop)
-                                        ));
-                            var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty()!;
-                            loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
-                            if (targetElementType.IsNullable())
+							if (sourceProperty.PropertyType.IsArray)
+							{
+								loopBlock.Add(Expression.IfThen(
+											Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Length"), index),
+											Expression.Break(endLoop)
+											));
+								loopBlock.Add(Expression.Assign(sourceElement, Expression.ArrayIndex(sourceMember, index)));
+							}
+							else
+                            {
+								loopBlock.Add(Expression.IfThen(
+											Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
+											Expression.Break(endLoop)
+											));
+								var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty()!;
+								loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+							}
+							if (targetElementType.IsNullable())
                             {
                                 var targetElementGenericType = targetElementType.GetGenericArguments()[0];
                                 if (sourceElementType.IsNullable())

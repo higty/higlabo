@@ -1,0 +1,22 @@
+﻿Delivered-To: higuchihiguchihiguchi@gmail.com
+Received: by 10.142.166.11 with SMTP id o11cs103951wfe;
+        Tue, 5 May 2009 07:11:46 -0700 (PDT)
+Received: by 10.100.110.16 with SMTP id i16mr148964anc.110.1241532705092;
+        Tue, 05 May 2009 07:11:45 -0700 (PDT)
+Return-Path: <t09048108546@docomo.ne.jp>
+Received: from docomo.ne.jp (mail102.docomo.ne.jp [203.138.203.2])
+        by mx.google.com with ESMTP id b7si7199745ana.37.2009.05.05.07.11.42;
+        Tue, 05 May 2009 07:11:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of t09048108546@docomo.ne.jp designates 203.138.203.2 as permitted sender) client-ip=203.138.203.2;
+Authentication-Results: mx.google.com; spf=pass (google.com: domain of t09048108546@docomo.ne.jp designates 203.138.203.2 as permitted sender) smtp.mail=t09048108546@docomo.ne.jp
+Date: Tue, 05 May 2009 23:11:40 +0900 (JST)
+From: t09048108546@docomo.ne.jp
+To: higuchihiguchihiguchi@gmail.com
+Subject: Fw:Re:
+Message-ID: <IMTg07xD1153b7c00OWq@docomo.ne.jp>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="Shift_JIS"
+Content-Transfer-Encoding: 8bit
+
+This is a test of Shift_JIS 8bit mail.
+Is test result green?

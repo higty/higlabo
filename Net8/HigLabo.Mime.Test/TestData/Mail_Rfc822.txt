@@ -1,0 +1,93 @@
+Content-Language: en-US
+MIME-Version: 1.0
+Return-Path: <tomasz.nowak@techdata.pl>
+Content-Type: multipart/mixed;
+	boundary="----_=_NextPart_001_01D08CA1.B0F1BC00"
+Content-class: urn:content-classes:message
+Subject: email subject
+Date: Tue, 12 May 2015 12:52:01 +0200
+Message-ID: <BY2PR0601MB1.outlook.com>
+From: "XXX, YYYY" <xxx.yyy@outlook.com>
+To: "XXX, ZZZZ" <xxx@outlook.com>
+
+This is a multi-part message in MIME format.
+
+------_=_NextPart_001_01D08CA1.B0F1BC00
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_002_01D08CA1.B0F1BC00"
+
+------_=_NextPart_002_01D08CA1.B0F1BC00
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Email body=20
+
+
+------_=_NextPart_002_01D08CA1.B0F1BC00
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div>Test mail</div></body></html>
+------_=_NextPart_002_01D08CA1.B0F1BC00--
+
+------_=_NextPart_001_01D08CA1.B0F1BC00
+Content-Type: message/rfc822
+Content-Transfer-Encoding: 7bit
+
+Content-class: urn:content-classes:message
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----_=_NextPart_003_01D08BCB.83D2DA00"
+Subject: Inner email subject
+Date: Mon, 11 May 2015 11:19:57 +0200
+From: "NNN, TTTT" <xxx@outlook.com>
+To: "NNN, TTT" <xxx@outlook.com>
+
+This is a multi-part message in MIME format.
+
+------_=_NextPart_003_01D08BCB.83D2DA00
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_004_01D08BCB.83D2DA00"
+
+
+------_=_NextPart_004_01D08BCB.83D2DA00
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Inner email body
+
+
+------_=_NextPart_004_01D08BCB.83D2DA00
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div>Test mail</div></body></html>
+------_=_NextPart_004_01D08BCB.83D2DA00--
+
+------_=_NextPart_003_01D08BCB.83D2DA00
+Content-Type: text/plain;
+	name="innerAttachment.txt"
+Content-Transfer-Encoding: base64
+Content-Description: innerAttachment.txt
+Content-Disposition: attachment;
+	filename="innerAttachment.txt"
+
+aW5uZXJBdHRhY2htZW50
+
+------_=_NextPart_003_01D08BCB.83D2DA00--
+
+------_=_NextPart_001_01D08CA1.B0F1BC00
+Content-Type: text/plain;
+	name="attachment.txt"
+Content-Transfer-Encoding: base64
+Content-Description: attachment.txt
+Content-Disposition: attachment;
+	filename="attachment.txt"
+
+YXR0YWNobWVudA==
+
+------_=_NextPart_001_01D08CA1.B0F1BC00--
