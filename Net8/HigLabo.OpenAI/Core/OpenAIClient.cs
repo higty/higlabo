@@ -159,13 +159,18 @@ namespace HigLabo.OpenAI
             var bodyText = await res.Content.ReadAsStringAsync();
             if (res.IsSuccessStatusCode)
             {
-                TResponse o = parameter switch
+                if (parameter is FileContentGetParameter)
                 {
-                    FileContentGetParameter => new TResponse(),
-                    _ => this.JsonConverter.DeserializeObject<TResponse>(bodyText),
-                };
-                o.SetProperty(parameter, requestBodyText, request, res, bodyText);
-                return o;
+					var o = new TResponse();
+                    await o.SetProperty(parameter, requestBodyText, request, response);
+                    return o;
+				}
+                else
+                {
+                    var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
+					o.SetProperty(parameter, requestBodyText, request, res, bodyText);
+					return o;
+				}
             }
             else
             {

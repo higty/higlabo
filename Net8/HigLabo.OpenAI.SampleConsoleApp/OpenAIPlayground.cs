@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HigLabo.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,7 +15,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ThreadMessage();
+            await ImageFileUpload();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -200,7 +201,20 @@ namespace HigLabo.OpenAI
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);
         }
-        private async ValueTask FileUpload_Finetune()
+		private async ValueTask ImageFileUpload()
+		{
+			var cl = OpenAIClient;
+
+			var p = new FileUploadParameter();
+			p.SetFile("Hig.png", File.ReadAllBytes("D:\\Data\\Dev\\Hig.png"));
+			p.SetPurpose(FilePurpose.Finetune);
+			var res = await cl.FileUploadAsync(p);
+			Console.WriteLine(res);
+
+			var fileResponse = await cl.FileContentGetAsync(res.Id);
+            File.WriteAllBytes("D:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
+		}
+		private async ValueTask FileUpload_Finetune()
         {
             var cl = OpenAIClient;
 

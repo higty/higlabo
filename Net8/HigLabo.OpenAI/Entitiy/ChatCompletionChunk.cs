@@ -68,6 +68,7 @@ namespace HigLabo.OpenAI
         public List<Choice> Choices { get; set; } = new();
         public Int64 Created { get; set; }
         public string Model { get; set; } = "";
+        public string System_Fingerprint { get; set; } = "";
         public string Object { get; set; } = "";
 
         public DateTimeOffset CreateTime
