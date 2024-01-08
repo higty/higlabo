@@ -219,7 +219,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                         }
                         if (cName == "ChatCompletions" && p.Name == "Messages")
                         {
-                            p.TypeName.Name = "List<ChatMessage>";
+                            p.TypeName.Name = "List<IChatMessage>";
                             p.Initializer = "new ()";
                         }
                         if (cName == "ThreadCreate" && p.Name == "Messages")
@@ -522,7 +522,7 @@ namespace HigLabo.OpenAI.CodeGenerator
         }
         private string GetTypeName(string typeName, string className, string propertyName, bool required)
         {
-            if (className == "ChatCompletions" && propertyName == "Messages") { return "List<ChatMessage>"; }
+            if (className == "ChatCompletions" && propertyName == "Messages") { return "List<IChatMessage>"; }
             if (className == "Embeddings" && typeName == "string or array") { return "string"; }
             if (className == "FileUpload" && propertyName == "File") { return "Stream?"; }
             if (className == "ImagesVariations" && propertyName == "Image") { return "Stream?"; }
