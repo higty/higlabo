@@ -25,10 +25,6 @@ namespace HigLabo.OpenAI
     }
     public partial class FileContentGetResponse : RestApiResponse
     {
-        public Stream? Stream
-        {
-            get { return ((IRestApiResponse)this).Stream; }
-        }
     }
     public partial class OpenAIClient
     {

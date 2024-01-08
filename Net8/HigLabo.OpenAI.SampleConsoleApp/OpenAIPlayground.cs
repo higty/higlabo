@@ -15,7 +15,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ImageFileUpload();
+            await ImageFileDownload();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -179,6 +179,33 @@ namespace HigLabo.OpenAI
             Console.WriteLine();
             Console.WriteLine("DONE");
         }
+        private async ValueTask ChatCompletionVision()
+        {
+            var cl = OpenAIClient;
+
+            var p = new ChatCompletionsParameter();
+
+            var vMessage = new ChatImageMessage(ChatMessageRole.User);
+            vMessage.AddTextContent("Please describe this image.");
+            vMessage.AddImageFile("D:\\Data\\WallPaper\\HasuIke1.jpg");
+            p.Messages.Add(vMessage);
+            p.Model = "gpt-4-vision-preview";
+            p.Max_Tokens = 300;
+            p.Stream = true;
+
+            var processor = new ChatCompletionStreamProcessor();
+            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p))
+            {
+                foreach (var choice in chunk.Choices)
+                {
+                    Console.Write(choice.Delta.Content);
+                    processor.Process(chunk);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("■DONE");
+        }
+
         private async ValueTask FileList()
         {
             var cl = OpenAIClient;
@@ -201,17 +228,11 @@ namespace HigLabo.OpenAI
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);
         }
-		private async ValueTask ImageFileUpload()
+		private async ValueTask ImageFileDownload()
 		{
 			var cl = OpenAIClient;
 
-			var p = new FileUploadParameter();
-			p.SetFile("Hig.png", File.ReadAllBytes("D:\\Data\\Dev\\Hig.png"));
-			p.SetPurpose(FilePurpose.Finetune);
-			var res = await cl.FileUploadAsync(p);
-			Console.WriteLine(res);
-
-			var fileResponse = await cl.FileContentGetAsync(res.Id);
+			var fileResponse = await cl.FileContentGetAsync("file-ShIMh9E6jz4PNdLjWk5VJHQA");
             File.WriteAllBytes("D:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
 		}
 		private async ValueTask FileUpload_Finetune()

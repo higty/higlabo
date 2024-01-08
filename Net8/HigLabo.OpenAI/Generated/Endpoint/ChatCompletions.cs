@@ -12,7 +12,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// A list of messages comprising the conversation so far. Example Python code.
         /// </summary>
-        public List<ChatMessage> Messages { get; set; } = new ();
+        public List<IChatMessage> Messages { get; set; } = new ();
         /// <summary>
         /// ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.
         /// </summary>
@@ -110,14 +110,14 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<ChatMessage> messages, string model)
+        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<IChatMessage> messages, string model)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
             return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<ChatMessage> messages, string model, CancellationToken cancellationToken)
+        public async ValueTask<ChatCompletionsResponse> ChatCompletionsAsync(List<IChatMessage> messages, string model, CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
@@ -133,7 +133,7 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<ChatMessage> messages, string model)
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
@@ -144,7 +144,7 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<ChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
