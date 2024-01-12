@@ -153,7 +153,7 @@ namespace HigLabo.Core
             }
             return l;
         }
-        private async ValueTask EnsureTable(DateOnly date)
+        public async ValueTask EnsureTable(DateOnly date)
         {
             if (await this.ExistsAsync(date) == false)
             {
