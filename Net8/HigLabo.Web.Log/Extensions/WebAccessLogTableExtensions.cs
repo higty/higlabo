@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace HigLabo.Web
 {
-    public class WebAccessLogTableExtensions
+    public static class WebAccessLogTableExtensions
     {
         public class RegexList
         {
@@ -15,13 +15,13 @@ namespace HigLabo.Web
         }
         public static Int64 MaxUploadFileSize { get; set; } = 209715200;
 
-        public static async Task<WebAccessLogTable.Record> CreateWebAccessLogRecordAsync(this WebAccessLogTable.Record record, HttpContext httpContext
-            , DateTimeOffset beginRequestTime, string userId)
+        public static async Task SetPropertyAsync(this WebAccessLogTable.Record record, HttpContext httpContext
+            , DateTimeOffset beginRequestTime, string userId, Guid? errorLogId)
         {
             var req = httpContext.Request;
             var endRequestTime = DateTimeOffset.Now;
 
-            var r = new WebAccessLogTable.Record();
+            var r = record;
             r.LogId = SequentialGuid.NewGuid();
             var f = httpContext.Features.Get<IHttpRequestFeature>();
             if (f == null)
@@ -72,8 +72,7 @@ namespace HigLabo.Web
             r.ResponseStatusCode = httpContext.Response.StatusCode;
             r.RequestLength = r.RequestHeaderData.Length + r.RequestBodyData.Length;
             r.ResponseLength = (Int32)(httpContext.Response.ContentLength ?? -1);
-
-            return r;
+            r.ErrorLogId = errorLogId;
         }
 
     }
