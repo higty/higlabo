@@ -1,0 +1,9 @@
+﻿<div class="@string.Join(" ", this.ClassNameList)">
+    <label class="display-flex">
+        <span class="checkbox">
+            <input type="checkbox" checked="@this.Value" @oninput="@this.OnValueChanged" />
+            <span></span>
+        </span>
+        <span class="text-panel">@ChildContent</span>
+    </label>
+</div>

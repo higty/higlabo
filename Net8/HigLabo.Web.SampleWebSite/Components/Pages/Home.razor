@@ -1,0 +1,35 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<h2>Sample component</h2>
+
+<div style="width: 80%;">
+    <Button></Button>
+    <LoadingPanel></LoadingPanel>
+    <FileUploadPanel></FileUploadPanel>
+
+    <InputFieldPanel Text="Field1">
+        <InputText @bind-Value="@Value1" class="textbox"></InputText>
+    </InputFieldPanel>
+
+    <InputFieldPanel Text="Field1">
+        <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
+    </InputFieldPanel>
+
+    <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<MatchType>()"
+                                  SelectedValue="@this.MatchType.ToStringFromEnum()"
+                                  ValueChanged="v => this.MatchType = v.ToEnum<MatchType>()!.Value"></InputFieldPanel_SelectButton>
+
+                                  <span>@this.MatchType</span>
+</div>
+
+
+@code {
+    [Parameter]
+    public string Value1 { get; set; } = "";
+    [Parameter]
+    public string Value2 { get; set; } = "";
+    [Parameter]
+    public MatchType MatchType { get; set; }
+    
+}

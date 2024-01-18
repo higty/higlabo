@@ -1,0 +1,15 @@
+﻿<div class="file-upload-panel" file-upload-panel="true">
+    @switch (this.SelectMode)
+    {
+        case FileSelectMode.Single:
+            <InputFile OnChange="OnChange"></InputFile>
+            break;
+        case FileSelectMode.Multiple:
+            <InputFile OnChange="OnChange" multiple="multiple"></InputFile>
+            break;
+        default: throw SwitchStatementNotImplementException.Create(this.SelectMode);
+    }
+    <div class="text-panel" select-file-panel="true">@this.Text</div>
+</div>
+
+

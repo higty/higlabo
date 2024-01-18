@@ -1,0 +1,15 @@
+<div class="input-field-panel" name="@this.Name">
+    <div class="header-panel">
+        <span class="field-name">
+            <span class="text">@this.Text</span>
+        </span>
+    </div>
+    @ChildContent
+    @if (this.ValidateResult == false)
+    {
+        <div class="field-error-panel">@this.ValidateResult.Message</div>
+    }
+</div>
+
+
+

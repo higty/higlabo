@@ -1,0 +1,50 @@
+:root {
+    /* Glay */
+    --color-white: #ffffff;
+    --color-glay-01: #f7f8f9;
+    --color-glay-02: #eeeeee;
+    --color-glay-03: #D6D6D6;
+    --color-glay-04: #bebebe;
+    --color-glay-05: #a7a7a7;
+    --color-glay-06: #8f8f8f;
+    --color-glay-07: #777777;
+    --color-glay-08: #5f5f5f;
+    --color-glay-09: #474747;
+    --color-glay-10: #303030;
+    --color-glay-11: #181818;
+    --color-glay-12: #060606;
+    --color-black: #000000;
+    /* Feedback color */
+    --color-success: #88c459;
+    --color-error: #f5414f;
+    --color-warning: #ffd137;
+    --color-information: #4D84F4;
+    /* buttons */
+    --color-button-bg: var(--color-accent-01);
+    --color-button-active: var(--color-accent-03);
+    --color-button-hover: var(--color-accent-04);
+    --color-button-text: var(--color-white);
+    /* select-button */
+    --color-select-button-text: var(--color-glay-07);
+    --color-select-button-bg: #F5F5F5;
+    --color-select-button-focus: var(--color-glay-03);
+    --color-select-button-current: #FEA1A1;
+    --color-select-button-current-focus: #fac0c0;
+    /* other */
+    --color-border: var(--color-glay-03);
+    --color-border-focus: var(--color-glay-05);
+}
+
+html[color-scheme='dark'] {
+    /* buttons */
+    --color-button-bg: var(--color-accent-01);
+    --color-button-active: var(--color-accent-03);
+    --color-button-hover: var(--color-accent-04);
+    --color-button-text: var(--color-white);
+    /* select-button */
+    --color-select-button-text: var(--color-white);
+    --color-select-button-bg: var(--color-glay-10);
+    --color-select-button-focus: var(--color-glay-06);
+    /* other */
+    --color-border: var(--color-glay-10);
+}

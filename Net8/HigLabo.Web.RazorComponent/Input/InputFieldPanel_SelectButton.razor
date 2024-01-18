@@ -1,0 +1,19 @@
+﻿<InputFieldPanel Name="@this.Name" Text="@this.Text">
+    <ChildContent>
+        <div class="select-button-list-panel">
+            @foreach (var item in this.RecordList)
+            {
+                var cName = "record-value-panel";
+                if (item.Value == this.SelectedValue)
+                {
+                    cName += " selected";
+                }
+                <span class="@cName" tabindex="0"
+                      @onclick="async e => await RecordValuePanel_Click(item.Value)"
+                      @onkeydown="async e => await RecordValuePanel_Keydown(e, item.Value)">@item.Text</span>
+            }
+        </div>
+    </ChildContent>
+</InputFieldPanel>
+
+
