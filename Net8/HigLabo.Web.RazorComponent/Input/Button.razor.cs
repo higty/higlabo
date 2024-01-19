@@ -6,7 +6,7 @@ namespace HigLabo.Web.RazorComponent.Input
     public partial class Button : ComponentBase
     {
         [Parameter]
-        public List<string> ClassNameList { get; set; } = new() { "button" , "radius-button" };
+        public string ClassName { get; set; } ="button radius-button";
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]

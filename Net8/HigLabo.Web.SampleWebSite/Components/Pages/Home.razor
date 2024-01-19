@@ -21,6 +21,12 @@
                                   ValueChanged="v => this.MatchType = v.ToEnum<MatchType>()!.Value"></InputFieldPanel_SelectButton>
 
                                   <span>@this.MatchType</span>
+
+    <InputFieldFlexPanel Text="Field3">
+        <InputText @bind-Value="@Value3" class="textbox"></InputText>
+    </InputFieldFlexPanel>
+
+
 </div>
 
 
@@ -29,6 +35,8 @@
     public string Value1 { get; set; } = "";
     [Parameter]
     public string Value2 { get; set; } = "";
+    [Parameter]
+    public string Value3 { get; set; } = "";
     [Parameter]
     public MatchType MatchType { get; set; }
     

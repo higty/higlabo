@@ -19,6 +19,21 @@
   --color-error: #f5414f;
   --color-warning: #ffd137;
   --color-information: #4D84F4;
+  /* common */
+  --color-body: #f0eeec;
+  --color-scrollbar-track: var(--color-glay-05);
+  --color-scrollbar-thumb: var(--color-glay-03);
+  --color-text: var(--color-glay-09);
+  --color-border: var(--color-glay-03);
+  --color-border-focus: var(--color-glay-05);
+  /* forms */
+  --color-form-element-bg: var(--color-glay-01);
+  --color-form-element-text: var(--color-text);
+  --color-form-element-border: var(--color-border);
+  --color-form-element-focus: #e0eaf0;
+  --color-form-element-hover: #f0f6f8;
+  --color-form-element-border-error: var(--color-error);
+  --color-form-element-placeholder: var(--color-glay-04);
   /* buttons */
   --color-button-bg: var(--color-accent-01);
   --color-button-active: var(--color-accent-03);
@@ -30,9 +45,6 @@
   --color-select-button-focus: var(--color-glay-03);
   --color-select-button-current: #FEA1A1;
   --color-select-button-current-focus: #fac0c0;
-  /* other */
-  --color-border: var(--color-glay-03);
-  --color-border-focus: var(--color-glay-05);
 }
 
 html[color-scheme=dark] {
@@ -41,10 +53,22 @@ html[color-scheme=dark] {
   --color-button-active: var(--color-accent-03);
   --color-button-hover: var(--color-accent-04);
   --color-button-text: var(--color-white);
+  /* common */
+  --color-body: #000000;
+  --color-scrollbar-track: var(--color-glay-09);
+  --color-scrollbar-thumb: var(--color-glay-07);
+  --color-text: var(--color-glay-02);
+  --color-border: var(--color-glay-10);
+  /* forms */
+  --color-form-element-bg: var(--color-glay-09);
+  --color-form-element-text: #f4f4f4;
+  --color-form-element-border: var(--color-border);
+  --color-form-element-focus: #888890;
+  --color-form-element-hover: var(--color-glay-08);
+  --color-form-element-border-error: var(--color-error);
+  --color-form-element-placeholder: var(--color-glay-05);
   /* select-button */
   --color-select-button-text: var(--color-white);
   --color-select-button-bg: var(--color-glay-10);
   --color-select-button-focus: var(--color-glay-06);
-  /* other */
-  --color-border: var(--color-glay-10);
 }

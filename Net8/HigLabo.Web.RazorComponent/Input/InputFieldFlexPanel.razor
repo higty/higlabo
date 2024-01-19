@@ -1,8 +1,10 @@
 <div class="@ClassName" name="@Name">
-    <div class="field-name">
-        <span class="text">@this.Text</span>
+    <div class="display-flex">
+        <span class="field-name">
+            <span class="text">@this.Text</span>
+        </span>
+        @ChildContent
     </div>
-    @ChildContent
     @if (this.ValidateResult == false)
     {
         <div class="field-error-panel">@this.ValidateResult.Message</div>
