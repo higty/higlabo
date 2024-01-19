@@ -31,25 +31,25 @@
 
     <InputFieldFlexPanel Text="Field3">
         <InputText @bind-Value="@Value3" class="textbox date" @onfocus="e => this.SelectDateCalendarPanelVisible = true"></InputText>
+        @if (SelectDateCalendarPanelVisible)
+        {
+            <SelectDateCalendarPanel DateSelected="this.DateSelected"></SelectDateCalendarPanel>
+        }
     </InputFieldFlexPanel>
-    @if (SelectDateCalendarPanelVisible)
-    {
-        <SelectDateCalendarPanel DateSelected="this.DateSelected"></SelectDateCalendarPanel>
-    }
 
 
     <InputFieldFlexPanel Text="Field4">
         <InputText @bind-Value="@StartDate" class="textbox date" @onfocus="e => this.SelectDateDurationCalendarPanelVisible = true"></InputText>
         <span>-</span>
         <InputText @bind-Value="@EndDate" class="textbox date" @onfocus="e => this.SelectDateDurationCalendarPanelVisible = true"></InputText>
+        @if (SelectDateDurationCalendarPanelVisible)
+        {
+            <SelectDateDurationCalendarPanel DateSelected="this.DateDurationSelected"></SelectDateDurationCalendarPanel>
+        }
     </InputFieldFlexPanel>
-    @if (SelectDateDurationCalendarPanelVisible)
-    {
-        <SelectDateDurationCalendarPanel DateSelected="this.DateDurationSelected"></SelectDateDurationCalendarPanel>
-    }
 
     <InputFieldFlexPanel Text="User">
-        <span class="textbox">Higty</span>
+        <span class="textbox" tabindex="0">Higty</span>
     </InputFieldFlexPanel>
 
 </div>

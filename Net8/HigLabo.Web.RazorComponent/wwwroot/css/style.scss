@@ -243,6 +243,16 @@ $width-checkbox-circle: 20px;
         color: var(--color-glay-06);
     }
 
+    .child-content-panel {
+        position: relative;
+
+        .select-date-calendar-panel {
+            position: absolute;
+            z-index: 200;
+            top: 32px;
+        }
+    }
+
     .textarea {
         min-height: 200px;
     }
@@ -256,6 +266,20 @@ $width-checkbox-circle: 20px;
         .field-name {
             color: var(--color-glay-06);
             flex: 0 0 100px;
+        }
+
+        .child-content-panel {
+            position: relative;
+            flex: 0 1 100%;
+
+            .textbox {
+                display: inline-block;
+            }
+            .select-date-calendar-panel {
+                position: absolute;
+                z-index: 200;
+                top: 32px;
+            }
         }
 
         .textbox,

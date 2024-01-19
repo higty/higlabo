@@ -2,7 +2,7 @@
     <div class="field-name">
         <span class="text">@this.Text</span>
     </div>
-    @ChildContent
+    <div class="child-content-panel">@ChildContent</div>
     @if (this.ValidateResult == false)
     {
         <div class="field-error-panel">@this.ValidateResult.Message</div>

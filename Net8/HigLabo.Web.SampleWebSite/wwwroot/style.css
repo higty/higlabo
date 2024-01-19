@@ -560,6 +560,14 @@
 .input-field-panel .field-name {
   color: var(--color-glay-06);
 }
+.input-field-panel .child-content-panel {
+  position: relative;
+}
+.input-field-panel .child-content-panel .select-date-calendar-panel {
+  position: absolute;
+  z-index: 200;
+  top: 32px;
+}
 .input-field-panel .textarea {
   min-height: 200px;
 }
@@ -571,6 +579,18 @@
 .input-field-flex-panel .display-flex .field-name {
   color: var(--color-glay-06);
   flex: 0 0 100px;
+}
+.input-field-flex-panel .display-flex .child-content-panel {
+  position: relative;
+  flex: 0 1 100%;
+}
+.input-field-flex-panel .display-flex .child-content-panel .textbox {
+  display: inline-block;
+}
+.input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel {
+  position: absolute;
+  z-index: 200;
+  top: 32px;
 }
 .input-field-flex-panel .display-flex .textbox,
 .input-field-flex-panel .display-flex .textarea {
