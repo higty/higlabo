@@ -484,6 +484,9 @@
 .textbox.date {
   width: 100px;
 }
+.textbox.color {
+  width: 100px;
+}
 
 .textarea {
   width: 100%;
@@ -562,6 +565,10 @@
 }
 .input-field-panel .child-content-panel {
   position: relative;
+}
+.input-field-panel .child-content-panel .display-flex {
+  display: flex;
+  align-items: center;
 }
 .input-field-panel .child-content-panel .select-date-calendar-panel {
   position: absolute;
@@ -715,6 +722,44 @@
   justify-content: center;
 }
 .select-date-calendar-panel .footer-panel .button {
+  margin: 0 2px;
+  padding: 4px 12px;
+  font-size: 14px;
+}
+
+.color-square-panel {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: solid 1px var(--color-border);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.select-color-panel {
+  position: absolute;
+  top: 32px;
+  background-color: var(--color-body);
+  min-width: 320px;
+}
+.select-color-panel .scroll-container-panel {
+  height: 320px;
+  overflow-y: scroll;
+}
+.select-color-panel table tbody tr td {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.select-color-panel .footer-panel {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-color-panel .footer-panel .button {
   margin: 0 2px;
   padding: 4px 12px;
   font-size: 14px;

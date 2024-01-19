@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldFlexPanel_Date : ComponentBase
+    public partial class InputFieldFlexPanel_Date 
     {
         private string _ValueInputing = "";
 

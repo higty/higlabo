@@ -157,6 +157,10 @@ $width-checkbox-circle: 20px;
     &.date {
         width: 100px;
     }
+
+    &.color {
+        width: 100px;
+    }
 }
 .textarea {
     width: 100%;
@@ -246,6 +250,11 @@ $width-checkbox-circle: 20px;
     .child-content-panel {
         position: relative;
 
+        .display-flex {
+            display: flex;
+            align-items: center;
+        } 
+        
         .select-date-calendar-panel {
             position: absolute;
             z-index: 200;
@@ -442,4 +451,51 @@ $width-checkbox-circle: 20px;
     }
 }
 
+.color-square-panel {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: solid 1px var(--color-border);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.select-color-panel {
+    position: absolute;
+    top: 32px;
+    background-color: var(--color-body);
+    min-width: 320px;
+
+    .scroll-container-panel {
+        height: 320px;
+        overflow-y: scroll;
+    }
+
+    table {
+        tbody {
+            tr {
+                td {
+                    width: 32px;
+                    height: 32px;
+                    text-align: center;
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .footer-panel {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .button {
+            margin: 0 2px;
+            padding: 4px 12px;
+            font-size: 14px;
+        }
+    }
+}
 
