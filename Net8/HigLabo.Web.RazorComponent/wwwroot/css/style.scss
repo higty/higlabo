@@ -1,3 +1,5 @@
+@import "color.scss";
+
 *:focus-visible {
     outline: none;
 }
@@ -133,6 +135,34 @@ $width-checkbox-circle: 20px;
     }
 }
 
+.textbox, .textarea {
+    box-sizing: border-box;
+    font-size: 18px;
+    color: var(--color-form-element-text);
+    background-color: var(--color-form-element-bg);
+    border: solid 1px var(--color-border);
+
+    &:hover {
+        background-color: var(--color-form-element-hover);
+    }
+
+    &:focus {
+        border: solid 1px var(--color-form-element-focus);
+    }
+}
+.textbox {
+    width: 100%;
+    height: 32px;
+
+    &.date {
+        width: 100px;
+    }
+}
+.textarea {
+    width: 100%;
+    line-height: 24px;
+}
+
 .file-upload-panel {
     input[type=file] {
         display: none;
@@ -213,26 +243,6 @@ $width-checkbox-circle: 20px;
         color: var(--color-glay-06);
     }
 
-    .textbox,
-    .textarea {
-        width: 100%;
-        height: 32px;
-        box-sizing: border-box;
-        font-size: 18px;
-        line-height: 24px;
-        color: var(--color-form-element-text);
-        background-color: var(--color-form-element-bg);
-        border: solid 1px var(--color-border);
-
-        &:hover {
-            background-color: var(--color-form-element-hover);
-        }
-
-        &:focus {
-            border: solid 1px var(--color-border-focus);
-        }
-    }
-
     .textarea {
         min-height: 200px;
     }
@@ -250,21 +260,16 @@ $width-checkbox-circle: 20px;
 
         .textbox,
         .textarea {
-            width: 100%;
-            height: 32px;
-            box-sizing: border-box;
-            font-size: 18px;
-            line-height: 24px;
             color: var(--color-form-element-text);
             background-color: var(--color-white);
             border: solid 1px transparent;
 
             &:hover {
-                background-color: var(--color-form-element-hover);
+                background-color: var(--color-glay-01);
             }
 
             &:focus {
-                border: solid 1px var(--color-border-focus);
+                background-color: var(--color-glay-02);
             }
         }
     }
@@ -282,21 +287,134 @@ $width-checkbox-circle: 20px;
         color: var(--color-select-button-text);
         background-color: var(--color-select-button-bg);
 
-        &:focus {
-            background-color: var(--color-select-button-focus);
-        }
-
         &.selected {
             color: var(--color-white);
-            background-color: var(--color-select-button-current);
+            background-color: var(--color-select-button-selected);
             border: solid 1px transparent;
         }
 
         &:focus {
-            border: solid 1px var(--color-border-focus);
+            text-decoration: underline;
         }
     }
 }
 
+.select-date-calendar-panel {
+    width: 280px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--color-white);
+    border: solid 1px var(--color-border);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.45);
+
+    .start-end-date-panel {
+        display: flex;
+        align-items: center;
+
+        .textbox {
+            width: 100px;
+            text-align: center;
+            border: none 1px transparent;
+        }
+
+        .end-date {
+            margin-left: auto;
+        }
+    }
+
+    .select-month-panel {
+        display: grid;
+        grid-template-columns: minmax(32px, 32px) minmax(auto, auto) minmax(32px, 32px);
+        height: 32px;
+        align-items: center;
+        margin-bottom: 6px;
+
+        > .image-panel {
+            display: grid;
+            place-items: center;
+            height: 32px;
+            padding: 4px;
+            cursor: pointer;
+
+            > img {
+                width: 20px;
+                height: 20px;
+            }
+
+            &:hover {
+                background-color: var(--color-glay-02);
+            }
+        }
+
+        .current-month {
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+
+        thead {
+            font-size: 12px;
+
+            tr {
+                td {
+                    span {
+                        overflow: hidden;
+                        display: inline-block;
+                        font-size: 18px;
+                        line-height: 1.2;
+                        width: 36px;
+                        height: 24px;
+                        padding: 0 1px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    width: 32px;
+                    height: 32px;
+                    text-align: center;
+                    vertical-align: middle;
+                    cursor: pointer;
+
+                    &.intersect-date {
+                        background-color: var(--color-glay-03);
+                    }
+
+                    &.selected-date {
+                        background-color: var(--color-glay-04);
+                    }
+
+                    &.other-month {
+                        background-color: var(--color-glay-02);
+                    }
+
+                    &:hover {
+                        background-color: var(--color-glay-03);
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-panel {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .button {
+            margin: 0 2px;
+            padding: 4px 12px;
+            font-size: 14px;
+        }
+    }
+}
 
 

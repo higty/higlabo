@@ -1,0 +1,62 @@
+<div id="select-date-duration-popup-panel" class="popup-panel select-date-calendar-panel" popup-panel="true" select-date-popup-panel="true">
+    <div class="field-flex-panel start-end-date-panel">
+        <input type="text" class="textbox start-date" @bind="@this.StartDate" @onclick:stopPropagation
+               @onfocus="StartDate_Focus" @oninput="e => StartDate_Input(e)" @onblur="StartDate_Blur" />
+        <input type="text" class="textbox end-date" @bind="@this.EndDate" @onclick:stopPropagation
+               @onfocus="EndDate_Focus" @oninput="e => EndDate_Input(e)" @onblur="EndDate_Blur" />
+    </div>
+    <div class="select-month-panel">
+        <span class="image-panel" @onclick="e => ChangeMonth(-1)" @onclick:stopPropagation>
+        </span>
+        <span class="current-month">@this.Date.ToString("yyyy/MM")</span>
+        <span class="image-panel" @onclick="e => ChangeMonth(1)" @onclick:stopPropagation>
+        </span>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                @foreach (var rDate in this.WeekList[0].DateList)
+                {
+                    var dw = rDate.Date.DayOfWeek;
+                    <td class="@dw.ToStringFromEnum().ToLower()">
+                        <span>@this.DateTimeFormat.GetShortestDayName(dw)</span>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rWeek in this.WeekList)
+            {
+                <tr>
+                    @foreach (var rDate in rWeek.DateList)
+                    {
+                        var dw = rDate.Date.DayOfWeek;
+                        var dateText = rDate.Date.ToString("dd");
+                        var className = $"{dw.ToStringFromEnum().ToLower()}";
+                        if (rDate.Date == this.StartDate)
+                        {
+                            className += " selected-date";
+                        }
+                        if (rDate.Date == this.EndDate && this.EndDate > this.StartDate)
+                        {
+                            className += " selected-date";
+                        }
+                        if (rDate.Date.Month != this.Date.Month)
+                        {
+                            className += " other-month";
+                        }
+                        if (rDate.Date > this.StartDate && rDate.Date <= this.EndDate)
+                        {
+                            className += " intersect-date";
+                        }
+                        <td class="@className" @onclick="e => Date_Click(rDate.Date)" @onclick:stopPropagation>@dateText</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="footer-panel">
+        <button class="button radius-button" @onclick="async e => await SelectButton_Click()">@T.Text.Select</button>
+        <button class="button radius-button" @onclick="async e => await ClsoeButton_Click()">@T.Text.Close</button>
+    </div>
+</div>

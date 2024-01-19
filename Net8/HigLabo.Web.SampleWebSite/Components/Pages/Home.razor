@@ -3,8 +3,15 @@
 
 <h2>Sample component</h2>
 
-<div style="width: 80%;">
-    <Button></Button>
+<div>
+    @for (int i = 0; i < 10; i++)
+    {
+        <div style="width: 60px; height: 60px;background-color: var(--color-primary-0@(i+1));"></div>
+    }
+</div>
+
+<div style="width: 80%; margin-bottom: 400px;">
+    <Button Text="Save"></Button>
     <LoadingPanel></LoadingPanel>
     <FileUploadPanel></FileUploadPanel>
 
@@ -23,9 +30,23 @@
                                   <span>@this.MatchType</span>
 
     <InputFieldFlexPanel Text="Field3">
-        <InputText @bind-Value="@Value3" class="textbox"></InputText>
+        <InputText @bind-Value="@Value3" class="textbox date" @onfocus="e => this.SelectDateCalendarPanelVisible = true"></InputText>
     </InputFieldFlexPanel>
+    @if (SelectDateCalendarPanelVisible)
+    {
+        <SelectDateCalendarPanel DateSelected="this.DateSelected"></SelectDateCalendarPanel>
+    }
 
+
+    <InputFieldFlexPanel Text="Field4">
+        <InputText @bind-Value="@StartDate" class="textbox date" @onfocus="e => this.SelectDateDurationCalendarPanelVisible = true"></InputText>
+        <span>-</span>
+        <InputText @bind-Value="@EndDate" class="textbox date" @onfocus="e => this.SelectDateDurationCalendarPanelVisible = true"></InputText>
+    </InputFieldFlexPanel>
+    @if (SelectDateDurationCalendarPanelVisible)
+    {
+        <SelectDateDurationCalendarPanel DateSelected="this.DateDurationSelected"></SelectDateDurationCalendarPanel>
+    }
 
 </div>
 
@@ -38,6 +59,41 @@
     [Parameter]
     public string Value3 { get; set; } = "";
     [Parameter]
+    public string StartDate { get; set; } = "";
+    [Parameter]
+    public string EndDate { get; set; } = "";
+    [Parameter]
     public MatchType MatchType { get; set; }
-    
+    [Parameter]
+    public bool SelectDateCalendarPanelVisible { get; set; } = false;
+    [Parameter]
+    public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
+
+    public void DateSelected(DateOnly? date)
+    {
+        if (date.HasValue)
+        {
+            this.Value3 = date.Value.ToShortDateString();
+        }
+        else
+        {
+            this.Value3 = "";
+        }
+        this.SelectDateCalendarPanelVisible = false;
+
+    }
+    public void DateDurationSelected((DateOnly? StartDate, DateOnly? EndDate) value)
+    {
+        var v = value;
+        if (v.StartDate.HasValue)
+        {
+            this.StartDate = v.StartDate.Value.ToShortDateString();
+        }
+        if (v.EndDate.HasValue)
+        {
+            this.EndDate = v.EndDate.Value.ToShortDateString();
+        }
+        this.SelectDateDurationCalendarPanelVisible = false;
+    }
+
 }
