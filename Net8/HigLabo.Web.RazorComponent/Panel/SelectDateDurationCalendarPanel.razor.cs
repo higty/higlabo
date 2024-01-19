@@ -38,7 +38,7 @@ namespace HigLabo.Web.RazorComponent.Panel
         public DateOnly? EndDateInput { get; set; } = DateTime.Now.ToDateOnly();
         public List<WeekTableRow> WeekList { get; init; } = new();
         [Parameter]
-        public EventCallback<(DateOnly? StartDate, DateOnly? EndDate)> DateSelected { get; set; }
+        public EventCallback<SelectedDateDuration> DateSelected { get; set; }
 
         protected override void OnParametersSet()
         {
@@ -127,15 +127,15 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         private async ValueTask SelectButton_Click()
         {
-            await Callback_Invoke(StartDate, EndDate);
+            await Callback_Invoke(new SelectedDateDuration(StartDate, EndDate));
         }
         private async ValueTask ClsoeButton_Click()
         {
-            await Callback_Invoke(null, null);
+            await Callback_Invoke(new SelectedDateDuration());
         }
-        private async ValueTask Callback_Invoke(DateOnly? startDate, DateOnly? endDate)
+        private async ValueTask Callback_Invoke(SelectedDateDuration value)
         {
-            await this.DateSelected.InvokeAsync((startDate, endDate));
+            await this.DateSelected.InvokeAsync(value);
         }
     }
 }

@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldFlexPanel_Date : ComponentBase
+    public partial class InputFieldPanel_Date : ComponentBase
     {
         private string _ValueInputing = "";
 
@@ -15,7 +20,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Value { get; set; } = "";
         [Parameter]
-        public string ClassName { get; set; } = "input-field-flex-panel";
+        public string ClassName { get; set; } = "input-field-panel";
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]

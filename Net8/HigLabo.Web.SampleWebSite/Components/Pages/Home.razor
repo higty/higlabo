@@ -29,18 +29,10 @@
 
     <span>@this.FileAccess</span>
 
+    <InputFieldPanel_Date Text="Date" Value="@this.Date"></InputFieldPanel_Date>
+
     <InputFieldFlexPanel_Date Text="Field3" Value="@this.Value3"></InputFieldFlexPanel_Date>
-
-
-    <InputFieldFlexPanel Text="Field4">
-        <InputText @bind-Value="@StartDate" class="textbox date" @onfocus="e => this.SelectDateDurationCalendarPanelVisible = true"></InputText>
-        <span>-</span>
-        <InputText @bind-Value="@EndDate" class="textbox date" @onfocus="e => this.SelectDateDurationCalendarPanelVisible = true"></InputText>
-        @if (SelectDateDurationCalendarPanelVisible)
-        {
-            <SelectDateDurationCalendarPanel DateSelected="this.DateDurationSelected"></SelectDateDurationCalendarPanel>
-        }
-    </InputFieldFlexPanel>
+    <InputFieldFlexPanel_DateDuration Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldFlexPanel_DateDuration>
 
     <InputFieldFlexPanel Text="User">
         <span class="textbox" tabindex="0">Higty</span>
@@ -56,6 +48,9 @@
     public string Value2 { get; set; } = "";
     [Parameter]
     public string Value3 { get; set; } = "";
+  
+    [Parameter]
+    public string Date { get; set; } = "";
     [Parameter]
     public string StartDate { get; set; } = "";
     [Parameter]
