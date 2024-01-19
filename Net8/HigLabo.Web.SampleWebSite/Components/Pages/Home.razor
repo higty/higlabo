@@ -29,13 +29,7 @@
 
     <span>@this.FileAccess</span>
 
-    <InputFieldFlexPanel Text="Field3">
-        <InputText @bind-Value="@Value3" class="textbox date" @onfocus="e => this.SelectDateCalendarPanelVisible = true"></InputText>
-        @if (SelectDateCalendarPanelVisible)
-        {
-            <SelectDateCalendarPanel DateSelected="this.DateSelected"></SelectDateCalendarPanel>
-        }
-    </InputFieldFlexPanel>
+    <InputFieldFlexPanel_Date Text="Field3" Value="@this.Value3"></InputFieldFlexPanel_Date>
 
 
     <InputFieldFlexPanel Text="Field4">
@@ -73,19 +67,6 @@
     [Parameter]
     public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
 
-    public void DateSelected(DateOnly? date)
-    {
-        if (date.HasValue)
-        {
-            this.Value3 = date.Value.ToShortDateString();
-        }
-        else
-        {
-            this.Value3 = "";
-        }
-        this.SelectDateCalendarPanelVisible = false;
-
-    }
     public void DateDurationSelected((DateOnly? StartDate, DateOnly? EndDate) value)
     {
         var v = value;
