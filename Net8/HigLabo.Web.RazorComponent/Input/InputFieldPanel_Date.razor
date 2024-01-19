@@ -1,6 +1,6 @@
 <InputFieldPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
     <InputText @bind-Value="@Value" class="textbox date"
-               @onfocus="e => this.SelectDateCalendarPanelVisible = true"
+               @onclick="e => this.SelectDateCalendarPanelVisible = true"
                @oninput="e => this.InputText_Input(e)"
                @onblur="async e => await this.InputText_Blur(e)"></InputText>
     @if (SelectDateCalendarPanelVisible)

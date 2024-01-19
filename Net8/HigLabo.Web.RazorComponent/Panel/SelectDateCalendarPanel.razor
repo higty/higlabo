@@ -1,12 +1,11 @@
 ﻿<div class="select-date-calendar-panel">
     <div class="select-month-panel">
         <span class="image-panel" @onclick="e => ChangeMonth(-1)" @onclick:stopPropagation>
-            <svg width="20px" height="20px" viewBox="0 0 20 20" xml:space="preserve">
-                <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 " />
-            </svg>
+            <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayLeft__svg)" class="icon" />
         </span>
         <span class="current-month">@this.Date.ToString("yyyy/MM")</span>
         <span class="image-panel" @onclick="e => ChangeMonth(1)" @onclick:stopPropagation>
+            <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayRight__svg)" class="icon" />
         </span>
     </div>
     <table>

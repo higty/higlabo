@@ -14,4 +14,8 @@
     <ProjectReference Include="..\HigLabo.Web.RazorComponent\HigLabo.Web.RazorComponent.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>

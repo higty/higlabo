@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldFlexPanel_DateDuration : ComponentBase
+    public partial class InputFieldPanel_DateDuration : ComponentBase
     {
         private string _StartDateInputing = "";
         private string _EndDateInputing = "";
@@ -23,7 +23,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string EndDate { get; set; } = "";
         [Parameter]
-        public string ClassName { get; set; } = "input-field-flex-panel";
+        public string ClassName { get; set; } = "input-field-panel";
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]

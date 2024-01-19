@@ -45,4 +45,8 @@
 	  <_ContentIncludedByDefault Remove="panel\FieldInputPanel.razor" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Generated\" />
+	</ItemGroup>
+
 </Project>

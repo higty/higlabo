@@ -24,6 +24,8 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
+        public DateDirection DateDirection { get; set; } = DateDirection.Future;
+        [Parameter]
         public string DateTimeFormat { get; set; } = "yyyy/MM/dd";
         [Parameter]
         public TimeOnly TimeZone { get; set; } = new TimeOnly(0, 0);
@@ -46,7 +48,7 @@ namespace HigLabo.Web.RazorComponent.Input
                 return;
             }
 
-            var pr = new NumberToDateTimeProcessor(this.TimeZone, DateDirection.Future);
+            var pr = new NumberToDateTimeProcessor(this.TimeZone, this.DateDirection);
             pr.Converters.Clear();
             pr.Converters.Add(new NumberToDateTimeConverter_Mdd());
             pr.Converters.Add(new NumberToDateTimeConverter_MMdd());
@@ -65,7 +67,7 @@ namespace HigLabo.Web.RazorComponent.Input
         }
         private async ValueTask InputText_Blur(FocusEventArgs e)
         {
-            if (this.Value.IsNullOrEmpty())
+            if (_ValueInputing.IsNullOrEmpty() == false)
             {
                 this.Value = this._ValueInputing;
             }

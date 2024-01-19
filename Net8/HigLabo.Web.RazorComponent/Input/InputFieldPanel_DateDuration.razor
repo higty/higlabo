@@ -1,10 +1,10 @@
-<InputFieldFlexPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+<InputFieldPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
     <InputText @bind-Value="@StartDate" class="textbox date"
                @onclick="e => this.SelectDateCalendarPanelVisible = true"
                @oninput="e => this.StartDate_Input(e)"
                @onblur="async e => await this.StartDate_Blur(e)"></InputText>
     <span>-</span>
-    <InputText @bind-Value="@EndDate" class="textbox date" 
+    <InputText @bind-Value="@EndDate" class="textbox date"
                @onclick="e => this.SelectDateCalendarPanelVisible = true"
                @oninput="e => this.EndDate_Input(e)"
                @onblur="async e => await this.EndDate_Blur(e)"></InputText>
@@ -12,4 +12,4 @@
     {
         <SelectDateDurationCalendarPanel DateSelected="this.DateSelected_Callback"></SelectDateDurationCalendarPanel>
     }
-</InputFieldFlexPanel>
+</InputFieldPanel>

@@ -27,11 +27,12 @@
                                   SelectedValue="@this.FileAccess.ToStringFromEnum()"
                                   ValueChanged="v => this.FileAccess = v.ToEnum<FileAccess>()!.Value"></InputFieldPanel_SelectButton>
 
-    <span>@this.FileAccess</span>
+    <span>@this.FileAccess.ToStringFromEnum()</span>
 
     <InputFieldPanel_Date Text="Date" Value="@this.Date"></InputFieldPanel_Date>
+    <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
 
-    <InputFieldFlexPanel_Date Text="Field3" Value="@this.Value3"></InputFieldFlexPanel_Date>
+    <InputFieldFlexPanel_Date Text="Date" Value="@this.Date"></InputFieldFlexPanel_Date>
     <InputFieldFlexPanel_DateDuration Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldFlexPanel_DateDuration>
 
     <InputFieldFlexPanel Text="User">
@@ -46,8 +47,6 @@
     public string Value1 { get; set; } = "";
     [Parameter]
     public string Value2 { get; set; } = "";
-    [Parameter]
-    public string Value3 { get; set; } = "";
   
     [Parameter]
     public string Date { get; set; } = "";
