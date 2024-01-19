@@ -577,6 +577,7 @@
   color: var(--color-form-element-text);
   background-color: var(--color-white);
   border: solid 1px transparent;
+  cursor: pointer;
 }
 .input-field-flex-panel .display-flex .textbox:hover,
 .input-field-flex-panel .display-flex .textarea:hover {

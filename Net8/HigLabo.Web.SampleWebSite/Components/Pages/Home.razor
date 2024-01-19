@@ -23,11 +23,11 @@
         <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
     </InputFieldPanel>
 
-    <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<MatchType>()"
-                                  SelectedValue="@this.MatchType.ToStringFromEnum()"
-                                  ValueChanged="v => this.MatchType = v.ToEnum<MatchType>()!.Value"></InputFieldPanel_SelectButton>
+    <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
+                                  SelectedValue="@this.FileAccess.ToStringFromEnum()"
+                                  ValueChanged="v => this.FileAccess = v.ToEnum<FileAccess>()!.Value"></InputFieldPanel_SelectButton>
 
-                                  <span>@this.MatchType</span>
+    <span>@this.FileAccess</span>
 
     <InputFieldFlexPanel Text="Field3">
         <InputText @bind-Value="@Value3" class="textbox date" @onfocus="e => this.SelectDateCalendarPanelVisible = true"></InputText>
@@ -48,6 +48,10 @@
         <SelectDateDurationCalendarPanel DateSelected="this.DateDurationSelected"></SelectDateDurationCalendarPanel>
     }
 
+    <InputFieldFlexPanel Text="User">
+        <span class="textbox">Higty</span>
+    </InputFieldFlexPanel>
+
 </div>
 
 
@@ -63,7 +67,7 @@
     [Parameter]
     public string EndDate { get; set; } = "";
     [Parameter]
-    public MatchType MatchType { get; set; }
+    public FileAccess FileAccess { get; set; }
     [Parameter]
     public bool SelectDateCalendarPanelVisible { get; set; } = false;
     [Parameter]
