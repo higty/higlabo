@@ -853,7 +853,7 @@
 }
 .select-time-panel .header-panel {
   font-size: 14px;
-  height: 28px;
+  height: 32px;
   margin: 0;
   padding: 4px;
   border-bottom: solid 1px #446699;
@@ -930,8 +930,8 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  height: 36px;
-  padding: 4px 8px;
+  height: 34px;
+  padding: 5px 8px;
   vertical-align: middle;
   box-sizing: border-box;
 }
