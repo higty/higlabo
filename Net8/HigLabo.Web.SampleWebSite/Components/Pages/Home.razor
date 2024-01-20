@@ -85,7 +85,7 @@
                 <span class="user-record-panel">@item.Name</span>
                 <span class="age" style="color: #888888;">@item.Age</span>
                 <img src="@UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
-                     style="widht: 16px; height: 16px;margin-left: auto;" />
+                     style="width: 16px; height: 16px;margin-left: auto;" />
             </div>
         }
     </InputFieldPanel_RecordList>
@@ -117,6 +117,10 @@
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
     <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" Value="@this.StartTime"></InputFieldPanel_Time>
+    <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.EndTime" Layout="InputFieldPanelLayout.Default" 
+    Text="Start-End" StartTime="@this.StartTime" EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
+    <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.Duration" Layout="InputFieldPanelLayout.Default" 
+    Text="Time duration" StartTime="@this.StartTime" EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
 
     <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" Value="@this.Date"></InputFieldPanel_Date>
     <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
@@ -146,6 +150,8 @@
 
     [Parameter]
     public string StartTime { get; set; } = "";
+    [Parameter]
+    public string EndTime { get; set; } = "";
     [Parameter]
     public string Date { get; set; } = "";
     [Parameter]

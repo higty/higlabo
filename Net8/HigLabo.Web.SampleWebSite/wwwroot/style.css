@@ -848,23 +848,41 @@
 
 .select-time-panel {
   position: absolute;
-  height: 380px;
+  background-color: var(--color-panel-bg);
+  border: solid 1px #cccccc;
+}
+.select-time-panel .header-panel {
+  font-size: 14px;
+  height: 28px;
+  margin: 0;
+  padding: 4px;
+  border-bottom: solid 1px #446699;
+  box-sizing: border-box;
+}
+.select-time-panel .content-panel {
+  display: flex;
+}
+.select-time-panel .content-panel > * {
+  height: 344px;
+  overflow-y: auto;
+}
+.select-time-panel .footer-panel {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.select-time-panel .footer-panel .button {
+  margin: 0 2px;
+  padding: 4px 12px;
+  font-size: 14px;
 }
 
 .start-time-panel,
 .end-time-panel {
   height: 100%;
   color: #111111;
-  background-color: #ffffff;
-  border: solid 1px #cccccc;
-  overflow-y: auto;
-}
-.start-time-panel .header-panel,
-.end-time-panel .header-panel {
-  font-size: 12px;
-  border-bottom: solid 1px #446699;
-  margin: 0;
-  padding: 4px;
 }
 .start-time-panel td,
 .end-time-panel td {
@@ -907,9 +925,6 @@
 }
 
 .select-duration-panel {
-  position: absolute;
-  width: 100px;
-  height: 360px;
   color: #111111;
   background-color: #ffffff;
   border: solid 1px #cccccc;

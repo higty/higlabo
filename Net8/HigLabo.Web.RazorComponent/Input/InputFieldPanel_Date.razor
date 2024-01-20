@@ -5,6 +5,6 @@
                @onblur="async e => await this.Textbox_Blur(e)"></InputText>
     @if (SelectDateCalendarPanelVisible)
     {
-        <SelectDateCalendarPanel DateSelected="date => this.DateSelected_Callback(date)"></SelectDateCalendarPanel>
+        <SelectDateCalendarPanel DateSelected="date => this.DateSelected_Callback(date)" Closed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateCalendarPanel>
     }
 </InputFieldPanel>

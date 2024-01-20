@@ -10,6 +10,6 @@
                @onblur="async e => await this.EndDate_Blur(e)"></InputText>
     @if (SelectDateCalendarPanelVisible)
     {
-        <SelectDateDurationCalendarPanel DateSelected="this.DateSelected_Callback"></SelectDateDurationCalendarPanel>
+        <SelectDateDurationCalendarPanel DateSelected="this.DateSelected_Callback" Closed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateDurationCalendarPanel>
     }
 </InputFieldPanel>

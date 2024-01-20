@@ -14,6 +14,8 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         [Parameter]
         public EventCallback<string> ColorSelected { get; set; }
+        [Parameter]
+        public EventCallback Closed { get; set; }
 
         protected override void OnInitialized()
         {
@@ -57,7 +59,7 @@ namespace HigLabo.Web.RazorComponent.Panel
         }
         private async ValueTask CloseButton_Click()
         {
-            await this.ColorSelected.InvokeAsync("");
+            await this.Closed.InvokeAsync();
         }
     }
 }

@@ -10,6 +10,7 @@
                @onblur="async e => await this.EndTime_Blur(e)"></InputText>
     @if (SelectTimePanelVisible)
     {
-        <SelectTimePanel Mode="SelectTimePanel.SelectMode.EndTime" TimeSelected="time => this.TimeSelected_Callback(time)"></SelectTimePanel>
+        <SelectTimePanel SelectEndTimeMode="@this.SelectEndTimeMode" TimeSelected="time => this.TimeSelected_Callback(time)"
+                         Closed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
     }
 </InputFieldPanel>

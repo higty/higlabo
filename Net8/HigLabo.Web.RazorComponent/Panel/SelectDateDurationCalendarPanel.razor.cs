@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Newtonsoft.Json.Linq;
 using System.Globalization;
 
 namespace HigLabo.Web.RazorComponent.Panel
@@ -39,6 +40,8 @@ namespace HigLabo.Web.RazorComponent.Panel
         public List<WeekTableRow> WeekList { get; init; } = new();
         [Parameter]
         public EventCallback<SelectedDateDuration> DateSelected { get; set; }
+        [Parameter]
+        public EventCallback Closed { get; set; }
 
         protected override void OnParametersSet()
         {
@@ -127,15 +130,11 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         private async ValueTask SelectButton_Click()
         {
-            await Callback_Invoke(new SelectedDateDuration(StartDate, EndDate));
+            await this.DateSelected.InvokeAsync(new SelectedDateDuration(StartDate, EndDate));
         }
         private async ValueTask ClsoeButton_Click()
         {
-            await Callback_Invoke(new SelectedDateDuration());
-        }
-        private async ValueTask Callback_Invoke(SelectedDateDuration value)
-        {
-            await this.DateSelected.InvokeAsync(value);
+            await this.Closed.InvokeAsync();
         }
     }
 }

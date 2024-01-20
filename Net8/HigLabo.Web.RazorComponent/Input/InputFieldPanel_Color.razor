@@ -7,6 +7,6 @@
     </div>
     @if (SelectColorCalendarPanelVisible)
     {
-        <SelectColorPanel ColorSelected="v => this.ColorSelected_Callback(v)"></SelectColorPanel>
+        <SelectColorPanel ColorSelected="v => this.ColorSelected_Callback(v)" Closed="() => this.SelectColorCalendarPanelVisible = false"></SelectColorPanel>
     }
 </InputFieldPanel>

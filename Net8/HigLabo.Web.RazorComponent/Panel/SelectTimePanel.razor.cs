@@ -10,12 +10,6 @@ namespace HigLabo.Web.RazorComponent.Panel
 {
     public partial class SelectTimePanel
     {
-        public enum SelectMode
-        {
-            StartTime,
-            EndTime,
-            Duration,
-        }
         public class MinuteSetting
         {
             public int Minute { get; set; }
@@ -29,8 +23,10 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
+        private TimeSpan? _StartTime = null;
+
         [Parameter]
-        public SelectMode Mode { get; set; } = SelectMode.StartTime;
+        public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
         [Parameter]
         public int StartHour { get; set; } = 9;
         [Parameter]
@@ -41,45 +37,69 @@ namespace HigLabo.Web.RazorComponent.Panel
         public bool DisplayAllTime { get; set; } = false;
         [Parameter]
         public EventCallback<SelectedTimeDuration> TimeSelected { get; set; }
+        [Parameter]
+        public EventCallback Closed { get; set; }
 
-        public List<MinuteSetting> MinuteList { get; private set; } = new List<MinuteSetting>();
-        public List<int> DurationList { get; private set; } = new List<int>();
+        public List<MinuteSetting> MinuteList { get; private set; } = new ();
+        public List<MinuteSetting> DurationList { get; private set; } = new ();
 
         public SelectTimePanel()
         {
-            MinuteList.Add(new MinuteSetting(0, isDisplay: true));
-            MinuteList.Add(new MinuteSetting(10, isDisplay: false));
-            MinuteList.Add(new MinuteSetting(15, isDisplay: true));
-            MinuteList.Add(new MinuteSetting(20, isDisplay: false));
-            MinuteList.Add(new MinuteSetting(30, isDisplay: true));
-            MinuteList.Add(new MinuteSetting(40, isDisplay: false));
-            MinuteList.Add(new MinuteSetting(45, isDisplay: true));
-            MinuteList.Add(new MinuteSetting(50, isDisplay: false));
-            DurationList.Add(15);
-            DurationList.Add(30);
-            DurationList.Add(45);
-            DurationList.Add(60);
-            DurationList.Add(90);
-            for (int i = 2; i < 14; i++)
+            MinuteList.Add(new MinuteSetting(0, true));
+            MinuteList.Add(new MinuteSetting(10, false));
+            MinuteList.Add(new MinuteSetting(15, true));
+            MinuteList.Add(new MinuteSetting(20, false));
+            MinuteList.Add(new MinuteSetting(30, true));
+            MinuteList.Add(new MinuteSetting(40, false));
+            MinuteList.Add(new MinuteSetting(45, true));
+            MinuteList.Add(new MinuteSetting(50, false));
+            DurationList.Add(new MinuteSetting(15, true));
+            DurationList.Add(new MinuteSetting(30, true));
+            DurationList.Add(new MinuteSetting(45, true));
+            DurationList.Add(new MinuteSetting(60, true));
+            DurationList.Add(new MinuteSetting(90, true));
+            DurationList.Add(new MinuteSetting(120, true));
+            DurationList.Add(new MinuteSetting(180, true));
+            for (int i = 4; i < 14; i++)
             {
-                DurationList.Add(i * 60);
+                DurationList.Add(new MinuteSetting(i * 60, false));
             }
         }
 
         private async ValueTask StartTimePanel_Click(TimeSpan timeSpan)
         {
+            _StartTime = timeSpan;
             var r = new SelectedTimeDuration();
             r.StartTime = timeSpan;
-            if (this.Mode == SelectMode.StartTime)
-            {
-                await this.TimeSelected.InvokeAsync(r);
-            }
+            await this.TimeSelected.InvokeAsync(r);
         }
         private async ValueTask EndTimePanel_Click(TimeSpan timeSpan)
         {
             var r = new SelectedTimeDuration();
+            if (_StartTime.HasValue)
+            {
+                r.StartTime = _StartTime;
+            }
             r.EndTime = timeSpan;
             await this.TimeSelected.InvokeAsync(r);
+        }
+        private async ValueTask DurationPanel_Click(int minute)
+        {
+            var r = new SelectedTimeDuration();
+            if (_StartTime.HasValue)
+            {
+                r.StartTime = _StartTime;
+            }
+            if (r.StartTime.HasValue)
+            {
+                r.EndTime = r.StartTime.Value.Add(TimeSpan.FromMinutes(minute));
+            }
+            await this.TimeSelected.InvokeAsync(r);
+        }
+
+        private async ValueTask CloseButton_Click()
+        {
+            await this.Closed.InvokeAsync();
         }
     }
 }

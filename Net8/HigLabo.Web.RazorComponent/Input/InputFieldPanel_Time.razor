@@ -5,6 +5,6 @@
                @onblur="async e => await this.Textbox_Blur(e)"></InputText>
     @if (SelectTimePanelVisible)
     {
-        <SelectTimePanel TimeSelected="time => this.TimeSelected_Callback(time)"></SelectTimePanel>
+        <SelectTimePanel TimeSelected="time => this.TimeSelected_Callback(time)" Closed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
     }
 </InputFieldPanel>
