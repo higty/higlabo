@@ -624,7 +624,6 @@ $width-checkbox-circle: 20px;
 .start-time-panel,
 .end-time-panel {
     height: 100%;
-    color: #111111;
 
     td {
         text-align: center;
@@ -632,11 +631,11 @@ $width-checkbox-circle: 20px;
     }
 
     .hour-minute-panel {
-        border-bottom: dotted 1px #cccccc;
+        border-bottom: dotted 1px var(--color-border);
         box-sizing: border-box;
 
         &:hover {
-            background-color: #c0eafa;
+            background-color: var(--color-glay-01);
         }
 
         &:last-child {
@@ -648,7 +647,7 @@ $width-checkbox-circle: 20px;
             font-size: 20px;
             font-weight: bold;
             text-align: center;
-            border-right: solid 1px #446699;
+            border-right: solid 1px var(--color-border);
             width: 36px;
         }
 
@@ -660,29 +659,26 @@ $width-checkbox-circle: 20px;
             box-sizing: border-box;
 
             &:hover {
-                background-color: #a0cafa;
+                background-color: var(--color-glay-03);
             }
         }
     }
 }
 
 .select-duration-panel {
-    color: #111111;
-    background-color: #ffffff;
-    border: solid 1px #cccccc;
     box-sizing: border-box;
 
     .duration-minute-panel {
         cursor: pointer;
         display: flex;
         align-items: center;
-        height: 30px;
-        padding-left: 4px;
+        height: 36px;
+        padding: 4px 8px;
         vertical-align: middle;
         box-sizing: border-box;
 
         &:hover {
-            background-color: #e0eaea;
+            background-color: var(--color-glay-03);
         }
     }
 }

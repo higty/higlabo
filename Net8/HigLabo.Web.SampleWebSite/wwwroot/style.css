@@ -882,7 +882,6 @@
 .start-time-panel,
 .end-time-panel {
   height: 100%;
-  color: #111111;
 }
 .start-time-panel td,
 .end-time-panel td {
@@ -891,12 +890,12 @@
 }
 .start-time-panel .hour-minute-panel,
 .end-time-panel .hour-minute-panel {
-  border-bottom: dotted 1px #cccccc;
+  border-bottom: dotted 1px var(--color-border);
   box-sizing: border-box;
 }
 .start-time-panel .hour-minute-panel:hover,
 .end-time-panel .hour-minute-panel:hover {
-  background-color: #c0eafa;
+  background-color: var(--color-glay-01);
 }
 .start-time-panel .hour-minute-panel:last-child,
 .end-time-panel .hour-minute-panel:last-child {
@@ -908,7 +907,7 @@
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-  border-right: solid 1px #446699;
+  border-right: solid 1px var(--color-border);
   width: 36px;
 }
 .start-time-panel .hour-minute-panel .minute-panel,
@@ -921,26 +920,23 @@
 }
 .start-time-panel .hour-minute-panel .minute-panel:hover,
 .end-time-panel .hour-minute-panel .minute-panel:hover {
-  background-color: #a0cafa;
+  background-color: var(--color-glay-03);
 }
 
 .select-duration-panel {
-  color: #111111;
-  background-color: #ffffff;
-  border: solid 1px #cccccc;
   box-sizing: border-box;
 }
 .select-duration-panel .duration-minute-panel {
   cursor: pointer;
   display: flex;
   align-items: center;
-  height: 30px;
-  padding-left: 4px;
+  height: 36px;
+  padding: 4px 8px;
   vertical-align: middle;
   box-sizing: border-box;
 }
 .select-duration-panel .duration-minute-panel:hover {
-  background-color: #e0eaea;
+  background-color: var(--color-glay-03);
 }
 
 .select-color-panel {
