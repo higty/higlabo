@@ -1,16 +1,16 @@
 :root {
     /* Glay */
     --color-white: #ffffff;
-    --color-glay-01: #F8F9FA;
-    --color-glay-02: #E9ECEF;
-    --color-glay-03: #DEE2E6;
-    --color-glay-04: #CED4DA;
-    --color-glay-05: #ADB5BD;
-    --color-glay-06: #6C757D;
-    --color-glay-07: #495057;
-    --color-glay-08: #343A40;
-    --color-glay-09: #212529;
-    --color-glay-10: #111111;
+    --color-glay-01: #f8f8f8;
+    --color-glay-02: #ececec;
+    --color-glay-03: #e2e2e2;
+    --color-glay-04: #d4d4d4;
+    --color-glay-05: #b4b4b4;
+    --color-glay-06: #777777;
+    --color-glay-07: #505050;
+    --color-glay-08: #3a3a3a;
+    --color-glay-09: #242424;
+    --color-glay-10: #121212;
     --color-black: #000000;
     /* Primary */
     --color-primary-01: #F8F9FA;
@@ -30,6 +30,7 @@
     --color-information: #4D84F4;
     /* common */
     --color-body: #f0eeec;
+    --color-panel-bg: #ffffff;
     --color-scrollbar-track: var(--color-glay-05);
     --color-scrollbar-thumb: var(--color-glay-03);
     --color-text: var(--color-glay-09);

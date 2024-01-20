@@ -6,11 +6,11 @@
 <div>
     @for (int i = 0; i < 10; i++)
     {
-        <div style="width: 60px; height: 60px;background-color: var(--color-primary-0@(i+1));"></div>
+        <span style="display: inline-block; width: 60px; height: 60px;background-color: var(--color-primary-0@(i+1));"></span>
     }
 </div>
 
-<div style="width: 80%; margin-bottom: 400px;">
+<div style="width: 80%; margin-bottom: 400px; padding-bottom: 400px;">
     <Button Text="Save"></Button>
     <LoadingPanel></LoadingPanel>
     <FileUploadPanel></FileUploadPanel>
@@ -22,6 +22,22 @@
     <InputFieldPanel Text="Field1">
         <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
     </InputFieldPanel>
+   
+    <InputFieldPanel_Record Text="User list" Loading="LoadingRecordList" RecordSelected="RecordSelected">
+        <RecordPanel>
+            @if (this.SelectedUser == null)
+            {
+                <div>Select user</div>
+            }
+            else
+            {
+                <div style="padding: 4px 8px;">
+                    <span class="user-record-panel">@this.SelectedUser.Name</span>
+                    <span class="age">@this.SelectedUser.Age</span>
+                </div>
+            }
+        </RecordPanel>
+    </InputFieldPanel_Record>
 
     <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
                                   SelectedValue="@this.FileAccess.ToStringFromEnum()"
@@ -35,20 +51,23 @@
     <InputFieldFlexPanel_Date Text="Date" Value="@this.Date"></InputFieldFlexPanel_Date>
     <InputFieldFlexPanel_DateDuration Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldFlexPanel_DateDuration>
 
-    <InputFieldFlexPanel Text="User">
-        <span class="textbox" tabindex="0">Higty</span>
-    </InputFieldFlexPanel>
 
     <InputFieldPanel_Color></InputFieldPanel_Color>
 </div>
 
 
 @code {
+    public class UserRecord
+    {
+        public string Name { get; set; } = "";
+        public int Age { get; set; } = 22;
+    }
+
     [Parameter]
     public string Value1 { get; set; } = "";
     [Parameter]
     public string Value2 { get; set; } = "";
-  
+
     [Parameter]
     public string Date { get; set; } = "";
     [Parameter]
@@ -61,6 +80,9 @@
     public bool SelectDateCalendarPanelVisible { get; set; } = false;
     [Parameter]
     public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
+
+    [Parameter]
+    public UserRecord SelectedUser { get; set; } = new() { Name = "Higty", Age = 22 };
 
     public void DateDurationSelected((DateOnly? StartDate, DateOnly? EndDate) value)
     {
@@ -76,4 +98,30 @@
         this.SelectDateDurationCalendarPanelVisible = false;
     }
 
+    private void LoadingRecordList(InputFieldPanel_Record.LoadingEventArgs e)
+    {
+        var l = new List<InputFieldPanel_Record.Record>();
+        l.Clear();
+        for (int i = 0; i < 20; i++)
+        {
+            l.Add(new InputFieldPanel_Record.Record("User" + i, i));
+        }
+
+        e.RecordList.Clear();
+        if (e.SearchText.IsNullOrEmpty())
+        {
+            e.RecordList.AddRange(l);
+        }
+        else
+        {
+            e.RecordList.AddRange(l.FindAll(el => el.Text.Contains(e.SearchText)));
+        }
+    }
+    private void RecordSelected(InputFieldPanel_Record.Record record)
+    {
+        var r = new UserRecord();
+        r.Name = record.Text;
+        r.Age = (int?)record.Value ?? 0;
+        this.SelectedUser = r;
+    }
 }

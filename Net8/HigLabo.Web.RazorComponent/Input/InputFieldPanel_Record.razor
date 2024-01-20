@@ -1,0 +1,29 @@
+<InputFieldPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+	<div class="record-panel" tabindex="0" @onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true">
+		@this.RecordPanel
+	</div>
+	@if (SelectRecordPanelVisible)
+	{
+		<div class="select-record-panel">
+			<div class="search-container-panel">
+				<input type="text" class="textbox" placeholder="@T.Text.Search"
+					   @bind="SearchText" @bind:event="oninput" 
+					   @onkeydown="async e => await SearchTextbox_Keydown(e)" />
+				<div class="flex-right-panel">
+					<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
+					<button class="button radius-button" @onclick="async e => await ToggleVisible()">@T.Text.Close</button>
+				</div>
+			</div>
+			<div class="record-list-panel">
+				@foreach (var r in _RecordList)
+				{
+					<div class="record-panel" @onclick="async e => await RecordPanel_Click(r)">
+						<span @onclick:preventDefault>@r.Text</span>
+					</div>
+				}
+			</div>
+		</div>
+
+	}
+</InputFieldPanel>
+
