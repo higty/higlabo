@@ -1,8 +1,31 @@
-<div class="@ClassName" name="@Name">
-    <div class="field-name">
-        <span class="text">@this.Text</span>
-    </div>
-    <div class="child-content-panel">@ChildContent</div>
+@{
+    var className = this.Layout switch
+    {
+        InputFieldPanelLayout.Default => "input-field-panel",
+        InputFieldPanelLayout.Flex => "input-field-flex-panel",
+        _ => throw SwitchStatementNotImplementException.Create(this.Layout),
+    };
+}
+
+<div class="@className" name="@Name">
+    @switch (this.Layout)
+    {
+        case InputFieldPanelLayout.Default:
+            <div class="field-name">
+                <span class="text">@this.Text</span>
+            </div>
+            <div class="child-content-panel">@ChildContent</div>
+            break;
+        case InputFieldPanelLayout.Flex:
+            <div class="display-flex">
+                <span class="field-name">
+                    <span class="text">@this.Text</span>
+                </span>
+                <span class="child-content-panel">@ChildContent</span>
+            </div>
+            break;
+        default: throw SwitchStatementNotImplementException.Create(this.Layout);
+    }
     @if (this.ValidateResult == false)
     {
         <div class="field-error-panel">@this.ValidateResult.Message</div>

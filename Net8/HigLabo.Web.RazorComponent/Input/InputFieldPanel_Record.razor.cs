@@ -36,6 +36,7 @@ namespace HigLabo.Web.RazorComponent.Input
 				Value = value;
 			}
 		}
+		private int _RecordIndex = -1;
 		private List<Record> _RecordList = new();
 
 		[Parameter]
@@ -50,6 +51,8 @@ namespace HigLabo.Web.RazorComponent.Input
 		public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
 		[Parameter]
+		public ElementReference RecordPanelElementReference { get; set; }
+		[Parameter]
 		public RenderFragment? RecordPanel { get; set; }
 		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
@@ -60,29 +63,70 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback<Record> RecordSelected { get; set; }
 
-        private async ValueTask SearchTextbox_Keydown(KeyboardEventArgs e)
+		private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
 		{
 			if (e.Key == "Enter")
 			{
-				await OnLoading();
+				await this.ToggleVisible();
+			}
+        }
+		private async ValueTask ToggleVisible()
+		{
+			if (this.SelectRecordPanelVisible)
+			{
+				this.SelectRecordPanelVisible = false;
+				await this.RecordPanelElementReference.FocusAsync();
+			}
+			else
+			{
+				_RecordIndex = -1;
+				this.SearchText = "";
+				this.SelectRecordPanelVisible = true;
+				await this.OnLoading();
+				this.StateHasChanged();
+			}
+		}
+
+		private async ValueTask SearchTextbox_Keydown(KeyboardEventArgs e)
+		{
+			if (e.Key == "Esc")
+			{
+				_RecordIndex = -1;
+				this.StateHasChanged();
+			}
+			else if (e.Key == "Enter")
+			{
+				if (_RecordIndex < 0)
+				{
+					await OnLoading();
+				}
+				else
+				{
+					await this.RecordPanelSelected(_RecordList[_RecordIndex]);
+				}
+			}
+			else if (e.Key == "ArrowUp")
+			{
+				_RecordIndex = _RecordIndex - 1;
+				if (_RecordIndex < -1)
+				{
+					_RecordIndex = this._RecordList.Count - 1;
+				}
+				this.StateHasChanged();
+			}
+			else if (e.Key == "ArrowDown")
+			{
+				_RecordIndex = _RecordIndex + 1;
+				if (_RecordIndex >= _RecordList.Count)
+				{
+					_RecordIndex = -1;
+				}
+				this.StateHasChanged();
 			}
 		}
 		private async ValueTask SearchButton_Click(MouseEventArgs e)
 		{
 			await OnLoading();
-        }
-        private async ValueTask ToggleVisible()
-        {
-            if (this.SelectRecordPanelVisible)
-			{
-				this.SelectRecordPanelVisible = false;
-			}
-			else
-			{
-				this.SearchText = "";
-				this.SelectRecordPanelVisible = true;
-                await this.OnLoading();
-            }
         }
 		private async ValueTask OnLoading()
 		{
@@ -90,8 +134,13 @@ namespace HigLabo.Web.RazorComponent.Input
 		}
 		private async ValueTask RecordPanel_Click(Record record)
 		{
+			await this.RecordPanelSelected(record);
+		}
+		private async ValueTask RecordPanelSelected(Record record)
+		{
 			this.SelectRecordPanelVisible = false;
 			await this.RecordSelected.InvokeAsync(record);
+			await this.RecordPanelElementReference.FocusAsync();
 		}
 	}
 }

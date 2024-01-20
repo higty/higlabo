@@ -1,4 +1,4 @@
-<InputFieldPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
     <InputText @bind-Value="@StartDate" class="textbox date"
                @onclick="e => this.SelectDateCalendarPanelVisible = true"
                @oninput="e => this.StartDate_Input(e)"

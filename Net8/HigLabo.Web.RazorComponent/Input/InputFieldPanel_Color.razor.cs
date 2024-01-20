@@ -14,6 +14,8 @@ namespace HigLabo.Web.RazorComponent.Input
         private string _ValueInputing = "";
 
         [Parameter]
+        public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
+        [Parameter]
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
@@ -36,7 +38,10 @@ namespace HigLabo.Web.RazorComponent.Input
         private void ColorSelected_Callback(string color)
         {
             this.SelectColorCalendarPanelVisible = false;
-            this.Value = color;
+            if (color.IsNullOrEmpty() == false)
+            {
+                this.Value = color;
+            }
         }
     }
 }

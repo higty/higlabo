@@ -1,4 +1,4 @@
-<InputFieldFlexPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
     <div class="display-flex">
         <InputText @bind-Value="@Value" class="textbox color"
                    @onclick="e => this.SelectColorCalendarPanelVisible = true"
@@ -9,4 +9,4 @@
     {
         <SelectColorPanel ColorSelected="v => this.ColorSelected_Callback(v)"></SelectColorPanel>
     }
-</InputFieldFlexPanel>
+</InputFieldPanel>

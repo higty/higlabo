@@ -1,5 +1,7 @@
-<InputFieldPanel ClassName="@ClassName" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
-	<div class="record-panel" tabindex="0" @onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true">
+<InputFieldPanel Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+	<div class="record-panel" tabindex="0" @ref="this.RecordPanelElementReference"
+	@onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true"
+	@onkeydown="async e => await this.RecordPanel_Keydown(e)">
 		@this.RecordPanel
 	</div>
 	@if (SelectRecordPanelVisible)
@@ -15,9 +17,15 @@
 				</div>
 			</div>
 			<div class="record-list-panel">
-				@foreach (var r in _RecordList)
+				@for (int i = 0; i < _RecordList.Count; i++)
 				{
-					<div class="record-panel" @onclick="async e => await RecordPanel_Click(r)">
+					var cName = "record-panel";
+					if (i == _RecordIndex)
+					{
+						cName += " current";
+					}
+					var r = _RecordList[i];
+					<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">
 						<span @onclick:preventDefault>@r.Text</span>
 					</div>
 				}

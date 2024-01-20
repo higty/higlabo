@@ -345,9 +345,15 @@ $width-checkbox-circle: 20px;
                 display: inline-block;
             }
 
-            .select-date-calendar-panel {
+            .select-date-calendar-panel,
+            .select-color-panel,
+            .select-record-panel {
                 position: absolute;
                 z-index: 200;
+            }
+
+            .select-date-calendar-panel,
+            .select-color-panel {
                 top: 32px;
             }
         }
@@ -391,6 +397,10 @@ $width-checkbox-circle: 20px;
 
         &:focus {
             text-decoration: underline;
+        }
+
+        &:hover {
+            background-color: var(--color-select-button-selected);
         }
     }
 }
@@ -595,6 +605,10 @@ $width-checkbox-circle: 20px;
                 margin-right: 6px;
                 width: 16px;
                 height: 16px;
+            }
+
+            &.current {
+                background-color: var(--color-primary-02);
             }
 
             &:hover {

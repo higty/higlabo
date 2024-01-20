@@ -1,4 +1,4 @@
-﻿<InputFieldPanel Name="@Name" Text="@Text" ClassName="@ClassName">
+﻿<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text">
     <div class="select-button-list-panel">
         @foreach (var item in this.RecordList)
         {
@@ -9,7 +9,7 @@
             }
             <span class="@cName" tabindex="0"
                   @onclick="async e => await RecordValuePanel_Click(item.Value)"
-                  @onkeydown="async e => await RecordValuePanel_Keydown(e, item.Value)">@item.Text</span>
+                  @onkeydown="async e => await RecordValuePanel_Keydown(e, item.Value)" @onkeydown:stopPropagation="true">@item.Text</span>
         }
     </div>
 </InputFieldPanel>

@@ -654,9 +654,14 @@
 .input-field-flex-panel .display-flex .child-content-panel .textbox {
   display: inline-block;
 }
-.input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel {
+.input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel,
+.input-field-flex-panel .display-flex .child-content-panel .select-color-panel,
+.input-field-flex-panel .display-flex .child-content-panel .select-record-panel {
   position: absolute;
   z-index: 200;
+}
+.input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel,
+.input-field-flex-panel .display-flex .child-content-panel .select-color-panel {
   top: 32px;
 }
 .input-field-flex-panel .display-flex .textbox,
@@ -696,6 +701,9 @@
 }
 .select-button-list-panel .record-value-panel:focus {
   text-decoration: underline;
+}
+.select-button-list-panel .record-value-panel:hover {
+  background-color: var(--color-select-button-selected);
 }
 
 .select-date-calendar-panel {
@@ -857,6 +865,9 @@
   margin-right: 6px;
   width: 16px;
   height: 16px;
+}
+.select-record-panel .record-list-panel > .record-panel.current {
+  background-color: var(--color-primary-02);
 }
 .select-record-panel .record-list-panel > .record-panel:hover {
   background-color: var(--color-form-element-hover);

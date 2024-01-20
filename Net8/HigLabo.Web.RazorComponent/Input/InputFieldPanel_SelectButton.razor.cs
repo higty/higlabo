@@ -32,19 +32,19 @@ namespace HigLabo.Web.RazorComponent.Input
                 return r;
             }
         }
-        [Parameter]
-        public EventCallback<string> ValueChanged { get; set; } = new();
 
+        [Parameter]
+        public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public string ClassName { get; set; } = "input-field-panel";
-        [Parameter]
         public string SelectedValue { get; set; } = "";
         [Parameter]
         public List<Record> RecordList { get; init; } = new();
+        [Parameter]
+        public EventCallback<string> ValueChanged { get; set; } = new();
 
         protected override void OnInitialized()
         {
@@ -63,10 +63,12 @@ namespace HigLabo.Web.RazorComponent.Input
         }
         private async ValueTask RecordValuePanel_Keydown(KeyboardEventArgs e, string value)
         {
-            if (e.Key == " ")
+            if (e.Key == " " || 
+                e.Key == "Enter")
             {
                 this.SelectedValue = value;
                 await this.ValueChanged.InvokeAsync(value);
+                this.StateHasChanged();
             }
         }
 

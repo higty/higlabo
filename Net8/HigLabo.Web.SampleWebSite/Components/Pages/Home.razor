@@ -19,10 +19,6 @@
         <InputText @bind-Value="@Value1" class="textbox"></InputText>
     </InputFieldPanel>
 
-    <InputFieldPanel Text="Field1">
-        <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
-    </InputFieldPanel>
-   
     <InputFieldPanel_Record Text="User list" Loading="LoadingRecordList" RecordSelected="RecordSelected">
         <RecordPanel>
             @if (this.SelectedUser == null)
@@ -39,20 +35,25 @@
         </RecordPanel>
     </InputFieldPanel_Record>
 
+    <InputFieldPanel Text="Field1">
+        <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
+    </InputFieldPanel>
+   
     <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
                                   SelectedValue="@this.FileAccess.ToStringFromEnum()"
                                   ValueChanged="v => this.FileAccess = v.ToEnum<FileAccess>()!.Value"></InputFieldPanel_SelectButton>
 
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
-    <InputFieldPanel_Date Text="Date" Value="@this.Date"></InputFieldPanel_Date>
+    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" Value="@this.Date"></InputFieldPanel_Date>
     <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
 
-    <InputFieldFlexPanel_Date Text="Date" Value="@this.Date"></InputFieldFlexPanel_Date>
-    <InputFieldFlexPanel_DateDuration Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldFlexPanel_DateDuration>
+    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Flex" Text="Date" Value="@this.Date"></InputFieldPanel_Date>
+    <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
 
 
-    <InputFieldPanel_Color></InputFieldPanel_Color>
+    <InputFieldPanel_Color Text="Back color"></InputFieldPanel_Color>
+    <InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color"></InputFieldPanel_Color>
 </div>
 
 
