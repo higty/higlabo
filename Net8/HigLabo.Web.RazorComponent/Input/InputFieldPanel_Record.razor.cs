@@ -44,8 +44,6 @@ namespace HigLabo.Web.RazorComponent.Input
 		[Parameter]
 		public string Text { get; set; } = "";
 		[Parameter]
-		public string Value { get; set; } = "";
-		[Parameter]
 		public string ClassName { get; set; } = "input-field-panel";
 		[Parameter]
 		public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
@@ -61,7 +59,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback<LoadingEventArgs> Loading { get; set; }
         [Parameter]
-        public EventCallback<Record> RecordSelected { get; set; }
+        public EventCallback<Record> OnRecordSelected { get; set; }
 
 		private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
 		{
@@ -139,7 +137,7 @@ namespace HigLabo.Web.RazorComponent.Input
 		private async ValueTask RecordPanelSelected(Record record)
 		{
 			this.SelectRecordPanelVisible = false;
-			await this.RecordSelected.InvokeAsync(record);
+			await this.OnRecordSelected.InvokeAsync(record);
 			await this.RecordPanelElementReference.FocusAsync();
 		}
 	}

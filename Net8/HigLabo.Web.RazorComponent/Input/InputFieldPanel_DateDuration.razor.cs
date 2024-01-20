@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_DateDuration : ComponentBase
+    public partial class InputFieldPanel_DateDuration 
     {
         private string _StartDateInputing = "";
         private string _EndDateInputing = "";
@@ -35,7 +35,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectDateCalendarPanelVisible { get; set; } = false;
         [Parameter]
-        public EventCallback<FocusEventArgs> OnBlur { get; set; }
+        public EventCallback<FocusEventArgs> OnInputTextBlur { get; set; }
 
         private void StartDate_Input(ChangeEventArgs e)
         {
@@ -74,7 +74,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.StartDate = this._StartDateInputing;
             }
-            await this.OnBlur.InvokeAsync(e);
+            await this.OnInputTextBlur.InvokeAsync(e);
         }
         private void EndDate_Input(ChangeEventArgs e)
         {
@@ -113,7 +113,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.EndDate = this._EndDateInputing;
             }
-            await this.OnBlur.InvokeAsync(e);
+            await this.OnInputTextBlur.InvokeAsync(e);
         }
 
         private void DateSelected_Callback(SelectedDateDuration value)

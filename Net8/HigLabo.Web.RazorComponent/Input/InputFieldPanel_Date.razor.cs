@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_Date : ComponentBase
+    public partial class InputFieldPanel_Date 
     {
         private string _ValueInputing = "";
 
@@ -32,7 +32,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectDateCalendarPanelVisible { get; set; } = false;
         [Parameter]
-        public EventCallback<FocusEventArgs> OnBlur { get; set; }
+        public EventCallback<FocusEventArgs> OnInputTextBlur { get; set; }
 
         private void InputText_Input(ChangeEventArgs e)
         {
@@ -71,7 +71,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.Value = this._ValueInputing;
             }
-            await this.OnBlur.InvokeAsync(e);
+            await this.OnInputTextBlur.InvokeAsync(e);
         }
 
         private void DateSelected_Callback(DateOnly? date)

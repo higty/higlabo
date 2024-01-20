@@ -15,6 +15,7 @@ namespace HigLabo.Web
         ArrowRight2__svg,
         ArrowUp__svg,
         Delete__svg,
+        DragBarPanel__svg,
         Expand__svg,
     }
     public static class Higlabo___Extensions
@@ -34,6 +35,7 @@ namespace HigLabo.Web
                 case Higlabo__.ArrowRight2__svg: return "ArrowRight2.svg";
                 case Higlabo__.ArrowUp__svg: return "ArrowUp.svg";
                 case Higlabo__.Delete__svg: return "Delete.svg";
+                case Higlabo__.DragBarPanel__svg: return "DragBarPanel.svg";
                 case Higlabo__.Expand__svg: return "Expand.svg";
                 default: throw new InvalidOperationException();
             }

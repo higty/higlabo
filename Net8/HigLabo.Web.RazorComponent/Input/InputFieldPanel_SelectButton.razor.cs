@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_SelectButton : ComponentBase
+    public partial class InputFieldPanel_SelectButton 
     {
         public class Record
         {

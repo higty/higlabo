@@ -40,8 +40,8 @@
   --color-form-element-bg: var(--color-glay-01);
   --color-form-element-text: var(--color-text);
   --color-form-element-border: var(--color-border);
-  --color-form-element-focus: var(--color-primary-04);
-  --color-form-element-hover: #f0f6f8;
+  --color-form-element-focus: var(--color-primary-02);
+  --color-form-element-hover: var(--color-glay-02);
   --color-form-element-border-error: var(--color-error);
   --color-form-element-placeholder: var(--color-glay-04);
   /* buttons */
@@ -67,7 +67,7 @@
   --color-form-element-bg: var(--color-glay-09);
   --color-form-element-text: #f4f4f4;
   --color-form-element-border: var(--color-border);
-  --color-form-element-focus: #888890;
+  --color-form-element-focus: var(--color-glay-08);
   --color-form-element-hover: var(--color-glay-08);
   --color-form-element-border-error: var(--color-error);
   --color-form-element-placeholder: var(--color-glay-05);
@@ -455,9 +455,6 @@
   opacity: 0;
   cursor: pointer;
 }
-.checkbox-panel label.display-flex .checkbox input:checked + span {
-  background-color: var(--color-accent-03);
-}
 .checkbox-panel label.display-flex .checkbox input:checked + span:after {
   left: 50%;
 }
@@ -615,15 +612,38 @@
 .input-field-panel {
   margin-bottom: 12px;
 }
+.input-field-panel .field-name-panel {
+  display: flex;
+  align-items: center;
+}
+.input-field-panel .field-name-panel .icon-panel {
+  display: grid;
+  place-content: center;
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.input-field-panel .field-name-panel .icon-panel .icon {
+  width: 24px;
+  height: 24px;
+}
+.input-field-panel .field-name-panel .icon-panel:hover {
+  background-color: var(--color-glay-02);
+}
+.input-field-panel .field-name-panel .icon-panel:focus {
+  border: solid 1px var(--color-form-element-focus);
+}
+.input-field-panel .display-flex {
+  display: flex;
+  align-items: center;
+}
 .input-field-panel .field-name {
   color: var(--color-glay-06);
 }
 .input-field-panel .child-content-panel {
   position: relative;
-}
-.input-field-panel .child-content-panel .display-flex {
-  display: flex;
-  align-items: center;
 }
 .input-field-panel .child-content-panel .select-date-calendar-panel,
 .input-field-panel .child-content-panel .select-color-panel,
@@ -634,6 +654,21 @@
 .input-field-panel .child-content-panel .select-date-calendar-panel,
 .input-field-panel .child-content-panel .select-color-panel {
   top: 32px;
+}
+.input-field-panel .child-content-panel .record-list-panel {
+  background-color: var(--color-form-element-bg);
+  border: solid 1px var(--color-border);
+  min-height: 32px;
+}
+.input-field-panel .child-content-panel .record-list-panel > .record-panel {
+  cursor: pointer;
+  border: solid 1px transparent;
+}
+.input-field-panel .child-content-panel .record-list-panel > .record-panel:hover {
+  background-color: var(--color-form-element-hover);
+}
+.input-field-panel .child-content-panel .record-list-panel > .record-panel:focus {
+  border: solid 1px var(--color-form-element-focus);
 }
 .input-field-panel .textarea {
   min-height: 200px;
@@ -722,6 +757,11 @@
   width: 100px;
   text-align: center;
   border: none 1px transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
+.select-date-calendar-panel .start-end-date-panel .textbox:hover {
+  background-color: var(--color-glay-02);
 }
 .select-date-calendar-panel .start-end-date-panel .end-date {
   margin-left: auto;
@@ -867,8 +907,128 @@
   height: 16px;
 }
 .select-record-panel .record-list-panel > .record-panel.current {
-  background-color: var(--color-primary-02);
+  background-color: var(--color-glay-03);
 }
 .select-record-panel .record-list-panel > .record-panel:hover {
   background-color: var(--color-form-element-hover);
+}
+
+.sort-panel {
+  position: relative;
+}
+.sort-panel .drop-panel {
+  display: block;
+  height: 10px;
+  width: 100%;
+}
+.sort-panel .drop-panel.dragging {
+  display: block;
+  background-color: var(--color-glay-02);
+}
+.sort-panel .drag-panel {
+  display: flex;
+  align-items: center;
+}
+.sort-panel .drag-panel .drag-bar-panel {
+  flex: 0 0 12px;
+  cursor: move;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-glay-01);
+}
+.sort-panel .drag-panel .drag-bar-panel img {
+  width: 32px;
+  height: 32px;
+  margin-left: -10px;
+}
+.sort-panel .drag-panel .content-panel {
+  flex: 0 1 100%;
+}
+.sort-panel .drag-panel .delete-panel {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.sort-panel .drag-panel .delete-panel img {
+  width: 32px;
+  height: 32px;
+}
+
+.toggle-record-panel {
+  display: block;
+  padding: 0;
+}
+.toggle-record-panel > .header-panel {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.toggle-record-panel > .header-panel .drag-bar-panel {
+  flex: 0 0 12px;
+  cursor: move;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-glay-01);
+  margin-right: 6px;
+}
+.toggle-record-panel > .header-panel .drag-bar-panel img {
+  width: 32px;
+  height: 32px;
+  margin-left: -10px;
+}
+.toggle-record-panel > .header-panel .header-text,
+.toggle-record-panel > .header-panel .header-textbox {
+  display: block;
+  flex: 0 1 100%;
+  min-height: 32px;
+  padding: 4px;
+  border: solid 1px transparent;
+  box-sizing: border-box;
+}
+.toggle-record-panel > .header-panel .header-text:focus,
+.toggle-record-panel > .header-panel .header-textbox:focus {
+  text-decoration: underline;
+}
+.toggle-record-panel > .header-panel .delete-icon-panel {
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border: solid 1px transparent;
+  box-sizing: border-box;
+}
+.toggle-record-panel > .header-panel .delete-icon-panel .delete-icon {
+  width: 24px;
+  height: 24px;
+}
+.toggle-record-panel > .header-panel .delete-icon-panel:focus {
+  border: solid 1px var(--color-form-element-focus);
+}
+.toggle-record-panel > .header-panel:hover {
+  background-color: var(--color-form-element-hover);
+}
+.toggle-record-panel > .content-panel {
+  transition: max-height 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  display: none;
+  cursor: default;
+}
+.toggle-record-panel > .content-panel[toggle-state=Visible] {
+  max-height: 500px;
+  display: block;
+}
+.toggle-record-panel > .content-panel > .permission-list-panel {
+  padding: 4px;
+}
+.toggle-record-panel > .content-panel > .permission-list-panel .checkbox-panel {
+  margin: 2px 0;
 }

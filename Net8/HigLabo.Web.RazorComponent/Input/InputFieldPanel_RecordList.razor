@@ -1,0 +1,7 @@
+<InputFieldPanel Name="@Name" Text="@Text" ValidateResult="@ValidateResult" AddIconVisible="true" OnRecordAdded="OnRecordAdded">
+    <input type="hidden" style="display:none;" invoke-method="true" @onchange="async e => await SortOrder_Change()" />
+    @if (this.ChildContent != null)
+    {
+        <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>
+    }
+</InputFieldPanel>

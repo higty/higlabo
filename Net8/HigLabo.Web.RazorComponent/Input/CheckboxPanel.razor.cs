@@ -2,7 +2,7 @@
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class CheckboxPanel : ComponentBase
+    public partial class CheckboxPanel 
     {
         [Parameter]
         public List<string> ClassNameList { get; set; } = new() { "checkbox-panel" };

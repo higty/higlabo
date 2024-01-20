@@ -22,8 +22,6 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Value { get; set; } = "";
         [Parameter]
-        public string ClassName { get; set; } = "input-field-panel";
-        [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
         public bool SelectColorCalendarPanelVisible { get; set; } = false;

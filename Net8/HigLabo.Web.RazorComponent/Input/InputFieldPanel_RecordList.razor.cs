@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel 
+    public partial class InputFieldPanel_RecordList
     {
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -12,24 +16,17 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public bool AddIconVisible { get; set; } = false;
-        [Parameter]
         public RenderFragment? ChildContent { get; set; }
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
+        [Parameter]
+        public EventCallback OnRecordDropped { get; set; }
 
-        private async ValueTask AddIcon_Click()
+        private async ValueTask SortOrder_Change()
         {
-            await this.OnRecordAdded.InvokeAsync();
-        }
-        private async ValueTask AddIcon_Keydown(KeyboardEventArgs e)
-        {
-            if (e.Key == "Enter")
-            {
-                await this.OnRecordAdded.InvokeAsync();
-            }
+            await this.OnRecordDropped.InvokeAsync();
         }
     }
 }
