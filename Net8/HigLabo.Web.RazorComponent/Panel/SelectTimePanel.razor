@@ -1,0 +1,86 @@
+@{
+    var workStartHour = this.StartHour;
+    var workEndHour = this.EndHour;
+}
+
+<div class="select-time-panel">
+    <div class="start-time-panel">
+        <div class="header-panel">
+            <CheckboxPanel Value="this.DisplayAllTime" ValueChanged="v => this.DisplayAllTime = v">@T.Text.DisplayAll</CheckboxPanel>
+            </div>
+            <table>
+                @for (int hour = 0; hour < this.MaxHour; hour++)
+            {
+                if (this.DisplayAllTime == false && (hour < workStartHour || workEndHour < hour)) { continue; }
+                <tr class="hour-minute-panel">
+                    <td class="hour-panel">@hour.ToString("00")</td>
+                    @foreach (var minuteSetting in this.MinuteList)
+                    {
+                        if (this.DisplayAllTime == false && minuteSetting.IsDisplay == false) { continue; }
+
+                        var minute = minuteSetting.Minute;
+                        var timeSpan = new TimeSpan(hour, minute, 0);
+                        <td class="minute-panel" @onclick="async e => await this.StartTimePanel_Click(timeSpan)">@minute.ToString("00")</td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+    @if (this.Mode == SelectMode.EndTime)
+    {
+        <div class="end-time-panel">
+            <table>
+                @for (int hour = 0; hour < 24; hour++)
+                {
+                    if (this.DisplayAllTime == false && (hour < workStartHour || workEndHour < hour)) { continue; }
+                    <tr class="hour-minute-panel">
+                        <td class="hour-panel">@hour.ToString("00")</td>
+                        @foreach (var minuteSetting in this.MinuteList)
+                        {
+                            if (this.DisplayAllTime == false && minuteSetting.IsDisplay == false) { continue; }
+
+                            var minute = minuteSetting.Minute;
+                            var timeSpan = new TimeSpan(hour, minute, 0);
+                            <td class="minute-panel" @onclick="async e => await this.EndTimePanel_Click(timeSpan)">@minute.ToString("00")</td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    @if (this.Mode == SelectMode.Duration)
+    {
+        <div class="select-duration-panel">
+            @foreach (var minute in this.DurationList)
+            {
+                var ts = TimeSpan.FromMinutes(minute);
+                @if (minute < 60)
+                {
+                    <div class="duration-minute-panel" duration-minute="true"
+                         minute="@minute.ToString()">
+                        @String.Format("{0}{1}", minute, T.Text.Minute)
+                    </div>
+                }
+                else
+                {
+                    if (ts.Minutes == 0)
+                    {
+                        <div class="duration-minute-panel" duration-minute="true"
+                             minute="@minute.ToString()">
+                            @String.Format("{0}{1}", ts.Hours, T.Text.Hour)
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="duration-minute-panel" duration-minute="true"
+                             minute="@minute.ToString()">
+                            @String.Format("{0}{1}{2}{3}", ts.Hours, T.Text.Hour, ts.Minutes, T.Text.Minute)
+                        </div>
+                    }
+                }
+            }
+        </div>
+    }
+</div>
+
+

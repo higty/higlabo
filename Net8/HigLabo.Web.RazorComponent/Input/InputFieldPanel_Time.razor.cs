@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_Date 
+    public partial class InputFieldPanel_Time
     {
         private string _ValueInputing = "";
 
@@ -26,11 +26,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public DateDirection DateDirection { get; set; } = DateDirection.Future;
         [Parameter]
-        public string DateTimeFormat { get; set; } = "yyyy/MM/dd";
+        public Func<TimeSpan, string> TimeFormat { get; set; } = timeSpan => $"{timeSpan.TotalHours.ToString("00")}:{timeSpan.Minutes.ToString("00")}";
         [Parameter]
-        public TimeOnly TimeZone { get; set; } = new TimeOnly(0, 0);
-        [Parameter]
-        public bool SelectDateCalendarPanelVisible { get; set; } = false;
+        public bool SelectTimePanelVisible { get; set; } = false;
         [Parameter]
         public EventCallback<FocusEventArgs> OnTextboxBlur { get; set; }
 
@@ -48,16 +46,15 @@ namespace HigLabo.Web.RazorComponent.Input
                 return;
             }
 
-            var pr = new NumberToDateTimeProcessor(this.TimeZone, this.DateDirection);
+            var pr = new NumberToDateTimeProcessor();
             pr.Converters.Clear();
-            pr.Converters.Add(new NumberToDateTimeConverter_Mdd());
-            pr.Converters.Add(new NumberToDateTimeConverter_MMdd());
-            pr.Converters.Add(new NumberToDateTimeConverter_yyyyMMdd());
+            pr.Converters.Add(new NumberToDateTimeConverter_Hmm());
+            pr.Converters.Add(new NumberToDateTimeConverter_HHmm());
 
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._ValueInputing = date.Value.ToString(this.DateTimeFormat);
+                this._ValueInputing = this.TimeFormat(date.Value.TimeOfDay);
                 Debug.WriteLine($"{v} --> {_ValueInputing}");
             }
             else
@@ -74,13 +71,14 @@ namespace HigLabo.Web.RazorComponent.Input
             await this.OnTextboxBlur.InvokeAsync(e);
         }
 
-        private void DateSelected_Callback(DateOnly? date)
+        private void TimeSelected_Callback(SelectedTimeDuration time)
         {
-            this.SelectDateCalendarPanelVisible = false;
-            if (date.HasValue)
+            this.SelectTimePanelVisible = false;
+            if (time.StartTime.HasValue)
             {
-                this.Value = date.Value.ToString(this.DateTimeFormat);
+                this.Value = this.TimeFormat(time.StartTime.Value);
             }
         }
+
     }
 }

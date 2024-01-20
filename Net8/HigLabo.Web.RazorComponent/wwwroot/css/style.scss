@@ -179,12 +179,16 @@ $width-checkbox-circle: 20px;
         border: solid 1px var(--color-form-element-focus);
     }
 }
-.textbox, 
+.textbox,
 .record-panel {
     width: 100%;
 
     &.date {
         width: 100px;
+    }
+
+    &.time {
+        width: 60px;
     }
 
     &.color {
@@ -336,6 +340,7 @@ $width-checkbox-circle: 20px;
         position: relative;
 
         .select-date-calendar-panel,
+        .select-time-panel,
         .select-color-panel,
         .select-record-panel {
             position: absolute;
@@ -343,6 +348,7 @@ $width-checkbox-circle: 20px;
         }
 
         .select-date-calendar-panel,
+        .select-time-panel,
         .select-color-panel {
             top: 32px;
         }
@@ -391,6 +397,7 @@ $width-checkbox-circle: 20px;
             }
 
             .select-date-calendar-panel,
+            .select-time-panel,
             .select-color-panel,
             .select-record-panel {
                 position: absolute;
@@ -398,6 +405,7 @@ $width-checkbox-circle: 20px;
             }
 
             .select-date-calendar-panel,
+            .select-time-panel,
             .select-color-panel {
                 top: 32px;
             }
@@ -573,6 +581,92 @@ $width-checkbox-circle: 20px;
         }
     }
 }
+
+
+.select-time-panel {
+    position: absolute;
+    height: 380px;
+}
+
+.start-time-panel,
+.end-time-panel {
+    height: 100%;
+    color: #111111;
+    background-color: #ffffff;
+    border: solid 1px #cccccc;
+    overflow-y: auto;
+
+    .header-panel {
+        font-size: 12px;
+        border-bottom: solid 1px #446699;
+        margin: 0;
+        padding: 4px;
+    }
+
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .hour-minute-panel {
+        border-bottom: dotted 1px #cccccc;
+        box-sizing: border-box;
+
+        &:hover {
+            background-color: #c0eafa;
+        }
+
+        &:last-child {
+            border-bottom: none 0;
+        }
+
+        .hour-panel {
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border-right: solid 1px #446699;
+            width: 36px;
+        }
+
+        .minute-panel {
+            cursor: pointer;
+            font-size: 16px;
+            width: 30px;
+            height: 100%;
+            box-sizing: border-box;
+
+            &:hover {
+                background-color: #a0cafa;
+            }
+        }
+    }
+}
+
+.select-duration-panel {
+    position: absolute;
+    width: 100px;
+    height: 360px;
+    color: #111111;
+    background-color: #ffffff;
+    border: solid 1px #cccccc;
+    box-sizing: border-box;
+
+    .duration-minute-panel {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 30px;
+        padding-left: 4px;
+        vertical-align: middle;
+        box-sizing: border-box;
+
+        &:hover {
+            background-color: #e0eaea;
+        }
+    }
+}
+
 
 .select-color-panel {
     background-color: var(--color-panel-bg);

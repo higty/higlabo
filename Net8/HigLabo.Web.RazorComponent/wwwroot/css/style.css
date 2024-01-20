@@ -516,6 +516,10 @@
 .record-panel.date {
   width: 100px;
 }
+.textbox.time,
+.record-panel.time {
+  width: 60px;
+}
 .textbox.color,
 .record-panel.color {
   width: 100px;
@@ -646,12 +650,14 @@
   position: relative;
 }
 .input-field-panel .child-content-panel .select-date-calendar-panel,
+.input-field-panel .child-content-panel .select-time-panel,
 .input-field-panel .child-content-panel .select-color-panel,
 .input-field-panel .child-content-panel .select-record-panel {
   position: absolute;
   z-index: 200;
 }
 .input-field-panel .child-content-panel .select-date-calendar-panel,
+.input-field-panel .child-content-panel .select-time-panel,
 .input-field-panel .child-content-panel .select-color-panel {
   top: 32px;
 }
@@ -690,12 +696,14 @@
   display: inline-block;
 }
 .input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel,
+.input-field-flex-panel .display-flex .child-content-panel .select-time-panel,
 .input-field-flex-panel .display-flex .child-content-panel .select-color-panel,
 .input-field-flex-panel .display-flex .child-content-panel .select-record-panel {
   position: absolute;
   z-index: 200;
 }
 .input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel,
+.input-field-flex-panel .display-flex .child-content-panel .select-time-panel,
 .input-field-flex-panel .display-flex .child-content-panel .select-color-panel {
   top: 32px;
 }
@@ -836,6 +844,88 @@
   margin: 0 2px;
   padding: 4px 12px;
   font-size: 14px;
+}
+
+.select-time-panel {
+  position: absolute;
+  height: 380px;
+}
+
+.start-time-panel,
+.end-time-panel {
+  height: 100%;
+  color: #111111;
+  background-color: #ffffff;
+  border: solid 1px #cccccc;
+  overflow-y: auto;
+}
+.start-time-panel .header-panel,
+.end-time-panel .header-panel {
+  font-size: 12px;
+  border-bottom: solid 1px #446699;
+  margin: 0;
+  padding: 4px;
+}
+.start-time-panel td,
+.end-time-panel td {
+  text-align: center;
+  vertical-align: middle;
+}
+.start-time-panel .hour-minute-panel,
+.end-time-panel .hour-minute-panel {
+  border-bottom: dotted 1px #cccccc;
+  box-sizing: border-box;
+}
+.start-time-panel .hour-minute-panel:hover,
+.end-time-panel .hour-minute-panel:hover {
+  background-color: #c0eafa;
+}
+.start-time-panel .hour-minute-panel:last-child,
+.end-time-panel .hour-minute-panel:last-child {
+  border-bottom: none 0;
+}
+.start-time-panel .hour-minute-panel .hour-panel,
+.end-time-panel .hour-minute-panel .hour-panel {
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-right: solid 1px #446699;
+  width: 36px;
+}
+.start-time-panel .hour-minute-panel .minute-panel,
+.end-time-panel .hour-minute-panel .minute-panel {
+  cursor: pointer;
+  font-size: 16px;
+  width: 30px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.start-time-panel .hour-minute-panel .minute-panel:hover,
+.end-time-panel .hour-minute-panel .minute-panel:hover {
+  background-color: #a0cafa;
+}
+
+.select-duration-panel {
+  position: absolute;
+  width: 100px;
+  height: 360px;
+  color: #111111;
+  background-color: #ffffff;
+  border: solid 1px #cccccc;
+  box-sizing: border-box;
+}
+.select-duration-panel .duration-minute-panel {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding-left: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.select-duration-panel .duration-minute-panel:hover {
+  background-color: #e0eaea;
 }
 
 .select-color-panel {

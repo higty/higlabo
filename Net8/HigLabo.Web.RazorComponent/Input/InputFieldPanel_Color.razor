@@ -2,7 +2,7 @@
     <div class="display-flex">
         <InputText @bind-Value="@Value" class="textbox color"
                    @onclick="e => this.SelectColorCalendarPanelVisible = true"
-                   @onblur="async e => await this.InputText_Blur(e)"></InputText>
+                   @onblur="async e => await this.Textbox_Blur(e)"></InputText>
         <span class="color-square-panel" @onclick="e => this.SelectColorCalendarPanelVisible = true" style="background-color: @this.Value"></span>
     </div>
     @if (SelectColorCalendarPanelVisible)

@@ -14,15 +14,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="compilerconfig.json" />
-	  <Content Remove="panel\FieldInputPanel.razor" />
+	  <Compile Remove="Input\InputFieldPanel_TimeDuration.razor.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="compilerconfig.json" />
-	  <None Include="Input\InputFieldPanel.razor" />
+	  <Content Remove="Input\InputFieldPanel_TimeDuration.razor" />
+	  <Content Remove="Input\InputFieldPanel_TimeDurationss.razor" />
 	</ItemGroup>
-
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
@@ -38,15 +36,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <UpToDateCheckInput Remove="panel\FieldInputPanel.razor" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <_ContentIncludedByDefault Remove="panel\FieldInputPanel.razor" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Generated\" />
 	</ItemGroup>
-
+	
 </Project>

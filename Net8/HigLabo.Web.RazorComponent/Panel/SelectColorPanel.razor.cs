@@ -9,8 +9,6 @@ namespace HigLabo.Web.RazorComponent.Panel
 {
     public partial class SelectColorPanel 
     {
-        private EventHandler<ValueEventArgs<string>>? _Callback;
-
         public List<string> ColorList { get; init; } = new();
         public Int32 CellCountPerRow { get; set; } = 10;
 

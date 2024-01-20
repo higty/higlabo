@@ -2,7 +2,7 @@
     <InputText @bind-Value="@Value" class="textbox date"
                @onclick="e => this.SelectDateCalendarPanelVisible = true"
                @oninput="e => this.InputText_Input(e)" 
-               @onblur="async e => await this.InputText_Blur(e)"></InputText>
+               @onblur="async e => await this.Textbox_Blur(e)"></InputText>
     @if (SelectDateCalendarPanelVisible)
     {
         <SelectDateCalendarPanel DateSelected="date => this.DateSelected_Callback(date)"></SelectDateCalendarPanel>

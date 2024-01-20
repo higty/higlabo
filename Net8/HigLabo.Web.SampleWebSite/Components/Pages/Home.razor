@@ -116,6 +116,8 @@
 
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
+    <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" Value="@this.StartTime"></InputFieldPanel_Time>
+
     <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" Value="@this.Date"></InputFieldPanel_Date>
     <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
 
@@ -142,6 +144,8 @@
     [Parameter]
     public string Value2 { get; set; } = "";
 
+    [Parameter]
+    public string StartTime { get; set; } = "";
     [Parameter]
     public string Date { get; set; } = "";
     [Parameter]

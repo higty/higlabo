@@ -11,8 +11,6 @@ namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_Color
     {
-        private string _ValueInputing = "";
-
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
@@ -28,7 +26,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback<FocusEventArgs> OnBlur { get; set; }
 
-        private async ValueTask InputText_Blur(FocusEventArgs e)
+        private async ValueTask Textbox_Blur(FocusEventArgs e)
         {
             await this.OnBlur.InvokeAsync(e);
         }

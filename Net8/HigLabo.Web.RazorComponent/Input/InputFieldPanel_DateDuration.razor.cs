@@ -35,7 +35,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectDateCalendarPanelVisible { get; set; } = false;
         [Parameter]
-        public EventCallback<FocusEventArgs> OnInputTextBlur { get; set; }
+        public EventCallback<FocusEventArgs> OnTextboxBlur { get; set; }
 
         private void StartDate_Input(ChangeEventArgs e)
         {
@@ -74,7 +74,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.StartDate = this._StartDateInputing;
             }
-            await this.OnInputTextBlur.InvokeAsync(e);
+            await this.OnTextboxBlur.InvokeAsync(e);
         }
         private void EndDate_Input(ChangeEventArgs e)
         {
@@ -113,7 +113,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.EndDate = this._EndDateInputing;
             }
-            await this.OnInputTextBlur.InvokeAsync(e);
+            await this.OnTextboxBlur.InvokeAsync(e);
         }
 
         private void DateSelected_Callback(SelectedDateDuration value)

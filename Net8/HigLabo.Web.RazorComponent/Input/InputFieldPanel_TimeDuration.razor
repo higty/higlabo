@@ -1,0 +1,15 @@
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+    <InputText @bind-Value="@this.StartTime" class="textbox time"
+               @onclick="e => this.SelectTimePanelVisible = true"
+               @oninput="e => this.StartTime_Input(e)"
+               @onblur="async e => await this.StartTime_Blur(e)"></InputText>
+    <span>-</span>
+    <InputText @bind-Value="@this.EndTime" class="textbox time"
+               @onclick="e => this.SelectTimePanelVisible = true"
+               @oninput="e => this.EndTime_Input(e)"
+               @onblur="async e => await this.EndTime_Blur(e)"></InputText>
+    @if (SelectTimePanelVisible)
+    {
+        <SelectTimePanel Mode="SelectTimePanel.SelectMode.EndTime" TimeSelected="time => this.TimeSelected_Callback(time)"></SelectTimePanel>
+    }
+</InputFieldPanel>
