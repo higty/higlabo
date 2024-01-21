@@ -3,7 +3,7 @@
 }
 <InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
     <input type="text" class="textbox date" value="@stringValue" 
-        @onchange="e => this.OnValueChanged(e.Value.ToString().ToDateOnly())"
+        @onchange="e => this.OnValueChanged(e.Value?.ToString()?.ToDateOnly())"
         @onclick="e => this.SelectDateCalendarPanelVisible = true"
         @oninput="e => this.InputText_Input(e)" 
         @onblur="async e => await this.Textbox_Blur(e)"></input>
