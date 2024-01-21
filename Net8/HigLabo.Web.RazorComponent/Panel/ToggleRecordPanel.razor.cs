@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using System.Diagnostics;
 
-namespace HigLabo.Web.RazorComponent.Input
+namespace HigLabo.Web.RazorComponent.Panel
 {
     public class SortGroup
     {

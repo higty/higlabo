@@ -84,7 +84,7 @@
             <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
                 <span class="user-record-panel">@item.Name</span>
                 <span class="age" style="color: #888888;">@item.Age</span>
-                <img src="@UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
+                <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
                      style="width: 16px; height: 16px;margin-left: auto;" />
             </div>
         }
@@ -122,10 +122,13 @@
     <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.Duration" Layout="InputFieldPanelLayout.Default" 
     Text="Time duration" StartTime="@this.StartTime" EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
 
-    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" Value="@this.Date"></InputFieldPanel_Date>
+    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
+    <span>@this.Date</span>
     <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
+    <span>@this.StartDate</span>
+    <span>@this.EndDate</span>
 
-    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Flex" Text="Date" Value="@this.Date"></InputFieldPanel_Date>
+    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Flex" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
     <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
 
     <InputFieldPanel_Color Text="Back color"></InputFieldPanel_Color>
@@ -153,7 +156,7 @@
     [Parameter]
     public string EndTime { get; set; } = "";
     [Parameter]
-    public string Date { get; set; } = "";
+    public DateOnly? Date { get; set; } 
     [Parameter]
     public string StartDate { get; set; } = "";
     [Parameter]

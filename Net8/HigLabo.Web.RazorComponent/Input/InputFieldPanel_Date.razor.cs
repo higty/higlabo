@@ -6,12 +6,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_Date 
+    public partial class InputFieldPanel_Date : ComponentBase
     {
-        private string _ValueInputing = "";
+        private DateOnly? _ValueInputing = null;
 
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -20,7 +21,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public string Value { get; set; } = "";
+        public DateOnly? Value { get; set; } 
+        [Parameter]
+        public EventCallback<DateOnly?> ValueChanged { get; set; }
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
@@ -38,13 +41,13 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (e.Value == null)
             {
-                _ValueInputing = "";
+                _ValueInputing = null;
                 return;
             }
             var v = e.Value.ToString();
             if (v == null)
             {
-                _ValueInputing = "";
+                _ValueInputing = null;
                 return;
             }
 
@@ -57,30 +60,37 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._ValueInputing = date.Value.ToString(this.DateTimeFormat);
-                Debug.WriteLine($"{v} --> {_ValueInputing}");
+                this._ValueInputing = date.Value.ToDateOnly();
+                this.Value = date.Value.ToDateOnly();
+                this.StateHasChanged();
             }
             else
             {
-                _ValueInputing = "";
+                _ValueInputing = null;
             }
         }
         private async ValueTask Textbox_Blur(FocusEventArgs e)
         {
-            if (_ValueInputing.IsNullOrEmpty() == false)
+            if (_ValueInputing.HasValue)
             {
                 this.Value = this._ValueInputing;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
 
-        private void DateSelected_Callback(DateOnly? date)
+        private async ValueTask DateSelected_Callback(DateOnly? date)
         {
             this.SelectDateCalendarPanelVisible = false;
             if (date.HasValue)
             {
-                this.Value = date.Value.ToString(this.DateTimeFormat);
+                await this.OnValueChanged(date.Value);
             }
+        }
+
+        private async Task OnValueChanged(DateOnly? value)
+        {
+            this.Value = value;
+            await this.ValueChanged.InvokeAsync(value);
         }
     }
 }

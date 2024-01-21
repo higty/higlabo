@@ -112,7 +112,7 @@ namespace HigLabo.Web.RazorComponent.Panel
             StateHasChanged();
         }
 
-        private void Date_Click(DateOnly date)
+        private async ValueTask Date_Click(DateOnly date)
         {
             switch (SelectMode)
             {
@@ -123,15 +123,12 @@ namespace HigLabo.Web.RazorComponent.Panel
                 case DateSelectMode.End:
                     EndDate = date;
                     SelectMode = DateSelectMode.Start;
+                    await this.DateSelected.InvokeAsync(new SelectedDateDuration(StartDate, EndDate));
                     break;
                 default: throw SwitchStatementNotImplementException.Create(SelectMode);
             }
         }
 
-        private async ValueTask SelectButton_Click()
-        {
-            await this.DateSelected.InvokeAsync(new SelectedDateDuration(StartDate, EndDate));
-        }
         private async ValueTask ClsoeButton_Click()
         {
             await this.Closed.InvokeAsync();

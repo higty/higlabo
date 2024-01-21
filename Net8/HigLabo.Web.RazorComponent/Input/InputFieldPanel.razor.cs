@@ -11,9 +11,11 @@ namespace HigLabo.Web.RazorComponent.Input
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
-        [Parameter]
-        public bool AddIconVisible { get; set; } = false;
-        [Parameter]
+		[Parameter]
+		public bool FieldNameVisible { get; set; } = true;
+		[Parameter]
+		public bool AddIconVisible { get; set; } = false;
+		[Parameter]
         public RenderFragment? ChildContent { get; set; }
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);

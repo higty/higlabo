@@ -51,14 +51,13 @@
                         {
                             className += " intersect-date";
                         }
-                        <td class="@className" @onclick="e => Date_Click(rDate.Date)" @onclick:stopPropagation>@dateText</td>
+                        <td class="@className" @onclick="async e => await Date_Click(rDate.Date)" @onclick:stopPropagation>@dateText</td>
                     }
                 </tr>
             }
         </tbody>
     </table>
     <div class="footer-panel">
-        <button class="button radius-button" @onclick="async e => await SelectButton_Click()">@T.Text.Select</button>
         <button class="button radius-button" @onclick="async e => await ClsoeButton_Click()">@T.Text.Close</button>
     </div>
 </div>

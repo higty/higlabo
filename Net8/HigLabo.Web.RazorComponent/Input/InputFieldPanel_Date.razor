@@ -1,10 +1,14 @@
+@{
+    var stringValue = this.Value?.ToString(this.DateTimeFormat) ?? "";
+}
 <InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
-    <InputText @bind-Value="@Value" class="textbox date"
-               @onclick="e => this.SelectDateCalendarPanelVisible = true"
-               @oninput="e => this.InputText_Input(e)" 
-               @onblur="async e => await this.Textbox_Blur(e)"></InputText>
+    <input type="text" class="textbox date" value="@stringValue" 
+        @onchange="e => this.OnValueChanged(e.Value.ToString().ToDateOnly())"
+        @onclick="e => this.SelectDateCalendarPanelVisible = true"
+        @oninput="e => this.InputText_Input(e)" 
+        @onblur="async e => await this.Textbox_Blur(e)"></input>
     @if (SelectDateCalendarPanelVisible)
     {
-        <SelectDateCalendarPanel DateSelected="date => this.DateSelected_Callback(date)" Closed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateCalendarPanel>
+        <SelectDateCalendarPanel DateSelected="async date => await this.DateSelected_Callback(date)" Closed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateCalendarPanel>
     }
 </InputFieldPanel>
