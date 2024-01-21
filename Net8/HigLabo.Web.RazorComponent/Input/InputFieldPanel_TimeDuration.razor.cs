@@ -11,8 +11,8 @@ namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_TimeDuration
     {
-        private string _StartTimeInputing = "";
-        private string _EndTimeInputing = "";
+        private TimeOnly? _StartTimeInputing = null;
+        private TimeOnly? _EndTimeInputing = null;
         
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -21,16 +21,21 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public string StartTime { get; set; } = "";
+        public TimeOnly? StartTime { get; set; } = null;
         [Parameter]
-        public string EndTime { get; set; } = "";
+        public EventCallback<TimeOnly?> StartTimeChanged { get; set; }
+        [Parameter]
+        public TimeOnly? EndTime { get; set; } = null;
+        [Parameter]
+        public EventCallback<TimeOnly?> EndTimeChanged { get; set; }
+
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
      
         [Parameter]
         public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
         [Parameter]
-        public Func<TimeSpan, string> TimeFormat { get; set; } = timeSpan => $"{((int)timeSpan.TotalHours).ToString("00")}:{timeSpan.Minutes.ToString("00")}";
+        public Func<TimeOnly?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hour.ToString("00")}:{timeSpan.Value.Minute.ToString("00")}" : "";
         [Parameter]
         public bool SelectTimePanelVisible { get; set; } = false;
         [Parameter]
@@ -40,13 +45,13 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (e.Value == null)
             {
-                _StartTimeInputing = "";
+                _StartTimeInputing = null;
                 return;
             }
             var v = e.Value.ToString();
             if (v == null)
             {
-                _StartTimeInputing = "";
+                _StartTimeInputing = null;
                 return;
             }
 
@@ -58,17 +63,17 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._StartTimeInputing = this.TimeFormat(date.Value.TimeOfDay);
+                this._StartTimeInputing = TimeOnly.FromDateTime(date.Value);
                 Debug.WriteLine($"{v} --> {_StartTimeInputing}");
             }
             else
             {
-                _StartTimeInputing = "";
+                _StartTimeInputing = null;
             }
         }
         private async ValueTask StartTime_Blur(FocusEventArgs e)
         {
-            if (_StartTimeInputing.IsNullOrEmpty() == false)
+            if (_StartTimeInputing.HasValue)
             {
                 this.StartTime = this._StartTimeInputing;
             }
@@ -78,13 +83,13 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (e.Value == null)
             {
-                _EndTimeInputing = "";
+                _EndTimeInputing = null;
                 return;
             }
             var v = e.Value.ToString();
             if (v == null)
             {
-                _EndTimeInputing = "";
+                _EndTimeInputing = null;
                 return;
             }
 
@@ -96,34 +101,45 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._EndTimeInputing = this.TimeFormat(date.Value.TimeOfDay);
+                this._EndTimeInputing = TimeOnly.FromDateTime(date.Value);
                 Debug.WriteLine($"{v} --> {_EndTimeInputing}");
             }
             else
             {
-                _EndTimeInputing = "";
+                _EndTimeInputing = null;
             }
         }
         private async ValueTask EndTime_Blur(FocusEventArgs e)
         {
-            if (_EndTimeInputing.IsNullOrEmpty() == false)
+            if (_EndTimeInputing.HasValue)
             {
                 this.EndTime = this._EndTimeInputing;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
 
-        private void TimeSelected_Callback(SelectedTimeDuration time)
+        private async ValueTask TimeSelected_Callback(SelectedTimeDuration time)
         {
             if (time.StartTime.HasValue)
             {
-                this.StartTime = this.TimeFormat(time.StartTime.Value);
+                await this.OnStartTimeChanged(time.StartTime);
             }
             if (time.EndTime.HasValue)
             {
-                this.EndTime = this.TimeFormat(time.EndTime.Value);
+                await this.OnEndTimeChanged(time.EndTime);
                 this.SelectTimePanelVisible = false;
             }
+        }
+
+        private async Task OnStartTimeChanged(TimeOnly? value)
+        {
+            this.StartTime = value;
+            await this.StartTimeChanged.InvokeAsync(value);
+        }
+        private async Task OnEndTimeChanged(TimeOnly? value)
+        {
+            this.EndTime = value;
+            await this.EndTimeChanged.InvokeAsync(value);
         }
     }
 }

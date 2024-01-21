@@ -20,8 +20,8 @@
                             if (this.DisplayAllTime == false && minuteSetting.IsDisplay == false) { continue; }
 
                             var minute = minuteSetting.Minute;
-                            var timeSpan = new TimeSpan(hour, minute, 0);
-                            <td class="minute-panel" @onclick="async e => await this.StartTimePanel_Click(timeSpan)">@minute.ToString("00")</td>
+                            var ts = new TimeOnly(hour, minute, 0);
+                            <td class="minute-panel" @onclick="async e => await this.StartTimePanel_Click(ts)">@minute.ToString("00")</td>
                         }
                     </tr>
                 }
@@ -41,8 +41,8 @@
                                 if (this.DisplayAllTime == false && minuteSetting.IsDisplay == false) { continue; }
 
                                 var minute = minuteSetting.Minute;
-                                var timeSpan = new TimeSpan(hour, minute, 0);
-                                <td class="minute-panel" @onclick="async e => await this.EndTimePanel_Click(timeSpan)">@minute.ToString("00")</td>
+                                var ts = new TimeOnly(hour, minute, 0);
+                                <td class="minute-panel" @onclick="async e => await this.EndTimePanel_Click(ts)">@minute.ToString("00")</td>
                             }
                         </tr>
                     }
@@ -60,7 +60,7 @@
                     var ts = TimeSpan.FromMinutes(minute);
                     @if (minute < 60)
                     {
-                        <div class="duration-minute-panel" minute="@minute.ToString()" @onclick="async e => await DurationPanel_Click(minute)">
+                        <div class="duration-minute-panel" @onclick="async e => await DurationPanel_Click(minute)">
                             @String.Format("{0}{1}", minute, T.Text.Minute)
                         </div>
                     }
@@ -68,13 +68,13 @@
                     {
                         if (ts.Minutes == 0)
                         {
-                            <div class="duration-minute-panel" minute="@minute.ToString()" @onclick="async e => await DurationPanel_Click(minute)">
+                            <div class="duration-minute-panel" @onclick="async e => await DurationPanel_Click(minute)">
                                 @String.Format("{0}{1}", ts.Hours, T.Text.Hour)
                             </div>
                         }
                         else
                         {
-                            <div class="duration-minute-panel" minute="@minute.ToString()" @onclick="async e => await DurationPanel_Click(minute)">
+                            <div class="duration-minute-panel" @onclick="async e => await DurationPanel_Click(minute)">
                                 @String.Format("{0}{1}{2}{3}", ts.Hours, T.Text.Hour, ts.Minutes, T.Text.Minute)
                             </div>
                         }

@@ -6,7 +6,7 @@
         @onchange="e => this.OnValueChanged(e.Value?.ToString()?.ToDateOnly())"
         @onclick="e => this.SelectDateCalendarPanelVisible = true"
         @oninput="e => this.InputText_Input(e)" 
-        @onblur="async e => await this.Textbox_Blur(e)"></input>
+        @onblur="async e => await this.Textbox_Blur(e)" />
     @if (SelectDateCalendarPanelVisible)
     {
         <SelectDateCalendarPanel DateSelected="async date => await this.DateSelected_Callback(date)" Closed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateCalendarPanel>

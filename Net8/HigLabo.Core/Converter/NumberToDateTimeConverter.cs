@@ -20,8 +20,8 @@ namespace HigLabo.Core
 	{
 		public DateTime GetNow(TimeOnly timeZone, Int32 hour, Int32 minute)
 		{
-			var dtime = DateTimeOffset.Now.ChangeTimeZone(timeZone) + new TimeSpan(hour, minute, 0);
-			return dtime.DateTime;
+			var dtime = DateTimeOffset.Now.ChangeTimeZone(timeZone).Date + new TimeSpan(hour, minute, 0);
+			return dtime;
 		}
 		public static DateTime? GetPastDate(Int32? day)
 		{

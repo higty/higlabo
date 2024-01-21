@@ -1,10 +1,14 @@
+@{
+    var stringValue = this.TimeFormat(this.Value);
+}
 <InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
-    <InputText @bind-Value="@Value" class="textbox time"
-               @onclick="e => this.SelectTimePanelVisible = true"
-               @oninput="e => this.InputText_Input(e)"
-               @onblur="async e => await this.Textbox_Blur(e)"></InputText>
+    <input type="text" class="textbox time" value="@stringValue"
+           @onchange="e => this.OnValueChanged(e.Value?.ToString()?.ToTimeOnly())"
+           @onclick="e => this.SelectTimePanelVisible = true"
+           @oninput="e => this.InputText_Input(e)"
+           @onblur="async e => await this.Textbox_Blur(e)"></input>
     @if (SelectTimePanelVisible)
     {
-        <SelectTimePanel TimeSelected="time => this.TimeSelected_Callback(time)" Closed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
+        <SelectTimePanel TimeSelected="async time => await this.TimeSelected_Callback(time)" Closed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
     }
 </InputFieldPanel>

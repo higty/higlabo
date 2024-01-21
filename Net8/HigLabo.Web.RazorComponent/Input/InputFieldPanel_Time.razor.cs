@@ -6,12 +6,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_Time
     {
-        private string _ValueInputing = "";
+        private TimeOnly? _ValueInputing = null;
 
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -20,13 +21,17 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public string Value { get; set; } = "";
+        public TimeOnly? Value { get; set; }
+        [Parameter]
+        public EventCallback<TimeOnly?> ValueChanged { get; set; }
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
         public DateDirection DateDirection { get; set; } = DateDirection.Future;
         [Parameter]
-        public Func<TimeSpan, string> TimeFormat { get; set; } = timeSpan => $"{timeSpan.TotalHours.ToString("00")}:{timeSpan.Minutes.ToString("00")}";
+        public Func<TimeOnly?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hour.ToString("00")}:{timeSpan.Value.Minute.ToString("00")}" : "";
+        [Parameter]
+        public TimeOnly TimeZone { get; set; } = new TimeOnly(0, 0);
         [Parameter]
         public bool SelectTimePanelVisible { get; set; } = false;
         [Parameter]
@@ -36,17 +41,17 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (e.Value == null)
             {
-                _ValueInputing = "";
+                _ValueInputing = null;
                 return;
             }
             var v = e.Value.ToString();
             if (v == null)
             {
-                _ValueInputing = "";
+                _ValueInputing = null;
                 return;
             }
 
-            var pr = new NumberToDateTimeProcessor();
+            var pr = new NumberToDateTimeProcessor(this.TimeZone, this.DateDirection);
             pr.Converters.Clear();
             pr.Converters.Add(new NumberToDateTimeConverter_Hmm());
             pr.Converters.Add(new NumberToDateTimeConverter_HHmm());
@@ -54,30 +59,34 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._ValueInputing = this.TimeFormat(date.Value.TimeOfDay);
-                Debug.WriteLine($"{v} --> {_ValueInputing}");
+                this._ValueInputing = TimeOnly.FromDateTime(date.Value);
             }
             else
             {
-                _ValueInputing = "";
+                _ValueInputing = null;
             }
         }
         private async ValueTask Textbox_Blur(FocusEventArgs e)
         {
-            if (_ValueInputing.IsNullOrEmpty() == false)
+            if (_ValueInputing.HasValue)
             {
                 this.Value = this._ValueInputing;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
 
-        private void TimeSelected_Callback(SelectedTimeDuration time)
+        private async ValueTask TimeSelected_Callback(SelectedTimeDuration time)
         {
             this.SelectTimePanelVisible = false;
             if (time.StartTime.HasValue)
             {
-                this.Value = this.TimeFormat(time.StartTime.Value);
+                await this.OnValueChanged(time.StartTime.Value);
             }
+        }
+        private async Task OnValueChanged(TimeOnly? value)
+        {
+            this.Value = value;
+            await this.ValueChanged.InvokeAsync(value);
         }
 
     }

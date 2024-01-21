@@ -1,16 +1,22 @@
+@{
+    var startValue = this.TimeFormat(this.StartTime);
+    var endValue = this.TimeFormat(this.EndTime);
+}
 <InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
-    <InputText @bind-Value="@this.StartTime" class="textbox time"
-               @onclick="e => this.SelectTimePanelVisible = true"
-               @oninput="e => this.StartTime_Input(e)"
-               @onblur="async e => await this.StartTime_Blur(e)"></InputText>
+    <input type="text" class="textbox time" value="@startValue"
+           @onchange="e => this.OnStartTimeChanged(e.Value?.ToString()?.ToTimeOnly())"
+           @onclick="e => this.SelectTimePanelVisible = true"
+           @oninput="e => this.StartTime_Input(e)"
+           @onblur="async e => await this.StartTime_Blur(e)"></input>
     <span>-</span>
-    <InputText @bind-Value="@this.EndTime" class="textbox time"
-               @onclick="e => this.SelectTimePanelVisible = true"
-               @oninput="e => this.EndTime_Input(e)"
-               @onblur="async e => await this.EndTime_Blur(e)"></InputText>
+    <input type="text" class="textbox time" value="@endValue"
+           @onchange="e => this.OnEndTimeChanged(e.Value?.ToString()?.ToTimeOnly())"
+           @onclick="e => this.SelectTimePanelVisible = true"
+           @oninput="e => this.EndTime_Input(e)"
+           @onblur="async e => await this.EndTime_Blur(e)"></input>
     @if (SelectTimePanelVisible)
     {
-        <SelectTimePanel SelectEndTimeMode="@this.SelectEndTimeMode" TimeSelected="time => this.TimeSelected_Callback(time)"
+        <SelectTimePanel SelectEndTimeMode="@this.SelectEndTimeMode" TimeSelected="async time => await this.TimeSelected_Callback(time)"
                          Closed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
     }
 </InputFieldPanel>

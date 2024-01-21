@@ -8,11 +8,11 @@ namespace HigLabo.Web
 {
     public class SelectedTimeDuration
     {
-        public TimeSpan? StartTime { get; set; }
-        public TimeSpan? EndTime { get; set; }
+        public TimeOnly? StartTime { get; set; }
+        public TimeOnly? EndTime { get; set; }
 
         public SelectedTimeDuration() { }
-        public SelectedTimeDuration(TimeSpan? startTime, TimeSpan? endTime)
+        public SelectedTimeDuration(TimeOnly? startTime, TimeOnly? endTime)
         {
             this.StartTime = startTime; 
             this.EndTime = endTime;

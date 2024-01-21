@@ -23,7 +23,7 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
-        private TimeSpan? _StartTime = null;
+        private TimeOnly? _StartTime = null;
 
         [Parameter]
         public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
@@ -32,7 +32,7 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public int EndHour { get; set; } = 18;
         [Parameter]
-        public int MaxHour { get; set; } = 30;
+        public int MaxHour { get; set; } = 24;
         [Parameter]
         public bool DisplayAllTime { get; set; } = false;
         [Parameter]
@@ -66,33 +66,28 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
-        private async ValueTask StartTimePanel_Click(TimeSpan timeSpan)
+        private async ValueTask StartTimePanel_Click(TimeOnly timeSpan)
         {
             _StartTime = timeSpan;
+
             var r = new SelectedTimeDuration();
             r.StartTime = timeSpan;
             await this.TimeSelected.InvokeAsync(r);
         }
-        private async ValueTask EndTimePanel_Click(TimeSpan timeSpan)
+        private async ValueTask EndTimePanel_Click(TimeOnly timeSpan)
         {
             var r = new SelectedTimeDuration();
-            if (_StartTime.HasValue)
-            {
-                r.StartTime = _StartTime;
-            }
+            r.StartTime = _StartTime;
             r.EndTime = timeSpan;
             await this.TimeSelected.InvokeAsync(r);
         }
         private async ValueTask DurationPanel_Click(int minute)
         {
             var r = new SelectedTimeDuration();
-            if (_StartTime.HasValue)
-            {
-                r.StartTime = _StartTime;
-            }
+            r.StartTime = _StartTime;
             if (r.StartTime.HasValue)
             {
-                r.EndTime = r.StartTime.Value.Add(TimeSpan.FromMinutes(minute));
+                r.EndTime = r.StartTime.Value.AddMinutes(minute);
             }
             await this.TimeSelected.InvokeAsync(r);
         }

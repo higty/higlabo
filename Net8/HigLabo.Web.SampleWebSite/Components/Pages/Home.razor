@@ -116,11 +116,12 @@
 
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
-    <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" Value="@this.StartTime"></InputFieldPanel_Time>
+    <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" @bind-Value="@this.Time"></InputFieldPanel_Time>
     <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.EndTime" Layout="InputFieldPanelLayout.Default" 
-    Text="Start-End" StartTime="@this.StartTime" EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
+    Text="Start-End" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
     <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.Duration" Layout="InputFieldPanelLayout.Default" 
-    Text="Time duration" StartTime="@this.StartTime" EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
+    Text="Time duration" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
+    <time>@this.StartTime?.ToString("HH:mm") - @this.EndTime?.ToString("HH:mm")</time>
 
     <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
     <span>@this.Date</span>
@@ -152,9 +153,12 @@
     public string Value2 { get; set; } = "";
 
     [Parameter]
-    public string StartTime { get; set; } = "";
+    public TimeOnly? Time { get; set; } 
+
     [Parameter]
-    public string EndTime { get; set; } = "";
+    public TimeOnly? StartTime { get; set; }
+    [Parameter]
+    public TimeOnly? EndTime { get; set; }
     [Parameter]
     public DateOnly? Date { get; set; } 
     [Parameter]
