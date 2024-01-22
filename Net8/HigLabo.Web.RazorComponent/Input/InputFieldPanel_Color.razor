@@ -1,0 +1,13 @@
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+    <div class="display-flex">
+        <input type="text" class="textbox color" value="@Value"
+               @onchange="e => this.OnValueChanged(e.Value?.ToString())"
+               @onclick="e => this.SelectColorCalendarPanelVisible = true"
+               @onblur="async e => await this.Textbox_Blur(e)" />
+        <span class="color-square-panel" @onclick="e => this.SelectColorCalendarPanelVisible = true" style="background-color: @this.Value"></span>
+    </div>
+    @if (SelectColorCalendarPanelVisible)
+    {
+        <SelectColorPanel ColorSelected="async v => await this.ColorSelected_Callback(v)" Closed="() => this.SelectColorCalendarPanelVisible = false"></SelectColorPanel>
+    }
+</InputFieldPanel>

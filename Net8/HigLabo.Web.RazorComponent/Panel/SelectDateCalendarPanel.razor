@@ -1,0 +1,55 @@
+﻿<div class="select-date-calendar-panel">
+    <div class="select-month-panel">
+        <span class="image-panel" @onclick="e => ChangeMonth(-1)" @onclick:stopPropagation>
+            <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayLeft__svg)" class="icon" />
+        </span>
+        <span class="current-month">@this.Date.ToString("yyyy/MM")</span>
+        <span class="image-panel" @onclick="e => ChangeMonth(1)" @onclick:stopPropagation>
+            <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayRight__svg)" class="icon" />
+        </span>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                @foreach (var rDate in this.WeekList[0].DateList)
+                {
+                    var dw = rDate.Date.DayOfWeek;
+                    <td class="@dw.ToStringFromEnum().ToLower()">
+                        <span>@this.DateTimeFormat.GetShortestDayName(dw)</span>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rWeek in this.WeekList)
+            {
+                <tr>
+                    @foreach (var rDate in rWeek.DateList)
+                    {
+                        var dw = rDate.Date.DayOfWeek;
+                        var dateText = rDate.Date.ToString("dd");
+                        var className = $"{dw.ToStringFromEnum().ToLower()}";
+                        if (rDate.Date == this.Date)
+                        {
+                            className += " selected-date";
+                        }
+                        else if (rDate.Date.Month != this.Date.Month)
+                        {
+                            className += " other-month";
+                        }
+                        <td class="@className" @onclick="async e => await Date_Click(rDate.Date)">
+                            @dateText
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="footer-panel">
+        <button class="button radius-button" @onclick="async e => await CloseButton_Click()">@T.Text.Close</button>
+    </div>
+</div>
+
+
+
+

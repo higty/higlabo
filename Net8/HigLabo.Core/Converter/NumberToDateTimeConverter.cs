@@ -20,8 +20,8 @@ namespace HigLabo.Core
 	{
 		public DateTime GetNow(TimeOnly timeZone, Int32 hour, Int32 minute)
 		{
-			var dtime = DateTimeOffset.Now.ChangeTimeZone(timeZone) + new TimeSpan(hour, minute, 0);
-			return dtime.DateTime;
+			var dtime = DateTimeOffset.Now.ChangeTimeZone(timeZone).Date + new TimeSpan(hour, minute, 0);
+			return dtime;
 		}
 		public static DateTime? GetPastDate(Int32? day)
 		{
@@ -406,12 +406,6 @@ namespace HigLabo.Core
     {
         public static readonly Regex yyyy_MM_dd = new Regex("(?<Year>[\\d]{2,4})[-/年](?<Month>[\\d]{1,2})[-/月](?<Day>[\\d]{1,2})[日\\s]");
 
-        public DateDirection DateDirection { get; set; } = DateDirection.Future;
-
-        public NumberToDateTimeConverter_yyyyMMdd(DateDirection dateDirection)
-        {
-            this.DateDirection = dateDirection;
-        }
         public DateTime? Convert(string value, TimeOnly timeZone)
         {
             var m = yyyy_MM_dd.Match(value);
@@ -426,22 +420,6 @@ namespace HigLabo.Core
                     var date = String.Format("{0}/{1}/{2}", year, month.Value, day.Value).ToDateTime();
                     if (date.HasValue)
                     {
-                        switch (this.DateDirection)
-                        {
-                            case DateDirection.Past:
-                                if (date > DateTime.Now)
-                                {
-                                    date = String.Format("{0}/{1}/{2}", year - 1, month.Value, day.Value).ToDateTime();
-                                }
-                                break;
-                            case DateDirection.Future:
-                                if (date < DateTime.Now)
-                                {
-                                    date = String.Format("{0}/{1}/{2}", year + 1, month.Value, day.Value).ToDateTime();
-                                }
-                                break;
-                            default: throw SwitchStatementNotImplementException.Create(this.DateDirection);
-                        }
 						return date;
                     }
                 }

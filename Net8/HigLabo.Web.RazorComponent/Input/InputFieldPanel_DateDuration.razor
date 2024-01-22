@@ -1,0 +1,24 @@
+@{
+    var startValue = this.StartDate?.ToString(this.DateTimeFormat) ?? "";
+    var endValue = this.EndDate?.ToString(this.DateTimeFormat) ?? "";
+}
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+    <input type="text" class="textbox date" value="@startValue"
+           @onchange="e => this.OnStartDateChanged(e.Value?.ToString()?.ToDateOnly())"
+           @onclick="e => this.SelectDateCalendarPanelVisible = true"
+           @oninput="e => this.StartDate_Input(e)"
+           @onblur="async e => await this.StartDate_Blur(e)" />
+    <span>-</span>
+    <input type="text" class="textbox date" value="@endValue"
+           @onchange="e => this.OnEndDateChanged(e.Value?.ToString()?.ToDateOnly())"
+           @onclick="e => this.SelectDateCalendarPanelVisible = true"
+           @oninput="e => this.EndDate_Input(e)"
+           @onblur="async e => await this.EndDate_Blur(e)" />
+
+    @if (SelectDateCalendarPanelVisible)
+    {
+        <SelectDateDurationCalendarPanel 
+            DateSelected="async v => await this.DateSelected_Callback(v)" 
+            Closed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateDurationCalendarPanel>
+    }
+</InputFieldPanel>

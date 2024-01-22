@@ -1,0 +1,37 @@
+<InputFieldPanel Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+	<div class="record-panel" tabindex="0" @ref="this.RecordPanelElementReference"
+	@onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true"
+	@onkeydown="async e => await this.RecordPanel_Keydown(e)">
+		@this.RecordPanel
+	</div>
+	@if (SelectRecordPanelVisible)
+	{
+		<div class="select-record-panel">
+			<div class="search-container-panel">
+				<input type="text" class="textbox" placeholder="@T.Text.Search"
+					   @bind="SearchText" @bind:event="oninput" 
+					   @onkeydown="async e => await SearchTextbox_Keydown(e)" />
+				<div class="flex-right-panel">
+					<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
+					<button class="button radius-button" @onclick="async e => await ToggleVisible()">@T.Text.Close</button>
+				</div>
+			</div>
+			<div class="record-list-panel">
+				@for (int i = 0; i < _RecordList.Count; i++)
+				{
+					var cName = "record-panel";
+					if (i == _RecordIndex)
+					{
+						cName += " current";
+					}
+					var r = _RecordList[i];
+					<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">
+						<span @onclick:preventDefault>@r.Text</span>
+					</div>
+				}
+			</div>
+		</div>
+
+	}
+</InputFieldPanel>
+

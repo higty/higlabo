@@ -109,6 +109,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Mapper.PerformanceT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.CodeGenerator.Test", "HigLabo.CodeGenerator.Test\HigLabo.CodeGenerator.Test.csproj", "{35979FAE-B58E-4414-84ED-A803FDD72A01}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.RazorComponent", "HigLabo.Web.RazorComponent\HigLabo.Web.RazorComponent.csproj", "{57D37590-23B8-42F4-AA57-F0BFD385FB75}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.SampleWebSite", "HigLabo.Web.SampleWebSite\HigLabo.Web.SampleWebSite.csproj", "{A861D600-D745-4D42-90E0-82F9A88D8885}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -327,6 +331,14 @@ Global
 		{35979FAE-B58E-4414-84ED-A803FDD72A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35979FAE-B58E-4414-84ED-A803FDD72A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35979FAE-B58E-4414-84ED-A803FDD72A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D37590-23B8-42F4-AA57-F0BFD385FB75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D37590-23B8-42F4-AA57-F0BFD385FB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D37590-23B8-42F4-AA57-F0BFD385FB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D37590-23B8-42F4-AA57-F0BFD385FB75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A861D600-D745-4D42-90E0-82F9A88D8885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A861D600-D745-4D42-90E0-82F9A88D8885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A861D600-D745-4D42-90E0-82F9A88D8885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A861D600-D745-4D42-90E0-82F9A88D8885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
