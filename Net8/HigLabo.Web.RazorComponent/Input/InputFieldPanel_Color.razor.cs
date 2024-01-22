@@ -30,11 +30,11 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectColorCalendarPanelVisible { get; set; } = false;
         [Parameter]
-        public EventCallback<FocusEventArgs> OnBlur { get; set; }
+        public EventCallback<FocusEventArgs> OnTextboxBlur { get; set; }
 
         private async ValueTask Textbox_Blur(FocusEventArgs e)
         {
-            await this.OnBlur.InvokeAsync(e);
+            await this.OnTextboxBlur.InvokeAsync(e);
         }
 
         private async ValueTask ColorSelected_Callback(string color)

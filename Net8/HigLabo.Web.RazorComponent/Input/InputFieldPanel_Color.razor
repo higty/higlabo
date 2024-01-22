@@ -8,6 +8,6 @@
     </div>
     @if (SelectColorCalendarPanelVisible)
     {
-        <SelectColorPanel ColorSelected="async v => await this.ColorSelected_Callback(v)" Closed="() => this.SelectColorCalendarPanelVisible = false"></SelectColorPanel>
+        <SelectColorPanel ColorSelected="async v => await this.ColorSelected_Callback(v)" OnClosed="() => this.SelectColorCalendarPanelVisible = false"></SelectColorPanel>
     }
 </InputFieldPanel>

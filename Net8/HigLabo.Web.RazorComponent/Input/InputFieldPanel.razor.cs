@@ -20,17 +20,17 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
-        public EventCallback OnRecordAdded { get; set; }
+        public EventCallback OnAddIconClicked { get; set; }
 
         private async ValueTask AddIcon_Click()
         {
-            await this.OnRecordAdded.InvokeAsync();
+            await this.OnAddIconClicked.InvokeAsync();
         }
         private async ValueTask AddIcon_Keydown(KeyboardEventArgs e)
         {
             if (e.Key == "Enter")
             {
-                await this.OnRecordAdded.InvokeAsync();
+                await this.OnAddIconClicked.InvokeAsync();
             }
         }
     }

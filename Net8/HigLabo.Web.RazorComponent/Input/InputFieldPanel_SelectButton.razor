@@ -3,7 +3,7 @@
         @foreach (var item in this.RecordList)
         {
             var cName = "record-value-panel";
-            if (item.Value == this.SelectedValue)
+            if (object.Equals(item.Value, this.Value))
             {
                 cName += " selected";
             }

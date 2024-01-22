@@ -1,7 +1,7 @@
 ﻿<div class="@string.Join(" ", this.ClassNameList)">
     <label class="display-flex">
         <span class="checkbox">
-            <input type="checkbox" checked="@this.Value" @onchange="@this.OnValueChanged" />
+            <input type="checkbox" checked="@this.Value" @onchange="@this.ValueChanged_Invoke" />
             <span></span>
         </span>
         <span class="text-panel">@ChildContent</span>
