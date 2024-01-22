@@ -12,7 +12,7 @@ namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_Time
     {
-        private TimeOnly? _ValueInputing = null;
+        private TimeSpan? _ValueInputing = null;
 
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -21,15 +21,15 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public TimeOnly? Value { get; set; }
+        public TimeSpan? Value { get; set; }
         [Parameter]
-        public EventCallback<TimeOnly?> ValueChanged { get; set; }
+        public EventCallback<TimeSpan?> ValueChanged { get; set; }
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
         public DateDirection DateDirection { get; set; } = DateDirection.Future;
         [Parameter]
-        public Func<TimeOnly?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hour.ToString("00")}:{timeSpan.Value.Minute.ToString("00")}" : "";
+        public Func<TimeSpan?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hours.ToString("00")}:{timeSpan.Value.Minutes.ToString("00")}" : "";
         [Parameter]
         public TimeOnly TimeZone { get; set; } = new TimeOnly(0, 0);
         [Parameter]
@@ -59,7 +59,7 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._ValueInputing = TimeOnly.FromDateTime(date.Value);
+                this._ValueInputing = date.Value.TimeOfDay;
             }
             else
             {
@@ -83,7 +83,7 @@ namespace HigLabo.Web.RazorComponent.Input
                 await this.OnValueChanged(time.StartTime.Value);
             }
         }
-        private async Task OnValueChanged(TimeOnly? value)
+        private async Task OnValueChanged(TimeSpan? value)
         {
             this.Value = value;
             await this.ValueChanged.InvokeAsync(value);

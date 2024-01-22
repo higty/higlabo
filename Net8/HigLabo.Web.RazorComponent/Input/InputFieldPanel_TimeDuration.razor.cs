@@ -11,8 +11,8 @@ namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_TimeDuration
     {
-        private TimeOnly? _StartTimeInputing = null;
-        private TimeOnly? _EndTimeInputing = null;
+        private TimeSpan? _StartTimeInputing = null;
+        private TimeSpan? _EndTimeInputing = null;
         
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -21,13 +21,13 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public TimeOnly? StartTime { get; set; } = null;
+        public TimeSpan? StartTime { get; set; } = null;
         [Parameter]
-        public EventCallback<TimeOnly?> StartTimeChanged { get; set; }
+        public EventCallback<TimeSpan?> StartTimeChanged { get; set; }
         [Parameter]
-        public TimeOnly? EndTime { get; set; } = null;
+        public TimeSpan? EndTime { get; set; } = null;
         [Parameter]
-        public EventCallback<TimeOnly?> EndTimeChanged { get; set; }
+        public EventCallback<TimeSpan?> EndTimeChanged { get; set; }
 
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
@@ -35,7 +35,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
         [Parameter]
-        public Func<TimeOnly?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hour.ToString("00")}:{timeSpan.Value.Minute.ToString("00")}" : "";
+        public Func<TimeSpan?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hours.ToString("00")}:{timeSpan.Value.Minutes.ToString("00")}" : "";
         [Parameter]
         public bool SelectTimePanelVisible { get; set; } = false;
         [Parameter]
@@ -63,8 +63,7 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._StartTimeInputing = TimeOnly.FromDateTime(date.Value);
-                Debug.WriteLine($"{v} --> {_StartTimeInputing}");
+                this._StartTimeInputing = date.Value.TimeOfDay;
             }
             else
             {
@@ -101,8 +100,7 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._EndTimeInputing = TimeOnly.FromDateTime(date.Value);
-                Debug.WriteLine($"{v} --> {_EndTimeInputing}");
+                this._EndTimeInputing = date.Value.TimeOfDay;
             }
             else
             {
@@ -118,25 +116,31 @@ namespace HigLabo.Web.RazorComponent.Input
             await this.OnTextboxBlur.InvokeAsync(e);
         }
 
-        private async ValueTask TimeSelected_Callback(SelectedTimeDuration time)
+        private async ValueTask StartTimeSelected_Callback(SelectedTimeDuration time)
         {
             if (time.StartTime.HasValue)
             {
                 await this.OnStartTimeChanged(time.StartTime);
             }
+        }
+        private async ValueTask EndTimeSelected_Callback(SelectedTimeDuration time)
+        {
             if (time.EndTime.HasValue)
             {
                 await this.OnEndTimeChanged(time.EndTime);
-                this.SelectTimePanelVisible = false;
+                if (this.StartTime.HasValue)
+                {
+                    this.SelectTimePanelVisible = false;
+                }
             }
         }
 
-        private async Task OnStartTimeChanged(TimeOnly? value)
+        private async Task OnStartTimeChanged(TimeSpan? value)
         {
             this.StartTime = value;
             await this.StartTimeChanged.InvokeAsync(value);
         }
-        private async Task OnEndTimeChanged(TimeOnly? value)
+        private async Task OnEndTimeChanged(TimeSpan? value)
         {
             this.EndTime = value;
             await this.EndTimeChanged.InvokeAsync(value);

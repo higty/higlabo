@@ -23,7 +23,7 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
-        private TimeOnly? _StartTime = null;
+        private TimeSpan? _StartTime = null;
 
         [Parameter]
         public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
@@ -36,7 +36,9 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public bool DisplayAllTime { get; set; } = false;
         [Parameter]
-        public EventCallback<SelectedTimeDuration> TimeSelected { get; set; }
+        public EventCallback<SelectedTimeDuration> StartTimeSelected { get; set; }
+        [Parameter]
+        public EventCallback<SelectedTimeDuration> EndTimeSelected { get; set; }
         [Parameter]
         public EventCallback Closed { get; set; }
 
@@ -66,20 +68,20 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
-        private async ValueTask StartTimePanel_Click(TimeOnly timeSpan)
+        private async ValueTask StartTimePanel_Click(TimeSpan value)
         {
-            _StartTime = timeSpan;
+            _StartTime = value;
 
             var r = new SelectedTimeDuration();
-            r.StartTime = timeSpan;
-            await this.TimeSelected.InvokeAsync(r);
+            r.StartTime = value;
+            await this.StartTimeSelected.InvokeAsync(r);
         }
-        private async ValueTask EndTimePanel_Click(TimeOnly timeSpan)
+        private async ValueTask EndTimePanel_Click(TimeSpan value)
         {
             var r = new SelectedTimeDuration();
             r.StartTime = _StartTime;
-            r.EndTime = timeSpan;
-            await this.TimeSelected.InvokeAsync(r);
+            r.EndTime = value;
+            await this.EndTimeSelected.InvokeAsync(r);
         }
         private async ValueTask DurationPanel_Click(int minute)
         {
@@ -87,9 +89,9 @@ namespace HigLabo.Web.RazorComponent.Panel
             r.StartTime = _StartTime;
             if (r.StartTime.HasValue)
             {
-                r.EndTime = r.StartTime.Value.AddMinutes(minute);
+                r.EndTime = r.StartTime.Value + TimeSpan.FromMinutes(minute);
             }
-            await this.TimeSelected.InvokeAsync(r);
+            await this.EndTimeSelected.InvokeAsync(r);
         }
 
         private async ValueTask CloseButton_Click()

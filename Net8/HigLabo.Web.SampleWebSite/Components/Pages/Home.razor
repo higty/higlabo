@@ -121,7 +121,7 @@
     Text="Start-End" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
     <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.Duration" Layout="InputFieldPanelLayout.Default" 
     Text="Time duration" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
-    <time>@this.StartTime?.ToString("HH:mm") - @this.EndTime?.ToString("HH:mm")</time>
+    <time>@this.StartTime - @this.EndTime</time>
 
     <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
     <span>@this.Date</span>
@@ -134,6 +134,7 @@
 
     <InputFieldPanel_Color Text="Back color"></InputFieldPanel_Color>
     <InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color"></InputFieldPanel_Color>
+    <span>@this.Color</span>
 </div>
 
 
@@ -153,18 +154,22 @@
     public string Value2 { get; set; } = "";
 
     [Parameter]
-    public TimeOnly? Time { get; set; } 
+    public TimeSpan? Time { get; set; }
 
     [Parameter]
-    public TimeOnly? StartTime { get; set; }
+    public TimeSpan? StartTime { get; set; }
     [Parameter]
-    public TimeOnly? EndTime { get; set; }
+    public TimeSpan? EndTime { get; set; }
     [Parameter]
     public DateOnly? Date { get; set; } 
     [Parameter]
     public string StartDate { get; set; } = "";
     [Parameter]
     public string EndDate { get; set; } = "";
+
+    [Parameter]
+    public string Color { get; set; } = "";
+
     [Parameter]
     public FileAccess FileAccess { get; set; }
     [Parameter]

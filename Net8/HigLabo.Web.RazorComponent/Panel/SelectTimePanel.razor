@@ -20,7 +20,7 @@
                             if (this.DisplayAllTime == false && minuteSetting.IsDisplay == false) { continue; }
 
                             var minute = minuteSetting.Minute;
-                            var ts = new TimeOnly(hour, minute, 0);
+                            var ts = new TimeSpan(hour, minute, 0);
                             <td class="minute-panel" @onclick="async e => await this.StartTimePanel_Click(ts)">@minute.ToString("00")</td>
                         }
                     </tr>
@@ -41,7 +41,7 @@
                                 if (this.DisplayAllTime == false && minuteSetting.IsDisplay == false) { continue; }
 
                                 var minute = minuteSetting.Minute;
-                                var ts = new TimeOnly(hour, minute, 0);
+                                var ts = new TimeSpan(hour, minute, 0);
                                 <td class="minute-panel" @onclick="async e => await this.EndTimePanel_Click(ts)">@minute.ToString("00")</td>
                             }
                         </tr>
