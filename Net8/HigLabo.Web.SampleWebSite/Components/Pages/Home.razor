@@ -145,7 +145,7 @@
     <InputFieldPanel_DateDuration Text="Start-End" 
     @bind-StartDate="@this.StartDate" @bind-EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
     <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" 
-    @bind-StartDate="@this.StartDate" @bind-EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
+    @bind-StartDate="@this.StartDate1" @bind-EndDate="@this.EndDate1"></InputFieldPanel_DateDuration>
     <span>@this.StartDate</span>
     <span>@this.EndDate</span>
 
@@ -187,6 +187,10 @@
     public DateOnly? StartDate { get; set; }
     [Parameter]
     public DateOnly? EndDate { get; set; }
+    [Parameter]
+    public DateOnly? StartDate1 { get; set; }
+    [Parameter]
+    public DateOnly? EndDate1 { get; set; }
 
     [Parameter]
     public string Color { get; set; } = "";

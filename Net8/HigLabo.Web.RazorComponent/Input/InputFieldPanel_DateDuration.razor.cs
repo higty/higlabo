@@ -22,6 +22,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
+        public bool FieldNameVisible { get; set; } = true;
+
+        [Parameter]
         public DateOnly? StartDate { get; set; } 
         [Parameter]
         public EventCallback<DateOnly?> StartDateChanged { get; set; }
@@ -41,7 +44,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectDateCalendarPanelVisible { get; set; } = false;
         [Parameter]
-        public EventCallback<FocusEventArgs> OnTextboxBlur { get; set; }
+        public EventCallback<FocusEventArgs> OnStartDateBlur { get; set; }
+        [Parameter]
+        public EventCallback<FocusEventArgs> OnEndDateBlur { get; set; }
 
         private void StartDate_Input(ChangeEventArgs e)
         {
@@ -67,7 +72,6 @@ namespace HigLabo.Web.RazorComponent.Input
             if (date.HasValue)
             {
                 this._StartDateInputing = date.ToDateOnly();
-                Debug.WriteLine($"{v} --> {_StartDateInputing}");
             }
             else
             {
@@ -78,9 +82,10 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (_StartDateInputing.HasValue)
             {
-                this.StartDate = this._StartDateInputing;
+                await this.OnStartDateChanged(_StartDateInputing);
+                this.SelectDateCalendarPanelVisible = false;
             }
-            await this.OnTextboxBlur.InvokeAsync(e);
+            await this.OnStartDateBlur.InvokeAsync(e);
         }
         private void EndDate_Input(ChangeEventArgs e)
         {
@@ -106,7 +111,6 @@ namespace HigLabo.Web.RazorComponent.Input
             if (date.HasValue)
             {
                 this._EndDateInputing = date.ToDateOnly();
-                Debug.WriteLine($"{v} --> {_EndDateInputing}");
             }
             else
             {
@@ -117,9 +121,10 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (_EndDateInputing.HasValue)
             {
-                this.EndDate = this._EndDateInputing;
+                await this.OnEndDateChanged(_EndDateInputing);
+                this.SelectDateCalendarPanelVisible = false;
             }
-            await this.OnTextboxBlur.InvokeAsync(e);
+            await this.OnEndDateBlur.InvokeAsync(e);
         }
 
         private async ValueTask DateSelected_Callback(SelectedDateDuration value)

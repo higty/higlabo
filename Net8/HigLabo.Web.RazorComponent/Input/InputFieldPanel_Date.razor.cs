@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
@@ -20,6 +21,11 @@ namespace HigLabo.Web.RazorComponent.Input
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
+        [Parameter]
+        public bool FieldNameVisible { get; set; } = true;
+
+        [Parameter][DisallowNull]
+        public ElementReference Textbox { get; set; }
         [Parameter]
         public DateOnly? Value { get; set; } 
         [Parameter]
@@ -61,7 +67,6 @@ namespace HigLabo.Web.RazorComponent.Input
             if (date.HasValue)
             {
                 this._ValueInputing = date.Value.ToDateOnly();
-                this.Value = date.Value.ToDateOnly();
                 this.StateHasChanged();
             }
             else
@@ -73,7 +78,7 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (_ValueInputing.HasValue)
             {
-                this.Value = this._ValueInputing;
+                await this.OnValueChanged(_ValueInputing);
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
@@ -85,6 +90,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnValueChanged(date.Value);
             }
+            await this.Textbox.FocusAsync(true);
         }
 
         private async Task OnValueChanged(DateOnly? value)

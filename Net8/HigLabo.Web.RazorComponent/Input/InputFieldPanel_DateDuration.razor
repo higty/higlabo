@@ -1,8 +1,8 @@
 @{
     var startValue = this.StartDate?.ToString(this.DateTimeFormat) ?? "";
-    var endValue = this.StartDate?.ToString(this.DateTimeFormat) ?? "";
+    var endValue = this.EndDate?.ToString(this.DateTimeFormat) ?? "";
 }
-<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
     <input type="text" class="textbox date" value="@startValue"
            @onchange="e => this.OnStartDateChanged(e.Value?.ToString()?.ToDateOnly())"
            @onclick="e => this.SelectDateCalendarPanelVisible = true"

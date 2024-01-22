@@ -40,6 +40,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
+        public bool FieldNameVisible { get; set; } = true;
+
+        [Parameter]
         public string SelectedValue { get; set; } = "";
         [Parameter]
         public List<Record> RecordList { get; init; } = new();

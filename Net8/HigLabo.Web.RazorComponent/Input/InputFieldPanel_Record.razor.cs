@@ -43,6 +43,9 @@ namespace HigLabo.Web.RazorComponent.Input
 		public string Name { get; set; } = "";
 		[Parameter]
 		public string Text { get; set; } = "";
+        [Parameter]
+        public bool FieldNameVisible { get; set; } = true;
+        
 		[Parameter]
 		public string ClassName { get; set; } = "input-field-panel";
 		[Parameter]

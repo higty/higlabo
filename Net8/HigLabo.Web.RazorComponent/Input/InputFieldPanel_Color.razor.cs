@@ -19,6 +19,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
+        public bool FieldNameVisible { get; set; } = true;
+        
+        [Parameter]
         public string Value { get; set; } = "";
         [Parameter]
         public EventCallback<string> ValueChanged { get; set; }

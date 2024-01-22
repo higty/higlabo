@@ -21,6 +21,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
+        public bool FieldNameVisible { get; set; } = true;
+        
+        [Parameter]
         public TimeSpan? Value { get; set; }
         [Parameter]
         public EventCallback<TimeSpan?> ValueChanged { get; set; }
@@ -70,7 +73,8 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (_ValueInputing.HasValue)
             {
-                this.Value = this._ValueInputing;
+                await this.OnValueChanged(_ValueInputing);
+                this.SelectTimePanelVisible = false;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }

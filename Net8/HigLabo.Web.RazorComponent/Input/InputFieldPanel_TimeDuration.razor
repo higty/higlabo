@@ -2,7 +2,7 @@
     var startValue = this.TimeFormat(this.StartTime);
     var endValue = this.TimeFormat(this.EndTime);
 }
-<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" ValidateResult="@ValidateResult">
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
     <input type="text" class="textbox time" value="@startValue"
            @onchange="e => this.OnStartTimeChanged(e.Value?.ToString()?.ToTimeSpan())"
            @onclick="e => this.SelectTimePanelVisible = true"

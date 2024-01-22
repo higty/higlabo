@@ -1,4 +1,4 @@
-<InputFieldPanel Name="@Name" Text="@Text" ValidateResult="@ValidateResult" AddIconVisible="true" OnRecordAdded="OnRecordAdded">
+<InputFieldPanel Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult" AddIconVisible="true" OnRecordAdded="OnRecordAdded">
     <input type="hidden" style="display:none;" invoke-method="true" @onchange="async e => await SortOrder_Change()" />
     @if (this.ChildContent != null)
     {
