@@ -9,9 +9,9 @@ namespace HigLabo.Web
     public class InputFieldPanelRecord
     {
         public string Text { get; set; } = "";
-        public object Value { get; set; }
+        public object? Value { get; set; }
 
-        public InputFieldPanelRecord(string text, object value)
+        public InputFieldPanelRecord(string text, object? value)
         {
             Text = text;
             Value = value;

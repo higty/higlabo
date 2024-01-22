@@ -117,13 +117,14 @@ $width-checkbox-circle: 20px;
                     + span {
                         &:after {
                             left: 50%;
+                            background: var(--color-scheme-02);
                         }
                     }
                 }
 
                 &:focus {
                     + span:after {
-                        background-color: var(--color-form-element-focus);
+                        border: solid 1px var(--color-form-element-focus);
                     }
                 }
             }

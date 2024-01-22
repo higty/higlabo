@@ -40,7 +40,7 @@
   --color-form-element-bg: var(--color-glay-01);
   --color-form-element-text: var(--color-text);
   --color-form-element-border: var(--color-border);
-  --color-form-element-focus: var(--color-scheme-02);
+  --color-form-element-focus: var(--color-scheme-04);
   --color-form-element-hover: var(--color-glay-02);
   --color-form-element-border-error: var(--color-error);
   --color-form-element-placeholder: var(--color-glay-04);
@@ -457,9 +457,10 @@
 }
 .checkbox-panel label.display-flex .checkbox input:checked + span:after {
   left: 50%;
+  background: var(--color-scheme-02);
 }
 .checkbox-panel label.display-flex .checkbox input:focus + span:after {
-  background-color: var(--color-form-element-focus);
+  border: solid 1px var(--color-form-element-focus);
 }
 .checkbox-panel label.display-flex .checkbox span {
   width: 100%;
