@@ -116,24 +116,36 @@
 
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
+    <hr />
+
     <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" @bind-Value="@this.Time"></InputFieldPanel_Time>
+    <span>@this.Time</span>
+
+    <hr />
+
     <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.EndTime" Layout="InputFieldPanelLayout.Default" 
     Text="Start-End" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
     <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.Duration" Layout="InputFieldPanelLayout.Default" 
     Text="Time duration" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
     <time>@this.StartTime - @this.EndTime</time>
 
+    <hr />
+
     <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
+    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Flex" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
     <span>@this.Date</span>
+
+    <hr />
+
     <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
+    <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
     <span>@this.StartDate</span>
     <span>@this.EndDate</span>
 
-    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Flex" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
-    <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
+    <hr />
 
-    <InputFieldPanel_Color Text="Back color"></InputFieldPanel_Color>
-    <InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color"></InputFieldPanel_Color>
+    <InputFieldPanel_Color Text="Back color" @bind-Value="@this.Color"></InputFieldPanel_Color>
+    <InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color" @bind-Value="@this.Color"></InputFieldPanel_Color>
     <span>@this.Color</span>
 </div>
 
