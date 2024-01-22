@@ -8,8 +8,8 @@
                 cName += " selected";
             }
             <span class="@cName" tabindex="0"
-                  @onclick="async e => await RecordValuePanel_Click(item.Value)"
-                  @onkeydown="async e => await RecordValuePanel_Keydown(e, item.Value)" @onkeydown:stopPropagation="true">@item.Text</span>
+                  @onclick="async e => await RecordValuePanel_Click(item.Value.ToString())"
+                  @onkeydown="async e => await RecordValuePanel_Keydown(e, item.Value.ToString())" @onkeydown:stopPropagation="true">@item.Text</span>
         }
     </div>
 </InputFieldPanel>

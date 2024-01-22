@@ -1,38 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using HigLabo.Core;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_SelectButton 
     {
-        public class Record
-        {
-            public string Value { get; set; } = "";
-            public string Text { get; set; } = "";
-
-            public Record()
-            {
-            }
-            public Record(string value)
-            {
-                this.Value = value;
-                this.Text = value;
-            }
-            public Record(string value, string text)
-            {
-                this.Value = value;
-                this.Text = text;
-            }
-            public static Record SelectFunc<T>(T value)
-                where T: struct, Enum
-            {
-                var r = new Record();
-                r.Value = value.ToStringFromEnum();
-                r.Text = value.ToStringFromEnum();
-                return r;
-            }
-        }
-
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
@@ -43,11 +16,11 @@ namespace HigLabo.Web.RazorComponent.Input
         public bool FieldNameVisible { get; set; } = true;
 
         [Parameter]
-        public string SelectedValue { get; set; } = "";
+        public object SelectedValue { get; set; } = "";
         [Parameter]
-        public List<Record> RecordList { get; init; } = new();
+        public List<InputFieldPanelRecord> RecordList { get; init; } = new();
         [Parameter]
-        public EventCallback<string> ValueChanged { get; set; } = new();
+        public EventCallback<object> ValueChanged { get; set; } = new();
 
         protected override void OnInitialized()
         {
@@ -59,12 +32,12 @@ namespace HigLabo.Web.RazorComponent.Input
 
             this.StateHasChanged();
         }
-        private async ValueTask RecordValuePanel_Click(string value)
+        private async ValueTask RecordValuePanel_Click(object value)
         {
             this.SelectedValue = value;
             await this.ValueChanged.InvokeAsync(value);
         }
-        private async ValueTask RecordValuePanel_Keydown(KeyboardEventArgs e, string value)
+        private async ValueTask RecordValuePanel_Keydown(KeyboardEventArgs e, object value)
         {
             if (e.Key == " " || 
                 e.Key == "Enter")
@@ -75,22 +48,22 @@ namespace HigLabo.Web.RazorComponent.Input
             }
         }
 
-        public static List<Record> CreateRecordList<TEnum>()
+        public static List<InputFieldPanelRecord> CreateRecordList<TEnum>()
             where TEnum : struct, Enum
         {
-            var l = Enum.GetValues<TEnum>().Select(el => new Record(el.ToStringFromEnum(), T.Text.Get(el))).ToList();
+            var l = Enum.GetValues<TEnum>().Select(el => new InputFieldPanelRecord(T.Text.Get(el), el)).ToList();
             return l;
         }
-        public static List<Record> CreateRecordList<TEnum>(IEnumerable<TEnum> recordList)
+        public static List<InputFieldPanelRecord> CreateRecordList<TEnum>(IEnumerable<TEnum> recordList)
             where TEnum : struct, Enum
         {
-            var l = recordList.Select(el => new Record(el.ToStringFromEnum(), T.Text.Get(el))).ToList();
+            var l = recordList.Select(el => new InputFieldPanelRecord(T.Text.Get(el), el)).ToList();
             return l;
         }
-        public static List<Record> CreateRecordList<TEnum>(params TEnum[] recordList)
+        public static List<InputFieldPanelRecord> CreateRecordList<TEnum>(params TEnum[] recordList)
             where TEnum : struct, Enum
         {
-            var l = recordList.Select(el => new Record(el.ToStringFromEnum(), T.Text.Get(el))).ToList();
+            var l = recordList.Select(el => new InputFieldPanelRecord(T.Text.Get(el), el)).ToList();
             return l;
         }
     }

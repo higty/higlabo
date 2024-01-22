@@ -112,7 +112,7 @@
    
     <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
                                   SelectedValue="@this.FileAccess.ToStringFromEnum()"
-                                  ValueChanged="v => this.FileAccess = v.ToEnum<FileAccess>()!.Value"></InputFieldPanel_SelectButton>
+                                  ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
 
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
@@ -220,13 +220,13 @@
     {
         this.SelectedUserList.Remove(record);
     }
-    private void LoadingRecordList(InputFieldPanel_Record.LoadingEventArgs e)
+    private void LoadingRecordList(InputFieldPanelLoadingEventArgs e)
     {
-        var l = new List<InputFieldPanel_Record.Record>();
+        var l = new List<InputFieldPanelRecord>();
         l.Clear();
         for (int i = 0; i < 20; i++)
         {
-            l.Add(new InputFieldPanel_Record.Record("User" + i, i));
+            l.Add(new InputFieldPanelRecord("User" + i, i));
         }
 
         e.RecordList.Clear();
@@ -245,7 +245,7 @@
     }
 
 
-    private void RecordSelected(InputFieldPanel_Record.Record record)
+    private void RecordSelected(InputFieldPanelRecord record)
     {
         var r = new UserRecord();
         r.Name = record.Text;
