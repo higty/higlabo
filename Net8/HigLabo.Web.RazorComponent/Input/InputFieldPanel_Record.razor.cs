@@ -39,7 +39,9 @@ namespace HigLabo.Web.RazorComponent.Input
 		private int _RecordIndex = -1;
 		private List<Record> _RecordList = new();
 
-		[Parameter]
+        [Parameter]
+        public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
+        [Parameter]
 		public string Name { get; set; } = "";
 		[Parameter]
 		public string Text { get; set; } = "";
@@ -60,7 +62,7 @@ namespace HigLabo.Web.RazorComponent.Input
 		[Parameter]
 		public string SearchText { get; set; } = "";
         [Parameter]
-        public EventCallback<LoadingEventArgs> Loading { get; set; }
+        public EventCallback<LoadingEventArgs> OnLoading { get; set; }
         [Parameter]
         public EventCallback<Record> OnRecordSelected { get; set; }
 
@@ -83,7 +85,7 @@ namespace HigLabo.Web.RazorComponent.Input
 				_RecordIndex = -1;
 				this.SearchText = "";
 				this.SelectRecordPanelVisible = true;
-				await this.OnLoading();
+				await this.OnLoading_Invoke();
 				this.StateHasChanged();
 			}
 		}
@@ -99,7 +101,7 @@ namespace HigLabo.Web.RazorComponent.Input
 			{
 				if (_RecordIndex < 0)
 				{
-					await OnLoading();
+					await OnLoading_Invoke();
 				}
 				else
 				{
@@ -127,11 +129,11 @@ namespace HigLabo.Web.RazorComponent.Input
 		}
 		private async ValueTask SearchButton_Click(MouseEventArgs e)
 		{
-			await OnLoading();
+			await OnLoading_Invoke();
         }
-		private async ValueTask OnLoading()
+		private async ValueTask OnLoading_Invoke()
 		{
-			await this.Loading.InvokeAsync(new LoadingEventArgs(_RecordList, this.SearchText));
+			await this.OnLoading.InvokeAsync(new LoadingEventArgs(_RecordList, this.SearchText));
 		}
 		private async ValueTask RecordPanel_Click(Record record)
 		{

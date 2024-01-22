@@ -517,14 +517,14 @@ $width-checkbox-circle: 20px;
         }
     }
 
-    table {
+    > table.date-calendar-table {
         border-collapse: collapse;
 
-        thead {
+        > thead {
             font-size: 12px;
 
-            tr {
-                td {
+            > tr {
+                > td {
                     span {
                         overflow: hidden;
                         display: inline-block;
@@ -539,9 +539,9 @@ $width-checkbox-circle: 20px;
             }
         }
 
-        tbody {
-            tr {
-                td {
+        > tbody {
+            > tr {
+                > td {
                     width: 32px;
                     height: 32px;
                     text-align: center;
@@ -724,11 +724,13 @@ $width-checkbox-circle: 20px;
 .select-record-panel {
     background-color: var(--color-panel-bg);
     width: 100%;
+    border: solid 1px var(--color-border);
 
     .search-container-panel {
         display: flex;
         align-items: center;
         padding: 4px;
+        border-bottom: solid 1px var(--color-border);
 
         .flex-right-panel {
             flex: 0 0 150px;
@@ -737,6 +739,7 @@ $width-checkbox-circle: 20px;
         }
 
         .textbox {
+            border: solid 1px var(--color-border);
             border-radius: 16px;
             padding: 4px 8px;
         }
@@ -748,7 +751,6 @@ $width-checkbox-circle: 20px;
     }
 
     .record-list-panel {
-        border: solid 1px var(--color-form-element-border);
         max-height: 400px;
         overflow-y: scroll;
 

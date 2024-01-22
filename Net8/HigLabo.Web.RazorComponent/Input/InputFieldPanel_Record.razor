@@ -1,4 +1,4 @@
-<InputFieldPanel Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
 	<div class="record-panel" tabindex="0" @ref="this.RecordPanelElementReference"
 	@onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true"
 	@onkeydown="async e => await this.RecordPanel_Keydown(e)">

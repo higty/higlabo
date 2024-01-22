@@ -90,7 +90,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnValueChanged(date.Value);
             }
-            await this.Textbox.FocusAsync(true);
+            //await this.Textbox.FocusAsync(true);
         }
 
         private async Task OnValueChanged(DateOnly? value)
