@@ -3,7 +3,7 @@
     <input type="hidden" style="display:none;" invoke-method="true" @onchange="async e => await SortOrder_Change()" />
     @if (SelectRecordPanelVisible)
     {
-        <SelectRecordPanel OnLoading="OnLoading" OnRecordSelected="async r => await Record_Selected(r)" Closed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
+        <SelectRecordPanel OnLoading="OnLoading" OnRecordSelected="async r => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
     }
     @if (this.ChildContent != null)
     {

@@ -20,7 +20,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 		[Parameter]
 		public EventCallback<InputFieldPanelRecord> OnRecordSelected { get; set; }
 		[Parameter]
-		public EventCallback Closed { get; set; }
+		public EventCallback OnClosed { get; set; }
 
 		protected override async Task OnInitializedAsync()
 		{

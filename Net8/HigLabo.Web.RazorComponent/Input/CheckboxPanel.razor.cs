@@ -13,7 +13,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
 
-        private Task OnValueChanged(ChangeEventArgs e)
+        private Task ValueChanged_Invoke(ChangeEventArgs e)
         {
             if (e.Value == null) { return Task.CompletedTask; }
             var bl = (bool)e.Value;

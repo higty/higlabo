@@ -6,7 +6,7 @@
 	</div>
 	@if (SelectRecordPanelVisible)
 	{
-		<SelectRecordPanel OnLoading="OnLoading" OnRecordSelected="async r => await Record_Selected(r)" Closed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
+		<SelectRecordPanel OnLoading="OnLoading" OnRecordSelected="async r => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
 	}
 </InputFieldPanel>
 

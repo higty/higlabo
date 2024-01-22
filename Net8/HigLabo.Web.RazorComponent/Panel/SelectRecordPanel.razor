@@ -5,7 +5,7 @@
 			   @onkeydown="async e => await SearchTextbox_Keydown(e)" />
 		<div class="flex-right-panel">
 			<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
-			<button class="button radius-button" @onclick="async e => await Closed.InvokeAsync()">@T.Text.Close</button>
+			<button class="button radius-button" @onclick="async e => await OnClosed.InvokeAsync()">@T.Text.Close</button>
 		</div>
 	</div>
 	<div class="record-list-panel">

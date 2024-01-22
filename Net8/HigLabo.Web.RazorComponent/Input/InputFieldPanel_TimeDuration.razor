@@ -19,6 +19,6 @@
         <SelectTimePanel SelectEndTimeMode="@this.SelectEndTimeMode" 
         StartTimeSelected="async time => await this.StartTimeSelected_Callback(time)"
         EndTimeSelected="async time => await this.EndTimeSelected_Callback(time)"
-        Closed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
+        OnClosed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
     }
 </InputFieldPanel>

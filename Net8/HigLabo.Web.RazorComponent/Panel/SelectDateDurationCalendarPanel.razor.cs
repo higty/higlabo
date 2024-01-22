@@ -41,7 +41,7 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public EventCallback<SelectedDateDuration> DateSelected { get; set; }
         [Parameter]
-        public EventCallback Closed { get; set; }
+        public EventCallback OnClosed { get; set; }
 
         protected override void OnParametersSet()
         {
@@ -131,7 +131,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         private async ValueTask ClsoeButton_Click()
         {
-            await this.Closed.InvokeAsync();
+            await this.OnClosed.InvokeAsync();
         }
     }
 }
