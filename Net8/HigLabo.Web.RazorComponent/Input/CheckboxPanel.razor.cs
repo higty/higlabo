@@ -7,9 +7,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public List<string> ClassNameList { get; set; } = new() { "checkbox-panel" };
         [Parameter]
-        public EventCallback<bool> ValueChanged { get; set; }
-        [Parameter]
         public bool Value { get; set; } = false;
+        [Parameter]
+        public EventCallback<bool> ValueChanged { get; set; }
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
 

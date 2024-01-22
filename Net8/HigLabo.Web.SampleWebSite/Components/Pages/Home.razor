@@ -118,6 +118,11 @@
 
     <hr />
 
+    <CheckboxPanel @bind-Value="@Selected"></CheckboxPanel>
+    <span>@this.Selected</span>
+  
+    <hr />
+
     <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" @bind-Value="@this.Time"></InputFieldPanel_Time>
     <span>@this.Time</span>
 
@@ -161,6 +166,8 @@
         public int Age { get; set; } = 22;
         public bool IsAdministrator { get; set; } = false;
     }
+    [Parameter]
+    public bool Selected { get; set; } = false;
 
     [Parameter]
     public string Value1 { get; set; } = "";
