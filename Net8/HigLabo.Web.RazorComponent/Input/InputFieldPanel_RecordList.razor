@@ -1,6 +1,10 @@
-<InputFieldPanel Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult" 
-    AddIconVisible="true" OnRecordAdded="OnRecordAdded">
+<InputFieldPanel Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult"
+    AddIconVisible="true" OnAddIconClicked="async e => await OnAddIconClicked()">
     <input type="hidden" style="display:none;" invoke-method="true" @onchange="async e => await SortOrder_Change()" />
+    @if (SelectRecordPanelVisible)
+    {
+        <SelectRecordPanel OnLoading="OnLoading" OnRecordSelected="async r => await Record_Selected(r)" Closed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
+    }
     @if (this.ChildContent != null)
     {
         <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>

@@ -90,7 +90,18 @@
         }
     </InputFieldPanel_RecordList>
 
-    <InputFieldPanel_Record Text="Person in charge" OnLoading="LoadingRecordList" OnRecordSelected="RecordSelected">
+    <InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" OnLoading="LoadingRecordList" OnRecordSelected="RecordSelected">
+        @foreach (var item in this.SelectedUserList)
+        {
+            <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
+                <span class="user-record-panel">@item.Name</span>
+                <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
+                     style="width: 16px; height: 16px;margin-left: auto;" />
+            </div>
+        }
+    </InputFieldPanel_RecordList>
+
+    <InputFieldPanel_Record Text="Person in charge" OnLoading="LoadingRecordList" OnRecordSelected="PersonInChargeSelected">
         <RecordPanel>
             @if (this.SelectedUser == null)
             {
@@ -111,8 +122,7 @@
     </InputFieldPanel>
    
     <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
-                                  SelectedValue="@this.FileAccess.ToStringFromEnum()"
-                                  ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
+                                  Value="@this.FileAccess" ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
 
     <span>@this.FileAccess.ToStringFromEnum()</span>
 
@@ -245,11 +255,18 @@
     }
 
 
-    private void RecordSelected(InputFieldPanelRecord record)
+    private void PersonInChargeSelected(InputFieldPanelRecord record)
     {
         var r = new UserRecord();
         r.Name = record.Text;
         r.Age = (int?)record.Value ?? 0;
         this.SelectedUser = r;
+    }
+    private void RecordSelected(InputFieldPanelRecord record)
+    {
+        var r = new UserRecord();
+        r.Name = record.Text;
+        r.Age = (int?)record.Value ?? 0;
+        this.SelectedUserList.Add(r);
     }
 }
