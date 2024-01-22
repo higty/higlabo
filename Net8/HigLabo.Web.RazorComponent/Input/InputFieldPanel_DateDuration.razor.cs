@@ -6,13 +6,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_DateDuration 
     {
-        private string _StartDateInputing = "";
-        private string _EndDateInputing = "";
+        private DateOnly? _StartDateInputing = null;
+        private DateOnly? _EndDateInputing = null;
 
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -21,9 +22,14 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
-        public string StartDate { get; set; } = "";
+        public DateOnly? StartDate { get; set; } 
         [Parameter]
-        public string EndDate { get; set; } = "";
+        public EventCallback<DateOnly?> StartDateChanged { get; set; }
+        [Parameter]
+        public DateOnly? EndDate { get; set; } 
+        [Parameter]
+        public EventCallback<DateOnly?> EndDateChanged { get; set; }
+
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
         [Parameter]
@@ -41,13 +47,13 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (e.Value == null)
             {
-                _StartDateInputing = "";
+                _StartDateInputing = null;
                 return;
             }
             var v = e.Value.ToString();
             if (v == null)
             {
-                _StartDateInputing = "";
+                _StartDateInputing = null;
                 return;
             }
 
@@ -60,17 +66,17 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._StartDateInputing = date.Value.ToString(this.DateTimeFormat);
+                this._StartDateInputing = date.ToDateOnly();
                 Debug.WriteLine($"{v} --> {_StartDateInputing}");
             }
             else
             {
-                _StartDateInputing = "";
+                _StartDateInputing = null;
             }
         }
         private async ValueTask StartDate_Blur(FocusEventArgs e)
         {
-            if (_StartDateInputing.IsNullOrEmpty() == false)
+            if (_StartDateInputing.HasValue)
             {
                 this.StartDate = this._StartDateInputing;
             }
@@ -80,13 +86,13 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             if (e.Value == null)
             {
-                _EndDateInputing = "";
+                _EndDateInputing = null;
                 return;
             }
             var v = e.Value.ToString();
             if (v == null)
             {
-                _EndDateInputing = "";
+                _EndDateInputing = null;
                 return;
             }
 
@@ -99,35 +105,46 @@ namespace HigLabo.Web.RazorComponent.Input
             var date = pr.Convert(v);
             if (date.HasValue)
             {
-                this._EndDateInputing = date.Value.ToString(this.DateTimeFormat);
+                this._EndDateInputing = date.ToDateOnly();
                 Debug.WriteLine($"{v} --> {_EndDateInputing}");
             }
             else
             {
-                _EndDateInputing = "";
+                _EndDateInputing = null;
             }
         }
         private async ValueTask EndDate_Blur(FocusEventArgs e)
         {
-            if (_EndDateInputing.IsNullOrEmpty() == false)
+            if (_EndDateInputing.HasValue)
             {
                 this.EndDate = this._EndDateInputing;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
 
-        private void DateSelected_Callback(SelectedDateDuration value)
+        private async ValueTask DateSelected_Callback(SelectedDateDuration value)
         {
             var v = value;
             this.SelectDateCalendarPanelVisible = false;
             if (v.StartDate.HasValue)
             {
-                this.StartDate = v.StartDate.Value.ToString(this.DateTimeFormat);
+                await this.OnStartDateChanged(v.StartDate.Value);
             }
             if (v.EndDate.HasValue)
             {
-                this.EndDate = v.EndDate.Value.ToString(this.DateTimeFormat);
+                await this.OnEndDateChanged(v.EndDate.Value);
             }
+        }
+
+        private async Task OnStartDateChanged(DateOnly? value)
+        {
+            this.StartDate = value;
+            await this.StartDateChanged.InvokeAsync(value);
+        }
+        private async Task OnEndDateChanged(DateOnly? value)
+        {
+            this.EndDate = value;
+            await this.EndDateChanged.InvokeAsync(value);
         }
     }
 }

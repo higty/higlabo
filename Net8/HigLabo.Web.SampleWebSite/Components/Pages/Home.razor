@@ -137,8 +137,10 @@
 
     <hr />
 
-    <InputFieldPanel_DateDuration Text="Start-End" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
-    <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" StartDate="@this.StartDate" EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
+    <InputFieldPanel_DateDuration Text="Start-End" 
+    @bind-StartDate="@this.StartDate" @bind-EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
+    <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" 
+    @bind-StartDate="@this.StartDate" @bind-EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
     <span>@this.StartDate</span>
     <span>@this.EndDate</span>
 
@@ -175,9 +177,9 @@
     [Parameter]
     public DateOnly? Date { get; set; } 
     [Parameter]
-    public string StartDate { get; set; } = "";
+    public DateOnly? StartDate { get; set; }
     [Parameter]
-    public string EndDate { get; set; } = "";
+    public DateOnly? EndDate { get; set; }
 
     [Parameter]
     public string Color { get; set; } = "";
@@ -239,18 +241,4 @@
         r.Age = (int?)record.Value ?? 0;
         this.SelectedUser = r;
     }
-    private void DateDurationSelected((DateOnly? StartDate, DateOnly? EndDate) value)
-    {
-        var v = value;
-        if (v.StartDate.HasValue)
-        {
-            this.StartDate = v.StartDate.Value.ToShortDateString();
-        }
-        if (v.EndDate.HasValue)
-        {
-            this.EndDate = v.EndDate.Value.ToShortDateString();
-        }
-        this.SelectDateDurationCalendarPanelVisible = false;
-    }
-
 }
