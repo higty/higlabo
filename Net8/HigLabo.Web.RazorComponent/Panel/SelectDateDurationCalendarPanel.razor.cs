@@ -118,6 +118,7 @@ namespace HigLabo.Web.RazorComponent.Panel
             {
                 case DateSelectMode.Start:
                     StartDate = date;
+                    EndDate = null;
                     SelectMode = DateSelectMode.End;
                     break;
                 case DateSelectMode.End:
@@ -129,6 +130,10 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
+        private async ValueTask ClearButton_Click()
+        {
+            await this.DateSelected.InvokeAsync(new SelectedDateDuration());
+        }
         private async ValueTask ClsoeButton_Click()
         {
             await this.OnClosed.InvokeAsync();

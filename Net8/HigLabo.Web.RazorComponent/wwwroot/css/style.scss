@@ -117,14 +117,14 @@ $width-checkbox-circle: 20px;
                     + span {
                         &:after {
                             left: 50%;
-                            background: var(--color-scheme-02);
+                            background: var(--color-checkbox-panel-checked);
                         }
                     }
                 }
 
                 &:focus {
                     + span:after {
-                        border: solid 1px var(--color-form-element-focus);
+                        border: solid 1px var(--color-checkbox-panel-focus);
                     }
                 }
             }
@@ -354,6 +354,12 @@ $width-checkbox-circle: 20px;
             top: 32px;
         }
 
+        .select-record-panel {
+            width: 80%;
+            right: 0;
+            min-width: 200px;
+        }
+
         .record-list-panel {
             background-color: var(--color-form-element-bg);
             border: solid 1px var(--color-border);
@@ -362,6 +368,10 @@ $width-checkbox-circle: 20px;
             > .record-panel {
                 cursor: pointer;
                 border: solid 1px transparent;
+                padding-left: 4px;
+
+                .text {
+                }
 
                 &:hover {
                     background-color: var(--color-form-element-hover);
@@ -450,7 +460,7 @@ $width-checkbox-circle: 20px;
         }
 
         &:focus {
-            text-decoration: underline;
+            border: solid 1px var(--color-select-button-focus);
         }
 
         &:hover {
@@ -753,7 +763,7 @@ $width-checkbox-circle: 20px;
 
     .record-list-panel {
         max-height: 400px;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         > .record-panel {
             display: flex;
@@ -794,43 +804,6 @@ $width-checkbox-circle: 20px;
             background-color: var(--color-glay-02);
         }
     }
-
-    .drag-panel {
-        display: flex;
-        align-items: center;
-
-        .drag-bar-panel {
-            flex: 0 0 12px;
-            cursor: move;
-            overflow: hidden;
-            display: grid;
-            place-items: center;
-            background-color: var(--color-glay-01);
-
-            img {
-                width: 32px;
-                height: 32px;
-                margin-left: -10px;
-            }
-        }
-
-        .content-panel {
-            flex: 0 1 100%;
-        }
-
-        .delete-panel {
-            display: grid;
-            place-items: center;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-
-            img {
-                width: 32px;
-                height: 32px;
-            }
-        }
-    }
 }
 
 .toggle-record-panel {
@@ -845,18 +818,26 @@ $width-checkbox-circle: 20px;
         box-sizing: border-box;
 
         .drag-bar-panel {
+            display: flex;
+            align-items: center;
             flex: 0 0 12px;
             cursor: move;
-            overflow: hidden;
-            display: grid;
-            place-items: center;
             background-color: var(--color-glay-01);
-            margin-right: 6px;
 
-            img {
-                width: 32px;
-                height: 32px;
-                margin-left: -10px;
+            .icon-panel {
+                display: grid;
+                place-items: center;
+                overflow: hidden;
+                width: 12px;
+
+                img {
+                    width: 32px;
+                    height: 32px;
+                    margin-left: -10px;
+                }
+            }
+
+            &.dragging {
             }
         }
 
@@ -864,14 +845,22 @@ $width-checkbox-circle: 20px;
         .header-textbox {
             display: block;
             flex: 0 1 100%;
-            min-height: 32px;
             padding: 4px;
             border: solid 1px transparent;
             box-sizing: border-box;
+        }
+
+        .header-text {
+            min-height: 32px;
 
             &:focus {
                 text-decoration: underline;
             }
+        }
+
+        .header-textbox {
+            height: 28px;
+            background-color: transparent;
         }
 
         .delete-icon-panel {

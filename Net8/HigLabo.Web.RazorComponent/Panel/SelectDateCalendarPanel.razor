@@ -46,6 +46,7 @@
         </tbody>
     </table>
     <div class="footer-panel">
+        <button class="button radius-button" @onclick="async e => await ClearButton_Click()">@T.Text.Clear</button>
         <button class="button radius-button" @onclick="async e => await CloseButton_Click()">@T.Text.Close</button>
     </div>
 </div>

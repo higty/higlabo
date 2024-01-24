@@ -8,7 +8,10 @@
            @onclick="e => this.SelectDateCalendarPanelVisible = true"
            @oninput="e => this.StartDate_Input(e)"
            @onblur="async e => await this.StartDate_Blur(e)" />
-    <span>-</span>
+    @if (this.Layout == InputFieldPanelLayout.Default || this.StartDate.HasValue || this.EndDate.HasValue)
+    {
+        <span class="dete-separator">-</span>
+    }
     <input type="text" class="textbox date" value="@endValue"
            @onchange="e => this.OnEndDateChanged(e.Value?.ToString()?.ToDateOnly())"
            @onclick="e => this.SelectDateCalendarPanelVisible = true"

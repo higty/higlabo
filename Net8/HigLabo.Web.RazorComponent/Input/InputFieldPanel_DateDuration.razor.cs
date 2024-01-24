@@ -131,14 +131,8 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             var v = value;
             this.SelectDateCalendarPanelVisible = false;
-            if (v.StartDate.HasValue)
-            {
-                await this.OnStartDateChanged(v.StartDate.Value);
-            }
-            if (v.EndDate.HasValue)
-            {
-                await this.OnEndDateChanged(v.EndDate.Value);
-            }
+            await this.OnStartDateChanged(v.StartDate);
+            await this.OnEndDateChanged(v.EndDate);
         }
 
         private async Task OnStartDateChanged(DateOnly? value)

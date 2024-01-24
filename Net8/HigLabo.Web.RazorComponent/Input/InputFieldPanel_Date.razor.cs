@@ -86,11 +86,7 @@ namespace HigLabo.Web.RazorComponent.Input
         private async ValueTask DateSelected_Callback(DateOnly? date)
         {
             this.SelectDateCalendarPanelVisible = false;
-            if (date.HasValue)
-            {
-                await this.OnValueChanged(date.Value);
-            }
-            //await this.Textbox.FocusAsync(true);
+            await this.OnValueChanged(date);
         }
 
         private async Task OnValueChanged(DateOnly? value)

@@ -49,10 +49,14 @@
     --color-button-active: var(--color-scheme-07);
     --color-button-hover: var(--color-scheme-03);
     --color-button-text: var(--color-white);
+    /* checkbox-panel */
+    --color-checkbox-panel-checked: var(--color-scheme-04);
+    --color-checkbox-panel-focus: var(--color-scheme-09);
     /* select-button */
     --color-select-button-text: var(--color-white);
     --color-select-button-bg: var(--color-glay-04);
-    --color-select-button-selected: var(--color-scheme-06);
+    --color-select-button-selected: var(--color-scheme-04);
+    --color-select-button-focus: var(--color-scheme-09);
 }
 
 [dark-mode='true'] {

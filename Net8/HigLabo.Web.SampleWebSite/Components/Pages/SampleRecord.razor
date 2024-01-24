@@ -1,0 +1,163 @@
+﻿@rendermode InteractiveServer
+
+<InputFieldPanel_Record Text="Person in charge" OnRecordListLoading="LoadingRecordList" OnRecordSelected="PersonInChargeSelected">
+    <RecordPanel>
+        @if (this.SelectedUser == null)
+        {
+            <div>Select user</div>
+        }
+        else
+        {
+            <div style="padding: 4px 8px;">
+                <span class="user-record-panel">@this.SelectedUser.Name</span>
+                <span class="age">@this.SelectedUser.Age</span>
+            </div>
+        }
+    </RecordPanel>
+</InputFieldPanel_Record>
+
+<InputFieldPanel_RecordList Text="User list" OnRecordAdded="AddUser">
+    @{
+        var sortIndex = 0;
+        foreach (var rUser in this.SelectedUserList)
+        {
+            <ToggleRecordPanel HeaderText="@rUser.Name" AllowDelete="true" Deleted="e => this.DeleteUser(rUser)"
+                               AllowSort="true" SortGroup="SortGroup" SortIndex="@sortIndex" OnItemDropped="OnUserDropped">
+                <ContentPanel>
+                    <div class="permission-list-panel">
+                        <CheckboxPanel @bind-Value="@rUser.IsAdministrator">Admin</CheckboxPanel>
+                    </div>
+                </ContentPanel>
+            </ToggleRecordPanel>
+            sortIndex++;
+        }
+    }
+</InputFieldPanel_RecordList>
+
+<InputFieldPanel_RecordList Text="User list" OnRecordAdded="AddUser">
+    @foreach (var item in this.SelectedUserList)
+    {
+        <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
+            <span class="user-record-panel">@item.Name</span>
+            <span class="age" style="color: #888888;">@item.Age</span>
+            <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
+                 style="width: 16px; height: 16px;margin-left: auto;" />
+        </div>
+    }
+</InputFieldPanel_RecordList>
+
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" OnRecordListLoading="LoadingRecordList" OnRecordSelected="RecordSelected">
+    @foreach (var item in this.SelectedUserList)
+    {
+        <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
+            <span class="user-record-panel">@item.Name</span>
+            <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
+                 style="width: 16px; height: 16px;margin-left: auto;" />
+        </div>
+    }
+</InputFieldPanel_RecordList>
+
+
+@code {
+    public class UserRecord
+    {
+        public ToggleState ToggleState { get; set; } = ToggleState.Hidden;
+        public Guid UserId { get; set; } = Guid.NewGuid();
+        public string Name { get; set; } = "";
+        public int Age { get; set; } = 22;
+        public bool IsAdministrator { get; set; } = false;
+    }
+    [Parameter]
+    public bool Selected { get; set; } = false;
+
+    [Parameter]
+    public string Value1 { get; set; } = "";
+    [Parameter]
+    public string Value2 { get; set; } = "";
+
+    [Parameter]
+    public TimeSpan? Time { get; set; }
+
+    [Parameter]
+    public TimeSpan? StartTime { get; set; }
+    [Parameter]
+    public TimeSpan? EndTime { get; set; }
+    [Parameter]
+    public DateOnly? Date { get; set; } 
+    [Parameter]
+    public DateOnly? StartDate { get; set; }
+    [Parameter]
+    public DateOnly? EndDate { get; set; }
+    [Parameter]
+    public DateOnly? StartDate1 { get; set; }
+    [Parameter]
+    public DateOnly? EndDate1 { get; set; }
+
+    [Parameter]
+    public string Color { get; set; } = "";
+
+    [Parameter]
+    public FileAccess FileAccess { get; set; } = FileAccess.Read;
+    [Parameter]
+    public bool SelectDateCalendarPanelVisible { get; set; } = false;
+    [Parameter]
+    public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
+
+    [Parameter]
+    public UserRecord SelectedUser { get; set; } = new() { Name = "Higty", Age = 22 };
+    [Parameter]
+    public List<UserRecord> SelectedUserList { get; init; } = new();
+    [Parameter]
+    public SortGroup SortGroup { get; set; } = new();
+
+    private void AddUser()
+    {
+        var r = new UserRecord();
+        r.Name = "Higty" + DateTime.Now.Second;
+        r.Age = DateTime.Now.Second;
+        this.SelectedUserList.Add(r);
+    }
+    private void DeleteUser(UserRecord record)
+    {
+        this.SelectedUserList.Remove(record);
+    }
+    private void LoadingRecordList(RecordListLoadingContext e)
+    {
+        var l = new List<InputFieldPanelRecord>();
+        l.Clear();
+        for (int i = 0; i < 20; i++)
+        {
+            l.Add(new InputFieldPanelRecord("User" + i, i));
+        }
+
+        e.RecordList.Clear();
+        if (e.SearchText.IsNullOrEmpty())
+        {
+            e.RecordList.AddRange(l);
+        }
+        else
+        {
+            e.RecordList.AddRange(l.FindAll(el => el.Text.Contains(e.SearchText)));
+        }
+    }
+    private void OnUserDropped(ItemDroppedEventArgs e)
+    {
+        SortGroup.Sort(this.SelectedUserList, e);
+    }
+
+
+    private void PersonInChargeSelected(InputFieldPanelRecord record)
+    {
+        var r = new UserRecord();
+        r.Name = record.Text;
+        r.Age = (int?)record.Value ?? 0;
+        this.SelectedUser = r;
+    }
+    private void RecordSelected(InputFieldPanelRecord record)
+    {
+        var r = new UserRecord();
+        r.Name = record.Text;
+        r.Age = (int?)record.Value ?? 0;
+        this.SelectedUserList.Add(r);
+    }
+}

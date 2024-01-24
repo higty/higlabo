@@ -49,10 +49,14 @@
   --color-button-active: var(--color-scheme-07);
   --color-button-hover: var(--color-scheme-03);
   --color-button-text: var(--color-white);
+  /* checkbox-panel */
+  --color-checkbox-panel-checked: var(--color-scheme-04);
+  --color-checkbox-panel-focus: var(--color-scheme-09);
   /* select-button */
   --color-select-button-text: var(--color-white);
   --color-select-button-bg: var(--color-glay-04);
-  --color-select-button-selected: var(--color-scheme-06);
+  --color-select-button-selected: var(--color-scheme-04);
+  --color-select-button-focus: var(--color-scheme-09);
 }
 
 [dark-mode=true] {
@@ -457,10 +461,10 @@
 }
 .checkbox-panel label.display-flex .checkbox input:checked + span:after {
   left: 50%;
-  background: var(--color-scheme-02);
+  background: var(--color-checkbox-panel-checked);
 }
 .checkbox-panel label.display-flex .checkbox input:focus + span:after {
-  border: solid 1px var(--color-form-element-focus);
+  border: solid 1px var(--color-checkbox-panel-focus);
 }
 .checkbox-panel label.display-flex .checkbox span {
   width: 100%;
@@ -662,6 +666,11 @@
 .input-field-panel .child-content-panel .select-color-panel {
   top: 32px;
 }
+.input-field-panel .child-content-panel .select-record-panel {
+  width: 80%;
+  right: 0;
+  min-width: 200px;
+}
 .input-field-panel .child-content-panel .record-list-panel {
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
@@ -670,6 +679,7 @@
 .input-field-panel .child-content-panel .record-list-panel > .record-panel {
   cursor: pointer;
   border: solid 1px transparent;
+  padding-left: 4px;
 }
 .input-field-panel .child-content-panel .record-list-panel > .record-panel:hover {
   background-color: var(--color-form-element-hover);
@@ -744,7 +754,7 @@
   border: solid 1px transparent;
 }
 .select-button-list-panel .record-value-panel:focus {
-  text-decoration: underline;
+  border: solid 1px var(--color-select-button-focus);
 }
 .select-button-list-panel .record-value-panel:hover {
   background-color: var(--color-select-button-selected);
@@ -994,7 +1004,7 @@
 }
 .select-record-panel .record-list-panel {
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .select-record-panel .record-list-panel > .record-panel {
   display: flex;
@@ -1029,37 +1039,6 @@
   display: block;
   background-color: var(--color-glay-02);
 }
-.sort-panel .drag-panel {
-  display: flex;
-  align-items: center;
-}
-.sort-panel .drag-panel .drag-bar-panel {
-  flex: 0 0 12px;
-  cursor: move;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  background-color: var(--color-glay-01);
-}
-.sort-panel .drag-panel .drag-bar-panel img {
-  width: 32px;
-  height: 32px;
-  margin-left: -10px;
-}
-.sort-panel .drag-panel .content-panel {
-  flex: 0 1 100%;
-}
-.sort-panel .drag-panel .delete-panel {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-}
-.sort-panel .drag-panel .delete-panel img {
-  width: 32px;
-  height: 32px;
-}
 
 .toggle-record-panel {
   display: block;
@@ -1073,15 +1052,19 @@
   box-sizing: border-box;
 }
 .toggle-record-panel > .header-panel .drag-bar-panel {
+  display: flex;
+  align-items: center;
   flex: 0 0 12px;
   cursor: move;
-  overflow: hidden;
+  background-color: var(--color-glay-01);
+}
+.toggle-record-panel > .header-panel .drag-bar-panel .icon-panel {
   display: grid;
   place-items: center;
-  background-color: var(--color-glay-01);
-  margin-right: 6px;
+  overflow: hidden;
+  width: 12px;
 }
-.toggle-record-panel > .header-panel .drag-bar-panel img {
+.toggle-record-panel > .header-panel .drag-bar-panel .icon-panel img {
   width: 32px;
   height: 32px;
   margin-left: -10px;
@@ -1090,14 +1073,19 @@
 .toggle-record-panel > .header-panel .header-textbox {
   display: block;
   flex: 0 1 100%;
-  min-height: 32px;
   padding: 4px;
   border: solid 1px transparent;
   box-sizing: border-box;
 }
-.toggle-record-panel > .header-panel .header-text:focus,
-.toggle-record-panel > .header-panel .header-textbox:focus {
+.toggle-record-panel > .header-panel .header-text {
+  min-height: 32px;
+}
+.toggle-record-panel > .header-panel .header-text:focus {
   text-decoration: underline;
+}
+.toggle-record-panel > .header-panel .header-textbox {
+  height: 28px;
+  background-color: transparent;
 }
 .toggle-record-panel > .header-panel .delete-icon-panel {
   flex: 0 0 32px;
