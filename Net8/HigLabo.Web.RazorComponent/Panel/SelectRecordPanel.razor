@@ -18,7 +18,7 @@
 			}
 			var r = _RecordList[i];
 			<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">
-				<span @onclick:preventDefault>@r.Text</span>
+				<span class="text">@r.Text</span>
 			</div>
 		}
 	</div>

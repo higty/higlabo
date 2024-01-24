@@ -27,16 +27,16 @@
 <style type="text/css">
     .scheme-panel {
         display: inline-block;
-        margin-right: 6px;
+        margin: 4px;
         cursor: pointer;
+        border: solid 1px #aaaaaa;
+        padding: 4px;
     }
 
     .scheme-panel:hover {
         background-color: #eeeeee;
     }
 </style>
-
-<h2>Sample component</h2>
 
 <div>
     @foreach (var item in l)
@@ -45,228 +45,23 @@
     }
 </div>
 <div>
-    @for (int i = 0; i < 10; i++)
+    @for (int i = 1; i <= 10; i++)
     {
-        <span style="display: inline-block; width: 60px; height: 60px;background-color: var(--color-primary-0@(i+1));"></span>
+        var number = i.ToString("00");
+        <span style="display: inline-block; width: 60px; height: 60px;background-color: var(--color-scheme-@number);"></span>
     }
 </div>
 
-<div style="width: 80%; margin-bottom: 400px; padding-bottom: 400px;">
-    <Button Text="Save"></Button>
-    <LoadingPanel></LoadingPanel>
-    <FileUploadPanel></FileUploadPanel>
+<hr />
+<h2>Basic input</h2>
+<SampleBasic></SampleBasic>
+<hr />
+<h2>Date and Time input</h2>
+<SampleDateTime></SampleDateTime>
+<hr />
+<h2>Record input</h2>
+<SampleRecord></SampleRecord>
 
-    <InputFieldPanel Text="Field1">
-        <InputText @bind-Value="@Value1" class="textbox"></InputText>
-    </InputFieldPanel>
-
-    <InputFieldPanel_RecordList Text="User list" OnRecordAdded="AddUser">
-        @{
-            var sortIndex = 0;
-            foreach (var rUser in this.SelectedUserList)
-            {
-                <ToggleRecordPanel HeaderText="@rUser.Name" AllowDelete="true" Deleted="e => this.DeleteUser(rUser)"
-                                   AllowSort="true" SortGroup="SortGroup" SortIndex="@sortIndex" OnItemDropped="OnUserDropped">
-                    <ContentPanel>
-                        <div class="permission-list-panel">
-                            <CheckboxPanel @bind-Value="@rUser.IsAdministrator">Admin</CheckboxPanel>
-                        </div>
-                    </ContentPanel>
-                </ToggleRecordPanel>
-                sortIndex++;
-            }
-        }
-    </InputFieldPanel_RecordList>
-
-    <InputFieldPanel_RecordList Text="User list" OnRecordAdded="AddUser">
-        @foreach (var item in this.SelectedUserList)
-        {
-            <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
-                <span class="user-record-panel">@item.Name</span>
-                <span class="age" style="color: #888888;">@item.Age</span>
-                <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
-                     style="width: 16px; height: 16px;margin-left: auto;" />
-            </div>
-        }
-    </InputFieldPanel_RecordList>
-
-    <InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" OnLoading="LoadingRecordList" OnRecordSelected="RecordSelected">
-        @foreach (var item in this.SelectedUserList)
-        {
-            <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
-                <span class="user-record-panel">@item.Name</span>
-                <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
-                     style="width: 16px; height: 16px;margin-left: auto;" />
-            </div>
-        }
-    </InputFieldPanel_RecordList>
-
-    <InputFieldPanel_Record Text="Person in charge" OnLoading="LoadingRecordList" OnRecordSelected="PersonInChargeSelected">
-        <RecordPanel>
-            @if (this.SelectedUser == null)
-            {
-                <div>Select user</div>
-            }
-            else
-            {
-                <div style="padding: 4px 8px;">
-                    <span class="user-record-panel">@this.SelectedUser.Name</span>
-                    <span class="age">@this.SelectedUser.Age</span>
-                </div>
-            }
-        </RecordPanel>
-    </InputFieldPanel_Record>
-
-    <InputFieldPanel Text="Field1">
-        <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
-    </InputFieldPanel>
-   
-    <InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
-                                  Value="@this.FileAccess" ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
-
-    <span>@this.FileAccess.ToStringFromEnum()</span>
-
-    <hr />
-
-    <CheckboxPanel @bind-Value="@Selected"></CheckboxPanel>
-    <span>@this.Selected</span>
-  
-    <hr />
-
-    <InputFieldPanel_Time Layout="InputFieldPanelLayout.Default" Text="StartTime" @bind-Value="@this.Time"></InputFieldPanel_Time>
-    <span>@this.Time</span>
-
-    <hr />
-
-    <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.EndTime" Layout="InputFieldPanelLayout.Default" 
-    Text="Start-End" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
-    <InputFieldPanel_TimeDuration SelectEndTimeMode="SelectEndTimeMode.Duration" Layout="InputFieldPanelLayout.Default" 
-    Text="Time duration" @bind-StartTime="@this.StartTime" @bind-EndTime="@this.EndTime"></InputFieldPanel_TimeDuration>
-    <time>@this.StartTime - @this.EndTime</time>
-
-    <hr />
-
-    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Default" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
-    <InputFieldPanel_Date Layout="InputFieldPanelLayout.Flex" Text="Date" @bind-Value="@this.Date"></InputFieldPanel_Date>
-    <span>@this.Date</span>
-
-    <hr />
-
-    <InputFieldPanel_DateDuration Text="Start-End" 
-    @bind-StartDate="@this.StartDate" @bind-EndDate="@this.EndDate"></InputFieldPanel_DateDuration>
-    <InputFieldPanel_DateDuration Layout="InputFieldPanelLayout.Flex" Text="Field4" 
-    @bind-StartDate="@this.StartDate1" @bind-EndDate="@this.EndDate1"></InputFieldPanel_DateDuration>
-    <span>@this.StartDate</span>
-    <span>@this.EndDate</span>
-
-    <hr />
-
-    <InputFieldPanel_Color Text="Back color" @bind-Value="@this.Color"></InputFieldPanel_Color>
-    <InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color" @bind-Value="@this.Color"></InputFieldPanel_Color>
-    <span>@this.Color</span>
-</div>
+<div style="height: 600px;"></div>
 
 
-@code {
-    public class UserRecord
-    {
-        public ToggleState ToggleState { get; set; } = ToggleState.Hidden;
-        public Guid UserId { get; set; } = Guid.NewGuid();
-        public string Name { get; set; } = "";
-        public int Age { get; set; } = 22;
-        public bool IsAdministrator { get; set; } = false;
-    }
-    [Parameter]
-    public bool Selected { get; set; } = false;
-
-    [Parameter]
-    public string Value1 { get; set; } = "";
-    [Parameter]
-    public string Value2 { get; set; } = "";
-
-    [Parameter]
-    public TimeSpan? Time { get; set; }
-
-    [Parameter]
-    public TimeSpan? StartTime { get; set; }
-    [Parameter]
-    public TimeSpan? EndTime { get; set; }
-    [Parameter]
-    public DateOnly? Date { get; set; } 
-    [Parameter]
-    public DateOnly? StartDate { get; set; }
-    [Parameter]
-    public DateOnly? EndDate { get; set; }
-    [Parameter]
-    public DateOnly? StartDate1 { get; set; }
-    [Parameter]
-    public DateOnly? EndDate1 { get; set; }
-
-    [Parameter]
-    public string Color { get; set; } = "";
-
-    [Parameter]
-    public FileAccess FileAccess { get; set; } = FileAccess.Read;
-    [Parameter]
-    public bool SelectDateCalendarPanelVisible { get; set; } = false;
-    [Parameter]
-    public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
-
-    [Parameter]
-    public UserRecord SelectedUser { get; set; } = new() { Name = "Higty", Age = 22 };
-    [Parameter]
-    public List<UserRecord> SelectedUserList { get; init; } = new();
-    [Parameter]
-    public SortGroup SortGroup { get; set; } = new();
-
-    private void AddUser()
-    {
-        var r = new UserRecord();
-        r.Name = "Higty" + DateTime.Now.Second;
-        r.Age = DateTime.Now.Second;
-        this.SelectedUserList.Add(r);
-    }
-    private void DeleteUser(UserRecord record)
-    {
-        this.SelectedUserList.Remove(record);
-    }
-    private void LoadingRecordList(InputFieldPanelLoadingEventArgs e)
-    {
-        var l = new List<InputFieldPanelRecord>();
-        l.Clear();
-        for (int i = 0; i < 20; i++)
-        {
-            l.Add(new InputFieldPanelRecord("User" + i, i));
-        }
-
-        e.RecordList.Clear();
-        if (e.SearchText.IsNullOrEmpty())
-        {
-            e.RecordList.AddRange(l);
-        }
-        else
-        {
-            e.RecordList.AddRange(l.FindAll(el => el.Text.Contains(e.SearchText)));
-        }
-    }
-    private void OnUserDropped(ItemDroppedEventArgs e)
-    {
-        SortGroup.Sort(this.SelectedUserList, e);
-    }
-
-
-    private void PersonInChargeSelected(InputFieldPanelRecord record)
-    {
-        var r = new UserRecord();
-        r.Name = record.Text;
-        r.Age = (int?)record.Value ?? 0;
-        this.SelectedUser = r;
-    }
-    private void RecordSelected(InputFieldPanelRecord record)
-    {
-        var r = new UserRecord();
-        r.Name = record.Text;
-        r.Age = (int?)record.Value ?? 0;
-        this.SelectedUserList.Add(r);
-    }
-}

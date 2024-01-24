@@ -16,7 +16,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 		[Parameter]
 		public string SearchText { get; set; } = "";
 		[Parameter]
-		public EventCallback<InputFieldPanelLoadingEventArgs> OnLoading { get; set; }
+		public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
 		[Parameter]
 		public EventCallback<InputFieldPanelRecord> OnRecordSelected { get; set; }
 		[Parameter]
@@ -24,11 +24,11 @@ namespace HigLabo.Web.RazorComponent.Panel
 
 		protected override async Task OnInitializedAsync()
 		{
-			await this.OnLoading_Invoke();
+			await this.OnRecordListLoading_Invoke();
 		}
-		private async ValueTask OnLoading_Invoke()
+		private async ValueTask OnRecordListLoading_Invoke()
 		{
-			await this.OnLoading.InvokeAsync(new InputFieldPanelLoadingEventArgs(_RecordList, this.SearchText));
+			await this.OnRecordListLoading.InvokeAsync(new RecordListLoadingContext(_RecordList, this.SearchText));
 		}
 
 		private async ValueTask SearchTextbox_Keydown(KeyboardEventArgs e)
@@ -42,7 +42,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 			{
 				if (_RecordIndex < 0)
 				{
-					await OnLoading_Invoke();
+					await OnRecordListLoading_Invoke();
 				}
 				else
 				{
@@ -70,8 +70,9 @@ namespace HigLabo.Web.RazorComponent.Panel
 		}
 		private async ValueTask SearchButton_Click(MouseEventArgs e)
 		{
-			await OnLoading_Invoke();
+			await OnRecordListLoading_Invoke();
 		}
+
 		private async ValueTask RecordPanel_Click(InputFieldPanelRecord record)
 		{
 			await this.RecordPanelSelected(record);
@@ -79,6 +80,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 		private async ValueTask RecordPanelSelected(InputFieldPanelRecord record)
 		{
 			await this.OnRecordSelected.InvokeAsync(record);
-		}
-	}
+            _RecordList.Remove(record);
+        }
+    }
 }

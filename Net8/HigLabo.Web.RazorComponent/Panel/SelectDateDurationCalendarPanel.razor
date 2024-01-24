@@ -14,7 +14,7 @@
             <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayRight__svg)" class="icon" />
         </span>
     </div>
-    <table>
+    <table class="date-calendar-table">
         <thead>
             <tr>
                 @foreach (var rDate in this.WeekList[0].DateList)
@@ -58,6 +58,7 @@
         </tbody>
     </table>
     <div class="footer-panel">
+        <button class="button radius-button" @onclick="async e => await ClearButton_Click()">@T.Text.Clear</button>
         <button class="button radius-button" @onclick="async e => await ClsoeButton_Click()">@T.Text.Close</button>
     </div>
 </div>

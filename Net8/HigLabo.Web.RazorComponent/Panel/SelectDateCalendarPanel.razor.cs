@@ -66,6 +66,11 @@ namespace HigLabo.Web.RazorComponent.Panel
         {
             await this.DateSelected.InvokeAsync(date);
         }
+
+        private async ValueTask ClearButton_Click()
+        {
+            await this.DateSelected.InvokeAsync(null);
+        }
         private async ValueTask CloseButton_Click()
         {
             await this.OnClosed.InvokeAsync();

@@ -19,6 +19,8 @@ namespace HigLabo.Web.RazorComponent.Input
         public bool FieldNameVisible { get; set; } = true;
         [Parameter]
         public AddRecordMode AddRecordMode { get; set; } = AddRecordMode.Add;
+        [Parameter]
+        public bool MultipleSelectRecord { get; set; } = true;
 
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
@@ -28,7 +30,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
         [Parameter]
-        public EventCallback<InputFieldPanelLoadingEventArgs> OnLoading { get; set; }
+        public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
         [Parameter]
@@ -51,12 +53,11 @@ namespace HigLabo.Web.RazorComponent.Input
         }
         private async ValueTask Record_Selected(InputFieldPanelRecord record)
         {
-            this.SelectRecordPanelVisible = false;
+            if (this.MultipleSelectRecord == false)
+            {
+                this.SelectRecordPanelVisible = false;
+            }
             await this.OnRecordSelected.InvokeAsync(record);
-        }
-        private async ValueTask SortOrder_Change()
-        {
-            await this.OnRecordDropped.InvokeAsync();
         }
     }
 }

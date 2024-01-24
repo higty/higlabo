@@ -32,13 +32,13 @@ namespace HigLabo.Web.RazorComponent.Input
 
             this.StateHasChanged();
         }
-        private async ValueTask RecordValuePanel_Click(object value)
+        private async ValueTask RecordValuePanel_Click(object? value)
         {
             this.Value = value;
             this.StateHasChanged();
             await this.ValueChanged.InvokeAsync(value);
         }
-        private async ValueTask RecordValuePanel_Keydown(KeyboardEventArgs e, object value)
+        private async ValueTask RecordValuePanel_Keydown(KeyboardEventArgs e, object? value)
         {
             if (e.Key == " " || 
                 e.Key == "Enter")

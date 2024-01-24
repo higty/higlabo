@@ -1,9 +1,11 @@
-<div class="toggle-record-panel">
+<div class="toggle-record-panel" @ondragstart="e => Drag_Start(e)" draggable="true" @ondrop="Drag_End" ondragover="event.preventDefault();" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave">
     <div class="header-panel">
         @if (this.AllowSort)
         {
-            <span class="drag-bar-panel" @ondragstart="e => Drag_Start(e)" draggable="true">
-                <img src="@UrlInfo.GetIconUrl(Higlabo__.DragBarPanel__svg)" />
+            <span class="@this.DragBarPanelClassName">
+                <span class="icon-panel">
+                    <img class="icon" src="@UrlInfo.GetIconUrl(Higlabo__.DragBarPanel__svg)" />
+                </span>
             </span>
         }
         @if (this.AllowHeaderEdit == true)
@@ -29,7 +31,7 @@
 </div>
 @if (this.AllowSort)
 {
-    <div class="@this.DropPanelClassName" @ondrop="Drag_End" ondragover="event.preventDefault();" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave"></div>
+    <div class="@this.DropPanelClassName"></div>
 }
 
 

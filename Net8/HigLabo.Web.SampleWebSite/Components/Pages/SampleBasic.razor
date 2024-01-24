@@ -1,0 +1,67 @@
+﻿@rendermode InteractiveServer
+
+<FileUploadPanel></FileUploadPanel>
+
+<InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanel_SelectButton.CreateRecordList<FileAccess>()"
+                              Value="@this.FileAccess" ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
+
+<span>@this.FileAccess.ToStringFromEnum()</span>
+
+<CheckboxPanel @bind-Value="@Selected"></CheckboxPanel>
+<span>@this.Selected</span>
+
+<InputFieldPanel Text="Field1">
+    <InputText @bind-Value="@Value1" class="textbox"></InputText>
+</InputFieldPanel>
+
+<InputFieldPanel Text="Field1">
+    <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
+</InputFieldPanel>
+
+<InputFieldPanel_Color Text="Back color" @bind-Value="@this.Color"></InputFieldPanel_Color>
+<InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color" @bind-Value="@this.Color"></InputFieldPanel_Color>
+<span>@this.Color</span>
+
+<Button Text="Save"></Button>
+<Button Text="Save" ClassName="button large-button"></Button>
+<Button Text="Save" ClassName="button radius-button large-button"></Button>
+<LoadingPanel></LoadingPanel>
+
+@code {
+    [Parameter]
+    public bool Selected { get; set; } = false;
+
+    [Parameter]
+    public string Value1 { get; set; } = "";
+    [Parameter]
+    public string Value2 { get; set; } = "";
+
+    [Parameter]
+    public TimeSpan? Time { get; set; }
+
+    [Parameter]
+    public TimeSpan? StartTime { get; set; }
+    [Parameter]
+    public TimeSpan? EndTime { get; set; }
+    [Parameter]
+    public DateOnly? Date { get; set; } 
+    [Parameter]
+    public DateOnly? StartDate { get; set; }
+    [Parameter]
+    public DateOnly? EndDate { get; set; }
+    [Parameter]
+    public DateOnly? StartDate1 { get; set; }
+    [Parameter]
+    public DateOnly? EndDate1 { get; set; }
+
+    [Parameter]
+    public string Color { get; set; } = "";
+
+    [Parameter]
+    public FileAccess FileAccess { get; set; } = FileAccess.Read;
+    [Parameter]
+    public bool SelectDateCalendarPanelVisible { get; set; } = false;
+    [Parameter]
+    public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
+
+}

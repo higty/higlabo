@@ -54,6 +54,8 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public SortGroup SortGroup { get; set; } = new();
         [Parameter]
+        public string DragBarPanelClassName { get; set; } = "drag-bar-panel";
+        [Parameter]
         public string DropPanelClassName { get; set; } = "drop-panel";
         [Parameter]
         public EventCallback<ItemDroppedEventArgs> OnItemDropped { get; set; }
@@ -98,14 +100,17 @@ namespace HigLabo.Web.RazorComponent.Panel
         }
         private void Drag_Enter()
         {
+            this.DragBarPanelClassName = "drag-bar-panel dragging";
             this.DropPanelClassName = "drop-panel dragging";
         }
         private void Drag_Leave()
         {
+            this.DragBarPanelClassName = "drag-bar-panel";
             this.DropPanelClassName = "drop-panel";
         }
         private async void Drag_End(DragEventArgs e)
         {
+            this.DragBarPanelClassName = "drag-bar-panel";
             this.DropPanelClassName = "drop-panel";
  
             if (this.SortGroup.DragItem == null) { return; }
