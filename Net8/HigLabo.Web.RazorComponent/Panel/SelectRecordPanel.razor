@@ -1,13 +1,16 @@
 <div class="select-record-panel">
-	<div class="search-container-panel">
-		<input type="text" class="textbox" placeholder="@T.Text.Search"
-			   @bind="SearchText" @bind:event="oninput"
-			   @onkeydown="async e => await SearchTextbox_Keydown(e)" />
-		<div class="flex-right-panel">
-			<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
-			<button class="button radius-button" @onclick="async e => await OnClosed.InvokeAsync()">@T.Text.Close</button>
+	@if (this.SearchContainerPanelVisible == true && _RecordList.Count > 10)
+	{
+		<div class="search-container-panel">
+			<input type="text" class="textbox" placeholder="@T.Text.Search"
+				   @bind="SearchText" @bind:event="oninput"
+				   @onkeydown="async e => await SearchTextbox_Keydown(e)" />
+			<div class="flex-right-panel">
+				<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
+				<button class="button radius-button" @onclick="async e => await OnClosed.InvokeAsync()">@T.Text.Close</button>
+			</div>
 		</div>
-	</div>
+	}
 	<div class="record-list-panel">
 		@for (int i = 0; i < _RecordList.Count; i++)
 		{

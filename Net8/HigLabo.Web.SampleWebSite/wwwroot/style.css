@@ -667,7 +667,6 @@
   top: 32px;
 }
 .input-field-panel .child-content-panel .select-record-panel {
-  width: 80%;
   right: 0;
   min-width: 200px;
 }
@@ -702,9 +701,13 @@
 .input-field-flex-panel .display-flex .child-content-panel {
   position: relative;
   flex: 0 1 100%;
+  height: 32px;
 }
 .input-field-flex-panel .display-flex .child-content-panel .textbox {
   display: inline-block;
+}
+.input-field-flex-panel .display-flex .child-content-panel > .record-panel {
+  height: 100%;
 }
 .input-field-flex-panel .display-flex .child-content-panel .select-date-calendar-panel,
 .input-field-flex-panel .display-flex .child-content-panel .select-time-panel,
@@ -861,6 +864,7 @@
   position: absolute;
   background-color: var(--color-panel-bg);
   border: solid 1px #cccccc;
+  min-width: 260px;
 }
 .select-time-panel .header-panel {
   font-size: 14px;
@@ -874,7 +878,7 @@
   display: flex;
 }
 .select-time-panel .content-panel > * {
-  height: 344px;
+  height: 350px;
   overflow-y: auto;
 }
 .select-time-panel .footer-panel {
@@ -953,6 +957,7 @@
 .select-color-panel {
   background-color: var(--color-panel-bg);
   min-width: 320px;
+  border: solid 1px var(--color-border);
 }
 .select-color-panel .scroll-container-panel {
   height: 320px;
@@ -981,6 +986,7 @@
   background-color: var(--color-panel-bg);
   width: 100%;
   border: solid 1px var(--color-border);
+  box-sizing: border-box;
 }
 .select-record-panel .search-container-panel {
   display: flex;

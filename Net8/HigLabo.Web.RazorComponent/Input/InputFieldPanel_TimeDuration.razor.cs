@@ -36,7 +36,7 @@ namespace HigLabo.Web.RazorComponent.Input
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
      
         [Parameter]
-        public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
+        public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.EndTime;
         [Parameter]
         public Func<TimeSpan?, string> TimeFormat { get; set; } = timeSpan => timeSpan.HasValue ? $"{timeSpan.Value.Hours.ToString("00")}:{timeSpan.Value.Minutes.ToString("00")}" : "";
         [Parameter]

@@ -49,23 +49,5 @@ namespace HigLabo.Web.RazorComponent.Input
             }
         }
 
-        public static List<InputFieldPanelRecord> CreateRecordList<TEnum>()
-            where TEnum : struct, Enum
-        {
-            var l = Enum.GetValues<TEnum>().Select(el => new InputFieldPanelRecord(T.Text.Get(el), el)).ToList();
-            return l;
-        }
-        public static List<InputFieldPanelRecord> CreateRecordList<TEnum>(IEnumerable<TEnum> recordList)
-            where TEnum : struct, Enum
-        {
-            var l = recordList.Select(el => new InputFieldPanelRecord(T.Text.Get(el), el)).ToList();
-            return l;
-        }
-        public static List<InputFieldPanelRecord> CreateRecordList<TEnum>(params TEnum[] recordList)
-            where TEnum : struct, Enum
-        {
-            var l = recordList.Select(el => new InputFieldPanelRecord(T.Text.Get(el), el)).ToList();
-            return l;
-        }
     }
 }

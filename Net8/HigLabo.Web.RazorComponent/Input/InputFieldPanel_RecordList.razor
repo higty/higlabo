@@ -2,7 +2,8 @@
     AddIconVisible="true" OnAddIconClicked="async e => await OnAddIconClicked()">
     @if (SelectRecordPanelVisible)
     {
-        <SelectRecordPanel OnRecordListLoading="OnRecordListLoading" OnRecordSelected="async r => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
+        <SelectRecordPanel SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
+            OnRecordSelected="async r => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
     }
     @if (this.ChildContent != null)
     {

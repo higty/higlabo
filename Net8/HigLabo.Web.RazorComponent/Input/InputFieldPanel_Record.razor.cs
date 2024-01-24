@@ -33,6 +33,9 @@ namespace HigLabo.Web.RazorComponent.Input
 
 		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
+        [Parameter]
+        public bool SearchContainerPanelVisible { get; set; } = true;
+        
 		[Parameter]
         public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
         [Parameter]
