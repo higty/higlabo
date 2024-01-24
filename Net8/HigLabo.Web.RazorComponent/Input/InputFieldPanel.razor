@@ -33,11 +33,11 @@
             <div class="display-flex">
                 @if (this.FieldNameVisible)
                 {
-                    <span class="field-name">
+                    <div class="field-name">
                         <span class="text">@this.Text</span>
-                    </span>
+                    </div>
                 }
-                <span class="child-content-panel">@ChildContent</span>
+                <div class="child-content-panel">@ChildContent</div>
             </div>
             break;
         default: throw SwitchStatementNotImplementException.Create(this.Layout);

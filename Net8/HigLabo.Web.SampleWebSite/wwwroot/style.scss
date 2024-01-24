@@ -355,7 +355,6 @@ $width-checkbox-circle: 20px;
         }
 
         .select-record-panel {
-            width: 80%;
             right: 0;
             min-width: 200px;
         }
@@ -402,9 +401,14 @@ $width-checkbox-circle: 20px;
         .child-content-panel {
             position: relative;
             flex: 0 1 100%;
+            height: 32px;
 
             .textbox {
                 display: inline-block;
+            }
+
+            > .record-panel {
+                height: 100%;
             }
 
             .select-date-calendar-panel,
@@ -598,6 +602,7 @@ $width-checkbox-circle: 20px;
     position: absolute;
     background-color: var(--color-panel-bg);
     border: solid 1px #cccccc;
+    min-width: 260px;
 
     .header-panel {
         font-size: 14px;
@@ -612,7 +617,7 @@ $width-checkbox-circle: 20px;
         display: flex;
 
         > * {
-            height: 344px;
+            height: 350px;
             overflow-y: auto;
         }
     }
@@ -698,6 +703,7 @@ $width-checkbox-circle: 20px;
 .select-color-panel {
     background-color: var(--color-panel-bg);
     min-width: 320px;
+    border: solid 1px var(--color-border);
 
     .scroll-container-panel {
         height: 320px;
@@ -736,6 +742,7 @@ $width-checkbox-circle: 20px;
     background-color: var(--color-panel-bg);
     width: 100%;
     border: solid 1px var(--color-border);
+    box-sizing: border-box;
 
     .search-container-panel {
         display: flex;

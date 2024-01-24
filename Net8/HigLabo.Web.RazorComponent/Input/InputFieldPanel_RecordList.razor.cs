@@ -30,6 +30,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
         [Parameter]
+        public bool SearchContainerPanelVisible { get; set; } = true;
+
+        [Parameter]
         public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
@@ -46,7 +49,7 @@ namespace HigLabo.Web.RazorComponent.Input
                     await this.OnRecordAdded.InvokeAsync();
                     break;
                 case AddRecordMode.Select:
-                    this.SelectRecordPanelVisible = true;
+                    this.SelectRecordPanelVisible = !this.SelectRecordPanelVisible;
                     break;
                 default:throw SwitchStatementNotImplementException.Create(this.AddRecordMode);
             }
