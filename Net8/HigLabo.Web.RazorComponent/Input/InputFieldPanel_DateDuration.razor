@@ -2,7 +2,7 @@
     var startValue = this.StartDate?.ToString(this.DateTimeFormat) ?? "";
     var endValue = this.EndDate?.ToString(this.DateTimeFormat) ?? "";
 }
-<InputFieldPanel Layout="@Layout" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+<InputFieldPanel Layout="@Layout" PanelType="date-duration" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
     <input type="text" class="textbox date" value="@startValue"
            @onchange="e => this.OnStartDateChanged(e.Value?.ToString()?.ToDateOnly())"
            @onclick="e => this.SelectDateCalendarPanelVisible = true"
@@ -10,7 +10,7 @@
            @onblur="async e => await this.StartDate_Blur(e)" />
     @if (this.Layout == InputFieldPanelLayout.Default || this.StartDate.HasValue || this.EndDate.HasValue)
     {
-        <span class="dete-separator">-</span>
+        <span class="date-separator">-</span>
     }
     <input type="text" class="textbox date" value="@endValue"
            @onchange="e => this.OnEndDateChanged(e.Value?.ToString()?.ToDateOnly())"

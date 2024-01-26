@@ -36,6 +36,8 @@ namespace HigLabo.Web.RazorComponent.Panel
     }
     public partial class ToggleRecordPanel
     {
+        private Dictionary<string, object> _Attributes { get; set; } = new();
+        
         [Parameter]
         public ToggleState ToggleState { get; set; } = ToggleState.Hidden;
         [Parameter]
@@ -64,6 +66,15 @@ namespace HigLabo.Web.RazorComponent.Panel
         public EventCallback<ChangeEventArgs> HeaderTextbox_Input { get; set; }
         [Parameter]
         public EventCallback Deleted { get; set; }
+
+        private Dictionary<string, object> GetAttributes()
+        {
+            if (this.AllowSort)
+            {
+                _Attributes["draggable"] = "true";
+            }
+            return _Attributes;
+        }
 
         private void HeaderPanel_Click()
         {

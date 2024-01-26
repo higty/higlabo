@@ -40,8 +40,7 @@ namespace HigLabo.Web.RazorComponent.Input
         }
         private async ValueTask RecordValuePanel_Keydown(KeyboardEventArgs e, object? value)
         {
-            if (e.Key == " " || 
-                e.Key == "Enter")
+            if (e.Key == " " || e.Key == "Enter")
             {
                 this.Value = value;
                 this.StateHasChanged();
