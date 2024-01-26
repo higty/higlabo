@@ -64,6 +64,8 @@ namespace HigLabo.Web.RazorComponent.Panel
         }
         private async ValueTask Date_Click(DateOnly date)
         {
+            this.Date = date;
+            this.StateHasChanged();
             await this.DateSelected.InvokeAsync(date);
         }
 

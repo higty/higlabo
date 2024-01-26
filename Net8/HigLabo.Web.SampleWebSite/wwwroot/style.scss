@@ -197,7 +197,6 @@ $width-checkbox-circle: 20px;
     }
 }
 .record-panel {
-    display: inline-block;
     cursor: pointer;
 }
 .textbox {
@@ -339,25 +338,7 @@ $width-checkbox-circle: 20px;
 
     .child-content-panel {
         position: relative;
-
-        .select-date-calendar-panel,
-        .select-time-panel,
-        .select-color-panel,
-        .select-record-panel {
-            position: absolute;
-            z-index: 200;
-        }
-
-        .select-date-calendar-panel,
-        .select-time-panel,
-        .select-color-panel {
-            top: 32px;
-        }
-
-        .select-record-panel {
-            right: 0;
-            min-width: 200px;
-        }
+        box-sizing: border-box;
 
         .record-list-panel {
             background-color: var(--color-form-element-bg);
@@ -401,29 +382,11 @@ $width-checkbox-circle: 20px;
         .child-content-panel {
             position: relative;
             flex: 0 1 100%;
-            height: 32px;
 
             .textbox {
                 display: inline-block;
             }
 
-            > .record-panel {
-                height: 100%;
-            }
-
-            .select-date-calendar-panel,
-            .select-time-panel,
-            .select-color-panel,
-            .select-record-panel {
-                position: absolute;
-                z-index: 200;
-            }
-
-            .select-date-calendar-panel,
-            .select-time-panel,
-            .select-color-panel {
-                top: 32px;
-            }
         }
 
         .textbox,
@@ -440,6 +403,46 @@ $width-checkbox-circle: 20px;
 
             &:focus {
                 background-color: var(--color-glay-02);
+            }
+        }
+    }
+}
+
+.input-field-panel,
+.input-field-flex-panel {
+    .child-content-panel {
+        .date-separator {
+            margin: auto 4px;
+        }
+        > .record-panel {
+            height: 32px;
+            box-sizing: border-box;
+        }
+
+        .select-date-calendar-panel,
+        .select-time-panel,
+        .select-color-panel,
+        .select-record-panel {
+            position: absolute;
+            z-index: 200;
+        }
+
+        .select-date-calendar-panel,
+        .select-time-panel,
+        .select-color-panel {
+            top: 32px;
+        }
+
+        .select-record-panel {
+            right: 0;
+            min-width: 200px;
+        }
+    }
+
+    &[panel-type='record'] {
+        .child-content-panel {
+            .select-record-panel {
+                top: 32px;
             }
         }
     }

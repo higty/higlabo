@@ -8,6 +8,8 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
+        public string PanelType { get; set; } = "";
+        [Parameter]
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
