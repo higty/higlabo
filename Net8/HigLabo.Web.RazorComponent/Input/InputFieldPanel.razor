@@ -1,13 +1,4 @@
-@{
-    var className = this.Layout switch
-    {
-        InputFieldPanelLayout.Default => "input-field-panel",
-        InputFieldPanelLayout.Flex => "input-field-flex-panel",
-        _ => throw SwitchStatementNotImplementException.Create(this.Layout),
-    };
-}
-
-<div class="@className" panel-type="@PanelType" name="@Name">
+<div @attributes="this.GetAttributes()">
     @switch (this.Layout)
     {
         case InputFieldPanelLayout.Default:
