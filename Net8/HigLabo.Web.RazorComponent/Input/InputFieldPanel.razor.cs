@@ -24,6 +24,22 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback OnAddIconClicked { get; set; }
 
+        private Dictionary<string, object> GetAttributes()
+        {
+            var d = new Dictionary<string, object>();
+
+            d["class"] = this.Layout switch
+            {
+                InputFieldPanelLayout.Default => "input-field-panel",
+                InputFieldPanelLayout.Flex => "input-field-flex-panel",
+                _ => throw SwitchStatementNotImplementException.Create(this.Layout),
+            };
+            if (this.Name.IsNullOrEmpty() == false) { d["name"] = this.Name; }
+            if (this.PanelType.IsNullOrEmpty() == false) { d["panel-type"] = this.PanelType; }
+
+            return d;
+        }
+
         private async ValueTask AddIcon_Click()
         {
             await this.OnAddIconClicked.InvokeAsync();
