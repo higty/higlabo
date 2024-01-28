@@ -29,13 +29,11 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter, AllowNull]
         public List<TItem> RecordList { get; set; }
         [Parameter]
-        public EventCallback<List<TItem>> RecordListChanged { get; set; }
-        [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
         [Parameter]
         public bool SearchContainerPanelVisible { get; set; } = true;
-        [Parameter]
-        public RenderFragment<TItem>? SelectItemTemplate { get; set; }
+        [Parameter, AllowNull]
+        public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
         [Parameter]
         public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
@@ -57,14 +55,13 @@ namespace HigLabo.Web.RazorComponent.Input
                 default:throw SwitchStatementNotImplementException.Create(this.AddRecordMode);
             }
         }
-        private async ValueTask Record_Selected(TItem record)
+        private void Record_Selected(TItem record)
         {
             if (this.MultipleSelectRecord == false)
             {
                 this.SelectRecordPanelVisible = false;
             }
             this.RecordList.AddIfNotExist(record);
-            await this.RecordListChanged.InvokeAsync(this.RecordList);
             this.StateHasChanged();
         }
     }

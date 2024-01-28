@@ -2,14 +2,14 @@
 
 <InputFieldPanel Layout="@Layout" PanelType="record" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
     <div class="record-panel" tabindex="0" @ref="this.RecordPanelElementReference"
-	@onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true"
-	@onkeydown="async e => await this.RecordPanel_Keydown(e)">
-		@this.ItemTemplate(this.Record)
-	</div>
-    <div class="select-record-panel-container-panel">
+         @onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true"
+         @onkeydown="async e => await this.RecordPanel_Keydown(e)">
+        @this.ItemTemplate(this.Record)
+    </div>
+    <div class="select-container-panel">
         @if (SelectRecordPanelVisible)
         {
-            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate"
+            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate ?? this.ItemTemplate"
                 SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading"
                 OnRecordSelected="async (TItem r) => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
         }

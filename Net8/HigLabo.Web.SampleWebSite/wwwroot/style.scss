@@ -382,7 +382,7 @@ $width-checkbox-circle: 20px;
         .child-content-panel {
             flex: 0 1 100%;
 
-            .select-record-panel-container-panel {
+            .select-container-panel {
                 position: relative;
             }
 
@@ -407,6 +407,10 @@ $width-checkbox-circle: 20px;
             &:focus {
                 background-color: var(--color-glay-02);
             }
+
+            &.date {
+                text-align: center;
+            }
         }
     }
 }
@@ -414,7 +418,7 @@ $width-checkbox-circle: 20px;
 .input-field-panel,
 .input-field-flex-panel {
     .child-content-panel {
-        .date-separator {
+        .separator {
             margin: auto 4px;
         }
         > .record-panel {
@@ -428,12 +432,6 @@ $width-checkbox-circle: 20px;
         .select-record-panel {
             position: absolute;
             z-index: 200;
-        }
-
-        .select-date-calendar-panel,
-        .select-time-panel,
-        .select-color-panel {
-            top: 32px;
         }
 
         .select-record-panel {

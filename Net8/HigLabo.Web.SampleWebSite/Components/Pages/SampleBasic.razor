@@ -2,7 +2,7 @@
 
 <FileUploadPanel></FileUploadPanel>
 
-<InputFieldPanel_SelectButton Text="file mode" RecordList="InputFieldPanelRecord.CreateRecordList<FileAccess>()"
+<InputFieldPanel_SelectButton Text="file mode" RecordList="SelectButtonRecord.CreateRecordList<FileAccess>()"
                               Value="@this.FileAccess" ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
 
 <span>@this.FileAccess.ToStringFromEnum()</span>

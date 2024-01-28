@@ -56,6 +56,7 @@ namespace HigLabo.Web.RazorComponent.Input
 
             var pr = new NumberToDateTimeProcessor(this.TimeZone, this.DateDirection);
             pr.Converters.Clear();
+            pr.Converters.Add(new NumberToDateTimeConverter_HH());
             pr.Converters.Add(new NumberToDateTimeConverter_Hmm());
             pr.Converters.Add(new NumberToDateTimeConverter_HHmm());
 
@@ -75,6 +76,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnValueChanged(_ValueInputing);
                 this.SelectTimePanelVisible = false;
+                _ValueInputing = null;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }

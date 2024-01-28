@@ -2,12 +2,12 @@
 
 <InputFieldPanel PanelType="record-list" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult"
     AddIconVisible="true" OnAddIconClicked="async e => await OnAddIconClicked()">
-    <div class="select-record-panel-container-panel">
+    <div class="select-container-panel">
         @if (SelectRecordPanelVisible)
         {
             <SelectRecordPanel ItemTemplate="this.SelectItemTemplate" MultipleSelectRecord="this.MultipleSelectRecord"
                 SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
-                OnRecordSelected="async (TItem r) => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
+                OnRecordSelected="(TItem r) => Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
             </SelectRecordPanel>
         }
     </div>

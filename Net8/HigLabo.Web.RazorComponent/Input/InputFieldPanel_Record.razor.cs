@@ -32,14 +32,14 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public bool SearchContainerPanelVisible { get; set; } = true;
 
-        [Parameter]
-        public TItem? Record { get; set; }
+        [Parameter, AllowNull]
+        public TItem Record { get; set; }
         [Parameter]
         public EventCallback<TItem?> RecordChanged { get; set; }
         [Parameter]
         public ElementReference RecordPanelElementReference { get; set; }
-		[Parameter, AllowNull]
-		public RenderFragment<TItem?> ItemTemplate { get; set; }
+        [Parameter, AllowNull]
+		public RenderFragment<TItem> ItemTemplate { get; set; }
         [Parameter, AllowNull]
         public RenderFragment<TItem> SelectItemTemplate { get; set; }
 

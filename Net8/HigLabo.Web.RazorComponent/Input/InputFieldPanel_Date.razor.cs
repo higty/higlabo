@@ -79,6 +79,7 @@ namespace HigLabo.Web.RazorComponent.Input
             if (_ValueInputing.HasValue)
             {
                 await this.OnValueChanged(_ValueInputing);
+                _ValueInputing = null;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }

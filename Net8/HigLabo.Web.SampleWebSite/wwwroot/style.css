@@ -685,7 +685,7 @@
 .input-field-flex-panel .display-flex .child-content-panel {
   flex: 0 1 100%;
 }
-.input-field-flex-panel .display-flex .child-content-panel .select-record-panel-container-panel {
+.input-field-flex-panel .display-flex .child-content-panel .select-container-panel {
   position: relative;
 }
 .input-field-flex-panel .display-flex .child-content-panel .textbox {
@@ -709,9 +709,14 @@
 .input-field-flex-panel .display-flex .record-panel:focus {
   background-color: var(--color-glay-02);
 }
+.input-field-flex-panel .display-flex .textbox.date,
+.input-field-flex-panel .display-flex .textarea.date,
+.input-field-flex-panel .display-flex .record-panel.date {
+  text-align: center;
+}
 
-.input-field-panel .child-content-panel .date-separator,
-.input-field-flex-panel .child-content-panel .date-separator {
+.input-field-panel .child-content-panel .separator,
+.input-field-flex-panel .child-content-panel .separator {
   margin: auto 4px;
 }
 .input-field-panel .child-content-panel > .record-panel,
@@ -729,14 +734,6 @@
 .input-field-flex-panel .child-content-panel .select-record-panel {
   position: absolute;
   z-index: 200;
-}
-.input-field-panel .child-content-panel .select-date-calendar-panel,
-.input-field-panel .child-content-panel .select-time-panel,
-.input-field-panel .child-content-panel .select-color-panel,
-.input-field-flex-panel .child-content-panel .select-date-calendar-panel,
-.input-field-flex-panel .child-content-panel .select-time-panel,
-.input-field-flex-panel .child-content-panel .select-color-panel {
-  top: 32px;
 }
 .input-field-panel .child-content-panel .select-record-panel,
 .input-field-flex-panel .child-content-panel .select-record-panel {

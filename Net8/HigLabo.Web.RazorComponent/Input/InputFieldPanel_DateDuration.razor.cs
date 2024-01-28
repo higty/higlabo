@@ -84,6 +84,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnStartDateChanged(_StartDateInputing);
                 this.SelectDateCalendarPanelVisible = false;
+                _StartDateInputing = null;
             }
             await this.OnStartDateBlur.InvokeAsync(e);
         }
@@ -123,6 +124,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnEndDateChanged(_EndDateInputing);
                 this.SelectDateCalendarPanelVisible = false;
+                _EndDateInputing = null;
             }
             await this.OnEndDateBlur.InvokeAsync(e);
         }

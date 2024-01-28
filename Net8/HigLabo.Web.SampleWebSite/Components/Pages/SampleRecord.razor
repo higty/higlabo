@@ -2,22 +2,40 @@
 
 
 <InputFieldPanel_Record Text="EndTime type" @bind-Record="this.SelectEndTimeMode" SearchContainerPanelVisible="false"
-    OnRecordListLoading="(RecordListLoadingContext<SelectEndTimeMode> context) => context.RecordList.AddRange(Enum.GetValues<SelectEndTimeMode>())">
+    OnRecordListLoading="(RecordListLoadingContext<SelectEndTimeMode?> context) => context.RecordList.AddEnumList<SelectEndTimeMode>()">
     <ItemTemplate Context="record">
-        <div>@T.Text.Get(record)</div>
+        @if (record == null)
+        {
+            <span>Please select by click</span>
+        }
+        else
+        {
+            <span>@T.Text.Get(record.Value)</span>
+        }
     </ItemTemplate>
-    <SelectItemTemplate Context="record">
-        <span>@T.Text.Get(record)</span>
-    </SelectItemTemplate>
 </InputFieldPanel_Record>
 
 <InputFieldPanel_Record Text="EndTime type" Layout="InputFieldPanelLayout.Flex" @bind-Record="this.SelectEndTimeMode"
-    OnRecordListLoading="(RecordListLoadingContext<SelectEndTimeMode> context) => context.RecordList.AddRange(Enum.GetValues<SelectEndTimeMode>())">
-    <ItemTemplate>
-        <div>@this.SelectEndTimeMode.ToStringFromEnum()</div>
+    OnRecordListLoading="(RecordListLoadingContext<SelectEndTimeMode?> context) => context.RecordList.AddEnumList<SelectEndTimeMode>()">
+    <ItemTemplate Context="record">
+        @if (record == null)
+        {
+            <span>Not selected</span>
+        }
+        else
+        {
+            <div>@record?.ToStringFromEnum()</div>
+        }
     </ItemTemplate>
     <SelectItemTemplate Context="record">
-        <span>@T.Text.Get(record)</span>
+        @if (record == null)
+        {
+            <span>Clear</span>
+        }
+        else
+        {
+            <span>@T.Text.Get(record.Value)</span>
+        }
     </SelectItemTemplate>
 </InputFieldPanel_Record>
 
@@ -31,8 +49,8 @@
         else
         {
             <div style="padding: 4px 8px;">
-                <span class="user-record-panel">@this.SelectedUser.Name</span>
-                <span class="age">@this.SelectedUser.Age</span>
+                <div class="name">@this.SelectedUser.Name</div>
+                <span class="age">@string.Format("{0}才", this.SelectedUser.Age)</span>
             </div>
         }
     </ItemTemplate>
@@ -43,15 +61,14 @@
 
 <hr />
 
-<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" @bind-RecordList="this.SelectedUserList"
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" RecordList="this.SelectedUserList"
     OnRecordListLoading="(RecordListLoadingContext<UserRecord> context) => LoadingRecordList(context)">
     <ChildContent>
         @foreach (var item in this.SelectedUserList)
         {
-            <div class="record-panel" style="padding: 4px 8px;display: flex; align-items: center;" tabindex="0">
-                <span class="user-record-panel">@item.Name</span>
-                <img src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0"
-                     style="width: 16px; height: 16px;margin-left: auto;" />
+            <div class="record-panel user-record-panel" tabindex="0" style="height: 40px;">
+                <span class="name">@item.Name</span>
+                <img class="delete-icon" src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0" />
             </div>
         }
     </ChildContent>
@@ -63,7 +80,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" @bind-RecordList="this.SelectedUserList" OnRecordAdded="AddUser">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser">
     <ChildContent>
         @{
             var sortIndex = 0;
@@ -73,6 +90,12 @@
                                    AllowSort="true" SortGroup="SortGroup" SortIndex="@sortIndex" OnItemDropped="OnUserDropped">
                     <ContentPanel>
                         <div class="permission-list-panel">
+                            <InputFieldPanel Layout="InputFieldPanelLayout.Flex" Text="Name">
+                                <input type="text" class="textbox" @bind-value="rUser.Name" />
+                            </InputFieldPanel>
+                            <InputFieldPanel Layout="InputFieldPanelLayout.Flex" Text="Age">
+                                <input type="text" class="textbox" @bind-value="rUser.Age" />
+                            </InputFieldPanel>
                             <CheckboxPanel @bind-Value="@rUser.IsAdministrator">Admin</CheckboxPanel>
                         </div>
                     </ContentPanel>
@@ -86,12 +109,12 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" @bind-RecordList="this.SelectedUserList" OnRecordAdded="AddUser">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser">
     @foreach (var item in this.SelectedUserList)
     {
         <div class="record-panel user-record-panel" tabindex="0">
             <span class="name">@item.Name</span>
-            <span class="age" style="color: #888888;">@item.Age</span>
+            <span class="age">@item.Age</span>
             <img class="delete-icon" src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__.Delete__svg)" @onclick="e => DeleteUser(item)" tabindex="0" />
         </div>
     }
@@ -110,7 +133,7 @@
     [Parameter]
     public bool Selected { get; set; } = false;
     [Parameter]
-    public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
+    public SelectEndTimeMode? SelectEndTimeMode { get; set; } 
 
     [Parameter]
     public FileAccess FileAccess { get; set; } = FileAccess.Read;
@@ -122,7 +145,7 @@
     [Parameter]
     public UserRecord SelectedUser { get; set; } = new() { Name = "Higty", Age = 22 };
     [Parameter]
-    public List<UserRecord> SelectedUserList { get; set; } = new();
+    public List<UserRecord> SelectedUserList { get; init; } = new();
     [Parameter]
     public SortGroup SortGroup { get; set; } = new();
 

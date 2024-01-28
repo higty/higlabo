@@ -20,7 +20,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback<object?> ValueChanged { get; set; }
         [Parameter]
-        public List<InputFieldPanelRecord> RecordList { get; init; } = new();
+        public List<SelectButtonRecord> RecordList { get; init; } = new();
 
         protected override void OnInitialized()
         {

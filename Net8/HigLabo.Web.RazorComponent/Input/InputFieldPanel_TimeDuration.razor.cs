@@ -60,6 +60,7 @@ namespace HigLabo.Web.RazorComponent.Input
 
             var pr = new NumberToDateTimeProcessor();
             pr.Converters.Clear();
+            pr.Converters.Add(new NumberToDateTimeConverter_HH());
             pr.Converters.Add(new NumberToDateTimeConverter_Hmm());
             pr.Converters.Add(new NumberToDateTimeConverter_HHmm());
 
@@ -79,6 +80,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnStartTimeChanged(_StartTimeInputing);
                 this.SelectTimePanelVisible = false;
+                _StartTimeInputing = null;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
@@ -98,6 +100,7 @@ namespace HigLabo.Web.RazorComponent.Input
 
             var pr = new NumberToDateTimeProcessor();
             pr.Converters.Clear();
+            pr.Converters.Add(new NumberToDateTimeConverter_HH());
             pr.Converters.Add(new NumberToDateTimeConverter_Hmm());
             pr.Converters.Add(new NumberToDateTimeConverter_HHmm());
 
@@ -117,6 +120,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 await this.OnEndTimeChanged(_EndTimeInputing);
                 this.SelectTimePanelVisible = false;
+                _EndTimeInputing = null;
             }
             await this.OnTextboxBlur.InvokeAsync(e);
         }
