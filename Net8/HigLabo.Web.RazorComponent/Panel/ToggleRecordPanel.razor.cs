@@ -35,9 +35,7 @@ namespace HigLabo.Web.RazorComponent.Panel
         }
     }
     public partial class ToggleRecordPanel
-    {
-        private Dictionary<string, object> _Attributes { get; set; } = new();
-        
+    {       
         [Parameter]
         public ToggleState ToggleState { get; set; } = ToggleState.Hidden;
         [Parameter]
@@ -56,8 +54,6 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public SortGroup SortGroup { get; set; } = new();
         [Parameter]
-        public string DragBarPanelClassName { get; set; } = "drag-bar-panel";
-        [Parameter]
         public string DropPanelClassName { get; set; } = "drop-panel";
         [Parameter]
         public EventCallback<ItemDroppedEventArgs> OnItemDropped { get; set; }
@@ -69,11 +65,14 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         private Dictionary<string, object> GetAttributes()
         {
+            var d = new Dictionary<string, object>();
+
             if (this.AllowSort)
             {
-                _Attributes["draggable"] = "true";
+                d["draggable"] = "true";
+                d["ondragover"] = "event.preventDefault();";
             }
-            return _Attributes;
+            return d;
         }
 
         private void HeaderPanel_Click()
@@ -111,17 +110,15 @@ namespace HigLabo.Web.RazorComponent.Panel
         }
         private void Drag_Enter()
         {
-            this.DragBarPanelClassName = "drag-bar-panel dragging";
             this.DropPanelClassName = "drop-panel dragging";
+            this.StateHasChanged();
         }
         private void Drag_Leave()
         {
-            this.DragBarPanelClassName = "drag-bar-panel";
             this.DropPanelClassName = "drop-panel";
         }
         private async void Drag_End(DragEventArgs e)
         {
-            this.DragBarPanelClassName = "drag-bar-panel";
             this.DropPanelClassName = "drop-panel";
  
             if (this.SortGroup.DragItem == null) { return; }

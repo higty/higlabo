@@ -11,16 +11,16 @@
             Value = value;
         }
 
-        public static void HandleRecordListLoadingContext<TEnum>(RecordListLoadingContext context)
-            where TEnum : struct, Enum
-        {
-            context.RecordList.Clear();
-            foreach (var item in Enum.GetValues<TEnum>())
-            {
-                var r = new InputFieldPanelRecord(T.Text.Get(item), item);
-                context.RecordList.Add(r);
-            }
-        }
+        //public static void HandleRecordListLoadingContext<TEnum>(RecordListLoadingContext context)
+        //    where TEnum : struct, Enum
+        //{
+        //    context.RecordList.Clear();
+        //    foreach (var item in Enum.GetValues<TEnum>())
+        //    {
+        //        var r = new InputFieldPanelRecord(T.Text.Get(item), item);
+        //        context.RecordList.Add(r);
+        //    }
+        //}
 
         public static List<InputFieldPanelRecord> CreateRecordList<TEnum>()
             where TEnum : struct, Enum

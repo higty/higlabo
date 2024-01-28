@@ -2,26 +2,33 @@
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Panel
 {
-	public partial class SelectRecordPanel
+	public partial class SelectRecordPanel<TItem> : ComponentBase
 	{
 		private int _RecordIndex = -1;
-		private List<InputFieldPanelRecord> _RecordList = new();
 
 		[Parameter]
 		public string SearchText { get; set; } = "";
 		[Parameter]
 		public bool SearchContainerPanelVisible { get; set; } = true;
+        [Parameter]
+        public bool MultipleSelectRecord { get; set; } = false;
+        
 		[Parameter]
-		public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
+		public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
 		[Parameter]
-		public EventCallback<InputFieldPanelRecord> OnRecordSelected { get; set; }
-		[Parameter]
+		public EventCallback<TItem> OnRecordSelected { get; set; }
+        [Parameter, AllowNull]
+        public RenderFragment<TItem> ItemTemplate { get; set; }
+
+        private List<TItem> RecordList { get; set; } = new List<TItem>();
+        [Parameter]
 		public EventCallback OnClosed { get; set; }
 
 		protected override async Task OnInitializedAsync()
@@ -30,7 +37,8 @@ namespace HigLabo.Web.RazorComponent.Panel
 		}
 		private async ValueTask OnRecordListLoading_Invoke()
 		{
-			await this.OnRecordListLoading.InvokeAsync(new RecordListLoadingContext(_RecordList, this.SearchText));
+			this.RecordList.Clear();
+			await this.OnRecordListLoading.InvokeAsync(new RecordListLoadingContext<TItem>(this.RecordList, this.SearchText));
 		}
 
 		private async ValueTask SearchTextbox_Keydown(KeyboardEventArgs e)
@@ -48,7 +56,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 				}
 				else
 				{
-					await this.RecordPanelSelected(_RecordList[_RecordIndex]);
+					await this.RecordPanelSelected(this.RecordList[_RecordIndex]);
 				}
 			}
 			else if (e.Key == "ArrowUp")
@@ -56,14 +64,14 @@ namespace HigLabo.Web.RazorComponent.Panel
 				_RecordIndex = _RecordIndex - 1;
 				if (_RecordIndex < -1)
 				{
-					_RecordIndex = this._RecordList.Count - 1;
+					_RecordIndex = this.RecordList.Count - 1;
 				}
 				this.StateHasChanged();
 			}
 			else if (e.Key == "ArrowDown")
 			{
 				_RecordIndex = _RecordIndex + 1;
-				if (_RecordIndex >= _RecordList.Count)
+				if (_RecordIndex >= this.RecordList.Count)
 				{
 					_RecordIndex = -1;
 				}
@@ -75,14 +83,17 @@ namespace HigLabo.Web.RazorComponent.Panel
 			await OnRecordListLoading_Invoke();
 		}
 
-		private async ValueTask RecordPanel_Click(InputFieldPanelRecord record)
+		private async ValueTask RecordPanel_Click(TItem record)
 		{
 			await this.RecordPanelSelected(record);
 		}
-		private async ValueTask RecordPanelSelected(InputFieldPanelRecord record)
+		private async ValueTask RecordPanelSelected(TItem record)
 		{
 			await this.OnRecordSelected.InvokeAsync(record);
-            _RecordList.Remove(record);
+			if (this.MultipleSelectRecord)
+			{
+                this.RecordList.Remove(record);
+            }
         }
     }
 }

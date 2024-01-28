@@ -1,8 +1,8 @@
-<div class="toggle-record-panel" @attributes="this.GetAttributes()" @ondragstart="e => Drag_Start(e)" @ondrop="Drag_End" ondragover="event.preventDefault();" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave">
+<div class="toggle-record-panel" @attributes="this.GetAttributes()" @ondragstart="e => Drag_Start(e)" @ondrop="Drag_End" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave">
     <div class="header-panel">
         @if (this.AllowSort)
         {
-            <span class="@this.DragBarPanelClassName">
+            <span class="drag-bar-panel">
                 <span class="icon-panel">
                     <img class="icon" src="@UrlInfo.GetIconUrl(Higlabo__.DragBarPanel__svg)" />
                 </span>
