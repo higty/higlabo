@@ -21,6 +21,12 @@
 <span>@this.EndDate</span>
 
 
+<InputFieldPanel_DateTime Layout="InputFieldPanelLayout.Default" Text="DateTime" @bind-Date="this.DateTime_Date" @bind-Time="this.DateTime_Time"></InputFieldPanel_DateTime>
+<span>@this.DateTime_Date</span>
+<span>@this.DateTime_Time</span>
+
+
+
 @code {
     [Parameter]
     public TimeSpan? Time { get; set; }
@@ -39,4 +45,9 @@
     public DateOnly? StartDate1 { get; set; }
     [Parameter]
     public DateOnly? EndDate1 { get; set; }
+
+    [Parameter]
+    public DateOnly? DateTime_Date { get; set; }
+    [Parameter]
+    public TimeSpan? DateTime_Time { get; set; } 
 }

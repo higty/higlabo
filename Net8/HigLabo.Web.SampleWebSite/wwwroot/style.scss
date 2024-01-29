@@ -340,6 +340,10 @@ $width-checkbox-circle: 20px;
         position: relative;
         box-sizing: border-box;
 
+        .separator {
+            margin: auto 4px;
+        }
+
         .record-list-panel {
             background-color: var(--color-form-element-bg);
             border: solid 1px var(--color-border);
@@ -390,6 +394,9 @@ $width-checkbox-circle: 20px;
                 display: inline-block;
             }
 
+            .separator {
+                margin: auto 0;
+            }
         }
 
         .textbox,
@@ -408,7 +415,8 @@ $width-checkbox-circle: 20px;
                 background-color: var(--color-glay-02);
             }
 
-            &.date {
+            &.date,
+            &.time {
                 text-align: center;
             }
         }
@@ -418,9 +426,6 @@ $width-checkbox-circle: 20px;
 .input-field-panel,
 .input-field-flex-panel {
     .child-content-panel {
-        .separator {
-            margin: auto 4px;
-        }
         > .record-panel {
             min-height: 32px;
             box-sizing: border-box;
@@ -635,6 +640,7 @@ $width-checkbox-circle: 20px;
 .start-time-panel,
 .end-time-panel {
     height: 100%;
+    min-width: 172px;
 
     td {
         text-align: center;
@@ -677,6 +683,7 @@ $width-checkbox-circle: 20px;
 }
 
 .select-duration-panel {
+    min-width: 100px;
     box-sizing: border-box;
 
     .duration-minute-panel {
@@ -684,7 +691,7 @@ $width-checkbox-circle: 20px;
         display: flex;
         align-items: center;
         height: 34px;
-        padding: 5px 8px ;
+        padding: 5px 8px;
         vertical-align: middle;
         box-sizing: border-box;
 
@@ -771,8 +778,6 @@ $width-checkbox-circle: 20px;
         > .record-panel {
             display: flex;
             align-items: center;
-            height: 32px;
-            padding: 4px;
             cursor: pointer;
             border: none 1px transparent;
             box-sizing: border-box;

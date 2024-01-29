@@ -654,6 +654,9 @@
   position: relative;
   box-sizing: border-box;
 }
+.input-field-panel .child-content-panel .separator {
+  margin: auto 4px;
+}
 .input-field-panel .child-content-panel .record-list-panel {
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
@@ -691,6 +694,9 @@
 .input-field-flex-panel .display-flex .child-content-panel .textbox {
   display: inline-block;
 }
+.input-field-flex-panel .display-flex .child-content-panel .separator {
+  margin: auto 0;
+}
 .input-field-flex-panel .display-flex .textbox,
 .input-field-flex-panel .display-flex .textarea,
 .input-field-flex-panel .display-flex .record-panel {
@@ -709,16 +715,14 @@
 .input-field-flex-panel .display-flex .record-panel:focus {
   background-color: var(--color-glay-02);
 }
-.input-field-flex-panel .display-flex .textbox.date,
+.input-field-flex-panel .display-flex .textbox.date, .input-field-flex-panel .display-flex .textbox.time,
 .input-field-flex-panel .display-flex .textarea.date,
-.input-field-flex-panel .display-flex .record-panel.date {
+.input-field-flex-panel .display-flex .textarea.time,
+.input-field-flex-panel .display-flex .record-panel.date,
+.input-field-flex-panel .display-flex .record-panel.time {
   text-align: center;
 }
 
-.input-field-panel .child-content-panel .separator,
-.input-field-flex-panel .child-content-panel .separator {
-  margin: auto 4px;
-}
 .input-field-panel .child-content-panel > .record-panel,
 .input-field-flex-panel .child-content-panel > .record-panel {
   min-height: 32px;
@@ -897,6 +901,7 @@
 .start-time-panel,
 .end-time-panel {
   height: 100%;
+  min-width: 172px;
 }
 .start-time-panel td,
 .end-time-panel td {
@@ -939,6 +944,7 @@
 }
 
 .select-duration-panel {
+  min-width: 100px;
   box-sizing: border-box;
 }
 .select-duration-panel .duration-minute-panel {
@@ -1016,8 +1022,6 @@
 .select-record-panel .record-list-panel > .record-panel {
   display: flex;
   align-items: center;
-  height: 32px;
-  padding: 4px;
   cursor: pointer;
   border: none 1px transparent;
   box-sizing: border-box;
