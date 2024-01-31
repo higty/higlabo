@@ -40,6 +40,8 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
         [Parameter]
+        public Func<TItem, TItem, bool>? EqualityFunc { get; set; } 
+        [Parameter]
         public EventCallback OnRecordDropped { get; set; }
 
         private async ValueTask OnAddIconClicked()
@@ -61,7 +63,14 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.SelectRecordPanelVisible = false;
             }
-            this.RecordList.AddIfNotExist(record);
+            if (this.EqualityFunc == null)
+            {
+                this.RecordList.AddIfNotExist(record);
+            }
+            else
+            {
+                this.RecordList.AddIfNotExist(record, this.EqualityFunc);
+            }
             this.StateHasChanged();
         }
     }

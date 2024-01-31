@@ -112,6 +112,28 @@ namespace HigLabo.DbSharp
             return base.EnumerateResultSets(database).Cast<T>();
         }
 
+        public new async IAsyncEnumerable<T> EnumerateResultSetsAsync(Database database)
+        {
+            await foreach (var item in this.EnumerateResultSetsAsync(database, CommandBehavior.Default, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public new async IAsyncEnumerable<T> EnumerateResultSetsAsync(Database database, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.EnumerateResultSetsAsync(database, CommandBehavior.Default, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public new async IAsyncEnumerable<T> EnumerateResultSetsAsync(Database database, CommandBehavior commandBehavior, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in base.EnumerateResultSetsAsync(database, commandBehavior, cancellationToken))
+            {
+                yield return (T)item;
+            }
+        }
+
         public List<TResult> GetResultSets<TResult>(Func<T, TResult> selector)
         {
             return this.EnumerateResultSets().Select(selector).ToList();

@@ -62,13 +62,13 @@ namespace HigLabo.Core
                 if (message.IsNullOrEmpty())
                 {
                     r.Message = exception.Message;
+                    r.Description = exception.ToString();
                 }
                 else
                 {
                     r.Message = message + Environment.NewLine + exception.Message;
+                    r.Description = message + Environment.NewLine + exception.ToString();
                 }
-                r.Description = exception.ToString();
-
                 return r;
             }
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using HigLabo.Core;
 
@@ -86,7 +87,7 @@ namespace HigLabo.Data
             var db = database;
             var dr = await db.ExecuteReaderAsync(command, commandBehavior, cancellationToken);
             var d = new Dictionary<String, Object>(StringComparer.OrdinalIgnoreCase);
-            while (dr!.Read())
+            while (await dr!.ReadAsync())
             {
                 d.Clear();
                 dr.SetToDisctionary(d);
@@ -94,6 +95,65 @@ namespace HigLabo.Data
                 l.Add(r);
             }
             return l;
+        }
+
+
+        public static async IAsyncEnumerable<T> EnumerateRecordListAsync<T>(this Database database, string query)
+           where T : new()
+        {
+            var cm = database.CreateCommand(query);
+            cm.CommandType = CommandType.Text;
+            await foreach (var item in EnumerateRecordListAsync<T>(database, cm, CommandBehavior.Default, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public static async IAsyncEnumerable<T> EnumerateRecordListAsync<T>(this Database database, string query, Func<T> constructor)
+        {
+            var cm = database.CreateCommand(query);
+            cm.CommandType = CommandType.Text;
+            await foreach (var item in EnumerateRecordListAsync<T>(database, cm, constructor, CommandBehavior.Default, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public static async IAsyncEnumerable<T> EnumerateRecordListAsync<T>(this Database database, DbCommand command)
+            where T :  new()
+        {
+            await foreach (var item in EnumerateRecordListAsync<T>(database, command, CommandBehavior.Default, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public static async IAsyncEnumerable<T> EnumerateRecordListAsync<T>(this Database database, DbCommand command, Func<T> constructor)
+        {
+            await foreach (var item in EnumerateRecordListAsync<T>(database, command, constructor, CommandBehavior.Default, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public static async IAsyncEnumerable<T> EnumerateRecordListAsync<T>(this Database database, DbCommand command
+            , CommandBehavior commandBehavior, [EnumeratorCancellation] CancellationToken cancellationToken)
+              where T : new()
+        {
+            await foreach (var item in EnumerateRecordListAsync<T>(database, command, () => new T(), commandBehavior, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public static async IAsyncEnumerable<T> EnumerateRecordListAsync<T>(this Database database, DbCommand command, Func<T> constructor
+            , CommandBehavior commandBehavior, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var db = database;
+            var dr = await db.ExecuteReaderAsync(command, commandBehavior, cancellationToken);
+            var d = new Dictionary<String, Object>(StringComparer.OrdinalIgnoreCase);
+            while (await dr!.ReadAsync())
+            {
+                d.Clear();
+                dr.SetToDisctionary(d);
+                var r = d.Map(constructor());
+                yield return r;
+            }
         }
     }
 }
