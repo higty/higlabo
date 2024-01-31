@@ -1,10 +1,16 @@
+@typeparam TItem
+
 <InputFieldPanel PanelType="record-list" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult"
     AddIconVisible="true" OnAddIconClicked="async e => await OnAddIconClicked()">
-    @if (SelectRecordPanelVisible)
-    {
-        <SelectRecordPanel SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
-            OnRecordSelected="async r => await Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false"></SelectRecordPanel>
-    }
+    <div class="select-container-panel">
+        @if (SelectRecordPanelVisible)
+        {
+            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate" MultipleSelectRecord="this.MultipleSelectRecord"
+                SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
+                OnRecordSelected="(TItem r) => Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
+            </SelectRecordPanel>
+        }
+    </div>
     @if (this.ChildContent != null)
     {
         <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>

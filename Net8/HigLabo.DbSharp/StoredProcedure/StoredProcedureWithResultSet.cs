@@ -173,6 +173,46 @@ namespace HigLabo.DbSharp
             }
         }
 
+        public async IAsyncEnumerable<StoredProcedureResultSet> EnumerateResultSetsAsync(Database database)
+        {
+            await foreach (var item in this.EnumerateResultSetsAsync(database, CommandBehavior.Default, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<StoredProcedureResultSet> EnumerateResultSetsAsync(Database database, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.EnumerateResultSetsAsync(database, CommandBehavior.Default, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<StoredProcedureResultSet> EnumerateResultSetsAsync(Database database, CommandBehavior commandBehavior, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            if (database == null) throw new ArgumentNullException("database");
+            DbDataReader? dr = null;
+            var previousState = database.ConnectionState;
+
+            try
+            {
+                var cm = CreateCommand(database);
+                dr = await database.ExecuteReaderAsync(cm, commandBehavior, cancellationToken);
+                while (await dr!.ReadAsync())
+                {
+                    var rs = CreateResultSets(dr);
+                    yield return rs;
+                }
+                await dr.CloseAsync();
+                this.SetOutputParameterValue(cm);
+            }
+            finally
+            {
+                if (dr != null) { dr.Dispose(); }
+                if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
+                if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
+            }
+        }
+
         public DataTable? GetDataTable()
         {
             return GetDataTable(this.GetDatabase());

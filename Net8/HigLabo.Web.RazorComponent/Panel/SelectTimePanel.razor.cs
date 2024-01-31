@@ -23,7 +23,6 @@ namespace HigLabo.Web.RazorComponent.Panel
             }
         }
 
-        private TimeSpan? _StartTime = null;
 
         [Parameter]
         public SelectEndTimeMode SelectEndTimeMode { get; set; } = SelectEndTimeMode.StartTime;
@@ -35,6 +34,9 @@ namespace HigLabo.Web.RazorComponent.Panel
         public int MaxHour { get; set; } = 24;
         [Parameter]
         public bool DisplayAllTime { get; set; } = false;
+
+        [Parameter]
+        public TimeSpan? StartTime { get; set; }
         [Parameter]
         public EventCallback<SelectedTimeDuration> StartTimeSelected { get; set; }
         [Parameter]
@@ -70,7 +72,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         private async ValueTask StartTimePanel_Click(TimeSpan value)
         {
-            _StartTime = value;
+            this.StartTime = value;
 
             var r = new SelectedTimeDuration();
             r.StartTime = value;
@@ -79,14 +81,14 @@ namespace HigLabo.Web.RazorComponent.Panel
         private async ValueTask EndTimePanel_Click(TimeSpan value)
         {
             var r = new SelectedTimeDuration();
-            r.StartTime = _StartTime;
+            r.StartTime = this.StartTime;
             r.EndTime = value;
             await this.EndTimeSelected.InvokeAsync(r);
         }
         private async ValueTask DurationPanel_Click(int minute)
         {
             var r = new SelectedTimeDuration();
-            r.StartTime = _StartTime;
+            r.StartTime = this.StartTime;
             if (r.StartTime.HasValue)
             {
                 r.EndTime = r.StartTime.Value + TimeSpan.FromMinutes(minute);

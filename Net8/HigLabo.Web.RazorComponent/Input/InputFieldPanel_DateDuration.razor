@@ -10,18 +10,18 @@
            @onblur="async e => await this.StartDate_Blur(e)" />
     @if (this.Layout == InputFieldPanelLayout.Default || this.StartDate.HasValue || this.EndDate.HasValue)
     {
-        <span class="date-separator">-</span>
+        <span class="separator">-</span>
     }
     <input type="text" class="textbox date" value="@endValue"
            @onchange="e => this.OnEndDateChanged(e.Value?.ToString()?.ToDateOnly())"
            @onclick="e => this.SelectDateCalendarPanelVisible = true"
            @oninput="e => this.EndDate_Input(e)"
            @onblur="async e => await this.EndDate_Blur(e)" />
-
-    @if (SelectDateCalendarPanelVisible)
-    {
-        <SelectDateDurationCalendarPanel 
-            DateSelected="async v => await this.DateSelected_Callback(v)" 
-            OnClosed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateDurationCalendarPanel>
-    }
+    <div class="select-container-panel">
+        @if (SelectDateCalendarPanelVisible)
+        {
+            <SelectDateDurationCalendarPanel DateSelected="async v => await this.DateSelected_Callback(v)"
+                                             OnClosed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateDurationCalendarPanel>
+        }
+    </div>
 </InputFieldPanel>

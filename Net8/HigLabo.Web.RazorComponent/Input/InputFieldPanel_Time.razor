@@ -6,11 +6,13 @@
            @onchange="e => this.OnValueChanged(e.Value?.ToString()?.ToTimeSpan())"
            @onclick="e => this.SelectTimePanelVisible = true"
            @oninput="e => this.InputText_Input(e)"
-           @onblur="async e => await this.Textbox_Blur(e)"></input>
-    @if (SelectTimePanelVisible)
-    {
-        <SelectTimePanel SelectEndTimeMode="SelectEndTimeMode.StartTime" 
-        StartTimeSelected="async time => await this.TimeSelected_Callback(time)"
-        OnClosed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
-    }
+           @onblur="async e => await this.Textbox_Blur(e)" />
+    <div class="select-container-panel">
+        @if (SelectTimePanelVisible)
+        {
+            <SelectTimePanel SelectEndTimeMode="SelectEndTimeMode.StartTime"
+                             StartTimeSelected="async time => await this.TimeSelected_Callback(time)"
+                             OnClosed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
+        }
+    </div>
 </InputFieldPanel>

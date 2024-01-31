@@ -55,6 +55,24 @@ namespace HigLabo.Core
             records.AddRange(l);
         }
 
+        public static void AddEnumList<T>(this List<T?> list)
+            where T : struct, Enum
+        {
+            list.Add(null);
+            foreach (var item in Enum.GetValues<T>())
+            {
+                list.Add(item);
+            }
+        }
+        public static void AddEnumList<T>(this List<T> list)
+            where T : struct, Enum
+        {
+            foreach (var item in Enum.GetValues<T>())
+            {
+                list.Add(item);
+            }
+        }
+
         public static Boolean AddIfNotExist<T>(this List<T> list, T item)
         {
             return AddIfNotExist(list, item, (x, y) => Object.Equals(x, y));

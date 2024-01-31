@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using HigLabo.Core;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_RecordList
-    {
-        [Parameter]
+    public partial class InputFieldPanel_RecordList<TItem>
+	{
+		[Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
         public string Name { get; set; } = "";
@@ -27,17 +26,21 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
+        [Parameter, AllowNull]
+        public List<TItem> RecordList { get; set; }
         [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
         [Parameter]
         public bool SearchContainerPanelVisible { get; set; } = true;
+        [Parameter, AllowNull]
+        public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
         [Parameter]
-        public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
+        public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
         [Parameter]
-        public EventCallback<InputFieldPanelRecord> OnRecordSelected { get; set; }
+        public Func<TItem, TItem, bool>? EqualityFunc { get; set; } 
         [Parameter]
         public EventCallback OnRecordDropped { get; set; }
 
@@ -54,13 +57,21 @@ namespace HigLabo.Web.RazorComponent.Input
                 default:throw SwitchStatementNotImplementException.Create(this.AddRecordMode);
             }
         }
-        private async ValueTask Record_Selected(InputFieldPanelRecord record)
+        private void Record_Selected(TItem record)
         {
             if (this.MultipleSelectRecord == false)
             {
                 this.SelectRecordPanelVisible = false;
             }
-            await this.OnRecordSelected.InvokeAsync(record);
+            if (this.EqualityFunc == null)
+            {
+                this.RecordList.AddIfNotExist(record);
+            }
+            else
+            {
+                this.RecordList.AddIfNotExist(record, this.EqualityFunc);
+            }
+            this.StateHasChanged();
         }
     }
 }

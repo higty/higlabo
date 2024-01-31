@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web
 {
-	public class RecordListLoadingContext
+    public class RecordListLoadingContext<TItem>
     {
-		public string SearchText { get; set; } = "";
-		public List<InputFieldPanelRecord> RecordList { get; init; }
+        public List<TItem> RecordList { get; init; } 
+        public string SearchText { get; set; } = "";
 
-		public RecordListLoadingContext(List<InputFieldPanelRecord> recordList)
-			: this(recordList, "")
-		{
-		}
-		public RecordListLoadingContext(List<InputFieldPanelRecord> recordList, string searchText)
+		public RecordListLoadingContext(List<TItem> recordList, string searchText)
 		{
 			this.RecordList = recordList;
 			this.SearchText = searchText;

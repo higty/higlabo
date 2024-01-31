@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_Record
+    public partial class InputFieldPanel_Record<TItem>
     {
 
         [Parameter]
@@ -27,19 +28,23 @@ namespace HigLabo.Web.RazorComponent.Input
 		public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
 		[Parameter]
-		public ElementReference RecordPanelElementReference { get; set; }
-		[Parameter]
-		public RenderFragment? RecordPanel { get; set; }
-
-		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
         [Parameter]
         public bool SearchContainerPanelVisible { get; set; } = true;
-        
-		[Parameter]
-        public EventCallback<RecordListLoadingContext> OnRecordListLoading { get; set; }
+
+        [Parameter, AllowNull]
+        public TItem Record { get; set; }
         [Parameter]
-        public EventCallback<InputFieldPanelRecord> OnRecordSelected { get; set; }
+        public EventCallback<TItem?> RecordChanged { get; set; }
+        [Parameter]
+        public ElementReference RecordPanelElementReference { get; set; }
+        [Parameter, AllowNull]
+		public RenderFragment<TItem> ItemTemplate { get; set; }
+        [Parameter, AllowNull]
+        public RenderFragment<TItem> SelectItemTemplate { get; set; }
+
+        [Parameter]
+        public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
 
 		private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
 		{
@@ -58,14 +63,16 @@ namespace HigLabo.Web.RazorComponent.Input
 			else
 			{
 				this.SelectRecordPanelVisible = true;
-				this.StateHasChanged();
 			}
-		}
-		private async ValueTask Record_Selected(InputFieldPanelRecord record)
+            this.StateHasChanged();
+        }
+        private async ValueTask Record_Selected(TItem record)
 		{
+			this.Record = record;
 			this.SelectRecordPanelVisible = false;
-			await this.OnRecordSelected.InvokeAsync(record);
+			await this.RecordChanged.InvokeAsync(record);
 			await this.RecordPanelElementReference.FocusAsync();
+			this.StateHasChanged();
 		}
 	}
 }
