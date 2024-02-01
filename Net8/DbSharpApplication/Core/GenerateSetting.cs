@@ -18,6 +18,8 @@ namespace DbSharpApplication
         public String outputFolderPath = "";
 
         [ObservableProperty]
+        public String connectionStringName = "";
+        [ObservableProperty]
         public DatabaseServer databaseServer = DatabaseServer.SqlServer;
         [ObservableProperty]
         public String namespaceName = "";

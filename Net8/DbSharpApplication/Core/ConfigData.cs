@@ -14,6 +14,11 @@ namespace DbSharpApplication
 {
     public class ConfigData
     {
+        public class ConnectionStringSetting
+        {
+            public string Name { get; set; } = "";
+            public string ConnectionString { get; set; } = "";
+        }
         public static LanguageText<HigLaboText> Text { get; set; } = new();
         public static ConfigData Current = new ConfigData();
 
@@ -25,18 +30,23 @@ namespace DbSharpApplication
 
         public string SchemeFilePath { get; set; } = "";
         public List<string> SchemeFilePathList { get; init; } = new();
-        public List<string> ConnectionStringList { get; init; } = new();
+        public List<ConnectionStringSetting> ConnectionStringList { get; init; } = new();
 
         public void EnsureFileExists()
         {
+            var cv = new XmlConverter();
             Directory.CreateDirectory(SettingFolderPath);
             if (File.Exists(SettingFilePath) == false)
             {
-                File.WriteAllText(SettingFilePath, "");
+                File.WriteAllText(SettingFilePath, cv.Serialize(this));
             }
-
+            var defaultSchemeFilePath = Path.Combine(SettingFolderPath, "SchemeData.xml");
+            if (File.Exists(defaultSchemeFilePath) == false)
+            {
+                File.WriteAllText(GetSchemeFilePath(), cv.Serialize(SchemeData.Current));
+            }
         }
-  
+
         public void Save()
         {
             var cv = new XmlConverter();
@@ -52,11 +62,6 @@ namespace DbSharpApplication
                 {
                     var cv = new XmlConverter();
                     ConfigData.Current = cv.Deserialize<ConfigData>(xmlText)!;
-                    if (ConfigData.Current.SchemeFilePathList.Count == 0)
-                    {
-                        var schemeFilePath = Path.Combine(SettingFolderPath, "SchemeData.xml");
-                        ConfigData.Current.SchemeFilePathList.Add(schemeFilePath);
-                    }
                 }
                 catch
                 {
@@ -66,6 +71,12 @@ namespace DbSharpApplication
             else
             {
                 ConfigData.Current = new ConfigData();
+            }
+
+            if (ConfigData.Current.SchemeFilePathList.Count == 0)
+            {
+                ConfigData.Current.SchemeFilePath = Path.Combine(SettingFolderPath, "SchemeData.xml");
+                ConfigData.Current.SchemeFilePathList.Add(ConfigData.Current.SchemeFilePath);
             }
             ConfigData.Current.LoadSchemeFile(ConfigData.Current.GetSchemeFilePath());
         }
