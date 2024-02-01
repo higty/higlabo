@@ -10,7 +10,20 @@
         FontSize="16"
         Icon="/Icon/DbSharp.ico">
     <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <ComboBox Grid.Row="0" x:Name="SchemeFileListComboBox" Height="32" Margin="0,0,300,0"/>
+            <Button x:Name="OpenFilePathButton" Content="Open"
+                    Click="OpenFilePathButton_Click" Height="32" VerticalAlignment="Center" Margin="0,0,200,0" HorizontalAlignment="Right" Width="100" />
+            <Button x:Name="SaveFilePathButton" Content="Save"
+                    Click="SaveFilePathButton_Click" Height="32" VerticalAlignment="Center" Margin="0,0,100,0" HorizontalAlignment="Right" Width="100" />
+            <Button x:Name="DeleteFilePathButton" Content="Delete"
+                    Click="DeleteFilePathButton_Click" Height="32" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" />
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Name="ParameterGridRow" Width="250"/>
                 <ColumnDefinition Width="Auto"/>

@@ -18,8 +18,7 @@ namespace DbSharpApplication
         GenerateSettingSelected,
     }
 
-    [ObservableObject]
-    public partial class MainWindowViewModel
+    public partial class MainWindowViewModel : ObservableObject
     {
         public class LanguageSetting
         {

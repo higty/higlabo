@@ -33,12 +33,16 @@ namespace DbSharpApplication
 
             this.SetText();
 
-            ConfigData.Current = ConfigData.Load();
+            ConfigData.Load();
             ConfigData.Current.EnsureFileExists();
 
             this.ViewModel = new MainWindowViewModel();
             this.DataContext = this.ViewModel;
             this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
+
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+            this.SchemeFileListComboBox.SelectionChanged += SchemeFileListComboBox_SelectionChanged;
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePathList[0];
 
             this.LanguageListComboBox.ItemsSource = this.ViewModel.LanguageList;
             this.LanguageListComboBox.SelectedItem = this.ViewModel.LanguageList.FirstOrDefault(el => el.Name == CultureInfo.CurrentCulture.Name);
@@ -48,7 +52,7 @@ namespace DbSharpApplication
             this.DatabaseServerComboBox.SelectedItem = this.ViewModel.DatabaseServerList[0];
 
             this.GenerateSettingListView.SelectionChanged += GenerateSettingListView_SelectionChanged;
-            this.GenerateSettingListView.ItemsSource = ConfigData.Current.GenerateSettingList;
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
      
             this.DatabaseObjectListView.ItemsSource = this.ViewModel.DatabaseObjectList;
             this.DatabaseObjectListView.MouseDoubleClick += DatabaseObjectListView_MouseDoubleClick;
@@ -70,6 +74,10 @@ namespace DbSharpApplication
 
         private void SetText()
         {
+            this.OpenFilePathButton.Content = T.Text.Open;
+            this.SaveFilePathButton.Content = T.Text.Save;
+            this.DeleteFilePathButton.Content = T.Text.Delete;
+
             this.ConnectionListLabel.Content = T.Text.ConnectionList;
             this.AddConnectionButton.Content = T.Text.Add;
 
@@ -85,6 +93,7 @@ namespace DbSharpApplication
             this.OpenOutputFolderButton.Content = T.Text.OpenOutputFolder + "(_F)";
             this.GenerateButton.Content = T.Text.Generate + "(_G)";
         }
+  
         private void GenerateSettingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.GetSelectedGenerateSetting() == null)
@@ -102,6 +111,80 @@ namespace DbSharpApplication
             return this.GenerateSettingListView.SelectedItem as GenerateSetting;
         }
 
+        private void SchemeFileListComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.SchemeFileListComboBox.SelectedValue == null) { return; }
+            var filePath = this.SchemeFileListComboBox.SelectedValue.ToString();
+            if (filePath == null) { return; }
+
+            ConfigData.Current.SchemeFilePath = filePath;
+            ConfigData.Current.LoadSchemeFile(filePath);
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
+        }
+        private void OpenFilePathButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dg = new System.Windows.Forms.OpenFileDialog();
+            dg.InitialDirectory = System.IO.Path.GetDirectoryName(ConfigData.Current.SchemeFilePath);
+            dg.Filter = "XMLファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*";
+            if (dg.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+            ConfigData.Current.SchemeFilePath = dg.FileName;
+            ConfigData.Current.SchemeFilePathList.Add(ConfigData.Current.SchemeFilePath);
+            this.SchemeFileListComboBox.ItemsSource = null;
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+
+            ConfigData.Current.Save();
+            ConfigData.Current.LoadSchemeFile(ConfigData.Current.SchemeFilePath);
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
+
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePath;
+        }
+        private void SaveFilePathButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dg = new System.Windows.Forms.SaveFileDialog();
+            dg.InitialDirectory = System.IO.Path.GetDirectoryName(ConfigData.Current.SchemeFilePath);
+            dg.FileName = System.IO.Path.GetFileName(ConfigData.Current.SchemeFilePath);
+            dg.Filter = "XMLファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*";
+            if (dg.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+
+            ConfigData.Current.SchemeFilePath = dg.FileName;
+            ConfigData.Current.SchemeFilePathList.Add(ConfigData.Current.SchemeFilePath);
+            this.SchemeFileListComboBox.ItemsSource = null;
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+
+            ConfigData.Current.Save();
+            ConfigData.Current.LoadSchemeFile(ConfigData.Current.SchemeFilePath);
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
+
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePath;
+        }
+        private void DeleteFilePathButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SchemeFileListComboBox.SelectedValue == null) { return; }
+            var filePath = this.SchemeFileListComboBox.SelectedValue.ToString();
+            if (filePath == null) { return; }
+
+            if (ConfigData.Current.SchemeFilePathList.Count == 1)
+            {
+                MessageBox.Show("You can't delete. You need at least one scheme file path.");
+                return;
+            }
+
+            ConfigData.Current.SchemeFilePathList.Remove(filePath);
+            this.SchemeFileListComboBox.ItemsSource = null;
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePathList[0];
+
+            ConfigData.Current.Save();
+            ConfigData.Current.LoadSchemeFile(ConfigData.Current.SchemeFilePath);
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
+        }
+
         private void AddConnectionButton_Click(object sender, RoutedEventArgs e)
         {
             this.GenerateSettingListView.SelectedItem = null;
@@ -114,7 +197,7 @@ namespace DbSharpApplication
             if (c == null) { return; }
 
             c.DatabaseServer = (DatabaseServer)this.DatabaseServerComboBox.SelectedItem;
-            ConfigData.Current.GenerateSettingList.Add(c);
+            SchemeData.Current.GenerateSettingList.Add(c);
 
             this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
         }
@@ -254,5 +337,6 @@ namespace DbSharpApplication
         {
             ConfigData.Current.Save();
         }
+
     }
 }
