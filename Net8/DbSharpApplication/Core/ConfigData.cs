@@ -25,6 +25,7 @@ namespace DbSharpApplication
 
         public string SchemeFilePath { get; set; } = "";
         public List<string> SchemeFilePathList { get; init; } = new();
+        public List<string> ConnectionStringList { get; init; } = new();
 
         public void EnsureFileExists()
         {

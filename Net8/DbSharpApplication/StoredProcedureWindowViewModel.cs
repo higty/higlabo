@@ -9,11 +9,13 @@ namespace DbSharpApplication
 {
     public class StoredProcedureWindowViewModel
     {
+        public string ConnectionString { get; init; }
         public GenerateSetting GenerateSetting { get; init; }
         public StoredProcedure StoredProcedure { get; init; }
 
-        public StoredProcedureWindowViewModel(GenerateSetting generateSetting, StoredProcedure storedProcedure)
+        public StoredProcedureWindowViewModel(string connectionString, GenerateSetting generateSetting, StoredProcedure storedProcedure)
         {
+            this.ConnectionString = connectionString;
             this.GenerateSetting = generateSetting;
             this.StoredProcedure = storedProcedure;
         }

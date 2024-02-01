@@ -53,7 +53,9 @@ namespace DbSharpApplication
 
             this.GenerateSettingListView.SelectionChanged += GenerateSettingListView_SelectionChanged;
             this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
-     
+
+            this.ConnectionStringListComboBox.ItemsSource = ConfigData.Current.ConnectionStringList;
+
             this.DatabaseObjectListView.ItemsSource = this.ViewModel.DatabaseObjectList;
             this.DatabaseObjectListView.MouseDoubleClick += DatabaseObjectListView_MouseDoubleClick;
             var cView = CollectionViewSource.GetDefaultView(this.ViewModel.DatabaseObjectList);
@@ -78,12 +80,9 @@ namespace DbSharpApplication
             this.SaveFilePathButton.Content = T.Text.Save;
             this.DeleteFilePathButton.Content = T.Text.Delete;
 
-            this.ConnectionListLabel.Content = T.Text.ConnectionList;
-            this.AddConnectionButton.Content = T.Text.Add;
+            this.SettingListLabel.Content = T.Text.ConnectionList;
+            this.AddSettingButton.Content = T.Text.Add;
 
-            this.AddPanelConnectionStringLabel.Content = T.Text.Name;
-            this.AddPanelConnectionStringLabel.Content = T.Text.ConnectionString;
-            
             this.SaveButton.Content = T.Text.Save;
             this.CancelButton.Content = T.Text.Cancel;
 
@@ -185,7 +184,7 @@ namespace DbSharpApplication
             this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
         }
 
-        private void AddConnectionButton_Click(object sender, RoutedEventArgs e)
+        private void AddSettingButton_Click(object sender, RoutedEventArgs e)
         {
             this.GenerateSettingListView.SelectedItem = null;
             this.AddPanel.DataContext = new GenerateSetting();
@@ -207,11 +206,15 @@ namespace DbSharpApplication
             this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
         }
 
+        private string GetConnectionString()
+        {
+            return (string)this.ConnectionStringListComboBox.SelectedValue;
+        }
         private DatabaseSchemaReader? GetDatabaseSchemaReader()
         {
             var setting = this.GetSelectedGenerateSetting();
             if (setting == null) { return null; }
-            return setting.CreateDatabaseSchemaReader();
+            return setting.CreateDatabaseSchemaReader(this.GetConnectionString());
         }
         private async void LoadStoredProcedureButton_Click(object sender, RoutedEventArgs e)
         {
@@ -240,7 +243,7 @@ namespace DbSharpApplication
             this.ViewModel.DatabaseObjectList.Clear();
             try
             {
-                var reader = setting.CreateDatabaseSchemaReader();
+                var reader = setting.CreateDatabaseSchemaReader(this.GetConnectionString());
                 var l = await reader.GetUserDefinedTableTypesAsync();
                 foreach (var item in l.OrderByDescending(el => el.LastAlteredTime))
                 {
@@ -257,7 +260,7 @@ namespace DbSharpApplication
             var setting = this.GetSelectedGenerateSetting();
             if (setting == null) { return; }
 
-            var w = new DatabaseDefinitionWindow(setting.ConnectionString);
+            var w = new DatabaseDefinitionWindow(this.GetConnectionString());
             w.ShowDialog();
         }
         private void OpenOutputFolderButton_Click(object sender, RoutedEventArgs e)
@@ -307,13 +310,13 @@ namespace DbSharpApplication
                 return;
             }
 
-            var reader = setting.CreateDatabaseSchemaReader();
+            var reader = setting.CreateDatabaseSchemaReader(this.GetConnectionString());
             switch (o.ObjectType)
             {
                 case DatabaseObjectType.StoredProcedure:
                     {
                         var sp = await reader.GetStoredProcedureAsync(o.Name);
-                        var w = new StoredProcedureWindow(new StoredProcedureWindowViewModel(setting, sp));
+                        var w = new StoredProcedureWindow(new StoredProcedureWindowViewModel(this.GetConnectionString(), setting, sp));
                         w.ShowDialog();
                         break;
                     }
