@@ -10,7 +10,20 @@
         FontSize="16"
         Icon="/Icon/DbSharp.ico">
     <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <ComboBox Grid.Row="0" x:Name="SchemeFileListComboBox" Height="32" Margin="0,0,300,0"/>
+            <Button x:Name="OpenFilePathButton" Content="Open"
+                    Click="OpenFilePathButton_Click" Margin="0,0,200,0" HorizontalAlignment="Right" Width="100" />
+            <Button x:Name="SaveFilePathButton" Content="Save"
+                    Click="SaveFilePathButton_Click" Margin="0,0,100,0" HorizontalAlignment="Right" Width="100" />
+            <Button x:Name="DeleteFilePathButton" Content="Delete"
+                    Click="DeleteFilePathButton_Click" HorizontalAlignment="Right" Width="100" />
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Name="ParameterGridRow" Width="250"/>
                 <ColumnDefinition Width="Auto"/>
@@ -36,9 +49,9 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="60"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" x:Name="ConnectionListLabel" Content="Connection list"></Label>
-                    <Button Grid.Column="1" x:Name="AddConnectionButton" Content="Add" 
-                        Click="AddConnectionButton_Click" Height="28" VerticalAlignment="Top" />
+                    <Label Grid.Column="0" x:Name="SettingListLabel" Content="Setting list"></Label>
+                    <Button Grid.Column="1" x:Name="AddSettingButton" Content="Add" 
+                        Click="AddSettingButton_Click" Height="28" VerticalAlignment="Top" />
                 </Grid>
                 <ListView Grid.Row="2" x:Name="GenerateSettingListView">
                     <ListView.ItemTemplate>
@@ -53,65 +66,67 @@
             <GridSplitter Name="ParameterResultSetSplitter" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
                       ShowsPreview="true" ResizeDirection="Columns" Width="5" />
             <Grid Grid.Column="2" Margin="0,0,0,0">
-                <Grid Visibility="{Binding AddPanelVisible}">
-                    <StackPanel x:Name="AddPanel" Orientation="Vertical">
-                        <ComboBox Grid.Row="0" x:Name="DatabaseServerComboBox" VerticalAlignment="Top" Height="30"></ComboBox>
-
-                        <Label x:Name="AddPanelGenerateSettingNameLabel" Content="Name"></Label>
-                        <TextBox Text="{Binding Name}" VerticalContentAlignment="Center" Height="30"></TextBox>
-
-                        <Label x:Name="AddPanelConnectionStringLabel" Content="Connection string"></Label>
-                        <TextBox Text="{Binding ConnectionString}" VerticalContentAlignment="Center" Height="30"></TextBox>
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                            <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Save" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                                Width="150" Height="50" FontSize="28" />
-                            <Button x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                                Width="150" Height="50" FontSize="28" />
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-                <Grid Visibility="{Binding GeneratePanelVisible}" x:Name="GeneratePanel">
+                <Grid>
                     <Grid DataContext="{Binding ElementName=GenerateSettingListView, Path=SelectedItem}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="60"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="48"></RowDefinition>
-                                <RowDefinition Height="32"></RowDefinition>
+                                <RowDefinition Height="84"></RowDefinition>
                                 <RowDefinition Height="40"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <TextBox Grid.Row="0" Text="{Binding Name}" FontWeight="Bold" FontSize="32" TextWrapping="Wrap" Height="48" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
-                            <TextBox Grid.Row="1" Text="{Binding ConnectionString}" FontSize="16" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
-                            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <Button x:Name="LoadStoredProcedureButton" Content="Load stored procedure" 
-                                    Click="LoadStoredProcedureButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
-                                <Button x:Name="LoadUserDefinedTypeButton" Content="Load user defined type" 
-                                    Click="LoadUserDefinedTypeButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
-                                <Button x:Name="GenerateDefinitionButton" Content="Generate definition" 
-                                    Click="GenerateDefinitionButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
-                                <Button x:Name="OpenOutputFolderButton" Content="Open output folder" Visibility="{Binding OpenOutputFolderButtonVisible}"
-                                    Click="OpenOutputFolderButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                            <StackPanel Orientation="Vertical">
+                                <TextBox Text="{Binding Name}" FontWeight="Bold" FontSize="32" TextWrapping="Wrap" Height="48" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
+                                <Grid>
+                                    <ComboBox x:Name="DatabaseServerComboBox" HorizontalAlignment="Left" Width="100"/>
+                                    <ComboBox x:Name="ConnectionStringListComboBox" Height="32" Margin="100,0,100,0">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Button x:Name="ManageConnectionStringButton" Content="Manage"
+                                            Click="ManageConnectionStringButton_Click" HorizontalAlignment="Right" Width="100" />
+                                </Grid>
                             </StackPanel>
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <TextBox x:Name="FilterObjectTextBox" Grid.Column="0" VerticalContentAlignment="Center" Height="30" VerticalAlignment="Top"></TextBox>
-                            <ListView x:Name="DatabaseObjectListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,35,0,0">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="0">
-                                            <!--<TextBlock Text="{Binding LastAlteredTime,Converter={StaticResource LastAlteredTimeConverter}}" Margin="0,0,10,0"></TextBlock>-->
-                                            <TextBlock Text="{Binding Name}"></TextBlock>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Grid>
-                        <Button Grid.Row="2" x:Name="GenerateButton" Click="GenerateButton_Click" 
+                        <Grid Grid.Row="1" x:Name="GeneratePanel">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="60"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                                    <Button x:Name="LoadStoredProcedureButton" Content="Load stored procedure" 
+                                    Click="LoadStoredProcedureButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                                    <Button x:Name="LoadUserDefinedTypeButton" Content="Load user defined type" 
+                                    Click="LoadUserDefinedTypeButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                                    <Button x:Name="GenerateDefinitionButton" Content="Generate definition" 
+                                    Click="GenerateDefinitionButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                                    <Button x:Name="OpenOutputFolderButton" Content="Open output folder" Visibility="{Binding OpenOutputFolderButtonVisible}"
+                                    Click="OpenOutputFolderButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                                </StackPanel>
+                                <TextBox x:Name="FilterObjectTextBox" VerticalContentAlignment="Center" Height="32" VerticalAlignment="Top" Margin="0,42,0,0" Grid.ColumnSpan="2"></TextBox>
+                                <ListView x:Name="DatabaseObjectListView"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,72,0,0" Grid.ColumnSpan="2">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="0">
+                                                <!--<TextBlock Text="{Binding LastAlteredTime,Converter={StaticResource LastAlteredTimeConverter}}" Margin="0,0,10,0"></TextBlock>-->
+                                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                            <Button Grid.Row="2" x:Name="GenerateButton" Click="GenerateButton_Click" 
                             Content="Generate" FontSize="32" Height="60" />
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

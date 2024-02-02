@@ -106,7 +106,7 @@ namespace DbSharpApplication
         }
         private async ValueTask LoadResultSet()
         {
-            var reader = this.ViewModel.GenerateSetting.CreateDatabaseSchemaReader();
+            var reader = this.ViewModel.GenerateSetting.CreateDatabaseSchemaReader(this.ViewModel.ConnectionString);
             var d = this.StoredProcedure.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
                 .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
             await reader.SetResultSetsListAsync(this.StoredProcedure, d);

@@ -33,12 +33,15 @@ namespace DbSharpApplication
 
             this.SetText();
 
-            ConfigData.Current = ConfigData.Load();
+            ConfigData.Load();
             ConfigData.Current.EnsureFileExists();
 
             this.ViewModel = new MainWindowViewModel();
             this.DataContext = this.ViewModel;
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
+
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+            this.SchemeFileListComboBox.SelectionChanged += SchemeFileListComboBox_SelectionChanged;
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePathList[0];
 
             this.LanguageListComboBox.ItemsSource = this.ViewModel.LanguageList;
             this.LanguageListComboBox.SelectedItem = this.ViewModel.LanguageList.FirstOrDefault(el => el.Name == CultureInfo.CurrentCulture.Name);
@@ -48,8 +51,13 @@ namespace DbSharpApplication
             this.DatabaseServerComboBox.SelectedItem = this.ViewModel.DatabaseServerList[0];
 
             this.GenerateSettingListView.SelectionChanged += GenerateSettingListView_SelectionChanged;
-            this.GenerateSettingListView.ItemsSource = ConfigData.Current.GenerateSettingList;
-     
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
+
+            this.ConnectionStringListComboBox.ItemsSource = ConfigData.Current.ConnectionStringList;
+            this.ConnectionStringListComboBox.SelectionChanged += ConnectionStringListComboBox_SelectionChanged;
+
+            this.GeneratePanel.Visibility = Visibility.Hidden;
+
             this.DatabaseObjectListView.ItemsSource = this.ViewModel.DatabaseObjectList;
             this.DatabaseObjectListView.MouseDoubleClick += DatabaseObjectListView_MouseDoubleClick;
             var cView = CollectionViewSource.GetDefaultView(this.ViewModel.DatabaseObjectList);
@@ -70,14 +78,14 @@ namespace DbSharpApplication
 
         private void SetText()
         {
-            this.ConnectionListLabel.Content = T.Text.ConnectionList;
-            this.AddConnectionButton.Content = T.Text.Add;
+            this.OpenFilePathButton.Content = T.Text.Open;
+            this.SaveFilePathButton.Content = T.Text.Save;
+            this.DeleteFilePathButton.Content = T.Text.Delete;
 
-            this.AddPanelConnectionStringLabel.Content = T.Text.Name;
-            this.AddPanelConnectionStringLabel.Content = T.Text.ConnectionString;
-            
-            this.SaveButton.Content = T.Text.Save;
-            this.CancelButton.Content = T.Text.Cancel;
+            this.SettingListLabel.Content = T.Text.ConnectionList;
+            this.AddSettingButton.Content = T.Text.Add;
+
+            this.ManageConnectionStringButton.Content = T.Text.Settings;
 
             this.LoadStoredProcedureButton.Content = T.Text.LoadStoredProcedure + "(_S)";
             this.LoadUserDefinedTypeButton.Content = T.Text.LoadUserDefinedType + "(_U)";
@@ -85,15 +93,14 @@ namespace DbSharpApplication
             this.OpenOutputFolderButton.Content = T.Text.OpenOutputFolder + "(_F)";
             this.GenerateButton.Content = T.Text.Generate + "(_G)";
         }
+  
         private void GenerateSettingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (this.GetSelectedGenerateSetting() == null)
+            this.GeneratePanel.Visibility = Visibility.Hidden;
+            var setting = this.GetSelectedGenerateSetting();
+            if (setting != null)
             {
-                this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
-            }
-            else
-            {
-                this.ViewModel.SetDisplayMode(MainWindowDisplayMode.GenerateSettingSelected);
+                this.ConnectionStringListComboBox.SelectedItem = ConfigData.Current.ConnectionStringList.Find(el => el.Name == setting.ConnectionStringName);
             }
             this.ViewModel.DatabaseObjectList.Clear();
         }
@@ -102,34 +109,118 @@ namespace DbSharpApplication
             return this.GenerateSettingListView.SelectedItem as GenerateSetting;
         }
 
-        private void AddConnectionButton_Click(object sender, RoutedEventArgs e)
+        private void SchemeFileListComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.GenerateSettingListView.SelectedItem = null;
-            this.AddPanel.DataContext = new GenerateSetting();
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.AddGenerateSetting);
+            if (this.SchemeFileListComboBox.SelectedValue == null) { return; }
+            var filePath = this.SchemeFileListComboBox.SelectedValue.ToString();
+            if (filePath == null) { return; }
+
+            ConfigData.Current.SchemeFilePath = filePath;
+            ConfigData.Current.LoadSchemeFile(filePath);
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
         }
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void OpenFilePathButton_Click(object sender, RoutedEventArgs e)
         {
-            var c = this.AddPanel.DataContext as GenerateSetting;
-            if (c == null) { return; }
+            var dg = new System.Windows.Forms.OpenFileDialog();
+            dg.InitialDirectory = System.IO.Path.GetDirectoryName(ConfigData.Current.SchemeFilePath);
+            dg.Filter = "XMLファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*";
+            if (dg.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+            ConfigData.Current.SchemeFilePath = dg.FileName;
+            ConfigData.Current.SchemeFilePathList.Add(ConfigData.Current.SchemeFilePath);
+            this.SchemeFileListComboBox.ItemsSource = null;
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+     
+            ConfigData.Current.LoadSchemeFile(ConfigData.Current.SchemeFilePath);
 
-            c.DatabaseServer = (DatabaseServer)this.DatabaseServerComboBox.SelectedItem;
-            ConfigData.Current.GenerateSettingList.Add(c);
-
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePath;
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
         }
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void SaveFilePathButton_Click(object sender, RoutedEventArgs e)
         {
-            this.AddPanel.DataContext = null;
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
+            var dg = new System.Windows.Forms.SaveFileDialog();
+            dg.InitialDirectory = System.IO.Path.GetDirectoryName(ConfigData.Current.SchemeFilePath);
+            dg.FileName = System.IO.Path.GetFileName(ConfigData.Current.SchemeFilePath);
+            dg.Filter = "XMLファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*";
+            if (dg.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+
+            ConfigData.Current.SchemeFilePath = dg.FileName;
+            ConfigData.Current.SchemeFilePathList.Add(ConfigData.Current.SchemeFilePath);
+            this.SchemeFileListComboBox.ItemsSource = null;
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+
+            ConfigData.Current.LoadSchemeFile(ConfigData.Current.SchemeFilePath);
+      
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePath;
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
+
+        }
+        private void DeleteFilePathButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.SchemeFileListComboBox.SelectedValue == null) { return; }
+            var filePath = this.SchemeFileListComboBox.SelectedValue.ToString();
+            if (filePath == null) { return; }
+
+            if (ConfigData.Current.SchemeFilePathList.Count == 1)
+            {
+                MessageBox.Show("You can't delete. You need at least one scheme file path.");
+                return;
+            }
+
+            ConfigData.Current.SchemeFilePathList.Remove(filePath);
+            this.SchemeFileListComboBox.ItemsSource = null;
+            this.SchemeFileListComboBox.ItemsSource = ConfigData.Current.SchemeFilePathList;
+            this.SchemeFileListComboBox.SelectedValue = ConfigData.Current.SchemeFilePathList[0];
+
+            ConfigData.Current.LoadSchemeFile(ConfigData.Current.SchemeFilePath);
+            this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
         }
 
+        private void AddSettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var c = new GenerateSetting();
+            c.DatabaseServer = DatabaseServer.SqlServer;
+            SchemeData.Current.GenerateSettingList.Add(c);
+        }
+
+        private void ConnectionStringListComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.ConnectionStringListComboBox.SelectedItem == null)
+            {
+                this.GeneratePanel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                this.GeneratePanel.Visibility = Visibility.Visible;
+            }
+        }
+        private void ManageConnectionStringButton_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new ConnectionStringWindow();
+            w.ShowDialog();
+
+            this.ConnectionStringListComboBox.ItemsSource = null;
+            this.ConnectionStringListComboBox.ItemsSource = ConfigData.Current.ConnectionStringList;
+        }
+
+        private ConfigData.ConnectionStringSetting? GetConnectionStringSetting()
+        {
+            return this.ConnectionStringListComboBox.SelectedValue as ConfigData.ConnectionStringSetting;
+        }
         private DatabaseSchemaReader? GetDatabaseSchemaReader()
         {
             var setting = this.GetSelectedGenerateSetting();
             if (setting == null) { return null; }
-            return setting.CreateDatabaseSchemaReader();
+            var c = this.GetConnectionStringSetting();
+            if (c == null) { return null; }
+            return setting.CreateDatabaseSchemaReader(c.ConnectionString);
         }
+   
         private async void LoadStoredProcedureButton_Click(object sender, RoutedEventArgs e)
         {
             var reader = this.GetDatabaseSchemaReader();
@@ -143,6 +234,7 @@ namespace DbSharpApplication
                 {
                     this.ViewModel.DatabaseObjectList.Add(item);
                 }
+                this.SaveConnectionStringName();
             }
             catch
             {
@@ -151,18 +243,18 @@ namespace DbSharpApplication
         }
         private async void LoadUserDefinedTypeButton_Click(object sender, RoutedEventArgs e)
         {
-            var setting = this.GetSelectedGenerateSetting();
-            if (setting == null) { return; }
+            var reader = this.GetDatabaseSchemaReader();
+            if (reader == null) { return; }
 
             this.ViewModel.DatabaseObjectList.Clear();
             try
             {
-                var reader = setting.CreateDatabaseSchemaReader();
                 var l = await reader.GetUserDefinedTableTypesAsync();
                 foreach (var item in l.OrderByDescending(el => el.LastAlteredTime))
                 {
                     this.ViewModel.DatabaseObjectList.Add(item);
                 }
+                this.SaveConnectionStringName();
             }
             catch
             {
@@ -171,11 +263,12 @@ namespace DbSharpApplication
         }
         private void GenerateDefinitionButton_Click(object sender, RoutedEventArgs e)
         {
-            var setting = this.GetSelectedGenerateSetting();
-            if (setting == null) { return; }
-
-            var w = new DatabaseDefinitionWindow(setting.ConnectionString);
+            var c = this.GetConnectionStringSetting();
+            if (c == null) { return; }
+            var w = new DatabaseDefinitionWindow(c.ConnectionString);
             w.ShowDialog();
+
+            this.SaveConnectionStringName();
         }
         private void OpenOutputFolderButton_Click(object sender, RoutedEventArgs e)
         {
@@ -188,6 +281,15 @@ namespace DbSharpApplication
             catch
             {
                 MessageBox.Show($"Failed to open folder. Path is {setting.OutputFolderPath}");
+            }
+        }
+        private void SaveConnectionStringName()
+        {
+            var setting = this.GetSelectedGenerateSetting();
+            if (setting != null)
+            {
+                var c = this.GetConnectionStringSetting();
+                setting.ConnectionStringName = c?.Name ?? "";
             }
         }
 
@@ -224,13 +326,15 @@ namespace DbSharpApplication
                 return;
             }
 
-            var reader = setting.CreateDatabaseSchemaReader();
+            var reader = this.GetDatabaseSchemaReader();
+            if (reader == null) { return; }
+
             switch (o.ObjectType)
             {
                 case DatabaseObjectType.StoredProcedure:
                     {
                         var sp = await reader.GetStoredProcedureAsync(o.Name);
-                        var w = new StoredProcedureWindow(new StoredProcedureWindowViewModel(setting, sp));
+                        var w = new StoredProcedureWindow(new StoredProcedureWindowViewModel(reader.ConnectionString, setting, sp));
                         w.ShowDialog();
                         break;
                     }
@@ -254,5 +358,6 @@ namespace DbSharpApplication
         {
             ConfigData.Current.Save();
         }
+
     }
 }

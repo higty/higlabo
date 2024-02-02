@@ -10,16 +10,8 @@ using System.Windows;
 
 namespace DbSharpApplication
 {
-    public enum MainWindowDisplayMode
-    {
-        Initialized,
-        AddGenerateSetting,
-        EditGenerateSetting,
-        GenerateSettingSelected,
-    }
 
-    [ObservableObject]
-    public partial class MainWindowViewModel
+    public partial class MainWindowViewModel : ObservableObject
     {
         public class LanguageSetting
         {
@@ -34,10 +26,6 @@ namespace DbSharpApplication
         public ObservableCollection<DatabaseObject> DatabaseObjectList { get; init; } = new();
 
         [ObservableProperty]
-        public MainWindowDisplayMode displayMode = MainWindowDisplayMode.Initialized;
-        [ObservableProperty]
-        public Visibility addPanelVisible = Visibility.Hidden;
-        [ObservableProperty]
         public Visibility generatePanelVisible = Visibility.Hidden;
 
         public MainWindowViewModel()
@@ -47,13 +35,6 @@ namespace DbSharpApplication
 
             this.DatabaseServerList.Add(DatabaseServer.SqlServer);
             this.DatabaseServerList.Add(DatabaseServer.MySql);
-        }
-
-        public void SetDisplayMode(MainWindowDisplayMode displayMode)
-        {
-            this.DisplayMode = displayMode;
-            this.AddPanelVisible = this.DisplayMode == MainWindowDisplayMode.AddGenerateSetting ? Visibility.Visible : Visibility.Hidden;
-            this.GeneratePanelVisible = this.DisplayMode == MainWindowDisplayMode.GenerateSettingSelected ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

@@ -15,10 +15,10 @@ namespace DbSharpApplication
         [ObservableProperty]
         public String name = "";
         [ObservableProperty]
-        public String connectionString = "";
-        [ObservableProperty]
         public String outputFolderPath = "";
 
+        [ObservableProperty]
+        public String connectionStringName = "";
         [ObservableProperty]
         public DatabaseServer databaseServer = DatabaseServer.SqlServer;
         [ObservableProperty]
@@ -34,13 +34,13 @@ namespace DbSharpApplication
         public ObservableCollection<StoredProcedure> StoredProcedureList { get; init; } = new();
         public ObservableCollection<UserDefinedTableType> UserDefinedTableType { get; init; } = new();
 
-        public DatabaseSchemaReader CreateDatabaseSchemaReader()
+        public DatabaseSchemaReader CreateDatabaseSchemaReader(string connectionString)
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return new SqlServerDatabaseSchemaReader(this.ConnectionString);
+                case DatabaseServer.SqlServer: return new SqlServerDatabaseSchemaReader(connectionString);
                 case DatabaseServer.Oracle: throw new NotImplementedException();
-                case DatabaseServer.MySql: return new MySqlDatabaseSchemaReader(this.ConnectionString);
+                case DatabaseServer.MySql: return new MySqlDatabaseSchemaReader(connectionString);
                 case DatabaseServer.PostgreSql: throw new NotImplementedException();
                 default: throw new InvalidOperationException();
             }
