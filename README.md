@@ -24,8 +24,8 @@ You can also customize completely as you can with AddPostAction,ReplaceMap metho
 I completely rewrite HigLabo.Mapper. Now, HigLabo.Mapper is fastest mapper library in the world.
 
 Performance test at 2024/02/02.
-![image](https://github.com/higty/higlabo/assets/10071037/080aa219-b6e9-43ec-883f-afbff42dc4f4)
-Note) Mapperly is fast because it does not create new instance. That only pass reference. It does not map property values. Mapperly looks fastest on Address and Customer test but it is not copy property values.
+![image](https://github.com/higty/higlabo/assets/10071037/a739220e-605f-44dd-bf60-b0d4784fe76c)
+Note) Mapperly is fast because it does not create new instance. That only pass reference. It does not map property values. Mapperly looks fastest but it is not on the test Address, Customer.
 HigLabo.Mapper is fastest than any other library. Only Address to AddressDTO is slower than Mapperly.
 
 
