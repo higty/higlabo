@@ -96,12 +96,12 @@ namespace DbSharpApplication
   
         private void GenerateSettingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            this.GeneratePanel.Visibility = Visibility.Hidden;
             var setting = this.GetSelectedGenerateSetting();
             if (setting != null)
             {
                 this.ConnectionStringListComboBox.SelectedItem = ConfigData.Current.ConnectionStringList.Find(el => el.Name == setting.ConnectionStringName);
             }
-            this.GeneratePanel.Visibility = Visibility.Hidden;
             this.ViewModel.DatabaseObjectList.Clear();
         }
         private GenerateSetting? GetSelectedGenerateSetting()

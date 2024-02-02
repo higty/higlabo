@@ -45,6 +45,7 @@ namespace DbSharpApplication
 
         private void SetText()
         {
+            this.ConnectionStringListLabel.Content = T.Text.ConnectionString;
             this.ConnectionStringLabel.Content = T.Text.ConnectionString;
             this.AddButton.Content = T.Text.Add;
             this.DeleteButton.Content = T.Text.Delete;
