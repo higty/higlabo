@@ -15,7 +15,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ImageFileDownload();
+            await AudioFileDownload();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -29,6 +29,13 @@ namespace HigLabo.OpenAI
             OpenAIClient = new OpenAIClient(new AzureSettings(apiKey, "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
         }
 
+        private async ValueTask AudioFileDownload()
+        {
+            var cl = OpenAIClient;
+
+            var res = await cl.AudioSpeechAsync("tts-1", "Stay Hungry. Stay Foolish. Thank you all very much.", "alloy");
+            File.WriteAllBytes("D:\\Data\\Dev\\GPT_Audio.mp3", res.Stream!.ToByteArray());
+        }
         private async ValueTask AudioTranslations()
         {
             var cl = OpenAIClient;
@@ -56,6 +63,10 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
             var res = await cl.EmbeddingsAsync("Crafting prompts\r\nWe generally recommend taking the set of instructions and prompts that you found worked best for the model prior to fine-tuning, and including them in every training example. This should let you reach the best and most general results, especially if you have relatively few (e.g. under a hundred) training examples.\r\n\r\nIf you would like to shorten the instructions or prompts that are repeated in every example to save costs, keep in mind that the model will likely behave as if those instructions were included, and it may be hard to get the model to ignore those \"baked-in\" instructions at inference time.\r\n\r\nIt may take more training examples to arrive at good results, as the model has to learn entirely through demonstration and without guided instructions."
                 , "text-embedding-ada-002");
+            foreach (var item in res.Data)
+            {
+                var embeddings = item.Embedding;
+            }
             Console.WriteLine(res);
         }
         private async ValueTask ChatCompletion()
