@@ -68,24 +68,33 @@ namespace HigLabo.Mapper.PerformanceTest
             var address = Address.Create();
             for (int i = 0; i < ExecuteCount; i++)
             {
-                this.MapAddress(address, new AddressDTO());
+                this.MapAddress(address, new Address());
             }
         }
-        private void MapAddress(Address address, AddressDTO addressDto)
+        private void MapAddress(Address address, Address addressTo)
         {
-            addressDto.Id = address.Id;
-            addressDto.City = address.City;
-            addressDto.Country = address.Country;
-            addressDto.AddressType = address.AddressType;
+            addressTo.Id = address.Id;
+            addressTo.City = address.City;
+            addressTo.Country = address.Country;
+            addressTo.AddressType = address.AddressType;
         }
         [Benchmark]
         public void HigLaboObjectMapper_Address()
         {
-            var config = ObjectMapper.Default;
-
-			for (int i = 0; i < ExecuteCount; i++)
+            var mapper = ObjectMapper.Default;
+            var md = mapper.GetMapMethod<Address, Address>();
+            for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = config.Map(this.Address, new Address());
+                var r = md(mapper, this.Address, new Address());
+            }
+        }
+        [Benchmark]
+        public void Mapperly_Address()
+        {
+            var mapper = new MapperlyMapper();
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = mapper.AddressToAddress(this.Address);
             }
         }
         [Benchmark]
@@ -104,24 +113,24 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = this.AutoMapper.Map<Address>(this.Address);
             }
         }
-		[Benchmark]
-		public void ExpressMapper_Address()
+        [Benchmark]
+        public void ExpressMapper_Address()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var addressDto = ExpressMapper.Mapper.Map<Address, Address>(this.Address);
             }
         }
-		[Benchmark]
-		public void AgileMapper_Address()
+        [Benchmark]
+        public void AgileMapper_Address()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var addressDto = AgileObjects.AgileMapper.Mapper.Map(this.Address).ToANew<Address>();
             }
         }
-		[Benchmark]
-		public void FastMapper_Address()
+        [Benchmark]
+        public void FastMapper_Address()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
@@ -138,11 +147,38 @@ namespace HigLabo.Mapper.PerformanceTest
         }
 
         [Benchmark]
-        public void HigLaboObjectMapper_AddressDTO()
+        public void HandwriteMapper_AddressDTO()
         {
+            var address = Address.Create();
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = ObjectMapper.Default.Map(this.Address, new AddressDTO());
+                this.MapAddressDTO(address, new AddressDTO());
+            }
+        }
+        private void MapAddressDTO(Address address, AddressDTO addressDto)
+        {
+            addressDto.Id = address.Id;
+            addressDto.City = address.City;
+            addressDto.Country = address.Country;
+            addressDto.AddressType = address.AddressType;
+        }
+        [Benchmark]
+        public void HigLaboObjectMapper_AddressDTO()
+        {
+            var mapper = ObjectMapper.Default;
+            var md = mapper.GetMapMethod<Address, AddressDTO>();
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = md(mapper, this.Address, new AddressDTO());
+            }
+        }
+        [Benchmark]
+        public void Mapperly_AddressDTO()
+        {
+            var mapper = new MapperlyMapper();
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = mapper.AddressToAddressDto(this.Address);
             }
         }
         [Benchmark]
@@ -161,24 +197,24 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = this.AutoMapper.Map<AddressDTO>(this.Address);
             }
         }
-		[Benchmark]
-		public void ExpressMapper_AddressDTO()
+        [Benchmark]
+        public void ExpressMapper_AddressDTO()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var addressDto = ExpressMapper.Mapper.Map<Address, AddressDTO>(this.Address);
             }
         }
-		[Benchmark]
-		public void AgileMapper_AddressDTO()
+        [Benchmark]
+        public void AgileMapper_AddressDTO()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var addressDto = AgileObjects.AgileMapper.Mapper.Map(this.Address).ToANew<AddressDTO>();
             }
         }
-		[Benchmark]
-		public void FastMapper_AddressDTO()
+        [Benchmark]
+        public void FastMapper_AddressDTO()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
@@ -197,9 +233,20 @@ namespace HigLabo.Mapper.PerformanceTest
         [Benchmark]
         public void HigLaboObjectMapper_Customer()
         {
+            var mapper = ObjectMapper.Default;
+            var md = mapper.GetMapMethod<Customer, Customer>();
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = ObjectMapper.Default.Map(this.Customer, new Customer());
+                var r = md(mapper, this.Customer, new Customer());
+            }
+        }
+        [Benchmark]
+        public void Mapperly_Customer()
+        {
+            var mapper = new MapperlyMapper();
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = mapper.CustomerToCustomer(this.Customer);
             }
         }
         [Benchmark]
@@ -218,8 +265,8 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = this.AutoMapper.Map<Customer>(this.Customer);
             }
         }
-		[Benchmark]
-		public void ExpressMapper_Customer()
+        [Benchmark]
+        public void ExpressMapper_Customer()
         {
             var customer = Customer.Create();
             var count = ExecuteCount;
@@ -229,8 +276,8 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = ExpressMapper.Mapper.Map<Customer, Customer>(customer);
             }
         }
-		[Benchmark]
-		public void AgileMapper_Customer()
+        [Benchmark]
+        public void AgileMapper_Customer()
         {
             var customer = Customer.Create();
             var count = ExecuteCount;
@@ -239,8 +286,8 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = AgileObjects.AgileMapper.Mapper.Map<Customer>(customer).ToANew<Customer>();
             }
         }
-		[Benchmark]
-		public void FastMapper_Customer()
+        [Benchmark]
+        public void FastMapper_Customer()
         {
             var customer = Customer.Create();
             var count = ExecuteCount;
@@ -314,9 +361,20 @@ namespace HigLabo.Mapper.PerformanceTest
         [Benchmark]
         public void HigLaboObjectMapper_Customer_CustomerDTO()
         {
+            var mapper = ObjectMapper.Default;
+            var md = mapper.GetMapMethod<Customer, CustomerDTO>();
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new CustomerDTO());
+                var r = md(mapper, this.Customer, new CustomerDTO());
+            }
+        }
+        [Benchmark]
+        public void Mapperly_Customer_CustomerDTO()
+        {
+            var mapper = new MapperlyMapper();
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = mapper.CustomerToCustomerDto(this.Customer);
             }
         }
         [Benchmark]

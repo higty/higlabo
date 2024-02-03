@@ -494,6 +494,16 @@ namespace HigLabo.Core
 
         }
 
+        public Func<ObjectMapper, TSource, TTarget, TTarget>? GetMapMethod<TSource, TTarget>()
+        {
+            var key = new ActionKey(typeof(TSource), typeof(TTarget));
+            if (_MapActionList.TryGetValue(key, out var func) == false)
+            {
+                func = CreateMapMethod(key.Source, key.Target);
+                _MapActionList[key] = func;
+            }
+            return (Func<ObjectMapper, TSource, TTarget, TTarget>)func;
+        }
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
             if (source == null || target == null) { return target; }

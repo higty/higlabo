@@ -159,7 +159,8 @@ namespace HigLabo.OpenAI
             var bodyText = await res.Content.ReadAsStringAsync();
             if (res.IsSuccessStatusCode)
             {
-                if (parameter is FileContentGetParameter)
+                if (parameter is FileContentGetParameter ||
+                    parameter is AudioSpeechParameter)
                 {
 					var o = new TResponse();
                     await o.SetProperty(parameter, requestBodyText, request, response);
