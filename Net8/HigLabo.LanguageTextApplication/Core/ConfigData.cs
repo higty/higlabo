@@ -22,24 +22,37 @@ namespace LanguageTextApplication.Core
     {
         public static ConfigData Current { get; set; } = new ConfigData();
 
+        public static String SettingFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\HigLabo\\LanguageTextApplication";
+        public static String SettingFilePath
+        {
+            get { return SettingFolderPath + "\\Config.json"; }
+        }
+
         public ObservableCollection<FolderSetting> FolderList { get; init; } = new();
 
         public ConfigData() { }
 
         public void Save()
         {
-            var path = System.IO.Path.Combine(Environment.CurrentDirectory, "Config.json");
-            File.WriteAllText(path, JsonSerializer.Serialize(this, new JsonSerializerOptions() { WriteIndented = true }));
+            File.WriteAllText(SettingFilePath, JsonSerializer.Serialize(this, new JsonSerializerOptions() { WriteIndented = true }));
         }
-        public static ConfigData Load()
+        private static void EnsureFileExists()
         {
-            var path = System.IO.Path.Combine(Environment.CurrentDirectory, "Config.json");
+            var path = SettingFilePath;
+            if (Directory.Exists(SettingFolderPath) == false)
+            {
+                Directory.CreateDirectory(SettingFolderPath);
+            }
             if (File.Exists(path) == false)
             {
                 var data = new ConfigData();
                 File.WriteAllText(path, JsonSerializer.Serialize(data));
-                return data;
             }
+        }
+        public static ConfigData Load()
+        {
+            EnsureFileExists();
+            var path = SettingFilePath;
             var json = File.ReadAllText(path);
             return JsonSerializer.Deserialize<ConfigData>(json)!;
         }
