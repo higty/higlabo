@@ -2,7 +2,7 @@
 
 namespace HigLabo.Web
 {
-    public enum Higlabo__
+    public enum Higlabo__icon
     {
         Add__svg,
         ArrowDown__svg,
@@ -18,25 +18,25 @@ namespace HigLabo.Web
         DragBarPanel__svg,
         Expand__svg,
     }
-    public static class Higlabo___Extensions
+    public static class Higlabo__icon_Extensions
     {
-        public static string GetBlobName(this Higlabo__ value)
+        public static string GetBlobName(this Higlabo__icon value)
         {
             switch (value)
             {
-                case Higlabo__.Add__svg: return "Add.svg";
-                case Higlabo__.ArrowDown__svg: return "ArrowDown.svg";
-                case Higlabo__.ArrowGlayDown__svg: return "ArrowGlayDown.svg";
-                case Higlabo__.ArrowGlayLeft__svg: return "ArrowGlayLeft.svg";
-                case Higlabo__.ArrowGlayRight__svg: return "ArrowGlayRight.svg";
-                case Higlabo__.ArrowGlayUp__svg: return "ArrowGlayUp.svg";
-                case Higlabo__.ArrowLeft__svg: return "ArrowLeft.svg";
-                case Higlabo__.ArrowRight__svg: return "ArrowRight.svg";
-                case Higlabo__.ArrowRight2__svg: return "ArrowRight2.svg";
-                case Higlabo__.ArrowUp__svg: return "ArrowUp.svg";
-                case Higlabo__.Delete__svg: return "Delete.svg";
-                case Higlabo__.DragBarPanel__svg: return "DragBarPanel.svg";
-                case Higlabo__.Expand__svg: return "Expand.svg";
+                case Higlabo__icon.Add__svg: return "icon/Add.svg";
+                case Higlabo__icon.ArrowDown__svg: return "icon/ArrowDown.svg";
+                case Higlabo__icon.ArrowGlayDown__svg: return "icon/ArrowGlayDown.svg";
+                case Higlabo__icon.ArrowGlayLeft__svg: return "icon/ArrowGlayLeft.svg";
+                case Higlabo__icon.ArrowGlayRight__svg: return "icon/ArrowGlayRight.svg";
+                case Higlabo__icon.ArrowGlayUp__svg: return "icon/ArrowGlayUp.svg";
+                case Higlabo__icon.ArrowLeft__svg: return "icon/ArrowLeft.svg";
+                case Higlabo__icon.ArrowRight__svg: return "icon/ArrowRight.svg";
+                case Higlabo__icon.ArrowRight2__svg: return "icon/ArrowRight2.svg";
+                case Higlabo__icon.ArrowUp__svg: return "icon/ArrowUp.svg";
+                case Higlabo__icon.Delete__svg: return "icon/Delete.svg";
+                case Higlabo__icon.DragBarPanel__svg: return "icon/DragBarPanel.svg";
+                case Higlabo__icon.Expand__svg: return "icon/Expand.svg";
                 default: throw new InvalidOperationException();
             }
         }

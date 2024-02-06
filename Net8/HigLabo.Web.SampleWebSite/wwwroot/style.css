@@ -519,10 +519,12 @@
 }
 .textbox.date,
 .record-panel.date {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   width: 100px;
 }
 .textbox.time,
 .record-panel.time {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   width: 60px;
 }
 .textbox.color,
@@ -1133,4 +1135,67 @@
 }
 .toggle-record-panel[is-dragging=true] > .content-panel {
   display: none;
+}
+
+.paging-panel {
+  position: relative;
+}
+.paging-panel .page-list-panel {
+  position: absolute;
+  z-index: 150;
+  top: 40px;
+  left: 0;
+  display: block;
+  width: 150px;
+  background-color: var(--color-menu-bg);
+  border: solid 1px var(--color-border);
+  border-radius: 6px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.paging-panel .page-list-panel .menu-record-panel {
+  display: block;
+  height: 32px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.paging-panel .page-list-panel .menu-record-panel:hover {
+  background-color: var(--color-menu-hover);
+}
+.paging-panel .display-flex {
+  display: flex;
+  align-items: center;
+}
+.paging-panel .page-number-change-panel {
+  display: grid;
+  place-items: center;
+  height: 32px;
+  width: 30px;
+  background-color: var(--color-menu-bg);
+  border: solid 1px var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.paging-panel .page-number-change-panel img {
+  width: 16px;
+  height: 16px;
+}
+.paging-panel .page-number-change-panel:hover {
+  background-color: var(--color-menu-hover);
+}
+.paging-panel .page-number-panel {
+  display: grid;
+  place-items: center;
+  height: 32px;
+  background-color: var(--color-menu-bg);
+  border: solid 1px var(--color-border);
+  border-radius: 6px;
+  margin: auto 6px;
+  cursor: pointer;
+}
+.paging-panel .page-number-panel > span {
+  margin: auto 8px;
+}
+.paging-panel .page-number-panel:hover {
+  background-color: var(--color-menu-hover);
 }

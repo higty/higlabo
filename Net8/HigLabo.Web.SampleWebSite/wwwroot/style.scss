@@ -185,10 +185,12 @@ $width-checkbox-circle: 20px;
     width: 100%;
 
     &.date {
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
         width: 100px;
     }
 
     &.time {
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
         width: 60px;
     }
 
@@ -916,4 +918,87 @@ $width-checkbox-circle: 20px;
         }
     }
 }
+
+
+.paging-panel {
+    position: relative;
+
+    .page-list-panel {
+        position: absolute;
+        z-index: 150;
+        top: 40px;
+        left: 0;
+        display: block;
+        width: 150px;
+        background-color: var(--color-menu-bg);
+        border: solid 1px var(--color-border);
+        border-radius: 6px;
+        max-height: 80vh;
+        overflow-y: auto;
+
+        .menu-record-panel {
+            display: block;
+            height: 32px;
+            padding: 4px 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--color-menu-hover);
+            }
+        }
+    }
+
+    .display-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .page-number-change-panel {
+        display: grid;
+        place-items: center;
+        height: 32px;
+        width: 30px;
+        background-color: var(--color-menu-bg);
+        border: solid 1px var(--color-border);
+        border-radius: 6px;
+        cursor: pointer;
+
+        img {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover {
+            background-color: var(--color-menu-hover);
+        }
+    }
+
+    .page-number-panel {
+        display: grid;
+        place-items: center;
+        height: 32px;
+        background-color: var(--color-menu-bg);
+        border: solid 1px var(--color-border);
+        border-radius: 6px;
+        margin: auto 6px;
+        cursor: pointer;
+
+        > span {
+            margin: auto 8px;
+        }
+
+        &:hover {
+            background-color: var(--color-menu-hover);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 
