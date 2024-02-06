@@ -7,11 +7,11 @@
     </div>
     <div class="select-month-panel">
         <span class="image-panel" @onclick="e => ChangeMonth(-1)" @onclick:stopPropagation>
-            <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayLeft__svg)" class="icon" />
+            <img src="@UrlInfo.GetIconUrl(Higlabo__icon.ArrowGlayLeft__svg)" class="icon" />
         </span>
         <span class="current-month">@this.Date.ToString("yyyy/MM")</span>
         <span class="image-panel" @onclick="e => ChangeMonth(1)" @onclick:stopPropagation>
-            <img src="@UrlInfo.GetIconUrl(Higlabo__.ArrowGlayRight__svg)" class="icon" />
+            <img src="@UrlInfo.GetIconUrl(Higlabo__icon.ArrowGlayRight__svg)" class="icon" />
         </span>
     </div>
     <table class="date-calendar-table">
