@@ -9,18 +9,10 @@ namespace HigLabo.OpenAI
     public partial class ImagesVariationsParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        string IFileParameter.ParameterName
-        {
-            get
-            {
-                return "image";
-            }
-        }
-        string IFileParameter.FileName { get; set; } = "";
         /// <summary>
         /// The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
         /// </summary>
-        public Stream? Image { get; private set; }
+        public FileParameter Image { get; private set; } = new FileParameter("image");
         /// <summary>
         /// The model to use for image generation. Only dall-e-2 is supported at this time.
         /// </summary>
@@ -46,16 +38,6 @@ namespace HigLabo.OpenAI
         {
             return $"/images/variations";
         }
-        Stream IFileParameter.GetFileStream()
-        {
-            if (this.Image == null) throw new InvalidOperationException("Image property must be set.");
-            return this.Image;
-        }
-        public void SetFile(string fileName, Stream stream)
-        {
-            ((IFileParameter)this).FileName = fileName;
-            this.Image = stream;
-        }
         public override object GetRequestBody()
         {
             return new {
@@ -66,6 +48,10 @@ namespace HigLabo.OpenAI
             	size = this.Size,
             	user = this.User,
             };
+        }
+        IEnumerable<FileParameter> IFileParameter.GetFileParameters()
+        {
+            yield return this.Image;
         }
         Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
         {
@@ -83,16 +69,16 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string fileName, Stream image)
+        public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string imageFileName, Stream imageStream)
         {
             var p = new ImagesVariationsParameter();
-            p.SetFile(fileName, image);
+            p.Image.SetFile(imageFileName, imageStream);
             return await this.SendFormDataAsync<ImagesVariationsParameter, ImagesVariationsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string fileName, Stream image, CancellationToken cancellationToken)
+        public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string imageFileName, Stream imageStream, CancellationToken cancellationToken)
         {
             var p = new ImagesVariationsParameter();
-            p.SetFile(fileName, image);
+            p.Image.SetFile(imageFileName, imageStream);
             return await this.SendFormDataAsync<ImagesVariationsParameter, ImagesVariationsResponse>(p, cancellationToken);
         }
         public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(ImagesVariationsParameter parameter)

@@ -460,6 +460,10 @@ $width-checkbox-circle: 20px;
         color: var(--color-select-button-text);
         background-color: var(--color-select-button-bg);
 
+        &:last-child {
+            margin-right: 0;
+        }
+
         &.selected {
             color: var(--color-white);
             background-color: var(--color-select-button-selected);

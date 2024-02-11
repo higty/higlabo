@@ -89,6 +89,7 @@ namespace HigLabo.OpenAI
             {
                 "GET" => HttpMethod.Get,
                 "POST" => HttpMethod.Post,
+                "DELETE" => HttpMethod.Delete,
                 _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
             };
             var apiPath = p.GetApiPath();
@@ -154,17 +155,18 @@ namespace HigLabo.OpenAI
             var bodyText = await res.Content.ReadAsStringAsync();
             if (res.IsSuccessStatusCode)
             {
-                if (parameter is FileContentGetParameter)
+                if (parameter is FileContentGetParameter ||
+                    parameter is AudioSpeechParameter)
                 {
-                    var o = new TResponse();
+					var o = new TResponse();
                     return o;
-                }
+				}
                 else
                 {
                     var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
-                    o.SetProperty(parameter, requestBodyText, request, res, bodyText);
-                    return o;
-                }
+					o.SetProperty(parameter, requestBodyText, request, res, bodyText);
+					return o;
+				}
             }
             else
             {
@@ -206,10 +208,16 @@ namespace HigLabo.OpenAI
             var fileParameter = p as IFileParameter;
             if (fileParameter != null)
             {
-                var stream = fileParameter.GetFileStream();
-                stream.Position = 0;
-                var fileContent = new StreamContent(stream);
-                requestContent.Add(fileContent, fileParameter.ParameterName, fileParameter.FileName);
+                foreach (var item in fileParameter.GetFileParameters())
+                {
+                    if (item.FileName == null) { continue; }
+                    var stream = item.GetFileStream();
+                    if (stream != null)
+                    {
+                        var fileContent = new StreamContent(stream);
+                        requestContent.Add(fileContent, item.Name, item.FileName);
+                    }
+                }
             }
             var d = parameter.CreateFormDataParameter();
             foreach (var key in d.Keys)

@@ -6,13 +6,13 @@ namespace HigLabo.OpenAI
     /// Creates an edited or extended image given an original image and a prompt.
     /// <seealso href="https://api.openai.com/v1/images/edits">https://api.openai.com/v1/images/edits</seealso>
     /// </summary>
-    public partial class ImagesEditsParameter : RestApiParameter, IRestApiParameter
+    public partial class ImagesEditsParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
         /// The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
         /// </summary>
-        public string Image { get; set; } = "";
+        public FileParameter Image { get; private set; } = new FileParameter("image");
         /// <summary>
         /// A text description of the desired image(s). The maximum length is 1000 characters.
         /// </summary>
@@ -20,7 +20,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where image should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as image.
         /// </summary>
-        public string? Mask { get; set; }
+        public FileParameter Mask { get; private set; } = new FileParameter("mask");
         /// <summary>
         /// The model to use for image generation. Only dall-e-2 is supported at this time.
         /// </summary>
@@ -59,33 +59,49 @@ namespace HigLabo.OpenAI
             	user = this.User,
             };
         }
+        IEnumerable<FileParameter> IFileParameter.GetFileParameters()
+        {
+            yield return this.Image;
+            yield return this.Mask;
+        }
+        Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
+        {
+            var d = new Dictionary<string, string>();
+            d["prompt"] = this.Prompt;
+            if (this.Model != null) d["model"] = this.Model;
+            if (this.N != null) d["n"] = this.N.Value.ToString();
+            if (this.Size != null) d["size"] = this.Size;
+            if (this.Response_Format != null) d["response_format"] = this.Response_Format;
+            if (this.User != null) d["user"] = this.User;
+            return d;
+        }
     }
     public partial class ImagesEditsResponse : RestApiDataResponse<List<ImageObject>>
     {
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string image, string prompt)
+        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string imageFileName, Stream imageStream, string prompt)
         {
             var p = new ImagesEditsParameter();
-            p.Image = image;
+            p.Image.SetFile(imageFileName, imageStream);
             p.Prompt = prompt;
-            return await this.SendJsonAsync<ImagesEditsParameter, ImagesEditsResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string image, string prompt, CancellationToken cancellationToken)
+        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string imageFileName, Stream imageStream, string prompt, CancellationToken cancellationToken)
         {
             var p = new ImagesEditsParameter();
-            p.Image = image;
+            p.Image.SetFile(imageFileName, imageStream);
             p.Prompt = prompt;
-            return await this.SendJsonAsync<ImagesEditsParameter, ImagesEditsResponse>(p, cancellationToken);
+            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(p, cancellationToken);
         }
         public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(ImagesEditsParameter parameter)
         {
-            return await this.SendJsonAsync<ImagesEditsParameter, ImagesEditsResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(parameter, CancellationToken.None);
         }
         public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(ImagesEditsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendJsonAsync<ImagesEditsParameter, ImagesEditsResponse>(parameter, cancellationToken);
+            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(parameter, cancellationToken);
         }
     }
 }

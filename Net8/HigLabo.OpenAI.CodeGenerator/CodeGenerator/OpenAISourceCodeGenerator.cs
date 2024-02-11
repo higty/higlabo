@@ -11,6 +11,7 @@ using HigLabo.CodeGenerator;
 using HigLabo.Core;
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace HigLabo.OpenAI.CodeGenerator
 {
@@ -21,7 +22,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             public static readonly Regex CurlyBrackets = new Regex("{(?<Value>[^}]*)}", RegexOptions.Compiled);
         }
         public string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36";
-        public string OutputFolderPath { get; set; } = "C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.OpenAI\\Generated\\";
+        public string OutputFolderPath { get; set; } = "C:\\GitHub\\higty\\HigLabo\\Net8\\HigLabo.OpenAI\\Generated\\";
 
         public void ExecuteAsync()
         {
@@ -40,6 +41,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             {
                 CreateSourceCode(ee[i]);
             }
+            Console.WriteLine($"Code generation Completed");
         }
         public void CreateSourceCode(IWebElement endpointPanel)
         {
@@ -49,7 +51,11 @@ namespace HigLabo.OpenAI.CodeGenerator
                 endpointAnchor.Contains("Deprecated")) { return; }
 
             var sc = new SourceCode();
+            sc.UsingNamespaces.Add("System.Collections.Generic");
+            sc.UsingNamespaces.Add("System.IO");
             sc.UsingNamespaces.Add("System.Runtime.CompilerServices");
+            sc.UsingNamespaces.Add("System.Threading");
+            sc.UsingNamespaces.Add("System.Threading.Tasks");
             sc.Namespaces.Add(new Namespace($"HigLabo.OpenAI"));
 
             var endpointUrl = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-path']")).FirstOrDefault()?.GetAttribute("innerHTML") ?? "";
@@ -65,6 +71,8 @@ namespace HigLabo.OpenAI.CodeGenerator
                 httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-get']")).First().GetAttribute("innerHTML") ?? "";
             }
             var endpointPath = endpointUrl.Replace("https://api.openai.com/v1/", "");
+            Console.WriteLine($"{endpointPath}");
+
             var cName = this.GetClassName(endpointAnchor);
             if (cName.IsNullOrEmpty())
             {
@@ -187,6 +195,10 @@ namespace HigLabo.OpenAI.CodeGenerator
 
                         var pRawName = paramRow.FindElement(By.CssSelector("[class='param-name']")).GetAttribute("innerHTML");
                         var pName = pRawName.ToPascalCase();
+                        if (pName == "Timestamp_Granularities[]")
+                        {
+                            pName = "Timestamp_Granularities";
+                        }
                         var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.GetAttribute("innerHTML") == "Required";
                         var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).GetAttribute("innerHTML"), cName, pName, pRequired);
                         if (pType == "string")
@@ -202,6 +214,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                             {
                                 pType += "?";
                             }
+                        }
+                        if (pType == "FileParameter?")
+                        {
+                            pType = "FileParameter";
                         }
 
                         var p = new Property(pType, pName, true);
@@ -230,41 +246,11 @@ namespace HigLabo.OpenAI.CodeGenerator
                         {
                             p.Initializer = "\"float\"";
                         }
-                        if (pType == "Stream?")
+                        if (pType == "FileParameter")
                         {
                             hasFileProperty = true;
-                            if (p.Set != null)
-                            {
-                                p.Set.Modifier = AccessModifier.Private;
-                            }
-
-                            cParameter.ImplementInterfaces.Add(new TypeName("IFileParameter"));
-
-                            var pParameterName = new Property("string", "IFileParameter.ParameterName");
-                            cParameter.Properties.Add(pParameterName);
-                            pParameterName.Modifier.AccessModifier = MethodAccessModifier.None;
-                            pParameterName.Get = new PropertyBody(PropertyBodyType.Get);
-                            pParameterName.Get.Body.Add(SourceCodeLanguage.CSharp, $"return \"{pRawName}\";");
-                            pParameterName.Set = null;
-
-                            var pFileName = new Property("string", "IFileParameter.FileName", true);
-                            cParameter.Properties.Add(pFileName);
-                            pFileName.Modifier.AccessModifier = MethodAccessModifier.None;
-                            pFileName.Initializer = "\"\"";
-
-                            var mdGetFileStream = new Method(MethodAccessModifier.None, "IFileParameter.GetFileStream");
-                            cParameter.Methods.Add(mdGetFileStream);
-                            mdGetFileStream.ReturnTypeName = new TypeName("Stream");
-                            mdGetFileStream.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} == null) throw new InvalidOperationException(\"{pName} property must be set.\");");
-                            mdGetFileStream.Body.Add(SourceCodeLanguage.CSharp, $"return this.{pName};");
-
-                            var mdSetFile = new Method(MethodAccessModifier.Public, "SetFile");
-                            cParameter.Methods.Add(mdSetFile);
-                            mdSetFile.Parameters.Add(new MethodParameter("string", "fileName"));
-                            mdSetFile.Parameters.Add(new MethodParameter("Stream", "stream"));
-                            mdSetFile.Body.Add(SourceCodeLanguage.CSharp, $"((IFileParameter)this).FileName = fileName;");
-                            mdSetFile.Body.Add(SourceCodeLanguage.CSharp, $"this.{pName} = stream;");
-
+                            p.Set.Modifier = AccessModifier.Private;
+                            p.Initializer = $"new FileParameter(\"{p.Name.ToLower()}\")";
                         }
                         p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.GetAttribute("textContent") ?? "";
                         cParameter.Properties.Add(p);
@@ -277,20 +263,20 @@ namespace HigLabo.OpenAI.CodeGenerator
 
                         if (pRequired)
                         {
-                            if (pType == "Stream?")
+                            if (pType == "FileParameter")
                             {
-                                mdAsync.Parameters.Add(new MethodParameter("string", "fileName"));
-                                mdAsync.Parameters.Add(new MethodParameter("Stream", p.Name.ToCamelCase()));
-                                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.SetFile(fileName, {p.Name.ToCamelCase()});");
+                                mdAsync.Parameters.Add(new MethodParameter("string", p.Name.ToCamelCase() + "FileName"));
+                                mdAsync.Parameters.Add(new MethodParameter("Stream", p.Name.ToCamelCase() + "Stream"));
+                                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name}.SetFile({p.Name.ToCamelCase()}FileName, {p.Name.ToCamelCase()}Stream);");
                             }
                             else
                             {
                                 mdAsync.Parameters.Add(new MethodParameter(p.TypeName.Name, p.Name.ToCamelCase()));
                                 mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
-
-                                mdStreamAsync.Parameters.Add(new MethodParameter(p.TypeName.Name, p.Name.ToCamelCase()));
-                                mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
                             }
+
+                            mdStreamAsync.Parameters.Add(new MethodParameter(p.TypeName.Name, p.Name.ToCamelCase()));
+                            mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
                         }
                     }
                 }
@@ -320,19 +306,33 @@ namespace HigLabo.OpenAI.CodeGenerator
             var sendAsyncMethodName = "SendJsonAsync";
             if (hasFileProperty)
             {
+                cParameter.ImplementInterfaces.Add(new TypeName("IFileParameter"));
                 sendAsyncMethodName = "SendFormDataAsync";
+
+                var mdGetFileParameters = new Method(MethodAccessModifier.None, "IFileParameter.GetFileParameters");
+                mdGetFileParameters.ReturnTypeName = new TypeName("IEnumerable<FileParameter>");
+                cParameter.Methods.Add(mdGetFileParameters);
 
                 foreach (var item in propertyList)
                 {
                     var pName = item.Name;
+                    if (pName == "Timestamp_Granularities")
+                    {
+                        mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = $\"[{{string.Format(\",\", this.Timestamp_Granularities)}}]\";");
+                        continue;
+                    }
                     var pType = item.TypeName.Name;
-                    if (hasFileProperty && pType != "Stream?")
+                    if (hasFileProperty)
                     {
                         if (pType.EndsWith("?"))
                         {
                             if (pType == "string?")
                             {
                                 mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName};");
+                            }
+                            else if (pType == "FileParameter?")
+                            {
+                                mdGetFileParameters.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) yield return this.{pName};");
                             }
                             else
                             {
@@ -344,6 +344,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                             if (pType == "string")
                             {
                                 mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName};");
+                            }
+                            else if (pType == "FileParameter")
+                            {
+                                mdGetFileParameters.Body.Add(SourceCodeLanguage.CSharp, $"yield return this.{pName};");
                             }
                             else
                             {
@@ -459,7 +463,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                     var md1 = md2.Copy();
                     md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
                     md1.Body.Clear();
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.ChatCompletionsStreamAsync(parameter, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -474,6 +478,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             Directory.CreateDirectory(Path.Combine(OutputFolderPath, "Endpoint"));
             var filePath = Path.Combine(OutputFolderPath, "Endpoint", cName + ".cs");
             this.WriteFile(filePath, sc);
+            Console.WriteLine($"{filePath}");
         }
         private string GetClassName(string endpointAnchor)
         {
@@ -488,7 +493,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve file") { return "FileRetrieve"; }
             if (endpointAnchor == "Retrieve file content") { return "FileContentGet"; }
             if (endpointAnchor == "Retrieve model") { return "ModelRetrieve"; }
-            if (endpointAnchor == "Delete fine-tune model") { return "ModelDelete"; }
+            if (endpointAnchor == "Delete a fine-tuned model") { return "ModelDelete"; }
             if (endpointAnchor == "Create moderation") { return "ModerationCreate"; }
             if (endpointAnchor == "Create assistantBeta") { return "AssistantCreate"; }
             if (endpointAnchor == "Retrieve assistantBeta") { return "AssistantRetrieve"; }
@@ -524,13 +529,14 @@ namespace HigLabo.OpenAI.CodeGenerator
         {
             if (className == "ChatCompletions" && propertyName == "Messages") { return "List<IChatMessage>"; }
             if (className == "Embeddings" && typeName == "string or array") { return "string"; }
-            if (className == "FileUpload" && propertyName == "File") { return "Stream?"; }
-            if (className == "ImagesVariations" && propertyName == "Image") { return "Stream?"; }
+            if (className == "FileUpload" && propertyName == "File") { return "FileParameter"; }
+            if (className == "ImagesVariations" && propertyName == "Image") { return "FileParameter"; }
             if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
             if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
 
             if (propertyName == "Tools") { return "List<ToolObject>"; }
             if (propertyName == "Tool_choice") { return "object?"; }
+            if (propertyName == "Timestamp_Granularities") { return "double[]"; }
 
             if (typeName == "string") { return "string"; }
             if (typeName == "string or null") { return "string?"; }
@@ -538,11 +544,12 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (typeName == "string or array") { return "string"; }
             if (typeName == "boolean") { return "bool"; }
             if (typeName == "boolean or null") { return "bool?"; }
-            if (typeName == "interger") { return "int"; }
+            if (typeName == "integer") { return "int"; }
+            if (typeName == "integer?") { return "int?"; }
             if (typeName == "integer or null") { return "int?"; }
             if (typeName == "number") { return "double"; }
             if (typeName == "number or null") { return "double?"; }
-            if (typeName == "file") { return "Stream?"; }
+            if (typeName == "file") { return "FileParameter"; }
             if (typeName == "array") { return "List<string>"; }
             if (typeName == "string / array / null") { return "List<string>"; }
             if (typeName == "map") { return "object?"; }

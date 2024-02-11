@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,9 +26,13 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Model { get; set; }
         /// <summary>
-        /// Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis.
+        /// Overrides the instructions of the assistant. This is useful for modifying the behavior on a per-run basis.
         /// </summary>
         public string? Instructions { get; set; }
+        /// <summary>
+        /// Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.
+        /// </summary>
+        public string? Additional_Instructions { get; set; }
         /// <summary>
         /// Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
         /// </summary>
@@ -46,6 +52,7 @@ namespace HigLabo.OpenAI
             	assistant_id = this.Assistant_Id,
             	model = this.Model,
             	instructions = this.Instructions,
+            	additional_instructions = this.Additional_Instructions,
             	tools = this.Tools,
             	metadata = this.Metadata,
             };

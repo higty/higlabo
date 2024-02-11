@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Creates a job that fine-tunes a specified model from a given dataset.Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.Learn more about fine-tuning
+    /// Creates a fine-tuning job which begins the process of creating a new model from a given dataset.Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.Learn more about fine-tuning
     /// <seealso href="https://api.openai.com/v1/fine_tuning/jobs">https://api.openai.com/v1/fine_tuning/jobs</seealso>
     /// </summary>
     public partial class FineTuningJobCreateParameter : RestApiParameter, IRestApiParameter

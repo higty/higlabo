@@ -758,6 +758,9 @@
   color: var(--color-select-button-text);
   background-color: var(--color-select-button-bg);
 }
+.select-button-list-panel .record-value-panel:last-child {
+  margin-right: 0;
+}
 .select-button-list-panel .record-value-panel.selected {
   color: var(--color-white);
   background-color: var(--color-select-button-selected);

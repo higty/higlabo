@@ -15,7 +15,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await AudioFileDownload();
+            await Moderation();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -41,7 +41,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new AudioTranslationsParameter();
-            p.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
+            p.File.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
             p.Model = "whisper-1";
 
             var res = await cl.AudioTranslationsAsync(p);
@@ -52,7 +52,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new AudioTranscriptionsParameter();
-            p.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
+            p.File.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
             p.Model = "whisper-1";
             
             var res = await cl.AudioTranscriptionsAsync(p);
@@ -234,7 +234,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.SetFile("092332_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\092332_hanrei.pdf"));
+            p.File.SetFile("092332_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\092332_hanrei.pdf"));
             p.Purpose = "assistants";
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);
@@ -251,7 +251,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.SetFile("FinetuneSample.txt", File.ReadAllBytes("D:\\Data\\Dev\\FinetuneSample.txt"));
+            p.File.SetFile($"FinetuneSample{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt", File.ReadAllBytes("D:\\Data\\Dev\\FinetuneSample.txt"));
             p.Purpose = "fine-tune";
             var res = await cl.FileUploadAsync(p);
 
@@ -377,10 +377,11 @@ namespace HigLabo.OpenAI
             var p = new AssistantModifyParameter();
             p.Assistant_Id = id;
             p.Metadata = new {
-                MyKey1 = "MyValue1",
+                MyKey2 = "MyValue2",
                 CreateTime = DateTimeOffset.Now,
             };
             var res2 = await cl.AssistantModifyAsync(p);
+            Console.WriteLine(res2.GetResponseBodyText());
         }
         private async ValueTask SendMessage()
         {
