@@ -7,12 +7,9 @@
         <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>
     }
     <div class="select-container-panel">
-        @if (SelectRecordPanelVisible)
+        @if (this.SelectRecordPanelVisible)
         {
-            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate" MultipleSelectRecord="this.MultipleSelectRecord" TItem="TItem"
-                SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
-                OnRecordSelected="r => Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
-            </SelectRecordPanel>
+            <SelectRecordPanel State="this.State" TItem="TItem" ItemTemplate="this.SelectItemTemplate"></SelectRecordPanel>
         }
     </div>
 </InputFieldPanel>

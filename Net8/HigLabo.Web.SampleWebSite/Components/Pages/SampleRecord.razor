@@ -1,8 +1,7 @@
 ﻿@rendermode InteractiveServer
 
 
-<InputFieldPanel_Record Text="EndTime type" @bind-Record="this.SelectEndTimeMode" SearchContainerPanelVisible="false"
-    OnRecordListLoading="(RecordListLoadingContext<SelectEndTimeMode?> context) => context.RecordList.AddEnumList<SelectEndTimeMode>()">
+<InputFieldPanel_Record Text="EndTime type" @bind-Record="this.SelectEndTimeMode" TItem="SelectEndTimeMode?" State="this.SelectEndTimeModeState">
     <ItemTemplate Context="record">
         @if (record == null)
         {
@@ -15,8 +14,8 @@
     </ItemTemplate>
 </InputFieldPanel_Record>
 
-<InputFieldPanel_Record Text="EndTime type" Layout="InputFieldPanelLayout.Flex" @bind-Record="this.SelectEndTimeMode"
-    OnRecordListLoading="(RecordListLoadingContext<SelectEndTimeMode?> context) => context.RecordList.AddEnumList<SelectEndTimeMode>()">
+<InputFieldPanel_Record Text="EndTime type" Layout="InputFieldPanelLayout.Flex" @bind-Record="this.SelectEndTimeMode" 
+    TItem="SelectEndTimeMode?" State="this.SelectEndTimeModeState">
     <ItemTemplate Context="record">
         @if (record == null)
         {
@@ -39,8 +38,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_Record>
 
-<InputFieldPanel_Record Text="Person in charge" @bind-Record="this.SelectedUser"
-    OnRecordListLoading="(RecordListLoadingContext<UserRecord> context) => LoadingRecordList(context)">
+<InputFieldPanel_Record Text="Person in charge" @bind-Record="this.SelectedUser" State="this.UserState">
     <ItemTemplate>
         @if (this.SelectedUser == null)
         {
@@ -61,8 +59,7 @@
 
 <hr />
 
-<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" RecordList="this.SelectedUserList" TItem="UserRecord" 
-    OnRecordListLoading="context => LoadingRecordList(context)">
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList" TItem="UserRecord">
     <ChildContent>
         @foreach (var item in this.SelectedUserList)
         {
@@ -133,7 +130,13 @@
     [Parameter]
     public bool Selected { get; set; } = false;
     [Parameter]
-    public SelectEndTimeMode? SelectEndTimeMode { get; set; } 
+    public SelectEndTimeMode? SelectEndTimeMode { get; set; }
+    [Parameter]
+    public SelectRecordPanel<SelectEndTimeMode?>.StateDate SelectEndTimeModeState { get; set; } = new();
+    [Parameter]
+    public SelectRecordPanel<UserRecord>.StateDate UserState { get; set; } = new();
+    [Parameter]
+    public SelectRecordPanel<UserRecord>.StateDate UserListState { get; set; } = new();
 
     [Parameter]
     public FileAccess FileAccess { get; set; } = FileAccess.Read;
@@ -148,6 +151,14 @@
     public List<UserRecord> SelectedUserList { get; init; } = new();
     [Parameter]
     public SortGroup SortGroup { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.SelectEndTimeModeState.OnRecordListLoading = context => context.RecordList.AddEnumList<SelectEndTimeMode>();
+        this.UserState.OnRecordListLoading = context => this.LoadingRecordList(context);
+        this.UserListState.OnRecordListLoading = context => this.LoadingRecordList(context);
+    }
 
     private void AddUser()
     {

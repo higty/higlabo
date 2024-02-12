@@ -28,9 +28,10 @@ namespace HigLabo.Web.RazorComponent.Input
 		public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
 		[Parameter]
+		public SelectRecordPanel<TItem>.StateDate State { get; set; } = new();
+
+		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
-        [Parameter]
-        public bool SearchContainerPanelVisible { get; set; } = true;
 
         [Parameter, AllowNull]
         public TItem Record { get; set; }
@@ -43,10 +44,21 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter, AllowNull]
         public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
-        [Parameter]
-        public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
-
-		private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+			this.State.OnRecordSelected += async (TItem r) =>
+			{
+				await this.Record_Selected(r);
+                this.SelectRecordPanelVisible = false;
+            };
+            this.State.OnClosed += () =>
+            {
+                this.SelectRecordPanelVisible = false;
+                this.StateHasChanged();
+            };
+        }
+        private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
 		{
 			if (e.Key == "Enter")
 			{

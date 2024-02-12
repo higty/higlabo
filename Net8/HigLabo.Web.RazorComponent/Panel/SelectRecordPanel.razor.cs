@@ -11,89 +11,99 @@ namespace HigLabo.Web.RazorComponent.Panel
 {
 	public partial class SelectRecordPanel<TItem> : ComponentBase
 	{
-		private int _RecordIndex = -1;
+		public class StateDate
+		{
+            internal Action<TItem> OnRecordSelected { get; set; } = r => { };
+            internal Action OnClosed { get; set; } = () => { };
 
-		[Parameter]
-		public string SearchText { get; set; } = "";
-		[Parameter]
-		public bool SearchContainerPanelVisible { get; set; } = true;
-        [Parameter]
-        public bool MultipleSelectRecord { get; set; } = false;
-        
-		[Parameter]
-		public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
-		[Parameter]
-		public EventCallback<TItem> OnRecordSelected { get; set; }
-        [Parameter, AllowNull]
-        public RenderFragment<TItem> ItemTemplate { get; set; }
+            internal int RecordIndex { get; set; } = -1;
+            internal List<TItem> RecordList { get; set; } = new List<TItem>();
 
-        private List<TItem> RecordList { get; set; } = new List<TItem>();
-        [Parameter]
-		public EventCallback OnClosed { get; set; }
+            public bool SearchContainerPanelVisible { get; set; } = true;
+            public string SearchText { get; set; } = "";
+            public Action<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; } = r => { };
 
-		protected override async Task OnInitializedAsync()
-		{
-			await this.OnRecordListLoading_Invoke();
-		}
-		private async ValueTask OnRecordListLoading_Invoke()
-		{
-			this.RecordList.Clear();
-			await this.OnRecordListLoading.InvokeAsync(new RecordListLoadingContext<TItem>(this.RecordList, this.SearchText));
-		}
-
-		private async ValueTask SearchTextbox_Keydown(KeyboardEventArgs e)
-		{
-			if (e.Key == "Esc")
-			{
-				_RecordIndex = -1;
-				this.StateHasChanged();
-			}
-			else if (e.Key == "Enter")
-			{
-				if (_RecordIndex < 0)
-				{
-					await OnRecordListLoading_Invoke();
-				}
-				else
-				{
-					await this.RecordPanelSelected(this.RecordList[_RecordIndex]);
-				}
-			}
-			else if (e.Key == "ArrowUp")
-			{
-				_RecordIndex = _RecordIndex - 1;
-				if (_RecordIndex < -1)
-				{
-					_RecordIndex = this.RecordList.Count - 1;
-				}
-				this.StateHasChanged();
-			}
-			else if (e.Key == "ArrowDown")
-			{
-				_RecordIndex = _RecordIndex + 1;
-				if (_RecordIndex >= this.RecordList.Count)
-				{
-					_RecordIndex = -1;
-				}
-				this.StateHasChanged();
-			}
-		}
-		private async ValueTask SearchButton_Click(MouseEventArgs e)
-		{
-			await OnRecordListLoading_Invoke();
-		}
-
-		private async ValueTask RecordPanel_Click(TItem record)
-		{
-			await this.RecordPanelSelected(record);
-		}
-		private async ValueTask RecordPanelSelected(TItem record)
-		{
-			await this.OnRecordSelected.InvokeAsync(record);
-			if (this.MultipleSelectRecord)
-			{
-                this.RecordList.Remove(record);
+            internal void RecordPanelSelected(TItem record)
+            {
+                this.OnRecordSelected(record);
+            }
+            internal void OnRecordListLoading_Invoke()
+            {
+                this.RecordList.Clear();
+                this.OnRecordListLoading(new RecordListLoadingContext<TItem>(this.RecordList, this.SearchText));
+            }
+            internal bool SearchTextbox_Keydown(KeyboardEventArgs e)
+            {
+                var bl = false;
+                if (e.Key == "Esc")
+                {
+                    this.RecordIndex = -1;
+                    bl = true;
+                }
+                else if (e.Key == "Enter")
+                {
+                    if (this.RecordIndex < 0)
+                    {
+                        OnRecordListLoading_Invoke();
+                    }
+                    else
+                    {
+                        this.RecordPanelSelected(this.RecordList[this.RecordIndex]);
+                    }
+                }
+                else if (e.Key == "ArrowUp")
+                {
+                    this.RecordIndex = this.RecordIndex - 1;
+                    if (this.RecordIndex < -1)
+                    {
+                        this.RecordIndex = this.RecordList.Count - 1;
+                    }
+                    bl = true;
+                }
+                else if (e.Key == "ArrowDown")
+                {
+                    this.RecordIndex = this.RecordIndex + 1;
+                    if (this.RecordIndex >= this.RecordList.Count)
+                    {
+                        this.RecordIndex = -1;
+                    }
+                    bl = true;
+                }
+                return bl;
             }
         }
+
+        [Parameter]
+		public StateDate State { get; set; } = new();
+        [Parameter]
+        [AllowNull]
+        public RenderFragment<TItem> ItemTemplate { get; set; }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+			this.OnRecordListLoading_Invoke();
+		}
+        private void OnRecordListLoading_Invoke()
+		{
+			this.State.OnRecordListLoading_Invoke();
+		}
+
+        private void SearchTextbox_Keydown(KeyboardEventArgs e)
+		{
+			if (this.State.SearchTextbox_Keydown(e))
+            {
+                this.StateHasChanged();
+            }
+        }
+        private void SearchButton_Click(MouseEventArgs e)
+		{
+			OnRecordListLoading_Invoke();
+		}
+
+		private void RecordPanel_Click(TItem record)
+		{
+			this.State.RecordPanelSelected(record);
+		}
     }
 }

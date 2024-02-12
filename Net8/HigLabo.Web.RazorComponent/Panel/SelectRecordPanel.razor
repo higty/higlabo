@@ -1,28 +1,27 @@
 @typeparam TItem
 
 <div class="select-record-panel">
-	@if (this.SearchContainerPanelVisible == true)
+	@if (this.State.SearchContainerPanelVisible == true)
 	{
 		<div class="search-container-panel">
 			<input type="text" class="textbox" placeholder="@T.Text.Search"
-				   @bind="SearchText" @bind:event="oninput"
-				   @onkeydown="async e => await SearchTextbox_Keydown(e)" />
+				   @bind="this.State.SearchText" @bind:event="oninput" @onkeydown="e => SearchTextbox_Keydown(e)" />
 			<div class="flex-right-panel">
-				<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
-				<button class="button radius-button" @onclick="async e => await OnClosed.InvokeAsync()">@T.Text.Close</button>
+				<button class="button radius-button" @onclick="e => SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
+				<button class="button radius-button" @onclick="e => this.State.OnClosed()">@T.Text.Close</button>
 			</div>
 		</div>
 	}
 	<div class="record-list-panel">
-		@for (int i = 0; i < this.RecordList.Count; i++)
+		@for (int i = 0; i < this.State.RecordList.Count; i++)
 		{
 			var cName = "record-panel";
-			if (i == _RecordIndex)
+			if (i == this.State.RecordIndex)
 			{
 				cName += " current";
 			}
-			var r = this.RecordList[i];
-			<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">@this.ItemTemplate!(r)</div>
+			var r = this.State.RecordList[i];
+			<div class="@cName" @onclick="e => RecordPanel_Click(r)">@this.ItemTemplate!(r)</div>
 		}
 	</div>
 </div>

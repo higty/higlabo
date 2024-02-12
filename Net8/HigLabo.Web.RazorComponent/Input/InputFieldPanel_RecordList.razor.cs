@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using HigLabo.Core;
+using HigLabo.Web.RazorComponent.Panel;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
@@ -26,17 +27,15 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
+        [Parameter]
+        public SelectRecordPanel<TItem>.StateDate State { get; set; } = new();
         [Parameter, AllowNull]
         public List<TItem> RecordList { get; set; }
         [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
-        [Parameter]
-        public bool SearchContainerPanelVisible { get; set; } = true;
         [Parameter, AllowNull]
         public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
-        [Parameter]
-        public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
         [Parameter]
@@ -44,6 +43,16 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback OnRecordDropped { get; set; }
 
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            this.State.OnRecordSelected += this.Record_Selected;
+            this.State.OnClosed += () =>
+            {
+                this.SelectRecordPanelVisible = false;
+                this.StateHasChanged();
+            };
+        }
         private async ValueTask OnAddIconClicked()
         {
             switch (this.AddRecordMode)
