@@ -1,4 +1,5 @@
 @typeparam TItem
+@typeparam TFilterItem
 
 <InputFieldPanel Layout="@Layout" PanelType="record" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
     <div class="record-panel" tabindex="0" @ref="this.RecordPanelElementReference"
@@ -9,7 +10,7 @@
     <div class="select-container-panel">
         @if (this.SelectRecordPanelVisible)
         {
-            <SelectRecordPanel State="this.State" TItem="TItem" ItemTemplate="this.SelectItemTemplate ?? this.ItemTemplate"></SelectRecordPanel>
+            <SelectRecordPanel State="this.State" TItem="TItem" TFilterItem="TFilterItem" ItemTemplate="this.SelectItemTemplate ?? this.ItemTemplate"></SelectRecordPanel>
         }
     </div>
 </InputFieldPanel>

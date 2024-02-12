@@ -1,4 +1,5 @@
 @typeparam TItem
+@typeparam TFilterItem
 
 <div class="select-record-panel">
 	@if (this.State.SearchContainerPanelVisible == true)
@@ -21,7 +22,21 @@
 				cName += " current";
 			}
 			var r = this.State.RecordList[i];
-			<div class="@cName" @onclick="e => RecordPanel_Click(r)">@this.ItemTemplate!(r)</div>
+			if (this.ItemTemplate == null)
+			{
+				if (r == null)
+				{
+					<div class="@cName" @onclick="e => RecordPanel_Click(r)">@T.Text.Clear</div>
+				}
+				else
+				{
+					<div class="@cName" @onclick="e => RecordPanel_Click(r)">@r.ToString()</div>
+				}
+			}
+			else
+			{
+				<div class="@cName" @onclick="e => RecordPanel_Click(r)">@this.ItemTemplate(r)</div>
+			}
 		}
 	</div>
 </div>

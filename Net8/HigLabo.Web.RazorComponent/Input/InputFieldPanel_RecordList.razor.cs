@@ -7,7 +7,7 @@ using HigLabo.Web.RazorComponent.Panel;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_RecordList<TItem>
+    public partial class InputFieldPanel_RecordList<TItem, TFilterItem>
 	{
 		[Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -28,7 +28,7 @@ namespace HigLabo.Web.RazorComponent.Input
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
         [Parameter]
-        public SelectRecordPanel<TItem>.StateDate State { get; set; } = new();
+        public SelectRecordPanel<TItem, TFilterItem>.StateDate State { get; set; } = new();
         [Parameter, AllowNull]
         public List<TItem> RecordList { get; set; }
         [Parameter]

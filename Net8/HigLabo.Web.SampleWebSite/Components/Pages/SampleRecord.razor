@@ -1,7 +1,8 @@
 ﻿@rendermode InteractiveServer
 
 
-<InputFieldPanel_Record Text="EndTime type" @bind-Record="this.SelectEndTimeMode" TItem="SelectEndTimeMode?" State="this.SelectEndTimeModeState">
+<InputFieldPanel_Record Text="EndTime type" @bind-Record="this.SelectEndTimeMode"
+    TItem="SelectEndTimeMode?" TFilterItem="object" State="this.SelectEndTimeModeState">
     <ItemTemplate Context="record">
         @if (record == null)
         {
@@ -15,7 +16,7 @@
 </InputFieldPanel_Record>
 
 <InputFieldPanel_Record Text="EndTime type" Layout="InputFieldPanelLayout.Flex" @bind-Record="this.SelectEndTimeMode" 
-    TItem="SelectEndTimeMode?" State="this.SelectEndTimeModeState">
+    TItem="SelectEndTimeMode?" TFilterItem="object" State="this.SelectEndTimeModeState">
     <ItemTemplate Context="record">
         @if (record == null)
         {
@@ -59,7 +60,7 @@
 
 <hr />
 
-<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList" TItem="UserRecord">
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList" TItem="UserRecord" TFilterItem="object">
     <ChildContent>
         @foreach (var item in this.SelectedUserList)
         {
@@ -77,7 +78,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord" TFilterItem="object">
     <ChildContent>
         @{
             var sortIndex = 0;
@@ -106,7 +107,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord" TFilterItem="object">
     @foreach (var item in this.SelectedUserList)
     {
         <div class="record-panel user-record-panel" tabindex="0">
@@ -132,11 +133,11 @@
     [Parameter]
     public SelectEndTimeMode? SelectEndTimeMode { get; set; }
     [Parameter]
-    public SelectRecordPanel<SelectEndTimeMode?>.StateDate SelectEndTimeModeState { get; set; } = new();
+    public SelectRecordPanel<SelectEndTimeMode?, object>.StateDate SelectEndTimeModeState { get; set; } = new();
     [Parameter]
-    public SelectRecordPanel<UserRecord>.StateDate UserState { get; set; } = new();
+    public SelectRecordPanel<UserRecord, object>.StateDate UserState { get; set; } = new();
     [Parameter]
-    public SelectRecordPanel<UserRecord>.StateDate UserListState { get; set; } = new();
+    public SelectRecordPanel<UserRecord, object>.StateDate UserListState { get; set; } = new();
 
     [Parameter]
     public FileAccess FileAccess { get; set; } = FileAccess.Read;

@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Panel
 {
-	public partial class SelectRecordPanel<TItem> : ComponentBase
+    public partial class SelectRecordPanel<TItem, TFilterItem> : ComponentBase
 	{
 		public class StateDate
 		{
             internal Action<TItem> OnRecordSelected { get; set; } = r => { };
             internal Action OnClosed { get; set; } = () => { };
 
+            internal List<FilterData<TFilterItem>> FilterList { get; init; } = new();
             internal int RecordIndex { get; set; } = -1;
-            internal List<TItem> RecordList { get; set; } = new List<TItem>();
+            internal List<TItem> RecordList { get; init; } = new List<TItem>();
 
             public bool SearchContainerPanelVisible { get; set; } = true;
             public string SearchText { get; set; } = "";
@@ -72,8 +73,14 @@ namespace HigLabo.Web.RazorComponent.Panel
                 return bl;
             }
         }
+        public class FilterData<TFilterDataItem>
+        {
+            public string Text { get; set; } = "";
+			internal List<TFilterDataItem> RecordList { get; init; } = new List<TFilterDataItem>();
 
-        [Parameter]
+		}
+
+		[Parameter]
 		public StateDate State { get; set; } = new();
         [Parameter]
         [AllowNull]

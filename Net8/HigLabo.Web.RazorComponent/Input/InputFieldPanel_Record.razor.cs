@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_Record<TItem>
+    public partial class InputFieldPanel_Record<TItem, TFilterItem>
     {
 
         [Parameter]
@@ -28,7 +28,7 @@ namespace HigLabo.Web.RazorComponent.Input
 		public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
 		[Parameter]
-		public SelectRecordPanel<TItem>.StateDate State { get; set; } = new();
+		public SelectRecordPanel<TItem, TFilterItem>.StateDate State { get; set; } = new();
 
 		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
