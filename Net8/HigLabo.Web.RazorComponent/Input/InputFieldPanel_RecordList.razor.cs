@@ -29,7 +29,9 @@ namespace HigLabo.Web.RazorComponent.Input
 
         [Parameter]
         public SelectRecordPanel<TItem, TFilterItem>.StateDate State { get; set; } = new();
-        [Parameter, AllowNull]
+		[Parameter, AllowNull]
+		public RenderFragment<TFilterItem> FilterItemTemplate { get; set; }
+		[Parameter, AllowNull]
         public List<TItem> RecordList { get; set; }
         [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
@@ -46,6 +48,8 @@ namespace HigLabo.Web.RazorComponent.Input
         protected override void OnInitialized()
         {
             base.OnInitialized();
+            this.State.SelectAllVisible = true;
+            this.State.OnAllRecordSelected += () => this.SelectRecordPanelVisible = false;
             this.State.OnRecordSelected += this.Record_Selected;
             this.State.OnClosed += () =>
             {

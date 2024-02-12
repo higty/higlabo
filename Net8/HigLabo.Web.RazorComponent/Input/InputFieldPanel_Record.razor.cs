@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_Record<TItem, TFilterItem>
-    {
+	{
 
-        [Parameter]
+		[Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
 		public string Name { get; set; } = "";
@@ -29,7 +29,8 @@ namespace HigLabo.Web.RazorComponent.Input
 
 		[Parameter]
 		public SelectRecordPanel<TItem, TFilterItem>.StateDate State { get; set; } = new();
-
+		[Parameter, AllowNull]
+		public RenderFragment<TFilterItem> FilterItemTemplate { get; set; }
 		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
 
@@ -47,6 +48,7 @@ namespace HigLabo.Web.RazorComponent.Input
         protected override void OnInitialized()
         {
             base.OnInitialized();
+			this.State.SelectAllVisible = false;
 			this.State.OnRecordSelected += async (TItem r) =>
 			{
 				await this.Record_Selected(r);

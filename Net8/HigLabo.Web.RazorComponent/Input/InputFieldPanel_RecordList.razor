@@ -10,7 +10,8 @@
     <div class="select-container-panel">
         @if (this.SelectRecordPanelVisible)
         {
-            <SelectRecordPanel State="this.State" TItem="TItem" TFilterItem="TFilterItem" ItemTemplate="this.SelectItemTemplate"></SelectRecordPanel>
+            <SelectRecordPanel State="this.State" FilterItemTemplate="this.FilterItemTemplate"
+            TItem="TItem" TFilterItem="TFilterItem" ItemTemplate="this.SelectItemTemplate"></SelectRecordPanel>
         }
     </div>
 </InputFieldPanel>

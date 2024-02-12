@@ -752,6 +752,30 @@ $width-checkbox-circle: 20px;
     border: solid 1px var(--color-border);
     box-sizing: border-box;
 
+    .tab-list-panel {
+        display: flex;
+        align-items: center;
+        height: 40px;
+
+        .tab-panel {
+            display: inline-block;
+            padding: 4px 8px;
+            cursor: pointer;
+
+            &[selected='true'] {
+                border-bottom: solid 2px var(--color-scheme-04);
+            }
+
+            &:focus {
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: var(--color-form-element-hover);
+            }
+        }
+    }
+
     .search-container-panel {
         display: flex;
         align-items: center;

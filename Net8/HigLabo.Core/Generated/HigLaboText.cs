@@ -3059,6 +3059,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string SelectAll
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "全て選択";
+                    case "en-US": return "Select All";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string SendTime
         {
             get
@@ -3312,6 +3325,7 @@ namespace HigLabo.Core
                 case "ReadTime": return this.ReadTime;
                 case "Reload": return this.Reload;
                 case "SearchResult": return this.SearchResult;
+                case "SelectAll": return this.SelectAll;
                 case "SendTime": return this.SendTime;
                 default: return "";
             }

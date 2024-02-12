@@ -2,42 +2,82 @@
 @typeparam TFilterItem
 
 <div class="select-record-panel">
-	@if (this.State.SearchContainerPanelVisible == true)
+	@if (this.State.TabList.Count > 0)
 	{
-		<div class="search-container-panel">
-			<input type="text" class="textbox" placeholder="@T.Text.Search"
-				   @bind="this.State.SearchText" @bind:event="oninput" @onkeydown="e => SearchTextbox_Keydown(e)" />
-			<div class="flex-right-panel">
-				<button class="button radius-button" @onclick="e => SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
-				<button class="button radius-button" @onclick="e => this.State.OnClosed()">@T.Text.Close</button>
-			</div>
+		<div class="tab-list-panel">
+			@foreach (var item in this.State.TabList)
+			{
+				var selected = this.State.Tab == item;
+				<span class="tab-panel" tabindex="0" selected="@selected.ToString().ToLower()" @onclick="e => this.State.FilterTabSelected(item)">@item.Text</span>
+			}
 		</div>
 	}
-	<div class="record-list-panel">
-		@for (int i = 0; i < this.State.RecordList.Count; i++)
+	@if (this.State.Tab == null)
+	{
+		if (this.State.SearchContainerPanelVisible == true)
 		{
-			var cName = "record-panel";
-			if (i == this.State.RecordIndex)
+			<div class="search-container-panel">
+				<input type="text" class="textbox" placeholder="@T.Text.Search"
+					   @bind="this.State.SearchText" @bind:event="oninput" @onkeydown="e => SearchTextbox_Keydown(e)" />
+				<div class="flex-right-panel">
+					<button class="button radius-button" @onclick="e => SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
+					<button class="button radius-button" @onclick="e => this.State.OnClosed()">@T.Text.Close</button>
+				</div>
+			</div>
+		}
+		<div class="record-list-panel">
+			@if (this.State.SelectAllVisible)
 			{
-				cName += " current";
+				<div class="record-panel" @onclick="e => AllRecordSelect_Click()">@T.Text.SelectAll</div>
 			}
-			var r = this.State.RecordList[i];
-			if (this.ItemTemplate == null)
+			@for (int i = 0; i < this.State.RecordList.Count; i++)
 			{
-				if (r == null)
+				var cName = "record-panel";
+				if (i == this.State.RecordIndex)
 				{
-					<div class="@cName" @onclick="e => RecordPanel_Click(r)">@T.Text.Clear</div>
+					cName += " current";
+				}
+				var r = this.State.RecordList[i];
+				if (this.ItemTemplate == null)
+				{
+					if (r == null)
+					{
+						<div class="@cName" @onclick="e => RecordPanel_Click(r)">@T.Text.Clear</div>
+					}
+					else
+					{
+						<div class="@cName" @onclick="e => RecordPanel_Click(r)">@r.ToString()</div>
+					}
 				}
 				else
 				{
-					<div class="@cName" @onclick="e => RecordPanel_Click(r)">@r.ToString()</div>
+					<div class="@cName" @onclick="e => RecordPanel_Click(r)">@this.ItemTemplate(r)</div>
 				}
 			}
-			else
+		</div>
+	}
+	else
+	{
+		<div class="record-list-panel">
+			@foreach (var item in this.State.Tab.RecordList)
 			{
-				<div class="@cName" @onclick="e => RecordPanel_Click(r)">@this.ItemTemplate(r)</div>
+				if (this.FilterItemTemplate == null)
+				{
+					if (item == null)
+					{
+						<div class="record-panel" @onclick="e => FilterRecordPanel_Click(item)">Null</div>
+					}
+					else
+					{
+						<div class="record-panel" @onclick="e => FilterRecordPanel_Click(item)">@item.ToString()</div>
+					}
+				}
+				else
+				{
+					<div class="record-panel" @onclick="e => FilterRecordPanel_Click(item)">@this.FilterItemTemplate(item)</div>
+				}
 			}
-		}
-	</div>
+		</div>
+	}
 </div>
 

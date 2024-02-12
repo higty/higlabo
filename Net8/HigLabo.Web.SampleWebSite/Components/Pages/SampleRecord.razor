@@ -60,7 +60,10 @@
 
 <hr />
 
-<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList" TItem="UserRecord" TFilterItem="object">
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList" TItem="UserRecord" TFilterItem="GroupRecord">
+    <FilterItemTemplate Context="rGroup">
+        <div>@string.Format("■{0}", rGroup.Name)</div>
+    </FilterItemTemplate>
     <ChildContent>
         @foreach (var item in this.SelectedUserList)
         {
@@ -78,7 +81,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord" TFilterItem="object">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord" TFilterItem="GroupRecord">
     <ChildContent>
         @{
             var sortIndex = 0;
@@ -107,7 +110,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord" TFilterItem="object">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord" TFilterItem="GroupRecord">
     @foreach (var item in this.SelectedUserList)
     {
         <div class="record-panel user-record-panel" tabindex="0">
@@ -128,6 +131,17 @@
         public int Age { get; set; } = 22;
         public bool IsAdministrator { get; set; } = false;
     }
+    public class GroupRecord
+    {
+        public string Name { get; set; } = "Group";
+        public int UserCount { get; set; } = 10;
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
     [Parameter]
     public bool Selected { get; set; } = false;
     [Parameter]
@@ -135,9 +149,9 @@
     [Parameter]
     public SelectRecordPanel<SelectEndTimeMode?, object>.StateDate SelectEndTimeModeState { get; set; } = new();
     [Parameter]
-    public SelectRecordPanel<UserRecord, object>.StateDate UserState { get; set; } = new();
+    public SelectRecordPanel<UserRecord, GroupRecord>.StateDate UserState { get; set; } = new();
     [Parameter]
-    public SelectRecordPanel<UserRecord, object>.StateDate UserListState { get; set; } = new();
+    public SelectRecordPanel<UserRecord, GroupRecord>.StateDate UserListState { get; set; } = new();
 
     [Parameter]
     public FileAccess FileAccess { get; set; } = FileAccess.Read;
@@ -157,8 +171,13 @@
     {
         base.OnInitialized();
         this.SelectEndTimeModeState.OnRecordListLoading = context => context.RecordList.AddEnumList<SelectEndTimeMode>();
-        this.UserState.OnRecordListLoading = context => this.LoadingRecordList(context);
-        this.UserListState.OnRecordListLoading = context => this.LoadingRecordList(context);
+        this.UserState.OnRecordListLoading = context => this.LoadingUserList(context);
+        this.UserListState.OnRecordListLoading = context => this.LoadingUserList(context);
+
+        var filter = new SelectRecordPanelFilterTabData<GroupRecord>();
+        filter.Text = "Group";
+        filter.OnRecordListLoading = context => this.LoadingGroupList(context);
+        this.UserListState.TabList.Add(filter);
     }
 
     private void AddUser()
@@ -172,26 +191,42 @@
     {
         this.SelectedUserList.Remove(record);
     }
-    private void LoadingRecordList(RecordListLoadingContext<UserRecord> context)
+    private void LoadingGroupList(RecordListLoadingContext<GroupRecord> context)
     {
-        var l = new List<UserRecord>();
-        l.Clear();
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
-            var r = new UserRecord();
-            r.Name = "User" + i; 
-            r.Age = i;
-            l.Add(r);
+            var r = new GroupRecord();
+            r.Name = "Organization" + i;
+            r.UserCount = i;
+            context.RecordList.Add(r);
         }
-
-        context.RecordList.Clear();
-        if (context.SearchText.IsNullOrEmpty())
+    }
+    private void LoadingUserList(RecordListLoadingContext<UserRecord, GroupRecord?> context)
+    {
+        if (context.Filter == null)
         {
-            context.RecordList.AddRange(l);
+            for (int i = 0; i < 20; i++)
+            {
+                var r = new UserRecord();
+                r.Name = "User" + i;
+                r.Age = i;
+
+                if (context.SearchText.IsNullOrEmpty() || r.Name.Contains(context.SearchText))
+                {
+                    context.RecordList.Add(r);
+                }
+            }
         }
         else
         {
-            context.RecordList.AddRange(l.FindAll(el => el.Name.Contains(context.SearchText)));
+            for (int i = 0; i < context.Filter.UserCount; i++)
+            {
+                var r = new UserRecord();
+                r.Name = "User" + i;
+                r.Age = i;
+                context.RecordList.Add(r);
+            }
+
         }
     }
     private void OnUserDropped(ItemDroppedEventArgs e)

@@ -460,6 +460,10 @@ $width-checkbox-circle: 20px;
         color: var(--color-select-button-text);
         background-color: var(--color-select-button-bg);
 
+        &:last-child {
+            margin-right: 0;
+        }
+
         &.selected {
             color: var(--color-white);
             background-color: var(--color-select-button-selected);
@@ -747,6 +751,30 @@ $width-checkbox-circle: 20px;
     width: 100%;
     border: solid 1px var(--color-border);
     box-sizing: border-box;
+
+    .tab-list-panel {
+        display: flex;
+        align-items: center;
+        height: 40px;
+
+        .tab-panel {
+            display: inline-block;
+            padding: 4px 8px;
+            cursor: pointer;
+
+            &[selected='true'] {
+                border-bottom: solid 2px var(--color-scheme-04);
+            }
+
+            &:focus {
+                text-decoration: underline;
+            }
+
+            &:hover {
+                background-color: var(--color-form-element-hover);
+            }
+        }
+    }
 
     .search-container-panel {
         display: flex;
