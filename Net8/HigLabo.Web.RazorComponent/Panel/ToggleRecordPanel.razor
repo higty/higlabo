@@ -1,4 +1,4 @@
-<div class="toggle-record-panel" @attributes="this.GetAttributes()" @ondragstart="e => Drag_Start(e)" @ondrop="Drag_End" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave">
+<div class="toggle-record-panel" @attributes="this.GetAttributes()" @ondragstart="e => Drag_Start(e)" @ondrop="async e => await Drag_End(e)" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave">
     <div class="header-panel">
         @if (this.AllowSort)
         {

@@ -2,6 +2,10 @@
 
 <InputFieldPanel PanelType="record-list" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult"
     AddIconVisible="true" OnAddIconClicked="async e => await OnAddIconClicked()">
+    @if (this.ChildContent != null)
+    {
+        <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>
+    }
     <div class="select-container-panel">
         @if (SelectRecordPanelVisible)
         {
@@ -11,8 +15,4 @@
             </SelectRecordPanel>
         }
     </div>
-    @if (this.ChildContent != null)
-    {
-        <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>
-    }
 </InputFieldPanel>

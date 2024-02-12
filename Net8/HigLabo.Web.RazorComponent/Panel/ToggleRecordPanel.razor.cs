@@ -105,7 +105,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 
         private void Drag_Start(DragEventArgs e)
         {
-            e.DataTransfer.EffectAllowed = "copymove";
+            e.DataTransfer.EffectAllowed = "copyMove";
             this.SortGroup.DragItem = this;
         }
         private void Drag_Enter()
@@ -117,7 +117,7 @@ namespace HigLabo.Web.RazorComponent.Panel
         {
             this.DropPanelClassName = "drop-panel";
         }
-        private async void Drag_End(DragEventArgs e)
+        private async ValueTask Drag_End(DragEventArgs e)
         {
             this.DropPanelClassName = "drop-panel";
  
