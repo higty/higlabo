@@ -9,9 +9,9 @@
     <div class="select-container-panel">
         @if (SelectRecordPanelVisible)
         {
-            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate" MultipleSelectRecord="this.MultipleSelectRecord"
+            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate" MultipleSelectRecord="this.MultipleSelectRecord" TItem="TItem"
                 SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
-                OnRecordSelected="(TItem r) => Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
+                OnRecordSelected="r => Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
             </SelectRecordPanel>
         }
     </div>

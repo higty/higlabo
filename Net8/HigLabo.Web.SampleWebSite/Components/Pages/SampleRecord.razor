@@ -61,8 +61,8 @@
 
 <hr />
 
-<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" RecordList="this.SelectedUserList"
-    OnRecordListLoading="(RecordListLoadingContext<UserRecord> context) => LoadingRecordList(context)">
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" RecordList="this.SelectedUserList" TItem="UserRecord" 
+    OnRecordListLoading="context => LoadingRecordList(context)">
     <ChildContent>
         @foreach (var item in this.SelectedUserList)
         {
@@ -80,7 +80,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord">
     <ChildContent>
         @{
             var sortIndex = 0;
@@ -109,7 +109,7 @@
     </SelectItemTemplate>
 </InputFieldPanel_RecordList>
 
-<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser">
+<InputFieldPanel_RecordList Text="User list" RecordList="this.SelectedUserList" OnRecordAdded="AddUser" TItem="UserRecord">
     @foreach (var item in this.SelectedUserList)
     {
         <div class="record-panel user-record-panel" tabindex="0">
