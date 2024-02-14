@@ -36,18 +36,6 @@ namespace HigLabo.Web.RazorComponent.Panel
         {
             await ValueTask.CompletedTask;
         }
-
-        internal async ValueTask FilterTabSelected(SelectRecordPanelFilterTab<TFilterItem> tab)
-        {
-            this.Tab = tab;
-            await this.Tab.OnRecordListLoadingAsync();
-        }
-        internal async ValueTask FilterRecordPanelSelected(TFilterItem record)
-        {
-            this.Filter = record;
-            await this.OnRecordListLoadingAsync();
-            this.Tab = null;
-        }
     }
     public partial class SelectRecordPanel<TItem, TFilterItem> : ComponentBase
 	{
@@ -75,6 +63,18 @@ namespace HigLabo.Web.RazorComponent.Panel
 			await this.State.OnRecordListLoadingAsync();
             this.StateHasChanged();
 		}
+
+        private async ValueTask FilterTabSelected(SelectRecordPanelFilterTab<TFilterItem> tab)
+        {
+            this.State.Tab = tab;
+            await this.State.Tab.OnRecordListLoadingAsync();
+        }
+        private async ValueTask FilterRecordPanelSelected(TFilterItem record)
+        {
+            this.State.Filter = record;
+            await this.State.OnRecordListLoadingAsync();
+            this.State.Tab = null;
+        }
 
         private async void SearchTextbox_Keydown(KeyboardEventArgs e)
         {
@@ -135,7 +135,7 @@ namespace HigLabo.Web.RazorComponent.Panel
 		private async ValueTask FilterRecordPanel_Click(TFilterItem record)
 		{
             this.State.RecordIndex = -1;
-		 	await this.State.FilterRecordPanelSelected(record);
+		 	await this.FilterRecordPanelSelected(record);
 		}
 	}
 }

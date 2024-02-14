@@ -8,7 +8,7 @@
 			@foreach (var item in this.State.TabList)
 			{
 				var selected = this.State.Tab == item;
-				<span class="tab-panel" tabindex="0" selected="@selected.ToString().ToLower()" @onclick="async e => await this.State.FilterTabSelected(item)">@item.Text</span>
+				<span class="tab-panel" tabindex="0" selected="@selected.ToString().ToLower()" @onclick="async e => await this.FilterTabSelected(item)">@item.Text</span>
 			}
 		</div>
 	}
@@ -42,16 +42,16 @@
 				{
 					if (r == null)
 					{
-						<div class="@cName" @onclick="e => RecordPanel_Click(r)">@T.Text.Clear</div>
+						<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">@T.Text.Clear</div>
 					}
 					else
 					{
-						<div class="@cName" @onclick="e => RecordPanel_Click(r)">@r.ToString()</div>
+						<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">@r.ToString()</div>
 					}
 				}
 				else
 				{
-					<div class="@cName" @onclick="e => RecordPanel_Click(r)">@this.ItemTemplate(r)</div>
+					<div class="@cName" @onclick="async e => await RecordPanel_Click(r)">@this.ItemTemplate(r)</div>
 				}
 			}
 		</div>
