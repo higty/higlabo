@@ -243,7 +243,11 @@
                     var r = new UserRecord();
                     r.Name = "User" + i;
                     r.Age = i;
-                    state.RecordList.Add(r);
+           
+                    if (state.SearchText.IsNullOrEmpty() || r.Name.Contains(state.SearchText))
+                    {
+                        state.RecordList.Add(r);
+                    }
                 }
             }
             await ValueTask.CompletedTask;

@@ -63,11 +63,17 @@ namespace HigLabo.Web.RazorComponent.Panel
 			await this.State.OnRecordListLoadingAsync();
             this.StateHasChanged();
 		}
-
-        private async ValueTask FilterTabSelected(SelectRecordPanelFilterTab<TFilterItem> tab)
+		private async ValueTask FilterTabSelected()
+        {
+			this.State.Tab = null;
+            this.State.Filter = default(TFilterItem);
+            await this.OnRecordListLoadingAsync_Invoke();
+		}
+		private async ValueTask FilterTabSelected(SelectRecordPanelFilterTab<TFilterItem> tab)
         {
             this.State.Tab = tab;
             await this.State.Tab.OnRecordListLoadingAsync();
+            this.StateHasChanged();
         }
         private async ValueTask FilterRecordPanelSelected(TFilterItem record)
         {
@@ -83,7 +89,6 @@ namespace HigLabo.Web.RazorComponent.Panel
             if (e.Key == "Esc")
             {
                 state.RecordIndex = -1;
-                this.StateHasChanged();
             }
             else if (e.Key == "Enter")
             {
@@ -103,7 +108,6 @@ namespace HigLabo.Web.RazorComponent.Panel
                 {
                     state.RecordIndex = state.RecordList.Count - 1;
                 }
-                this.StateHasChanged();
             }
             else if (e.Key == "ArrowDown")
             {
@@ -112,8 +116,8 @@ namespace HigLabo.Web.RazorComponent.Panel
                 {
                     state.RecordIndex = -1;
                 }
-                this.StateHasChanged();
             }
+            this.StateHasChanged();
         }
         private async ValueTask SearchButton_Click(MouseEventArgs e)
 		{
