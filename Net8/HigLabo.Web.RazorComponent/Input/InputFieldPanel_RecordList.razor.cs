@@ -49,13 +49,6 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             base.OnInitialized();
             this.State.SelectAllVisible = true;
-            this.State.OnAllRecordSelected += () => this.SelectRecordPanelVisible = false;
-            this.State.OnRecordSelected += this.Record_Selected;
-            this.State.OnClosed += () =>
-            {
-                this.SelectRecordPanelVisible = false;
-                this.StateHasChanged();
-            };
         }
         private async ValueTask OnAddIconClicked()
         {
@@ -84,6 +77,12 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.RecordList.AddIfNotExist(record, this.EqualityFunc);
             }
+            this.StateHasChanged();
+        }
+
+        private void OnClosed()
+        {
+            this.SelectRecordPanelVisible = false;
             this.StateHasChanged();
         }
     }

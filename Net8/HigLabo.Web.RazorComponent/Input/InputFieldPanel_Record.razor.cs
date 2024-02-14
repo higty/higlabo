@@ -49,16 +49,6 @@ namespace HigLabo.Web.RazorComponent.Input
         {
             base.OnInitialized();
 			this.State.SelectAllVisible = false;
-			this.State.OnRecordSelected += async (TItem r) =>
-			{
-				await this.Record_Selected(r);
-                this.SelectRecordPanelVisible = false;
-            };
-            this.State.OnClosed += () =>
-            {
-                this.SelectRecordPanelVisible = false;
-                this.StateHasChanged();
-            };
         }
         private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
 		{
@@ -88,5 +78,11 @@ namespace HigLabo.Web.RazorComponent.Input
 			await this.RecordPanelElementReference.FocusAsync();
 			this.StateHasChanged();
 		}
-	}
+
+        private void OnClosed()
+        {
+            this.SelectRecordPanelVisible = false;
+            this.StateHasChanged();
+        }
+    }
 }
