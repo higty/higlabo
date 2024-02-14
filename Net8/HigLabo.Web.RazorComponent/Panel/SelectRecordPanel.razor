@@ -8,7 +8,7 @@
 			@foreach (var item in this.State.TabList)
 			{
 				var selected = this.State.Tab == item;
-				<span class="tab-panel" tabindex="0" selected="@selected.ToString().ToLower()" @onclick="e => this.State.FilterTabSelected(item)">@item.Text</span>
+				<span class="tab-panel" tabindex="0" selected="@selected.ToString().ToLower()" @onclick="async e => await this.State.FilterTabSelected(item)">@item.Text</span>
 			}
 		</div>
 	}
@@ -18,9 +18,9 @@
 		{
 			<div class="search-container-panel">
 				<input type="text" class="textbox" placeholder="@T.Text.Search"
-					   @bind="this.State.SearchText" @bind:event="oninput" @onkeydown="e => SearchTextbox_Keydown(e)" />
+					   @bind="this.State.SearchText" @bind:event="oninput" @onkeydown="async e => await SearchTextbox_Keydown(e)" />
 				<div class="flex-right-panel">
-					<button class="button radius-button" @onclick="e => SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
+					<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
 					<button class="button radius-button" @onclick="e => this.State.OnClosed()">@T.Text.Close</button>
 				</div>
 			</div>
@@ -65,16 +65,16 @@
 				{
 					if (item == null)
 					{
-						<div class="record-panel" @onclick="e => FilterRecordPanel_Click(item)">Null</div>
+						<div class="record-panel" @onclick="async e => await FilterRecordPanel_Click(item)">Null</div>
 					}
 					else
 					{
-						<div class="record-panel" @onclick="e => FilterRecordPanel_Click(item)">@item.ToString()</div>
+						<div class="record-panel" @onclick="async e => await FilterRecordPanel_Click(item)">@item.ToString()</div>
 					}
 				}
 				else
 				{
-					<div class="record-panel" @onclick="e => FilterRecordPanel_Click(item)">@this.FilterItemTemplate(item)</div>
+					<div class="record-panel" @onclick="async e => await FilterRecordPanel_Click(item)">@this.FilterItemTemplate(item)</div>
 				}
 			}
 		</div>

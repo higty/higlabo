@@ -28,7 +28,7 @@ namespace HigLabo.Web.RazorComponent.Input
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
         [Parameter]
-        public SelectRecordPanel<TItem, TFilterItem>.StateDate State { get; set; } = new();
+        public SelectRecordPanelState<TItem, TFilterItem> State { get; set; } = new();
 		[Parameter, AllowNull]
 		public RenderFragment<TFilterItem> FilterItemTemplate { get; set; }
 		[Parameter, AllowNull]

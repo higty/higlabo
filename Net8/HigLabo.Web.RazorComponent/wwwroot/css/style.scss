@@ -185,13 +185,15 @@ $width-checkbox-circle: 20px;
     width: 100%;
 
     &.date {
-        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-        width: 100px;
+        width: 110px;
+        padding: 0;
+        text-align: center;
     }
 
     &.time {
-        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
         width: 60px;
+        padding: 0;
+        text-align: center;
     }
 
     &.color {

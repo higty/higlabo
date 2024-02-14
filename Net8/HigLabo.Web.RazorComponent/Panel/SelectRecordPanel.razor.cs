@@ -9,132 +9,132 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Panel
 {
-    public class SelectRecordPanelFilterTabData<TItem>
+    public class SelectRecordPanelFilterTab<TItem>
     {
         public string Text { get; set; } = "";
-        internal List<TItem> RecordList { get; init; } = new List<TItem>();
-        public Action<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; } = r => { };
+        public List<TItem> RecordList { get; init; } = new List<TItem>();
 
-        internal void OnRecordListLoading_Invoke()
+        public SelectRecordPanelFilterTab() { }
+        public virtual async ValueTask OnRecordListLoadingAsync()
         {
-            this.RecordList.Clear();
-            this.OnRecordListLoading(new RecordListLoadingContext<TItem>(this.RecordList));
+            await ValueTask.CompletedTask;
+        }
+    }
+    public class SelectRecordPanelState<TItem, TFilterItem>
+    {
+        internal Action OnAllRecordSelected { get; set; } = () => { };
+        internal Action<TItem> OnRecordSelected { get; set; } = r => { };
+        internal Action OnClosed { get; set; } = () => { };
+
+        internal int RecordIndex { get; set; } = -1;
+
+        public bool SearchContainerPanelVisible { get; set; } = true;
+        public bool SelectAllVisible { get; set; } = false;
+        public SelectRecordPanelFilterTab<TFilterItem>? Tab { get; set; }
+        public TFilterItem? Filter { get; set; }
+        public List<SelectRecordPanelFilterTab<TFilterItem>> TabList { get; init; } = new();
+        public string SearchText { get; set; } = "";
+        public List<TItem> RecordList { get; init; } = new List<TItem>();
+
+        public virtual async ValueTask OnRecordListLoadingAsync()
+        {
+            await ValueTask.CompletedTask;
+        }
+
+        internal void AllRecordSelected()
+        {
+            foreach (var item in this.RecordList)
+            {
+                this.RecordPanelSelected(item);
+            }
+            this.OnAllRecordSelected();
+        }
+        internal void RecordPanelSelected(TItem record)
+        {
+            this.OnRecordSelected(record);
+        }
+        internal async ValueTask FilterTabSelected(SelectRecordPanelFilterTab<TFilterItem> tab)
+        {
+            this.Tab = tab;
+            await this.Tab.OnRecordListLoadingAsync();
+        }
+        internal async ValueTask FilterRecordPanelSelected(TFilterItem record)
+        {
+            this.Filter = record;
+            await this.OnRecordListLoadingAsync();
+            this.Tab = null;
+        }
+        internal async ValueTask<bool> SearchTextbox_Keydown(KeyboardEventArgs e)
+        {
+            var bl = false;
+            if (e.Key == "Esc")
+            {
+                this.RecordIndex = -1;
+                bl = true;
+            }
+            else if (e.Key == "Enter")
+            {
+                if (this.RecordIndex < 0)
+                {
+                    await OnRecordListLoadingAsync();
+                }
+                else
+                {
+                    this.RecordPanelSelected(this.RecordList[this.RecordIndex]);
+                }
+            }
+            else if (e.Key == "ArrowUp")
+            {
+                this.RecordIndex = this.RecordIndex - 1;
+                if (this.RecordIndex < -1)
+                {
+                    this.RecordIndex = this.RecordList.Count - 1;
+                }
+                bl = true;
+            }
+            else if (e.Key == "ArrowDown")
+            {
+                this.RecordIndex = this.RecordIndex + 1;
+                if (this.RecordIndex >= this.RecordList.Count)
+                {
+                    this.RecordIndex = -1;
+                }
+                bl = true;
+            }
+            return bl;
         }
     }
     public partial class SelectRecordPanel<TItem, TFilterItem> : ComponentBase
 	{
-		public class StateDate
-		{
-			internal Action OnAllRecordSelected { get; set; } = () => { };
-			internal Action<TItem> OnRecordSelected { get; set; } = r => { };
-			internal Action OnClosed { get; set; } = () => { };
-
-            internal SelectRecordPanelFilterTabData<TFilterItem>? Tab { get; set; }
-            internal int RecordIndex { get; set; } = -1;
-            internal List<TItem> RecordList { get; init; } = new List<TItem>();
-
-			public bool SearchContainerPanelVisible { get; set; } = true;
-			public bool SelectAllVisible { get; set; } = false;
-			public List<SelectRecordPanelFilterTabData<TFilterItem>> TabList { get; init; } = new();
-            public string SearchText { get; set; } = "";
-            public Action<RecordListLoadingContext<TItem, TFilterItem?>> OnRecordListLoading { get; set; } = r => { };
-
-			internal void AllRecordSelected()
-			{
-                foreach (var item in this.RecordList)
-                {
-                    this.RecordPanelSelected(item);
-                }
-				this.OnAllRecordSelected();
-			}
-			internal void RecordPanelSelected(TItem record)
-			{
-				this.OnRecordSelected(record);
-			}
-            internal void FilterTabSelected(SelectRecordPanelFilterTabData<TFilterItem> tab)
-            {
-                this.Tab = tab;
-                this.Tab.OnRecordListLoading_Invoke();
-            }
-			internal void FilterRecordPanelSelected(TFilterItem record)
-			{
-                this.Tab = null;
-                this.OnRecordListLoading_Invoke(record);
-			}
-			internal void OnRecordListLoading_Invoke(TFilterItem? record)
-			{
-				this.RecordList.Clear();
-                this.OnRecordListLoading(new RecordListLoadingContext<TItem, TFilterItem?>(this.RecordList, this.SearchText, record));
-            }
-            internal bool SearchTextbox_Keydown(KeyboardEventArgs e)
-            {
-                var bl = false;
-                if (e.Key == "Esc")
-                {
-                    this.RecordIndex = -1;
-                    bl = true;
-                }
-                else if (e.Key == "Enter")
-                {
-                    if (this.RecordIndex < 0)
-                    {
-                        OnRecordListLoading_Invoke(default(TFilterItem));
-                    }
-                    else
-                    {
-                        this.RecordPanelSelected(this.RecordList[this.RecordIndex]);
-                    }
-                }
-                else if (e.Key == "ArrowUp")
-                {
-                    this.RecordIndex = this.RecordIndex - 1;
-                    if (this.RecordIndex < -1)
-                    {
-                        this.RecordIndex = this.RecordList.Count - 1;
-                    }
-                    bl = true;
-                }
-                else if (e.Key == "ArrowDown")
-                {
-                    this.RecordIndex = this.RecordIndex + 1;
-                    if (this.RecordIndex >= this.RecordList.Count)
-                    {
-                        this.RecordIndex = -1;
-                    }
-                    bl = true;
-                }
-                return bl;
-            }
-        }
-
 		[Parameter]
-		public StateDate State { get; set; } = new();
+		public SelectRecordPanelState<TItem, TFilterItem> State { get; set; } = new();
         [Parameter]
         [AllowNull]
         public RenderFragment<TItem> ItemTemplate { get; set; }
 		[Parameter, AllowNull]
 		public RenderFragment<TFilterItem> FilterItemTemplate { get; set; }
 
-		protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
-            this.OnRecordListLoading_Invoke();
+            await base.OnInitializedAsync();
+            await this.OnRecordListLoadingAsync_Invoke();
 		}
-        private void OnRecordListLoading_Invoke()
+        private async ValueTask OnRecordListLoadingAsync_Invoke()
 		{
-			this.State.OnRecordListLoading_Invoke(default(TFilterItem));
+			await this.State.OnRecordListLoadingAsync();
+            this.StateHasChanged();
 		}
 
-        private void SearchTextbox_Keydown(KeyboardEventArgs e)
+        private async ValueTask SearchTextbox_Keydown(KeyboardEventArgs e)
 		{
-			if (this.State.SearchTextbox_Keydown(e))
+			if (await this.State.SearchTextbox_Keydown(e))
             {
                 this.StateHasChanged();
             }
         }
-        private void SearchButton_Click(MouseEventArgs e)
+        private async ValueTask SearchButton_Click(MouseEventArgs e)
 		{
-			OnRecordListLoading_Invoke();
+			await OnRecordListLoadingAsync_Invoke();
 		}
 
         private void AllRecordSelect_Click()
@@ -145,10 +145,10 @@ namespace HigLabo.Web.RazorComponent.Panel
 		{
 			this.State.RecordPanelSelected(record);
 		}
-		private void FilterRecordPanel_Click(TFilterItem record)
+		private async ValueTask FilterRecordPanel_Click(TFilterItem record)
 		{
             this.State.RecordIndex = -1;
-			this.State.FilterRecordPanelSelected(record);
+		 	await this.State.FilterRecordPanelSelected(record);
 		}
 	}
 }

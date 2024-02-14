@@ -147,11 +147,11 @@
     [Parameter]
     public SelectEndTimeMode? SelectEndTimeMode { get; set; }
     [Parameter]
-    public SelectRecordPanel<SelectEndTimeMode?, object>.StateDate SelectEndTimeModeState { get; set; } = new();
+    public SelectRecordPanelState<SelectEndTimeMode?, object> SelectEndTimeModeState { get; set; } = new();
     [Parameter]
-    public SelectRecordPanel<UserRecord, GroupRecord>.StateDate UserState { get; set; } = new();
+    public UserListStateDate UserState { get; set; } = new();
     [Parameter]
-    public SelectRecordPanel<UserRecord, GroupRecord>.StateDate UserListState { get; set; } = new();
+    public UserListStateDate UserListState { get; set; } = new();
 
     [Parameter]
     public FileAccess FileAccess { get; set; } = FileAccess.Read;
@@ -170,13 +170,22 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        this.SelectEndTimeModeState.OnRecordListLoading = context => context.RecordList.AddEnumList<SelectEndTimeMode>();
-        this.UserState.OnRecordListLoading = context => this.LoadingUserList(context);
-        this.UserListState.OnRecordListLoading = context => this.LoadingUserList(context);
 
-        var filter = new SelectRecordPanelFilterTabData<GroupRecord>();
+        this.SelectEndTimeModeState.RecordList.Add(null);
+        foreach (var item in Enum.GetValues<SelectEndTimeMode>())
+        {
+            this.SelectEndTimeModeState.RecordList.Add(item);
+        }
+
+        var filter = new SelectRecordPanelFilterTab<GroupRecord>();
         filter.Text = "Group";
-        filter.OnRecordListLoading = context => this.LoadingGroupList(context);
+        for (int i = 0; i < 10; i++)
+        {
+            var r = new GroupRecord();
+            r.Name = "Organization" + i;
+            r.UserCount = i;
+            filter.RecordList.Add(r);
+        }
         this.UserListState.TabList.Add(filter);
     }
 
@@ -191,44 +200,6 @@
     {
         this.SelectedUserList.Remove(record);
     }
-    private void LoadingGroupList(RecordListLoadingContext<GroupRecord> context)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            var r = new GroupRecord();
-            r.Name = "Organization" + i;
-            r.UserCount = i;
-            context.RecordList.Add(r);
-        }
-    }
-    private void LoadingUserList(RecordListLoadingContext<UserRecord, GroupRecord?> context)
-    {
-        if (context.Filter == null)
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                var r = new UserRecord();
-                r.Name = "User" + i;
-                r.Age = i;
-
-                if (context.SearchText.IsNullOrEmpty() || r.Name.Contains(context.SearchText))
-                {
-                    context.RecordList.Add(r);
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < context.Filter.UserCount; i++)
-            {
-                var r = new UserRecord();
-                r.Name = "User" + i;
-                r.Age = i;
-                context.RecordList.Add(r);
-            }
-
-        }
-    }
     private void OnUserDropped(ItemDroppedEventArgs e)
     {
         SortGroup.Sort(this.SelectedUserList, e);
@@ -242,5 +213,40 @@
     private void RecordSelected(UserRecord record)
     {
         this.SelectedUserList.Add(record);
+    }
+
+    public class UserListStateDate : SelectRecordPanelState<UserRecord, GroupRecord>
+    {
+        public override async ValueTask OnRecordListLoadingAsync()
+        {
+            var state = this;
+
+            state.RecordList.Clear();
+            if (state.Filter == null)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    var r = new UserRecord();
+                    r.Name = "User" + i;
+                    r.Age = i;
+
+                    if (state.SearchText.IsNullOrEmpty() || r.Name.Contains(state.SearchText))
+                    {
+                        state.RecordList.Add(r);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < state.Filter.UserCount; i++)
+                {
+                    var r = new UserRecord();
+                    r.Name = "User" + i;
+                    r.Age = i;
+                    state.RecordList.Add(r);
+                }
+            }
+            await ValueTask.CompletedTask;
+        }
     }
 }
