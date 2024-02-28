@@ -44,6 +44,12 @@ body {
   margin-left: 20px;
 }
 
+.delete-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
 .user-record-panel {
   display: flex;
   align-items: center;
@@ -57,6 +63,4 @@ body {
 .user-record-panel .delete-icon {
   margin-left: auto;
   margin-right: 6px;
-  width: 16px;
-  height: 16px;
 }

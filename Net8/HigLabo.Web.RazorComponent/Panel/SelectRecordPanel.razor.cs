@@ -20,6 +20,13 @@ namespace HigLabo.Web.RazorComponent.Panel
             await ValueTask.CompletedTask;
         }
     }
+    public class FilterItem
+    {
+        public string Text { get; set; } = "";
+    }
+    public class SelectRecordPanelState<TItem> : SelectRecordPanelState<TItem, FilterItem>
+    {
+    }
     public class SelectRecordPanelState<TItem, TFilterItem>
     {
         internal int RecordIndex { get; set; } = -1;

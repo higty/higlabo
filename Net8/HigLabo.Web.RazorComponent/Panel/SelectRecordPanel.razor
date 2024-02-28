@@ -2,18 +2,18 @@
 @typeparam TFilterItem
 
 <div class="select-record-panel">
-	<div class="tab-list-panel">
-		@if (this.State.TabList.Count > 0)
-		{
-			var isDefaultTab = this.State.Tab == null;
-			<span class="tab-panel" tabindex="0" selected="@isDefaultTab.ToString().ToLower()" @onclick="async e => await this.FilterTabSelected()">@T.Text.List</span>
+	@if (this.State.TabList.Count > 0)
+	{
+		var isDefaultTab = this.State.Tab == null;
+		<div class="tab-list-panel">
+		<span class="tab-panel" tabindex="0" selected="@isDefaultTab.ToString().ToLower()" @onclick="async e => await this.FilterTabSelected()">@T.Text.List</span>
 			@foreach (var item in this.State.TabList)
 			{
 				var selected = this.State.Tab == item;
 				<span class="tab-panel" tabindex="0" selected="@selected.ToString().ToLower()" @onclick="async e => await this.FilterTabSelected(item)">@item.Text</span>
 			}
-		}
-	</div>
+		</div>
+	}
 	@if (this.State.Tab == null)
 	{
 		if (this.State.SearchContainerPanelVisible == true)

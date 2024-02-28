@@ -50,7 +50,7 @@
   --color-button-hover: var(--color-scheme-03);
   --color-button-text: var(--color-white);
   /* checkbox-panel */
-  --color-checkbox-panel-checked: var(--color-scheme-04);
+  --color-checkbox-panel-checked: var(--color-scheme-06);
   --color-checkbox-panel-focus: var(--color-scheme-09);
   /* select-button */
   --color-select-button-text: var(--color-white);
@@ -396,10 +396,11 @@
   border: none;
   color: var(--color-button-text);
   background-color: var(--color-button-bg);
-  padding: initial 8px;
+  padding: 0 8px;
   cursor: pointer;
   text-decoration: none;
   font-size: 14px;
+  box-sizing: border-box;
 }
 .button.radius-button {
   padding: 4px 16px;
@@ -1222,4 +1223,46 @@
 }
 .paging-panel .page-number-panel:hover {
   background-color: var(--color-menu-hover);
+}
+
+.action-confirm-panel {
+  position: relative;
+  box-sizing: border-box;
+}
+.action-confirm-panel .action-confirm-popup-panel {
+  position: absolute;
+  z-index: 201;
+  left: 0;
+  top: -4px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-white);
+  border: solid 1px var(--color-border);
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  padding: 4px;
+}
+.action-confirm-panel .action-confirm-popup-panel[position=Right] {
+  left: unset;
+  right: 0;
+}
+.action-confirm-panel .action-confirm-popup-panel .flex-left-panel {
+  display: block;
+  min-width: 240px;
+  padding-right: 10px;
+}
+.action-confirm-panel .action-confirm-popup-panel .flex-right-panel {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  min-width: 150px;
+}
+.action-confirm-panel .action-confirm-popup-panel .flex-right-panel .button {
+  margin: auto 2px;
+}
+.action-confirm-panel .child-content-panel {
+  display: grid;
+  place-items: center;
 }

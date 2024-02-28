@@ -90,7 +90,7 @@ namespace HigLabo.Data
             while (await dr!.ReadAsync())
             {
                 d.Clear();
-                dr.SetToDisctionary(d);
+                dr.SetToDictionary(d);
                 var r = d.Map(constructor());
                 l.Add(r);
             }
@@ -150,7 +150,7 @@ namespace HigLabo.Data
             while (await dr!.ReadAsync())
             {
                 d.Clear();
-                dr.SetToDisctionary(d);
+                dr.SetToDictionary(d);
                 var r = d.Map(constructor());
                 yield return r;
             }

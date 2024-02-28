@@ -618,7 +618,7 @@ namespace HigLabo.Mapper.Test
                 var dr = cm.ExecuteReader();
                 while (dr.Read())
                 {
-                    var d = dr.CreateDisctionary(StringComparer.OrdinalIgnoreCase);
+                    var d = dr.CreateDictionary(StringComparer.OrdinalIgnoreCase);
                     var s1 = mapper.Map(d, new Sys_Database());
                     //May be because we connect to database.
                     Assert.AreEqual("master", s1.Name1);

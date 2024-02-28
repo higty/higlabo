@@ -60,7 +60,7 @@
 
 <hr />
 
-<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList" TItem="UserRecord" TFilterItem="GroupRecord">
+<InputFieldPanel_RecordList Text="User list" AddRecordMode="AddRecordMode.Select" State="this.UserListState" RecordList="this.SelectedUserList">
     <FilterItemTemplate Context="rGroup">
         <div>@string.Format("■{0}", rGroup.Name)</div>
     </FilterItemTemplate>
