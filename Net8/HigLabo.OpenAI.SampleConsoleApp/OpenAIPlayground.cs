@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await Moderation();
+            await ChatCompletionStream();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -96,8 +97,13 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var theme = "How to enjoy coffee";
+            var p = new ChatCompletionsParameter();
+            p.AddUserMessage($"Can you provide me with some ideas for blog posts about {theme}?");
+            p.Model = "gpt-3.5-turbo";
+            p.Stream = true;
+
             var processor = new ChatCompletionStreamProcessor();
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync($"Can you provide me with some ideas for blog posts about {theme}?", "gpt-3.5-turbo"))
+            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p))
             {
                 foreach (var choice in chunk.Choices)
                 {
