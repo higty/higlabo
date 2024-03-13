@@ -1228,6 +1228,7 @@
 .action-confirm-panel {
   position: relative;
   box-sizing: border-box;
+  display: inline-block;
 }
 .action-confirm-panel .action-confirm-popup-panel {
   position: absolute;
@@ -1251,6 +1252,7 @@
   display: block;
   min-width: 240px;
   padding-right: 10px;
+  text-align: left;
 }
 .action-confirm-panel .action-confirm-popup-panel .flex-right-panel {
   margin-left: auto;

@@ -19,6 +19,7 @@ namespace HigLabo.Core
         protected abstract String[] LanguageList { get; }
 
         public Func<string> GetCurrentLanguage = () => Thread.CurrentThread.CurrentCulture.Name;
+        public List<LanguageText> TextList { get; init; } = new();
 
         protected string GetLanguage()
         {
@@ -36,12 +37,46 @@ namespace HigLabo.Core
 
 		protected abstract String GetText(string key);
 		
+        private IEnumerable<LanguageText> GetLanguageTextList()
+        {
+            foreach (var item in this.TextList)
+            {
+                yield return item;
+            }
+            yield return this;
+        }
         public string Get(string key)
         {
-            var text = this.GetText(key);
-            if (text.IsNullOrEmpty()) { return key; }
-            return text;
+            foreach (var item in this.GetLanguageTextList())
+            {
+                var text = item.GetText(key);
+                if (text.IsNullOrEmpty() == false) { return text; }
+            }
+            return key;
         }
+
+        private IEnumerable<string> GetKeyList<T>(T key)
+            where T : Enum
+        {
+            var typeName = typeof(T).Name;
+            yield return $"{typeName}_{key.ToStringFromEnum()}";
+            yield return $"{typeName.ExtractString('+', null)}_{key.ToStringFromEnum()}";
+            yield return key.ToStringFromEnum();
+        }
+        public string Get<T>(T key)
+            where T: Enum
+        {
+            foreach (var eKey in this.GetKeyList(key))
+            {
+                foreach (var languageText in this.GetLanguageTextList())
+                {
+                    var text = languageText.GetText(eKey);
+                    if (text.IsNullOrEmpty() == false) { return text; }
+                }
+            }
+            return key.ToStringFromEnum();
+        }
+
         public string Get(params string[] textList)
         {
             for (int i = 0; i < this.LanguageList.Length; i++)
@@ -60,28 +95,7 @@ namespace HigLabo.Core
             }
             return "";
         }
-        public string Get<T>(T key)
-            where T: Enum
-        {
-            var typeName = typeof(T).Name;
 
-			var text = GetText($"{typeName}_{key.ToStringFromEnum()}");
-            if (text.IsNullOrEmpty() == false)
-            {
-                return text;
-            }
-			text = GetText($"{typeName.ExtractString('+', null)}_{key.ToStringFromEnum()}");
-			if (text.IsNullOrEmpty() == false)
-			{
-				return text;
-			}
-			text = GetText(key.ToStringFromEnum());
-            if (text.IsNullOrEmpty() == false)
-            {
-                return text;
-            }
-            return key.ToStringFromEnum();
-        }
     }
 
 }

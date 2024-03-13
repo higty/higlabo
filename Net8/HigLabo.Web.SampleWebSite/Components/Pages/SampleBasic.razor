@@ -22,16 +22,12 @@
 <InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color" @bind-Value="@this.Color"></InputFieldPanel_Color>
 <span>@this.Color</span>
 <ActionConfirmPanel ButtonText="Clear color" Message="Is Clear?" OnExecute="e => this.Color = string.Empty"></ActionConfirmPanel>
-
-<div style="text-align: right;">
+<div style="width: 100px; margin-left: auto;">
     <ActionConfirmPanel ButtonText="Clear color" Message="Is Clear?" OnExecute="e => this.Color = string.Empty" PopupPanelPosition="ActionConfirmPopupPanelPosition.Right"></ActionConfirmPanel>
 </div>
-
-<div>
-    <ActionConfirmPanel Message="Is clear color?" OnExecute="e => this.Color = string.Empty">
-        <img class="delete-icon" src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__icon.Delete__svg)" />
-    </ActionConfirmPanel>
-</div>
+<ActionConfirmPanel Message="Is clear color?" OnExecute="e => this.Color = string.Empty">
+    <img class="delete-icon" src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__icon.Delete__svg)" />
+</ActionConfirmPanel>
 
 <hr />
 

@@ -35,18 +35,50 @@ namespace HigLabo.Core
             return new DateTimeOffset(value.Value.ToDateTime(TimeOnly.MinValue), timeZone.ToTimeSpan());
         }
 
+        /// <summary>
+        /// Get age of now in specified timezone.
+        /// </summary>
+        /// <param name="birthDay"></param>
+        /// <param name="timeZone"></param>
+        /// <returns></returns>
         public static Int32 GetAge(this DateOnly birthDay, TimeOnly timeZone)
         {
-            var birthDateTime = new DateTime(birthDay.Year, birthDay.Month, birthDay.Day);
             var now = DateTimeOffset.UtcNow.ChangeTimeZone(timeZone);
-            var birthNow = new DateTime(birthDay.Year, now.Month, now.Day);
-            if (birthNow < birthDateTime)
+            return GetAge(birthDay, now);
+        }
+        /// <summary>
+        /// Get age of specified datetime.
+        /// </summary>
+        /// <param name="birthDay"></param>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static Int32 GetAge(this DateOnly birthDay, DateTimeOffset dateTime)
+        {
+            var date = dateTime.ToDateOnly();
+
+            if (DateTime.IsLeapYear(date.Year) == false)
             {
-                return now.Year - birthNow.Year - 1;
+                if (birthDay.Month == 2 && birthDay.Day == 29)
+                {
+                    if (date < new DateOnly(date.Year, 3, 1))
+                    {
+                        return date.Year - birthDay.Year - 1;
+                    }
+                    else
+                    {
+                        return date.Year - birthDay.Year;
+                    }
+                }
             }
-            else
             {
-                return now.Year - birthNow.Year;
+                if (date < new DateOnly(date.Year, birthDay.Month, birthDay.Day))
+                {
+                    return date.Year - birthDay.Year - 1;
+                }
+                else
+                {
+                    return date.Year - birthDay.Year;
+                }
             }
         }
         public static DateOnly GetPreviouseDate(this DateOnly value, DayOfWeek dayOfWeek)

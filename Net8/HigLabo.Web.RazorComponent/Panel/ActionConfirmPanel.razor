@@ -1,13 +1,13 @@
-<div class="action-confirm-panel" name="@this.Name">
+<span class="action-confirm-panel" name="@this.Name">
     @if (this.PopupPanelVisible)
     {
-        <div class="action-confirm-popup-panel" position="@this.PopupPanelPosition.ToStringFromEnum()">
-            <div class="flex-left-panel">@this.Message</div>
-            <div class="flex-right-panel">
+        <span class="action-confirm-popup-panel" position="@this.PopupPanelPosition.ToStringFromEnum()">
+            <span class="flex-left-panel">@this.Message</span>
+            <span class="flex-right-panel">
                 <span class="button radius-button" @onclick="async e => await this.ExecuteButton_Click()">@T.Text.Execute</span>
                 <span class="button radius-button" @onclick="e => this.PopupPanelVisible = false">@T.Text.Close</span>
-            </div>
-        </div>
+            </span>
+        </span>
     }
     @if (this.ChildContent == null)
     {
@@ -17,4 +17,4 @@
     {
         <span class="child-content-panel" @onclick="e => this.PopupPanelVisible = true">@ChildContent</span>
     }
-</div>
+</span>

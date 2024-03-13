@@ -1026,6 +1026,7 @@ $width-checkbox-circle: 20px;
 .action-confirm-panel {
     position: relative;
     box-sizing: border-box;
+    display: inline-block;
 
     .action-confirm-popup-panel {
         position: absolute;
@@ -1050,6 +1051,7 @@ $width-checkbox-circle: 20px;
             display: block;
             min-width: 240px;
             padding-right: 10px;
+            text-align: left;
         }
 
         .flex-right-panel {

@@ -41,15 +41,12 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback OnRecordAdded { get; set; }
         [Parameter]
+        public EventCallback<TItem> OnRecordSelected { get; set; }
+        [Parameter]
         public Func<TItem, TItem, bool>? EqualityFunc { get; set; } 
         [Parameter]
         public EventCallback OnRecordDropped { get; set; }
 
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-            this.State.SelectAllVisible = true;
-        }
         private async ValueTask OnAddIconClicked()
         {
             switch (this.AddRecordMode)
@@ -63,7 +60,7 @@ namespace HigLabo.Web.RazorComponent.Input
                 default:throw SwitchStatementNotImplementException.Create(this.AddRecordMode);
             }
         }
-        private void Record_Selected(TItem record)
+        private async ValueTask Record_Selected(TItem record)
         {
             if (this.MultipleSelectRecord == false)
             {
@@ -77,6 +74,7 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.RecordList.AddIfNotExist(record, this.EqualityFunc);
             }
+            await this.OnRecordSelected.InvokeAsync(record);
             this.StateHasChanged();
         }
 
