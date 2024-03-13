@@ -12,6 +12,8 @@ namespace HigLabo.OpenAI.CodeGenerator
         {
             var g = new OpenAISourceCodeGenerator();
             g.ExecuteAsync();
+            Console.WriteLine("Press enter to exit...");
+            Console.ReadLine();
         }
     }
 }

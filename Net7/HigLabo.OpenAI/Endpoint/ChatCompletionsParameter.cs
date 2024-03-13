@@ -8,6 +8,10 @@ namespace HigLabo.OpenAI
 {
     public partial class ChatCompletionsParameter
     {
+        public void AddMessage(ChatMessageRole role, string content)
+        {
+            this.Messages.Add(new ChatMessage(role, content));
+        }
         public void AddUserMessage(string content)
         {
             this.Messages.Add(new ChatMessage(ChatMessageRole.User, content));

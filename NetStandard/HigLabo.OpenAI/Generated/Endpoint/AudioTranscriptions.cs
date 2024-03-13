@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -14,18 +13,10 @@ namespace HigLabo.OpenAI
     public partial class AudioTranscriptionsParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        string IFileParameter.ParameterName
-        {
-            get
-            {
-                return "file";
-            }
-        }
-        string IFileParameter.FileName { get; set; } = "";
         /// <summary>
         /// The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
         /// </summary>
-        public Stream? File { get; private set; }
+        public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
         /// ID of the model to use. Only whisper-1 is currently available.
         /// </summary>
@@ -46,20 +37,14 @@ namespace HigLabo.OpenAI
         /// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
         /// </summary>
         public double? Temperature { get; set; }
+        /// <summary>
+        /// The timestamp granularities to populate for this transcription. response_format must be set verbose_json to use timestamp granularities. Either or both of these options are supported: word, or segment. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
+        /// </summary>
+        public double[]? Timestamp_Granularities { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
             return $"/audio/transcriptions";
-        }
-        Stream IFileParameter.GetFileStream()
-        {
-            if (this.File == null) throw new InvalidOperationException("File property must be set.");
-            return this.File;
-        }
-        public void SetFile(string fileName, Stream stream)
-        {
-            ((IFileParameter)this).FileName = fileName;
-            this.File = stream;
         }
         public override object GetRequestBody()
         {
@@ -70,7 +55,12 @@ namespace HigLabo.OpenAI
             	prompt = this.Prompt,
             	response_format = this.Response_Format,
             	temperature = this.Temperature,
+            	timestamp_granularities = this.Timestamp_Granularities,
             };
+        }
+        IEnumerable<FileParameter> IFileParameter.GetFileParameters()
+        {
+            yield return this.File;
         }
         Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
         {
@@ -80,6 +70,7 @@ namespace HigLabo.OpenAI
             if (this.Prompt != null) d["prompt"] = this.Prompt;
             if (this.Response_Format != null) d["response_format"] = this.Response_Format;
             if (this.Temperature != null) d["temperature"] = this.Temperature.Value.ToString();
+            if (this.Timestamp_Granularities != null) d["timestamp_granularities"] = $"[{string.Format(",", this.Timestamp_Granularities)}]";
             return d;
         }
     }
@@ -88,17 +79,17 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(string fileName, Stream file, string model)
+        public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(string fileFileName, Stream fileStream, string model)
         {
             var p = new AudioTranscriptionsParameter();
-            p.SetFile(fileName, file);
+            p.File.SetFile(fileFileName, fileStream);
             p.Model = model;
             return await this.SendFormDataAsync<AudioTranscriptionsParameter, AudioTranscriptionsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(string fileName, Stream file, string model, CancellationToken cancellationToken)
+        public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(string fileFileName, Stream fileStream, string model, CancellationToken cancellationToken)
         {
             var p = new AudioTranscriptionsParameter();
-            p.SetFile(fileName, file);
+            p.File.SetFile(fileFileName, fileStream);
             p.Model = model;
             return await this.SendFormDataAsync<AudioTranscriptionsParameter, AudioTranscriptionsResponse>(p, cancellationToken);
         }

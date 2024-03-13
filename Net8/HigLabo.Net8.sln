@@ -77,8 +77,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.ObjectModel", "HigL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI", "HigLabo.OpenAI\HigLabo.OpenAI.csproj", "{0EA03F26-7E85-4196-B30D-288961F806EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI.CodeGenerator", "HigLabo.OpenAI.CodeGenerator\HigLabo.OpenAI.CodeGenerator.csproj", "{C27F1941-1A80-4425-9A0B-47ACCB72CD9E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI.SampleConsoleApp", "HigLabo.OpenAI.SampleConsoleApp\HigLabo.OpenAI.SampleConsoleApp.csproj", "{CCF02632-A459-4ACC-9A1A-EAF8DFD8C962}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Service", "HigLabo.Service\HigLabo.Service.csproj", "{3DE391A0-A39D-48C3-936B-E82AA5E79D5B}"
@@ -112,6 +110,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.RazorComponent", "HigLabo.Web.RazorComponent\HigLabo.Web.RazorComponent.csproj", "{57D37590-23B8-42F4-AA57-F0BFD385FB75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.SampleWebSite", "HigLabo.Web.SampleWebSite\HigLabo.Web.SampleWebSite.csproj", "{A861D600-D745-4D42-90E0-82F9A88D8885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.OpenAI.CodeGenerator", "HigLabo.OpenAI.CodeGenerator\HigLabo.OpenAI.CodeGenerator.csproj", "{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -267,10 +267,6 @@ Global
 		{0EA03F26-7E85-4196-B30D-288961F806EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA03F26-7E85-4196-B30D-288961F806EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA03F26-7E85-4196-B30D-288961F806EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C27F1941-1A80-4425-9A0B-47ACCB72CD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C27F1941-1A80-4425-9A0B-47ACCB72CD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C27F1941-1A80-4425-9A0B-47ACCB72CD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C27F1941-1A80-4425-9A0B-47ACCB72CD9E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCF02632-A459-4ACC-9A1A-EAF8DFD8C962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CCF02632-A459-4ACC-9A1A-EAF8DFD8C962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCF02632-A459-4ACC-9A1A-EAF8DFD8C962}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -339,6 +335,10 @@ Global
 		{A861D600-D745-4D42-90E0-82F9A88D8885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A861D600-D745-4D42-90E0-82F9A88D8885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A861D600-D745-4D42-90E0-82F9A88D8885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

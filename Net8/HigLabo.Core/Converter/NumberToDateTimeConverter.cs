@@ -239,7 +239,7 @@ namespace HigLabo.Core
 				if (month >= 1 && month <= 12)
 				{
 					var dtime = new DateTime(DateTime.Now.Year, month.Value, 1);
-					if (DateTime.DaysInMonth(dtime.Year, dtime.Month) >= day)
+					if (DateTime.DaysInMonth(DateTime.Now.Year, dtime.Month) >= day)
 					{
 						return new DateTime(DateTime.Now.Year, month.Value, day.Value);
 					}
@@ -261,7 +261,7 @@ namespace HigLabo.Core
 				if (month >= 1 && month <= 12)
 				{
 					var dtime = new DateTime(DateTime.Now.Year, month.Value, 1);
-					if (DateTime.DaysInMonth(dtime.Year, dtime.Month) >= day)
+					if (DateTime.DaysInMonth(DateTime.Now.Year, dtime.Month) >= day)
 					{
 						return new DateTime(DateTime.Now.Year, month.Value, day.Value);
 					}
@@ -432,7 +432,7 @@ namespace HigLabo.Core
                 if (year.HasValue && month >= 1 && month <= 12)
                 {
                     var dtime = new DateTime(year.Value, month.Value, 1);
-                    if (day <= DateTime.DaysInMonth(dtime.Year, dtime.Month))
+                    if (day <= DateTime.DaysInMonth(year.Value, dtime.Month))
                     {
                         return new DateTime(year.Value, month.Value, day.Value);
                     }

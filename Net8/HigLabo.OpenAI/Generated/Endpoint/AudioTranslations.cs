@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -9,18 +13,10 @@ namespace HigLabo.OpenAI
     public partial class AudioTranslationsParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        string IFileParameter.ParameterName
-        {
-            get
-            {
-                return "file";
-            }
-        }
-        string IFileParameter.FileName { get; set; } = "";
         /// <summary>
         /// The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
         /// </summary>
-        public Stream? File { get; private set; }
+        public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
         /// ID of the model to use. Only whisper-1 is currently available.
         /// </summary>
@@ -42,16 +38,6 @@ namespace HigLabo.OpenAI
         {
             return $"/audio/translations";
         }
-        Stream IFileParameter.GetFileStream()
-        {
-            if (this.File == null) throw new InvalidOperationException("File property must be set.");
-            return this.File;
-        }
-        public void SetFile(string fileName, Stream stream)
-        {
-            ((IFileParameter)this).FileName = fileName;
-            this.File = stream;
-        }
         public override object GetRequestBody()
         {
             return new {
@@ -61,6 +47,10 @@ namespace HigLabo.OpenAI
             	response_format = this.Response_Format,
             	temperature = this.Temperature,
             };
+        }
+        IEnumerable<FileParameter> IFileParameter.GetFileParameters()
+        {
+            yield return this.File;
         }
         Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
         {
@@ -77,17 +67,17 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileName, Stream file, string model)
+        public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileFileName, Stream fileStream, string model)
         {
             var p = new AudioTranslationsParameter();
-            p.SetFile(fileName, file);
+            p.File.SetFile(fileFileName, fileStream);
             p.Model = model;
             return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileName, Stream file, string model, CancellationToken cancellationToken)
+        public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileFileName, Stream fileStream, string model, CancellationToken cancellationToken)
         {
             var p = new AudioTranslationsParameter();
-            p.SetFile(fileName, file);
+            p.File.SetFile(fileFileName, fileStream);
             p.Model = model;
             return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(p, cancellationToken);
         }

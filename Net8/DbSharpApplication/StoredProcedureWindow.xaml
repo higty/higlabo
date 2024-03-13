@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         Title="StoredProcedureWindow"
-        Height="800" Width="1000">
+        Height="800" Width="1200">
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -50,9 +50,9 @@
                     <Button Name="LoadResultSetButton" Click="LoadResultSetButton_Click" FontSize="32" Padding="20,10,20,10"
                         Content="Load ResultSet" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
                 </Grid>
-                <Grid x:Name="ResultSetPanel" Visibility="Hidden">
+                <Grid x:Name="ResultSetPanel" Visibility="Visible">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="48"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
@@ -71,10 +71,24 @@
                              Text="{Binding Path=Name}"  PreviewKeyDown="ResultSetNameTextBox_PreviewKeyDown"
                              VerticalContentAlignment="Center" Height="24" TextWrapping="Wrap" 
                              Width="240" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox Name="TableListBox" ItemsSource="{Binding Path=TableList}" 
+                                      MaxDropDownHeight="800" Width="200">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Name="SetTableColumnButton" Click="SetTableColumnButton_Click" 
+                            Width="60" Content="Apply" Height="24"></Button>
                             <Button Name="SetAllowNullButton" Click="SetAllowNullButton_Click" 
-                            Width="100" Content="_AllowNull" Height="24"></Button>
+                            Width="80" Content="_Allow Null" Height="24"></Button>
                             <Button Name="SetNotNullButton" Click="SetNotNullButton_Click"
-                            Width="100" Content="_NotNull" Height="24"></Button>
+                            Width="80" Content="_Deny Null" Height="24"></Button>
                         </StackPanel>
                     </StackPanel>
                     <Grid Grid.Row="1" DataContext="{Binding ElementName=ResultSetListBox, Path=SelectedItem}">

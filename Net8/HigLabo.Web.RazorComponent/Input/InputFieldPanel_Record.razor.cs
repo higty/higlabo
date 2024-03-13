@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_Record<TItem>
-    {
+    public partial class InputFieldPanel_Record<TItem, TFilterItem>
+	{
 
-        [Parameter]
+		[Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
         [Parameter]
 		public string Name { get; set; } = "";
@@ -28,9 +28,11 @@ namespace HigLabo.Web.RazorComponent.Input
 		public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
 		[Parameter]
+		public SelectRecordPanelState<TItem, TFilterItem> State { get; set; } = new();
+		[Parameter, AllowNull]
+		public RenderFragment<TFilterItem> FilterItemTemplate { get; set; }
+		[Parameter]
 		public bool SelectRecordPanelVisible { get; set; } = false;
-        [Parameter]
-        public bool SearchContainerPanelVisible { get; set; } = true;
 
         [Parameter, AllowNull]
         public TItem Record { get; set; }
@@ -43,10 +45,12 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter, AllowNull]
         public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
-        [Parameter]
-        public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
-
-		private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+			this.State.SelectAllVisible = false;
+        }
+        private async ValueTask RecordPanel_Keydown(KeyboardEventArgs e)
 		{
 			if (e.Key == "Enter")
 			{
@@ -74,5 +78,11 @@ namespace HigLabo.Web.RazorComponent.Input
 			await this.RecordPanelElementReference.FocusAsync();
 			this.StateHasChanged();
 		}
-	}
+
+        private void OnClosed()
+        {
+            this.SelectRecordPanelVisible = false;
+            this.StateHasChanged();
+        }
+    }
 }

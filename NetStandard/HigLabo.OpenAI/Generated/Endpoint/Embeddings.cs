@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,7 +14,7 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8192 tokens for text-embedding-ada-002) and cannot be an empty string. Example Python code for counting tokens.
+        /// Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a single request, pass an array of strings or array of token arrays. The input must not exceed the max input tokens for the model (8192 tokens for text-embedding-ada-002), cannot be an empty string, and any array must be 2048 dimensions or less. Example Python code for counting tokens.
         /// </summary>
         public string Input { get; set; } = "";
         /// <summary>
@@ -23,6 +25,10 @@ namespace HigLabo.OpenAI
         /// The format to return the embeddings in. Can be either float or base64.
         /// </summary>
         public string? Encoding_Format { get; set; }
+        /// <summary>
+        /// The number of dimensions the resulting output embeddings should have. Only supported in text-embedding-3 and later models.
+        /// </summary>
+        public int? Dimensions { get; set; }
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
         /// </summary>
@@ -38,6 +44,7 @@ namespace HigLabo.OpenAI
             	input = this.Input,
             	model = this.Model,
             	encoding_format = this.Encoding_Format,
+            	dimensions = this.Dimensions,
             	user = this.User,
             };
         }

@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using HigLabo.Core;
+using HigLabo.Web.RazorComponent.Panel;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
-    public partial class InputFieldPanel_RecordList<TItem>
+    public partial class InputFieldPanel_RecordList<TItem, TFilterItem>
 	{
 		[Parameter]
         public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
@@ -26,19 +27,21 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
 
-        [Parameter, AllowNull]
+        [Parameter]
+        public SelectRecordPanelState<TItem, TFilterItem> State { get; set; } = new();
+		[Parameter, AllowNull]
+		public RenderFragment<TFilterItem> FilterItemTemplate { get; set; }
+		[Parameter, AllowNull]
         public List<TItem> RecordList { get; set; }
         [Parameter]
         public bool SelectRecordPanelVisible { get; set; } = false;
-        [Parameter]
-        public bool SearchContainerPanelVisible { get; set; } = true;
         [Parameter, AllowNull]
         public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
         [Parameter]
-        public EventCallback<RecordListLoadingContext<TItem>> OnRecordListLoading { get; set; }
-        [Parameter]
         public EventCallback OnRecordAdded { get; set; }
+        [Parameter]
+        public EventCallback<TItem> OnRecordSelected { get; set; }
         [Parameter]
         public Func<TItem, TItem, bool>? EqualityFunc { get; set; } 
         [Parameter]
@@ -57,7 +60,7 @@ namespace HigLabo.Web.RazorComponent.Input
                 default:throw SwitchStatementNotImplementException.Create(this.AddRecordMode);
             }
         }
-        private void Record_Selected(TItem record)
+        private async ValueTask Record_Selected(TItem record)
         {
             if (this.MultipleSelectRecord == false)
             {
@@ -71,6 +74,13 @@ namespace HigLabo.Web.RazorComponent.Input
             {
                 this.RecordList.AddIfNotExist(record, this.EqualityFunc);
             }
+            await this.OnRecordSelected.InvokeAsync(record);
+            this.StateHasChanged();
+        }
+
+        private void OnClosed()
+        {
+            this.SelectRecordPanelVisible = false;
             this.StateHasChanged();
         }
     }

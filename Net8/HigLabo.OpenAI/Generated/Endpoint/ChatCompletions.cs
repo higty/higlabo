@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -26,11 +30,19 @@ namespace HigLabo.OpenAI
         /// </summary>
         public object? Logit_Bias { get; set; }
         /// <summary>
-        /// The maximum number of tokens to generate in the chat completion.The total length of input tokens and generated tokens is limited by the model's context length. Example Python code for counting tokens.
+        /// Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. This option is currently not available on the gpt-4-vision-preview model.
+        /// </summary>
+        public bool? Logprobs { get; set; }
+        /// <summary>
+        /// An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
+        /// </summary>
+        public int? Top_Logprobs { get; set; }
+        /// <summary>
+        /// The maximum number of tokens that can be generated in the chat completion.The total length of input tokens and generated tokens is limited by the model's context length. Example Python code for counting tokens.
         /// </summary>
         public int? Max_Tokens { get; set; }
         /// <summary>
-        /// How many chat completion choices to generate for each input message.
+        /// How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs.
         /// </summary>
         public int? N { get; set; }
         /// <summary>
@@ -38,7 +50,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Presence_Penalty { get; set; }
         /// <summary>
-        /// An object specifying the format that the model must output.Setting to { "type": "json_object" } enables JSON mode, which guarantees the message the model generates is valid JSON.Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
+        /// An object specifying the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models newer than gpt-3.5-turbo-1106.Setting to { "type": "json_object" } enables JSON mode, which guarantees the message the model generates is valid JSON.Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
         /// </summary>
         public object? Response_Format { get; set; }
         /// <summary>
@@ -71,7 +83,7 @@ namespace HigLabo.OpenAI
         /// Controls which (if any) function is called by the model.
         /// none means the model will not call a function and instead generates a message.
         /// auto means the model can pick between generating a message or calling a function.
-        /// Specifying a particular function via {"type: "function", "function": {"name": "my_function"}} forces the model to call that function.none is the default when no functions are present. auto is the default if functions are present.
+        /// Specifying a particular function via {"type": "function", "function": {"name": "my_function"}} forces the model to call that function.none is the default when no functions are present. auto is the default if functions are present.
         /// </summary>
         public string? Tool_Choice { get; set; }
         /// <summary>
@@ -90,6 +102,8 @@ namespace HigLabo.OpenAI
             	model = this.Model,
             	frequency_penalty = this.Frequency_Penalty,
             	logit_bias = this.Logit_Bias,
+            	logprobs = this.Logprobs,
+            	top_logprobs = this.Top_Logprobs,
             	max_tokens = this.Max_Tokens,
             	n = this.N,
             	presence_penalty = this.Presence_Penalty,
@@ -157,7 +171,7 @@ namespace HigLabo.OpenAI
         }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
         {
-            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
+            await foreach (var item in this.ChatCompletionsStreamAsync(parameter, CancellationToken.None))
             {
                 yield return item;
             }

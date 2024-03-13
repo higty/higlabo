@@ -50,7 +50,7 @@
   --color-button-hover: var(--color-scheme-03);
   --color-button-text: var(--color-white);
   /* checkbox-panel */
-  --color-checkbox-panel-checked: var(--color-scheme-04);
+  --color-checkbox-panel-checked: var(--color-scheme-06);
   --color-checkbox-panel-focus: var(--color-scheme-09);
   /* select-button */
   --color-select-button-text: var(--color-white);
@@ -396,10 +396,11 @@
   border: none;
   color: var(--color-button-text);
   background-color: var(--color-button-bg);
-  padding: initial 8px;
+  padding: 0 8px;
   cursor: pointer;
   text-decoration: none;
   font-size: 14px;
+  box-sizing: border-box;
 }
 .button.radius-button {
   padding: 4px 16px;
@@ -519,13 +520,15 @@
 }
 .textbox.date,
 .record-panel.date {
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  width: 100px;
+  width: 110px;
+  padding: 0;
+  text-align: center;
 }
 .textbox.time,
 .record-panel.time {
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   width: 60px;
+  padding: 0;
+  text-align: center;
 }
 .textbox.color,
 .record-panel.color {
@@ -757,6 +760,9 @@
   cursor: pointer;
   color: var(--color-select-button-text);
   background-color: var(--color-select-button-bg);
+}
+.select-button-list-panel .record-value-panel:last-child {
+  margin-right: 0;
 }
 .select-button-list-panel .record-value-panel.selected {
   color: var(--color-white);
@@ -996,6 +1002,25 @@
   border: solid 1px var(--color-border);
   box-sizing: border-box;
 }
+.select-record-panel .tab-list-panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.select-record-panel .tab-list-panel .tab-panel {
+  display: inline-block;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.select-record-panel .tab-list-panel .tab-panel[selected=true] {
+  border-bottom: solid 2px var(--color-scheme-04);
+}
+.select-record-panel .tab-list-panel .tab-panel:focus {
+  font-weight: bold;
+}
+.select-record-panel .tab-list-panel .tab-panel:hover {
+  background-color: var(--color-form-element-hover);
+}
 .select-record-panel .search-container-panel {
   display: flex;
   align-items: center;
@@ -1198,4 +1223,48 @@
 }
 .paging-panel .page-number-panel:hover {
   background-color: var(--color-menu-hover);
+}
+
+.action-confirm-panel {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.action-confirm-panel .action-confirm-popup-panel {
+  position: absolute;
+  z-index: 201;
+  left: 0;
+  top: -4px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-white);
+  border: solid 1px var(--color-border);
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  padding: 4px;
+}
+.action-confirm-panel .action-confirm-popup-panel[position=Right] {
+  left: unset;
+  right: 0;
+}
+.action-confirm-panel .action-confirm-popup-panel .flex-left-panel {
+  display: block;
+  min-width: 240px;
+  padding-right: 10px;
+  text-align: left;
+}
+.action-confirm-panel .action-confirm-popup-panel .flex-right-panel {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  min-width: 150px;
+}
+.action-confirm-panel .action-confirm-popup-panel .flex-right-panel .button {
+  margin: auto 2px;
+}
+.action-confirm-panel .child-content-panel {
+  display: grid;
+  place-items: center;
 }

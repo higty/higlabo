@@ -34,6 +34,7 @@ namespace DbSharpApplication
         {
             get { return this.ViewModel.StoredProcedure; }
         }
+        public List<DatabaseObject> TableList { get; init; } = new();
 
         public StoredProcedureWindow(StoredProcedureWindowViewModel viewModel)
         {
@@ -44,9 +45,13 @@ namespace DbSharpApplication
             this.ViewModel = viewModel;
             this.DataContext = viewModel;
 
+			this.ResultSetListBox.SelectionChanged += ResultSetListBox_SelectionChanged;
+            this.TableListBox.ItemsSource = this.TableList;
+
             this.SetParameterProperty();
         }
-        private void SetText()
+
+		private void SetText()
         {
             this.OutputFolderPathLabel.Content = T.Text.OutputFolder;
             this.NamespaceNameLabel.Content = T.Text.Namespace;
@@ -146,15 +151,19 @@ namespace DbSharpApplication
                 this.ResultSetListBox.SelectedItem = this.StoredProcedure.ResultSets[0];
             }
 
+            this.TableList.Clear();
+            foreach (var item in await reader.GetTablesAsync())
+            {
+                this.TableList.Add(item);
+            }
+
             this.LoadButtonPanel.Visibility = Visibility.Hidden;
             this.ResultSetPanel.Visibility = Visibility.Visible;
 
-        }
-        private void SetResultSetProperty()
-        {
-        }
+			this.SelectTable();
+		}
 
-        private void ResultSetNameTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		private void ResultSetNameTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             var rs = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
             if (rs == null) { return; }
@@ -174,7 +183,37 @@ namespace DbSharpApplication
             rs.Name = this.ResultSetNameTextBox.Text;
             this.ResultSetListBox.SelectedIndex = index;
         }
-        private void SetAllowNullButton_Click(object sender, RoutedEventArgs e)
+
+		private void ResultSetListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+            this.SelectTable();
+		}
+        private void SelectTable()
+        {
+			var resultSet = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
+			if (resultSet == null) { return; }
+			var t = this.TableList.Find(el => el.Name == resultSet.Name);
+			if (t == null) { return; }
+			this.TableListBox.SelectedItem = t;
+		}
+
+		private async void SetTableColumnButton_Click(object sender, RoutedEventArgs e)
+        {
+            var t = this.TableListBox.SelectedItem as DatabaseObject;
+            if (t == null) { return; }
+			var resultSet = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
+            if (resultSet == null) { return; }
+
+			var tableName = t.Name;
+			var reader = this.ViewModel.GenerateSetting.CreateDatabaseSchemaReader(this.ViewModel.ConnectionString);
+            foreach (var c in await reader.GetColumnListAsync(tableName))
+            {
+                var rColumn = resultSet.Columns.Find(el => el.Name == c.Name);
+                if (rColumn == null) { continue; }
+                rColumn.AllowNull = c.AllowNull;
+            }
+		}
+		private void SetAllowNullButton_Click(object sender, RoutedEventArgs e)
         {
             this.SetStoredProcedureColumnAllowNullValue(true);
         }
@@ -182,6 +221,7 @@ namespace DbSharpApplication
         {
             this.SetStoredProcedureColumnAllowNullValue(false);
         }
+
         private void SetStoredProcedureColumnAllowNullValue(Boolean allowNull)
         {
             var sp = this.StoredProcedure;

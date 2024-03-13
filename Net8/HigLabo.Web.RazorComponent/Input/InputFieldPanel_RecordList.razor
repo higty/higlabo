@@ -1,18 +1,20 @@
 @typeparam TItem
+@typeparam TFilterItem
 
 <InputFieldPanel PanelType="record-list" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult"
     AddIconVisible="true" OnAddIconClicked="async e => await OnAddIconClicked()">
-    <div class="select-container-panel">
-        @if (SelectRecordPanelVisible)
-        {
-            <SelectRecordPanel ItemTemplate="this.SelectItemTemplate" MultipleSelectRecord="this.MultipleSelectRecord"
-                SearchContainerPanelVisible="SearchContainerPanelVisible" OnRecordListLoading="OnRecordListLoading" 
-                OnRecordSelected="(TItem r) => Record_Selected(r)" OnClosed="e => this.SelectRecordPanelVisible = false">
-            </SelectRecordPanel>
-        }
-    </div>
     @if (this.ChildContent != null)
     {
         <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>
     }
+    <div class="select-container-panel">
+        @if (this.SelectRecordPanelVisible)
+        {
+            <SelectRecordPanel State="this.State" FilterItemTemplate="this.FilterItemTemplate"
+            TItem="TItem" TFilterItem="TFilterItem" ItemTemplate="this.SelectItemTemplate"
+            OnAllRecordSelected="e =>  this.SelectRecordPanelVisible = false"
+            OnRecordSelected="async r => await this.Record_Selected(r)"
+            OnClosed="this.OnClosed"></SelectRecordPanel>
+        }
+    </div>
 </InputFieldPanel>

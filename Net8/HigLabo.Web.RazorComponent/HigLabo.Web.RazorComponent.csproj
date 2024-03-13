@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>8.3.0.0</Version>
+		<Version>8.7.0.0</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
 		<Authors>Higty</Authors>
@@ -12,6 +12,10 @@
 		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Core\InputFieldPanelLoadingEventArgs.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Remove="Input\InputFieldPanel_TimeDurationss.razor" />

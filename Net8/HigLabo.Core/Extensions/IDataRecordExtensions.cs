@@ -7,20 +7,20 @@ namespace HigLabo.Core
 {
     public static class IDataRecordExtensions
     {
-        public static Dictionary<String, Object> CreateDisctionary(this System.Data.IDataRecord record)
+        public static Dictionary<String, Object> CreateDictionary(this System.Data.IDataRecord record)
         {
-            return record.SetToDisctionary(new Dictionary<String, Object>());
+            return record.SetToDictionary(new Dictionary<String, Object>());
         }
-        public static Dictionary<String, Object> CreateDisctionary(this System.Data.IDataRecord record, StringComparer comparer)
+        public static Dictionary<String, Object> CreateDictionary(this System.Data.IDataRecord record, StringComparer comparer)
         {
-            return record.SetToDisctionary(new Dictionary<String, Object>(comparer));
+            return record.SetToDictionary(new Dictionary<String, Object>(comparer));
         }
-        public static T CreateDisctionary<T>(this System.Data.IDataRecord record)
+        public static T CreateDictionary<T>(this System.Data.IDataRecord record)
             where T: IDictionary<String, Object>, new()
         {
-            return record.SetToDisctionary(new T());
+            return record.SetToDictionary(new T());
         }
-        public static T SetToDisctionary<T>(this System.Data.IDataRecord record, T dictionary)
+        public static T SetToDictionary<T>(this System.Data.IDataRecord record, T dictionary)
             where T: IDictionary<String, Object>, new()
         {
             var fieldCount = record.FieldCount;

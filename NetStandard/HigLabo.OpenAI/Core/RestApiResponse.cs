@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace HigLabo.OpenAI
 {
@@ -15,6 +16,7 @@ namespace HigLabo.OpenAI
         string RequestBodyText { get; }
         HttpStatusCode StatusCode { get; }
         Dictionary<String, String> Headers { get; }
+        Stream? Stream { get; }
         string ResponseBodyText { get; }
     }
     public abstract class RestApiResponse : IRestApiResponse
@@ -24,6 +26,7 @@ namespace HigLabo.OpenAI
         private string _RequestBodyText = "";
         private HttpStatusCode _StatusCode = HttpStatusCode.OK;
         private Dictionary<String, String> _Headers = new Dictionary<string, string>();
+        private Stream? _Stream = null;
         private string _ResponseBodyText = "";
 
         object? IRestApiResponse.Parameter
@@ -46,6 +49,10 @@ namespace HigLabo.OpenAI
         {
             get { return _Headers; }
         }
+        Stream? IRestApiResponse.Stream
+        {
+            get { return _Stream; }
+        }
         string IRestApiResponse.ResponseBodyText
         {
             get { return _ResponseBodyText; }
@@ -53,7 +60,20 @@ namespace HigLabo.OpenAI
 
         public string Object { get; set; } = "";
 
-        public void SetProperty(object? parameter, string requestBodyText, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+		public async ValueTask SetProperty(object? parameter, string requestBodyText, HttpRequestMessage request, HttpResponseMessage response)
+		{
+			var res = response;
+			_Parameter = parameter;
+			_Request = request;
+			_RequestBodyText = requestBodyText;
+			_StatusCode = res.StatusCode;
+			foreach (var header in res.Headers)
+			{
+				_Headers[header.Key] = String.Join(' ', header.Value);
+			}
+            _Stream = await res.Content.ReadAsStreamAsync();
+		}
+		public void SetProperty(object? parameter, string requestBodyText, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
         {
             var res = response;
             _Parameter = parameter;
