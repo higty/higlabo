@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static HigLabo.OpenAI.ChatCompletionObjectResponse;
 
 namespace HigLabo.OpenAI
 {
@@ -11,6 +12,7 @@ namespace HigLabo.OpenAI
         public class Choice
         {
             public int Index { get; set; }
+            public object? Logprobs { get; set; } 
             public string? Finish_Reason { get; set; }
             public Message Delta { get; set; } = new();
             public Message Message { get; set; } = new();
