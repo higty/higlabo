@@ -111,7 +111,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.RazorComponent"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.SampleWebSite", "HigLabo.Web.SampleWebSite\HigLabo.Web.SampleWebSite.csproj", "{A861D600-D745-4D42-90E0-82F9A88D8885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.OpenAI.CodeGenerator", "HigLabo.OpenAI.CodeGenerator\HigLabo.OpenAI.CodeGenerator.csproj", "{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI.CodeGenerator", "HigLabo.OpenAI.CodeGenerator\HigLabo.OpenAI.CodeGenerator.csproj", "{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Anthropic", "HigLabo.Anthropic\HigLabo.Anthropic.csproj", "{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Anthropic.SampleConsoleApp", "HigLabo.Anthropic.SampleConsoleApp\HigLabo.Anthropic.SampleConsoleApp.csproj", "{A4406180-6170-405B-A77A-C5529DBE290C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -339,6 +343,14 @@ Global
 		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4406180-6170-405B-A77A-C5529DBE290C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4406180-6170-405B-A77A-C5529DBE290C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4406180-6170-405B-A77A-C5529DBE290C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4406180-6170-405B-A77A-C5529DBE290C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

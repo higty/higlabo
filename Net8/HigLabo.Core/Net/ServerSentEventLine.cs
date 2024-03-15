@@ -16,6 +16,26 @@ namespace HigLabo.Core
             this.Data = new byte[size];
             this.Complete = complete;
         }
+        public bool IsEvent()
+        {
+            if (this.Data.Length < 6)
+            {
+                return false;
+            }
+            if (Data[0] == 101 &&
+                Data[1] == 118 &&
+                Data[2] == 101 &&
+                Data[3] == 110 &&
+                Data[4] == 116 &&
+                Data[5] == 58)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool IsData()
         {
             if (this.Data.Length < 5)
@@ -72,9 +92,13 @@ namespace HigLabo.Core
         }
         public byte[] GetValue()
         {
+            if (this.IsEvent())
+            {
+                return this.Data.AsSpan().Slice(7).ToArray();
+            }
             if (this.IsData())
             {
-                return this.Data.AsSpan().Slice(5).ToArray();
+                return this.Data.AsSpan().Slice(6).ToArray();
             }
             return this.Data;
         }

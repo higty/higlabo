@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetOpenAISetting();
-            await ChatCompletionStream();
+            SetAzureSetting();
+            await ChatCompletionStreamWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -26,8 +27,8 @@ namespace HigLabo.OpenAI
         }
         private void SetAzureSetting()
         {
-            var apiKey = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.txt");
-            OpenAIClient = new OpenAIClient(new AzureSettings(apiKey, "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
+            var json = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.json");
+            OpenAIClient = new OpenAIClient(JsonConvert.DeserializeObject<AzureSettings>(json)!);
         }
 
         private async ValueTask AudioFileDownload()

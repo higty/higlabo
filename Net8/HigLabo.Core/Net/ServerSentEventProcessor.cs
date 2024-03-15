@@ -45,6 +45,11 @@ namespace HigLabo.Core
                         previousLineList.Add(line);
                         continue;
                     }
+                    if (line.IsEvent())
+                    {
+                        var text = Encoding.UTF8.GetString(line.GetValue());
+                        yield return text;
+                    }
                     if (line.IsData())
                     {
                         var text = Encoding.UTF8.GetString(line.GetValue());

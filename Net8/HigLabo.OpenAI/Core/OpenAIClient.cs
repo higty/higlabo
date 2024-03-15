@@ -19,7 +19,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace HigLabo.OpenAI
 {
-    public class HttpRequestMessageEventArgs
+    public class HttpRequestMessageEventArgs : EventArgs
     {
         public HttpRequestMessage RequestMessage { get; init; }
 
