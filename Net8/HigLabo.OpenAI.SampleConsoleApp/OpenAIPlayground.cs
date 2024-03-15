@@ -87,6 +87,8 @@ namespace HigLabo.OpenAI
 
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Total tokens: " + res.Usage.Total_Tokens);
             var iRes = res as IRestApiResponse;
             Console.WriteLine(iRes.RequestBodyText);
             Console.WriteLine();

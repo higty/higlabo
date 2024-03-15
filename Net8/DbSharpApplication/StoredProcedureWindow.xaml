@@ -50,7 +50,7 @@
                     <Button Name="LoadResultSetButton" Click="LoadResultSetButton_Click" FontSize="32" Padding="20,10,20,10"
                         Content="Load ResultSet" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
                 </Grid>
-                <Grid x:Name="ResultSetPanel" Visibility="Visible">
+                <Grid x:Name="ResultSetPanel" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
