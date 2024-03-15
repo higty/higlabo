@@ -105,10 +105,18 @@ namespace HigLabo.OpenAI.CodeGenerator
                     }
                 }
             }
-            var hasStreamMethod = false;
+
+            var streamResponseClassName = "";
             if (endpointUrl == "https://api.openai.com/v1/chat/completions")
             {
-                hasStreamMethod = true;
+                streamResponseClassName= "ChatCompletionChunk";
+            }
+            var hasAssistantStreamMethod = false;
+            if (cName == "ThreadRun" ||
+                cName == "RunCreate" ||
+                cName == "SubmitToolOutputs")
+            {
+                streamResponseClassName = "AssistantDeltaObject";
             }
 
             var cParameter = new Class(AccessModifier.Public, cName + "Parameter");
@@ -137,7 +145,7 @@ namespace HigLabo.OpenAI.CodeGenerator
 
             var mdStreamAsync = new Method(MethodAccessModifier.Public, cName + "StreamAsync");
             mdStreamAsync.ReturnTypeName.Name = "async IAsyncEnumerable";
-            mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName("ChatCompletionChunk"));
+            mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName(streamResponseClassName));
             mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"var p = new {cName}Parameter();");
 
             var mdCreateFormDataParameter = new Method(MethodAccessModifier.None, "IFormDataParameter.CreateFormDataParameter");
@@ -200,7 +208,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                             pName = "Timestamp_Granularities";
                         }
                         var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.GetAttribute("innerHTML") == "Required";
-                        var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).GetAttribute("innerHTML"), cName, pName, pRequired);
+                        var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).GetAttribute("textContent"), cName, pName, pRequired);
                         if (pType == "string")
                         {
                             if (pRequired == false)
@@ -382,6 +390,9 @@ namespace HigLabo.OpenAI.CodeGenerator
                 }
                 cClient.Methods.Add(mdAsync0);
             }
+
+
+            var hasStreamMethod = streamResponseClassName.IsNullOrEmpty() == false;
             {
                 mdAsync.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
                 if (propertyList.Count == 0)
@@ -450,7 +461,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                     md2.Parameters.Add(new MethodParameter(cName + "Parameter", "parameter"));
                     md2.Parameters.Add(new MethodParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken"));
                     md2.ReturnTypeName.Name = "async IAsyncEnumerable";
-                    md2.ReturnTypeName.GenericTypes.Add(new TypeName("ChatCompletionChunk"));
+                    md2.ReturnTypeName.GenericTypes.Add(new TypeName(streamResponseClassName));
 
                     md2.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
                     var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))");
@@ -463,7 +474,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                     var md1 = md2.Copy();
                     md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
                     md1.Body.Clear();
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.ChatCompletionsStreamAsync(parameter, CancellationToken.None))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -473,6 +484,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                     cClient.Methods.Add(md1);
                     cClient.Methods.Add(md2);
                 }
+            }
+            if (hasAssistantStreamMethod)
+            {
+
             }
 
             Directory.CreateDirectory(Path.Combine(OutputFolderPath, "Endpoint"));

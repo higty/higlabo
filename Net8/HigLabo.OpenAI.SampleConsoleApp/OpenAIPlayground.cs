@@ -317,13 +317,43 @@ namespace HigLabo.OpenAI
             var res = await cl.ModerationCreateAsync("We must kill all activist who attack museum. I will kill them and shoot myself after that.");
             Console.WriteLine(res);
         }
-        private async ValueTask AssistantCreate()
+
+        private async ValueTask AssistantsProcess()
+        {
+            var createResponse = await AssistantCreate();
+
+            var cl = OpenAIClient;
+
+            var now = DateTimeOffset.Now;
+            var threadId = "";
+            if (threadId.Length == 0)
+            {
+                var res = await cl.ThreadCreateAsync();
+                threadId = res.Id;
+            }
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = "Hello! I want to know how to use OpenAI assistant API to get stream response.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = createResponse.Id;
+                p.Thread_Id = threadId;
+                var res = await cl.RunCreateAsync(p);
+                runId = res.Id;
+            }
+        }
+        private async ValueTask<AssistantCreateResponse> AssistantCreate()
         {
             var cl = OpenAIClient;
 
             var p = new AssistantCreateParameter();
-            p.Name = "Legal tutor";
-            p.Instructions = "You are a personal legal tutor. Write and run code to legal questions based on passed files.";
+            p.Name = "HigLabo assistant";
+            p.Instructions = "You are a personal assistant to help general task.";
             p.Model = "gpt-4-1106-preview";
 
             p.Tools = new List<ToolObject>();
@@ -342,7 +372,7 @@ namespace HigLabo.OpenAI
 
             var res = await cl.AssistantCreateAsync(p);
             Console.WriteLine(res);
-
+            return res;
         }
         private async ValueTask AssistantRetrieve()
         {

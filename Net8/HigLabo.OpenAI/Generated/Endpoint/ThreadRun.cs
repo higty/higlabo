@@ -34,6 +34,10 @@ namespace HigLabo.OpenAI
         /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
         /// </summary>
         public object? Metadata { get; set; }
+        /// <summary>
+        /// If true, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a data: [DONE] message.
+        /// </summary>
+        public bool? Stream { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -48,6 +52,7 @@ namespace HigLabo.OpenAI
             	instructions = this.Instructions,
             	tools = this.Tools,
             	metadata = this.Metadata,
+            	stream = this.Stream,
             };
         }
     }
@@ -66,6 +71,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ThreadRunParameter();
             p.Assistant_Id = assistant_Id;
+            p.Stream = null;
             return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(p, cancellationToken);
         }
         public async ValueTask<ThreadRunResponse> ThreadRunAsync(ThreadRunParameter parameter)
@@ -75,6 +81,41 @@ namespace HigLabo.OpenAI
         public async ValueTask<ThreadRunResponse> ThreadRunAsync(ThreadRunParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(parameter, cancellationToken);
+        }
+        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(string assistant_Id)
+        {
+            var p = new ThreadRunParameter();
+            p.Assistant_Id = assistant_Id;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(string assistant_Id, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var p = new ThreadRunParameter();
+            p.Assistant_Id = assistant_Id;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(ThreadRunParameter parameter)
+        {
+            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(ThreadRunParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))
+            {
+                yield return item;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Classifies if text violates OpenAI's Content Policy
+    /// Classifies if text is potentially harmful.
     /// <seealso href="https://api.openai.com/v1/moderations">https://api.openai.com/v1/moderations</seealso>
     /// </summary>
     public partial class ModerationCreateParameter : RestApiParameter, IRestApiParameter

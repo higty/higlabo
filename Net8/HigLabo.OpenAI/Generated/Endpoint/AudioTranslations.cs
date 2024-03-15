@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
-        /// ID of the model to use. Only whisper-1 is currently available.
+        /// ID of the model to use. Only whisper-1 (which is powered by our open source Whisper V2 model) is currently available.
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>

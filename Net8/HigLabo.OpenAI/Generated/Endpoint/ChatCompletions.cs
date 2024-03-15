@@ -34,7 +34,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public bool? Logprobs { get; set; }
         /// <summary>
-        /// An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
+        /// An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
         /// </summary>
         public int? Top_Logprobs { get; set; }
         /// <summary>
@@ -76,7 +76,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Top_P { get; set; }
         /// <summary>
-        /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
+        /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
         /// </summary>
         public List<ToolObject>? Tools { get; set; }
         /// <summary>
@@ -171,7 +171,7 @@ namespace HigLabo.OpenAI
         }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
         {
-            await foreach (var item in this.ChatCompletionsStreamAsync(parameter, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
             {
                 yield return item;
             }
