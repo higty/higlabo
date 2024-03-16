@@ -244,6 +244,49 @@ namespace HigLabo.OpenAI
             return o;
         }
 
+        public async IAsyncEnumerable<string> ChatCompletionsTextStreamAsync(ChatCompletionsParameter parameter)
+        {
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, CancellationToken.None))
+            {
+                foreach (var choice in item.Choices)
+                {
+                    if (choice.Delta.Content == null) { continue; }
+                    yield return choice.Delta.Content;
+                }
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsTextStreamAsync(ChatCompletionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, cancellationToken))
+            {
+                foreach (var choice in item.Choices)
+                {
+                    if (choice.Delta.Content == null) { continue; }
+                    yield return choice.Delta.Content;
+                }
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsTextStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, cancellationToken))
+            {
+                result.Process(item);
+                foreach (var choice in item.Choices)
+                {
+                    if (choice.Delta.Content == null) { continue; }
+                    yield return choice.Delta.Content;
+                }
+            }
+        }
+        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, cancellationToken))
+            {
+                result.Process(item);
+                yield return item;
+            }
+        }
+
         public async IAsyncEnumerable<TResponse> GetStreamAsync<TParameter, TResponse>(TParameter parameter)
             where TParameter : RestApiParameter, IRestApiParameter
         {
@@ -252,64 +295,15 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync(ChatCompletionsParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync(ChatCompletionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, cancellationToken))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> GetStreamAsync(RunCreateParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> GetStreamAsync(RunCreateParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(parameter, cancellationToken))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> GetStreamAsync(ThreadRunParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<ThreadRunParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> GetStreamAsync(ThreadRunParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            await foreach (var item in this.GetStreamAsync<ThreadRunParameter, AssistantDeltaObject>(parameter, cancellationToken))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> GetStreamAsync(SubmitToolOutputsParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> GetStreamAsync(SubmitToolOutputsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(parameter, cancellationToken))
-            {
-                yield return item;
-            }
-        }
-
         public async IAsyncEnumerable<TResponse> GetStreamAsync<TParameter, TResponse>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+            where TParameter : RestApiParameter, IRestApiParameter
+        {
+            await foreach (var item in this.GetStreamAsync<TParameter, TResponse>(parameter, new ServerSentEventResult(), cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<TResponse> GetStreamAsync<TParameter, TResponse>(TParameter parameter, ServerSentEventResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
             where TParameter :RestApiParameter, IRestApiParameter
         {
             var p = parameter as IRestApiParameter;
@@ -339,7 +333,13 @@ namespace HigLabo.OpenAI
                     var processor = new ServerSentEventProcessor(stream);
                     await foreach (var line in processor.Process(cancellationToken))
                     {
-                        yield return this.JsonConverter.DeserializeObject<TResponse>(line);
+                        result.AddLine(line);
+                        if (line.IsData())
+                        {
+                            var text = line.GetText();
+                            if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
+                            yield return this.JsonConverter.DeserializeObject<TResponse>(text);
+                        }
                     }
                 }
                 finally

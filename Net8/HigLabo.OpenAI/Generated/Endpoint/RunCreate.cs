@@ -97,7 +97,7 @@ namespace HigLabo.OpenAI
             p.Thread_Id = thread_Id;
             p.Assistant_Id = assistant_Id;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(p, CancellationToken.None))
             {
                 yield return item;
             }
@@ -108,14 +108,14 @@ namespace HigLabo.OpenAI
             p.Thread_Id = thread_Id;
             p.Assistant_Id = assistant_Id;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(p, cancellationToken))
             {
                 yield return item;
             }
         }
         public async IAsyncEnumerable<AssistantDeltaObject> RunCreateStreamAsync(RunCreateParameter parameter)
         {
-            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
             {
                 yield return item;
             }
@@ -123,7 +123,7 @@ namespace HigLabo.OpenAI
         public async IAsyncEnumerable<AssistantDeltaObject> RunCreateStreamAsync(RunCreateParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(parameter, cancellationToken))
             {
                 yield return item;
             }

@@ -16,8 +16,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetAzureSetting();
-            await ChatCompletionStreamWithFunctionCalling();
+            SetOpenAISetting();
+            await ChatCompletionStream();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -105,19 +105,17 @@ namespace HigLabo.OpenAI
             p.Model = "gpt-3.5-turbo";
             p.Stream = true;
 
-            var processor = new ChatCompletionStreamProcessor();
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p))
+            var result = new ChatCompletionStreamResult();
+            var sseResult = new ServerSentEventResult();
+            await foreach (var text in cl.ChatCompletionsTextStreamAsync(p, result, CancellationToken.None))
             {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
-                }
+                Console.Write(text);
             }
             Console.WriteLine();
-            Console.WriteLine("DONE");
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine(processor.GetContent());
+            Console.WriteLine("***********************");
+            Console.WriteLine(result.GetContent());
+            Console.WriteLine("Finish reason: " + result.GetFinishReason());
+            Console.WriteLine("■DONE");
         }
         private async ValueTask ChatCompletionStreamWithFunctionCalling()
         {
@@ -177,12 +175,11 @@ namespace HigLabo.OpenAI
                 p.Tools.Add(tool);
             }
 
-            var processor = new ChatCompletionStreamProcessor();
+            var result = new ChatCompletionStreamResult();
             //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
             p.Stream = true;
-            await foreach (var chunk in cl.GetStreamAsync(p))
+            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
-                processor.Process(chunk);
                 foreach (var choice in chunk.Choices)
                 {
                     Console.Write(choice.Delta.Content);
@@ -190,7 +187,7 @@ namespace HigLabo.OpenAI
             }
             Console.WriteLine();
 
-            foreach (var f in processor.GetFunctionCallList())
+            foreach (var f in result.GetFunctionCallList())
             {
                 Console.WriteLine("■Function name is " + f.Name);
                 Console.WriteLine("■Arguments is " + f.Arguments);
@@ -207,14 +204,15 @@ namespace HigLabo.OpenAI
 
             var vMessage = new ChatImageMessage(ChatMessageRole.User);
             vMessage.AddTextContent("Please describe this image.");
-            vMessage.AddImageFile("D:\\Data\\WallPaper\\HasuIke1.jpg");
+            vMessage.AddImageFile(Path.Combine(Environment.CurrentDirectory, "Image", "Pond.jpg"));
             p.Messages.Add(vMessage);
             p.Model = "gpt-4-vision-preview";
             p.Max_Tokens = 300;
             p.Stream = true;
 
-            var processor = new ChatCompletionStreamProcessor();
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p))
+            var processor = new ChatCompletionStreamResult();
+            var sseResult = new ServerSentEventResult();
+            await foreach (var chunk in cl.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(p, sseResult, CancellationToken.None))
             {
                 foreach (var choice in chunk.Choices)
                 {
@@ -223,6 +221,9 @@ namespace HigLabo.OpenAI
                 }
             }
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("***********************");
+            Console.WriteLine(sseResult.ToString());
             Console.WriteLine("■DONE");
         }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Anthropic.Endpoint
+namespace HigLabo.Anthropic
 {
     public partial class MessagesParameter : RestApiParameter, IRestApiParameter
     {

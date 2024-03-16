@@ -153,7 +153,7 @@ namespace HigLabo.OpenAI
             p.Messages = messages;
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(p, CancellationToken.None))
             {
                 yield return item;
             }
@@ -164,14 +164,14 @@ namespace HigLabo.OpenAI
             p.Messages = messages;
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(p, cancellationToken))
             {
                 yield return item;
             }
         }
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
         {
-            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, CancellationToken.None))
             {
                 yield return item;
             }
@@ -179,7 +179,7 @@ namespace HigLabo.OpenAI
         public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, cancellationToken))
             {
                 yield return item;
             }

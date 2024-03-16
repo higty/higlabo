@@ -110,7 +110,54 @@ namespace HigLabo.Anthropic
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
         }
 
+        public async IAsyncEnumerable<MessageContentBlockDelta> MessagesStreamAsync(MessagesParameter parameter)
+        {
+            await foreach (var item in this.GetStreamAsync<MessagesParameter, MessageContentBlockDelta>(parameter, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<MessageContentBlockDelta> MessagesStreamAsync(MessagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var item in this.GetStreamAsync<MessagesParameter, MessageContentBlockDelta>(parameter, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<MessageContentBlockDelta> MessagesStreamAsync(MessagesParameter parameter, MessagesStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var sseResult = new ServerSentEventResult();
+            await foreach (var item in this.GetStreamAsync<MessagesParameter, MessageContentBlockDelta>(parameter, sseResult, cancellationToken))
+            {
+                result.Process(item);
+                yield return item;
+            }
+            for (int i = 0; i < sseResult.LineList.Count; i++)
+            {
+                var line = sseResult.LineList[i];
+                if (string.Equals(line.GetText(), "message_delta"))
+                {
+                    if (i + 1 < sseResult.LineList.Count)
+                    {
+                        var json = sseResult.LineList[i + 1].GetText();
+                        var delta = JsonConverter.DeserializeObject<MessageDelta>(json);
+                        result.StopReason = delta.Delta.Stop_Reason;
+                        result.OutputTokens = delta.Usage.Output_Tokens;
+                    }
+                    break;
+                }
+            }
+        }
+
         public async IAsyncEnumerable<TResponse> GetStreamAsync<TParameter, TResponse>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+            where TParameter : RestApiParameter, IRestApiParameter
+        {
+            await foreach (var item in this.GetStreamAsync<TParameter, TResponse>(parameter, new ServerSentEventResult(), cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<TResponse> GetStreamAsync<TParameter, TResponse>(TParameter parameter, ServerSentEventResult serverSentEventResult, [EnumeratorCancellation] CancellationToken cancellationToken)
             where TParameter : RestApiParameter, IRestApiParameter
         {
             var p = parameter as IRestApiParameter;
@@ -137,23 +184,28 @@ namespace HigLabo.Anthropic
             {
                 try
                 {
-                    var processor = new ServerSentEventProcessor(stream);
+                    var sseProcessor = new ServerSentEventProcessor(stream);
                     var isStartDelta = false;
-                    await foreach (var line in processor.Process(cancellationToken))
+                    await foreach (var line in sseProcessor.Process(cancellationToken))
                     {
-                        if (line == "content_block_delta")
+                        serverSentEventResult.AddLine(line);
+                        var v = line.GetText();
+                        if (line.IsEvent())
                         {
-                            isStartDelta = true;
-                            continue;
+                            if (v == "content_block_delta")
+                            {
+                                isStartDelta = true;
+                                continue;
+                            }
+                            if (v == "content_block_stop")
+                            {
+                                isStartDelta = false;
+                                continue;
+                            }
                         }
-                        if (line == "content_block_stop")
+                        if (isStartDelta && line.IsData())
                         {
-                            isStartDelta = false;
-                            continue;
-                        }
-                        if (isStartDelta)
-                        {
-                            yield return this.JsonConverter.DeserializeObject<TResponse>(line);
+                            yield return this.JsonConverter.DeserializeObject<TResponse>(v);
                         }
                     }
                 }

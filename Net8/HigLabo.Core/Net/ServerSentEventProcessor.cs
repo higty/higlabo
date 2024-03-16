@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,7 +20,7 @@ namespace HigLabo.Core
             this.Stream = stream;
         }
 
-        public async IAsyncEnumerable<string> Process([EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<ServerSentEventLine> Process([EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var sseResponse = new ServerSentEventResponse();
             var previousLineList = new List<ServerSentEventLine>();
@@ -39,22 +40,17 @@ namespace HigLabo.Core
                     if (cancellationToken.IsCancellationRequested) { break; }
 
                     if (line.IsEmpty()) { continue; }
-                    if (line.IsDone()) { yield break; }
+                    if (line.IsDone())
+                    {
+                        yield return line;
+                        yield break;
+                    }
                     if (line.Complete == false)
                     {
                         previousLineList.Add(line);
                         continue;
                     }
-                    if (line.IsEvent())
-                    {
-                        var text = Encoding.UTF8.GetString(line.GetValue());
-                        yield return text;
-                    }
-                    if (line.IsData())
-                    {
-                        var text = Encoding.UTF8.GetString(line.GetValue());
-                        yield return text;
-                    }
+                    yield return line;
                 }
                 loopIndex++;
             }

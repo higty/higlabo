@@ -1,4 +1,4 @@
-﻿using HigLabo.Anthropic.Endpoint;
+﻿using HigLabo.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await SendImage();
+            await SendMessageAsStream();
             Console.WriteLine("■Completed");
 
         }
@@ -56,16 +56,16 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             p.Max_Tokens = 1024;
             p.Stream = true;
 
-            var processor = new MessagesStreamProcessor();
-            await foreach (var item in cl.GetStreamAsync<MessagesParameter, MessageContentBlockDelta>(p, CancellationToken.None))
+            var result = new MessagesStreamResult();
+            await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
             {
                 Console.Write(item.Delta.Text);
-                processor.Process(item);
             }
 
             Console.WriteLine("***********************");
-            Console.WriteLine(processor.GetContent());
-            Console.WriteLine();
+            Console.WriteLine(result.GetContent());
+            Console.WriteLine("StopReason: " + result.StopReason);
+            Console.WriteLine("Usage: " + result.OutputTokens);
         }
 
         private async ValueTask SendImage()
@@ -82,16 +82,13 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             p.Messages.Add(msg);
             p.Stream = true;
 
-            var processor = new MessagesStreamProcessor();
-            await foreach (var item in cl.GetStreamAsync<MessagesParameter, MessageContentBlockDelta>(p, CancellationToken.None))
+            var result = new MessagesStreamResult();
+            await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
             {
                 Console.Write(item.Delta.Text);
-                processor.Process(item);
             }
 
             Console.WriteLine("***********************");
-            Console.WriteLine(processor.GetContent());
-            Console.WriteLine();
         }
     }
 }

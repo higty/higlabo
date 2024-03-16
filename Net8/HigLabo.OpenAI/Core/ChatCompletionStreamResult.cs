@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
-    public class ChatCompletionStreamProcessor
+    public class ChatCompletionStreamResult
     {
         public class FunctionCallResult
         {
@@ -76,6 +76,20 @@ namespace HigLabo.OpenAI
                 }
             }
             return l;
+        }
+        public string GetFinishReason()
+        {
+            for (int i = this.ChunkList.Count - 1; i >= 0; i--)
+            {
+                var chunk = this.ChunkList[i];
+                foreach (var choice in chunk.Choices)
+                {
+                    if (choice.Finish_Reason == null) { continue; }
+                    if (choice.Finish_Reason.IsNullOrEmpty()) { continue; }
+                    return choice.Finish_Reason;
+                }
+            }
+            return "";
         }
     }
 }

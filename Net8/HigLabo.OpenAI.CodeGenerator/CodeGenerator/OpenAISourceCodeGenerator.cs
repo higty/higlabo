@@ -436,7 +436,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     var mdStreamAsync0 = mdStreamAsync.Copy();
                     mdStreamAsync0.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(p, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -448,7 +448,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     mdStreamAsync.Parameters.Add(new MethodParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken"));
                     mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, cancellationToken))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(p, cancellationToken))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -464,7 +464,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                     md2.ReturnTypeName.GenericTypes.Add(new TypeName(streamResponseClassName));
 
                     md2.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
-                    var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))");
+                    var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(parameter, cancellationToken))");
                     cb0.CurlyBracket = true;
                     {
                         cb0.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -474,7 +474,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                     var md1 = md2.Copy();
                     md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
                     md1.Body.Clear();
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(parameter, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));

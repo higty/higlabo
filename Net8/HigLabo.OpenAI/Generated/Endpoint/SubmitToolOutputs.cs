@@ -79,7 +79,7 @@ namespace HigLabo.OpenAI
             p.Run_Id = run_Id;
             p.Tool_Outputs = tool_Outputs;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(p, CancellationToken.None))
             {
                 yield return item;
             }
@@ -91,14 +91,14 @@ namespace HigLabo.OpenAI
             p.Run_Id = run_Id;
             p.Tool_Outputs = tool_Outputs;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(p, cancellationToken))
             {
                 yield return item;
             }
         }
         public async IAsyncEnumerable<AssistantDeltaObject> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter)
         {
-            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
             {
                 yield return item;
             }
@@ -106,7 +106,7 @@ namespace HigLabo.OpenAI
         public async IAsyncEnumerable<AssistantDeltaObject> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(parameter, cancellationToken))
             {
                 yield return item;
             }

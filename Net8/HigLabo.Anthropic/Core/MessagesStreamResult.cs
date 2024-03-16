@@ -6,9 +6,11 @@ using System.Text;
 
 namespace HigLabo.Anthropic
 {
-    public class MessagesStreamProcessor
+    public class MessagesStreamResult
     {
         public List<MessageContentBlockDelta> DeltaList { get; init; } = new();
+        public string StopReason { get; set; } = "";
+        public int OutputTokens { get; set; }
 
         public void Process(MessageContentBlockDelta delta)
         {
