@@ -72,41 +72,50 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<SubmitToolOutputsParameter, SubmitToolOutputsResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<string>? tool_Outputs)
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<string>? tool_Outputs)
         {
             var p = new SubmitToolOutputsParameter();
             p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
             p.Tool_Outputs = tool_Outputs;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<string>? tool_Outputs, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<string>? tool_Outputs, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new SubmitToolOutputsParameter();
             p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
             p.Tool_Outputs = tool_Outputs;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync<SubmitToolOutputsParameter, AssistantDeltaObject>(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter, AssistantMessageStreamResult result)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(SubmitToolOutputsParameter parameter, AssistantMessageStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))
             {
                 yield return item;
             }

@@ -17,7 +17,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await ChatCompletionStreamWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -106,8 +106,7 @@ namespace HigLabo.OpenAI
             p.Stream = true;
 
             var result = new ChatCompletionStreamResult();
-            var sseResult = new ServerSentEventResult();
-            await foreach (var text in cl.ChatCompletionsTextStreamAsync(p, result, CancellationToken.None))
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
                 Console.Write(text);
             }
@@ -178,12 +177,9 @@ namespace HigLabo.OpenAI
             var result = new ChatCompletionStreamResult();
             //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
             p.Stream = true;
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                }
+                Console.Write(text);
             }
             Console.WriteLine();
 
@@ -210,20 +206,15 @@ namespace HigLabo.OpenAI
             p.Max_Tokens = 300;
             p.Stream = true;
 
-            var processor = new ChatCompletionStreamResult();
-            var sseResult = new ServerSentEventResult();
-            await foreach (var chunk in cl.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(p, sseResult, CancellationToken.None))
+            var result = new ChatCompletionStreamResult();
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
-                }
+                Console.Write(text);
             }
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("***********************");
-            Console.WriteLine(sseResult.ToString());
+            Console.WriteLine(result.GetContent());
             Console.WriteLine("■DONE");
         }
 
@@ -322,9 +313,19 @@ namespace HigLabo.OpenAI
 
         private async ValueTask AssistantsProcess()
         {
-            var createResponse = await AssistantCreate();
-
             var cl = OpenAIClient;
+
+            var assistantsResponse = await cl.AssistantsAsync();
+            var assistantId = "";
+            if (assistantsResponse.Data.Count == 0)
+            {
+                var res = await AssistantCreate();
+                assistantId = res.Id;
+            }
+            else
+            {
+                assistantId = assistantsResponse.Data[0].Id;
+            }
 
             var now = DateTimeOffset.Now;
             var threadId = "";
@@ -343,10 +344,21 @@ namespace HigLabo.OpenAI
             var runId = "";
             {
                 var p = new RunCreateParameter();
-                p.Assistant_Id = createResponse.Id;
+                p.Assistant_Id = assistantId;
                 p.Thread_Id = threadId;
-                var res = await cl.RunCreateAsync(p);
-                runId = res.Id;
+                p.Stream = true;
+                var result = new AssistantMessageStreamResult();
+                await foreach (var item in cl.GetStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Thread));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+                Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Message));
+
             }
         }
         private async ValueTask<AssistantCreateResponse> AssistantCreate()

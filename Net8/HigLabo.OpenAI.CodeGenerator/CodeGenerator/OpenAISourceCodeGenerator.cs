@@ -106,17 +106,17 @@ namespace HigLabo.OpenAI.CodeGenerator
                 }
             }
 
-            var streamResponseClassName = "";
+            var streamResult = "";
             if (endpointUrl == "https://api.openai.com/v1/chat/completions")
             {
-                streamResponseClassName= "ChatCompletionChunk";
+                streamResult = "ChatCompletionStreamResult";
             }
             var hasAssistantStreamMethod = false;
             if (cName == "ThreadRun" ||
                 cName == "RunCreate" ||
                 cName == "SubmitToolOutputs")
             {
-                streamResponseClassName = "AssistantDeltaObject";
+                streamResult = "AssistantMessageStreamResult";
             }
 
             var cParameter = new Class(AccessModifier.Public, cName + "Parameter");
@@ -145,7 +145,7 @@ namespace HigLabo.OpenAI.CodeGenerator
 
             var mdStreamAsync = new Method(MethodAccessModifier.Public, cName + "StreamAsync");
             mdStreamAsync.ReturnTypeName.Name = "async IAsyncEnumerable";
-            mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName(streamResponseClassName));
+            mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName("string"));
             mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"var p = new {cName}Parameter();");
 
             var mdCreateFormDataParameter = new Method(MethodAccessModifier.None, "IFormDataParameter.CreateFormDataParameter");
@@ -392,7 +392,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             }
 
 
-            var hasStreamMethod = streamResponseClassName.IsNullOrEmpty() == false;
+            var hasStreamMethod = streamResult.IsNullOrEmpty() == false;
             {
                 mdAsync.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
                 if (propertyList.Count == 0)
@@ -436,7 +436,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     var mdStreamAsync0 = mdStreamAsync.Copy();
                     mdStreamAsync0.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(p, CancellationToken.None))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -448,7 +448,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     mdStreamAsync.Parameters.Add(new MethodParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken"));
                     mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(p, cancellationToken))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -459,28 +459,42 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     var md2 = new Method(MethodAccessModifier.Public, cName + "StreamAsync");
                     md2.Parameters.Add(new MethodParameter(cName + "Parameter", "parameter"));
+                    md2.Parameters.Add(new MethodParameter(streamResult, "result"));
                     md2.Parameters.Add(new MethodParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken"));
                     md2.ReturnTypeName.Name = "async IAsyncEnumerable";
-                    md2.ReturnTypeName.GenericTypes.Add(new TypeName(streamResponseClassName));
+                    md2.ReturnTypeName.GenericTypes.Add(new TypeName("string"));
 
                     md2.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
-                    var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(parameter, cancellationToken))");
-                    cb0.CurlyBracket = true;
+                    var cb2 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))");
+                    cb2.CurlyBracket = true;
                     {
-                        cb0.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                        cb2.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
                     }
-                    md2.Body.Add(cb0);
+                    md2.Body.Add(cb2);
 
                     var md1 = md2.Copy();
                     md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
                     md1.Body.Clear();
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync<{cName}Parameter, {streamResponseClassName}>(parameter, CancellationToken.None))");
+                    md1.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
                     }
                     md1.Body.Add(cb1);
-       
+
+                    var md0 = md1.Copy();
+                    md0.Parameters.RemoveAt(md0.Parameters.Count - 1);
+                    md0.Body.Clear();
+                    md0.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
+                    var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))");
+                    cb0.CurlyBracket = true;
+                    {
+                        cb0.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                    }
+                    md0.Body.Add(cb0);
+
+                    cClient.Methods.Add(md0);
                     cClient.Methods.Add(md1);
                     cClient.Methods.Add(md2);
                 }

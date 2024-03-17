@@ -147,39 +147,48 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync<ChatCompletionsParameter, ChatCompletionChunk>(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult result)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))
             {
                 yield return item;
             }

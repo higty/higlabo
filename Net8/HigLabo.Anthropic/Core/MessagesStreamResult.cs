@@ -8,15 +8,15 @@ namespace HigLabo.Anthropic
 {
     public class MessagesStreamResult
     {
+        public MessagesObject? Message { get; set; }
         public List<MessageContentBlockDelta> DeltaList { get; init; } = new();
-        public string StopReason { get; set; } = "";
-        public int OutputTokens { get; set; }
+        public MessageDelta? MessageDelta { get; set; }
 
         public void Process(MessageContentBlockDelta delta)
         {
             this.DeltaList.Add(delta);
         }
-        public string GetContent()
+        public string GetText()
         {
             var sb = new StringBuilder(this.DeltaList.Sum(el => el.Delta.Text.Length) + 4);
             for (int i = 0; i < this.DeltaList.Count; i++)

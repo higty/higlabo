@@ -91,39 +91,48 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<RunCreateParameter, RunCreateResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> RunCreateStreamAsync(string thread_Id, string assistant_Id)
+        public async IAsyncEnumerable<string> RunCreateStreamAsync(string thread_Id, string assistant_Id)
         {
             var p = new RunCreateParameter();
             p.Thread_Id = thread_Id;
             p.Assistant_Id = assistant_Id;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> RunCreateStreamAsync(string thread_Id, string assistant_Id, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> RunCreateStreamAsync(string thread_Id, string assistant_Id, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new RunCreateParameter();
             p.Thread_Id = thread_Id;
             p.Assistant_Id = assistant_Id;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> RunCreateStreamAsync(RunCreateParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> RunCreateStreamAsync(RunCreateParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> RunCreateStreamAsync(RunCreateParameter parameter)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync<RunCreateParameter, AssistantDeltaObject>(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> RunCreateStreamAsync(RunCreateParameter parameter, AssistantMessageStreamResult result)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> RunCreateStreamAsync(RunCreateParameter parameter, AssistantMessageStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))
             {
                 yield return item;
             }

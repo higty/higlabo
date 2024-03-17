@@ -12,7 +12,8 @@
 		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>
-			How to use? 
+			How to use? See sample code
+			https://github.com/higty/higlabo/blob/master/Net8/HigLabo.Anthropic.SampleConsoleApp/AnthropicClientPlayground.cs
 		</Description>
 		<PackageTags>Anthropic;Claude;</PackageTags>
 		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>

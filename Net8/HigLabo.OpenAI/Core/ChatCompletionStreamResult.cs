@@ -20,6 +20,7 @@ namespace HigLabo.OpenAI
         {
             this.ChunkList.Add(chunk);
         }
+
         public string GetContent()
         {
             var sb = new StringBuilder(this.ChunkList.Count * 32);

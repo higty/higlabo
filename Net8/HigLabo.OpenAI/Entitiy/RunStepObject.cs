@@ -178,6 +178,7 @@ namespace HigLabo.OpenAI
             }
         }
         public string? MetaData { get; set; }
+        public RunUsageObject Usage { get; set; } = new();
 
         public override string ToString()
         {
@@ -236,6 +237,7 @@ namespace HigLabo.OpenAI
             }
         }
         public string? MetaData { get; set; }
+        public RunUsageObject Usage { get; set; } = new();
 
         public override string ToString()
         {

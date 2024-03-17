@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Anthropic
 {
-    public class MessagesObjectResponse
+    public class MessagesObject
     {
         public string Id { get; set; } = "";
         public string Type { get; set; } = "";
@@ -17,7 +17,7 @@ namespace HigLabo.Anthropic
         public string? Stop_Sequence { get; set; } 
         public MessageUsage Usage { get; set; } = new();
     }
-    public class MessagesObjectResponseResponse: RestApiResponse
+    public class MessagesObjectResponse: RestApiResponse
     {
         public string Id { get; set; } = "";
         public string Type { get; set; } = "";

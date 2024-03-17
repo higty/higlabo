@@ -41,7 +41,7 @@ namespace HigLabo.Core
                 }
             }
 
-            //Last line
+            //Last block
             {
                 var line = new ServerSentEventLine(BufferLength - startIndex, false);
                 line.SetData(Buffer, Array.Empty<ServerSentEventLine>(), startIndex, BufferLength);

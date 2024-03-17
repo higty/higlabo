@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await SendMessageAsStream();
+            await CallToolStream();
             Console.WriteLine("■Completed");
 
         }
@@ -33,7 +34,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
                 , $"Can you provide me with some ideas for blog posts about {theme}?"));
             p.Model = ModelNames.Claude3Opus;
             p.Max_Tokens = 1024;
-            var res = await cl.SendJsonAsync<MessagesParameter, MessagesObjectResponseResponse>(p);
+            var res = await cl.SendJsonAsync<MessagesParameter, MessagesObjectResponse>(p);
 
             foreach (var item in res.Content)
             {
@@ -59,13 +60,102 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             var result = new MessagesStreamResult();
             await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
             {
-                Console.Write(item.Delta.Text);
+                Console.Write(item);
             }
 
             Console.WriteLine("***********************");
-            Console.WriteLine(result.GetContent());
-            Console.WriteLine("StopReason: " + result.StopReason);
-            Console.WriteLine("Usage: " + result.OutputTokens);
+            Console.WriteLine(result.GetText());
+            if(result.MessageDelta != null)
+            {
+                Console.WriteLine("StopReason: " + result.MessageDelta.Delta.Stop_Reason);
+                Console.WriteLine("Usage: " + result.MessageDelta.Usage.Output_Tokens);
+            }
+        }
+        private async ValueTask CallTool()
+        {
+            var cl = AnthropicClient;
+
+            var tool = new AnthropicTool("GetTickerSymbol", "Gets the stock ticker symbol for a company searched by name. Returns str: The ticker symbol for the company stock. Raises TickerNotFound: if no matching ticker symbol is found.");
+            tool.Parameters.Add(new AnthropicToolParameter("company_name", "string", "The name of company"));
+            var toolXml = tool.ToString();
+
+            var p = new MessagesParameter();
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"What is the current stock price of Microsoft?"));
+            p.System = $@"In this environment you have access to a set of tools you can use to answer the user's question.
+
+You may call them like this:
+<function_calls>
+<invoke>
+<tool_name>$TOOL_NAME</tool_name>
+<parameters>
+<$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>
+...
+</parameters>
+</invoke>
+</function_calls>
+
+Here are the tools available:
+{toolXml}
+";
+            p.Model = ModelNames.Claude3Opus;
+            p.Max_Tokens = 1024;
+            var res = await cl.SendJsonAsync<MessagesParameter, MessagesObjectResponse>(p);
+
+            foreach (var item in res.Content)
+            {
+                Console.WriteLine(item.Text);
+
+                var calls = AnthropicFunctionCalls.Parse(item.Text);
+                if (calls.InvokeList.Count > 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("■Function call list");
+                    Console.WriteLine(calls.ToString());
+                }
+            }
+        }
+        private async ValueTask CallToolStream()
+        {
+            var cl = AnthropicClient;
+
+            var tools = new AnthropicTools();
+            var tool = new AnthropicTool("GetTickerSymbol", "Gets the stock ticker symbol for a company searched by name. Returns str: The ticker symbol for the company stock. Raises TickerNotFound: if no matching ticker symbol is found.");
+            tool.Parameters.Add(new AnthropicToolParameter("company_name", "string", "The name of company"));
+            tools.Add(tool);
+            var toolXml = tool.ToString();
+
+            var p = new MessagesParameter();
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"What is the current stock price of Microsoft?"));
+            p.SetTools(tools);
+            p.Model = ModelNames.Claude3Opus;
+            p.Max_Tokens = 1024;
+            p.Stream = true;
+
+            var result = new MessagesStreamResult();
+            await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(item);
+            }
+
+            var calls = AnthropicFunctionCalls.Parse(result.GetText());
+            if (calls.InvokeList.Count > 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("■Function call list");
+                Console.WriteLine(calls.ToString());
+
+                var invoke = calls.InvokeList.Find(el => el.ToolName == "GetTickerSymbol");
+                if (invoke != null)
+                {
+                    var companyName = invoke.GetParameterValue("company_name") ?? "";
+                    var tickerSymbol = GetTickerSymbol(companyName);
+                }
+            }
+        }
+        private string GetTickerSymbol(string companyName)
+        {
+            //Dummy value
+            return "1234";
         }
 
         private async ValueTask SendImage()
@@ -85,10 +175,8 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             var result = new MessagesStreamResult();
             await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
             {
-                Console.Write(item.Delta.Text);
+                Console.Write(item);
             }
-
-            Console.WriteLine("***********************");
         }
     }
 }

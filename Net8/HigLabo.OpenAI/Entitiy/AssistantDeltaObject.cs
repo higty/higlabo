@@ -6,11 +6,12 @@ namespace HigLabo.OpenAI
     {
         public string Id { get; set; } = "";
         public string Object { get; set; } = "";
+        public AssistantDelta Delta { get; set; } = new();
 
-        public class Delta
+        public class AssistantDelta
         {
             public string Role { get; set; } = "";
-            public List<Message>? Content { get; set; } 
+            public List<Message> Content { get; set; } = new();
             public List<string>? FileId { get; set; }
             public RunStep? Step_Details { get; set; } 
         }
@@ -24,6 +25,11 @@ namespace HigLabo.OpenAI
         {
             public string Value { get; set; } = "";
             public string[]? Annotations { get; set; }
+
+            public override string ToString()
+            {
+                return this.Value;
+            }
         }
 
         public class RunStep
@@ -48,6 +54,11 @@ namespace HigLabo.OpenAI
         {
             public string Input { get; set; } = "";
             public List<string>? Outputs { get; set; }
+        }
+
+        public override string ToString()
+        {
+            return this.Delta?.Content.FirstOrDefault()?.Text.Value ?? this.Id;
         }
     }
 }

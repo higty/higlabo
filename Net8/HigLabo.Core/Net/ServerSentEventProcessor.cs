@@ -32,7 +32,9 @@ namespace HigLabo.Core
                 var readCount = await this.Stream.ReadAsync(sseResponse.Buffer, cancellationToken);
                 sseResponse.BufferLength = readCount;
 
-                Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
+                Debug.WriteLine($"■Read={readCount}");
+                Debug.WriteLine($"{Encoding.UTF8.GetString(sseResponse.Buffer)}");
+
                 if (readCount == 0) { break; }
 
                 foreach (var line in sseResponse.GetLines(previousLineList))

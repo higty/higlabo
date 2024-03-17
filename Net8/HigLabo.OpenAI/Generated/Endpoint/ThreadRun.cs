@@ -82,37 +82,46 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(string assistant_Id)
+        public async IAsyncEnumerable<string> ThreadRunStreamAsync(string assistant_Id)
         {
             var p = new ThreadRunParameter();
             p.Assistant_Id = assistant_Id;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<ThreadRunParameter, AssistantDeltaObject>(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(string assistant_Id, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ThreadRunStreamAsync(string assistant_Id, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ThreadRunParameter();
             p.Assistant_Id = assistant_Id;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync<ThreadRunParameter, AssistantDeltaObject>(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(ThreadRunParameter parameter)
-        {
-            await foreach (var item in this.GetStreamAsync<ThreadRunParameter, AssistantDeltaObject>(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<AssistantDeltaObject> ThreadRunStreamAsync(ThreadRunParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ThreadRunStreamAsync(ThreadRunParameter parameter)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync<ThreadRunParameter, AssistantDeltaObject>(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ThreadRunStreamAsync(ThreadRunParameter parameter, AssistantMessageStreamResult result)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ThreadRunStreamAsync(ThreadRunParameter parameter, AssistantMessageStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))
             {
                 yield return item;
             }
