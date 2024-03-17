@@ -14,12 +14,12 @@ namespace HigLabo.Anthropic.SampleConsoleApp
 
         public async ValueTask ExecuteAsync()
         {
-            SetOpenAISetting();
+            SetSetting();
             await CallToolStream();
             Console.WriteLine("■Completed");
 
         }
-        private void SetOpenAISetting()
+        private void SetSetting()
         {
             var apiKey = File.ReadAllText("C:\\Dev\\AnthropicApiKey.txt");
             AnthropicClient = new AnthropicClient(apiKey);
@@ -29,9 +29,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             var cl = AnthropicClient;
 
             var p = new MessagesParameter();
-            var theme = "How to enjoy coffee";
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User
-                , $"Can you provide me with some ideas for blog posts about {theme}?"));
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"How to enjoy coffee?"));
             p.Model = ModelNames.Claude3Opus;
             p.Max_Tokens = 1024;
             var res = await cl.SendJsonAsync<MessagesParameter, MessagesObjectResponse>(p);
@@ -50,21 +48,15 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             var cl = AnthropicClient;
 
             var p = new MessagesParameter();
-            var theme = "How to enjoy coffee";
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User
-                , $"Can you provide me with some ideas for blog posts about {theme}?"));
+            p.AddUserMessage("How to enjoy coffee?");
             p.Model = ModelNames.Claude3Opus;
             p.Max_Tokens = 1024;
-            p.Stream = true;
-
             var result = new MessagesStreamResult();
             await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
             {
                 Console.Write(item);
             }
-
             Console.WriteLine("***********************");
-            Console.WriteLine(result.GetText());
             if(result.MessageDelta != null)
             {
                 Console.WriteLine("StopReason: " + result.MessageDelta.Delta.Stop_Reason);

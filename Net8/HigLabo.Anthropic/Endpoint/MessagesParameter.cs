@@ -20,26 +20,6 @@ namespace HigLabo.Anthropic
         public double? Top_P { get; set; }
         public int? Top_K { get; set; }
 
-        public void SetTools(AnthropicTools tools)
-        {
-            this.System = $@"In this environment you have access to a set of tools you can use to answer the user's question.
-
-You may call them like this:
-<function_calls>
-<invoke>
-<tool_name>$TOOL_NAME</tool_name>
-<parameters>
-<$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>
-...
-</parameters>
-</invoke>
-</function_calls>
-
-Here are the tools available:
-{tools}
-";
-        }
-
         string IRestApiParameter.GetApiPath()
         {
             return $"/messages";
@@ -60,5 +40,38 @@ Here are the tools available:
                 top_k = this.Top_K,
             };
         }
+
+        public void AddMessage(ChatMessageRole role, string content)
+        {
+            this.Messages.Add(new ChatMessage(role, content));
+        }
+        public void AddUserMessage(string content)
+        {
+            this.Messages.Add(new ChatMessage(ChatMessageRole.User, content));
+        }
+        public void AddAssistantMessage(string content)
+        {
+            this.Messages.Add(new ChatMessage(ChatMessageRole.Assistant, content));
+        }
+        public void SetTools(AnthropicTools tools)
+        {
+            this.System = $@"In this environment you have access to a set of tools you can use to answer the user's question.
+
+You may call them like this:
+<function_calls>
+<invoke>
+<tool_name>$TOOL_NAME</tool_name>
+<parameters>
+<$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>
+...
+</parameters>
+</invoke>
+</function_calls>
+
+Here are the tools available:
+{tools}
+";
+        }
+
     }
 }
