@@ -90,6 +90,8 @@ namespace HigLabo.OpenAI
             Console.WriteLine();
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("Total tokens: " + res.Usage.Total_Tokens);
+  
+            //And you can get actual request body and response body by these property.
             var iRes = res as IRestApiResponse;
             Console.WriteLine(iRes.RequestBodyText);
             Console.WriteLine();
@@ -103,7 +105,6 @@ namespace HigLabo.OpenAI
             var p = new ChatCompletionsParameter();
             p.AddUserMessage($"Can you provide me with some ideas for blog posts about {theme}?");
             p.Model = "gpt-3.5-turbo";
-            p.Stream = true;
 
             var result = new ChatCompletionStreamResult();
             await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
@@ -112,7 +113,6 @@ namespace HigLabo.OpenAI
             }
             Console.WriteLine();
             Console.WriteLine("***********************");
-            Console.WriteLine(result.GetContent());
             Console.WriteLine("Finish reason: " + result.GetFinishReason());
             Console.WriteLine("■DONE");
         }
@@ -175,8 +175,6 @@ namespace HigLabo.OpenAI
             }
 
             var result = new ChatCompletionStreamResult();
-            //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
-            p.Stream = true;
             await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
                 Console.Write(text);
@@ -211,10 +209,6 @@ namespace HigLabo.OpenAI
             {
                 Console.Write(text);
             }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("***********************");
-            Console.WriteLine(result.GetContent());
             Console.WriteLine("■DONE");
         }
 
@@ -341,16 +335,14 @@ namespace HigLabo.OpenAI
                 p.Content = "Hello! I want to know how to use OpenAI assistant API to get stream response.";
                 var res = await cl.MessageCreateAsync(p);
             }
-            var runId = "";
             {
                 var p = new RunCreateParameter();
                 p.Assistant_Id = assistantId;
                 p.Thread_Id = threadId;
-                p.Stream = true;
                 var result = new AssistantMessageStreamResult();
-                await foreach (var item in cl.GetStreamAsync(p, result, CancellationToken.None))
+                await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
                 {
-                    Console.Write(item);
+                    Console.Write(text);
                 }
                 Console.WriteLine();
 
