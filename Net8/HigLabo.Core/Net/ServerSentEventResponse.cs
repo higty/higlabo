@@ -17,14 +17,14 @@ namespace HigLabo.Core
         public IEnumerable<ServerSentEventLine> GetLines(List<ServerSentEventLine> previousDataList)
         {
             var startIndex = 0;
-            var previousLength = previousDataList.Sum(el => el.Data.Length);
+            var previousLength = previousDataList.Sum(el => el.Length);
 
             for (int i = 0; i < BufferLength; i++)
             {
                 if (Buffer[i] == 13 || Buffer[i] == 10)
                 {
                     var line = new ServerSentEventLine(i - startIndex + previousLength, true);
-                    this.SetPreviousData(line, previousDataList, startIndex, i);
+                    line.SetData(Buffer, previousDataList, startIndex, i);
                     previousDataList.Clear();
                     previousLength = 0;
 
@@ -41,28 +41,11 @@ namespace HigLabo.Core
                 }
             }
 
+            //Last block
             {
                 var line = new ServerSentEventLine(BufferLength - startIndex, false);
-                for (int i = 0; i < line.Data.Length; i++)
-                {
-                    line.Data[i] = Buffer[startIndex + i];
-                }
+                line.SetData(Buffer, Array.Empty<ServerSentEventLine>(), startIndex, BufferLength);
                 yield return line;
-            }
-        }
-        private void SetPreviousData(ServerSentEventLine line, List<ServerSentEventLine> previousDataList, int startIndex, int endIndex)
-        {
-            var pIndex = 0;
-            foreach (var previousData in previousDataList)
-            {
-                for (int i = 0; i < previousData.Data.Length; i++)
-                {
-                    line.Data[pIndex++] = previousData.Data[i];
-                }
-            }
-            for (int i = 0; i < endIndex - startIndex; i++)
-            {
-                line.Data[pIndex + i] = Buffer[startIndex + i];
             }
         }
         public void Clear()

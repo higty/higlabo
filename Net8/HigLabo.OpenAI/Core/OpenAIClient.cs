@@ -2,6 +2,7 @@
 using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -19,7 +20,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace HigLabo.OpenAI
 {
-    public class HttpRequestMessageEventArgs
+    public class HttpRequestMessageEventArgs : EventArgs
     {
         public HttpRequestMessage RequestMessage { get; init; }
 
@@ -244,19 +245,11 @@ namespace HigLabo.OpenAI
             return o;
         }
 
-        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter)
+        public async IAsyncEnumerable<ServerSentEventLine> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
             where TParameter : RestApiParameter, IRestApiParameter
         {
-            await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<ChatCompletionChunk> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
-            where TParameter :RestApiParameter, IRestApiParameter
-        {
             var p = parameter as IRestApiParameter;
-            var req= this.CreateRequestMessage(parameter);
+            var req = this.CreateRequestMessage(parameter);
             req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
             var requestBodyText = "";
             if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
@@ -282,7 +275,7 @@ namespace HigLabo.OpenAI
                     var processor = new ServerSentEventProcessor(stream);
                     await foreach (var line in processor.Process(cancellationToken))
                     {
-                        yield return this.JsonConverter.DeserializeObject<ChatCompletionChunk>(line);
+                        yield return line;
                     }
                 }
                 finally
@@ -291,28 +284,132 @@ namespace HigLabo.OpenAI
                 }
             }
         }
+        public async IAsyncEnumerable<string> GetStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            await foreach (var line in this.GetStreamAsync(parameter, cancellationToken))
+            {
+                if (line.IsData())
+                {
+                    var text = line.GetText();
+                    if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
 
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model)
+                    var chunk = this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
+                    if (result != null)
+                    {
+                        result.Process(chunk);
+                    }
+                    foreach (var choice in chunk.Choices)
+                    {
+                        if (choice.Delta.Content != null)
+                        {
+                            yield return choice.Delta.Content;
+                        }
+                        else if (choice.Delta.Tool_Calls != null)
+                        {
+                            foreach (var tool in choice.Delta.Tool_Calls)
+                            {
+                                if (tool.Function != null)
+                                {
+                                    if (tool.Function.Name.IsNullOrEmpty() == false)
+                                    {
+                                        yield return tool.Function.Name;
+                                    }
+                                    else if (tool.Function.Arguments.IsNullOrEmpty() == false)
+                                    {
+                                        yield return tool.Function.Arguments;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        public async IAsyncEnumerable<string> GetStreamAsync<TParameter>(TParameter parameter, AssistantMessageStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
+            where TParameter : RestApiParameter, IRestApiParameter, IAssistantMessageParameter
         {
-            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.User, message), model, CancellationToken.None))
+            var eventName = "";
+            await foreach (var line in this.GetStreamAsync(parameter, cancellationToken))
+            {
+                if (line.IsEvent())
+                {
+                    eventName = line.GetText();
+                }
+                if (line.IsData())
+                {
+                    var text = line.GetText();
+                    if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
+
+                    if (string.Equals(eventName, "thread.message.delta", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var delta = this.JsonConverter.DeserializeObject<AssistantDeltaObject>(text);
+                        if (result != null)
+                        {
+                            result.DeltaList.Add(delta);
+                        }
+                        foreach (var content in delta.Delta.Content)
+                        {
+                            yield return content.Text.Value;
+                        }
+                    }
+                    else
+                    {
+                        if (result != null)
+                        {
+                            if (string.Equals(eventName, "thread.created", StringComparison.OrdinalIgnoreCase) ||
+                                string.Equals(eventName, "thread.message.completed", StringComparison.OrdinalIgnoreCase))
+                            {
+                                result.Thread = this.JsonConverter.DeserializeObject<ThreadObject>(text);
+                            }
+                            else if (eventName.StartsWith("thread.run.step.", StringComparison.OrdinalIgnoreCase))
+                            {
+                                result.RunStep = this.JsonConverter.DeserializeObject<RunStepObject>(text);
+                            }
+                            else if (eventName.StartsWith("thread.run.", StringComparison.OrdinalIgnoreCase))
+                            {
+                                result.Run = this.JsonConverter.DeserializeObject<RunObject>(text);
+                            }
+                            else if (eventName.StartsWith("thread.message.", StringComparison.OrdinalIgnoreCase))
+                            {
+                                result.Message = this.JsonConverter.DeserializeObject<MessageObject>(text);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(string message, string model)
+        {
+            var p = new ChatCompletionsParameter();
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, message));
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
-            await foreach (var item in this.ChatCompletionsStreamAsync(new ChatMessage(ChatMessageRole.User, message), model, cancellationToken))
+            var p = new ChatCompletionsParameter();
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, message));
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatMessage message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatMessage message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages.Add(message);
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }

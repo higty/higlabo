@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await ChatCompletionStreamWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -26,8 +27,8 @@ namespace HigLabo.OpenAI
         }
         private void SetAzureSetting()
         {
-            var apiKey = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.txt");
-            OpenAIClient = new OpenAIClient(new AzureSettings(apiKey, "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
+            var json = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.json");
+            OpenAIClient = new OpenAIClient(JsonConvert.DeserializeObject<AzureSettings>(json)!);
         }
 
         private async ValueTask AudioFileDownload()
@@ -104,19 +105,16 @@ namespace HigLabo.OpenAI
             p.Model = "gpt-3.5-turbo";
             p.Stream = true;
 
-            var processor = new ChatCompletionStreamProcessor();
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p))
+            var result = new ChatCompletionStreamResult();
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
-                }
+                Console.Write(text);
             }
             Console.WriteLine();
-            Console.WriteLine("DONE");
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine(processor.GetContent());
+            Console.WriteLine("***********************");
+            Console.WriteLine(result.GetContent());
+            Console.WriteLine("Finish reason: " + result.GetFinishReason());
+            Console.WriteLine("■DONE");
         }
         private async ValueTask ChatCompletionStreamWithFunctionCalling()
         {
@@ -176,20 +174,16 @@ namespace HigLabo.OpenAI
                 p.Tools.Add(tool);
             }
 
-            var processor = new ChatCompletionStreamProcessor();
+            var result = new ChatCompletionStreamResult();
             //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
             p.Stream = true;
-            await foreach (var chunk in cl.GetStreamAsync(p))
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
-                processor.Process(chunk);
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                }
+                Console.Write(text);
             }
             Console.WriteLine();
 
-            foreach (var f in processor.GetFunctionCallList())
+            foreach (var f in result.GetFunctionCallList())
             {
                 Console.WriteLine("■Function name is " + f.Name);
                 Console.WriteLine("■Arguments is " + f.Arguments);
@@ -206,22 +200,21 @@ namespace HigLabo.OpenAI
 
             var vMessage = new ChatImageMessage(ChatMessageRole.User);
             vMessage.AddTextContent("Please describe this image.");
-            vMessage.AddImageFile("D:\\Data\\WallPaper\\HasuIke1.jpg");
+            vMessage.AddImageFile(Path.Combine(Environment.CurrentDirectory, "Image", "Pond.jpg"));
             p.Messages.Add(vMessage);
             p.Model = "gpt-4-vision-preview";
             p.Max_Tokens = 300;
             p.Stream = true;
 
-            var processor = new ChatCompletionStreamProcessor();
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync(p))
+            var result = new ChatCompletionStreamResult();
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
-                }
+                Console.Write(text);
             }
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("***********************");
+            Console.WriteLine(result.GetContent());
             Console.WriteLine("■DONE");
         }
 
@@ -317,13 +310,64 @@ namespace HigLabo.OpenAI
             var res = await cl.ModerationCreateAsync("We must kill all activist who attack museum. I will kill them and shoot myself after that.");
             Console.WriteLine(res);
         }
-        private async ValueTask AssistantCreate()
+
+        private async ValueTask AssistantsProcess()
+        {
+            var cl = OpenAIClient;
+
+            var assistantsResponse = await cl.AssistantsAsync();
+            var assistantId = "";
+            if (assistantsResponse.Data.Count == 0)
+            {
+                var res = await AssistantCreate();
+                assistantId = res.Id;
+            }
+            else
+            {
+                assistantId = assistantsResponse.Data[0].Id;
+            }
+
+            var now = DateTimeOffset.Now;
+            var threadId = "";
+            if (threadId.Length == 0)
+            {
+                var res = await cl.ThreadCreateAsync();
+                threadId = res.Id;
+            }
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = "Hello! I want to know how to use OpenAI assistant API to get stream response.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+                p.Stream = true;
+                var result = new AssistantMessageStreamResult();
+                await foreach (var item in cl.GetStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Thread));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+                Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Message));
+
+            }
+        }
+        private async ValueTask<AssistantCreateResponse> AssistantCreate()
         {
             var cl = OpenAIClient;
 
             var p = new AssistantCreateParameter();
-            p.Name = "Legal tutor";
-            p.Instructions = "You are a personal legal tutor. Write and run code to legal questions based on passed files.";
+            p.Name = "HigLabo assistant";
+            p.Instructions = "You are a personal assistant to help general task.";
             p.Model = "gpt-4-1106-preview";
 
             p.Tools = new List<ToolObject>();
@@ -342,7 +386,7 @@ namespace HigLabo.OpenAI
 
             var res = await cl.AssistantCreateAsync(p);
             Console.WriteLine(res);
-
+            return res;
         }
         private async ValueTask AssistantRetrieve()
         {

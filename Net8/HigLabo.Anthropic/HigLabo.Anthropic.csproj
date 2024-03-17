@@ -1,21 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>8.3.0.0</Version>
+		<Version>8.0.0.0</Version>
 		<Authors>Higty</Authors>
 		<Company>HigLabo</Company>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
 		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>
-			How to use? See article.
-			https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
+			How to use? See sample code
+			https://github.com/higty/higlabo/blob/master/Net8/HigLabo.Anthropic.SampleConsoleApp/AnthropicClientPlayground.cs
 		</Description>
-		<PackageTags>OpenAI;ChatGPT;</PackageTags>
+		<PackageTags>Anthropic;Claude;</PackageTags>
 		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>
 	</PropertyGroup>
 
@@ -25,8 +25,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Document\README.md" Pack="true" PackagePath="\" />
+	  <None Update="Document\README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>true</Pack>
+	  </None>
+	  <None Update="Image\Rock.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
-
 
 </Project>

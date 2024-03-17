@@ -27,5 +27,13 @@
 		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
 		<ProjectReference Include="..\HigLabo.OpenAI\HigLabo.OpenAI.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Image\Pond.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Yugama.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 
 </Project>
