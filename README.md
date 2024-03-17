@@ -13,6 +13,42 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 A client library for OpenAI API (including assistants endpoint that opened 2023.11.06 at OpenAI event)
 https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
 
+How to use? It is easy to use!
+```
+var cl = new OpenAIClient("API Key"); // OpenAI
+--var cl = new OpenAIClient(new AzureSettings("API KEY", "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
+var p = new ChatCompletionsParameter();
+p.AddUserMessage($"How to enjoy coffee?");
+p.Model = "gpt-4";
+p.Stream = true;
+var result = new ChatCompletionStreamResult();
+await foreach (string text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+{
+    Console.Write(text);
+}
+Console.WriteLine();
+Console.WriteLine("Finish reason: " + result.GetFinishReason());
+```
+
+```
+var p = new RunCreateParameter();
+p.Assistant_Id = assistantId;
+p.Thread_Id = threadId;
+var result = new AssistantMessageStreamResult();
+await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
+{
+    Console.Write(text);
+}
+Console.WriteLine();
+// You can get each server sent event data by these property.
+Console.WriteLine(JsonConvert.SerializeObject(result.Thread));
+Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
+Console.WriteLine(JsonConvert.SerializeObject(result.Message));
+
+```
+
+
 ## HigLabo.Mapper
 A mapper library like AutoMapper,EmitMapper,FastMapper,ExpressMapper..etc.
 I posted article to CodeProject.
