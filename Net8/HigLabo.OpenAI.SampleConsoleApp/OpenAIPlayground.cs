@@ -101,9 +101,8 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var theme = "How to enjoy coffee";
             var p = new ChatCompletionsParameter();
-            p.AddUserMessage($"Can you provide me with some ideas for blog posts about {theme}?");
+            p.AddUserMessage($"How to enjoy coffee?");
             p.Model = "gpt-3.5-turbo";
 
             var result = new ChatCompletionStreamResult();

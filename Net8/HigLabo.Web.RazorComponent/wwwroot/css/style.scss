@@ -1006,6 +1006,7 @@ $width-checkbox-circle: 20px;
     .page-number-panel {
         display: grid;
         place-items: center;
+        min-width: 80px;
         height: 32px;
         background-color: var(--color-menu-bg);
         border: solid 1px var(--color-border);

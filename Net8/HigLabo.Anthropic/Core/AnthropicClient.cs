@@ -1,9 +1,11 @@
 ﻿using HigLabo.Core;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -110,6 +112,40 @@ namespace HigLabo.Anthropic
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
         }
 
+        public async IAsyncEnumerable<string> MessagesStreamAsync(string message, string modelName)
+        {
+            var p = new MessagesParameter();
+            p.AddUserMessage(message);
+            p.Model = modelName;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> MessagesStreamAsync(string message, string modelName, MessagesStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var p = new MessagesParameter();
+            p.AddUserMessage(message);
+            p.Model = modelName;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, result, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> MessagesStreamAsync(string message, string modelName, int maxTokens, MessagesStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var p = new MessagesParameter();
+            p.AddUserMessage(message);
+            p.Model = modelName;
+            p.Max_Tokens = maxTokens;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, result, cancellationToken))
+            {
+                yield return item;
+            }
+        }
         public async IAsyncEnumerable<string> MessagesStreamAsync(MessagesParameter parameter)
         {
             await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
