@@ -16,8 +16,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetOpenAISetting();
-            await ChatCompletionStreamWithFunctionCalling();
+            SetAzureSetting();
+            await ChatCompletionStream();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
