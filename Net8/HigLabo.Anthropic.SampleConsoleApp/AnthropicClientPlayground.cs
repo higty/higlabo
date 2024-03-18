@@ -15,7 +15,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
         public async ValueTask ExecuteAsync()
         {
             SetSetting();
-            await CallToolStream();
+            await CallToolArrayStream();
             Console.WriteLine("■Completed");
 
         }
@@ -112,7 +112,7 @@ Here are the tools available:
             {
                 Console.WriteLine(item.Text);
 
-                var calls = AnthropicFunctionCalls.Parse(item.Text);
+                var calls = await AnthropicFunctionCalls.ParseAsync(item.Text);
                 if (calls.InvokeList.Count > 0)
                 {
                     Console.WriteLine();
@@ -144,7 +144,7 @@ Here are the tools available:
                 Console.Write(item);
             }
 
-            var calls = AnthropicFunctionCalls.Parse(result.GetText());
+            var calls = await AnthropicFunctionCalls.ParseAsync(result.GetText());
             if (calls.InvokeList.Count > 0)
             {
                 Console.WriteLine();
@@ -163,6 +163,49 @@ Here are the tools available:
         {
             //Dummy value
             return "1234";
+        }
+
+        private async ValueTask CallToolArrayStream()
+        {
+            var cl = AnthropicClient;
+
+            var tools = new AnthropicTools();
+            var tool = new AnthropicTool("GetPlaceList", "Gets place list of specified city.");
+            tool.Parameters.Add(new AnthropicToolParameter("city_list", "array", "The name of city. The value must be separated by comma."));
+            tools.Add(tool);
+            var toolXml = tool.ToString();
+
+            var p = new MessagesParameter();
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"Please list up city names in Japan at least 10."));
+            p.SetTools(tools);
+            p.Model = ModelNames.Claude3Opus;
+            p.Max_Tokens = 1024;
+
+            var result = new MessagesStreamResult();
+            await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(item);
+            }
+
+            var text = result.GetText();
+            var calls = await AnthropicFunctionCalls.ParseAsync(text);
+            if (calls.InvokeList.Count > 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("■Function call list");
+                Console.WriteLine(calls.ToString());
+
+                var invoke = calls.InvokeList.Find(el => el.ToolName == "GetPlaceList");
+                if (invoke != null)
+                {
+                    var cityList = invoke.GetParameterValue("city_list") ?? "";
+                    var placeList = GetPlaceList(cityList.Split(','));
+                }
+            }
+        }
+        private string[] GetPlaceList(string[] cityList)
+        {
+            return ["Sky tree", "Dooutonbori", "Kokugikan", "Koukyo"];
         }
 
         private async ValueTask SendImage()

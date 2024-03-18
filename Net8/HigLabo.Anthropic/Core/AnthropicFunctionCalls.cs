@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace HigLabo.Anthropic
@@ -22,11 +23,11 @@ namespace HigLabo.Anthropic
             }
             return sb.ToString();
         }
-        public static AnthropicFunctionCalls Parse(string text)
+        public static async ValueTask<AnthropicFunctionCalls> ParseAsync(string text)
         {
             var calls = new AnthropicFunctionCalls();
             var insideFunctionCallsTag = false;
-            var sb= new StringBuilder(512);
+            var sb = new StringBuilder(512);
             using (var reader = new StringReader(text))
             {
                 while (reader.Peek() > -1)
@@ -40,8 +41,27 @@ namespace HigLabo.Anthropic
                     if (string.Equals(line, "</function_calls>"))
                     {
                         insideFunctionCallsTag = false;
-                        var invoke = AnthropicInvoke.Parse(sb.ToString());
-                        calls.InvokeList.Add(invoke);
+
+                        var xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" + sb.ToString();
+                        var xDocument = await XDocument.LoadAsync(new StringReader(xml), LoadOptions.None, CancellationToken.None);
+                        foreach (var invokeItem in xDocument.Descendants("invoke"))
+                        {
+                            var invoke = new AnthropicInvoke();
+                            var toolNode = invokeItem.Element("tool_name");
+                            invoke.ToolName = toolNode?.Value ?? "";
+                            foreach (var pNode in xDocument.Descendants("parameters"))
+                            {
+                                foreach (var item in pNode.Elements())
+                                {
+                                    var p = new AnthropicInvokeParameter();
+                                    p.Name = item.Name.ToString();
+                                    p.Value = item.Value;
+                                    invoke.Parameters.Add(p);
+                                }
+                            }
+                            calls.InvokeList.Add(invoke);
+                        }
+
                         sb.Clear();
                         continue;
                     }
@@ -91,43 +111,6 @@ namespace HigLabo.Anthropic
             }
 
             return sb.ToString();
-        }
-        public static AnthropicInvoke Parse(string text)
-        {
-            var invoke = new AnthropicInvoke();
-
-            var insideParameters = false;
-            using (var reader = new StringReader(text))
-            {
-                while (reader.Peek() > -1)
-                {
-                    var line = reader.ReadLine()!;
-                    if (line.StartsWith("<tool_name>", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var m = RegexList.Tool_Name.Match(line);
-                        invoke.ToolName = m.Groups["Name"].Value;
-                    }
-                    if (line.StartsWith("<parameters>", StringComparison.OrdinalIgnoreCase))
-                    {
-                        insideParameters = true;
-                        continue;
-                    }
-                    if (line.StartsWith("</parameters>", StringComparison.OrdinalIgnoreCase))
-                    {
-                        insideParameters = false;
-                        continue;
-                    }
-                    if (insideParameters)
-                    {
-                        var m = RegexList.Parameter.Match(line);
-                        var p = new AnthropicInvokeParameter();
-                        p.Name = m.Groups["Name"].Value;
-                        p.Value = m.Groups["Value"].Value;
-                        invoke.Parameters.Add(p);
-                    }
-                }
-            }
-            return invoke;
         }
     }
     public class AnthropicInvokeParameter
