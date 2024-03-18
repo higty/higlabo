@@ -48,6 +48,22 @@ Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 
 ```
 
+## HigLabo.Anthropic
+HigLabo.Anthropic is a C# library of Anthropic Claude AI.
+You can use it like this. Really easy and intuitive.
+```
+var cl = new AhtnropicClient("API KEY");
+var result = new MessagesStreamResult();
+await foreach (string text in cl.MessagesStreamAsync("How to enjoy coffee?", ModelNames.Claude3Opus, result, CancellationToken.None))
+{
+    Console.Write(text);
+}
+if (result.MessageDelta != null)
+{
+    Console.WriteLine("StopReason: " + result.MessageDelta.Delta.Stop_Reason);
+    Console.WriteLine("Usage: " + result.MessageDelta.Usage.Output_Tokens);
+}
+```
 
 ## HigLabo.Mapper
 A mapper library like AutoMapper,EmitMapper,FastMapper,ExpressMapper..etc.
