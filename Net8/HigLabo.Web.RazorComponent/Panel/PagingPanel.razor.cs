@@ -4,7 +4,9 @@ namespace HigLabo.Web.RazorComponent.Panel
 {
     public partial class PagingPanel : ComponentBase
     {
+        [Parameter]
         public int PageIndex { get; set; } = 0;
+        [Parameter]
         public bool PageListPanelVisible { get; set; } = false; 
         [Parameter]
         public int PageCount { get; set; } = 1;

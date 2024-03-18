@@ -63,6 +63,21 @@ namespace HigLabo.Anthropic.SampleConsoleApp
                 Console.WriteLine("Usage: " + result.MessageDelta.Usage.Output_Tokens);
             }
         }
+        private async ValueTask SendMessageAsStream1()
+        {
+            var cl = AnthropicClient;
+
+            var result = new MessagesStreamResult();
+            await foreach (var item in cl.MessagesStreamAsync("How to enjoy coffee?", ModelNames.Claude3Opus, result, CancellationToken.None))
+            {
+                Console.Write(item);
+            }
+            if (result.MessageDelta != null)
+            {
+                Console.WriteLine("StopReason: " + result.MessageDelta.Delta.Stop_Reason);
+                Console.WriteLine("Usage: " + result.MessageDelta.Usage.Output_Tokens);
+            }
+        }
         private async ValueTask CallTool()
         {
             var cl = AnthropicClient;
