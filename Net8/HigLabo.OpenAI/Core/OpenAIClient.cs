@@ -41,7 +41,12 @@ namespace HigLabo.OpenAI
                 switch (this.ServiceProvider)
                 {
                     case ServiceProvider.OpenAI: return "https://api.openai.com/v1";
-                    case ServiceProvider.Azure: return $"{this.AzureSettings!.EndpointUrl}/openai/deployments/{this.AzureSettings!.DeploymentId}";
+                    case ServiceProvider.Azure: 
+                        if (this.AzureSettings!.DeploymentId.IsNullOrEmpty())
+                        {
+                            return $"{this.AzureSettings!.EndpointUrl}/openai";
+                        }
+                        return $"{this.AzureSettings!.EndpointUrl}/openai/deployments/{this.AzureSettings!.DeploymentId}";
                     default: throw SwitchStatementNotImplementException.Create(this.ServiceProvider);
                 }
             }
