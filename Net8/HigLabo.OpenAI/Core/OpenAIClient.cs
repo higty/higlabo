@@ -389,7 +389,7 @@ namespace HigLabo.OpenAI
         public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(string message, string model)
         {
             var p = new ChatCompletionsParameter();
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User, message));
+            p.AddUserMessage(message);
             p.Model = model;
             p.Stream = true;
             await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
@@ -397,10 +397,21 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
         }
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(string message, string model, ChatCompletionStreamResult result)
+        {
+            var p = new ChatCompletionsParameter();
+            p.AddUserMessage(message);
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, result, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
         public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User, message));
+            p.AddUserMessage(message);
             p.Model = model;
             p.Stream = true;
             await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
@@ -408,13 +419,24 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatMessage message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(string message, string model, ChatCompletionStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var p = new ChatCompletionsParameter();
+            p.AddUserMessage(message);
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetStreamAsync(p, result, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatMessage message, string model, ChatCompletionStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages.Add(message);
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, result, cancellationToken))
             {
                 yield return item;
             }
