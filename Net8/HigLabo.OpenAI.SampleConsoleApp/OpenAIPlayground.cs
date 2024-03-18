@@ -101,12 +101,8 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var p = new ChatCompletionsParameter();
-            p.AddUserMessage($"How to enjoy coffee?");
-            p.Model = "gpt-3.5-turbo";
-
             var result = new ChatCompletionStreamResult();
-            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+            await foreach (var text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
             {
                 Console.Write(text);
             }
