@@ -1,16 +1,16 @@
 <div class="select-date-calendar-panel">
     <div class="field-flex-panel start-end-date-panel">
-        <input type="text" class="textbox start-date" @bind="@this.StartDate" @onclick:stopPropagation
+        <input type="text" class="textbox start-date" @bind="@this.StartDate" @onclick:stopPropagation="true"
                @onfocus="StartDate_Focus" @oninput="e => StartDate_Input(e)" @onblur="StartDate_Blur" />
-        <input type="text" class="textbox end-date" @bind="@this.EndDate" @onclick:stopPropagation
+        <input type="text" class="textbox end-date" @bind="@this.EndDate" @onclick:stopPropagation="true"
                @onfocus="EndDate_Focus" @oninput="e => EndDate_Input(e)" @onblur="EndDate_Blur" />
     </div>
     <div class="select-month-panel">
-        <span class="image-panel" @onclick="e => ChangeMonth(-1)" @onclick:stopPropagation>
+        <span class="image-panel" @onclick="e => ChangeMonth(-1)" @onclick:stopPropagation="true">
             <img src="@UrlInfo.GetIconUrl(Higlabo__icon.ArrowGlayLeft__svg)" class="icon" />
         </span>
         <span class="current-month">@this.Date.ToString("yyyy/MM")</span>
-        <span class="image-panel" @onclick="e => ChangeMonth(1)" @onclick:stopPropagation>
+        <span class="image-panel" @onclick="e => ChangeMonth(1)" @onclick:stopPropagation="true">
             <img src="@UrlInfo.GetIconUrl(Higlabo__icon.ArrowGlayRight__svg)" class="icon" />
         </span>
     </div>
@@ -58,7 +58,7 @@
         </tbody>
     </table>
     <div class="footer-panel">
-        <button class="button radius-button" @onclick="async e => await ClearButton_Click()">@T.Text.Clear</button>
-        <button class="button radius-button" @onclick="async e => await ClsoeButton_Click()">@T.Text.Close</button>
+        <button class="button radius-button" @onclick="async e => await ClearButton_Click()" @onclick:stopPropagation="true">@T.Text.Clear</button>
+        <button class="button radius-button" @onclick="async e => await ClsoeButton_Click()" @onclick:stopPropagation="true">@T.Text.Close</button>
     </div>
 </div>

@@ -39,6 +39,8 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public ToggleState ToggleState { get; set; } = ToggleState.Hidden;
         [Parameter]
+        public EventCallback<ToggleState> ToggleStateChanged { get; set; }
+        [Parameter]
         public bool AllowSort { get; set; } = false;
         [Parameter]
         public int SortIndex { get; set; } = -1;
@@ -48,6 +50,8 @@ namespace HigLabo.Web.RazorComponent.Panel
         public bool AllowDelete { get; set; } = false;
         [Parameter]
         public string HeaderText { get; set; } = "";
+        [Parameter]
+        public string HeaderTextboxPlaceHolder { get; set; } = "";
         [Parameter]
         public RenderFragment? ContentPanel { get; set; }
 
@@ -75,9 +79,10 @@ namespace HigLabo.Web.RazorComponent.Panel
             return d;
         }
 
-        private void HeaderPanel_Click()
+        private async ValueTask HeaderPanel_Click()
         {
             this.ToggleState = this.ToggleState.GetOpositeToggleState();
+            await this.ToggleStateChanged.InvokeAsync(this.ToggleState);
         }
 
         private async ValueTask HeaderPanel_Keydown(KeyboardEventArgs e)
@@ -85,6 +90,7 @@ namespace HigLabo.Web.RazorComponent.Panel
             if (e.Key == "Enter")
             {
                 this.ToggleState = this.ToggleState.GetOpositeToggleState();
+                await this.ToggleStateChanged.InvokeAsync(this.ToggleState);
             }
             if (e.Key == "Delete")
             {

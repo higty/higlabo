@@ -10,12 +10,13 @@
         }
         @if (this.AllowHeaderEdit == true)
         {
-            <input type="text" class="header-textbox" @oninput="async e => await HeaderTextbox_Input.InvokeAsync(e)" value="@this.HeaderText" />
+            <input type="text" class="header-textbox" placeholder="@this.HeaderTextboxPlaceHolder"
+            @oninput="async e => await HeaderTextbox_Input.InvokeAsync(e)" value="@this.HeaderText" />
         }
         else
         {
             <span class="header-text" tabindex="0"
-                  @onclick="e => HeaderPanel_Click()"
+                  @onclick="async e => await HeaderPanel_Click()"
                   @onkeydown="async e => await HeaderPanel_Keydown(e)">@this.HeaderText</span>
         }
         @if (this.AllowDelete)
