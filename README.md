@@ -13,20 +13,20 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 A client library for OpenAI API (including assistants endpoint that opened 2023.11.06 at OpenAI event)
 https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
 
+Set up: HigLabo.OpenAI from Nuget, and also add HigLabo.Core, HigLabo.NewtonsoftJson.
+I test against latest version of these three packages.
+
 How to use? It is easy to use!
 ```
 var cl = new OpenAIClient("API Key"); // OpenAI
 --var cl = new OpenAIClient(new AzureSettings("API KEY", "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
-var p = new ChatCompletionsParameter();
-p.AddUserMessage($"How to enjoy coffee?");
-p.Model = "gpt-4";
-p.Stream = true;
 var result = new ChatCompletionStreamResult();
-await foreach (string text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
 {
     Console.Write(text);
 }
 Console.WriteLine();
+Console.WriteLine("***********************");
 Console.WriteLine("Finish reason: " + result.GetFinishReason());
 ```
 
