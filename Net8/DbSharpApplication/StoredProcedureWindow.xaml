@@ -84,7 +84,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button Name="SetTableColumnButton" Click="SetTableColumnButton_Click" 
-                            Width="60" Content="Apply" Height="24"></Button>
+                            Width="100" Content="_Table Apply" Height="24"></Button>
                             <Button Name="SetAllowNullButton" Click="SetAllowNullButton_Click" 
                             Width="80" Content="_Allow Null" Height="24"></Button>
                             <Button Name="SetNotNullButton" Click="SetNotNullButton_Click"

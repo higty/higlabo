@@ -79,9 +79,10 @@ namespace HigLabo.Web.RazorComponent.Input
 			this.StateHasChanged();
 		}
 
-        private void OnClosed()
+        private async ValueTask OnClosed()
         {
             this.SelectRecordPanelVisible = false;
+			await this.RecordPanelElementReference.FocusAsync();
             this.StateHasChanged();
         }
     }

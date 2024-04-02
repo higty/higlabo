@@ -349,7 +349,7 @@ $width-checkbox-circle: 20px;
             margin: auto 4px;
         }
 
-        .record-list-panel {
+        > .record-list-panel {
             background-color: var(--color-form-element-bg);
             border: solid 1px var(--color-border);
             min-height: 32px;
@@ -392,7 +392,6 @@ $width-checkbox-circle: 20px;
             flex: 0 1 100%;
 
             .select-container-panel {
-                position: relative;
             }
 
             .textbox {
@@ -432,7 +431,6 @@ $width-checkbox-circle: 20px;
 .input-field-flex-panel {
     .child-content-panel {
         > .record-panel {
-            min-height: 32px;
             box-sizing: border-box;
         }
 
@@ -446,7 +444,14 @@ $width-checkbox-circle: 20px;
 
         .select-record-panel {
             right: 0;
-            min-width: 200px;
+        }
+    }
+
+    &[panel-type='record'] {
+        .child-content-panel {
+            > .record-list-panel {
+                min-height: 28px;
+            }
         }
     }
 }
@@ -829,6 +834,12 @@ $width-checkbox-circle: 20px;
                 background-color: var(--color-form-element-hover);
             }
         }
+    }
+
+    .footer-panel {
+        display: grid;
+        place-items: center;
+        padding: 10px;
     }
 }
 

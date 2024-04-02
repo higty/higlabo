@@ -13,7 +13,7 @@
             <SelectRecordPanel State="this.State" FilterItemTemplate="this.FilterItemTemplate"
             TItem="TItem" TFilterItem="TFilterItem" ItemTemplate="this.SelectItemTemplate ?? this.ItemTemplate"
             OnRecordSelected="async r => await Record_Selected(r)"
-            OnClosed="this.OnClosed"></SelectRecordPanel>
+            OnClosed="async e => await this.OnClosed()"></SelectRecordPanel>
         }
     </div>
 </InputFieldPanel>

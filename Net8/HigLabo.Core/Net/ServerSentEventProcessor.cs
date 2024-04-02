@@ -41,16 +41,16 @@ namespace HigLabo.Core
                 {
                     if (cancellationToken.IsCancellationRequested) { break; }
 
+                    if (line.Complete == false)
+                    {
+                        previousLineList.Add(line);
+                        continue;
+                    }
                     if (line.IsEmpty()) { continue; }
                     if (line.IsDone())
                     {
                         yield return line;
                         yield break;
-                    }
-                    if (line.Complete == false)
-                    {
-                        previousLineList.Add(line);
-                        continue;
                     }
                     yield return line;
                 }

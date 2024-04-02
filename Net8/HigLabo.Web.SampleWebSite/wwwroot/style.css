@@ -693,9 +693,6 @@
 .input-field-flex-panel .display-flex .child-content-panel {
   flex: 0 1 100%;
 }
-.input-field-flex-panel .display-flex .child-content-panel .select-container-panel {
-  position: relative;
-}
 .input-field-flex-panel .display-flex .child-content-panel .textbox {
   display: inline-block;
 }
@@ -730,7 +727,6 @@
 
 .input-field-panel .child-content-panel > .record-panel,
 .input-field-flex-panel .child-content-panel > .record-panel {
-  min-height: 32px;
   box-sizing: border-box;
 }
 .input-field-panel .child-content-panel .select-date-calendar-panel,
@@ -747,7 +743,10 @@
 .input-field-panel .child-content-panel .select-record-panel,
 .input-field-flex-panel .child-content-panel .select-record-panel {
   right: 0;
-  min-width: 200px;
+}
+.input-field-panel[panel-type=record] .child-content-panel > .record-list-panel,
+.input-field-flex-panel[panel-type=record] .child-content-panel > .record-list-panel {
+  min-height: 28px;
 }
 
 .select-button-list-panel .record-value-panel {
@@ -1064,6 +1063,11 @@
 .select-record-panel .record-list-panel > .record-panel:hover {
   background-color: var(--color-form-element-hover);
 }
+.select-record-panel .footer-panel {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+}
 
 .sort-panel {
   position: relative;
@@ -1211,6 +1215,7 @@
 .paging-panel .page-number-panel {
   display: grid;
   place-items: center;
+  min-width: 80px;
   height: 32px;
   background-color: var(--color-menu-bg);
   border: solid 1px var(--color-border);

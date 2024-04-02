@@ -29,7 +29,14 @@ namespace HigLabo.Net.OAuth
         }
         protected T DeserializeObject<T>(String json)
         {
-            return this.JsonConverter.DeserializeObject<T>(json);
+            try
+            {
+                return this.JsonConverter.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                throw new JsonDeserializeException(json, ex);
+            }
         }
 
         protected T ParseObject<T>(HttpRequestMessage request, HttpResponseMessage response, string bodyText)

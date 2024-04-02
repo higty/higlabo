@@ -15,7 +15,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
         public async ValueTask ExecuteAsync()
         {
             SetSetting();
-            await CallToolArrayStream();
+            await SendMessageAsStream();
             Console.WriteLine("■Completed");
 
         }

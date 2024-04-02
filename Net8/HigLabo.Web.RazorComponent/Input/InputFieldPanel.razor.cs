@@ -21,8 +21,8 @@ namespace HigLabo.Web.RazorComponent.Input
         public RenderFragment? ChildContent { get; set; }
         [Parameter]
         public InputValidateResult ValidateResult { get; set; } = new InputValidateResult(true);
-        [Parameter]
-        public EventCallback OnAddIconClicked { get; set; }
+		[Parameter]
+		public EventCallback AddIconOnClick { get; set; }
 
         private Dictionary<string, object> GetAttributes()
         {
@@ -42,13 +42,13 @@ namespace HigLabo.Web.RazorComponent.Input
 
         private async ValueTask AddIcon_Click()
         {
-            await this.OnAddIconClicked.InvokeAsync();
+            await this.AddIconOnClick.InvokeAsync();
         }
         private async ValueTask AddIcon_Keydown(KeyboardEventArgs e)
         {
             if (e.Key == "Enter")
             {
-                await this.OnAddIconClicked.InvokeAsync();
+                await this.AddIconOnClick.InvokeAsync();
             }
         }
     }
