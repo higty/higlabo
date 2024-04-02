@@ -19,12 +19,9 @@
 		if (this.State.SearchContainerPanelVisible == true)
 		{
 			<div class="search-container-panel">
-				<input type="text" class="textbox" placeholder="@T.Text.Search"
-					   @bind="this.State.SearchText" @bind:event="oninput" @onkeydown="e => SearchTextbox_Keydown(e)" />
-				<div class="flex-right-panel">
-					<button class="button radius-button" @onclick="async e => await SearchButton_Click(e)" @onclick:stopPropagation="true">@T.Text.Search</button>
-					<button class="button radius-button" @onclick="async e => await this.OnClosed.InvokeAsync()">@T.Text.Close</button>
-				</div>
+				<input type="text" class="textbox" @ref="this.SearchTextboxElementReference"
+					placeholder="@T.Text.Get("Enter‚ÅŒŸõAESC‚ÅƒLƒƒƒ“ƒZƒ‹", "Enter to search, Esc to cancel")"
+					@bind="this.State.SearchText" @bind:event="oninput" @onkeydown="e => SearchTextbox_Keydown(e)" />
 			</div>
 		}
 		<div class="record-list-panel">
@@ -81,5 +78,8 @@
 			}
 		</div>
 	}
+	<div class="footer-panel">
+		<button class="button radius-button" @onclick="async e => await this.OnClosed.InvokeAsync()">@T.Text.Close</button>
+	</div>
 </div>
 

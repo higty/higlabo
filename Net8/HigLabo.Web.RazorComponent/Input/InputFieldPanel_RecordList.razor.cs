@@ -1,22 +1,24 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using HigLabo.Core;
 using HigLabo.Web.RazorComponent.Panel;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace HigLabo.Web.RazorComponent.Input
 {
     public partial class InputFieldPanel_RecordList<TItem, TFilterItem>
 	{
-		[Parameter]
-        public InputFieldPanelLayout Layout { get; set; } = InputFieldPanelLayout.Default;
+        [Parameter]
+        public string PanelType { get; set; } = "";
         [Parameter]
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
         [Parameter]
         public bool FieldNameVisible { get; set; } = true;
+        [Parameter]
+        public ElementReference AddIconElementReference { get; set; }
         [Parameter]
         public AddRecordMode AddRecordMode { get; set; } = AddRecordMode.Add;
         [Parameter]
@@ -47,7 +49,30 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public EventCallback OnRecordDropped { get; set; }
 
-        private async ValueTask OnAddIconClicked()
+        private Dictionary<string, object> GetAttributes()
+        {
+            var d = new Dictionary<string, object>();
+
+            d["class"] = "input-field-panel";
+            if (this.Name.IsNullOrEmpty() == false) { d["name"] = this.Name; }
+            if (this.PanelType.IsNullOrEmpty() == false) { d["panel-type"] = this.PanelType; }
+
+            return d;
+        }
+
+        private async ValueTask AddIcon_Click()
+        {
+            await AddIconOnClick();
+        }
+        private async ValueTask AddIcon_Keydown(KeyboardEventArgs e)
+        {
+            if (e.Key == "Enter")
+            {
+                await AddIconOnClick();
+            }
+        }
+
+        private async ValueTask AddIconOnClick()
         {
             switch (this.AddRecordMode)
             {
@@ -78,9 +103,10 @@ namespace HigLabo.Web.RazorComponent.Input
             this.StateHasChanged();
         }
 
-        private void OnClosed()
+        private async ValueTask OnClosed()
         {
             this.SelectRecordPanelVisible = false;
+            await this.AddIconElementReference.FocusAsync();
             this.StateHasChanged();
         }
     }

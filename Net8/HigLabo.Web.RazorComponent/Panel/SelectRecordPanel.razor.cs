@@ -36,19 +36,22 @@ namespace HigLabo.Web.RazorComponent.Panel
         public SelectRecordPanelFilterTab<TFilterItem>? Tab { get; set; }
         public TFilterItem? Filter { get; set; }
         public List<SelectRecordPanelFilterTab<TFilterItem>> TabList { get; init; } = new();
-        public string SearchText { get; set; } = "";
+		public string SearchText { get; set; } = "";
         public List<TItem> RecordList { get; init; } = new List<TItem>();
 
-        public virtual async ValueTask OnRecordListLoadingAsync()
+		public virtual async ValueTask OnRecordListLoadingAsync()
         {
             await ValueTask.CompletedTask;
         }
     }
     public partial class SelectRecordPanel<TItem, TFilterItem> : ComponentBase
 	{
+        private string _PreviousInputKey { get; set; } = "";
 		[Parameter]
 		public SelectRecordPanelState<TItem, TFilterItem> State { get; set; } = new();
-        [Parameter]
+		[Parameter]
+		public ElementReference SearchTextboxElementReference { get; set; }
+		[Parameter]
         [AllowNull]
         public RenderFragment<TItem> ItemTemplate { get; set; }
 		[Parameter, AllowNull]
@@ -65,7 +68,15 @@ namespace HigLabo.Web.RazorComponent.Panel
             await base.OnInitializedAsync();
             await this.OnRecordListLoadingAsync_Invoke();
 		}
-        private async ValueTask OnRecordListLoadingAsync_Invoke()
+		protected override async Task OnAfterRenderAsync(bool firstRender)
+		{
+			await base.OnAfterRenderAsync(firstRender);
+            if (firstRender)
+            {
+                await this.SearchTextboxElementReference.FocusAsync();
+            }
+        }
+		private async ValueTask OnRecordListLoadingAsync_Invoke()
 		{
 			await this.State.OnRecordListLoadingAsync();
             this.StateHasChanged();
@@ -93,19 +104,30 @@ namespace HigLabo.Web.RazorComponent.Panel
         {
             var state = this.State;
 
-            if (e.Key == "Esc")
+            if (e.Key == "Escape")
             {
-                state.RecordIndex = -1;
-            }
+                if (state.RecordIndex == -1)
+                {
+                    await this.OnClosed.InvokeAsync();
+                    return;
+				}
+                else
+                {
+					state.RecordIndex = -1;
+				}
+			}
             else if (e.Key == "Enter")
             {
-                if (state.RecordIndex < 0)
+                //上下キーを押した後はレコードを選択しようとしているはず
+                if (_PreviousInputKey == "ArrowDown" || _PreviousInputKey == "ArrowUp")
                 {
-                    await state.OnRecordListLoadingAsync();
+                    await this.OnRecordSelected.InvokeAsync(state.RecordList[state.RecordIndex]);
                 }
                 else
                 {
-                    await this.OnRecordSelected.InvokeAsync(state.RecordList[state.RecordIndex]);
+                    await state.OnRecordListLoadingAsync();
+                    //検索後は選択状態を解除
+                    state.RecordIndex = -1;
                 }
             }
             else if (e.Key == "ArrowUp")
@@ -124,12 +146,9 @@ namespace HigLabo.Web.RazorComponent.Panel
                     state.RecordIndex = -1;
                 }
             }
+            _PreviousInputKey = e.Key;
             this.StateHasChanged();
         }
-        private async ValueTask SearchButton_Click(MouseEventArgs e)
-		{
-			await OnRecordListLoadingAsync_Invoke();
-		}
 
         private async ValueTask AllRecordSelected()
         {

@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         }
 
         public Int32? DayOfMonth { get; set; }
-        public RecurrencePatternDayOfWeek DaysOfWeek { get; set; }
+        public object? DaysOfWeek { get; set; }
         public RecurrencePatternDayOfWeek FirstDayOfWeek { get; set; }
         public RecurrencePatternWeekIndex Index { get; set; }
         public Int32? Interval { get; set; }

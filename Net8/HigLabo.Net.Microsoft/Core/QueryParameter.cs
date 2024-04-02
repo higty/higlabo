@@ -19,6 +19,7 @@ namespace HigLabo.Net.Microsoft
     public class QueryParameter<TField> : IQueryParameter
         where TField: struct,global::System.Enum
     {
+        public string? Value { get; set; }
         public bool? Count { get; set; }
         public string? Expand { get; set; }
         public string? Filter { get; set; }
@@ -33,6 +34,8 @@ namespace HigLabo.Net.Microsoft
 
         public string GetQueryString()
         {
+            if (this.Value != null) { return this.Value; }
+
             var sb = new StringBuilder();
 
             if (this.Count.HasValue)
