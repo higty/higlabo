@@ -300,6 +300,95 @@ $width-checkbox-circle: 20px;
 
 
 
+.select-record-panel {
+    background-color: var(--color-panel-bg);
+    width: 100%;
+    border: solid 1px var(--color-border);
+    box-sizing: border-box;
+
+    .tab-list-panel {
+        display: flex;
+        align-items: center;
+        height: 40px;
+
+        .tab-panel {
+            display: inline-block;
+            padding: 4px 8px;
+            cursor: pointer;
+
+            &[selected='true'] {
+                border-bottom: solid 2px var(--color-scheme-04);
+            }
+
+            &:focus {
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: var(--color-form-element-hover);
+            }
+        }
+    }
+
+    .search-container-panel {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        border-bottom: solid 1px var(--color-border);
+
+        .flex-right-panel {
+            flex: 0 0 150px;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .textbox {
+            border: solid 1px var(--color-border);
+            border-radius: 16px;
+            padding: 4px 8px;
+            cursor: text;
+        }
+
+        .button {
+            height: 30px;
+            text-align: center;
+        }
+    }
+
+    .record-list-panel {
+        max-height: 400px;
+        overflow-y: auto;
+
+        > .record-panel {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: transparent;
+            border: none 1px transparent;
+            box-sizing: border-box;
+
+            .icon {
+                margin-right: 6px;
+                width: 16px;
+                height: 16px;
+            }
+
+            &.current {
+                background-color: var(--color-glay-03);
+            }
+
+            &:hover {
+                background-color: var(--color-form-element-hover);
+            }
+        }
+    }
+
+    .footer-panel {
+        display: grid;
+        place-items: center;
+        padding: 10px;
+    }
+}
 
 .input-field-panel {
     margin-bottom: 12px;
@@ -349,7 +438,7 @@ $width-checkbox-circle: 20px;
             margin: auto 4px;
         }
 
-        .record-list-panel {
+        > .record-list-panel {
             background-color: var(--color-form-element-bg);
             border: solid 1px var(--color-border);
             min-height: 32px;
@@ -383,16 +472,13 @@ $width-checkbox-circle: 20px;
         display: flex;
         align-items: center;
 
-        .field-name {
+        > .field-name {
             color: var(--color-glay-06);
             flex: 0 0 100px;
         }
 
-        .child-content-panel {
-            flex: 0 1 100%;
-
-            .select-container-panel {
-            }
+        > .child-content-panel {
+            flex: 0 0 calc(100% - 100px);
 
             .textbox {
                 display: inline-block;
@@ -400,6 +486,10 @@ $width-checkbox-circle: 20px;
 
             .separator {
                 margin: auto 0;
+            }
+
+            > .select-container-panel {
+                position: relative;
             }
         }
 
@@ -442,15 +532,24 @@ $width-checkbox-circle: 20px;
             z-index: 200;
         }
 
-        .select-record-panel {
-            right: 0;
+        > .select-container-panel {
+            .select-record-panel {
+                right: 0;
+            }
         }
-    }
 
-    &[panel-type='record'] {
-        .child-content-panel {
-            > .record-list-panel {
-                min-height: 28px;
+        > .current-record-panel {
+            background-color: var(--color-form-element-bg);
+            border: solid 1px var(--color-border);
+            min-height: 28px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--color-glay-02);
+            }
+
+            &:focus {
+                background-color: var(--color-glay-02);
             }
         }
     }
@@ -754,94 +853,6 @@ $width-checkbox-circle: 20px;
     }
 }
 
-.select-record-panel {
-    background-color: var(--color-panel-bg);
-    width: 100%;
-    border: solid 1px var(--color-border);
-    box-sizing: border-box;
-
-    .tab-list-panel {
-        display: flex;
-        align-items: center;
-        height: 40px;
-
-        .tab-panel {
-            display: inline-block;
-            padding: 4px 8px;
-            cursor: pointer;
-
-            &[selected='true'] {
-                border-bottom: solid 2px var(--color-scheme-04);
-            }
-
-            &:focus {
-                font-weight: bold;
-            }
-
-            &:hover {
-                background-color: var(--color-form-element-hover);
-            }
-        }
-    }
-
-    .search-container-panel {
-        display: flex;
-        align-items: center;
-        padding: 4px;
-        border-bottom: solid 1px var(--color-border);
-
-        .flex-right-panel {
-            flex: 0 0 150px;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .textbox {
-            border: solid 1px var(--color-border);
-            border-radius: 16px;
-            padding: 4px 8px;
-            cursor: text;
-        }
-
-        .button {
-            height: 30px;
-            text-align: center;
-        }
-    }
-
-    .record-list-panel {
-        max-height: 400px;
-        overflow-y: auto;
-
-        > .record-panel {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            border: none 1px transparent;
-            box-sizing: border-box;
-
-            .icon {
-                margin-right: 6px;
-                width: 16px;
-                height: 16px;
-            }
-
-            &.current {
-                background-color: var(--color-glay-03);
-            }
-
-            &:hover {
-                background-color: var(--color-form-element-hover);
-            }
-        }
-    }
-
-    .footer-panel {
-        display: grid;
-        place-items: center;
-        padding: 10px;
-    }
-}
 
 .sort-panel {
     position: relative;
