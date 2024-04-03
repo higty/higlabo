@@ -622,6 +622,81 @@
   color: var(--color-error);
 }
 
+.select-record-panel {
+  background-color: var(--color-panel-bg);
+  width: 100%;
+  border: solid 1px var(--color-border);
+  box-sizing: border-box;
+}
+.select-record-panel .tab-list-panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.select-record-panel .tab-list-panel .tab-panel {
+  display: inline-block;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.select-record-panel .tab-list-panel .tab-panel[selected=true] {
+  border-bottom: solid 2px var(--color-scheme-04);
+}
+.select-record-panel .tab-list-panel .tab-panel:focus {
+  font-weight: bold;
+}
+.select-record-panel .tab-list-panel .tab-panel:hover {
+  background-color: var(--color-form-element-hover);
+}
+.select-record-panel .search-container-panel {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-bottom: solid 1px var(--color-border);
+}
+.select-record-panel .search-container-panel .flex-right-panel {
+  flex: 0 0 150px;
+  margin-left: auto;
+  text-align: right;
+}
+.select-record-panel .search-container-panel .textbox {
+  border: solid 1px var(--color-border);
+  border-radius: 16px;
+  padding: 4px 8px;
+  cursor: text;
+}
+.select-record-panel .search-container-panel .button {
+  height: 30px;
+  text-align: center;
+}
+.select-record-panel .record-list-panel {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.select-record-panel .record-list-panel > .record-panel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none 1px transparent;
+  box-sizing: border-box;
+}
+.select-record-panel .record-list-panel > .record-panel .icon {
+  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+}
+.select-record-panel .record-list-panel > .record-panel.current {
+  background-color: var(--color-glay-03);
+}
+.select-record-panel .record-list-panel > .record-panel:hover {
+  background-color: var(--color-form-element-hover);
+}
+.select-record-panel .footer-panel {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+}
+
 .input-field-panel {
   margin-bottom: 12px;
 }
@@ -662,6 +737,10 @@
 .input-field-panel .child-content-panel .separator {
   margin: auto 4px;
 }
+.input-field-panel .child-content-panel > .current-record-panel {
+  background-color: var(--color-form-element-bg);
+  border: solid 1px var(--color-border);
+}
 .input-field-panel .child-content-panel > .record-list-panel {
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
@@ -686,18 +765,21 @@
   display: flex;
   align-items: center;
 }
-.input-field-flex-panel .display-flex .field-name {
+.input-field-flex-panel .display-flex > .field-name {
   color: var(--color-glay-06);
   flex: 0 0 100px;
 }
-.input-field-flex-panel .display-flex .child-content-panel {
+.input-field-flex-panel .display-flex > .child-content-panel {
   flex: 0 1 100%;
 }
-.input-field-flex-panel .display-flex .child-content-panel .textbox {
+.input-field-flex-panel .display-flex > .child-content-panel .textbox {
   display: inline-block;
 }
-.input-field-flex-panel .display-flex .child-content-panel .separator {
+.input-field-flex-panel .display-flex > .child-content-panel .separator {
   margin: auto 0;
+}
+.input-field-flex-panel .display-flex > .child-content-panel > .select-container-panel {
+  position: relative;
 }
 .input-field-flex-panel .display-flex .textbox,
 .input-field-flex-panel .display-flex .textarea,
@@ -740,13 +822,22 @@
   position: absolute;
   z-index: 200;
 }
-.input-field-panel .child-content-panel .select-record-panel,
-.input-field-flex-panel .child-content-panel .select-record-panel {
+.input-field-panel .child-content-panel > .select-container-panel .select-record-panel,
+.input-field-flex-panel .child-content-panel > .select-container-panel .select-record-panel {
   right: 0;
 }
-.input-field-panel[panel-type=record] .child-content-panel > .record-list-panel,
-.input-field-flex-panel[panel-type=record] .child-content-panel > .record-list-panel {
+.input-field-panel .child-content-panel > .current-record-panel,
+.input-field-flex-panel .child-content-panel > .current-record-panel {
   min-height: 28px;
+  cursor: pointer;
+}
+.input-field-panel .child-content-panel > .current-record-panel:hover,
+.input-field-flex-panel .child-content-panel > .current-record-panel:hover {
+  background-color: var(--color-glay-02);
+}
+.input-field-panel .child-content-panel > .current-record-panel:focus,
+.input-field-flex-panel .child-content-panel > .current-record-panel:focus {
+  background-color: var(--color-glay-02);
 }
 
 .select-button-list-panel .record-value-panel {
@@ -993,80 +1084,6 @@
   margin: 0 2px;
   padding: 4px 12px;
   font-size: 14px;
-}
-
-.select-record-panel {
-  background-color: var(--color-panel-bg);
-  width: 100%;
-  border: solid 1px var(--color-border);
-  box-sizing: border-box;
-}
-.select-record-panel .tab-list-panel {
-  display: flex;
-  align-items: center;
-  height: 40px;
-}
-.select-record-panel .tab-list-panel .tab-panel {
-  display: inline-block;
-  padding: 4px 8px;
-  cursor: pointer;
-}
-.select-record-panel .tab-list-panel .tab-panel[selected=true] {
-  border-bottom: solid 2px var(--color-scheme-04);
-}
-.select-record-panel .tab-list-panel .tab-panel:focus {
-  font-weight: bold;
-}
-.select-record-panel .tab-list-panel .tab-panel:hover {
-  background-color: var(--color-form-element-hover);
-}
-.select-record-panel .search-container-panel {
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  border-bottom: solid 1px var(--color-border);
-}
-.select-record-panel .search-container-panel .flex-right-panel {
-  flex: 0 0 150px;
-  margin-left: auto;
-  text-align: right;
-}
-.select-record-panel .search-container-panel .textbox {
-  border: solid 1px var(--color-border);
-  border-radius: 16px;
-  padding: 4px 8px;
-  cursor: text;
-}
-.select-record-panel .search-container-panel .button {
-  height: 30px;
-  text-align: center;
-}
-.select-record-panel .record-list-panel {
-  max-height: 400px;
-  overflow-y: auto;
-}
-.select-record-panel .record-list-panel > .record-panel {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  border: none 1px transparent;
-  box-sizing: border-box;
-}
-.select-record-panel .record-list-panel > .record-panel .icon {
-  margin-right: 6px;
-  width: 16px;
-  height: 16px;
-}
-.select-record-panel .record-list-panel > .record-panel.current {
-  background-color: var(--color-glay-03);
-}
-.select-record-panel .record-list-panel > .record-panel:hover {
-  background-color: var(--color-form-element-hover);
-}
-.select-record-panel .footer-panel {
-  display: grid;
-  place-items: center;
-  padding: 10px;
 }
 
 .sort-panel {

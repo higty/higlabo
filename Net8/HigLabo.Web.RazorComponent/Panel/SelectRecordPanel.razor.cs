@@ -73,7 +73,10 @@ namespace HigLabo.Web.RazorComponent.Panel
 			await base.OnAfterRenderAsync(firstRender);
             if (firstRender)
             {
-                await this.SearchTextboxElementReference.FocusAsync();
+                if (this.State.SearchContainerPanelVisible)
+                {
+                    await this.SearchTextboxElementReference.FocusAsync();
+                }
             }
         }
 		private async ValueTask OnRecordListLoadingAsync_Invoke()

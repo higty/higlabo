@@ -10,8 +10,6 @@ namespace HigLabo.Web.RazorComponent.Input
     public partial class InputFieldPanel_RecordList<TItem, TFilterItem>
 	{
         [Parameter]
-        public string PanelType { get; set; } = "";
-        [Parameter]
         public string Name { get; set; } = "";
         [Parameter]
         public string Text { get; set; } = "";
@@ -55,7 +53,7 @@ namespace HigLabo.Web.RazorComponent.Input
 
             d["class"] = "input-field-panel";
             if (this.Name.IsNullOrEmpty() == false) { d["name"] = this.Name; }
-            if (this.PanelType.IsNullOrEmpty() == false) { d["panel-type"] = this.PanelType; }
+            d["panel-type"] = "record-list";
 
             return d;
         }
