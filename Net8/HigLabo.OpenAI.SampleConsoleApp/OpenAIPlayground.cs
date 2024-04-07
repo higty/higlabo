@@ -16,8 +16,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetAzureSetting();
-            await ChatCompletionStream();
+            SetOpenAISetting();
+            await AssistantsProcess();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -327,13 +327,20 @@ namespace HigLabo.OpenAI
                 var p = new MessageCreateParameter();
                 p.Thread_Id = threadId;
                 p.Role = "user";
-                p.Content = "Hello! I want to know how to use OpenAI assistant API to get stream response.";
+                p.Content = "Hello! I want to know how to enjoy coffee in my life.";
                 var res = await cl.MessageCreateAsync(p);
             }
             {
                 var p = new RunCreateParameter();
                 p.Assistant_Id = assistantId;
                 p.Thread_Id = threadId;
+                p.Temperature = 0.5;
+                p.Additional_Messages = new List<ThreadAdditionalMessageObject>();
+                p.Additional_Messages.Add(new ThreadAdditionalMessageObject()
+                {
+                    Role = "user",
+                    Content = "In the scene when I climb mountain.",
+                });
                 var result = new AssistantMessageStreamResult();
                 await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
                 {

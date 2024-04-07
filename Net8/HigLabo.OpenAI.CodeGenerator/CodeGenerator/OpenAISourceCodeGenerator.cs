@@ -517,6 +517,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve fine-tuning job") { return "FineTuningJobRetrieve"; }
             if (endpointAnchor == "Cancel fine-tuning") { return "FineTuningJobCancel"; }
             if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
+            if (endpointAnchor == "List fine-tuning checkpoints") { return "FineTuningJobsCheckpoints"; }
             if (endpointAnchor == "Upload file") { return "FileUpload"; }
             if (endpointAnchor == "Delete file") { return "FileDelete"; }
             if (endpointAnchor == "Retrieve file") { return "FileRetrieve"; }
@@ -566,6 +567,8 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (propertyName == "Tools") { return "List<ToolObject>"; }
             if (propertyName == "Tool_choice") { return "object?"; }
             if (propertyName == "Timestamp_Granularities") { return "double[]"; }
+            if (propertyName == "Additional_Messages") { return "List<ThreadAdditionalMessageObject>?"; }
+            if (propertyName == "Integrations") { return "List<FineTuningIntegrationObject>?"; }
 
             if (typeName == "string") { return "string"; }
             if (typeName == "string or null") { return "string?"; }
