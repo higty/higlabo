@@ -10,6 +10,7 @@ namespace HigLabo.Anthropic
     {
         public string ApiKey { get; set; } = "";
         public string Version { get; set; } = "2023-06-01";
+        public bool UseBeta { get; set; } = true;
 
         public AnthropicSettings() { }
         public AnthropicSettings(string apiKey)

@@ -19,6 +19,7 @@ namespace HigLabo.Anthropic
         public double? Temperature { get; set; }
         public double? Top_P { get; set; }
         public int? Top_K { get; set; }
+        public List<ToolObject>? Tools { get; set; } 
 
         string IRestApiParameter.GetApiPath()
         {
@@ -38,6 +39,7 @@ namespace HigLabo.Anthropic
                 temperature = this.Temperature,
                 top_p = this.Top_P,
                 top_k = this.Top_K,
+                tools = this.Tools,
             };
         }
 

@@ -62,7 +62,10 @@ namespace HigLabo.Anthropic
             var req = new HttpRequestMessage(httpMethod, this.ApiUrl + apiPath);
             req.Headers.TryAddWithoutValidation("x-api-key", this.Settings.ApiKey);
             req.Headers.TryAddWithoutValidation("anthropic-version", this.Settings.Version);
-
+            if (this.Settings.UseBeta)
+            {
+                req.Headers.TryAddWithoutValidation("anthropic-beta", "tools-2024-04-04");
+            }
             return req;
         }
         private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, HttpCompletionOption httpCompletionOption, CancellationToken cancellationToken)
@@ -110,6 +113,15 @@ namespace HigLabo.Anthropic
             Debug.WriteLine(requestBodyText);
             var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
             return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
+        }
+
+        public async ValueTask<MessagesObjectResponse> MessagesAsync(MessagesParameter parameter)
+        {
+            return await this.MessagesAsync(parameter, CancellationToken.None);
+        }
+        public async ValueTask<MessagesObjectResponse> MessagesAsync(MessagesParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendJsonAsync<MessagesParameter, MessagesObjectResponse>(parameter, cancellationToken);
         }
 
         public async IAsyncEnumerable<string> MessagesStreamAsync(string message, string modelName)
