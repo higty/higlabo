@@ -15,7 +15,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
         public async ValueTask ExecuteAsync()
         {
             SetSetting();
-            await SendMessageAsStream();
+            await SendMessageWithTool();
             Console.WriteLine("■Completed");
 
         }
@@ -32,7 +32,7 @@ namespace HigLabo.Anthropic.SampleConsoleApp
             p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"How to enjoy coffee?"));
             p.Model = ModelNames.Claude3Opus;
             p.Max_Tokens = 1024;
-            var res = await cl.SendJsonAsync<MessagesParameter, MessagesObjectResponse>(p);
+            var res = await cl.MessagesAsync(p);
 
             foreach (var item in res.Content)
             {
@@ -77,6 +77,60 @@ namespace HigLabo.Anthropic.SampleConsoleApp
                 Console.WriteLine("StopReason: " + result.MessageDelta.Delta.Stop_Reason);
                 Console.WriteLine("Usage: " + result.MessageDelta.Usage.Output_Tokens);
             }
+        }
+        private async ValueTask SendMessageWithTool()
+        {
+            var cl = AnthropicClient;
+
+            var p = new MessagesParameter();
+            p.AddUserMessage("What is the weather like in Tokyo?");
+            p.Model = ModelNames.Claude3Opus;
+            p.Max_Tokens = 1024;
+            p.Tools = new();
+            var tool = new ToolObject();
+            tool.Name = "get_weather";
+            tool.Description = "Get the current weather in a given location.";
+            tool.Input_Schema = new
+            {
+                type = "object",
+                properties = new
+                {
+                    location = new
+                    {
+                        type = "string",
+                        description = "The city and state, e.g. San Francisco, CA.",
+                    },
+                    unit = new
+                    {
+                        type = "string",
+                        @enum = new string[] { "celsius", "fahrenheit" },
+                        description = "The unit of temperature, either \"celsius\" or \"fahrenheit\""
+                    }
+                }
+            };
+            p.Tools.Add(tool);
+
+            var res = await cl.MessagesAsync(p);
+            foreach (var item in res.Content)
+            {
+                if (item.Type == "text")
+                {
+                    Console.WriteLine(item.Text);
+                }
+                else if (item.Type == "tool_use")
+                {
+                    Console.WriteLine(item.Name);
+                    Console.WriteLine(item.Input);
+                }
+            }
+
+            var iRes = res as IRestApiResponse;
+            Console.WriteLine();
+            Console.WriteLine("■Request");
+            Console.WriteLine(iRes.RequestBodyText);
+            Console.WriteLine();
+            Console.WriteLine("■Response");
+            Console.WriteLine(iRes.ResponseBodyText);
         }
         private async ValueTask CallTool()
         {

@@ -32,6 +32,9 @@ namespace HigLabo.Anthropic
     {
         public string Type { get; set; } = "";
         public string Text { get; set; } = "";
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public object? Input { get; set; }
     }
     public class MessageUsage
     {

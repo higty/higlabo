@@ -34,6 +34,10 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Additional_Instructions { get; set; }
         /// <summary>
+        /// Adds additional messages to the thread before creating the run.
+        /// </summary>
+        public List<ThreadAdditionalMessageObject>? Additional_Messages { get; set; }
+        /// <summary>
         /// Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
         /// </summary>
         public List<ToolObject>? Tools { get; set; }
@@ -41,6 +45,10 @@ namespace HigLabo.OpenAI
         /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
         /// </summary>
         public object? Metadata { get; set; }
+        /// <summary>
+        /// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+        /// </summary>
+        public double? Temperature { get; set; }
         /// <summary>
         /// If true, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a data: [DONE] message.
         /// </summary>
@@ -57,8 +65,10 @@ namespace HigLabo.OpenAI
             	model = this.Model,
             	instructions = this.Instructions,
             	additional_instructions = this.Additional_Instructions,
+            	additional_messages = this.Additional_Messages,
             	tools = this.Tools,
             	metadata = this.Metadata,
+            	temperature = this.Temperature,
             	stream = this.Stream,
             };
         }

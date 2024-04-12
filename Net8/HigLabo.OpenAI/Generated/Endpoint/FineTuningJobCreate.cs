@@ -37,6 +37,15 @@ namespace HigLabo.OpenAI
         /// The same data should not be present in both train and validation files.Your dataset must be formatted as a JSONL file. You must upload your file with the purpose fine-tune.See the fine-tuning guide for more details.
         /// </summary>
         public string? Validation_File { get; set; }
+        /// <summary>
+        /// A list of integrations to enable for your fine-tuning job.
+        /// </summary>
+        public List<FineTuningIntegrationObject>? Integrations { get; set; }
+        /// <summary>
+        /// The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.
+        /// If a seed is not specified, one will be generated for you.
+        /// </summary>
+        public int? Seed { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -50,6 +59,8 @@ namespace HigLabo.OpenAI
             	hyperparameters = this.Hyperparameters,
             	suffix = this.Suffix,
             	validation_file = this.Validation_File,
+            	integrations = this.Integrations,
+            	seed = this.Seed,
             };
         }
     }
