@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	  <Version>8.6.1.0</Version>
+	  <Version>8.6.2.0</Version>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Company>HigLabo</Company>
 	  <Authors>Higty</Authors>

@@ -24,15 +24,29 @@ namespace HigLabo.OpenAI
         public class MessageText
         {
             public string Value { get; set; } = "";
-            public string[]? Annotations { get; set; }
+            public Annotation[]? Annotations { get; set; }
 
             public override string ToString()
             {
                 return this.Value;
             }
         }
+		public class Annotation
+		{
+			public int Index { get; set; }
+			public string Type { get; set; } = "";
+			public string Text { get; set; } = "";
+			public string Start_Index { get; set; } = "";
+			public string End_Index { get; set; } = "";
+			public FileCitation File_Citation { get; set; } = new();
+		}
+		public class FileCitation
+		{
+			public string File_Id { get; set; } = "";
+			public string Quote { get; set; } = "";
+		}
 
-        public class RunStep
+		public class RunStep
         {
             public string Type { get; set; } = "";
             public MessageCreation? Message_Creation { get; set; }
