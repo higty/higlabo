@@ -10,7 +10,8 @@ I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 ## HigLabo.OpenAI
-A client library for OpenAI API (including assistants endpoint that opened 2023.11.06 at OpenAI event)
+A client library for OpenAI API.
+2024-04-07 updated. It support latest API at 2024-04-07.
 https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
 
 Set up: HigLabo.OpenAI from Nuget, and also add HigLabo.Core, HigLabo.NewtonsoftJson.
@@ -50,6 +51,8 @@ Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 
 ## HigLabo.Anthropic
 HigLabo.Anthropic is a C# library of Anthropic Claude AI.
+2014-04-07 updated. It support tool feature.
+
 You can use it like this. Really easy and intuitive.
 ```
 var cl = new AhtnropicClient("API KEY");
