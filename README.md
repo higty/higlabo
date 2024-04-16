@@ -10,9 +10,12 @@ I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 ## HigLabo.OpenAI
-A client library for OpenAI API.
-2024-04-07 updated. It support latest API at 2024-04-07.
+2024-04-17 updated. This release include Batch endpoint.
+
+See article.
 https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
+See sample code.
+https://github.com/higty/higlabo/blob/master/Net8/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
 
 Set up: HigLabo.OpenAI from Nuget, and also add HigLabo.Core, HigLabo.NewtonsoftJson.
 I test against latest version of these three packages.
