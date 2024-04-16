@@ -518,6 +518,9 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Cancel fine-tuning") { return "FineTuningJobCancel"; }
             if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
             if (endpointAnchor == "List fine-tuning checkpoints") { return "FineTuningJobsCheckpoints"; }
+            if (endpointAnchor == "Create batch") { return "BatchCreate"; }
+            if (endpointAnchor == "Retrieve batch") { return "BatchRetrieve"; }
+            if (endpointAnchor == "Cancel batch") { return "BatchCancel"; }
             if (endpointAnchor == "Upload file") { return "FileUpload"; }
             if (endpointAnchor == "Delete file") { return "FileDelete"; }
             if (endpointAnchor == "Retrieve file") { return "FileRetrieve"; }
@@ -585,6 +588,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (typeName == "array") { return "List<string>"; }
             if (typeName == "string / array / null") { return "List<string>"; }
             if (typeName == "map") { return "object?"; }
+            if (typeName == "object or null") { return "object?"; }
             if (typeName == "object")
             {
                 if (required) { return "object"; }
