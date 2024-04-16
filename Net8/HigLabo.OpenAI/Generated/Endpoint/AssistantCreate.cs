@@ -26,7 +26,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Description { get; set; }
         /// <summary>
-        /// The system instructions that the assistant uses. The maximum length is 32768 characters.
+        /// The system instructions that the assistant uses. The maximum length is 256,000 characters.
         /// </summary>
         public string? Instructions { get; set; }
         /// <summary>

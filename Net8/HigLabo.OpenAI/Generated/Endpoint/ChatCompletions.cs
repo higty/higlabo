@@ -30,7 +30,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public object? Logit_Bias { get; set; }
         /// <summary>
-        /// Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. This option is currently not available on the gpt-4-vision-preview model.
+        /// Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message.
         /// </summary>
         public bool? Logprobs { get; set; }
         /// <summary>

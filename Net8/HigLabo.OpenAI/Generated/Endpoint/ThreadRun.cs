@@ -42,6 +42,26 @@ namespace HigLabo.OpenAI
         /// If true, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a data: [DONE] message.
         /// </summary>
         public bool? Stream { get; set; }
+        /// <summary>
+        /// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status complete. See incomplete_details for more info.
+        /// </summary>
+        public int? Max_Prompt_Tokens { get; set; }
+        /// <summary>
+        /// The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status complete. See incomplete_details for more info.
+        /// </summary>
+        public int? Max_Completion_Tokens { get; set; }
+        public object? Truncation_Strategy { get; set; }
+        /// <summary>
+        /// Controls which (if any) tool is called by the model.
+        /// none means the model will not call any tools and instead generates a message.
+        /// auto is the default value and means the model can pick between generating a message or calling a tool.
+        /// Specifying a particular tool like {"type": "TOOL_TYPE"} or {"type": "function", "function": {"name": "my_function"}} forces the model to call that tool.
+        /// </summary>
+        public string? Tool_Choice { get; set; }
+        /// <summary>
+        /// Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models newer than gpt-3.5-turbo-1106.Setting to { "type": "json_object" } enables JSON mode, which guarantees the message the model generates is valid JSON.Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
+        /// </summary>
+        public string? Response_Format { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -58,6 +78,11 @@ namespace HigLabo.OpenAI
             	metadata = this.Metadata,
             	temperature = this.Temperature,
             	stream = this.Stream,
+            	max_prompt_tokens = this.Max_Prompt_Tokens,
+            	max_completion_tokens = this.Max_Completion_Tokens,
+            	truncation_strategy = this.Truncation_Strategy,
+            	tool_choice = this.Tool_Choice,
+            	response_format = this.Response_Format,
             };
         }
     }
