@@ -14,6 +14,7 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 See article.
 https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
+
 See sample code.
 https://github.com/higty/higlabo/blob/master/Net8/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
 
