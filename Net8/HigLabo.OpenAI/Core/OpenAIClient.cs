@@ -142,13 +142,9 @@ namespace HigLabo.OpenAI
                 req.Headers.TryAddWithoutValidation("OpenAI-Organization", this.OpenAISettings.Organization);
             }
 
-            if (this.OpenAISettings.UseBetaEndpoint)
+            if (this.OpenAISettings.OpenAIBeta.HasValue())
             {
-                if (apiPath.StartsWith("/assistants", StringComparison.OrdinalIgnoreCase) ||
-                    apiPath.StartsWith("/threads", StringComparison.OrdinalIgnoreCase))
-                {
-                    req.Headers.TryAddWithoutValidation("OpenAI-Beta", "assistants=v1");
-                }
+                req.Headers.TryAddWithoutValidation("OpenAI-Beta", this.OpenAISettings.OpenAIBeta);
             }
             return req;
         }

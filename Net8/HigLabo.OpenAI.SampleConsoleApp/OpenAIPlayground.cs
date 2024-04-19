@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
@@ -17,7 +18,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await AssistantsProcess();
+            await ProcessVectorStore();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -225,7 +226,7 @@ namespace HigLabo.OpenAI
 
             var p = new FileUploadParameter();
             p.File.SetFile("092332_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\092332_hanrei.pdf"));
-            p.Purpose = "assistants";
+            p.SetPurpose(FilePurpose.Assistants);
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);
         }
@@ -300,7 +301,7 @@ namespace HigLabo.OpenAI
             Console.WriteLine(res);
         }
 
-        private async ValueTask AssistantsProcess()
+        private async ValueTask ProcessAssistants()
         {
             var cl = OpenAIClient;
 
@@ -308,7 +309,7 @@ namespace HigLabo.OpenAI
             var assistantId = "";
             if (assistantsResponse.Data.Count == 0)
             {
-                var res = await AssistantCreate();
+                var res = await AssistantCreate("HigLabo assistant");
                 assistantId = res.Id;
             }
             else
@@ -355,18 +356,18 @@ namespace HigLabo.OpenAI
 
             }
         }
-        private async ValueTask<AssistantCreateResponse> AssistantCreate()
+        private async ValueTask<AssistantCreateResponse> AssistantCreate(string name)
         {
             var cl = OpenAIClient;
 
             var p = new AssistantCreateParameter();
-            p.Name = "HigLabo assistant";
+            p.Name = name;
             p.Instructions = "You are a personal assistant to help general task.";
-            p.Model = "gpt-4-1106-preview";
+            p.Model = "gpt-4-turbo";
 
             p.Tools = new List<ToolObject>();
             p.Tools.Add(new ToolObject("code_interpreter"));
-            p.Tools.Add(new ToolObject("retrieval"));
+            p.Tools.Add(new ToolObject("file_search"));
 
             //var res0 = await cl.FilesAsync();
             //p.File_Ids = new List<string>();
@@ -539,6 +540,145 @@ namespace HigLabo.OpenAI
                     }
                 }
             }
+        }
+
+        private async ValueTask ProcessVectorStore()
+        {
+            var cl = OpenAIClient;
+
+            var assistantId = "";
+            var assistantName = "HigLabo vector store Assistant";
+            var assistantsResponse = await cl.AssistantsAsync();
+            foreach (var item in assistantsResponse.Data)
+            {
+                if (item.Name == assistantName)
+                {
+                    assistantId += item.Id;
+                    break;
+                }
+            }
+            if (assistantId.IsNullOrEmpty())
+            {
+                var res = await AssistantCreate(assistantName);
+                assistantId = res.Id;
+            }
+
+            var storesResponse = await cl.VectorStoresAsync();
+            var storeId = "";
+            var vectorStoreName = "HigLabo vector store";
+            if (storesResponse.Data.Count == 0)
+            {
+                var res = await VectorStoreCreate();
+                storeId = res.Id;
+            }
+            else
+            {
+                foreach (var item in storesResponse.Data)
+                {
+                    if (item.Name == vectorStoreName)
+                    {
+                        storeId = storesResponse.Data[0].Id;
+                        break;
+                    }
+                }
+            }
+            if (storeId.IsNullOrEmpty())
+            {
+                var p = new VectorStoreCreateParameter();
+                p.Name = vectorStoreName;
+                var res = await cl.VectorStoreCreateAsync(p);
+                storeId = res.Id;
+                Console.WriteLine(res);
+            }
+
+            var file_id = "";
+            {
+                var p = new FilesParameter();
+                p.QueryParameter.Purpose = "assistants";
+                var res = await cl.FilesAsync(p);
+                foreach (var item in res.Data)
+                {
+                    if (item.FileName == "1bit_transformers.pdf")
+                    {
+                        file_id = item.Id;
+                        break;
+                    }
+                }
+            }
+            if (file_id.IsNullOrEmpty())
+            {
+                var p = new FileUploadParameter();
+                p.File.SetFile("1bit_transformers.pdf", File.ReadAllBytes("D:\\Data\\1bit_transformers.pdf"));
+                p.SetPurpose(FilePurpose.Assistants);
+                var res = await cl.FileUploadAsync(p);
+                Console.WriteLine(res);
+
+                file_id = res.Id;
+            }
+            {
+                var p = new VectorStoreFileBatchCreateParameter();
+                p.Vector_Store_Id = storeId;
+                p.File_Ids = [];
+                p.File_Ids.Add(file_id);
+                var res = await cl.VectorStoreFileBatchCreateAsync(p);
+            }
+
+            {
+                var p = new AssistantModifyParameter();
+                p.Assistant_Id = assistantId;
+                p.Tool_Resources = new
+                {
+                    file_search = new
+                    {
+                        vector_store_ids = new string[] { storeId },
+                    },
+                };
+                var res = await cl.AssistantModifyAsync(p);
+                Console.WriteLine(res);
+            }
+
+
+            var now = DateTimeOffset.Now;
+            var threadId = "";
+            if (threadId.Length == 0)
+            {
+                var res = await cl.ThreadCreateAsync();
+                threadId = res.Id;
+            }
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+                p.Temperature = 0.5;
+                p.Additional_Messages = new List<ThreadAdditionalMessageObject>();
+                p.Additional_Messages.Add(new ThreadAdditionalMessageObject()
+                {
+                    Role = "user",
+                    Content = "I want to know about 1-bit transformers.",
+                });
+                var result = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Thread));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+                Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Message));
+
+            }
+        }
+        private async ValueTask<VectorStoreCreateResponse> VectorStoreCreate()
+        {
+            var cl = OpenAIClient;
+
+            var p = new VectorStoreCreateParameter();
+            p.Name = "HigLabo vector store";
+            var res = await cl.VectorStoreCreateAsync(p);
+            Console.WriteLine(res);
+            return res;
         }
     }
 }

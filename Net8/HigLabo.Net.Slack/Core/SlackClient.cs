@@ -93,7 +93,7 @@ namespace HigLabo.Net.Slack
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            return this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
+            return this.ParseRequestCodeResponse<RequestCodeResponse>(d, req, res, bodyText);
         }
         public async ValueTask<RequestCodeResponse> UpdateAccessTokenAsync()
         {
@@ -115,10 +115,14 @@ namespace HigLabo.Net.Slack
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
             var q = new QueryStringConverter();
-            var o = this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
+            var o = this.ParseRequestCodeResponse<RequestCodeResponse>(d, req, res, bodyText);
             if (o.Ok)
             {
                 this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs<RequestCodeResponse>(o));
+            }
+            else
+            {
+                throw new RestApiException(o);
             }
             return o;
         }

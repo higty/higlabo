@@ -39,6 +39,17 @@ namespace HigLabo.Net.OAuth
             }
         }
 
+        protected T ParseRequestCodeResponse<T>(Dictionary<string, string> parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+            where T : RestApiResponse
+        {
+            var d = parameter;
+            var q = new QueryStringConverter();
+            var req = request;
+            var o = this.DeserializeObject<T>(bodyText);
+            o.SetProperty(parameter, q.Write(d), req, response, bodyText);
+            return o;
+        }
+
         protected T ParseObject<T>(HttpRequestMessage request, HttpResponseMessage response, string bodyText)
             where T : RestApiResponse
         {

@@ -131,7 +131,7 @@ namespace HigLabo.Net.Microsoft
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            return this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
+            return this.ParseRequestCodeResponse<RequestCodeResponse>(d, req, res, bodyText);
         }
         public async ValueTask<RequestCodeResponse> UpdateAccessTokenAsync()
         {
@@ -153,10 +153,14 @@ namespace HigLabo.Net.Microsoft
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            var o = this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
+            var o = this.ParseRequestCodeResponse<RequestCodeResponse>(d, req, res, bodyText);
             if (o is IRestApiResponse iRes && iRes.StatusCode == HttpStatusCode.OK)
             {
                 this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs<RequestCodeResponse>(o));
+            }
+            else
+            {
+                throw new RestApiException(o);
             }
             return o;
         }

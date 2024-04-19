@@ -46,9 +46,8 @@ namespace HigLabo.OpenAI.CodeGenerator
         public void CreateSourceCode(IWebElement endpointPanel)
         {
             var endpointAnchor = endpointPanel.FindElement(By.CssSelector("h2[class='anchor-heading']")).GetAttribute("textContent");
-            if (endpointAnchor == "The completion objectLegacy" ||
-                endpointAnchor == "Create completionLegacy" ||
-                endpointAnchor.Contains("Deprecated")) { return; }
+            if (endpointAnchor.Contains("Deprecated") ||
+                endpointAnchor.Contains("Legacy")) { return; }
 
             var sc = new SourceCode();
             sc.UsingNamespaces.Add("System.Collections.Generic");
@@ -71,7 +70,6 @@ namespace HigLabo.OpenAI.CodeGenerator
                 httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-get']")).First().GetAttribute("innerHTML") ?? "";
             }
             var endpointPath = endpointUrl.Replace("https://api.openai.com/v1/", "");
-            Console.WriteLine($"{endpointPath}");
 
             var cName = this.GetClassName(endpointAnchor);
             if (cName.IsNullOrEmpty())
@@ -105,6 +103,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                     }
                 }
             }
+            Console.WriteLine($"{endpointPath} {cName}");
 
             var streamResult = "";
             if (endpointUrl == "https://api.openai.com/v1/chat/completions")
@@ -518,9 +517,11 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Cancel fine-tuning") { return "FineTuningJobCancel"; }
             if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
             if (endpointAnchor == "List fine-tuning checkpoints") { return "FineTuningJobsCheckpoints"; }
+    
             if (endpointAnchor == "Create batch") { return "BatchCreate"; }
             if (endpointAnchor == "Retrieve batch") { return "BatchRetrieve"; }
             if (endpointAnchor == "Cancel batch") { return "BatchCancel"; }
+     
             if (endpointAnchor == "Upload file") { return "FileUpload"; }
             if (endpointAnchor == "Delete file") { return "FileDelete"; }
             if (endpointAnchor == "Retrieve file") { return "FileRetrieve"; }
@@ -528,6 +529,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve model") { return "ModelRetrieve"; }
             if (endpointAnchor == "Delete a fine-tuned model") { return "ModelDelete"; }
             if (endpointAnchor == "Create moderation") { return "ModerationCreate"; }
+      
             if (endpointAnchor == "Create assistantBeta") { return "AssistantCreate"; }
             if (endpointAnchor == "Retrieve assistantBeta") { return "AssistantRetrieve"; }
             if (endpointAnchor == "Modify assistantBeta") { return "AssistantModify"; }
@@ -536,6 +538,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve assistant fileBeta") { return "AssistantFileRetrieve"; }
             if (endpointAnchor == "Delete assistant fileBeta") { return "AssistantFileDelete"; }
             if (endpointAnchor == "List assistant filesBeta") { return "AssistantFiles"; }
+        
             if (endpointAnchor == "Create threadBeta") { return "ThreadCreate"; }
             if (endpointAnchor == "Retrieve threadBeta") { return "ThreadRetrieve"; }
             if (endpointAnchor == "Modify threadBeta") { return "ThreadModify"; }
@@ -544,17 +547,35 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve messageBeta") { return "MessageRetrieve"; }
             if (endpointAnchor == "Modify messageBeta") { return "MessageModify"; }
             if (endpointAnchor == "List messagesBeta") { return "Messages"; }
+    
             if (endpointAnchor == "Create runBeta") { return "RunCreate"; }
             if (endpointAnchor == "Retrieve runBeta") { return "RunRetrieve"; }
             if (endpointAnchor == "Modify runBeta") { return "RunModify"; }
             if (endpointAnchor == "List runsBeta") { return "Runs"; }
+   
             if (endpointAnchor == "Retrieve message fileBeta") { return "MessageFileRetrieve"; }
             if (endpointAnchor == "List message filesBeta") { return "MessageFiles"; }
+   
             if (endpointAnchor == "Submit tool outputs to runBeta") { return "SubmitToolOutputs"; }
             if (endpointAnchor == "Cancel a runBeta") { return "RunCancel"; }
             if (endpointAnchor == "Create thread and runBeta") { return "ThreadRun"; }
             if (endpointAnchor == "Retrieve run stepBeta") { return "RunStepRetrieve"; }
             if (endpointAnchor == "List run stepsBeta") { return "RunSteps"; }
+
+            if (endpointAnchor == "Create vector storeBeta") { return "VectorStoreCreate"; }
+            if (endpointAnchor == "List vector storesBeta") { return "VectorStores"; }
+            if (endpointAnchor == "Retrieve vector storeBeta") { return "VectorStoreRetrieve"; }
+            if (endpointAnchor == "Modify vector storeBeta") { return "VectorStoreModify"; }
+            if (endpointAnchor == "Delete vector storeBeta") { return "VectorStoreDelete"; }
+
+            if (endpointAnchor == "Create vector store fileBeta") { return "VectorStoreFileCreate"; }
+            if (endpointAnchor == "List vector store filesBeta") { return "VectorStoreFiles"; }
+            if (endpointAnchor == "Delete vector store fileBeta") { return "VectorStoreFileDelete"; }
+
+            if (endpointAnchor == "Create vector store file batchBeta") { return "VectorStoreFileBatchCreate"; }
+            if (endpointAnchor == "Retrieve vector store file batchBeta") { return "VectorStoreFileBatchRetrieve"; }
+            if (endpointAnchor == "Cancel vector store file batchBeta") { return "VectorStoreFileBatchCancel"; }
+            if (endpointAnchor == "List vector store files in a batchBeta") { return "VectorStoreFileBatches"; }
 
             return cName;
         }
@@ -587,6 +608,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (typeName == "file") { return "FileParameter"; }
             if (typeName == "array") { return "List<string>"; }
             if (typeName == "string / array / null") { return "List<string>"; }
+            if (typeName == "array or null") { return "List<string>"; }
             if (typeName == "map") { return "object?"; }
             if (typeName == "object or null") { return "object?"; }
             if (typeName == "object")
@@ -753,6 +775,34 @@ namespace HigLabo.OpenAI.CodeGenerator
             else if (cName == "RunSteps")
             {
                 return "RestApiDataResponse<List<RunStepObject>>";
+            }
+            else if (cName == "VectorStores")
+            {
+                return "RestApiDataResponse<List<VectorStoreObject>>";
+            }
+            else if (cName == "VectorStoreCreate" ||
+                cName == "VectorStoreModify" ||
+                cName == "VectorStoreRetrieve")
+            {
+                return "VectorStoreObjectResponse";
+            }
+            else if (cName == "VectorStoreFiles")
+            {
+                return "RestApiDataResponse<List<VectorStoreFileObject>>";
+            }
+            else if (cName == "VectorStoreFileCreate")
+            {
+                return "VectorStoreFileObjectResponse";
+            }
+            else if (cName == "VectorStoreFileBatches")
+            {
+                return "RestApiDataResponse<List<VectorStoreFileBatchObject>>";
+            }
+            else if (cName == "VectorStoreFileBatchCreate" ||
+                cName == "VectorStoreFileBatchRetrieve" ||
+                cName == "VectorStoreFileBatchCancel")
+            {
+                return "VectorStoreFileBatchObjectResponse";
             }
             else
             {

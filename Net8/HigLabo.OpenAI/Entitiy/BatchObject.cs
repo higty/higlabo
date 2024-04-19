@@ -128,7 +128,7 @@ namespace HigLabo.OpenAI
     public class BatchObjectResponse: RestApiResponse
     {
         public string Id { get; set; } = "";
-        public string Object { get; set; } = "";
+        public new string Object { get; set; } = "";
         public string Endpoint { get; set; } = "";
         public Error? Errors { get; set; }
         public string Input_File_Id { get; set; } = "";

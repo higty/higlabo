@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create a thread and run it in one request.
     /// <seealso href="https://api.openai.com/v1/threads/runs">https://api.openai.com/v1/threads/runs</seealso>
     /// </summary>
-    public partial class ThreadRunParameter : RestApiParameter, IRestApiParameter
+    public partial class ThreadsRunsParameter : RestApiParameter, IRestApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
@@ -31,10 +31,6 @@ namespace HigLabo.OpenAI
         /// </summary>
         public List<ToolObject>? Tools { get; set; }
         /// <summary>
-        /// A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the code_interpreter tool requires a list of file IDs, while the file_search tool requires a list of vector store IDs.
-        /// </summary>
-        public object? Tool_Resources { get; set; }
-        /// <summary>
         /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
         /// </summary>
         public object? Metadata { get; set; }
@@ -51,22 +47,19 @@ namespace HigLabo.OpenAI
         /// </summary>
         public bool? Stream { get; set; }
         /// <summary>
-        /// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status incomplete. See incomplete_details for more info.
+        /// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status complete. See incomplete_details for more info.
         /// </summary>
         public int? Max_Prompt_Tokens { get; set; }
         /// <summary>
-        /// The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status incomplete. See incomplete_details for more info.
+        /// The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status complete. See incomplete_details for more info.
         /// </summary>
         public int? Max_Completion_Tokens { get; set; }
-        /// <summary>
-        /// Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
-        /// </summary>
         public object? Truncation_Strategy { get; set; }
         /// <summary>
         /// Controls which (if any) tool is called by the model.
         /// none means the model will not call any tools and instead generates a message.
         /// auto is the default value and means the model can pick between generating a message or calling a tool.
-        /// Specifying a particular tool like {"type": "file_search"} or {"type": "function", "function": {"name": "my_function"}} forces the model to call that tool.
+        /// Specifying a particular tool like {"type": "TOOL_TYPE"} or {"type": "function", "function": {"name": "my_function"}} forces the model to call that tool.
         /// </summary>
         public string? Tool_Choice { get; set; }
         /// <summary>
@@ -86,7 +79,6 @@ namespace HigLabo.OpenAI
             	model = this.Model,
             	instructions = this.Instructions,
             	tools = this.Tools,
-            	tool_resources = this.Tool_Resources,
             	metadata = this.Metadata,
             	temperature = this.Temperature,
             	top_p = this.Top_P,
@@ -99,75 +91,30 @@ namespace HigLabo.OpenAI
             };
         }
     }
-    public partial class ThreadRunResponse : RunObjectResponse
+    public partial class ThreadsRunsResponse : RestApiResponse
     {
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<ThreadRunResponse> ThreadRunAsync(string assistant_Id)
+        public async ValueTask<ThreadsRunsResponse> ThreadsRunsAsync(string assistant_Id)
         {
-            var p = new ThreadRunParameter();
+            var p = new ThreadsRunsParameter();
             p.Assistant_Id = assistant_Id;
-            return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ThreadsRunsParameter, ThreadsRunsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<ThreadRunResponse> ThreadRunAsync(string assistant_Id, CancellationToken cancellationToken)
+        public async ValueTask<ThreadsRunsResponse> ThreadsRunsAsync(string assistant_Id, CancellationToken cancellationToken)
         {
-            var p = new ThreadRunParameter();
+            var p = new ThreadsRunsParameter();
             p.Assistant_Id = assistant_Id;
-            p.Stream = null;
-            return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(p, cancellationToken);
+            return await this.SendJsonAsync<ThreadsRunsParameter, ThreadsRunsResponse>(p, cancellationToken);
         }
-        public async ValueTask<ThreadRunResponse> ThreadRunAsync(ThreadRunParameter parameter)
+        public async ValueTask<ThreadsRunsResponse> ThreadsRunsAsync(ThreadsRunsParameter parameter)
         {
-            return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<ThreadsRunsParameter, ThreadsRunsResponse>(parameter, CancellationToken.None);
         }
-        public async ValueTask<ThreadRunResponse> ThreadRunAsync(ThreadRunParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ThreadsRunsResponse> ThreadsRunsAsync(ThreadsRunsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(parameter, cancellationToken);
-        }
-        public async IAsyncEnumerable<string> ThreadRunStreamAsync(string assistant_Id)
-        {
-            var p = new ThreadRunParameter();
-            p.Assistant_Id = assistant_Id;
-            p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<string> ThreadRunStreamAsync(string assistant_Id, [EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            var p = new ThreadRunParameter();
-            p.Assistant_Id = assistant_Id;
-            p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<string> ThreadRunStreamAsync(ThreadRunParameter parameter)
-        {
-            parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<string> ThreadRunStreamAsync(ThreadRunParameter parameter, AssistantMessageStreamResult result)
-        {
-            parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<string> ThreadRunStreamAsync(ThreadRunParameter parameter, AssistantMessageStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))
-            {
-                yield return item;
-            }
+            return await this.SendJsonAsync<ThreadsRunsParameter, ThreadsRunsResponse>(parameter, cancellationToken);
         }
     }
 }
