@@ -17,8 +17,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetOpenAISetting();
-            await ProcessVectorStore();
+            SetGroqSetting();
+            await ChatCompletionStream();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -30,6 +30,11 @@ namespace HigLabo.OpenAI
         {
             var json = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.json");
             OpenAIClient = new OpenAIClient(JsonConvert.DeserializeObject<AzureSettings>(json)!);
+        }
+        private void SetGroqSetting()
+        {
+            var apiKey = File.ReadAllText("C:\\Dev\\GroqApiKey.txt");
+            OpenAIClient = new OpenAIClient(new GroqSettings(apiKey));
         }
 
         private async ValueTask AudioFileDownload()
@@ -103,7 +108,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var result = new ChatCompletionStreamResult();
-            await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
+            await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "llama3-70b-8192", result, CancellationToken.None))
             {
                 Console.Write(text);
             }

@@ -47,6 +47,7 @@ namespace HigLabo.OpenAI
                             return $"{this.AzureSettings!.EndpointUrl}/openai";
                         }
                         return $"{this.AzureSettings!.EndpointUrl}/openai/deployments/{this.AzureSettings!.DeploymentId}";
+                    case ServiceProvider.Groq: return "https://api.groq.com/openai/v1";
                     default: throw SwitchStatementNotImplementException.Create(this.ServiceProvider);
                 }
             }
@@ -56,6 +57,7 @@ namespace HigLabo.OpenAI
 
         public OpenAISettings OpenAISettings { get; init; } = new();
         public AzureSettings AzureSettings { get; init; } = new();
+        public GroqSettings GroqSettings { get; init; } = new();
 
         public OpenAIClient()
         {
@@ -89,6 +91,12 @@ namespace HigLabo.OpenAI
             this.ServiceProvider = ServiceProvider.Azure;
             this.AzureSettings = setting;
             this.HttpClient = httpClient;
+        }
+        public OpenAIClient(GroqSettings settings)
+        {
+            this.ServiceProvider = ServiceProvider.Groq;
+            this.GroqSettings = settings;
+            this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
         }
 
         private HttpRequestMessage CreateRequestMessage<TParameter>(TParameter parameter)
@@ -133,6 +141,9 @@ namespace HigLabo.OpenAI
                     break;
                 case ServiceProvider.Azure:
                     req.Headers.TryAddWithoutValidation("API-Key", this.AzureSettings.ApiKey);
+                    break;
+                case ServiceProvider.Groq:
+                    req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.GroqSettings.ApiKey);
                     break;
                 default:
                     break;

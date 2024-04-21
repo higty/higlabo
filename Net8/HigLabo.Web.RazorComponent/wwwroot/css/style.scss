@@ -591,8 +591,8 @@ $width-checkbox-circle: 20px;
 }
 
 .select-date-calendar-panel {
-    width: 280px;
-    padding: 10px;
+    width: 276px;
+    padding: 4px;
     margin-bottom: 10px;
     background-color: var(--color-panel-bg);
     border: solid 1px var(--color-border);
@@ -708,7 +708,7 @@ $width-checkbox-circle: 20px;
 
         .button {
             margin: 0 2px;
-            padding: 4px 12px;
+            padding: 8px 12px;
             font-size: 14px;
         }
     }

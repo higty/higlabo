@@ -10,5 +10,6 @@ namespace HigLabo.OpenAI
     {
         OpenAI,
         Azure,
+        Groq,
     }
 }
