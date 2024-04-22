@@ -27,6 +27,7 @@ How to use? It is easy to use!
 ```
 var cl = new OpenAIClient("API Key"); // OpenAI
 --var cl = new OpenAIClient(new AzureSettings("API KEY", "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
+--var cl = new OpenAIClient(new GroqSettings("API Key")); // Groq, llama, mixtral, gemma
 var result = new ChatCompletionStreamResult();
 await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
 {
