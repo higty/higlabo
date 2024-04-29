@@ -55,6 +55,19 @@ namespace HigLabo.OpenAI
             var res = await cl.AudioTranslationsAsync(p);
             Console.WriteLine(res.GetResponseBodyText());
         }
+        private async ValueTask AudioTranslationsFromUrl()
+        {
+            var cl = OpenAIClient;
+
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("http://www.yourdomain.com/file/myfile.mp3");
+            var stream = await response.Content.ReadAsStreamAsync();
+
+            var p = new AudioTranslationsParameter();
+            p.File.SetFile("myfile.mp3", stream);
+            p.Model = "whisper-1";
+            var res = await cl.AudioTranslationsAsync(p);
+        }
         private async ValueTask AudioTranscriptions()
         {
             var cl = OpenAIClient;

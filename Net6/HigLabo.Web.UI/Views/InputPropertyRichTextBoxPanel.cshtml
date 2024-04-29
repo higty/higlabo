@@ -1,4 +1,5 @@
 ﻿@model HigLabo.Web.UI.InputPropertyRichTextBoxPanel
 
-<textarea class="textarea" id="@Model.ID" @Model.TextArea.Attributes.GetHtmlString()></textarea>
+<textarea id="@Model.ID" style="display: none;" rich-textbox="true" class="textarea" @Model.TextArea.Attributes.GetHtmlString()></textarea>
+<div class="rich-textbox-html-panel" rich-textbox-html-panel="true">@Model.Text</div>
 

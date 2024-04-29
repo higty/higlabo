@@ -755,6 +755,13 @@ textarea:focus-visible {
   background: #272822;
 }
 
+.rich-textbox-html-panel {
+  border: solid 1px var(--color-input-element-border-color);
+  background-color: var(--color-input-element-back-color);
+  padding: 10px;
+  cursor: pointer;
+}
+
 .select-time-popup-panel {
   position: absolute;
   z-index: 220;
