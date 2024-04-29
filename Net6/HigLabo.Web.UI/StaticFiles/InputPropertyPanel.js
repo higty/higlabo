@@ -1070,6 +1070,10 @@ export class InputPropertyPanel {
                 if (element == null) {
                     continue;
                 }
+                var htmlPanel = propertyPanel.find("[rich-textbox-html-panel]").getFirstElement();
+                if (htmlPanel != null) {
+                    $(htmlPanel).setInnerHtml(v);
+                }
                 var textarea = propertyPanel.find("textarea").getFirstElement();
                 if (textarea != null) {
                     InputPropertyPanel.setTextArea(textarea, v);
