@@ -15,6 +15,7 @@ namespace HigLabo.Anthropic
         public AnthropicSettings() { }
         public AnthropicSettings(string apiKey)
         {
+            ApiKey = apiKey;
         }
     }
 }
