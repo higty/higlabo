@@ -113,9 +113,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.SampleWebSite",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI.CodeGenerator", "HigLabo.OpenAI.CodeGenerator\HigLabo.OpenAI.CodeGenerator.csproj", "{6CEB1201-A76D-4FE1-92E7-2292CBF4D2BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Anthropic", "HigLabo.Anthropic\HigLabo.Anthropic.csproj", "{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Anthropic", "HigLabo.Anthropic\HigLabo.Anthropic.csproj", "{71E7B763-CEDC-4AD2-9CB7-006CC6369E9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Anthropic.SampleConsoleApp", "HigLabo.Anthropic.SampleConsoleApp\HigLabo.Anthropic.SampleConsoleApp.csproj", "{A4406180-6170-405B-A77A-C5529DBE290C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Anthropic.SampleConsoleApp", "HigLabo.Anthropic.SampleConsoleApp\HigLabo.Anthropic.SampleConsoleApp.csproj", "{A4406180-6170-405B-A77A-C5529DBE290C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.GoogleAI.SampleConsoleApp", "HigLabo.GoogleAI.SampleConsoleApp\HigLabo.GoogleAI.SampleConsoleApp.csproj", "{F36EB5DF-463C-4C79-BD0E-2043E52A8066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.GoogleAI", "HigLabo.GoogleAI\HigLabo.GoogleAI.csproj", "{929D844B-4C68-46C2-A40E-28ECD8C07DF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -351,6 +355,14 @@ Global
 		{A4406180-6170-405B-A77A-C5529DBE290C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4406180-6170-405B-A77A-C5529DBE290C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4406180-6170-405B-A77A-C5529DBE290C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F36EB5DF-463C-4C79-BD0E-2043E52A8066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F36EB5DF-463C-4C79-BD0E-2043E52A8066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F36EB5DF-463C-4C79-BD0E-2043E52A8066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F36EB5DF-463C-4C79-BD0E-2043E52A8066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
