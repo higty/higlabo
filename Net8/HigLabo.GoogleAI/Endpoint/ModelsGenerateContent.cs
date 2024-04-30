@@ -60,30 +60,33 @@ namespace HigLabo.GoogleAI
             return await this.SendJsonAsync<ModelsGenerateContentParameter, ModelsGenerateContentResponse>(parameter, cancellationToken);
         }
 
-        public async IAsyncEnumerable<string> GenerateContentStreamAsync(string message)
+        public async IAsyncEnumerable<string> GenerateContentStreamAsync(string message, string model)
         {
             var p = new ModelsGenerateContentParameter();
             p.AddUserMessage(message);
+            p.Model = model;
             p.Stream = true;
             await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<string> GenerateContentStreamAsync(string message, GenerateContentStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> GenerateContentStreamAsync(string message, string model, GenerateContentStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ModelsGenerateContentParameter();
             p.AddUserMessage(message);
+            p.Model = model;
             p.Stream = true;
             await foreach (var item in this.GetStreamAsync(p, result, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<string> GenerateContentStreamAsync(string message, int maxOutputTokens, GenerateContentStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> GenerateContentStreamAsync(string message, string model, int maxOutputTokens, GenerateContentStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ModelsGenerateContentParameter();
             p.AddUserMessage(message);
+            p.Model = model;
             p.GenerationConfig = new();
             p.GenerationConfig.MaxOutputTokens = maxOutputTokens;
             p.Stream = true;
@@ -94,6 +97,7 @@ namespace HigLabo.GoogleAI
         }
         public async IAsyncEnumerable<string> GenerateContentStreamAsync(ModelsGenerateContentParameter parameter)
         {
+            parameter.Stream = true;
             await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
             {
                 yield return item;
@@ -169,17 +173,17 @@ namespace HigLabo.GoogleAI
                     var text = line.GetText();
                     if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
 
-                    if (result != null)
+                    var o = this.JsonConverter.DeserializeObject<ModelsGenerateContentObject>(text);
+                    if (o != null)
                     {
-                        var o = this.JsonConverter.DeserializeObject<ModelsGenerateContentObject>(text);
-                        if (o != null)
+                        foreach (var candidate in o.Candidates)
                         {
-                            foreach (var candidate in o.Candidates)
+                            foreach (var part in candidate.Content.Parts)
                             {
-                                foreach (var part in candidate.Content.Parts)
-                                {
-                                    yield return part.ToString();
-                                }
+                                yield return part.ToString();
+                            }
+                            if (result != null)
+                            {
                                 result.Process(candidate);
                             }
                         }
