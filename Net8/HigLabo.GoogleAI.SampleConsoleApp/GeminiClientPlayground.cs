@@ -17,7 +17,14 @@ namespace HigLabo.GoogleAI.SampleConsoleApp
         public async ValueTask ExecuteAsync()
         {
             SetSetting();
+            //await ModelsList();
+            //await Embedding();
+            //await GenerateContent();
             await GenerateContentAsStream();
+            //await GenerateContentAsStream1();
+            //await GenerateContentGroundingAsStream();
+            //await GenerateContentFunctionCallingAsStream();
+            //await SendImage();
             Console.WriteLine("■Completed");
 
         }
@@ -85,6 +92,19 @@ namespace HigLabo.GoogleAI.SampleConsoleApp
             Console.WriteLine(iRes.ResponseBodyText);
         }
         private async ValueTask GenerateContentAsStream()
+        {
+            var cl = GoogleAIClient;
+
+            var p = new ModelsGenerateContentParameter();
+            p.Model = ModelNames.Gemini_1_5_Pro_Latest;
+
+            await foreach (var item in cl.GenerateContentStreamAsync("How to enjoy Japan?", ModelNames.Gemini_1_5_Pro_Latest))
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine("***********************");
+        }
+        private async ValueTask GenerateContentAsStream1()
         {
             var cl = GoogleAIClient;
 
