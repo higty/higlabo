@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Input_File_Id { get; set; } = "";
         /// <summary>
-        /// The endpoint to be used for all requests in the batch. Currently only /v1/chat/completions is supported.
+        /// The endpoint to be used for all requests in the batch. Currently /v1/chat/completions and /v1/embeddings are supported.
         /// </summary>
         public string Endpoint { get; set; } = "";
         /// <summary>

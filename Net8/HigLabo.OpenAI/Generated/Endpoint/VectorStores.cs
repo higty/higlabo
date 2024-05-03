@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Returns a list of vector stores.
     /// <seealso href="https://api.openai.com/v1/vector_stores">https://api.openai.com/v1/vector_stores</seealso>
     /// </summary>
-    public partial class VectorStoresParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    public partial class VectorStoresParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter, IQueryParameterProperty
     {
         internal static readonly VectorStoresParameter Empty = new VectorStoresParameter();
 

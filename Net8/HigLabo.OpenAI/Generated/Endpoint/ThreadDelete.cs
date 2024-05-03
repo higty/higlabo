@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Delete a thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}">https://api.openai.com/v1/threads/{thread_id}</seealso>
     /// </summary>
-    public partial class ThreadDeleteParameter : RestApiParameter, IRestApiParameter
+    public partial class ThreadDeleteParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>

@@ -41,12 +41,7 @@ namespace HigLabo.OpenAI
                 switch (this.ServiceProvider)
                 {
                     case ServiceProvider.OpenAI: return "https://api.openai.com/v1";
-                    case ServiceProvider.Azure: 
-                        if (this.AzureSettings!.DeploymentId.IsNullOrEmpty())
-                        {
-                            return $"{this.AzureSettings!.EndpointUrl}/openai";
-                        }
-                        return $"{this.AzureSettings!.EndpointUrl}/openai/deployments/{this.AzureSettings!.DeploymentId}";
+                    case ServiceProvider.Azure: return $"{this.AzureSettings!.EndpointUrl}/openai";
                     case ServiceProvider.Groq: return "https://api.groq.com/openai/v1";
                     default: throw SwitchStatementNotImplementException.Create(this.ServiceProvider);
                 }
@@ -130,10 +125,22 @@ namespace HigLabo.OpenAI
                 {
                     apiPath += "?";
                 }
-                apiPath += $"api-version={this.AzureSettings!.ApiVersion}";
+                apiPath += $"api-version={this.AzureSettings.ApiVersion}";
             }
 
-            var req = new HttpRequestMessage(httpMethod, this.ApiUrl + apiPath);
+            var requestUrl = this.ApiUrl + apiPath;
+            if (this.ServiceProvider == ServiceProvider.Azure)
+            {
+                if (p is IAssistantApiParameter)
+                {
+                    requestUrl = $"{this.ApiUrl}{apiPath}";
+                }
+                else
+                {
+                    requestUrl = $"{this.ApiUrl}/deployments/{this.AzureSettings.DeploymentId}{apiPath}";
+                }
+            }
+            var req = new HttpRequestMessage(httpMethod, requestUrl);
             switch (this.ServiceProvider)
             {
                 case ServiceProvider.OpenAI:

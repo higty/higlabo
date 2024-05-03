@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Returns a list of assistants.
     /// <seealso href="https://api.openai.com/v1/assistants">https://api.openai.com/v1/assistants</seealso>
     /// </summary>
-    public partial class AssistantsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    public partial class AssistantsParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter, IQueryParameterProperty
     {
         internal static readonly AssistantsParameter Empty = new AssistantsParameter();
 

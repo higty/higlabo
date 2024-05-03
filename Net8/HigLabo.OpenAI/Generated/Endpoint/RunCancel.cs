@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Cancels a run that is in_progress.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/cancel">https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/cancel</seealso>
     /// </summary>
-    public partial class RunCancelParameter : RestApiParameter, IRestApiParameter
+    public partial class RunCancelParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

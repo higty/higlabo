@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a run step.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}">https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}</seealso>
     /// </summary>
-    public partial class RunStepRetrieveParameter : RestApiParameter, IRestApiParameter
+    public partial class RunStepRetrieveParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>

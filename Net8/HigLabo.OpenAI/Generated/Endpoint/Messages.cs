@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Returns a list of messages for a given thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/messages">https://api.openai.com/v1/threads/{thread_id}/messages</seealso>
     /// </summary>
-    public partial class MessagesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    public partial class MessagesParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>

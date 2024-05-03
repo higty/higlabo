@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Delete an assistant.
     /// <seealso href="https://api.openai.com/v1/assistants/{assistant_id}">https://api.openai.com/v1/assistants/{assistant_id}</seealso>
     /// </summary>
-    public partial class AssistantDeleteParameter : RestApiParameter, IRestApiParameter
+    public partial class AssistantDeleteParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>

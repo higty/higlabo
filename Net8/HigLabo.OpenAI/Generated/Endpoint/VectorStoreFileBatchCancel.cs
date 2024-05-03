@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
     /// <seealso href="https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel">https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel</seealso>
     /// </summary>
-    public partial class VectorStoreFileBatchCancelParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreFileBatchCancelParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

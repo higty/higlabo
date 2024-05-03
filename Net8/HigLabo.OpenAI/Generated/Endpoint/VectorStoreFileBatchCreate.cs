@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create a vector store file batch.
     /// <seealso href="https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches">https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches</seealso>
     /// </summary>
-    public partial class VectorStoreFileBatchCreateParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreFileBatchCreateParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

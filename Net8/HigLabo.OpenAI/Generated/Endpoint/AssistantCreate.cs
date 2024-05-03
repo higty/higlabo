@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create an assistant with a model and instructions.
     /// <seealso href="https://api.openai.com/v1/assistants">https://api.openai.com/v1/assistants</seealso>
     /// </summary>
-    public partial class AssistantCreateParameter : RestApiParameter, IRestApiParameter
+    public partial class AssistantCreateParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

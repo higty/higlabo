@@ -125,6 +125,10 @@ namespace HigLabo.OpenAI.CodeGenerator
             cParameter.Modifier.Partial = true;
             cParameter.BaseClass = new TypeName("RestApiParameter");
             cParameter.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
+            if (this.IsAssistantApiEndpoint(cName))
+            {
+                cParameter.ImplementInterfaces.Add(new TypeName("IAssistantApiParameter"));
+            }
             cParameter.Properties.Add(this.CreateHttpMethodProperty(httpMethod));
             cParameter.Methods.Add(this.CreateGetApiPathMethod(endpointUrl));
 
@@ -547,7 +551,8 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve messageBeta") { return "MessageRetrieve"; }
             if (endpointAnchor == "Modify messageBeta") { return "MessageModify"; }
             if (endpointAnchor == "List messagesBeta") { return "Messages"; }
-    
+            if (endpointAnchor == "Delete messageBeta") { return "MessageDelete"; }
+
             if (endpointAnchor == "Create runBeta") { return "RunCreate"; }
             if (endpointAnchor == "Retrieve runBeta") { return "RunRetrieve"; }
             if (endpointAnchor == "Modify runBeta") { return "RunModify"; }
@@ -570,6 +575,7 @@ namespace HigLabo.OpenAI.CodeGenerator
 
             if (endpointAnchor == "Create vector store fileBeta") { return "VectorStoreFileCreate"; }
             if (endpointAnchor == "List vector store filesBeta") { return "VectorStoreFiles"; }
+            if (endpointAnchor == "Retrieve vector store fileBeta") { return "VectorStoreFileRetrieve"; }
             if (endpointAnchor == "Delete vector store fileBeta") { return "VectorStoreFileDelete"; }
 
             if (endpointAnchor == "Create vector store file batchBeta") { return "VectorStoreFileBatchCreate"; }
@@ -829,6 +835,17 @@ namespace HigLabo.OpenAI.CodeGenerator
             md.Body.Add(SourceCodeLanguage.CSharp, $"return $\"{path.Replace("https://api.openai.com/v1", "")}\";");
 
             return md;
+        }
+        private bool IsAssistantApiEndpoint(string className)
+        {
+            if (className.StartsWith("Assistant")) { return true; }
+            if (className.StartsWith("Thread")) { return true; }
+            if (className.StartsWith("Run")) { return true; }
+            if (className.StartsWith("SubmitToolOutputs")) { return true; }
+            if (className.StartsWith("Message")) { return true; }
+            if (className.StartsWith("MessageFile")) { return true; }
+            if (className.StartsWith("VectorStore")) { return true; }
+            return false;
         }
 
         protected void WriteFile(string filePath, SourceCode sourceCode)
