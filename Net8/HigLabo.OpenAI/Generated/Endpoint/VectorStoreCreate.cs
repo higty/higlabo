@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create a vector store.
     /// <seealso href="https://api.openai.com/v1/vector_stores">https://api.openai.com/v1/vector_stores</seealso>
     /// </summary>
-    public partial class VectorStoreCreateParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreCreateParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

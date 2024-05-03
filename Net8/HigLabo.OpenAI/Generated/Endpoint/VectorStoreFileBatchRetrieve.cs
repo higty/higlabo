@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a vector store file batch.
     /// <seealso href="https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}">https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches/{batch_id}</seealso>
     /// </summary>
-    public partial class VectorStoreFileBatchRetrieveParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreFileBatchRetrieveParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>

@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create a vector store file by attaching a File to a vector store.
     /// <seealso href="https://api.openai.com/v1/vector_stores/{vector_store_id}/files">https://api.openai.com/v1/vector_stores/{vector_store_id}/files</seealso>
     /// </summary>
-    public partial class VectorStoreFileCreateParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreFileCreateParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

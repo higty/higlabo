@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the delete file endpoint.
     /// <seealso href="https://api.openai.com/v1/vector_stores/{vector_store_id}/files/{file_id}">https://api.openai.com/v1/vector_stores/{vector_store_id}/files/{file_id}</seealso>
     /// </summary>
-    public partial class VectorStoreFileDeleteParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreFileDeleteParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>

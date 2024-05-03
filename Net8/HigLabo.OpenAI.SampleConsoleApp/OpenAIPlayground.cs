@@ -17,8 +17,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetGroqSetting();
-            await ChatCompletionStream();
+            SetOpenAISetting();
+            await ProcessAssistants();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -98,7 +98,11 @@ namespace HigLabo.OpenAI
             var theme = "How to enjoy coffee";
             p.Messages.Add(new ChatMessage(ChatMessageRole.User
                 , $"Can you provide me with some ideas for blog posts about {theme}?"));
-            p.Model = "gpt-3.5-turbo";
+            p.Model = cl.ServiceProvider switch
+            {
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4",
+            };
             var res = await cl.ChatCompletionsAsync(p);
             foreach (var choice in res.Choices)
             {
@@ -120,8 +124,13 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
+            var model = cl.ServiceProvider switch
+            {
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4",
+            };
             var result = new ChatCompletionStreamResult();
-            await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "llama3-70b-8192", result, CancellationToken.None))
+            await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", model, result, CancellationToken.None))
             {
                 Console.Write(text);
             }
@@ -137,7 +146,11 @@ namespace HigLabo.OpenAI
             var p = new ChatCompletionsParameter();
             //ChatGPT can correct Newyork,Sanflansisco to New york and San Flancisco.
             p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of these locations. Newyork, Sanflansisco, Paris, Tokyo."));
-            p.Model = "gpt-3.5-turbo";
+            p.Model = cl.ServiceProvider switch
+            {
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4",
+            };
 
             {
                 var tool = new ToolObject("function");
@@ -349,6 +362,9 @@ namespace HigLabo.OpenAI
                 p.Content = "Hello! I want to know how to enjoy coffee in my life.";
                 var res = await cl.MessageCreateAsync(p);
             }
+
+            //Streaming
+            if (true)
             {
                 var p = new RunCreateParameter();
                 p.Assistant_Id = assistantId;
@@ -381,11 +397,17 @@ namespace HigLabo.OpenAI
             var p = new AssistantCreateParameter();
             p.Name = name;
             p.Instructions = "You are a personal assistant to help general task.";
-            p.Model = "gpt-4-turbo";
+            if (cl.ServiceProvider == ServiceProvider.OpenAI)
+            {
+                p.Model = "gpt-4-turbo";
+            }
 
             p.Tools = new List<ToolObject>();
             p.Tools.Add(new ToolObject("code_interpreter"));
-            p.Tools.Add(new ToolObject("file_search"));
+            if (cl.ServiceProvider == ServiceProvider.OpenAI)
+            {
+                p.Tools.Add(new ToolObject("file_search"));
+            }
 
             //var res0 = await cl.FilesAsync();
             //p.File_Ids = new List<string>();

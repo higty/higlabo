@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a vector store.
     /// <seealso href="https://api.openai.com/v1/vector_stores/{vector_store_id}">https://api.openai.com/v1/vector_stores/{vector_store_id}</seealso>
     /// </summary>
-    public partial class VectorStoreRetrieveParameter : RestApiParameter, IRestApiParameter
+    public partial class VectorStoreRetrieveParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>

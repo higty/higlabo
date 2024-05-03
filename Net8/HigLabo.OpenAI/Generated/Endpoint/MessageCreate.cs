@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create a message.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/messages">https://api.openai.com/v1/threads/{thread_id}/messages</seealso>
     /// </summary>
-    public partial class MessageCreateParameter : RestApiParameter, IRestApiParameter
+    public partial class MessageCreateParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>

@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Returns a list of runs belonging to a thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs">https://api.openai.com/v1/threads/{thread_id}/runs</seealso>
     /// </summary>
-    public partial class RunsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    public partial class RunsParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter, IQueryParameterProperty
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>

@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Create a thread.
     /// <seealso href="https://api.openai.com/v1/threads">https://api.openai.com/v1/threads</seealso>
     /// </summary>
-    public partial class ThreadCreateParameter : RestApiParameter, IRestApiParameter
+    public partial class ThreadCreateParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
