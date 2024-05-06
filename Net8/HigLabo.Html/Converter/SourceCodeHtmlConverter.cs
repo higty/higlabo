@@ -15,6 +15,7 @@ namespace HigLabo.Html
         public static class RegexList
         {
             public static Regex SourceCode_Start = new Regex("```(?<Language>[a-z]*)", RegexOptions.IgnoreCase);
+            public static Regex SourceCode_End = new Regex("```", RegexOptions.IgnoreCase);
         }
         private enum ParseContextState
         {
@@ -59,7 +60,8 @@ namespace HigLabo.Html
                     }
                     else
                     {
-                        if (line == "```")
+                        var m = RegexList.SourceCode_End.Match(line);
+                        if (m.Success)
                         {
                             sb.Append(CreateSourceCodePanel(context.Text.ToString(), context.Language));
                             context.State = ParseContextState.Ready;

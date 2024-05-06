@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HigLabo.OpenAI.ChatCompletionObjectResponse;
 
 namespace HigLabo.OpenAI
 {
@@ -72,6 +71,7 @@ namespace HigLabo.OpenAI
         public string Model { get; set; } = "";
         public string System_Fingerprint { get; set; } = "";
         public string Object { get; set; } = "";
+        public ChatCompletionUsageResult? Usage { get; set; } 
 
         public DateTimeOffset CreateTime
         {

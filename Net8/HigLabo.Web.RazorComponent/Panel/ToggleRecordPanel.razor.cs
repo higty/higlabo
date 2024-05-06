@@ -53,6 +53,8 @@ namespace HigLabo.Web.RazorComponent.Panel
         [Parameter]
         public string HeaderTextboxPlaceHolder { get; set; } = "";
         [Parameter]
+        public RenderFragment? HeaderPanel { get; set; }
+        [Parameter]
         public RenderFragment? ContentPanel { get; set; }
 
         [Parameter]

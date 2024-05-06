@@ -1,0 +1,34 @@
+@typeparam TItem
+
+<InputFieldPanel Layout="@Layout" PanelType="select" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible">
+    <div class="current-record-panel" tabindex="0" @ref="this.RecordPanelElementReference"
+         @onclick="async e => await this.ToggleVisible()" @onclick:stopPropagation="true"
+         @onkeydown="async e => await this.RecordPanel_Keydown(e)" @onkeydown:stopPropagation="true">
+        @if (this.Value != null)
+        {
+            @this.ItemTemplate(this.Value)
+        }
+    </div>
+    <div class="select-container-panel">
+        @if (this.SelectRecordPanelVisible)
+        {
+            <div class="record-list-panel">
+                @for (int i = 0; i < this.RecordList.Count; i++)
+                {
+                    var item = this.RecordList[i];
+
+                    var cName = "record-panel";
+                    if (i == this.RecordIndex)
+                    {
+                        cName += " current";
+                    }
+                    <div class="@cName" @onclick="async e => await RecordPanel_Click(item)">
+                        @this.ItemTemplate(item)
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</InputFieldPanel>
+
+

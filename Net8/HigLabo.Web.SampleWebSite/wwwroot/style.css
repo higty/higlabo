@@ -737,6 +737,10 @@
 .input-field-panel .child-content-panel .separator {
   margin: auto 4px;
 }
+.input-field-panel .child-content-panel > .current-record-panel {
+  background-color: var(--color-form-element-bg);
+  border: solid 1px var(--color-border);
+}
 .input-field-panel .child-content-panel > .record-list-panel {
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
@@ -766,7 +770,7 @@
   flex: 0 0 100px;
 }
 .input-field-flex-panel .display-flex > .child-content-panel {
-  flex: 0 0 calc(100% - 100px);
+  flex: 0 1 100%;
 }
 .input-field-flex-panel .display-flex > .child-content-panel .textbox {
   display: inline-block;
@@ -822,10 +826,16 @@
 .input-field-flex-panel .child-content-panel > .select-container-panel .select-record-panel {
   right: 0;
 }
+.input-field-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel,
+.input-field-flex-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel {
+  border: solid 1px transparent;
+}
+.input-field-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel.current,
+.input-field-flex-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel.current {
+  background-color: var(--color-glay-03);
+}
 .input-field-panel .child-content-panel > .current-record-panel,
 .input-field-flex-panel .child-content-panel > .current-record-panel {
-  background-color: var(--color-form-element-bg);
-  border: solid 1px var(--color-border);
   min-height: 28px;
   cursor: pointer;
 }
@@ -865,8 +875,8 @@
 }
 
 .select-date-calendar-panel {
-  width: 280px;
-  padding: 10px;
+  width: 276px;
+  padding: 4px;
   margin-bottom: 10px;
   background-color: var(--color-panel-bg);
   border: solid 1px var(--color-border);
@@ -957,7 +967,7 @@
 }
 .select-date-calendar-panel .footer-panel .button {
   margin: 0 2px;
-  padding: 4px 12px;
+  padding: 8px 12px;
   font-size: 14px;
 }
 

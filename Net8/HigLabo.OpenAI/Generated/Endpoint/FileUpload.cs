@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
-        /// The intended purpose of the uploaded file.Use "fine-tune" for Fine-tuning and "assistants" for Assistants and Messages. This allows us to validate the format of the uploaded file is correct for fine-tuning.
+        /// The intended purpose of the uploaded file.Use "assistants" for Assistants and Messages, "batch" for Batch API, and "fine-tune" for Fine-tuning.
         /// </summary>
         public string Purpose { get; set; } = "";
 

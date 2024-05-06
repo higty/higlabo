@@ -519,6 +519,7 @@ $width-checkbox-circle: 20px;
                 text-align: center;
             }
         }
+
     }
 }
 
@@ -540,6 +541,16 @@ $width-checkbox-circle: 20px;
         > .select-container-panel {
             .select-record-panel {
                 right: 0;
+            }
+
+            .record-list-panel {
+                .record-panel {
+                    border: solid 1px transparent;
+
+                    &.current {
+                        background-color: var(--color-glay-03);
+                    }
+                }
             }
         }
 
