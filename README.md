@@ -10,6 +10,8 @@ I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 ## HigLabo.OpenAI
+2024-05-07 updated. Support usage information on chat completion.
+
 2024-04-22 updated. Support Groq. You can use llama, mixtral, gemma
 
 2024-04-20 updated. This release include fie search and vector store endpoint.
