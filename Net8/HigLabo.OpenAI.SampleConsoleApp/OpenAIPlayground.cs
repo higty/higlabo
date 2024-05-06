@@ -146,10 +146,13 @@ namespace HigLabo.OpenAI
             var p = new ChatCompletionsParameter();
             p.AddUserMessage($"How to enjoy coffee");
             p.Model = "gpt-4";
-            p.Stream_Options = new
+            if (cl.ServiceProvider == ServiceProvider.OpenAI)
             {
-                include_usage = true,
-            };
+                p.Stream_Options = new
+                {
+                    include_usage = true,
+                };
+            }
             var result = new ChatCompletionStreamResult();
             await foreach (string text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
             {

@@ -71,7 +71,7 @@ namespace HigLabo.OpenAI
         public string Model { get; set; } = "";
         public string System_Fingerprint { get; set; } = "";
         public string Object { get; set; } = "";
-        public ChatCompletionUsageResult Usage { get; set; } = new();
+        public ChatCompletionUsageResult? Usage { get; set; } 
 
         public DateTimeOffset CreateTime
         {
