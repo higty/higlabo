@@ -2,30 +2,38 @@
     <div class="header-panel">
         @if (this.AllowSort)
         {
-            <span class="drag-bar-panel">
+            <div class="drag-bar-panel">
                 <span class="icon-panel">
                     <img class="icon" src="@UrlInfo.GetIconUrl(Higlabo__icon.DragBarPanel__svg)" />
                 </span>
-            </span>
+            </div>
         }
-        @if (this.AllowHeaderEdit == true)
+
+        @if (this.HeaderPanel == null)
         {
-            <input type="text" class="header-textbox" placeholder="@this.HeaderTextboxPlaceHolder"
-            @oninput="async e => await HeaderTextbox_Input.InvokeAsync(e)" value="@this.HeaderText" />
+            @if (this.AllowHeaderEdit == true)
+            {
+                <input type="text" class="header-textbox" placeholder="@this.HeaderTextboxPlaceHolder"
+                       @oninput="async e => await HeaderTextbox_Input.InvokeAsync(e)" value="@this.HeaderText" />
+            }
+            else
+            {
+                <div class="header-text" tabindex="0"
+                      @onclick="async e => await HeaderPanel_Click()"
+                      @onkeydown="async e => await HeaderPanel_Keydown(e)">@this.HeaderText</div>
+            }
         }
         else
         {
-            <span class="header-text" tabindex="0"
-                  @onclick="async e => await HeaderPanel_Click()"
-                  @onkeydown="async e => await HeaderPanel_Keydown(e)">@this.HeaderText</span>
+            <div class="header-text">@this.HeaderPanel</div>
         }
         @if (this.AllowDelete)
         {
-            <span class="delete-icon-panel" tabindex="0"
+            <div class="delete-icon-panel" tabindex="0"
             @onclick="async e => await DeleteIcon_Click()" @onclick:stopPropagation="true"
             @onkeydown="async e => await DeleteIcon_Keydown(e)">
                 <img src="@UrlInfo.GetIconUrl(Higlabo__icon.Delete__svg)" class="delete-icon" />
-            </span>
+            </div>
         }
     </div>
     <div class="content-panel" toggle-state="@this.ToggleState.ToStringFromEnum()">@ContentPanel</div>

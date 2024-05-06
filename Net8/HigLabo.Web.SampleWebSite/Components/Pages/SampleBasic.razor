@@ -7,6 +7,12 @@
 
 <span>@this.FileAccess.ToStringFromEnum()</span>
 
+<InputFieldPanel_Select RecordList="this.CategoryList" Text="Category">
+    <ItemTemplate>
+        <span>@context.Name</span>
+    </ItemTemplate>
+</InputFieldPanel_Select>
+
 <CheckboxPanel @bind-Value="@Selected"></CheckboxPanel>
 <span>@this.Selected</span>
 
@@ -39,31 +45,18 @@
 
 
 @code {
+    public class CategoryRecord(string name)
+    {
+        public string Name { get; set; } = name; 
+    }
     [Parameter]
     public bool Selected { get; set; } = false;
+    public List<CategoryRecord> CategoryList { get; init; } = new();
 
     [Parameter]
     public string Value1 { get; set; } = "";
     [Parameter]
     public string Value2 { get; set; } = "";
-
-    [Parameter]
-    public TimeSpan? Time { get; set; }
-
-    [Parameter]
-    public TimeSpan? StartTime { get; set; }
-    [Parameter]
-    public TimeSpan? EndTime { get; set; }
-    [Parameter]
-    public DateOnly? Date { get; set; } 
-    [Parameter]
-    public DateOnly? StartDate { get; set; }
-    [Parameter]
-    public DateOnly? EndDate { get; set; }
-    [Parameter]
-    public DateOnly? StartDate1 { get; set; }
-    [Parameter]
-    public DateOnly? EndDate1 { get; set; }
 
     [Parameter]
     public string Color { get; set; } = "";
@@ -75,4 +68,13 @@
     [Parameter]
     public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        for (int i = 0; i < 10; i++)
+        {
+            this.CategoryList.Add(new CategoryRecord("Category" + i));
+        }
+    }
 }

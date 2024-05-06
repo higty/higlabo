@@ -826,6 +826,14 @@
 .input-field-flex-panel .child-content-panel > .select-container-panel .select-record-panel {
   right: 0;
 }
+.input-field-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel,
+.input-field-flex-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel {
+  border: solid 1px transparent;
+}
+.input-field-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel.current,
+.input-field-flex-panel .child-content-panel > .select-container-panel .record-list-panel .record-panel.current {
+  background-color: var(--color-glay-03);
+}
 .input-field-panel .child-content-panel > .current-record-panel,
 .input-field-flex-panel .child-content-panel > .current-record-panel {
   min-height: 28px;

@@ -68,6 +68,10 @@ namespace HigLabo.OpenAI
         /// </summary>
         public bool? Stream { get; set; }
         /// <summary>
+        /// Options for streaming response. Only set this when you set stream: true.
+        /// </summary>
+        public object? Stream_Options { get; set; }
+        /// <summary>
         /// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.We generally recommend altering this or top_p but not both.
         /// </summary>
         public double? Temperature { get; set; }
@@ -112,6 +116,7 @@ namespace HigLabo.OpenAI
             	seed = this.Seed,
             	stop = this.Stop,
             	stream = this.Stream,
+            	stream_options = this.Stream_Options,
             	temperature = this.Temperature,
             	top_p = this.Top_P,
             	tools = this.Tools,

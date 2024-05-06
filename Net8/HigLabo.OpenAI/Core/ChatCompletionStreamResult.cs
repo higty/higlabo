@@ -92,5 +92,13 @@ namespace HigLabo.OpenAI
             }
             return "";
         }
+        public ChatCompletionUsageResult? GetUsageResult()
+        {
+            for (int i = this.ChunkList.Count - 1; i > -1; i--)
+            {
+                if (this.ChunkList[i].Usage != null) { return this.ChunkList[i].Usage; }
+            }
+            return null;
+        }
     }
 }

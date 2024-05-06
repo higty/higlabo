@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ProcessAssistants();
+            await ChatCompletionStreamWithUsageResult();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -138,6 +138,35 @@ namespace HigLabo.OpenAI
             Console.WriteLine("***********************");
             Console.WriteLine("Finish reason: " + result.GetFinishReason());
             Console.WriteLine("■DONE");
+        }
+        private async ValueTask ChatCompletionStreamWithUsageResult()
+        {
+            var cl = OpenAIClient;
+
+            var p = new ChatCompletionsParameter();
+            p.AddUserMessage($"How to enjoy coffee");
+            p.Model = "gpt-4";
+            p.Stream_Options = new
+            {
+                include_usage = true,
+            };
+            var result = new ChatCompletionStreamResult();
+            await foreach (string text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(text);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+
+            var usage = result.GetUsageResult();
+            if (usage != null)
+            {
+                Console.WriteLine("------------------------");
+                Console.WriteLine("Prompt tokne: " + usage.Prompt_Tokens);
+                Console.WriteLine("Completion tokne: " + usage.Completion_Tokens);
+                Console.WriteLine("Total tokne: " + usage.Total_Tokens);
+            }
+            Console.WriteLine("------------------------");
         }
         private async ValueTask ChatCompletionStreamWithFunctionCalling()
         {
@@ -360,7 +389,7 @@ namespace HigLabo.OpenAI
                 p.Thread_Id = threadId;
                 p.Role = "user";
                 p.Content = "Hello! I want to know how to enjoy coffee in my life.";
-                var res = await cl.MessageCreateAsync(p);
+                //var res = await cl.MessageCreateAsync(p);
             }
 
             //Streaming
@@ -374,7 +403,7 @@ namespace HigLabo.OpenAI
                 p.Additional_Messages.Add(new ThreadAdditionalMessageObject()
                 {
                     Role = "user",
-                    Content = "In the scene when I climb mountain.",
+                    Content = "Hello! I want to know how to enjoy coffee in my life.",
                 });
                 var result = new AssistantMessageStreamResult();
                 await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
