@@ -28,7 +28,7 @@ namespace HigLabo.Rss
             Author = element.CastElementToString("author") ?? "";
             if (string.IsNullOrWhiteSpace(Author))
             {
-                Author = element.CastElementToString("[author](dc:creator)") ?? "";
+                Author = element.CastElementToString("dc:creator") ?? "";
             }
             Comments = element.CastElementToString("comments") ?? "";
 
