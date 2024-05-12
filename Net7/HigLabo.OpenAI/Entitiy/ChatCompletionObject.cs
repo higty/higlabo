@@ -33,12 +33,6 @@ namespace HigLabo.OpenAI
             public string Type { get; set; } = "";
             public FunctionCall? Function { get; set; }
         }
-        public class UsageResult
-        {
-            public int Completion_Tokens { get; set; }
-            public int Prompt_Tokens { get; set; }
-            public int Total_Tokens { get; set; }
-        }
         public string Id { get; set; } = "";
         public List<Choice> Choices { get; set; } = new();
         public Int64 Created { get; set; }
@@ -51,6 +45,6 @@ namespace HigLabo.OpenAI
         }
         public string Model { get; set; } = "";
         public string System_Fingerprint { get; set; } = "";
-        public UsageResult Usage { get; set; } = new();
+        public ChatCompletionUsageResult Usage { get; set; } = new();
     }
 }

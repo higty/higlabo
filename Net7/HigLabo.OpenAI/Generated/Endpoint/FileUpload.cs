@@ -1,9 +1,13 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the Assistants Tools guide to learn more about the types of files supported. The Fine-tuning API only supports .jsonl files.Please contact us if you need to increase these storage limits.
+    /// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.The Assistants API supports files up to 2 million tokens and of specific file types. See the Assistants Tools guide for details.The Fine-tuning API only supports .jsonl files.The Batch API only supports .jsonl files up to 100 MB in size.Please contact us if you need to increase these storage limits.
     /// <seealso href="https://api.openai.com/v1/files">https://api.openai.com/v1/files</seealso>
     /// </summary>
     public partial class FileUploadParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
@@ -14,7 +18,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
-        /// The intended purpose of the uploaded file.Use "fine-tune" for Fine-tuning and "assistants" for Assistants and Messages. This allows us to validate the format of the uploaded file is correct for fine-tuning.
+        /// The intended purpose of the uploaded file.Use "assistants" for Assistants and Message files, "vision" for Assistants image file inputs, "batch" for Batch API, and "fine-tune" for Fine-tuning.
         /// </summary>
         public string Purpose { get; set; } = "";
 

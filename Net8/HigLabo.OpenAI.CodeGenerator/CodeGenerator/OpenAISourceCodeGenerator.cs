@@ -261,7 +261,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                         if (pType == "FileParameter")
                         {
                             hasFileProperty = true;
-                            p.Set.Modifier = AccessModifier.Private;
+                            p.Set!.Modifier = AccessModifier.Private;
                             p.Initializer = $"new FileParameter(\"{p.Name.ToLower()}\")";
                         }
                         p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.GetAttribute("textContent") ?? "";

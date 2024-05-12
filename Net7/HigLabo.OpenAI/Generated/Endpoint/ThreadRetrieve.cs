@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -6,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Retrieves a thread.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}">https://api.openai.com/v1/threads/{thread_id}</seealso>
     /// </summary>
-    public partial class ThreadRetrieveParameter : RestApiParameter, IRestApiParameter
+    public partial class ThreadRetrieveParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>

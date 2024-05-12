@@ -10,6 +10,6 @@ namespace HigLabo.OpenAI
     public class EmbeddingObject
     {
         public int Index { get; set; }
-        public List<double> Embedding { get; set; } = new();
+        public List<float> Embedding { get; set; } = new();
     }
 }

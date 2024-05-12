@@ -11,6 +11,7 @@ using HigLabo.CodeGenerator;
 using HigLabo.Core;
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace HigLabo.OpenAI.CodeGenerator
 {
@@ -21,7 +22,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             public static readonly Regex CurlyBrackets = new Regex("{(?<Value>[^}]*)}", RegexOptions.Compiled);
         }
         public string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36";
-        public string OutputFolderPath { get; set; } = "C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.OpenAI\\Generated\\";
+        public string OutputFolderPath { get; set; } = "C:\\GitHub\\higty\\HigLabo\\Net8\\HigLabo.OpenAI\\Generated\\";
 
         public void ExecuteAsync()
         {
@@ -31,6 +32,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             var driver = new ChromeDriver(options);
 
             driver.Navigate().GoToUrl("https://platform.openai.com/docs/api-reference/audio");
+            Thread.Sleep(5000);
 
             var ee = driver.FindElements(By.CssSelector("div[class='section endpoint']"));
             //CreateSourceCode(ee[71]);
@@ -40,16 +42,20 @@ namespace HigLabo.OpenAI.CodeGenerator
             {
                 CreateSourceCode(ee[i]);
             }
+            Console.WriteLine($"Code generation Completed");
         }
         public void CreateSourceCode(IWebElement endpointPanel)
         {
             var endpointAnchor = endpointPanel.FindElement(By.CssSelector("h2[class='anchor-heading']")).GetAttribute("textContent");
-            if (endpointAnchor == "The completion objectLegacy" ||
-                endpointAnchor == "Create completionLegacy" ||
-                endpointAnchor.Contains("Deprecated")) { return; }
+            if (endpointAnchor.Contains("Deprecated") ||
+                endpointAnchor.Contains("Legacy")) { return; }
 
             var sc = new SourceCode();
+            sc.UsingNamespaces.Add("System.Collections.Generic");
+            sc.UsingNamespaces.Add("System.IO");
             sc.UsingNamespaces.Add("System.Runtime.CompilerServices");
+            sc.UsingNamespaces.Add("System.Threading");
+            sc.UsingNamespaces.Add("System.Threading.Tasks");
             sc.Namespaces.Add(new Namespace($"HigLabo.OpenAI"));
 
             var endpointUrl = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-path']")).FirstOrDefault()?.GetAttribute("innerHTML") ?? "";
@@ -65,6 +71,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-get']")).First().GetAttribute("innerHTML") ?? "";
             }
             var endpointPath = endpointUrl.Replace("https://api.openai.com/v1/", "");
+
             var cName = this.GetClassName(endpointAnchor);
             if (cName.IsNullOrEmpty())
             {
@@ -97,10 +104,19 @@ namespace HigLabo.OpenAI.CodeGenerator
                     }
                 }
             }
-            var hasStreamMethod = false;
+            Console.WriteLine($"{endpointPath} {cName}");
+
+            var streamResult = "";
             if (endpointUrl == "https://api.openai.com/v1/chat/completions")
             {
-                hasStreamMethod = true;
+                streamResult = "ChatCompletionStreamResult";
+            }
+            var hasAssistantStreamMethod = false;
+            if (cName == "ThreadRun" ||
+                cName == "RunCreate" ||
+                cName == "SubmitToolOutputs")
+            {
+                streamResult = "AssistantMessageStreamResult";
             }
 
             var cParameter = new Class(AccessModifier.Public, cName + "Parameter");
@@ -110,6 +126,10 @@ namespace HigLabo.OpenAI.CodeGenerator
             cParameter.Modifier.Partial = true;
             cParameter.BaseClass = new TypeName("RestApiParameter");
             cParameter.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
+            if (this.IsAssistantApiEndpoint(cName))
+            {
+                cParameter.ImplementInterfaces.Add(new TypeName("IAssistantApiParameter"));
+            }
             cParameter.Properties.Add(this.CreateHttpMethodProperty(httpMethod));
             cParameter.Methods.Add(this.CreateGetApiPathMethod(endpointUrl));
 
@@ -129,7 +149,7 @@ namespace HigLabo.OpenAI.CodeGenerator
 
             var mdStreamAsync = new Method(MethodAccessModifier.Public, cName + "StreamAsync");
             mdStreamAsync.ReturnTypeName.Name = "async IAsyncEnumerable";
-            mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName("ChatCompletionChunk"));
+            mdStreamAsync.ReturnTypeName.GenericTypes.Add(new TypeName("string"));
             mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"var p = new {cName}Parameter();");
 
             var mdCreateFormDataParameter = new Method(MethodAccessModifier.None, "IFormDataParameter.CreateFormDataParameter");
@@ -187,8 +207,12 @@ namespace HigLabo.OpenAI.CodeGenerator
 
                         var pRawName = paramRow.FindElement(By.CssSelector("[class='param-name']")).GetAttribute("innerHTML");
                         var pName = pRawName.ToPascalCase();
+                        if (pName == "Timestamp_Granularities[]")
+                        {
+                            pName = "Timestamp_Granularities";
+                        }
                         var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.GetAttribute("innerHTML") == "Required";
-                        var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).GetAttribute("innerHTML"), cName, pName, pRequired);
+                        var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).GetAttribute("textContent"), cName, pName, pRequired);
                         if (pType == "string")
                         {
                             if (pRequired == false)
@@ -202,6 +226,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                             {
                                 pType += "?";
                             }
+                        }
+                        if (pType == "FileParameter?")
+                        {
+                            pType = "FileParameter";
                         }
 
                         var p = new Property(pType, pName, true);
@@ -219,7 +247,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                         }
                         if (cName == "ChatCompletions" && p.Name == "Messages")
                         {
-                            p.TypeName.Name = "List<ChatMessage>";
+                            p.TypeName.Name = "List<IChatMessage>";
                             p.Initializer = "new ()";
                         }
                         if (cName == "ThreadCreate" && p.Name == "Messages")
@@ -230,41 +258,11 @@ namespace HigLabo.OpenAI.CodeGenerator
                         {
                             p.Initializer = "\"float\"";
                         }
-                        if (pType == "Stream?")
+                        if (pType == "FileParameter")
                         {
                             hasFileProperty = true;
-                            if (p.Set != null)
-                            {
-                                p.Set.Modifier = AccessModifier.Private;
-                            }
-
-                            cParameter.ImplementInterfaces.Add(new TypeName("IFileParameter"));
-
-                            var pParameterName = new Property("string", "IFileParameter.ParameterName");
-                            cParameter.Properties.Add(pParameterName);
-                            pParameterName.Modifier.AccessModifier = MethodAccessModifier.None;
-                            pParameterName.Get = new PropertyBody(PropertyBodyType.Get);
-                            pParameterName.Get.Body.Add(SourceCodeLanguage.CSharp, $"return \"{pRawName}\";");
-                            pParameterName.Set = null;
-
-                            var pFileName = new Property("string", "IFileParameter.FileName", true);
-                            cParameter.Properties.Add(pFileName);
-                            pFileName.Modifier.AccessModifier = MethodAccessModifier.None;
-                            pFileName.Initializer = "\"\"";
-
-                            var mdGetFileStream = new Method(MethodAccessModifier.None, "IFileParameter.GetFileStream");
-                            cParameter.Methods.Add(mdGetFileStream);
-                            mdGetFileStream.ReturnTypeName = new TypeName("Stream");
-                            mdGetFileStream.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} == null) throw new InvalidOperationException(\"{pName} property must be set.\");");
-                            mdGetFileStream.Body.Add(SourceCodeLanguage.CSharp, $"return this.{pName};");
-
-                            var mdSetFile = new Method(MethodAccessModifier.Public, "SetFile");
-                            cParameter.Methods.Add(mdSetFile);
-                            mdSetFile.Parameters.Add(new MethodParameter("string", "fileName"));
-                            mdSetFile.Parameters.Add(new MethodParameter("Stream", "stream"));
-                            mdSetFile.Body.Add(SourceCodeLanguage.CSharp, $"((IFileParameter)this).FileName = fileName;");
-                            mdSetFile.Body.Add(SourceCodeLanguage.CSharp, $"this.{pName} = stream;");
-
+                            p.Set!.Modifier = AccessModifier.Private;
+                            p.Initializer = $"new FileParameter(\"{p.Name.ToLower()}\")";
                         }
                         p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.GetAttribute("textContent") ?? "";
                         cParameter.Properties.Add(p);
@@ -277,20 +275,20 @@ namespace HigLabo.OpenAI.CodeGenerator
 
                         if (pRequired)
                         {
-                            if (pType == "Stream?")
+                            if (pType == "FileParameter")
                             {
-                                mdAsync.Parameters.Add(new MethodParameter("string", "fileName"));
-                                mdAsync.Parameters.Add(new MethodParameter("Stream", p.Name.ToCamelCase()));
-                                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.SetFile(fileName, {p.Name.ToCamelCase()});");
+                                mdAsync.Parameters.Add(new MethodParameter("string", p.Name.ToCamelCase() + "FileName"));
+                                mdAsync.Parameters.Add(new MethodParameter("Stream", p.Name.ToCamelCase() + "Stream"));
+                                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name}.SetFile({p.Name.ToCamelCase()}FileName, {p.Name.ToCamelCase()}Stream);");
                             }
                             else
                             {
                                 mdAsync.Parameters.Add(new MethodParameter(p.TypeName.Name, p.Name.ToCamelCase()));
                                 mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
-
-                                mdStreamAsync.Parameters.Add(new MethodParameter(p.TypeName.Name, p.Name.ToCamelCase()));
-                                mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
                             }
+
+                            mdStreamAsync.Parameters.Add(new MethodParameter(p.TypeName.Name, p.Name.ToCamelCase()));
+                            mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, $"p.{p.Name} = {p.Name.ToCamelCase()};");
                         }
                     }
                 }
@@ -320,19 +318,33 @@ namespace HigLabo.OpenAI.CodeGenerator
             var sendAsyncMethodName = "SendJsonAsync";
             if (hasFileProperty)
             {
+                cParameter.ImplementInterfaces.Add(new TypeName("IFileParameter"));
                 sendAsyncMethodName = "SendFormDataAsync";
+
+                var mdGetFileParameters = new Method(MethodAccessModifier.None, "IFileParameter.GetFileParameters");
+                mdGetFileParameters.ReturnTypeName = new TypeName("IEnumerable<FileParameter>");
+                cParameter.Methods.Add(mdGetFileParameters);
 
                 foreach (var item in propertyList)
                 {
                     var pName = item.Name;
+                    if (pName == "Timestamp_Granularities")
+                    {
+                        mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = $\"[{{string.Format(\",\", this.Timestamp_Granularities)}}]\";");
+                        continue;
+                    }
                     var pType = item.TypeName.Name;
-                    if (hasFileProperty && pType != "Stream?")
+                    if (hasFileProperty)
                     {
                         if (pType.EndsWith("?"))
                         {
                             if (pType == "string?")
                             {
                                 mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName};");
+                            }
+                            else if (pType == "FileParameter?")
+                            {
+                                mdGetFileParameters.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) yield return this.{pName};");
                             }
                             else
                             {
@@ -344,6 +356,10 @@ namespace HigLabo.OpenAI.CodeGenerator
                             if (pType == "string")
                             {
                                 mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName};");
+                            }
+                            else if (pType == "FileParameter")
+                            {
+                                mdGetFileParameters.Body.Add(SourceCodeLanguage.CSharp, $"yield return this.{pName};");
                             }
                             else
                             {
@@ -378,6 +394,9 @@ namespace HigLabo.OpenAI.CodeGenerator
                 }
                 cClient.Methods.Add(mdAsync0);
             }
+
+
+            var hasStreamMethod = streamResult.IsNullOrEmpty() == false;
             {
                 mdAsync.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
                 if (propertyList.Count == 0)
@@ -421,7 +440,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     var mdStreamAsync0 = mdStreamAsync.Copy();
                     mdStreamAsync0.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -433,7 +452,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     mdStreamAsync.Parameters.Add(new MethodParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken"));
                     mdStreamAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, cancellationToken))");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -444,36 +463,55 @@ namespace HigLabo.OpenAI.CodeGenerator
                 {
                     var md2 = new Method(MethodAccessModifier.Public, cName + "StreamAsync");
                     md2.Parameters.Add(new MethodParameter(cName + "Parameter", "parameter"));
+                    md2.Parameters.Add(new MethodParameter(streamResult, "result"));
                     md2.Parameters.Add(new MethodParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken"));
                     md2.ReturnTypeName.Name = "async IAsyncEnumerable";
-                    md2.ReturnTypeName.GenericTypes.Add(new TypeName("ChatCompletionChunk"));
+                    md2.ReturnTypeName.GenericTypes.Add(new TypeName("string"));
 
                     md2.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
-                    var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))");
-                    cb0.CurlyBracket = true;
+                    var cb2 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))");
+                    cb2.CurlyBracket = true;
                     {
-                        cb0.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                        cb2.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
                     }
-                    md2.Body.Add(cb0);
+                    md2.Body.Add(cb2);
 
                     var md1 = md2.Copy();
                     md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
                     md1.Body.Clear();
-                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, CancellationToken.None))");
+                    md1.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))");
                     cb1.CurlyBracket = true;
                     {
                         cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
                     }
                     md1.Body.Add(cb1);
-       
+
+                    var md0 = md1.Copy();
+                    md0.Parameters.RemoveAt(md0.Parameters.Count - 1);
+                    md0.Body.Clear();
+                    md0.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
+                    var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))");
+                    cb0.CurlyBracket = true;
+                    {
+                        cb0.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                    }
+                    md0.Body.Add(cb0);
+
+                    cClient.Methods.Add(md0);
                     cClient.Methods.Add(md1);
                     cClient.Methods.Add(md2);
                 }
+            }
+            if (hasAssistantStreamMethod)
+            {
+
             }
 
             Directory.CreateDirectory(Path.Combine(OutputFolderPath, "Endpoint"));
             var filePath = Path.Combine(OutputFolderPath, "Endpoint", cName + ".cs");
             this.WriteFile(filePath, sc);
+            Console.WriteLine($"{filePath}");
         }
         private string GetClassName(string endpointAnchor)
         {
@@ -483,13 +521,20 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve fine-tuning job") { return "FineTuningJobRetrieve"; }
             if (endpointAnchor == "Cancel fine-tuning") { return "FineTuningJobCancel"; }
             if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
+            if (endpointAnchor == "List fine-tuning checkpoints") { return "FineTuningJobsCheckpoints"; }
+    
+            if (endpointAnchor == "Create batch") { return "BatchCreate"; }
+            if (endpointAnchor == "Retrieve batch") { return "BatchRetrieve"; }
+            if (endpointAnchor == "Cancel batch") { return "BatchCancel"; }
+     
             if (endpointAnchor == "Upload file") { return "FileUpload"; }
             if (endpointAnchor == "Delete file") { return "FileDelete"; }
             if (endpointAnchor == "Retrieve file") { return "FileRetrieve"; }
             if (endpointAnchor == "Retrieve file content") { return "FileContentGet"; }
             if (endpointAnchor == "Retrieve model") { return "ModelRetrieve"; }
-            if (endpointAnchor == "Delete fine-tune model") { return "ModelDelete"; }
+            if (endpointAnchor == "Delete a fine-tuned model") { return "ModelDelete"; }
             if (endpointAnchor == "Create moderation") { return "ModerationCreate"; }
+      
             if (endpointAnchor == "Create assistantBeta") { return "AssistantCreate"; }
             if (endpointAnchor == "Retrieve assistantBeta") { return "AssistantRetrieve"; }
             if (endpointAnchor == "Modify assistantBeta") { return "AssistantModify"; }
@@ -498,6 +543,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve assistant fileBeta") { return "AssistantFileRetrieve"; }
             if (endpointAnchor == "Delete assistant fileBeta") { return "AssistantFileDelete"; }
             if (endpointAnchor == "List assistant filesBeta") { return "AssistantFiles"; }
+        
             if (endpointAnchor == "Create threadBeta") { return "ThreadCreate"; }
             if (endpointAnchor == "Retrieve threadBeta") { return "ThreadRetrieve"; }
             if (endpointAnchor == "Modify threadBeta") { return "ThreadModify"; }
@@ -506,31 +552,55 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve messageBeta") { return "MessageRetrieve"; }
             if (endpointAnchor == "Modify messageBeta") { return "MessageModify"; }
             if (endpointAnchor == "List messagesBeta") { return "Messages"; }
+            if (endpointAnchor == "Delete messageBeta") { return "MessageDelete"; }
+
             if (endpointAnchor == "Create runBeta") { return "RunCreate"; }
             if (endpointAnchor == "Retrieve runBeta") { return "RunRetrieve"; }
             if (endpointAnchor == "Modify runBeta") { return "RunModify"; }
             if (endpointAnchor == "List runsBeta") { return "Runs"; }
+   
             if (endpointAnchor == "Retrieve message fileBeta") { return "MessageFileRetrieve"; }
             if (endpointAnchor == "List message filesBeta") { return "MessageFiles"; }
+   
             if (endpointAnchor == "Submit tool outputs to runBeta") { return "SubmitToolOutputs"; }
             if (endpointAnchor == "Cancel a runBeta") { return "RunCancel"; }
             if (endpointAnchor == "Create thread and runBeta") { return "ThreadRun"; }
             if (endpointAnchor == "Retrieve run stepBeta") { return "RunStepRetrieve"; }
             if (endpointAnchor == "List run stepsBeta") { return "RunSteps"; }
 
+            if (endpointAnchor == "Create vector storeBeta") { return "VectorStoreCreate"; }
+            if (endpointAnchor == "List vector storesBeta") { return "VectorStores"; }
+            if (endpointAnchor == "Retrieve vector storeBeta") { return "VectorStoreRetrieve"; }
+            if (endpointAnchor == "Modify vector storeBeta") { return "VectorStoreModify"; }
+            if (endpointAnchor == "Delete vector storeBeta") { return "VectorStoreDelete"; }
+
+            if (endpointAnchor == "Create vector store fileBeta") { return "VectorStoreFileCreate"; }
+            if (endpointAnchor == "List vector store filesBeta") { return "VectorStoreFiles"; }
+            if (endpointAnchor == "Retrieve vector store fileBeta") { return "VectorStoreFileRetrieve"; }
+            if (endpointAnchor == "Delete vector store fileBeta") { return "VectorStoreFileDelete"; }
+
+            if (endpointAnchor == "Create vector store file batchBeta") { return "VectorStoreFileBatchCreate"; }
+            if (endpointAnchor == "Retrieve vector store file batchBeta") { return "VectorStoreFileBatchRetrieve"; }
+            if (endpointAnchor == "Cancel vector store file batchBeta") { return "VectorStoreFileBatchCancel"; }
+            if (endpointAnchor == "List vector store files in a batchBeta") { return "VectorStoreFileBatches"; }
+
             return cName;
         }
         private string GetTypeName(string typeName, string className, string propertyName, bool required)
         {
-            if (className == "ChatCompletions" && propertyName == "Messages") { return "List<ChatMessage>"; }
+            if (className == "ChatCompletions" && propertyName == "Messages") { return "List<IChatMessage>"; }
             if (className == "Embeddings" && typeName == "string or array") { return "string"; }
-            if (className == "FileUpload" && propertyName == "File") { return "Stream?"; }
-            if (className == "ImagesVariations" && propertyName == "Image") { return "Stream?"; }
+            if (className == "FileUpload" && propertyName == "File") { return "FileParameter"; }
+            if (className == "ImagesVariations" && propertyName == "Image") { return "FileParameter"; }
             if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
             if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
+            if (className == "SubmitToolOutputs" && propertyName == "Tool_Outputs") { return "List<ToolOutput>?"; }
 
             if (propertyName == "Tools") { return "List<ToolObject>"; }
             if (propertyName == "Tool_choice") { return "object?"; }
+            if (propertyName == "Timestamp_Granularities") { return "double[]"; }
+            if (propertyName == "Additional_Messages") { return "List<ThreadAdditionalMessageObject>?"; }
+            if (propertyName == "Integrations") { return "List<FineTuningIntegrationObject>?"; }
 
             if (typeName == "string") { return "string"; }
             if (typeName == "string or null") { return "string?"; }
@@ -538,14 +608,17 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (typeName == "string or array") { return "string"; }
             if (typeName == "boolean") { return "bool"; }
             if (typeName == "boolean or null") { return "bool?"; }
-            if (typeName == "interger") { return "int"; }
+            if (typeName == "integer") { return "int"; }
+            if (typeName == "integer?") { return "int?"; }
             if (typeName == "integer or null") { return "int?"; }
             if (typeName == "number") { return "double"; }
             if (typeName == "number or null") { return "double?"; }
-            if (typeName == "file") { return "Stream?"; }
+            if (typeName == "file") { return "FileParameter"; }
             if (typeName == "array") { return "List<string>"; }
             if (typeName == "string / array / null") { return "List<string>"; }
+            if (typeName == "array or null") { return "List<string>"; }
             if (typeName == "map") { return "object?"; }
+            if (typeName == "object or null") { return "object?"; }
             if (typeName == "object")
             {
                 if (required) { return "object"; }
@@ -711,6 +784,34 @@ namespace HigLabo.OpenAI.CodeGenerator
             {
                 return "RestApiDataResponse<List<RunStepObject>>";
             }
+            else if (cName == "VectorStores")
+            {
+                return "RestApiDataResponse<List<VectorStoreObject>>";
+            }
+            else if (cName == "VectorStoreCreate" ||
+                cName == "VectorStoreModify" ||
+                cName == "VectorStoreRetrieve")
+            {
+                return "VectorStoreObjectResponse";
+            }
+            else if (cName == "VectorStoreFiles")
+            {
+                return "RestApiDataResponse<List<VectorStoreFileObject>>";
+            }
+            else if (cName == "VectorStoreFileCreate")
+            {
+                return "VectorStoreFileObjectResponse";
+            }
+            else if (cName == "VectorStoreFileBatches")
+            {
+                return "RestApiDataResponse<List<VectorStoreFileBatchObject>>";
+            }
+            else if (cName == "VectorStoreFileBatchCreate" ||
+                cName == "VectorStoreFileBatchRetrieve" ||
+                cName == "VectorStoreFileBatchCancel")
+            {
+                return "VectorStoreFileBatchObjectResponse";
+            }
             else
             {
                 return "RestApiResponse";
@@ -736,6 +837,17 @@ namespace HigLabo.OpenAI.CodeGenerator
             md.Body.Add(SourceCodeLanguage.CSharp, $"return $\"{path.Replace("https://api.openai.com/v1", "")}\";");
 
             return md;
+        }
+        private bool IsAssistantApiEndpoint(string className)
+        {
+            if (className.StartsWith("Assistant")) { return true; }
+            if (className.StartsWith("Thread")) { return true; }
+            if (className.StartsWith("Run")) { return true; }
+            if (className.StartsWith("SubmitToolOutputs")) { return true; }
+            if (className.StartsWith("Message")) { return true; }
+            if (className.StartsWith("MessageFile")) { return true; }
+            if (className.StartsWith("VectorStore")) { return true; }
+            return false;
         }
 
         protected void WriteFile(string filePath, SourceCode sourceCode)

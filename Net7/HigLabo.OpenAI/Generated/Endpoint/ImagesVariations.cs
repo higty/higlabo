@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -22,7 +26,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public int? N { get; set; }
         /// <summary>
-        /// The format in which the generated images are returned. Must be one of url or b64_json.
+        /// The format in which the generated images are returned. Must be one of url or b64_json. URLs are only valid for 60 minutes after the image has been generated.
         /// </summary>
         public string? Response_Format { get; set; }
         /// <summary>

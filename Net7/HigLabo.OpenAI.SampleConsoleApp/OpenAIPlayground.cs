@@ -1,8 +1,12 @@
-﻿using System;
+﻿using HigLabo.Core;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
@@ -14,7 +18,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await ProcessAssistantsWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -24,10 +28,22 @@ namespace HigLabo.OpenAI
         }
         private void SetAzureSetting()
         {
-            var apiKey = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.txt");
-            OpenAIClient = new OpenAIClient(new AzureSettings(apiKey, "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
+            var json = File.ReadAllText("C:\\Dev\\AzureOpenAIApiKey.json");
+            OpenAIClient = new OpenAIClient(JsonConvert.DeserializeObject<AzureSettings>(json)!);
+        }
+        private void SetGroqSetting()
+        {
+            var apiKey = File.ReadAllText("C:\\Dev\\GroqApiKey.txt");
+            OpenAIClient = new OpenAIClient(new GroqSettings(apiKey));
         }
 
+        private async ValueTask AudioFileDownload()
+        {
+            var cl = OpenAIClient;
+
+            var res = await cl.AudioSpeechAsync("tts-1", "Stay Hungry. Stay Foolish. Thank you all very much.", "alloy");
+            File.WriteAllBytes("D:\\Data\\Dev\\GPT_Audio.mp3", res.Stream!.ToByteArray());
+        }
         private async ValueTask AudioTranslations()
         {
             var cl = OpenAIClient;
@@ -38,6 +54,19 @@ namespace HigLabo.OpenAI
 
             var res = await cl.AudioTranslationsAsync(p);
             Console.WriteLine(res.GetResponseBodyText());
+        }
+        private async ValueTask AudioTranslationsFromUrl()
+        {
+            var cl = OpenAIClient;
+
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("http://www.yourdomain.com/file/myfile.mp3");
+            var stream = await response.Content.ReadAsStreamAsync();
+
+            var p = new AudioTranslationsParameter();
+            p.File.SetFile("myfile.mp3", stream);
+            p.Model = "whisper-1";
+            var res = await cl.AudioTranslationsAsync(p);
         }
         private async ValueTask AudioTranscriptions()
         {
@@ -55,6 +84,10 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
             var res = await cl.EmbeddingsAsync("Crafting prompts\r\nWe generally recommend taking the set of instructions and prompts that you found worked best for the model prior to fine-tuning, and including them in every training example. This should let you reach the best and most general results, especially if you have relatively few (e.g. under a hundred) training examples.\r\n\r\nIf you would like to shorten the instructions or prompts that are repeated in every example to save costs, keep in mind that the model will likely behave as if those instructions were included, and it may be hard to get the model to ignore those \"baked-in\" instructions at inference time.\r\n\r\nIt may take more training examples to arrive at good results, as the model has to learn entirely through demonstration and without guided instructions."
                 , "text-embedding-ada-002");
+            foreach (var item in res.Data)
+            {
+                var embeddings = item.Embedding;
+            }
             Console.WriteLine(res);
         }
         private async ValueTask ChatCompletion()
@@ -65,7 +98,11 @@ namespace HigLabo.OpenAI
             var theme = "How to enjoy coffee";
             p.Messages.Add(new ChatMessage(ChatMessageRole.User
                 , $"Can you provide me with some ideas for blog posts about {theme}?"));
-            p.Model = "gpt-3.5-turbo";
+            p.Model = cl.ServiceProvider switch
+            {
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4",
+            };
             var res = await cl.ChatCompletionsAsync(p);
             foreach (var choice in res.Choices)
             {
@@ -74,6 +111,10 @@ namespace HigLabo.OpenAI
 
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Total tokens: " + res.Usage.Total_Tokens);
+  
+            //And you can get actual request body and response body by these property.
             var iRes = res as IRestApiResponse;
             Console.WriteLine(iRes.RequestBodyText);
             Console.WriteLine();
@@ -83,20 +124,52 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var theme = "How to enjoy coffee";
-            var processor = new ChatCompletionStreamProcessor();
-            await foreach (var chunk in cl.ChatCompletionsStreamAsync($"Can you provide me with some ideas for blog posts about {theme}?", "gpt-3.5-turbo"))
+            var model = cl.ServiceProvider switch
             {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
-                }
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4",
+            };
+            var result = new ChatCompletionStreamResult();
+            await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", model, result, CancellationToken.None))
+            {
+                Console.Write(text);
             }
             Console.WriteLine();
-            Console.WriteLine("DONE");
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine(processor.GetContent());
+            Console.WriteLine("***********************");
+            Console.WriteLine("Finish reason: " + result.GetFinishReason());
+            Console.WriteLine("■DONE");
+        }
+        private async ValueTask ChatCompletionStreamWithUsageResult()
+        {
+            var cl = OpenAIClient;
+
+            var p = new ChatCompletionsParameter();
+            p.AddUserMessage($"How to enjoy coffee");
+            p.Model = "gpt-4";
+            if (cl.ServiceProvider == ServiceProvider.OpenAI)
+            {
+                p.Stream_Options = new
+                {
+                    include_usage = true,
+                };
+            }
+            var result = new ChatCompletionStreamResult();
+            await foreach (string text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(text);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+
+            var usage = result.GetUsageResult();
+            if (usage != null)
+            {
+                Console.WriteLine("------------------------");
+                Console.WriteLine("Prompt tokne: " + usage.Prompt_Tokens);
+                Console.WriteLine("Completion tokne: " + usage.Completion_Tokens);
+                Console.WriteLine("Total tokne: " + usage.Total_Tokens);
+            }
+            Console.WriteLine("------------------------");
         }
         private async ValueTask ChatCompletionStreamWithFunctionCalling()
         {
@@ -104,13 +177,81 @@ namespace HigLabo.OpenAI
 
             var p = new ChatCompletionsParameter();
             //ChatGPT can correct Newyork,Sanflansisco to New york and San Flancisco.
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of these locations. Newyork, Sanflansisco, Paris, Tokyo."));
-            p.Model = "gpt-3.5-turbo";
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of Tokyo."));
+            p.Model = cl.ServiceProvider switch
+            {
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4",
+            };
 
+            p.Tools = new List<ToolObject>();
+            p.Tools.Add(this.CreateGetWheatherTool());
+            p.Tools.Add(this.CreateGetLatLongTool());
+
+            var result = new ChatCompletionStreamResult();
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(text);
+            }
+            Console.WriteLine();
+
+            foreach (var f in result.GetFunctionCallList())
+            {
+                Console.WriteLine("■Function name is " + f.Name);
+                Console.WriteLine("■Arguments is " + f.Arguments);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("DONE");
+        }
+        private async ValueTask ChatCompletionVision()
+        {
+            var cl = OpenAIClient;
+
+            var p = new ChatCompletionsParameter();
+
+            var vMessage = new ChatImageMessage(ChatMessageRole.User);
+            vMessage.AddTextContent("Please describe this image.");
+            vMessage.AddImageFile(Path.Combine(Environment.CurrentDirectory, "Image", "Pond.jpg"));
+            p.Messages.Add(vMessage);
+            p.Model = "gpt-4-vision-preview";
+            p.Max_Tokens = 300;
+            p.Stream = true;
+
+            var result = new ChatCompletionStreamResult();
+            await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(text);
+            }
+            Console.WriteLine("■DONE");
+        }
+
+        private ToolObject CreateGetWheatherTool()
+        {
             var tool = new ToolObject("function");
             tool.Function = new FunctionObject();
             tool.Function.Name = "getWhether";
             tool.Function.Description = "This service can get whether of specified location.";
+            tool.Function.Parameters = new
+            {
+                type = "object",
+                properties = new
+                {
+                    location = new 
+                    {
+                        type = "string",
+                        description = "Location list that you want to know.",
+                    },
+                }
+            };
+            return tool;
+        }
+        private ToolObject CreateGetTouristSpotTool()
+        {
+            var tool = new ToolObject("function");
+            tool.Function = new FunctionObject();
+            tool.Function.Name = "getTouristSpot";
+            tool.Function.Description = "This service can get tourist spot of specified region.";
             tool.Function.Parameters = new
             {
                 type = "object",
@@ -127,32 +268,33 @@ namespace HigLabo.OpenAI
                     }
                 }
             };
-            p.Tools = new List<ToolObject>();
-            p.Tools.Add(tool);
-
-            var processor = new ChatCompletionStreamProcessor();
-            //You must set Stream property to true to receive server sent event stream on chat completion endpoint.
-            p.Stream = true;
-            await foreach (var chunk in cl.GetStreamAsync(p))
-            {
-                foreach (var choice in chunk.Choices)
-                {
-                    Console.Write(choice.Delta.Content);
-                    processor.Process(chunk);
-                }
-            }
-            Console.WriteLine();
-
-            var f = processor.GetFunctionCall();
-            if (f != null)
-            {
-                Console.WriteLine("■Function name is " + f.Name);
-                Console.WriteLine("■Arguments is " + f.Arguments);
-            }
-
-            Console.WriteLine();
-            Console.WriteLine("DONE");
+            return tool;
         }
+        private ToolObject CreateGetLatLongTool()
+        {
+            var tool = new ToolObject("function");
+            tool.Function = new FunctionObject();
+            tool.Function.Name = "getLatLong";
+            tool.Function.Description = "This service can get latitude and longitude of specified location.";
+            tool.Function.Parameters = new
+            {
+                type = "object",
+                properties = new
+                {
+                    locationList = new
+                    {
+                        type = "array",
+                        description = "Location list that you want to know.",
+                        items = new
+                        {
+                            type = "string",
+                        }
+                    }
+                }
+            };
+            return tool;
+        }
+
         private async ValueTask FileList()
         {
             var cl = OpenAIClient;
@@ -171,16 +313,23 @@ namespace HigLabo.OpenAI
 
             var p = new FileUploadParameter();
             p.File.SetFile("092332_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\092332_hanrei.pdf"));
-            p.Purpose = "assistants";
+            p.SetPurpose(FilePurpose.Assistants);
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);
         }
-        private async ValueTask FileUpload_Finetune()
+		private async ValueTask ImageFileDownload()
+		{
+			var cl = OpenAIClient;
+
+			var fileResponse = await cl.FileContentGetAsync("file-ShIMh9E6jz4PNdLjWk5VJHQA");
+            File.WriteAllBytes("D:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
+		}
+		private async ValueTask FileUpload_Finetune()
         {
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.File.SetFile("FinetuneSample.txt", File.ReadAllBytes("D:\\Data\\Dev\\FinetuneSample.txt"));
+            p.File.SetFile($"FinetuneSample{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt", File.ReadAllBytes("D:\\Data\\Dev\\FinetuneSample.txt"));
             p.Purpose = "fine-tune";
             var res = await cl.FileUploadAsync(p);
 
@@ -238,18 +387,141 @@ namespace HigLabo.OpenAI
             var res = await cl.ModerationCreateAsync("We must kill all activist who attack museum. I will kill them and shoot myself after that.");
             Console.WriteLine(res);
         }
-        private async ValueTask AssistantCreate()
+
+        private async ValueTask<(string AssistantId, string ThreadId)> CreateNewThread()
+        {
+            var cl = OpenAIClient;
+            var assistantsResponse = await cl.AssistantsAsync();
+            var assistantId = "";
+            if (assistantsResponse.Data.Count == 0)
+            {
+                var res = await AssistantCreate("HigLabo assistant");
+                assistantId = res.Id;
+            }
+            else
+            {
+                assistantId = assistantsResponse.Data[0].Id;
+            }
+
+            {
+                var res = await cl.ThreadCreateAsync();
+                return (assistantId, res.Id);
+            }
+        }
+        private async ValueTask ProcessAssistants()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = "Hello! I want to know how to enjoy coffee in my life.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            //Streaming
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+                p.Temperature = 0.5;
+       
+                var result = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Thread));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+                Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Message));
+
+            }
+        }
+        private async ValueTask ProcessAssistantsWithFunctionCalling()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = $"I want to know the whether of Tokyo.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            //Streaming
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+                p.Tools = new List<ToolObject>();
+                p.Tools.Add(CreateGetWheatherTool());
+
+                var result = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+
+                if (result.Run != null)
+                {
+                    if (result.Run.Status == "requires_action" &&
+                        result.Run.Required_Action != null)
+                    {
+                        var p1 = new SubmitToolOutputsParameter();
+                        p1.Thread_Id = threadId;
+                        p1.Run_Id = result.Run.Id;
+                        p1.Tool_Outputs = new();
+                        foreach (var toolCall in result.Run.Required_Action.GetToolCallList())
+                        {
+                            Console.WriteLine(toolCall.ToString());
+
+                            //Pass output from calling your function. 
+                            var output = new ToolOutput();
+                            output.Tool_Call_Id = toolCall.Id;
+                            var o = new
+                            {
+                                Wheather = "Cloud",
+                                Temperature = "20℃",
+                                Forecast = "Rain after 3 hours",
+                            };
+                            output.Output = $"{toolCall.Function.Arguments} is {JsonConvert.SerializeObject(o)}";
+                            p1.Tool_Outputs.Add(output);
+                        }
+                        await foreach (var text in cl.SubmitToolOutputsStreamAsync(p1))
+                        {
+                            Console.Write(text);
+                        }
+                    }
+                }
+            }
+        }
+
+        private async ValueTask<AssistantCreateResponse> AssistantCreate(string name)
         {
             var cl = OpenAIClient;
 
             var p = new AssistantCreateParameter();
-            p.Name = "Legal tutor";
-            p.Instructions = "You are a personal legal tutor. Write and run code to legal questions based on passed files.";
-            p.Model = "gpt-4-1106-preview";
+            p.Name = name;
+            p.Instructions = "You are a personal assistant to help general task.";
+            if (cl.ServiceProvider == ServiceProvider.OpenAI)
+            {
+                p.Model = "gpt-4-turbo";
+            }
 
             p.Tools = new List<ToolObject>();
             p.Tools.Add(new ToolObject("code_interpreter"));
-            p.Tools.Add(new ToolObject("retrieval"));
+            if (cl.ServiceProvider == ServiceProvider.OpenAI)
+            {
+                p.Tools.Add(new ToolObject("file_search"));
+            }
 
             //var res0 = await cl.FilesAsync();
             //p.File_Ids = new List<string>();
@@ -263,7 +535,7 @@ namespace HigLabo.OpenAI
 
             var res = await cl.AssistantCreateAsync(p);
             Console.WriteLine(res);
-
+            return res;
         }
         private async ValueTask AssistantRetrieve()
         {
@@ -306,10 +578,70 @@ namespace HigLabo.OpenAI
             var p = new AssistantModifyParameter();
             p.Assistant_Id = id;
             p.Metadata = new {
-                MyKey1 = "MyValue1",
+                MyKey2 = "MyValue2",
                 CreateTime = DateTimeOffset.Now,
             };
             var res2 = await cl.AssistantModifyAsync(p);
+            Console.WriteLine(res2.GetResponseBodyText());
+        }
+        private async ValueTask SendMessage()
+        {
+            var cl = OpenAIClient;
+
+            var now = DateTimeOffset.Now;
+            var threadId = "";
+            if (threadId.Length == 0)
+            {
+                var res = await cl.ThreadCreateAsync();
+                threadId = res.Id;
+            }
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = "Hello! I want to know how to use OpenAI assistant API.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = "asst_xxxxxxxxxxxxxx";
+                p.Thread_Id = threadId;
+                var res = await cl.RunCreateAsync(p);
+                runId = res.Id;
+            }
+            var loopCount = 0;
+            Thread.Sleep(3000);
+            var interval = 1000;
+            while (true)
+            {
+                Thread.Sleep(interval);
+                var p = new RunRetrieveParameter();
+                p.Thread_Id = threadId;
+                p.Run_Id = runId;
+                var res = await cl.RunRetrieveAsync(p);
+                if (res.Status != "queued" &&
+                    res.Status != "in_progress" &&
+                    res.Status != "cancelling")
+                {
+                    var p1 = new MessagesParameter();
+                    p1.Thread_Id = threadId;
+                    p1.QueryParameter.Order = "desc";
+                    var res1 = await cl.MessagesAsync(p1);
+                    foreach (var item in res1.Data)
+                    {
+                        foreach (var content in item.Content)
+                        {
+                            if (content.Text == null) { continue; }
+                            Console.WriteLine(content.Text.Value);
+                        }
+                    }
+                    break;
+                }
+                loopCount++;
+                if (loopCount > 120) { break; }
+            }
+
         }
         private async ValueTask ThreadMessage()
         {
@@ -317,10 +649,11 @@ namespace HigLabo.OpenAI
 
             int pageNumbuer = 1;
             var p = new MessagesParameter();
-            p.Thread_Id = "thread_xxxxxxxxxxxxxxx";
-            //p.QueryParameter.Limit = 4;
+            p.Thread_Id = "thread_SLRZuUllau88ZWojp09K8B0U";
+            p.QueryParameter.Limit = 2;
             p.QueryParameter.Order = "desc";
 
+            var messageId = "";
             while (true)
             {
                 var res = await cl.MessagesAsync(p);
@@ -332,11 +665,16 @@ namespace HigLabo.OpenAI
                         Console.WriteLine(content.Text);
                         Console.WriteLine("--------------------------------------------------------");
                     }
+                    messageId = rMessage.Id;
                 }
                 pageNumbuer++;
                 if (res.Has_More == false) { break; }
                 p.QueryParameter.After = res.Last_Id;
             }
+
+            //Retrieve latest message.
+            var m = await cl.MessageRetrieveAsync(p.Thread_Id, messageId);
+
         }
         private async ValueTask Runs()
         {
@@ -356,6 +694,145 @@ namespace HigLabo.OpenAI
                     }
                 }
             }
+        }
+
+        private async ValueTask ProcessVectorStore()
+        {
+            var cl = OpenAIClient;
+
+            var assistantId = "";
+            var assistantName = "HigLabo vector store Assistant";
+            var assistantsResponse = await cl.AssistantsAsync();
+            foreach (var item in assistantsResponse.Data)
+            {
+                if (item.Name == assistantName)
+                {
+                    assistantId += item.Id;
+                    break;
+                }
+            }
+            if (assistantId.IsNullOrEmpty())
+            {
+                var res = await AssistantCreate(assistantName);
+                assistantId = res.Id;
+            }
+
+            var storesResponse = await cl.VectorStoresAsync();
+            var storeId = "";
+            var vectorStoreName = "HigLabo vector store";
+            if (storesResponse.Data.Count == 0)
+            {
+                var res = await VectorStoreCreate();
+                storeId = res.Id;
+            }
+            else
+            {
+                foreach (var item in storesResponse.Data)
+                {
+                    if (item.Name == vectorStoreName)
+                    {
+                        storeId = storesResponse.Data[0].Id;
+                        break;
+                    }
+                }
+            }
+            if (storeId.IsNullOrEmpty())
+            {
+                var p = new VectorStoreCreateParameter();
+                p.Name = vectorStoreName;
+                var res = await cl.VectorStoreCreateAsync(p);
+                storeId = res.Id;
+                Console.WriteLine(res);
+            }
+
+            var file_id = "";
+            {
+                var p = new FilesParameter();
+                p.QueryParameter.Purpose = "assistants";
+                var res = await cl.FilesAsync(p);
+                foreach (var item in res.Data)
+                {
+                    if (item.FileName == "1bit_transformers.pdf")
+                    {
+                        file_id = item.Id;
+                        break;
+                    }
+                }
+            }
+            if (file_id.IsNullOrEmpty())
+            {
+                var p = new FileUploadParameter();
+                p.File.SetFile("1bit_transformers.pdf", File.ReadAllBytes("D:\\Data\\1bit_transformers.pdf"));
+                p.SetPurpose(FilePurpose.Assistants);
+                var res = await cl.FileUploadAsync(p);
+                Console.WriteLine(res);
+
+                file_id = res.Id;
+            }
+            {
+                var p = new VectorStoreFileBatchCreateParameter();
+                p.Vector_Store_Id = storeId;
+                p.File_Ids = new List<string>();
+                p.File_Ids.Add(file_id);
+                var res = await cl.VectorStoreFileBatchCreateAsync(p);
+            }
+
+            {
+                var p = new AssistantModifyParameter();
+                p.Assistant_Id = assistantId;
+                p.Tool_Resources = new
+                {
+                    file_search = new
+                    {
+                        vector_store_ids = new string[] { storeId },
+                    },
+                };
+                var res = await cl.AssistantModifyAsync(p);
+                Console.WriteLine(res);
+            }
+
+
+            var now = DateTimeOffset.Now;
+            var threadId = "";
+            if (threadId.Length == 0)
+            {
+                var res = await cl.ThreadCreateAsync();
+                threadId = res.Id;
+            }
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+                p.Temperature = 0.5;
+                p.Additional_Messages = new List<ThreadAdditionalMessageObject>();
+                p.Additional_Messages.Add(new ThreadAdditionalMessageObject()
+                {
+                    Role = "user",
+                    Content = "I want to know about 1-bit transformers.",
+                });
+                var result = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Thread));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+                Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
+                Console.WriteLine(JsonConvert.SerializeObject(result.Message));
+
+            }
+        }
+        private async ValueTask<VectorStoreCreateResponse> VectorStoreCreate()
+        {
+            var cl = OpenAIClient;
+
+            var p = new VectorStoreCreateParameter();
+            p.Name = "HigLabo vector store";
+            var res = await cl.VectorStoreCreateAsync(p);
+            Console.WriteLine(res);
+            return res;
         }
     }
 }

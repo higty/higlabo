@@ -772,7 +772,7 @@ namespace HigLabo.OpenAI
             {
                 var p = new VectorStoreFileBatchCreateParameter();
                 p.Vector_Store_Id = storeId;
-                p.File_Ids = [];
+                p.File_Ids = new List<string>();
                 p.File_Ids.Add(file_id);
                 var res = await cl.VectorStoreFileBatchCreateAsync(p);
             }

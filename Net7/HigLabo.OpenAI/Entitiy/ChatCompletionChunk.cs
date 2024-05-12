@@ -11,6 +11,7 @@ namespace HigLabo.OpenAI
         public class Choice
         {
             public int Index { get; set; }
+            public object? Logprobs { get; set; } 
             public string? Finish_Reason { get; set; }
             public Message Delta { get; set; } = new();
             public Message Message { get; set; } = new();
@@ -70,6 +71,7 @@ namespace HigLabo.OpenAI
         public string Model { get; set; } = "";
         public string System_Fingerprint { get; set; } = "";
         public string Object { get; set; } = "";
+        public ChatCompletionUsageResult? Usage { get; set; } 
 
         public DateTimeOffset CreateTime
         {
