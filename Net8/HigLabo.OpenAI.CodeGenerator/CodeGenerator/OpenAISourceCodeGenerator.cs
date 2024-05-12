@@ -32,6 +32,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             var driver = new ChromeDriver(options);
 
             driver.Navigate().GoToUrl("https://platform.openai.com/docs/api-reference/audio");
+            Thread.Sleep(5000);
 
             var ee = driver.FindElements(By.CssSelector("div[class='section endpoint']"));
             //CreateSourceCode(ee[71]);
@@ -593,6 +594,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (className == "ImagesVariations" && propertyName == "Image") { return "FileParameter"; }
             if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
             if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
+            if (className == "SubmitToolOutputs" && propertyName == "Tool_Outputs") { return "List<ToolOutput>?"; }
 
             if (propertyName == "Tools") { return "List<ToolObject>"; }
             if (propertyName == "Tool_choice") { return "object?"; }
