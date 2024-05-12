@@ -14,11 +14,11 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// The ID of an uploaded file that contains requests for the new batch.See upload file for how to upload a file.Your input file must be formatted as a JSONL file, and must be uploaded with the purpose batch.
+        /// The ID of an uploaded file that contains requests for the new batch.See upload file for how to upload a file.Your input file must be formatted as a JSONL file, and must be uploaded with the purpose batch. The file can contain up to 50,000 requests, and can be up to 100 MB in size.
         /// </summary>
         public string Input_File_Id { get; set; } = "";
         /// <summary>
-        /// The endpoint to be used for all requests in the batch. Currently /v1/chat/completions and /v1/embeddings are supported.
+        /// The endpoint to be used for all requests in the batch. Currently /v1/chat/completions, /v1/embeddings, and /v1/completions are supported. Note that /v1/embeddings batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
         /// </summary>
         public string Endpoint { get; set; } = "";
         /// <summary>

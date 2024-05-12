@@ -20,7 +20,7 @@ namespace HigLabo.OpenAI
         }
         public string Thread_Id { get; set; } = "";
         public string Status { get; set; } = "";
-        public object? Required_Action { get; set; }
+        public RequiredAction? Required_Action { get; set; }
         public object? Last_Error { get; set; }
         public Int64 Expires_At { get; set; }
         public DateTimeOffset ExpireTime

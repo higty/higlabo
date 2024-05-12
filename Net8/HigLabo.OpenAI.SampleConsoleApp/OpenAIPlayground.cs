@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStreamWithUsageResult();
+            await ProcessAssistantsWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -177,61 +177,16 @@ namespace HigLabo.OpenAI
 
             var p = new ChatCompletionsParameter();
             //ChatGPT can correct Newyork,Sanflansisco to New york and San Flancisco.
-            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of these locations. Newyork, Sanflansisco, Paris, Tokyo."));
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of Tokyo."));
             p.Model = cl.ServiceProvider switch
             {
                 ServiceProvider.Groq => "llama3-70b-8192",
                 _ => "gpt-4",
             };
 
-            {
-                var tool = new ToolObject("function");
-                tool.Function = new FunctionObject();
-                tool.Function.Name = "getWhether";
-                tool.Function.Description = "This service can get whether of specified location.";
-                tool.Function.Parameters = new
-                {
-                    type = "object",
-                    properties = new
-                    {
-                        locationList = new
-                        {
-                            type = "array",
-                            description = "Location list that you want to know.",
-                            items = new
-                            {
-                                type = "string",
-                            }
-                        }
-                    }
-                };
-                p.Tools = new List<ToolObject>();
-                p.Tools.Add(tool);
-            }
-            {
-                var tool = new ToolObject("function");
-                tool.Function = new FunctionObject();
-                tool.Function.Name = "getLatLong";
-                tool.Function.Description = "This service can get latitude and longitude of specified location.";
-                tool.Function.Parameters = new
-                {
-                    type = "object",
-                    properties = new
-                    {
-                        locationList = new
-                        {
-                            type = "array",
-                            description = "Location list that you want to know.",
-                            items = new
-                            {
-                                type = "string",
-                            }
-                        }
-                    }
-                };
-                p.Tools = new List<ToolObject>();
-                p.Tools.Add(tool);
-            }
+            p.Tools = new List<ToolObject>();
+            p.Tools.Add(this.CreateGetWheatherTool());
+            p.Tools.Add(this.CreateGetLatLongTool());
 
             var result = new ChatCompletionStreamResult();
             await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
@@ -269,6 +224,75 @@ namespace HigLabo.OpenAI
                 Console.Write(text);
             }
             Console.WriteLine("■DONE");
+        }
+
+        private ToolObject CreateGetWheatherTool()
+        {
+            var tool = new ToolObject("function");
+            tool.Function = new FunctionObject();
+            tool.Function.Name = "getWhether";
+            tool.Function.Description = "This service can get whether of specified location.";
+            tool.Function.Parameters = new
+            {
+                type = "object",
+                properties = new
+                {
+                    location = new 
+                    {
+                        type = "string",
+                        description = "Location list that you want to know.",
+                    },
+                }
+            };
+            return tool;
+        }
+        private ToolObject CreateGetTouristSpotTool()
+        {
+            var tool = new ToolObject("function");
+            tool.Function = new FunctionObject();
+            tool.Function.Name = "getTouristSpot";
+            tool.Function.Description = "This service can get tourist spot of specified region.";
+            tool.Function.Parameters = new
+            {
+                type = "object",
+                properties = new
+                {
+                    locationList = new
+                    {
+                        type = "array",
+                        description = "Location list that you want to know.",
+                        items = new
+                        {
+                            type = "string",
+                        }
+                    }
+                }
+            };
+            return tool;
+        }
+        private ToolObject CreateGetLatLongTool()
+        {
+            var tool = new ToolObject("function");
+            tool.Function = new FunctionObject();
+            tool.Function.Name = "getLatLong";
+            tool.Function.Description = "This service can get latitude and longitude of specified location.";
+            tool.Function.Parameters = new
+            {
+                type = "object",
+                properties = new
+                {
+                    locationList = new
+                    {
+                        type = "array",
+                        description = "Location list that you want to know.",
+                        items = new
+                        {
+                            type = "string",
+                        }
+                    }
+                }
+            };
+            return tool;
         }
 
         private async ValueTask FileList()
@@ -364,10 +388,9 @@ namespace HigLabo.OpenAI
             Console.WriteLine(res);
         }
 
-        private async ValueTask ProcessAssistants()
+        private async ValueTask<(string AssistantId, string ThreadId)> CreateNewThread()
         {
             var cl = OpenAIClient;
-
             var assistantsResponse = await cl.AssistantsAsync();
             var assistantId = "";
             if (assistantsResponse.Data.Count == 0)
@@ -380,34 +403,30 @@ namespace HigLabo.OpenAI
                 assistantId = assistantsResponse.Data[0].Id;
             }
 
-            var now = DateTimeOffset.Now;
-            var threadId = "";
-            if (threadId.Length == 0)
             {
                 var res = await cl.ThreadCreateAsync();
-                threadId = res.Id;
+                return (assistantId, res.Id);
             }
+        }
+        private async ValueTask ProcessAssistants()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
             {
                 var p = new MessageCreateParameter();
                 p.Thread_Id = threadId;
                 p.Role = "user";
                 p.Content = "Hello! I want to know how to enjoy coffee in my life.";
-                //var res = await cl.MessageCreateAsync(p);
+                var res = await cl.MessageCreateAsync(p);
             }
-
             //Streaming
-            if (true)
             {
                 var p = new RunCreateParameter();
                 p.Assistant_Id = assistantId;
                 p.Thread_Id = threadId;
                 p.Temperature = 0.5;
-                p.Additional_Messages = new List<ThreadAdditionalMessageObject>();
-                p.Additional_Messages.Add(new ThreadAdditionalMessageObject()
-                {
-                    Role = "user",
-                    Content = "Hello! I want to know how to enjoy coffee in my life.",
-                });
+       
                 var result = new AssistantMessageStreamResult();
                 await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
                 {
@@ -422,6 +441,69 @@ namespace HigLabo.OpenAI
 
             }
         }
+        private async ValueTask ProcessAssistantsWithFunctionCalling()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.Content = $"I want to know the whether of Tokyo.";
+                var res = await cl.MessageCreateAsync(p);
+            }
+            //Streaming
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+                p.Tools = new List<ToolObject>();
+                p.Tools.Add(CreateGetWheatherTool());
+
+                var result = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                Console.WriteLine();
+
+                Console.WriteLine(JsonConvert.SerializeObject(result.Run));
+
+                if (result.Run != null)
+                {
+                    if (result.Run.Status == "requires_action" &&
+                        result.Run.Required_Action != null)
+                    {
+                        var p1 = new SubmitToolOutputsParameter();
+                        p1.Thread_Id = threadId;
+                        p1.Run_Id = result.Run.Id;
+                        p1.Tool_Outputs = new();
+                        foreach (var toolCall in result.Run.Required_Action.GetToolCallList())
+                        {
+                            Console.WriteLine(toolCall.ToString());
+
+                            //Pass output from calling your function. 
+                            var output = new ToolOutput();
+                            output.Tool_Call_Id = toolCall.Id;
+                            var o = new
+                            {
+                                Wheather = "Cloud",
+                                Temperature = "20℃",
+                                Forecast = "Rain after 3 hours",
+                            };
+                            output.Output = $"{toolCall.Function.Arguments} is {JsonConvert.SerializeObject(o)}";
+                            p1.Tool_Outputs.Add(output);
+                        }
+                        await foreach (var text in cl.SubmitToolOutputsStreamAsync(p1))
+                        {
+                            Console.Write(text);
+                        }
+                    }
+                }
+            }
+        }
+
         private async ValueTask<AssistantCreateResponse> AssistantCreate(string name)
         {
             var cl = OpenAIClient;

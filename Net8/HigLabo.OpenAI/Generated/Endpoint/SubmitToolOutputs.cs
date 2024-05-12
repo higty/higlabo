@@ -24,7 +24,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// A list of tools for which the outputs are being submitted.
         /// </summary>
-        public List<string>? Tool_Outputs { get; set; }
+        public List<ToolOutput>? Tool_Outputs { get; set; }
         /// <summary>
         /// If true, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a data: [DONE] message.
         /// </summary>
@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(string thread_Id, string run_Id, List<string>? tool_Outputs)
+        public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(string thread_Id, string run_Id, List<ToolOutput>? tool_Outputs)
         {
             var p = new SubmitToolOutputsParameter();
             p.Thread_Id = thread_Id;
@@ -55,7 +55,7 @@ namespace HigLabo.OpenAI
             p.Tool_Outputs = tool_Outputs;
             return await this.SendJsonAsync<SubmitToolOutputsParameter, SubmitToolOutputsResponse>(p, CancellationToken.None);
         }
-        public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(string thread_Id, string run_Id, List<string>? tool_Outputs, CancellationToken cancellationToken)
+        public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(string thread_Id, string run_Id, List<ToolOutput>? tool_Outputs, CancellationToken cancellationToken)
         {
             var p = new SubmitToolOutputsParameter();
             p.Thread_Id = thread_Id;
@@ -72,7 +72,7 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<SubmitToolOutputsParameter, SubmitToolOutputsResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<string>? tool_Outputs)
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<ToolOutput>? tool_Outputs)
         {
             var p = new SubmitToolOutputsParameter();
             p.Thread_Id = thread_Id;
@@ -84,7 +84,7 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<string>? tool_Outputs, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string thread_Id, string run_Id, List<ToolOutput>? tool_Outputs, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new SubmitToolOutputsParameter();
             p.Thread_Id = thread_Id;
