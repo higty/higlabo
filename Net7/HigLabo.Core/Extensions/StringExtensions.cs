@@ -61,18 +61,28 @@ namespace HigLabo.Core
             }
             return text.Substring(startIndex, text.Length - startIndex);
         }
-        public static Boolean IsNullOrEmpty(this String? text)
+		public static Boolean HasValue(this String? text)
+		{
+			if (text == null) { return false; }
+			return text.Length > 0;
+		}
+		public static Boolean IsNullOrEmpty(this String? text)
         {
             if (text == null) { return true; }
             return String.IsNullOrEmpty(text);
         }
+		public static Boolean IsNullOrWhiteSpace(this String? text)
+		{
+			if (text == null) { return true; }
+			return String.IsNullOrWhiteSpace(text);
+		}
 
-        /// <summary>
-        /// PascalCaseFirstLetterOfEveryWordIsUpper
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static String ToPascalCase(this String value)
+		/// <summary>
+		/// PascalCaseFirstLetterOfEveryWordIsUpper
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static String ToPascalCase(this String value)
         {
             if (value == null) { return ""; }
 

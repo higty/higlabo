@@ -117,9 +117,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Anthropic", "HigLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Anthropic.SampleConsoleApp", "HigLabo.Anthropic.SampleConsoleApp\HigLabo.Anthropic.SampleConsoleApp.csproj", "{A4406180-6170-405B-A77A-C5529DBE290C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.GoogleAI.SampleConsoleApp", "HigLabo.GoogleAI.SampleConsoleApp\HigLabo.GoogleAI.SampleConsoleApp.csproj", "{F36EB5DF-463C-4C79-BD0E-2043E52A8066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.GoogleAI.SampleConsoleApp", "HigLabo.GoogleAI.SampleConsoleApp\HigLabo.GoogleAI.SampleConsoleApp.csproj", "{F36EB5DF-463C-4C79-BD0E-2043E52A8066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.GoogleAI", "HigLabo.GoogleAI\HigLabo.GoogleAI.csproj", "{929D844B-4C68-46C2-A40E-28ECD8C07DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.GoogleAI", "HigLabo.GoogleAI\HigLabo.GoogleAI.csproj", "{929D844B-4C68-46C2-A40E-28ECD8C07DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss", "HigLabo.Rss\HigLabo.Rss.csproj", "{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -363,6 +365,10 @@ Global
 		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{929D844B-4C68-46C2-A40E-28ECD8C07DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

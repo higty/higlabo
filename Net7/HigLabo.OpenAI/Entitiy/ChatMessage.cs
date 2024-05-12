@@ -76,7 +76,7 @@ namespace HigLabo.OpenAI
             }
             public void LoadGifImage(Stream stream)
             {
-                this.LoadImage("image/git", stream);
+                this.LoadImage("image/gif", stream);
             }
             public void LoadImageFromFile(string filePath)
             {

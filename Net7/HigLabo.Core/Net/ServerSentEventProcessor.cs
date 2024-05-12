@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,7 +20,7 @@ namespace HigLabo.Core
             this.Stream = stream;
         }
 
-        public async IAsyncEnumerable<string> Process([EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<ServerSentEventLine> Process([EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var sseResponse = new ServerSentEventResponse();
             var previousLineList = new List<ServerSentEventLine>();
@@ -31,25 +32,27 @@ namespace HigLabo.Core
                 var readCount = await this.Stream.ReadAsync(sseResponse.Buffer, cancellationToken);
                 sseResponse.BufferLength = readCount;
 
-                Debug.WriteLine($"■Read={readCount} {Encoding.UTF8.GetString(sseResponse.Buffer)}");
+                Debug.WriteLine($"■Read={readCount}");
+                Debug.WriteLine($"{Encoding.UTF8.GetString(sseResponse.Buffer)}");
+
                 if (readCount == 0) { break; }
 
                 foreach (var line in sseResponse.GetLines(previousLineList))
                 {
                     if (cancellationToken.IsCancellationRequested) { break; }
 
-                    if (line.IsEmpty()) { continue; }
-                    if (line.IsDone()) { yield break; }
                     if (line.Complete == false)
                     {
                         previousLineList.Add(line);
                         continue;
                     }
-                    if (line.IsData())
+                    if (line.IsEmpty()) { continue; }
+                    if (line.IsDone())
                     {
-                        var text = Encoding.UTF8.GetString(line.GetValue());
-                        yield return text;
+                        yield return line;
+                        yield break;
                     }
+                    yield return line;
                 }
                 loopIndex++;
             }

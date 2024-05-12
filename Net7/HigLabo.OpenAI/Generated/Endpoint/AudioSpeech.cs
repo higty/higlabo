@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -22,7 +26,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Voice { get; set; } = "";
         /// <summary>
-        /// The format to audio in. Supported formats are mp3, opus, aac, and flac.
+        /// The format to audio in. Supported formats are mp3, opus, aac, flac, wav, and pcm.
         /// </summary>
         public string? Response_Format { get; set; }
         /// <summary>

@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -26,11 +30,11 @@ namespace HigLabo.OpenAI
         /// </summary>
         public object? Logit_Bias { get; set; }
         /// <summary>
-        /// Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. This option is currently not available on the gpt-4-vision-preview model.
+        /// Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message.
         /// </summary>
         public bool? Logprobs { get; set; }
         /// <summary>
-        /// An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
+        /// An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
         /// </summary>
         public int? Top_Logprobs { get; set; }
         /// <summary>
@@ -64,6 +68,10 @@ namespace HigLabo.OpenAI
         /// </summary>
         public bool? Stream { get; set; }
         /// <summary>
+        /// Options for streaming response. Only set this when you set stream: true.
+        /// </summary>
+        public object? Stream_Options { get; set; }
+        /// <summary>
         /// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.We generally recommend altering this or top_p but not both.
         /// </summary>
         public double? Temperature { get; set; }
@@ -72,14 +80,15 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Top_P { get; set; }
         /// <summary>
-        /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
+        /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
         /// </summary>
         public List<ToolObject>? Tools { get; set; }
         /// <summary>
-        /// Controls which (if any) function is called by the model.
-        /// none means the model will not call a function and instead generates a message.
-        /// auto means the model can pick between generating a message or calling a function.
-        /// Specifying a particular function via {"type": "function", "function": {"name": "my_function"}} forces the model to call that function.none is the default when no functions are present. auto is the default if functions are present.
+        /// Controls which (if any) tool is called by the model.
+        /// none means the model will not call any tool and instead generates a message.
+        /// auto means the model can pick between generating a message or calling one or more tools.
+        /// required means the model must call one or more tools.
+        /// Specifying a particular tool via {"type": "function", "function": {"name": "my_function"}} forces the model to call that tool.none is the default when no tools are present. auto is the default if tools are present.
         /// </summary>
         public string? Tool_Choice { get; set; }
         /// <summary>
@@ -107,6 +116,7 @@ namespace HigLabo.OpenAI
             	seed = this.Seed,
             	stop = this.Stop,
             	stream = this.Stream,
+            	stream_options = this.Stream_Options,
             	temperature = this.Temperature,
             	top_p = this.Top_P,
             	tools = this.Tools,
@@ -143,39 +153,48 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<ChatCompletionsParameter, ChatCompletionsResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, CancellationToken.None))
+            await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(List<IChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionsParameter();
             p.Messages = messages;
             p.Model = model;
             p.Stream = true;
-            await foreach (var item in this.GetStreamAsync(p, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
-        {
-            await foreach (var item in this.ChatCompletionsStreamAsync(parameter, CancellationToken.None))
-            {
-                yield return item;
-            }
-        }
-        public async IAsyncEnumerable<ChatCompletionChunk> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter)
         {
             parameter.Stream = true;
-            await foreach (var item in this.GetStreamAsync(parameter, cancellationToken))
+            await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult result)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<string> ChatCompletionsStreamAsync(ChatCompletionsParameter parameter, ChatCompletionStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetStreamAsync(parameter, result, cancellationToken))
             {
                 yield return item;
             }

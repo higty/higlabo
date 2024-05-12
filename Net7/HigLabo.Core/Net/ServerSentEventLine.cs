@@ -8,13 +8,63 @@ namespace HigLabo.Core
 {
     public struct ServerSentEventLine
     {
-        internal byte[] Data;
+        private byte[] Data;
+        private int IndexOfSpace = -1;
+
+        public int Length
+        {
+            get { return this.Data.Length; }
+        }
         public bool Complete { get; set; } 
 
         public ServerSentEventLine(int size, bool complete)
         {
             this.Data = new byte[size];
             this.Complete = complete;
+        }
+        internal void SetData(byte[] buffer, IEnumerable<ServerSentEventLine> previousDataList, int startIndex, int endIndex)
+        {
+            var pIndex = 0;
+            foreach (var previousData in previousDataList)
+            {
+                for (int i = 0; i < previousData.Data.Length; i++)
+                {
+                    if (this.IndexOfSpace == -1 && previousData.Data[i] == 32)
+                    {
+                        this.IndexOfSpace = pIndex;
+                    }
+                    this.Data[pIndex++] = previousData.Data[i];
+                }
+            }
+            for (int i = 0; i < endIndex - startIndex; i++)
+            {
+                if (this.IndexOfSpace == -1 && buffer[startIndex + i] == 32)
+                {
+                    this.IndexOfSpace = pIndex + i;
+                }
+                this.Data[pIndex + i] = buffer[startIndex + i];
+            }
+        }
+   
+        public bool IsEvent()
+        {
+            if (this.Data.Length < 6)
+            {
+                return false;
+            }
+            if (Data[0] == 101 &&
+                Data[1] == 118 &&
+                Data[2] == 101 &&
+                Data[3] == 110 &&
+                Data[4] == 116 &&
+                Data[5] == 58)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool IsData()
         {
@@ -72,11 +122,18 @@ namespace HigLabo.Core
         }
         public byte[] GetValue()
         {
-            if (this.IsData())
-            {
-                return this.Data.AsSpan().Slice(5).ToArray();
-            }
-            return this.Data;
+            if (this.IndexOfSpace == -1) { return this.Data; }
+            return this.Data.AsSpan().Slice(this.IndexOfSpace + 1).ToArray();
+        }
+        public string GetText()
+        {
+            if (this.IndexOfSpace == -1) { return Encoding.UTF8.GetString(this.Data); }
+            return Encoding.UTF8.GetString(this.Data.AsSpan().Slice(this.IndexOfSpace + 1));
+        }
+
+        public override string ToString()
+        {
+            return Encoding.UTF8.GetString(this.Data);
         }
     }
 }

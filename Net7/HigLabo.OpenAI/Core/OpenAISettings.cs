@@ -10,7 +10,7 @@ namespace HigLabo.OpenAI
     {
         public string ApiKey { get; set; } = "";
         public string Organization { get; set; } = "";
-        public bool UseBetaEndpoint { get; set; } = true;
+        public string OpenAIBeta { get; set; } = "assistants=v2";
 
         public OpenAISettings() { }
         public OpenAISettings(string apiKey)

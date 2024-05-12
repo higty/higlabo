@@ -14,7 +14,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string EndpointUrl { get; set; } = "";
         public string DeploymentId { get; set; } = "";
-        public string ApiVersion { get; set; } = "2023-09-01-preview";
+        public string ApiVersion { get; set; } = "2024-02-15-preview";
 
         public AzureSettings()
         {

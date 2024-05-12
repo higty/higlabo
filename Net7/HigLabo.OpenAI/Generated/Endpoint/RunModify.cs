@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI
 {
@@ -6,7 +10,7 @@ namespace HigLabo.OpenAI
     /// Modifies a run.
     /// <seealso href="https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}">https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}</seealso>
     /// </summary>
-    public partial class RunModifyParameter : RestApiParameter, IRestApiParameter
+    public partial class RunModifyParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
