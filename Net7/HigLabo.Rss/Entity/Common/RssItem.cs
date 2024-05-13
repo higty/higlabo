@@ -73,7 +73,7 @@ namespace HigLabo.Rss
         }
         public override string ToString()
         {
-            return string.Format("Title: {0}, Link: {1}", Title, Link);
+            return $"Title: {Title}\r\nLink: {Link}";
         }
         public override XElement CreateElement(XNamespace xmlns)
         {
