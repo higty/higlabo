@@ -21,12 +21,6 @@ namespace HigLabo.Rss
                 Parse(element);
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
         protected new void Parse(XElement element)
         {
             this.ID = element.CastElementToString("id") ?? "";

@@ -44,7 +44,7 @@ namespace HigLabo.Rss
 		}
         public override string ToString()
         {
-            return string.Format("{0}, Enclosure: {1}, Source: {2}", base.ToString(), Enclosure, Source);
+            return $"{base.ToString()}\r\nEnclosure: {Enclosure}\r\nSource: {Source}";
         }
 	}
 }

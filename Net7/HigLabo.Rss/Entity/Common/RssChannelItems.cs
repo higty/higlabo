@@ -7,9 +7,6 @@ using HigLabo.Rss.Internal;
 
 namespace HigLabo.Rss
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class RssChannelItems : RssXmlObject
     {
         public IList<RssResource> Resources { get; set; } = new List<RssResource>();

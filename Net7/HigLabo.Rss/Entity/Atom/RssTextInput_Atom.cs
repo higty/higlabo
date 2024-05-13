@@ -9,15 +9,7 @@ namespace HigLabo.Rss
 {
     public class RssTextInput_Atom : RssTextInput
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public RssTextInput_Atom() {}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
         public RssTextInput_Atom(XElement element)
             : base(element)
         {
@@ -26,12 +18,6 @@ namespace HigLabo.Rss
                 Parse(element);
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
         protected new void Parse(XElement element)
         {
         }

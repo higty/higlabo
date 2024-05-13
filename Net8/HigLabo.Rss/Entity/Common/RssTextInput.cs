@@ -4,9 +4,6 @@ using HigLabo.Core;
 
 namespace HigLabo.Rss
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class RssTextInput : RssXmlObject
     {
         public string Title { get; set; } = "";

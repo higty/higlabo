@@ -121,7 +121,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.GoogleAI.SampleCons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.GoogleAI", "HigLabo.GoogleAI\HigLabo.GoogleAI.csproj", "{929D844B-4C68-46C2-A40E-28ECD8C07DF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss", "HigLabo.Rss\HigLabo.Rss.csproj", "{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Rss", "HigLabo.Rss\HigLabo.Rss.csproj", "{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss.SampleConsoleApp", "HigLabo.Rss.SampleConsoleApp\HigLabo.Rss.SampleConsoleApp.csproj", "{94C333EF-06E7-475A-8EC6-06278352FD95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -369,6 +371,10 @@ Global
 		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C333EF-06E7-475A-8EC6-06278352FD95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C333EF-06E7-475A-8EC6-06278352FD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C333EF-06E7-475A-8EC6-06278352FD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C333EF-06E7-475A-8EC6-06278352FD95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
