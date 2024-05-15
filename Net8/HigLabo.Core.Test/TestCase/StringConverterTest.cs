@@ -35,10 +35,11 @@ namespace HigLabo.Core.Test
 		public void StringConverter_Basic()
 		{
 			var cv = new StringConverter();
-			cv.FullWidthNumber = true;
 			cv.HalfWidthNumber = true;
-			cv.FullWidthAlphabet = true;
-			cv.HalfWidthAlphabet = true;
+            cv.HalfWidthAlphabet = true;
+            cv.HalfWidthKatakana = true;
+            cv.FullWidthNumber = true;
+            cv.FullWidthAlphabet = true;
 			{
 				var result = cv.ToHalfWidth("ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ");
 				Assert.AreEqual("ABCDEFGHIJKLMNOPQRSTUVWXYZ", result);
@@ -63,7 +64,90 @@ namespace HigLabo.Core.Test
 			{
 				var result = cv.ToFullWidth("0123456789");
 				Assert.AreEqual("０１２３４５６７８９", result);
-			}
-		}
-	}
+            }
+        }
+
+        [TestMethod]
+        public void StringConverter_HalfKatakana_0()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("｡｢｣､･ﾞﾟ");
+                Assert.AreEqual("｡｢｣､･ﾞﾟ", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakana_1()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("ｧｨｩｪｫｬｭｮｯｰ");
+                Assert.AreEqual("ァィゥェォャュョッー", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakana_2()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ");
+                Assert.AreEqual("アイウエオカキクケコサシスセソタチツテト", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakana_3()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("ﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ");
+                Assert.AreEqual("ナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakanaVoicingDiacritic()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("ｶﾞｷﾞｸﾞｹﾞｺﾞｻﾞｼﾞｽﾞｾﾞｿﾞﾀﾞﾁﾞﾂﾞﾃﾞﾄﾞﾊﾞﾋﾞﾌﾞﾍﾞﾎﾞ");
+                Assert.AreEqual("ガギグゲゴザジズゼゾダヂヅデドバビブベボ", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakanaDevoicingDiacritic()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("ﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ");
+                Assert.AreEqual("パピプペポ", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakana_Invalid()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("ﾅﾞﾆﾞﾇﾞﾈﾞﾉﾞﾏﾟﾐﾟﾑﾟﾒﾟﾓﾟ");
+                Assert.AreEqual("ナﾞニﾞヌﾞネﾞノﾞマﾟミﾟムﾟメﾟモﾟ", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakana_All()
+        {
+            var cv = new StringConverter();
+            {
+                var result = cv.ToFullKatakana("｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾟ");
+                Assert.AreEqual("｡｢｣､･ヲァィゥェォャュョッーアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワンﾞﾟ", result);
+            }
+        }
+        [TestMethod]
+        public void StringConverter_HalfKatakana_All_1()
+        {
+            var cv = new StringConverter();
+            cv.HalfWidthKatakana = true;
+            {
+                var result = cv.ToFullWidth("｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾟ");
+                Assert.AreEqual("｡｢｣､･ヲァィゥェォャュョッーアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワンﾞﾟ", result);
+            }
+        }
+    }
 }
