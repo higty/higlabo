@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ProcessAssistantsWithFunctionCalling();
+            await ChatCompletionVision();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -127,7 +127,7 @@ namespace HigLabo.OpenAI
             var model = cl.ServiceProvider switch
             {
                 ServiceProvider.Groq => "llama3-70b-8192",
-                _ => "gpt-4",
+                _ => "gpt-4o",
             };
             var result = new ChatCompletionStreamResult();
             await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", model, result, CancellationToken.None))
@@ -145,7 +145,7 @@ namespace HigLabo.OpenAI
 
             var p = new ChatCompletionsParameter();
             p.AddUserMessage($"How to enjoy coffee");
-            p.Model = "gpt-4";
+            p.Model = "gpt-4o";
             if (cl.ServiceProvider == ServiceProvider.OpenAI)
             {
                 p.Stream_Options = new
@@ -214,7 +214,7 @@ namespace HigLabo.OpenAI
             vMessage.AddTextContent("Please describe this image.");
             vMessage.AddImageFile(Path.Combine(Environment.CurrentDirectory, "Image", "Pond.jpg"));
             p.Messages.Add(vMessage);
-            p.Model = "gpt-4-vision-preview";
+            p.Model = "gpt-4o";
             p.Max_Tokens = 300;
             p.Stream = true;
 
@@ -223,6 +223,7 @@ namespace HigLabo.OpenAI
             {
                 Console.Write(text);
             }
+            Console.WriteLine("");
             Console.WriteLine("■DONE");
         }
 
