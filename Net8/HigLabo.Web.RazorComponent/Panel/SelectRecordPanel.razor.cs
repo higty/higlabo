@@ -73,9 +73,13 @@ namespace HigLabo.Web.RazorComponent.Panel
 			await base.OnAfterRenderAsync(firstRender);
             if (firstRender)
             {
-                if (this.State.SearchContainerPanelVisible)
+                if (this.State.Tab == null && this.State.SearchContainerPanelVisible)
                 {
-                    await this.SearchTextboxElementReference.FocusAsync();
+                    try
+                    {
+                        await this.SearchTextboxElementReference.FocusAsync();
+                    }
+                    catch { }
                 }
             }
         }
