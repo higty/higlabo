@@ -1,7 +1,7 @@
 ﻿<div class="@this.ClassName">
     <label class="display-flex">
         <span class="checkbox">
-            <input type="checkbox" checked="@this.Value" @onchange="@this.ValueChanged_Invoke" />
+            <input type="checkbox" checked="@this.Value" @onchange="async e => await this.ValueChanged_Invoke(e)" />
             <span></span>
         </span>
         <span class="text-panel">@ChildContent</span>

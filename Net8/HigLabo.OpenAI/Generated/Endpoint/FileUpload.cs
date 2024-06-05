@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.The Assistants API supports files up to 2 million tokens and of specific file types. See the Assistants Tools guide for details.The Fine-tuning API only supports .jsonl files.The Batch API only supports .jsonl files up to 100 MB in size.Please contact us if you need to increase these storage limits.
+    /// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.The Assistants API supports files up to 2 million tokens and of specific file types. See the Assistants Tools guide for details.The Fine-tuning API only supports .jsonl files. The input also has certain required formats for fine-tuning chat or completions models.The Batch API only supports .jsonl files up to 100 MB in size. The input also has a specific required format.Please contact us if you need to increase these storage limits.
     /// <seealso href="https://api.openai.com/v1/files">https://api.openai.com/v1/files</seealso>
     /// </summary>
     public partial class FileUploadParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter

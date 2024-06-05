@@ -17,8 +17,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetAzureSetting();
-            await ChatCompletionStream();
+            SetOpenAISetting();
+            await ProcessVectorStore();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -741,6 +741,15 @@ namespace HigLabo.OpenAI
             {
                 var p = new VectorStoreCreateParameter();
                 p.Name = vectorStoreName;
+                p.Chunking_Strategy = new ChunkingStrategy()
+                {
+                    Type = "static",
+                    Static = new ChunkingStrategyStatic()
+                    {
+                        Max_Chunk_Size_Tokens = 1000,
+                        Chunk_Overlap_Tokens = 100,
+                    },
+                };
                 var res = await cl.VectorStoreCreateAsync(p);
                 storeId = res.Id;
                 Console.WriteLine(res);

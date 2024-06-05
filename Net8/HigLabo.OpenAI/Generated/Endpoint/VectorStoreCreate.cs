@@ -26,6 +26,10 @@ namespace HigLabo.OpenAI
         /// </summary>
         public object? Expires_After { get; set; }
         /// <summary>
+        /// The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. Only applicable if file_ids is non-empty.
+        /// </summary>
+        public ChunkingStrategy? Chunking_Strategy { get; set; }
+        /// <summary>
         /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
         /// </summary>
         public object? Metadata { get; set; }
@@ -40,6 +44,7 @@ namespace HigLabo.OpenAI
             	file_ids = this.File_Ids,
             	name = this.Name,
             	expires_after = this.Expires_After,
+            	chunking_strategy = this.Chunking_Strategy,
             	metadata = this.Metadata,
             };
         }

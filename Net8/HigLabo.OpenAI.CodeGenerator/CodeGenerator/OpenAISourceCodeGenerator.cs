@@ -596,6 +596,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
             if (className == "SubmitToolOutputs" && propertyName == "Tool_Outputs") { return "List<ToolOutput>?"; }
 
+            if (propertyName == "Chunking_Strategy") { return "ChunkingStrategy?"; }
             if (propertyName == "Tools") { return "List<ToolObject>"; }
             if (propertyName == "Tool_choice") { return "object?"; }
             if (propertyName == "Timestamp_Granularities") { return "double[]"; }
