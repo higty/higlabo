@@ -13,12 +13,13 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
 
-        private Task ValueChanged_Invoke(ChangeEventArgs e)
+        private async ValueTask ValueChanged_Invoke(ChangeEventArgs e)
         {
-            if (e.Value == null) { return Task.CompletedTask; }
-            var bl = (bool)e.Value;
-            this.Value = bl;
-            return ValueChanged.InvokeAsync(bl);
+            if (e.Value is bool bl)
+            {
+                this.Value = bl;
+                await ValueChanged.InvokeAsync(bl);
+            }
         }
     }
 }

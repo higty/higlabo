@@ -431,39 +431,46 @@ $width-checkbox-circle: 20px;
     }
 
     .child-content-panel {
-        position: relative;
         box-sizing: border-box;
+
+        > .select-container-panel {
+            position: relative;
+            z-index: 110;
+
+            > .current-record-panel {
+                background-color: var(--color-form-element-bg);
+                border: solid 1px var(--color-border);
+            }
+
+            > .record-list-panel {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                background-color: var(--color-form-element-bg);
+                border: solid 1px var(--color-border);
+                min-height: 32px;
+
+                > .record-panel {
+                    cursor: pointer;
+                    border: solid 1px transparent;
+                    padding-left: 4px;
+
+                    .text {
+                    }
+
+                    &:hover {
+                        background-color: var(--color-form-element-hover);
+                    }
+
+                    &:focus {
+                        border: solid 1px var(--color-form-element-focus);
+                    }
+                }
+            }
+        }
 
         .separator {
             margin: auto 4px;
-        }
-
-        > .current-record-panel {
-            background-color: var(--color-form-element-bg);
-            border: solid 1px var(--color-border);
-        }
-
-        > .record-list-panel {
-            background-color: var(--color-form-element-bg);
-            border: solid 1px var(--color-border);
-            min-height: 32px;
-
-            > .record-panel {
-                cursor: pointer;
-                border: solid 1px transparent;
-                padding-left: 4px;
-
-                .text {
-                }
-
-                &:hover {
-                    background-color: var(--color-form-element-hover);
-                }
-
-                &:focus {
-                    border: solid 1px var(--color-form-element-focus);
-                }
-            }
         }
     }
 

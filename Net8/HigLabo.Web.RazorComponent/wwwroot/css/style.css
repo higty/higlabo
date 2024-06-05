@@ -731,31 +731,38 @@
   color: var(--color-glay-06);
 }
 .input-field-panel .child-content-panel {
-  position: relative;
   box-sizing: border-box;
 }
-.input-field-panel .child-content-panel .separator {
-  margin: auto 4px;
+.input-field-panel .child-content-panel > .select-container-panel {
+  position: relative;
+  z-index: 110;
 }
-.input-field-panel .child-content-panel > .current-record-panel {
+.input-field-panel .child-content-panel > .select-container-panel > .current-record-panel {
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
 }
-.input-field-panel .child-content-panel > .record-list-panel {
+.input-field-panel .child-content-panel > .select-container-panel > .record-list-panel {
+  position: absolute;
+  top: 0;
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
   min-height: 32px;
 }
-.input-field-panel .child-content-panel > .record-list-panel > .record-panel {
+.input-field-panel .child-content-panel > .select-container-panel > .record-list-panel > .record-panel {
   cursor: pointer;
   border: solid 1px transparent;
   padding-left: 4px;
 }
-.input-field-panel .child-content-panel > .record-list-panel > .record-panel:hover {
+.input-field-panel .child-content-panel > .select-container-panel > .record-list-panel > .record-panel:hover {
   background-color: var(--color-form-element-hover);
 }
-.input-field-panel .child-content-panel > .record-list-panel > .record-panel:focus {
+.input-field-panel .child-content-panel > .select-container-panel > .record-list-panel > .record-panel:focus {
   border: solid 1px var(--color-form-element-focus);
+}
+.input-field-panel .child-content-panel .separator {
+  margin: auto 4px;
 }
 .input-field-panel .textarea {
   min-height: 200px;

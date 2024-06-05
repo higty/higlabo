@@ -21,6 +21,10 @@ namespace HigLabo.OpenAI
         /// A list of File IDs that the vector store should use. Useful for tools like file_search that can access files.
         /// </summary>
         public List<string>? File_Ids { get; set; }
+        /// <summary>
+        /// The chunking strategy used to chunk the file(s). If not set, will use the auto strategy.
+        /// </summary>
+        public ChunkingStrategy? Chunking_Strategy { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -30,6 +34,7 @@ namespace HigLabo.OpenAI
         {
             return new {
             	file_ids = this.File_Ids,
+            	chunking_strategy = this.Chunking_Strategy,
             };
         }
     }

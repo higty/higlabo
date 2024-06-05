@@ -25,7 +25,7 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter]
         public TItem? Value { get; set; }
         [Parameter]
-        public EventCallback<object?> ValueChanged { get; set; }
+        public EventCallback<TItem?> ValueChanged { get; set; }
 
         [Parameter]
         public ElementReference RecordPanelElementReference { get; set; }
