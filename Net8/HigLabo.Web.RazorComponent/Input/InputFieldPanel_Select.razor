@@ -12,20 +12,22 @@
     <div class="select-container-panel">
         @if (this.SelectRecordPanelVisible)
         {
-            <div class="record-list-panel">
-                @for (int i = 0; i < this.RecordList.Count; i++)
-                {
-                    var item = this.RecordList[i];
-
-                    var cName = "record-panel";
-                    if (i == this.RecordIndex)
+            <div class="select-record-panel">
+                <div class="record-list-panel">
+                    @for (int i = 0; i < this.RecordList.Count; i++)
                     {
-                        cName += " current";
+                        var item = this.RecordList[i];
+
+                        var cName = "record-panel";
+                        if (i == this.RecordIndex)
+                        {
+                            cName += " current";
+                        }
+                        <div class="@cName" @onclick="async e => await RecordPanel_Click(item)">
+                            @this.ItemTemplate(item)
+                        </div>
                     }
-                    <div class="@cName" @onclick="async e => await RecordPanel_Click(item)">
-                        @this.ItemTemplate(item)
-                    </div>
-                }
+                </div>
             </div>
         }
     </div>

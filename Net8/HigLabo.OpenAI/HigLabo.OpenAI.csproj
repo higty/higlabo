@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>8.14.0.0</Version>
+		<Version>8.14.0.1</Version>
 		<Authors>Higty</Authors>
 		<Company>HigLabo</Company>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
@@ -17,6 +17,16 @@
 		</Description>
 		<PackageTags>OpenAI;ChatGPT;</PackageTags>
 		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>embedded</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
