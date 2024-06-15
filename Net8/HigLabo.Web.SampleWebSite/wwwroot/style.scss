@@ -31,7 +31,10 @@
     border-radius: 4px;
 }
 
-
+body {
+    background-color: var(--color-body);
+    color: var(--color-text);
+}
 
 .button {
     border: none;
@@ -227,7 +230,7 @@ $width-checkbox-circle: 20px;
         background-color: var(--color-form-element-bg);
 
         &:hover {
-            background-color: var(--color-glay-02);
+            background-color: var(--color-form-element-hover);
         }
     }
 }
@@ -412,7 +415,7 @@ $width-checkbox-circle: 20px;
             }
 
             &:hover {
-                background-color: var(--color-glay-02);
+                background-color: var(--color-form-element-hover);
             }
 
             &:focus {
@@ -445,7 +448,8 @@ $width-checkbox-circle: 20px;
             > .record-list-panel {
                 position: absolute;
                 top: 0;
-                width: 100%;
+                max-height: calc(100dvh - 100px);
+                overflow-y: auto;
                 background-color: var(--color-form-element-bg);
                 border: solid 1px var(--color-border);
                 min-height: 32px;
@@ -514,11 +518,11 @@ $width-checkbox-circle: 20px;
             cursor: pointer;
 
             &:hover {
-                background-color: var(--color-glay-02);
+                background-color: var(--color-form-element-hover);
             }
 
             &:focus {
-                background-color: var(--color-glay-02);
+                background-color: var(--color-form-element-focus);
             }
 
             &.date,
@@ -566,11 +570,11 @@ $width-checkbox-circle: 20px;
             cursor: pointer;
 
             &:hover {
-                background-color: var(--color-glay-02);
+                background-color: var(--color-form-element-hover);
             }
 
             &:focus {
-                background-color: var(--color-glay-02);
+                background-color: var(--color-form-element-focus);
             }
         }
     }
@@ -699,19 +703,19 @@ $width-checkbox-circle: 20px;
                     cursor: pointer;
 
                     &.intersect-date {
-                        background-color: var(--color-glay-03);
+                        background-color: var(--color-date-calendar-table-intersect-date);
                     }
 
                     &.selected-date {
-                        background-color: var(--color-glay-04);
+                        background-color: var(--color-date-calendar-table-selected-date);
                     }
 
                     &.other-month {
-                        background-color: var(--color-glay-02);
+                        background-color: var(--color-date-calendar-table-other-month);
                     }
 
                     &:hover {
-                        background-color: var(--color-glay-03);
+                        background-color: var(--color-date-calendar-table-hover);
                     }
                 }
             }
@@ -786,7 +790,7 @@ $width-checkbox-circle: 20px;
         box-sizing: border-box;
 
         &:hover {
-            background-color: var(--color-glay-01);
+            background-color: var(--color-form-element-hover);
         }
 
         &:last-child {
@@ -810,7 +814,7 @@ $width-checkbox-circle: 20px;
             box-sizing: border-box;
 
             &:hover {
-                background-color: var(--color-glay-03);
+                text-decoration: underline;
             }
         }
     }
@@ -819,6 +823,7 @@ $width-checkbox-circle: 20px;
 .select-duration-panel {
     min-width: 100px;
     box-sizing: border-box;
+    background-color: var(--color-panel-bg);
 
     .duration-minute-panel {
         cursor: pointer;
@@ -830,7 +835,7 @@ $width-checkbox-circle: 20px;
         box-sizing: border-box;
 
         &:hover {
-            background-color: var(--color-glay-03);
+            background-color: var(--color-form-element-hover);
         }
     }
 }

@@ -57,12 +57,18 @@
   --color-select-button-bg: var(--color-glay-04);
   --color-select-button-selected: var(--color-scheme-04);
   --color-select-button-focus: var(--color-scheme-09);
+  /* calendar */
+  --color-date-calendar-table-intersect-date: var(--color-glay-03);
+  --color-date-calendar-table-selected-date: var(--color-glay-04);
+  --color-date-calendar-table-other-month: var(--color-glay-02);
+  --color-date-calendar-table-hover: var(--color-glay-03);
 }
 
 [dark-mode=true] {
   /* buttons */
   /* common */
   --color-body: #000000;
+  --color-panel-bg: #222222;
   --color-scrollbar-track: var(--color-glay-09);
   --color-scrollbar-thumb: var(--color-glay-07);
   --color-text: var(--color-glay-02);
@@ -79,6 +85,11 @@
   --color-select-button-text: var(--color-white);
   --color-select-button-bg: var(--color-glay-10);
   --color-select-button-focus: var(--color-glay-06);
+  /* calendar */
+  --color-date-calendar-table-intersect-date: var(--color-glay-07);
+  --color-date-calendar-table-selected-date: var(--color-glay-06);
+  --color-date-calendar-table-other-month: var(--color-glay-08);
+  --color-date-calendar-table-hover: var(--color-glay-07);
 }
 
 [color-scheme=glay] {
@@ -392,6 +403,11 @@
   border-radius: 4px;
 }
 
+body {
+  background-color: var(--color-body);
+  color: var(--color-text);
+}
+
 .button {
   border: none;
   color: var(--color-button-text);
@@ -561,7 +577,7 @@
   background-color: var(--color-form-element-bg);
 }
 .file-upload-panel .text-panel:hover {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-form-element-hover);
 }
 
 @keyframes spinner {
@@ -718,7 +734,7 @@
   height: 24px;
 }
 .input-field-panel .field-name-panel .icon-panel:hover {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-form-element-hover);
 }
 .input-field-panel .field-name-panel .icon-panel:focus {
   border: solid 1px var(--color-form-element-focus);
@@ -744,7 +760,8 @@
 .input-field-panel .child-content-panel > .select-container-panel > .record-list-panel {
   position: absolute;
   top: 0;
-  width: 100%;
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
   background-color: var(--color-form-element-bg);
   border: solid 1px var(--color-border);
   min-height: 32px;
@@ -798,12 +815,12 @@
 .input-field-flex-panel .display-flex .textbox:hover,
 .input-field-flex-panel .display-flex .textarea:hover,
 .input-field-flex-panel .display-flex .record-panel:hover {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-form-element-hover);
 }
 .input-field-flex-panel .display-flex .textbox:focus,
 .input-field-flex-panel .display-flex .textarea:focus,
 .input-field-flex-panel .display-flex .record-panel:focus {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-form-element-focus);
 }
 .input-field-flex-panel .display-flex .textbox.date, .input-field-flex-panel .display-flex .textbox.time,
 .input-field-flex-panel .display-flex .textarea.date,
@@ -847,11 +864,11 @@
 }
 .input-field-panel .child-content-panel > .current-record-panel:hover,
 .input-field-flex-panel .child-content-panel > .current-record-panel:hover {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-form-element-hover);
 }
 .input-field-panel .child-content-panel > .current-record-panel:focus,
 .input-field-flex-panel .child-content-panel > .current-record-panel:focus {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-form-element-focus);
 }
 
 .select-button-list-panel .record-value-panel {
@@ -954,16 +971,16 @@
   cursor: pointer;
 }
 .select-date-calendar-panel > table.date-calendar-table > tbody > tr > td.intersect-date {
-  background-color: var(--color-glay-03);
+  background-color: var(--color-date-calendar-table-intersect-date);
 }
 .select-date-calendar-panel > table.date-calendar-table > tbody > tr > td.selected-date {
-  background-color: var(--color-glay-04);
+  background-color: var(--color-date-calendar-table-selected-date);
 }
 .select-date-calendar-panel > table.date-calendar-table > tbody > tr > td.other-month {
-  background-color: var(--color-glay-02);
+  background-color: var(--color-date-calendar-table-other-month);
 }
 .select-date-calendar-panel > table.date-calendar-table > tbody > tr > td:hover {
-  background-color: var(--color-glay-03);
+  background-color: var(--color-date-calendar-table-hover);
 }
 .select-date-calendar-panel .footer-panel {
   margin-top: 10px;
@@ -1027,7 +1044,7 @@
 }
 .start-time-panel .hour-minute-panel:hover,
 .end-time-panel .hour-minute-panel:hover {
-  background-color: var(--color-glay-01);
+  background-color: var(--color-form-element-hover);
 }
 .start-time-panel .hour-minute-panel:last-child,
 .end-time-panel .hour-minute-panel:last-child {
@@ -1052,12 +1069,13 @@
 }
 .start-time-panel .hour-minute-panel .minute-panel:hover,
 .end-time-panel .hour-minute-panel .minute-panel:hover {
-  background-color: var(--color-glay-03);
+  text-decoration: underline;
 }
 
 .select-duration-panel {
   min-width: 100px;
   box-sizing: border-box;
+  background-color: var(--color-panel-bg);
 }
 .select-duration-panel .duration-minute-panel {
   cursor: pointer;
@@ -1069,7 +1087,7 @@
   box-sizing: border-box;
 }
 .select-duration-panel .duration-minute-panel:hover {
-  background-color: var(--color-glay-03);
+  background-color: var(--color-form-element-hover);
 }
 
 .select-color-panel {
