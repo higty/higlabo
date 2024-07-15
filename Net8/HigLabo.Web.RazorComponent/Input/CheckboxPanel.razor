@@ -1,5 +1,5 @@
 ﻿<div class="@this.ClassName">
-    <label class="display-flex">
+    <label class="display-flex" @onclick:stopPropagation="true">
         <span class="checkbox">
             <input type="checkbox" checked="@this.Value" @onchange="async e => await this.ValueChanged_Invoke(e)" />
             <span></span>
