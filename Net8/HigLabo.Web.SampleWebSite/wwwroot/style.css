@@ -453,7 +453,6 @@ body {
 
 .checkbox-panel {
   display: block;
-  height: 24px;
 }
 .checkbox-panel label.display-flex {
   display: inline-flex;
@@ -1291,7 +1290,7 @@ body {
   top: -4px;
   display: flex;
   align-items: center;
-  background-color: var(--color-white);
+  background-color: var(--color-panel-bg);
   border: solid 1px var(--color-border);
   border-radius: 4px;
   box-shadow: none;

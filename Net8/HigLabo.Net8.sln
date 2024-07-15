@@ -123,7 +123,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.GoogleAI", "HigLabo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Rss", "HigLabo.Rss\HigLabo.Rss.csproj", "{4B670ABF-A744-44D6-91A5-D5EF28AC7E95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss.SampleConsoleApp", "HigLabo.Rss.SampleConsoleApp\HigLabo.Rss.SampleConsoleApp.csproj", "{94C333EF-06E7-475A-8EC6-06278352FD95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Rss.SampleConsoleApp", "HigLabo.Rss.SampleConsoleApp\HigLabo.Rss.SampleConsoleApp.csproj", "{94C333EF-06E7-475A-8EC6-06278352FD95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Bing", "HigLabo.Bing\HigLabo.Bing.csproj", "{3C5AFA68-4DC2-4508-91A9-B4B935D3BB2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.RestApi", "HigLabo.RestApi\HigLabo.RestApi.csproj", "{67D0E76C-983F-45D3-8425-96AE3622B394}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Bing.SampleConsoleApp", "HigLabo.Bing.SampleConsoleApp\HigLabo.Bing.SampleConsoleApp.csproj", "{EC9F89FD-058C-48D0-8724-EB8BF82AD1E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -375,6 +381,18 @@ Global
 		{94C333EF-06E7-475A-8EC6-06278352FD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C333EF-06E7-475A-8EC6-06278352FD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C333EF-06E7-475A-8EC6-06278352FD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C5AFA68-4DC2-4508-91A9-B4B935D3BB2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C5AFA68-4DC2-4508-91A9-B4B935D3BB2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C5AFA68-4DC2-4508-91A9-B4B935D3BB2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C5AFA68-4DC2-4508-91A9-B4B935D3BB2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67D0E76C-983F-45D3-8425-96AE3622B394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D0E76C-983F-45D3-8425-96AE3622B394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D0E76C-983F-45D3-8425-96AE3622B394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D0E76C-983F-45D3-8425-96AE3622B394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9F89FD-058C-48D0-8724-EB8BF82AD1E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9F89FD-058C-48D0-8724-EB8BF82AD1E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9F89FD-058C-48D0-8724-EB8BF82AD1E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9F89FD-058C-48D0-8724-EB8BF82AD1E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

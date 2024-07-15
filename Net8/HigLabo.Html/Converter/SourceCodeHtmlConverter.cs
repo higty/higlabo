@@ -14,8 +14,8 @@ namespace HigLabo.Html
     {
         public static class RegexList
         {
-            public static Regex SourceCode_Start = new Regex("```(?<Language>[a-z]*)", RegexOptions.IgnoreCase);
-            public static Regex SourceCode_End = new Regex("```", RegexOptions.IgnoreCase);
+            public static Regex SourceCode_Start = new Regex("^```(?<Language>[a-z]*)", RegexOptions.IgnoreCase);
+            public static Regex SourceCode_End = new Regex("^```", RegexOptions.IgnoreCase);
         }
         private enum ParseContextState
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Html
 
                     if (context.State == ParseContextState.Ready)
                     {
-                        var m = RegexList.SourceCode_Start.Match(line);
+                        var m = RegexList.SourceCode_Start.Match(line.TrimStart());
                         if (m.Success)
                         {
                             context.State = ParseContextState.Processing;
@@ -60,7 +60,7 @@ namespace HigLabo.Html
                     }
                     else
                     {
-                        var m = RegexList.SourceCode_End.Match(line);
+                        var m = RegexList.SourceCode_End.Match(line.TrimStart());
                         if (m.Success)
                         {
                             sb.Append(CreateSourceCodePanel(context.Text.ToString(), context.Language));
@@ -73,10 +73,10 @@ namespace HigLabo.Html
                             switch (context.State)
                             {
                                 case ParseContextState.Ready:
-                                    sb.Append(line).Append("\r");
+                                    sb.Append(line).Append("\n");
                                     break;
                                 case ParseContextState.Processing:
-                                    context.Text.Append(line).Append("\r");
+                                    context.Text.Append(line).Append("\n");
                                     break;
                                 default: throw SwitchStatementNotImplementException.Create(context.State);
                             }

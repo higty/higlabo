@@ -453,7 +453,6 @@ body {
 
 .checkbox-panel {
   display: block;
-  height: 24px;
 }
 .checkbox-panel label.display-flex {
   display: inline-flex;
@@ -990,7 +989,7 @@ body {
 }
 .select-date-calendar-panel .footer-panel .button {
   margin: 0 2px;
-  padding: 8px 12px;
+  padding: 4px 16px;
   font-size: 14px;
 }
 

@@ -45,6 +45,9 @@ namespace HigLabo.Web.RazorComponent.Input
         [Parameter, AllowNull]
         public RenderFragment<TItem> SelectItemTemplate { get; set; }
 
+        [Parameter]
+        public EventCallback<TItem> OnRecordSelected { get; set; }
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -76,7 +79,9 @@ namespace HigLabo.Web.RazorComponent.Input
 			this.SelectRecordPanelVisible = false;
 			await this.RecordChanged.InvokeAsync(record);
 			await this.RecordPanelElementReference.FocusAsync();
-			this.StateHasChanged();
+
+            await this.OnRecordSelected.InvokeAsync(record);
+            this.StateHasChanged();
 		}
 
         private async ValueTask OnClosed()

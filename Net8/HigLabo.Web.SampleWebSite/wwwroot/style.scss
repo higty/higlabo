@@ -94,7 +94,6 @@ $width-checkbox-circle: 20px;
 
 .checkbox-panel {
     display: block;
-    height: 24px;
 
     label.display-flex {
         display: inline-flex;
@@ -1084,7 +1083,7 @@ $width-checkbox-circle: 20px;
         top: -4px;
         display: flex;
         align-items: center;
-        background-color: var(--color-white);
+        background-color: var(--color-panel-bg);
         border: solid 1px var(--color-border);
         border-radius: 4px;
         box-shadow: none;
