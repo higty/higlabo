@@ -21,7 +21,7 @@ namespace HigLabo.OpenAI.CodeGenerator
         {
             public static readonly Regex CurlyBrackets = new Regex("{(?<Value>[^}]*)}", RegexOptions.Compiled);
         }
-        public string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36";
+        public string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
         public string OutputFolderPath { get; set; } = "C:\\GitHub\\higty\\HigLabo\\Net8\\HigLabo.OpenAI\\Generated\\";
 
         public void ExecuteAsync()
@@ -34,7 +34,7 @@ namespace HigLabo.OpenAI.CodeGenerator
             driver.Navigate().GoToUrl("https://platform.openai.com/docs/api-reference/audio");
             Thread.Sleep(5000);
 
-            var ee = driver.FindElements(By.CssSelector("div[class='section endpoint']"));
+            var ee = driver.FindElements(By.CssSelector("div.console-body div[class='section']"));
             //CreateSourceCode(ee[71]);
             //return;
 
@@ -253,6 +253,11 @@ namespace HigLabo.OpenAI.CodeGenerator
                         if (cName == "ThreadCreate" && p.Name == "Messages")
                         {
                             p.TypeName.Name = "List<Message>?";
+                        }
+                        if (cName == "MessageCreateParameter" && p.Name == "Content")
+                        {
+                            p.TypeName.Name = "List<MessageCreateContent>";
+                            p.Initializer = "new()";
                         }
                         if (cName == "Embeddings" && p.Name == "Encoding_format")
                         {

@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ProcessVectorStore();
+            await SendMessageAsync();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -401,7 +401,14 @@ namespace HigLabo.OpenAI
             }
             else
             {
-                assistantId = assistantsResponse.Data[0].Id;
+                foreach (var item in assistantsResponse.Data)
+                {
+                    if (item.Name == "HigLabo assistant")
+                    {
+                        assistantId = item.Id;
+                        break;
+                    }
+                }
             }
 
             {
@@ -418,7 +425,7 @@ namespace HigLabo.OpenAI
                 var p = new MessageCreateParameter();
                 p.Thread_Id = threadId;
                 p.Role = "user";
-                p.Content = "Hello! I want to know how to enjoy coffee in my life.";
+                p.AddTextMessage("Hello! I want to know how to enjoy coffee in my life.");
                 var res = await cl.MessageCreateAsync(p);
             }
             //Streaming
@@ -451,7 +458,7 @@ namespace HigLabo.OpenAI
                 var p = new MessageCreateParameter();
                 p.Thread_Id = threadId;
                 p.Role = "user";
-                p.Content = $"I want to know the whether of Tokyo.";
+                p.AddTextMessage($"I want to know the whether of Tokyo.");
                 var res = await cl.MessageCreateAsync(p);
             }
             //Streaming
@@ -589,24 +596,18 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var now = DateTimeOffset.Now;
-            var threadId = "";
-            if (threadId.Length == 0)
-            {
-                var res = await cl.ThreadCreateAsync();
-                threadId = res.Id;
-            }
+            var (assistantId, threadId) = await this.CreateNewThread();
             {
                 var p = new MessageCreateParameter();
                 p.Thread_Id = threadId;
                 p.Role = "user";
-                p.Content = "Hello! I want to know how to use OpenAI assistant API.";
+                p.AddTextMessage("Hello! I want to know how to use OpenAI assistant API.");
                 var res = await cl.MessageCreateAsync(p);
             }
             var runId = "";
             {
                 var p = new RunCreateParameter();
-                p.Assistant_Id = "asst_xxxxxxxxxxxxxx";
+                p.Assistant_Id = assistantId;
                 p.Thread_Id = threadId;
                 var res = await cl.RunCreateAsync(p);
                 runId = res.Id;
@@ -643,6 +644,105 @@ namespace HigLabo.OpenAI
                 if (loopCount > 120) { break; }
             }
 
+        }
+        private async ValueTask SendMessageAsync()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.AddTextMessage("Hello! I want to know how to enjoy camp in the mountain.");
+                //p.AddTextMessage("Please answer by Japanese.");
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+
+                var streamResult = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, streamResult, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                runId = streamResult.Run?.Id ?? "";
+
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
+        private async ValueTask SendMessageWithImageUrlAsync()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.AddTextMessage("How about this image? Please explain from photographer perspective.");
+                //From https://www.stockvault.net/c/nature/landscape
+                //You can change url of image!
+                p.AddImageUrl("https://www.stockvault.net/data/2007/03/01/102413/thumb16.jpg");
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+
+                var streamResult = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, streamResult, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                runId = streamResult.Run?.Id ?? "";
+
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
+        private async ValueTask SendMessageWithImageFileAsync()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            var fileId = "";
+            {
+                var p = new FileUploadParameter();
+                p.File.SetFile("Yugama.jpg", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Yugama.jpg")));
+                p.SetPurpose(FilePurpose.Assistants);
+                var res = await cl.FileUploadAsync(p);
+                fileId = res.Id;
+            }
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.AddTextMessage("How about this image? Please explain from photographer perspective.");
+                p.AddImageFile(fileId);
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+
+                var streamResult = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, streamResult, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine();
+            }
         }
         private async ValueTask ThreadMessage()
         {
@@ -696,6 +796,7 @@ namespace HigLabo.OpenAI
                 }
             }
         }
+
 
         private async ValueTask ProcessVectorStore()
         {

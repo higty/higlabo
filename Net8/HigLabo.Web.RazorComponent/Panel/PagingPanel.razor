@@ -17,7 +17,7 @@
               @onclick="async e => await this.ChangePageIndex(this.PageIndex - 1)" @onclick:stopPropagation="true">
             <img src="@UrlInfo.GetIconUrl(Higlabo__icon.ArrowGlayLeft__svg)" />
         </span>
-        <span class="page-number-panel" @onclick="e => this.PageListPanelVisible = !this.PageListPanelVisible">
+        <span class="page-number-panel" @onclick="e => this.PageListPanelVisible = !this.PageListPanelVisible" @onclick:stopPropagation="true">
             <span>@string.Format("{0}{1}", T.Text.Page, this.PageIndex + 1)</span>
         </span>
         <span class="page-number-change-panel"
