@@ -58,32 +58,35 @@ namespace HigLabo.OpenAI
 
     public enum MessageContentType
     {
-        Image_File,
         Text,
+        Image_File,
+        Image_Url,
     }
     public class MessageContentObject
     {
         public MessageContentType Type { get; set; } = MessageContentType.Text;
-        public MessageImageObject? Image_File { get; set; }
         public MessageTextObject? Text { get; set; }
+        public MessageImageFileObject? Image_File { get; set; }
+        public MessageImageUrlObject? Image_Url { get; set; }
+
+        public MessageContentObject()
+        {
+        }
+        public MessageContentObject(string text)
+        {
+            this.Type = MessageContentType.Text;
+            this.Text = new MessageTextObject() { Value = text };
+        }
 
         public override string ToString()
         {
             switch (this.Type)
             {
-                case MessageContentType.Image_File: return this.Image_File?.File_Id ?? "";
                 case MessageContentType.Text: return this.Text?.Value ?? "";
+                case MessageContentType.Image_File: return this.Image_File?.File_Id ?? "";
+                case MessageContentType.Image_Url: return this.Image_Url?.Url ?? "";
                 default: return "";
             };
-        }
-    }
-    public class MessageImageObject
-    {
-        public string File_Id { get; set; } = "";
-
-        public override string ToString()
-        {
-            return this.File_Id;
         }
     }
     public class MessageTextObject
@@ -94,6 +97,24 @@ namespace HigLabo.OpenAI
         public override string ToString()
         {
             return this.Value;
+        }
+    }
+    public class MessageImageFileObject
+    {
+        public string File_Id { get; set; } = "";
+
+        public override string ToString()
+        {
+            return this.File_Id;
+        }
+    }
+    public class MessageImageUrlObject
+    {
+        public string Url { get; set; } = "";
+
+        public override string ToString()
+        {
+            return this.Url;
         }
     }
     public class MessageAnnotation
