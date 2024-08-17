@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Get info about a fine-tuning job.Learn more about fine-tuning
+    /// Get info about a fine-tuning job.
+    /// Learn more about fine-tuning
     /// <seealso href="https://api.openai.com/v1/fine_tuning/jobs/{fine_tuning_job_id}">https://api.openai.com/v1/fine_tuning/jobs/{fine_tuning_job_id}</seealso>
     /// </summary>
     public partial class FineTuningJobRetrieveParameter : RestApiParameter, IRestApiParameter

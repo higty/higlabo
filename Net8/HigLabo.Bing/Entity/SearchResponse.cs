@@ -2,7 +2,6 @@
 {
     public class SearchResponse : BingRestApiResponse
     {
-        public string _Type { get; set; } = "";
         public Computation? Computation { get; set; }
         public EntityAnswer? Entities { get; set; }
         public ImageAnswer? Images { get; set; }

@@ -31,10 +31,10 @@ namespace HigLabo.OpenAI.CodeGenerator
             options.AddArguments("-window-size=1920,1080");
             var driver = new ChromeDriver(options);
 
-            driver.Navigate().GoToUrl("https://platform.openai.com/docs/api-reference/audio");
-            Thread.Sleep(5000);
+            driver.Navigate().GoToUrl("https://localhost:7054/");
+            Thread.Sleep(10000);
 
-            var ee = driver.FindElements(By.CssSelector("div.console-body div[class='section']"));
+            var ee = driver.FindElements(By.CssSelector("#root div[class='section']"));
             //CreateSourceCode(ee[71]);
             //return;
 
@@ -49,6 +49,8 @@ namespace HigLabo.OpenAI.CodeGenerator
             var endpointAnchor = endpointPanel.FindElement(By.CssSelector("h2[class='anchor-heading']")).GetAttribute("textContent");
             if (endpointAnchor.Contains("Deprecated") ||
                 endpointAnchor.Contains("Legacy")) { return; }
+            //Audit will be support when I have a time...
+            if (endpointAnchor.Contains("Audit")) { return; }
 
             var sc = new SourceCode();
             sc.UsingNamespaces.Add("System.Collections.Generic");
@@ -254,7 +256,7 @@ namespace HigLabo.OpenAI.CodeGenerator
                         {
                             p.TypeName.Name = "List<Message>?";
                         }
-                        if (cName == "MessageCreateParameter" && p.Name == "Content")
+                        if (cName == "MessageCreate" && p.Name == "Content")
                         {
                             p.TypeName.Name = "List<MessageCreateContent>";
                             p.Initializer = "new()";
@@ -539,7 +541,12 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve model") { return "ModelRetrieve"; }
             if (endpointAnchor == "Delete a fine-tuned model") { return "ModelDelete"; }
             if (endpointAnchor == "Create moderation") { return "ModerationCreate"; }
-      
+
+            if (endpointAnchor == "Create upload") { return "UploadCreate"; }
+            if (endpointAnchor == "Add upload part") { return "UploadPartAdd"; }
+            if (endpointAnchor == "Complete upload") { return "UploadComplete"; }
+            if (endpointAnchor == "Cancel upload") { return "UploadCancel"; }
+
             if (endpointAnchor == "Create assistantBeta") { return "AssistantCreate"; }
             if (endpointAnchor == "Retrieve assistantBeta") { return "AssistantRetrieve"; }
             if (endpointAnchor == "Modify assistantBeta") { return "AssistantModify"; }
@@ -588,6 +595,35 @@ namespace HigLabo.OpenAI.CodeGenerator
             if (endpointAnchor == "Retrieve vector store file batchBeta") { return "VectorStoreFileBatchRetrieve"; }
             if (endpointAnchor == "Cancel vector store file batchBeta") { return "VectorStoreFileBatchCancel"; }
             if (endpointAnchor == "List vector store files in a batchBeta") { return "VectorStoreFileBatches"; }
+
+            if (endpointAnchor == "Create invite") { return "OrganizationInviteCreate"; }
+            if (endpointAnchor == "Retrieve invite") { return "OrganizationInviteRetrieve"; }
+            if (endpointAnchor == "Delete invite") { return "OrganizationInviteDelete"; }
+
+            if (endpointAnchor == "Modify user") { return "OrganizationUserCreate"; }
+            if (endpointAnchor == "Retrieve user") { return "OrganizationUserRetrieve"; }
+            if (endpointAnchor == "Delete user") { return "OrganizationUserDelete"; }
+
+            if (endpointAnchor == "List projects") { return "OrganizationProjects"; }
+            if (endpointAnchor == "Create project") { return "OrganizationProjectCreate"; }
+            if (endpointAnchor == "Retrieve project") { return "OrganizationProjectRetrieve"; }
+            if (endpointAnchor == "Modify project") { return "OrganizationProjectModify"; }
+            if (endpointAnchor == "Archive project") { return "OrganizationProjectArchive"; }
+
+            if (endpointAnchor == "List project users") { return "OrganizationProjectUsers"; }
+            if (endpointAnchor == "Create project user") { return "OrganizationProjectUserCreate"; }
+            if (endpointAnchor == "Retrieve project user") { return "OrganizationProjectUserRetrieve"; }
+            if (endpointAnchor == "Modify project user") { return "OrganizationProjectUserModify"; }
+            if (endpointAnchor == "Delete project user") { return "OrganizationProjectUserDelete"; }
+
+            if (endpointAnchor == "List project service accounts") { return "OrganizationProjectServiceAccounts"; }
+            if (endpointAnchor == "Create project service account") { return "OrganizationProjectServiceAccountCreate"; }
+            if (endpointAnchor == "Retrieve project service account") { return "OrganizationProjectServiceAccountRetrieve"; }
+            if (endpointAnchor == "Delete project service account") { return "OrganizationProjectServiceAccountDelete"; }
+
+            if (endpointAnchor == "List project API keys") { return "OrganizationProjectApiKeys"; }
+            if (endpointAnchor == "Retrieve project API key") { return "OrganizationProjectApiKeyRetrieve"; }
+            if (endpointAnchor == "Delete project API key") { return "OrganizationProjectApiKeyDelete"; }
 
             return cName;
         }
@@ -673,6 +709,16 @@ namespace HigLabo.OpenAI.CodeGenerator
             else if (cName == "FileDelete")
             {
                 return "DeleteObjectResponse";
+            }
+            else if (cName == "UploadCreate" ||
+                cName == "UploadComplete" ||
+                cName == "UploadCancel")
+            {
+                return "UploadObjectResponse";
+            }
+            else if (cName == "UploadPartAdd")
+            {
+                return "UploadPartObjectResponse";
             }
             else if (cName == "ImagesGenerations" ||
                 cName == "ImagesEdits" ||
@@ -818,11 +864,82 @@ namespace HigLabo.OpenAI.CodeGenerator
             {
                 return "VectorStoreFileBatchObjectResponse";
             }
+            else if (cName == "OrganizationInvites")
+            {
+                return "RestApiDataResponse<List<InviteObject>>";
+            }
+            else if (cName == "OrganizationInviteCreate" ||
+                cName == "OrganizationInviteRetrieve")
+            {
+                return "InviteObjectResponse";
+            }
+            else if (cName == "OrganizationInviteDelete")
+            {
+                return "DeleteObjectResponse";
+            }
+            else if (cName == "OrganizationUsers")
+            {
+                return "RestApiDataResponse<List<UserObject>>";
+            }
+            else if (cName == "OrganizationUserCreate" ||
+                cName == "OrganizationUserRetrieve")
+            {
+                return "UserObjectResponse";
+            }
+            else if (cName == "OrganizationUserDelete")
+            {
+                return "DeleteObjectResponse";
+            }
+            else if (cName == "OrganizationProjects")
+            {
+                return "RestApiDataResponse<List<ProjectObject>>";
+            }
+            else if (cName == "OrganizationProjectCreate" ||
+                cName == "OrganizationProjectRetrieve" ||
+                cName == "OrganizationProjectModify" ||
+                cName == "OrganizationProjectArchive")
+            {
+                return "ProjectObjectResponse";
+            }
+            else if (cName == "OrganizationProjectUsers")
+            {
+                return "RestApiDataResponse<List<ProjectUserObject>>";
+            }
+            else if (cName == "OrganizationProjectUserCreate" ||
+                cName == "OrganizationProjectUserRetrieve" ||
+                cName == "OrganizationProjectUserModify")
+            {
+                return "ProjectUserObjectResponse";
+            }
+            else if (cName == "OrganizationProjectUserDelete")
+            {
+                return "DeleteObjectResponse";
+            }
+            else if (cName == "OrganizationProjectServiceAccounts")
+            {
+                return "RestApiDataResponse<List<ProjectServiceAccountObject>>";
+            }
+            else if (cName == "OrganizationProjectServiceAccountCreate" ||
+                cName == "OrganizationProjectServiceAccountRetrieve")
+            {
+                return "ProjectServiceAccountObjectResponse";
+            }
+            else if (cName == "OrganizationProjectServiceAccountDelete")
+            {
+                return "DeleteObjectResponse";
+            }
+            else if (cName == "OrganizationProjectApiKeys")
+            {
+                return "RestApiDataResponse<List<ProjectApiKeyObject>>";
+            }
+            else if (cName == "OrganizationProjectApiKeyRetrieve")
+            {
+                return "ProjectApiKeyObjectResponse";
+            }
             else
             {
                 return "RestApiResponse";
             }
-
         }
         private Property CreateHttpMethodProperty(string httpMethod)
         {

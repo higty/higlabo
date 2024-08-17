@@ -14,7 +14,9 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// The ID of an uploaded file that contains requests for the new batch.See upload file for how to upload a file.Your input file must be formatted as a JSONL file, and must be uploaded with the purpose batch. The file can contain up to 50,000 requests, and can be up to 100 MB in size.
+        /// The ID of an uploaded file that contains requests for the new batch.
+        /// See upload file for how to upload a file.
+        /// Your input file must be formatted as a JSONL file, and must be uploaded with the purpose batch. The file can contain up to 50,000 requests, and can be up to 100 MB in size.
         /// </summary>
         public string Input_File_Id { get; set; } = "";
         /// <summary>
