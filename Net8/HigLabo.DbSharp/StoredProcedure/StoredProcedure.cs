@@ -121,11 +121,11 @@ namespace HigLabo.DbSharp
             var rs = await this.GetExecuteNonQueryResultAsync(database, cancellationToken).ConfigureAwait(false);
             return rs.AffectedRecordCount;
         }
-        public async Task<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQueryAsync(IEnumerable<Database> databases)
+        public async ValueTask<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQueryAsync(IEnumerable<Database> databases)
         {
             return await ExecuteNonQueryAsync(databases, CancellationToken.None);
         }
-        public async Task<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQueryAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        public async ValueTask<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQueryAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             var tt = new List<Task<ExecuteNonQueryResult>>();
             foreach (var db in databases)

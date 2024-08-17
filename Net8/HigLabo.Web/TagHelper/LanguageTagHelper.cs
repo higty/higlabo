@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Web
+namespace HigLabo.Web.TagHelpers
 {
     [HtmlTargetElement("text")]
     [RestrictChildren("language")]
@@ -16,20 +16,18 @@ namespace HigLabo.Web
         internal class ChildDataContext
         {
             public bool IsFirst { get; set; } = true;
+            public string CurrentCulture { get; set; } = CultureInfo.CurrentUICulture.Name;
             public string Html { get; set; } = "";
         }
         internal ChildDataContext ContextData { get; set; } = new ChildDataContext();
 
-        public String TagName { get; set; } = "span";
+        public String TagName { get; set; } = "p";
+        public string CurrentCulture { get; set; } = CultureInfo.CurrentUICulture.Name;
 
-        public LanguageTextTagHelper()
-        {
-            this.TagName = "span";
-        }
         public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = this.TagName;
-
+            this.ContextData.CurrentCulture = this.CurrentCulture;
             context.Items.Add(typeof(LanguageTextTagHelper), this);
 
             await output.GetChildContentAsync();
@@ -49,10 +47,6 @@ namespace HigLabo.Web
         public String TagName { get; set; } = "span";
         public String Culture { get; set; } = "ja-JP";
 
-        public LanguageCultureTagHelper()
-        {
-            this.TagName = "span";
-        }
         public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = this.TagName;
@@ -62,7 +56,7 @@ namespace HigLabo.Web
             {
                 parent.ContextData.Html = (await output.GetChildContentAsync()).GetContent();
             }
-            else if (this.Culture == CultureInfo.CurrentUICulture.Name)
+            else if (this.Culture == parent.ContextData.CurrentCulture)
             {
                 parent.ContextData.Html = (await output.GetChildContentAsync()).GetContent();
             }

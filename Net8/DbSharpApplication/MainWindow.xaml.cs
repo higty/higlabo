@@ -185,6 +185,7 @@ namespace DbSharpApplication
         {
             var c = new GenerateSetting();
             c.DatabaseServer = DatabaseServer.SqlServer;
+            c.Name = "New Setting";
             SchemeData.Current.GenerateSettingList.Add(c);
         }
 

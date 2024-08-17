@@ -45,7 +45,7 @@ namespace HigLabo.Core
             }
             yield return this;
         }
-        public string Get(string key)
+        public string GetByKey(string key)
         {
             foreach (var item in this.GetLanguageTextList())
             {

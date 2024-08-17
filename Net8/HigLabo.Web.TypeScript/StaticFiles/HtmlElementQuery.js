@@ -521,25 +521,25 @@ export class HtmlElementQuery {
         let f = new OnEventHandler();
         f.element = element;
         f.eventType = eventType;
-        f.handler = function (e) {
+        f.handler = function (event) {
             const l = element.querySelectorAll(selector);
             for (var i = 0; i < l.length; i++) {
                 if (event.target == l[i]) {
-                    callback(l[i], e);
+                    callback(l[i], event);
                     return;
                 }
                 var pp = $(event.target).getParentElementList();
                 for (var pIndex = 0; pIndex < pp.length; pIndex++) {
                     if (pp[pIndex] == l[i]) {
-                        callback(l[i], e);
+                        callback(l[i], event);
                         return;
                     }
                 }
             }
         }.bind(this);
         if (HtmlElementQuery._onEventHandlerList.find(el => el.element == element && el.eventType == eventType) == null) {
-            element.addEventListener(eventType, function (e) {
-                this.triggerOnEventHandler(element, eventType, e);
+            element.addEventListener(eventType, function (event) {
+                this.triggerOnEventHandler(element, eventType, event);
             }.bind(this));
         }
         HtmlElementQuery._onEventHandlerList.push(f);
