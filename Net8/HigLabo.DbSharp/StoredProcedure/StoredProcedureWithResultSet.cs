@@ -49,19 +49,19 @@ namespace HigLabo.DbSharp
             var results = await this.GetResultSetsAsync(database, commandBehavior, cancellationToken);
             return results.FirstOrDefault();
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases)
         {
             return await this.GetFirstResultSetAsync(databases, CancellationToken.None);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
         {
             return await this.GetFirstResultSetAsync(databases, commandBehavior, CancellationToken.None);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             return await this.GetFirstResultSetAsync(databases, CommandBehavior.Default, cancellationToken);
         }
-        public async Task<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public async ValueTask<StoredProcedureResultSet?> GetFirstResultSetAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var results = await this.GetResultSetsAsync(databases, commandBehavior, cancellationToken);
             return results.FirstOrDefault();
@@ -118,19 +118,19 @@ namespace HigLabo.DbSharp
             }
             return resultsets;
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
         {
             return await this.GetResultSetsAsync(databases, CancellationToken.None);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(databases, commandBehavior, CancellationToken.None);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(databases, CommandBehavior.Default, cancellationToken);
         }
-        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public async ValueTask<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var tt = new List<Task<List<StoredProcedureResultSet>>>();
             foreach (var db in databases)
@@ -147,7 +147,15 @@ namespace HigLabo.DbSharp
         {
             return EnumerateResultSets(this.GetDatabase());
         }
+        public IEnumerable<StoredProcedureResultSet> EnumerateResultSets(CommandBehavior commandBehavior)
+        {
+            return EnumerateResultSets(this.GetDatabase(), commandBehavior);
+        }
         public IEnumerable<StoredProcedureResultSet> EnumerateResultSets(Database database)
+        {
+            return EnumerateResultSets(database, CommandBehavior.Default);
+        }
+        public IEnumerable<StoredProcedureResultSet> EnumerateResultSets(Database database, CommandBehavior commandBehavior)
         {
             if (database == null) throw new ArgumentNullException("database");
             DbDataReader? dr = null;
@@ -156,7 +164,7 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand(database);
-                dr = database.ExecuteReader(cm);
+                dr = database.ExecuteReader(cm, commandBehavior);
                 while (dr!.Read())
                 {
                     var rs = CreateResultSets(dr);
