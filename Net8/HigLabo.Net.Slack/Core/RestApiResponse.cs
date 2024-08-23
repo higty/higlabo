@@ -16,9 +16,5 @@ namespace HigLabo.Net.Slack
         {
             return this.Response_MetaData?.Next_Cursor ?? "";
         }
-        public override bool IsThrowException()
-        {
-            return this.Ok != true;
-        }
     }
 }

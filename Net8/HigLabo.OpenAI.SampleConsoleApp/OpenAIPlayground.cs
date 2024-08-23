@@ -1,11 +1,13 @@
 ﻿using HigLabo.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +20,7 @@ namespace HigLabo.OpenAI
         public async ValueTask ExecuteAsync()
         {
             SetOpenAISetting();
-            await ChatCompletionStream();
+            await ChatCompletionJsonFormat();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -101,7 +103,7 @@ namespace HigLabo.OpenAI
             p.Model = cl.ServiceProvider switch
             {
                 ServiceProvider.Groq => "llama3-70b-8192",
-                _ => "gpt-4",
+                _ => "gpt-4o",
             };
             var res = await cl.ChatCompletionsAsync(p);
             foreach (var choice in res.Choices)
@@ -181,7 +183,7 @@ namespace HigLabo.OpenAI
             p.Model = cl.ServiceProvider switch
             {
                 ServiceProvider.Groq => "llama3-70b-8192",
-                _ => "gpt-4",
+                _ => "gpt-4o",
             };
 
             p.Tools = new List<ToolObject>();
@@ -226,6 +228,79 @@ namespace HigLabo.OpenAI
             Console.WriteLine("");
             Console.WriteLine("■DONE");
         }
+        private async ValueTask ChatCompletionJsonFormat()
+        {
+            var cl = OpenAIClient;
+
+            var p = new ChatCompletionsParameter();
+            p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know Japan information."));
+            p.Model = cl.ServiceProvider switch
+            {
+                ServiceProvider.Groq => "llama3-70b-8192",
+                _ => "gpt-4o-2024-08-06",
+            };
+
+            //Use anonymous object to define json schema.
+            #region
+            //p.Response_Format = new
+            //{
+            //    type = "json_schema",
+            //    json_schema = new
+            //    {
+            //        name = "Info",
+            //        strict = true,
+            //        schema = new
+            //        {
+            //            type = "object",
+            //            properties = new
+            //            {
+            //                population = new
+            //                {
+            //                    type = "integer",
+            //                    description = "Population of this country.",
+            //                },
+            //                area = new
+            //                {
+            //                    type = "integer",
+            //                    description = "Area of this country.",
+            //                },
+            //                currency = new
+            //                {
+            //                    type = "string",
+            //                    description = "Currency of this country.",
+            //                },
+            //                language = new
+            //                {
+            //                    type = "string",
+            //                    description = "Language of this country.",
+            //                },
+            //            },
+            //            required = new string[] { "population", "area", "currency", "language" },
+            //            additionalProperties = false,
+            //        },
+            //    }
+            //};
+            #endregion
+            //Use JsonSchema class to define json schema.
+            var responseSchema = new JsonSchemaResponseFormat();
+            responseSchema.json_schema.Name = "CountryInfo";
+            var o = responseSchema.json_schema.Schema;
+            o.Properties.Add("population", new JsonSchemaProperty("integer", "Population of this country."));
+            o.Properties.Add("area", new JsonSchemaProperty("integer", "Area of this country."));
+            o.Properties.Add("currency", new JsonSchemaProperty("string", "Currency of this country."));
+            o.Properties.Add("language", new JsonSchemaProperty("string", "Language of this country."));
+            o.Required = new string[] { "population", "area", "currency", "language" };
+
+            p.Response_Format = responseSchema;
+
+            var res = await cl.ChatCompletionsAsync(p);
+            foreach (var choice in res.Choices)
+            {
+                Console.Write(choice.Message.Content);
+                var r = JsonConvert.DeserializeObject<CountryInformation>(choice.Message.Content!);
+            }
+            Console.WriteLine();
+        }
 
         private ToolObject CreateGetWheatherTool()
         {
@@ -233,18 +308,26 @@ namespace HigLabo.OpenAI
             tool.Function = new FunctionObject();
             tool.Function.Name = "getWhether";
             tool.Function.Description = "This service can get whether of specified location.";
+            //Use anonymous object to define json schema.
             tool.Function.Parameters = new
             {
                 type = "object",
                 properties = new
                 {
-                    location = new 
+                    location = new
                     {
                         type = "string",
                         description = "Location list that you want to know.",
                     },
                 }
             };
+            //Use JsonSchema class to define json schema.
+            var o = new JsonSchema();
+            o.Properties.Add("location", new JsonSchemaProperty("string")
+            {
+                Description = "Location list that you want to know.",
+            });
+            tool.Function.Parameters = o;
             return tool;
         }
         private ToolObject CreateGetTouristSpotTool()
@@ -277,6 +360,7 @@ namespace HigLabo.OpenAI
             tool.Function = new FunctionObject();
             tool.Function.Name = "getLatLong";
             tool.Function.Description = "This service can get latitude and longitude of specified location.";
+            //Use anonymous object to define json schema.
             tool.Function.Parameters = new
             {
                 type = "object",
@@ -293,6 +377,17 @@ namespace HigLabo.OpenAI
                     }
                 }
             };
+            //Use JsonSchema class to define json schema.
+            var o = new JsonSchema();
+            o.Properties.Add("locationList", new JsonSchemaProperty("array")
+            {
+                Description = "Location list that you want to know.",
+                Items = new JsonSchema()
+                {
+                    Type = "string",
+                }
+            });
+            tool.Function.Parameters = o;
             return tool;
         }
 

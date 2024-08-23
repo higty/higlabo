@@ -84,7 +84,12 @@ namespace HigLabo.Net.OAuth
         }
         public virtual bool IsThrowException()
         {
-            return this._StatusCode != HttpStatusCode.OK;
+            var statusCode = (int)this._StatusCode;
+            if (statusCode >= 200 && statusCode < 300)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace HigLabo.Core
         }
         public override bool CanConvert(Type objectType)
         {
-            return objectType.IsEnum;
+            return objectType.IsEnum || Nullable.GetUnderlyingType(objectType)?.IsEnum == true;
         }
     }
 }

@@ -31,11 +31,11 @@ namespace HigLabo.Net.Microsoft
         }
 
         public MicrosoftClient(HttpClient httpClient)
-          : base(httpClient, new OAuthJsonConverter())
+          : base(httpClient, new MicrosoftJsonConverter())
         {
         }
         public MicrosoftClient(HttpClient httpClient, OAuthSetting setting)
-          : base(httpClient, new OAuthJsonConverter())
+          : base(httpClient, new MicrosoftJsonConverter())
         {
             this.OAuthSetting = setting;
         }
@@ -44,9 +44,29 @@ namespace HigLabo.Net.Microsoft
         {
             var mg = new HttpRequestMessage(httpMethod, url);
             mg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
+            mg.Headers.TryAddWithoutValidation("Accept", "application/json");
             return mg;
         }
 
+        public async ValueTask<TResponse> SendAsync<TResponse>(ODataNextLinkParameter parameter)
+            where TResponse : RestApiResponse
+        {
+            return await SendAsync<TResponse>(parameter, CancellationToken.None);
+        }
+        public async ValueTask<TResponse> SendAsync<TResponse>(ODataNextLinkParameter parameter, CancellationToken cancellationToken)
+            where TResponse : RestApiResponse
+        {
+            var p = parameter;
+            try
+            {
+                return await this.SendAsync<TResponse>(this.CreateHttpRequestMessage(p.Url, new HttpMethod("GET")), cancellationToken);
+            }
+            catch
+            {
+                await this.ProcessAccessTokenAsync();
+            }
+            return await this.SendAsync<TResponse>(this.CreateHttpRequestMessage(p.Url, new HttpMethod("GET")), cancellationToken);
+        }
         public override async ValueTask<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
@@ -131,7 +151,12 @@ namespace HigLabo.Net.Microsoft
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            return this.ParseRequestCodeResponse<RequestCodeResponse>(d, req, res, bodyText);
+            var o = this.ParseRequestCodeResponse<RequestCodeResponse>(d, req, res, bodyText);
+            if (res.StatusCode != HttpStatusCode.OK)
+            {
+                throw new RestApiException(o);
+            }
+            return o;
         }
         public async ValueTask<RequestCodeResponse> UpdateAccessTokenAsync()
         {

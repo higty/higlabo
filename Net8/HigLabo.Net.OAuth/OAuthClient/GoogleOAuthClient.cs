@@ -15,9 +15,8 @@ namespace HigLabo.Net.OAuth
         }
         public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
         {
-            return String.Format("https://accounts.google.com/o/oauth2/v2/auth?response_type=code&access_type=offline"
-                + "&client_id={0}&redirect_uri={1}&scope={2}"
-                , this.ClientID, redirectUrl, WebUtility.UrlEncode(String.Join(" ", scopes)));
+            return "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&access_type=offline&include_granted_scopes=true"
+                + $"&client_id={this.ClientID}&redirect_uri={redirectUrl}&scope={WebUtility.UrlEncode(String.Join(" ", scopes))}&state={state}";
         }
         public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {

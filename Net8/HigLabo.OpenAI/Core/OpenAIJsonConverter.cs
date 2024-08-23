@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
 
         public OpenAIJsonConverter()
         {
-            this.SerializeSetting.ContractResolver = new LowercaseContractResolver();
+            this.SerializeSetting.ContractResolver = new CamelCaseContractResolver();
             this.SerializeSetting.NullValueHandling = NullValueHandling.Ignore;
             this.SerializeSetting.Converters.Add(new EnumToLowerStringConverter());
 

@@ -11,14 +11,6 @@ namespace HigLabo.Net.Microsoft
     public class RestApiResponse : OAuth.RestApiResponse
     {
         public string ODataContext { get; set; } = "";
-
-        public override bool IsThrowException()
-        {
-            if (((IRestApiResponse)this).StatusCode != HttpStatusCode.OK)
-            {
-                return true;
-            }
-            return false;
-        }
+        public string ODataNextLink { get; set; } = "";
     }
 }
