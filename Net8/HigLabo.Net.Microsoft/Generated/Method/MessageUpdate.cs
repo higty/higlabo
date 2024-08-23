@@ -29,6 +29,12 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
+        public enum MessageImportance
+        {
+            Low,
+            Normal,
+            High,
+        }
         public enum ApiPath
         {
             Me_Messages_Id,
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         public Recipient[]? CcRecipients { get; set; }
         public FollowupFlag? Flag { get; set; }
         public Recipient? From { get; set; }
-        public string? Importance { get; set; }
+        public MessageImportance? Importance { get; set; }
         public string? InferenceClassification { get; set; }
         public string? InternetMessageId { get; set; }
         public bool? IsDeliveryReceiptRequested { get; set; }
