@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0
     /// </summary>
-    public partial class SwapshiftschangerequestPostParameter : IRestApiParameter
+    public partial class SwapShiftsChangeRequestPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? RecipientShiftId { get; set; }
     }
-    public partial class SwapshiftschangerequestPostResponse : RestApiResponse
+    public partial class SwapShiftsChangeRequestPostResponse : RestApiResponse
     {
         public string? RecipientShiftId { get; set; }
     }
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestPostResponse> SwapshiftschangerequestPostAsync()
+        public async ValueTask<SwapShiftsChangeRequestPostResponse> SwapShiftsChangeRequestPostAsync()
         {
-            var p = new SwapshiftschangerequestPostParameter();
-            return await this.SendAsync<SwapshiftschangerequestPostParameter, SwapshiftschangerequestPostResponse>(p, CancellationToken.None);
+            var p = new SwapShiftsChangeRequestPostParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestPostParameter, SwapShiftsChangeRequestPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestPostResponse> SwapshiftschangerequestPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestPostResponse> SwapShiftsChangeRequestPostAsync(CancellationToken cancellationToken)
         {
-            var p = new SwapshiftschangerequestPostParameter();
-            return await this.SendAsync<SwapshiftschangerequestPostParameter, SwapshiftschangerequestPostResponse>(p, cancellationToken);
+            var p = new SwapShiftsChangeRequestPostParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestPostParameter, SwapShiftsChangeRequestPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestPostResponse> SwapshiftschangerequestPostAsync(SwapshiftschangerequestPostParameter parameter)
+        public async ValueTask<SwapShiftsChangeRequestPostResponse> SwapShiftsChangeRequestPostAsync(SwapShiftsChangeRequestPostParameter parameter)
         {
-            return await this.SendAsync<SwapshiftschangerequestPostParameter, SwapshiftschangerequestPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SwapShiftsChangeRequestPostParameter, SwapShiftsChangeRequestPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestPostResponse> SwapshiftschangerequestPostAsync(SwapshiftschangerequestPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestPostResponse> SwapShiftsChangeRequestPostAsync(SwapShiftsChangeRequestPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SwapshiftschangerequestPostParameter, SwapshiftschangerequestPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SwapShiftsChangeRequestPostParameter, SwapShiftsChangeRequestPostResponse>(parameter, cancellationToken);
         }
     }
 }

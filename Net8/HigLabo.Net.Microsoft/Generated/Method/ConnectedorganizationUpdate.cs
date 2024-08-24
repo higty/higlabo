@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ConnectedorganizationUpdateParameter : IRestApiParameter
+    public partial class ConnectedOrganizationUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum ConnectedorganizationUpdateParameterConnectedOrganizationState
+        public enum ConnectedOrganizationUpdateParameterConnectedOrganizationState
         {
             AllConfiguredConnectedOrganizationSubjects,
             Configured,
@@ -45,9 +45,9 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Description { get; set; }
         public IdentitySource[]? IdentitySources { get; set; }
-        public ConnectedorganizationUpdateParameterConnectedOrganizationState State { get; set; }
+        public ConnectedOrganizationUpdateParameterConnectedOrganizationState State { get; set; }
     }
-    public partial class ConnectedorganizationUpdateResponse : RestApiResponse
+    public partial class ConnectedOrganizationUpdateResponse : RestApiResponse
     {
         public enum ConnectedOrganizationConnectedOrganizationState
         {
@@ -75,32 +75,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync()
+        public async ValueTask<ConnectedOrganizationUpdateResponse> ConnectedOrganizationUpdateAsync()
         {
-            var p = new ConnectedorganizationUpdateParameter();
-            return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(p, CancellationToken.None);
+            var p = new ConnectedOrganizationUpdateParameter();
+            return await this.SendAsync<ConnectedOrganizationUpdateParameter, ConnectedOrganizationUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedOrganizationUpdateResponse> ConnectedOrganizationUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ConnectedorganizationUpdateParameter();
-            return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(p, cancellationToken);
+            var p = new ConnectedOrganizationUpdateParameter();
+            return await this.SendAsync<ConnectedOrganizationUpdateParameter, ConnectedOrganizationUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(ConnectedorganizationUpdateParameter parameter)
+        public async ValueTask<ConnectedOrganizationUpdateResponse> ConnectedOrganizationUpdateAsync(ConnectedOrganizationUpdateParameter parameter)
         {
-            return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConnectedOrganizationUpdateParameter, ConnectedOrganizationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationUpdateResponse> ConnectedorganizationUpdateAsync(ConnectedorganizationUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedOrganizationUpdateResponse> ConnectedOrganizationUpdateAsync(ConnectedOrganizationUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConnectedorganizationUpdateParameter, ConnectedorganizationUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConnectedOrganizationUpdateParameter, ConnectedOrganizationUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

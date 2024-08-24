@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -60,9 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TableListColumnsResponse : RestApiResponse
+    public partial class TableListColumnsResponse : RestApiResponse<WorkbookTableColumn>
     {
-        public WorkbookTableColumn[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/table-list-columns?view=graph-rest-1.0
@@ -98,6 +98,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TableListColumnsResponse> TableListColumnsAsync(TableListColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TableListColumnsParameter, TableListColumnsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/table-list-columns?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<WorkbookTableColumn> TableListColumnsEnumerateAsync(TableListColumnsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TableListColumnsParameter, TableListColumnsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<WorkbookTableColumn>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

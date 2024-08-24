@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,13 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            Visibility,
-            Members,
-            Extensions,
-            ScopedRoleMembers,
         }
         public enum ApiPath
         {
@@ -54,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DirectoryListAdministrativeunitsResponse : RestApiResponse
+    public partial class DirectoryListAdministrativeunitsResponse : RestApiResponse<AdministrativeUnit>
     {
-        public AdministrativeUnit[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
@@ -92,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<DirectoryListAdministrativeunitsResponse> DirectoryListAdministrativeunitsAsync(DirectoryListAdministrativeunitsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryListAdministrativeunitsParameter, DirectoryListAdministrativeunitsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AdministrativeUnit> DirectoryListAdministrativeunitsEnumerateAsync(DirectoryListAdministrativeunitsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DirectoryListAdministrativeunitsParameter, DirectoryListAdministrativeunitsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AdministrativeUnit>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

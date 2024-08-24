@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
     /// </summary>
-    public partial class ChannelCompletemigrationParameter : IRestApiParameter
+    public partial class ChannelCompleteMigrationParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class ChannelCompletemigrationResponse : RestApiResponse
+    public partial class ChannelCompleteMigrationResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync()
+        public async ValueTask<ChannelCompleteMigrationResponse> ChannelCompleteMigrationAsync()
         {
-            var p = new ChannelCompletemigrationParameter();
-            return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(p, CancellationToken.None);
+            var p = new ChannelCompleteMigrationParameter();
+            return await this.SendAsync<ChannelCompleteMigrationParameter, ChannelCompleteMigrationResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelCompleteMigrationResponse> ChannelCompleteMigrationAsync(CancellationToken cancellationToken)
         {
-            var p = new ChannelCompletemigrationParameter();
-            return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(p, cancellationToken);
+            var p = new ChannelCompleteMigrationParameter();
+            return await this.SendAsync<ChannelCompleteMigrationParameter, ChannelCompleteMigrationResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(ChannelCompletemigrationParameter parameter)
+        public async ValueTask<ChannelCompleteMigrationResponse> ChannelCompleteMigrationAsync(ChannelCompleteMigrationParameter parameter)
         {
-            return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChannelCompleteMigrationParameter, ChannelCompleteMigrationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-completemigration?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelCompletemigrationResponse> ChannelCompletemigrationAsync(ChannelCompletemigrationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelCompleteMigrationResponse> ChannelCompleteMigrationAsync(ChannelCompleteMigrationParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChannelCompletemigrationParameter, ChannelCompletemigrationResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChannelCompleteMigrationParameter, ChannelCompleteMigrationResponse>(parameter, cancellationToken);
         }
     }
 }

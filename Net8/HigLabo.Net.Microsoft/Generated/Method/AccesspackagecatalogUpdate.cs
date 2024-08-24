@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackagecatalogUpdateParameter : IRestApiParameter
+    public partial class AccessPackageCatalogUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,14 +22,14 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum AccesspackagecatalogUpdateParameterAccessPackageCatalogType
+        public enum AccessPackageCatalogUpdateParameterAccessPackageCatalogType
         {
             UserManaged,
             ServiceDefault,
             ServiceManaged,
             UnknownFutureValue,
         }
-        public enum AccesspackagecatalogUpdateParameterAccessPackageCatalogState
+        public enum AccessPackageCatalogUpdateParameterAccessPackageCatalogState
         {
             Published,
             Unpublished,
@@ -51,11 +51,11 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public string? DisplayName { get; set; }
         public string? Description { get; set; }
-        public AccesspackagecatalogUpdateParameterAccessPackageCatalogType CatalogType { get; set; }
-        public AccesspackagecatalogUpdateParameterAccessPackageCatalogState State { get; set; }
+        public AccessPackageCatalogUpdateParameterAccessPackageCatalogType CatalogType { get; set; }
+        public AccessPackageCatalogUpdateParameterAccessPackageCatalogState State { get; set; }
         public bool? IsExternallyVisible { get; set; }
     }
-    public partial class AccesspackagecatalogUpdateResponse : RestApiResponse
+    public partial class AccessPackageCatalogUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -66,32 +66,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync()
+        public async ValueTask<AccessPackageCatalogUpdateResponse> AccessPackageCatalogUpdateAsync()
         {
-            var p = new AccesspackagecatalogUpdateParameter();
-            return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(p, CancellationToken.None);
+            var p = new AccessPackageCatalogUpdateParameter();
+            return await this.SendAsync<AccessPackageCatalogUpdateParameter, AccessPackageCatalogUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageCatalogUpdateResponse> AccessPackageCatalogUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackagecatalogUpdateParameter();
-            return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(p, cancellationToken);
+            var p = new AccessPackageCatalogUpdateParameter();
+            return await this.SendAsync<AccessPackageCatalogUpdateParameter, AccessPackageCatalogUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(AccesspackagecatalogUpdateParameter parameter)
+        public async ValueTask<AccessPackageCatalogUpdateResponse> AccessPackageCatalogUpdateAsync(AccessPackageCatalogUpdateParameter parameter)
         {
-            return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageCatalogUpdateParameter, AccessPackageCatalogUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogUpdateResponse> AccesspackagecatalogUpdateAsync(AccesspackagecatalogUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageCatalogUpdateResponse> AccessPackageCatalogUpdateAsync(AccessPackageCatalogUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackagecatalogUpdateParameter, AccesspackagecatalogUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageCatalogUpdateParameter, AccessPackageCatalogUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

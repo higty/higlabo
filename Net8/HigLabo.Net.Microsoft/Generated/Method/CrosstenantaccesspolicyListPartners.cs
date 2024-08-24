@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,15 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AutomaticUserConsentSettings,
-            B2bCollaborationInbound,
-            B2bCollaborationOutbound,
-            B2bDirectConnectInbound,
-            B2bDirectConnectOutbound,
-            InboundTrust,
-            IsServiceProvider,
-            TenantId,
-            IdentitySynchronization,
         }
         public enum ApiPath
         {
@@ -56,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class CrosstenantAccessPolicyListPartnersResponse : RestApiResponse
+    public partial class CrosstenantAccessPolicyListPartnersResponse : RestApiResponse<CrossTenantAccessPolicyConfigurationPartner>
     {
-        public CrossTenantAccessPolicyConfigurationPartner[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0
@@ -94,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<CrosstenantAccessPolicyListPartnersResponse> CrosstenantAccessPolicyListPartnersAsync(CrosstenantAccessPolicyListPartnersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CrosstenantAccessPolicyListPartnersParameter, CrosstenantAccessPolicyListPartnersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-list-partners?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<CrossTenantAccessPolicyConfigurationPartner> CrosstenantAccessPolicyListPartnersEnumerateAsync(CrosstenantAccessPolicyListPartnersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<CrosstenantAccessPolicyListPartnersParameter, CrosstenantAccessPolicyListPartnersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<CrossTenantAccessPolicyConfigurationPartner>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

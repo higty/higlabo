@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,47 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AddIns,
-            Api,
-            AppId,
-            ApplicationTemplateId,
-            AppRoles,
-            Certification,
-            CreatedDateTime,
-            DeletedDateTime,
-            Description,
-            DisabledByMicrosoftStatus,
-            DisplayName,
-            GroupMembershipClaims,
-            Id,
-            IdentifierUris,
-            Info,
-            IsDeviceOnlyAuthSupported,
-            IsFallbackPublicClient,
-            KeyCredentials,
-            Logo,
-            Notes,
-            Oauth2RequiredPostResponse,
-            OptionalClaims,
-            ParentalControlSettings,
-            PasswordCredentials,
-            PublicClient,
-            PublisherDomain,
-            RequestSignatureVerification,
-            RequiredResourceAccess,
-            SamlMetadataUrl,
-            ServiceManagementReference,
-            SignInAudience,
-            Spa,
-            Tags,
-            TokenEncryptionKeyId,
-            VerifiedPublisher,
-            Web,
-            AppManagementPolicies,
-            CreatedOnBehalfOf,
-            ExtensionProperties,
-            FederatedIdentityCredentials,
-            Owners,
         }
         public enum ApiPath
         {
@@ -88,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ApplicationListResponse : RestApiResponse
+    public partial class ApplicationListResponse : RestApiResponse<Application>
     {
-        public Application[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
@@ -126,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Application> ApplicationListEnumerateAsync(ApplicationListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Application>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -27,24 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Body,
-            Categories,
-            ChangeKey,
-            ConversationId,
-            ConversationThreadId,
-            CreatedDateTime,
-            From,
-            HasAttachments,
-            Id,
-            LastModifiedDateTime,
-            NewParticipants,
-            ReceivedDateTime,
-            Sender,
-            Attachments,
-            Extensions,
-            InReplyTo,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -70,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ConversationthreadListPostsResponse : RestApiResponse
+    public partial class ConversationthreadListPostsResponse : RestApiResponse<Post>
     {
-        public Post[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
@@ -108,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ConversationthreadListPostsResponse> ConversationthreadListPostsAsync(ConversationthreadListPostsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationthreadListPostsParameter, ConversationthreadListPostsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Post> ConversationthreadListPostsEnumerateAsync(ConversationthreadListPostsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ConversationthreadListPostsParameter, ConversationthreadListPostsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Post>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

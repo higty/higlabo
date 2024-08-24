@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryobjectDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DirectoryObjectDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,8 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -49,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DirectoryobjectDeltaResponse : RestApiResponse
+    public partial class DirectoryObjectDeltaResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
@@ -61,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeltaResponse> DirectoryobjectDeltaAsync()
+        public async ValueTask<DirectoryObjectDeltaResponse> DirectoryObjectDeltaAsync()
         {
-            var p = new DirectoryobjectDeltaParameter();
-            return await this.SendAsync<DirectoryobjectDeltaParameter, DirectoryobjectDeltaResponse>(p, CancellationToken.None);
+            var p = new DirectoryObjectDeltaParameter();
+            return await this.SendAsync<DirectoryObjectDeltaParameter, DirectoryObjectDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeltaResponse> DirectoryobjectDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectDeltaResponse> DirectoryObjectDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryobjectDeltaParameter();
-            return await this.SendAsync<DirectoryobjectDeltaParameter, DirectoryobjectDeltaResponse>(p, cancellationToken);
+            var p = new DirectoryObjectDeltaParameter();
+            return await this.SendAsync<DirectoryObjectDeltaParameter, DirectoryObjectDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeltaResponse> DirectoryobjectDeltaAsync(DirectoryobjectDeltaParameter parameter)
+        public async ValueTask<DirectoryObjectDeltaResponse> DirectoryObjectDeltaAsync(DirectoryObjectDeltaParameter parameter)
         {
-            return await this.SendAsync<DirectoryobjectDeltaParameter, DirectoryobjectDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryObjectDeltaParameter, DirectoryObjectDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeltaResponse> DirectoryobjectDeltaAsync(DirectoryobjectDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectDeltaResponse> DirectoryObjectDeltaAsync(DirectoryObjectDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryobjectDeltaParameter, DirectoryobjectDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryObjectDeltaParameter, DirectoryObjectDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> DirectoryObjectDeltaEnumerateAsync(DirectoryObjectDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DirectoryObjectDeltaParameter, DirectoryObjectDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

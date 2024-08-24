@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenshiftchangerequestDeclineParameter : IRestApiParameter
+    public partial class OpenShiftChangeRequestDeclineParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
     }
-    public partial class OpenshiftchangerequestDeclineResponse : RestApiResponse
+    public partial class OpenShiftChangeRequestDeclineResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync()
+        public async ValueTask<OpenShiftChangeRequestDeclineResponse> OpenShiftChangeRequestDeclineAsync()
         {
-            var p = new OpenshiftchangerequestDeclineParameter();
-            return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(p, CancellationToken.None);
+            var p = new OpenShiftChangeRequestDeclineParameter();
+            return await this.SendAsync<OpenShiftChangeRequestDeclineParameter, OpenShiftChangeRequestDeclineResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftChangeRequestDeclineResponse> OpenShiftChangeRequestDeclineAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenshiftchangerequestDeclineParameter();
-            return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(p, cancellationToken);
+            var p = new OpenShiftChangeRequestDeclineParameter();
+            return await this.SendAsync<OpenShiftChangeRequestDeclineParameter, OpenShiftChangeRequestDeclineResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync(OpenshiftchangerequestDeclineParameter parameter)
+        public async ValueTask<OpenShiftChangeRequestDeclineResponse> OpenShiftChangeRequestDeclineAsync(OpenShiftChangeRequestDeclineParameter parameter)
         {
-            return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenShiftChangeRequestDeclineParameter, OpenShiftChangeRequestDeclineResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync(OpenshiftchangerequestDeclineParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftChangeRequestDeclineResponse> OpenShiftChangeRequestDeclineAsync(OpenShiftChangeRequestDeclineParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenShiftChangeRequestDeclineParameter, OpenShiftChangeRequestDeclineResponse>(parameter, cancellationToken);
         }
     }
 }

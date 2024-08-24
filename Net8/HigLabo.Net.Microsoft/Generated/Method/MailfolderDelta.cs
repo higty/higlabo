@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class MailFolderDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,18 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChildFolderCount,
-            DisplayName,
-            Id,
-            IsHidden,
-            ParentFolderId,
-            TotalItemCount,
-            UnreadItemCount,
-            ChildFolders,
-            MessageRules,
-            Messages,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -62,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MailfolderDeltaResponse : RestApiResponse
+    public partial class MailFolderDeltaResponse : RestApiResponse<MailFolder>
     {
-        public MailFolder[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
@@ -74,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync()
+        public async ValueTask<MailFolderDeltaResponse> MailFolderDeltaAsync()
         {
-            var p = new MailfolderDeltaParameter();
-            return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(p, CancellationToken.None);
+            var p = new MailFolderDeltaParameter();
+            return await this.SendAsync<MailFolderDeltaParameter, MailFolderDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderDeltaResponse> MailFolderDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderDeltaParameter();
-            return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(p, cancellationToken);
+            var p = new MailFolderDeltaParameter();
+            return await this.SendAsync<MailFolderDeltaParameter, MailFolderDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync(MailfolderDeltaParameter parameter)
+        public async ValueTask<MailFolderDeltaResponse> MailFolderDeltaAsync(MailFolderDeltaParameter parameter)
         {
-            return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderDeltaParameter, MailFolderDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderDeltaResponse> MailfolderDeltaAsync(MailfolderDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderDeltaResponse> MailFolderDeltaAsync(MailFolderDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderDeltaParameter, MailfolderDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderDeltaParameter, MailFolderDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<MailFolder> MailFolderDeltaEnumerateAsync(MailFolderDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<MailFolderDeltaParameter, MailFolderDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<MailFolder>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

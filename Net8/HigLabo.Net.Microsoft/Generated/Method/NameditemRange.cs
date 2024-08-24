@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
     /// </summary>
-    public partial class NameditemRangeParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class NamedItemRangeParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class NameditemRangeResponse : RestApiResponse
+    public partial class NamedItemRangeResponse : RestApiResponse
     {
         public enum RangeJson
         {
@@ -94,32 +94,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync()
+        public async ValueTask<NamedItemRangeResponse> NamedItemRangeAsync()
         {
-            var p = new NameditemRangeParameter();
-            return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(p, CancellationToken.None);
+            var p = new NamedItemRangeParameter();
+            return await this.SendAsync<NamedItemRangeParameter, NamedItemRangeResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync(CancellationToken cancellationToken)
+        public async ValueTask<NamedItemRangeResponse> NamedItemRangeAsync(CancellationToken cancellationToken)
         {
-            var p = new NameditemRangeParameter();
-            return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(p, cancellationToken);
+            var p = new NamedItemRangeParameter();
+            return await this.SendAsync<NamedItemRangeParameter, NamedItemRangeResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync(NameditemRangeParameter parameter)
+        public async ValueTask<NamedItemRangeResponse> NamedItemRangeAsync(NamedItemRangeParameter parameter)
         {
-            return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<NamedItemRangeParameter, NamedItemRangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-range?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemRangeResponse> NameditemRangeAsync(NameditemRangeParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NamedItemRangeResponse> NamedItemRangeAsync(NamedItemRangeParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<NameditemRangeParameter, NameditemRangeResponse>(parameter, cancellationToken);
+            return await this.SendAsync<NamedItemRangeParameter, NamedItemRangeResponse>(parameter, cancellationToken);
         }
     }
 }

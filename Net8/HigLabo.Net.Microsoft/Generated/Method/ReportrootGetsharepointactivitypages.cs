@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivitypages?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetsharepointactivitypagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetSharepointActivityPagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetsharepointactivitypagesResponse : RestApiResponse
+    public partial class ReportRootGetSharepointActivityPagesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivitypages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivitypagesResponse> ReportRootGetsharepointactivitypagesAsync()
+        public async ValueTask<ReportRootGetSharepointActivityPagesResponse> ReportRootGetSharepointActivityPagesAsync()
         {
-            var p = new ReportRootGetsharepointactivitypagesParameter();
-            return await this.SendAsync<ReportRootGetsharepointactivitypagesParameter, ReportRootGetsharepointactivitypagesResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetSharepointActivityPagesParameter();
+            return await this.SendAsync<ReportRootGetSharepointActivityPagesParameter, ReportRootGetSharepointActivityPagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivitypages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivitypagesResponse> ReportRootGetsharepointactivitypagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSharepointActivityPagesResponse> ReportRootGetSharepointActivityPagesAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetsharepointactivitypagesParameter();
-            return await this.SendAsync<ReportRootGetsharepointactivitypagesParameter, ReportRootGetsharepointactivitypagesResponse>(p, cancellationToken);
+            var p = new ReportRootGetSharepointActivityPagesParameter();
+            return await this.SendAsync<ReportRootGetSharepointActivityPagesParameter, ReportRootGetSharepointActivityPagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivitypages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivitypagesResponse> ReportRootGetsharepointactivitypagesAsync(ReportRootGetsharepointactivitypagesParameter parameter)
+        public async ValueTask<ReportRootGetSharepointActivityPagesResponse> ReportRootGetSharepointActivityPagesAsync(ReportRootGetSharepointActivityPagesParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetsharepointactivitypagesParameter, ReportRootGetsharepointactivitypagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetSharepointActivityPagesParameter, ReportRootGetSharepointActivityPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivitypages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivitypagesResponse> ReportRootGetsharepointactivitypagesAsync(ReportRootGetsharepointactivitypagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSharepointActivityPagesResponse> ReportRootGetSharepointActivityPagesAsync(ReportRootGetSharepointActivityPagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetsharepointactivitypagesParameter, ReportRootGetsharepointactivitypagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetSharepointActivityPagesParameter, ReportRootGetSharepointActivityPagesResponse>(parameter, cancellationToken);
         }
     }
 }

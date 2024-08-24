@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0
     /// </summary>
-    public partial class UnifiedroleeligibilityscheduleinstanceGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UnifiedroleeligibilityScheduleinstanceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UnifiedroleeligibilityscheduleinstanceGetResponse : RestApiResponse
+    public partial class UnifiedroleeligibilityScheduleinstanceGetResponse : RestApiResponse
     {
         public string? AppScopeId { get; set; }
         public string? DirectoryScopeId { get; set; }
@@ -72,32 +72,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroleeligibilityscheduleinstanceGetResponse> UnifiedroleeligibilityscheduleinstanceGetAsync()
+        public async ValueTask<UnifiedroleeligibilityScheduleinstanceGetResponse> UnifiedroleeligibilityScheduleinstanceGetAsync()
         {
-            var p = new UnifiedroleeligibilityscheduleinstanceGetParameter();
-            return await this.SendAsync<UnifiedroleeligibilityscheduleinstanceGetParameter, UnifiedroleeligibilityscheduleinstanceGetResponse>(p, CancellationToken.None);
+            var p = new UnifiedroleeligibilityScheduleinstanceGetParameter();
+            return await this.SendAsync<UnifiedroleeligibilityScheduleinstanceGetParameter, UnifiedroleeligibilityScheduleinstanceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroleeligibilityscheduleinstanceGetResponse> UnifiedroleeligibilityscheduleinstanceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleeligibilityScheduleinstanceGetResponse> UnifiedroleeligibilityScheduleinstanceGetAsync(CancellationToken cancellationToken)
         {
-            var p = new UnifiedroleeligibilityscheduleinstanceGetParameter();
-            return await this.SendAsync<UnifiedroleeligibilityscheduleinstanceGetParameter, UnifiedroleeligibilityscheduleinstanceGetResponse>(p, cancellationToken);
+            var p = new UnifiedroleeligibilityScheduleinstanceGetParameter();
+            return await this.SendAsync<UnifiedroleeligibilityScheduleinstanceGetParameter, UnifiedroleeligibilityScheduleinstanceGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroleeligibilityscheduleinstanceGetResponse> UnifiedroleeligibilityscheduleinstanceGetAsync(UnifiedroleeligibilityscheduleinstanceGetParameter parameter)
+        public async ValueTask<UnifiedroleeligibilityScheduleinstanceGetResponse> UnifiedroleeligibilityScheduleinstanceGetAsync(UnifiedroleeligibilityScheduleinstanceGetParameter parameter)
         {
-            return await this.SendAsync<UnifiedroleeligibilityscheduleinstanceGetParameter, UnifiedroleeligibilityscheduleinstanceGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UnifiedroleeligibilityScheduleinstanceGetParameter, UnifiedroleeligibilityScheduleinstanceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroleeligibilityscheduleinstanceGetResponse> UnifiedroleeligibilityscheduleinstanceGetAsync(UnifiedroleeligibilityscheduleinstanceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleeligibilityScheduleinstanceGetResponse> UnifiedroleeligibilityScheduleinstanceGetAsync(UnifiedroleeligibilityScheduleinstanceGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UnifiedroleeligibilityscheduleinstanceGetParameter, UnifiedroleeligibilityscheduleinstanceGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UnifiedroleeligibilityScheduleinstanceGetParameter, UnifiedroleeligibilityScheduleinstanceGetResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-get?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class MailFolderGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MailfolderGetResponse : RestApiResponse
+    public partial class MailFolderGetResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -74,32 +74,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderGetResponse> MailfolderGetAsync()
+        public async ValueTask<MailFolderGetResponse> MailFolderGetAsync()
         {
-            var p = new MailfolderGetParameter();
-            return await this.SendAsync<MailfolderGetParameter, MailfolderGetResponse>(p, CancellationToken.None);
+            var p = new MailFolderGetParameter();
+            return await this.SendAsync<MailFolderGetParameter, MailFolderGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderGetResponse> MailfolderGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderGetResponse> MailFolderGetAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderGetParameter();
-            return await this.SendAsync<MailfolderGetParameter, MailfolderGetResponse>(p, cancellationToken);
+            var p = new MailFolderGetParameter();
+            return await this.SendAsync<MailFolderGetParameter, MailFolderGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderGetResponse> MailfolderGetAsync(MailfolderGetParameter parameter)
+        public async ValueTask<MailFolderGetResponse> MailFolderGetAsync(MailFolderGetParameter parameter)
         {
-            return await this.SendAsync<MailfolderGetParameter, MailfolderGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderGetParameter, MailFolderGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderGetResponse> MailfolderGetAsync(MailfolderGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderGetResponse> MailFolderGetAsync(MailFolderGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderGetParameter, MailfolderGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderGetParameter, MailFolderGetResponse>(parameter, cancellationToken);
         }
     }
 }

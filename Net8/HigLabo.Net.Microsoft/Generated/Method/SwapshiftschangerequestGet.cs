@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
     /// </summary>
-    public partial class SwapshiftschangerequestGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SwapShiftsChangeRequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SwapshiftschangerequestGetResponse : RestApiResponse
+    public partial class SwapShiftsChangeRequestGetResponse : RestApiResponse
     {
         public string? RecipientShiftId { get; set; }
     }
@@ -60,32 +60,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync()
+        public async ValueTask<SwapShiftsChangeRequestGetResponse> SwapShiftsChangeRequestGetAsync()
         {
-            var p = new SwapshiftschangerequestGetParameter();
-            return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(p, CancellationToken.None);
+            var p = new SwapShiftsChangeRequestGetParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestGetParameter, SwapShiftsChangeRequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestGetResponse> SwapShiftsChangeRequestGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SwapshiftschangerequestGetParameter();
-            return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(p, cancellationToken);
+            var p = new SwapShiftsChangeRequestGetParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestGetParameter, SwapShiftsChangeRequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(SwapshiftschangerequestGetParameter parameter)
+        public async ValueTask<SwapShiftsChangeRequestGetResponse> SwapShiftsChangeRequestGetAsync(SwapShiftsChangeRequestGetParameter parameter)
         {
-            return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SwapShiftsChangeRequestGetParameter, SwapShiftsChangeRequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestGetResponse> SwapshiftschangerequestGetAsync(SwapshiftschangerequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestGetResponse> SwapShiftsChangeRequestGetAsync(SwapShiftsChangeRequestGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SwapshiftschangerequestGetParameter, SwapshiftschangerequestGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SwapShiftsChangeRequestGetParameter, SwapShiftsChangeRequestGetResponse>(parameter, cancellationToken);
         }
     }
 }

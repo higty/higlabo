@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,30 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            ETag,
-            Id,
-            LastModifiedDateTime,
-            Name,
-            Root,
-            SharepointIds,
-            SiteCollection,
-            WebUrl,
-            Analytics,
-            Columns,
-            ContentTypes,
-            Drive,
-            Drives,
-            Items,
-            Lists,
-            Onenote,
-            Operations,
-            Permissions,
-            Sites,
-            TermStore,
-            TermStores,
         }
         public enum ApiPath
         {
@@ -71,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SiteSearchResponse : RestApiResponse
+    public partial class SiteSearchResponse : RestApiResponse<Site>
     {
-        public Site[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
@@ -109,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SiteSearchResponse> SiteSearchAsync(SiteSearchParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteSearchParameter, SiteSearchResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Site> SiteSearchEnumerateAsync(SiteSearchParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SiteSearchParameter, SiteSearchResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Site>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

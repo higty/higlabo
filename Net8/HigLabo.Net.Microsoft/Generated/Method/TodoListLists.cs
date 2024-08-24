@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,13 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            IsOwner,
-            IsShared,
-            WellknownListName,
-            Extensions,
-            Tasks,
         }
         public enum ApiPath
         {
@@ -57,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TodoListListsResponse : RestApiResponse
+    public partial class TodoListListsResponse : RestApiResponse<TodoTaskList>
     {
-        public TodoTaskList[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todo-list-lists?view=graph-rest-1.0
@@ -95,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TodoListListsResponse> TodoListListsAsync(TodoListListsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodoListListsParameter, TodoListListsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/todo-list-lists?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TodoTaskList> TodoListListsEnumerateAsync(TodoListListsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TodoListListsParameter, TodoListListsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TodoTaskList>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

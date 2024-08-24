@@ -39,9 +39,8 @@ namespace HigLabo.Net.Microsoft
         public DriveRecipient[]? Recipients { get; set; }
         public String[]? Roles { get; set; }
     }
-    public partial class PermissionGrantResponse : RestApiResponse
+    public partial class PermissionGrantResponse : RestApiResponse<Permission>
     {
-        public Permission[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/permission-grant?view=graph-rest-1.0

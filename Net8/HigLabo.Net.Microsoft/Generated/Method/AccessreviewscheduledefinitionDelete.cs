@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewscheduledefinitionDeleteParameter : IRestApiParameter
+    public partial class AccessReviewScheduleDefinitionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class AccessreviewscheduledefinitionDeleteResponse : RestApiResponse
+    public partial class AccessReviewScheduleDefinitionDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync()
+        public async ValueTask<AccessReviewScheduleDefinitionDeleteResponse> AccessReviewScheduleDefinitionDeleteAsync()
         {
-            var p = new AccessreviewscheduledefinitionDeleteParameter();
-            return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(p, CancellationToken.None);
+            var p = new AccessReviewScheduleDefinitionDeleteParameter();
+            return await this.SendAsync<AccessReviewScheduleDefinitionDeleteParameter, AccessReviewScheduleDefinitionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewScheduleDefinitionDeleteResponse> AccessReviewScheduleDefinitionDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewscheduledefinitionDeleteParameter();
-            return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(p, cancellationToken);
+            var p = new AccessReviewScheduleDefinitionDeleteParameter();
+            return await this.SendAsync<AccessReviewScheduleDefinitionDeleteParameter, AccessReviewScheduleDefinitionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(AccessreviewscheduledefinitionDeleteParameter parameter)
+        public async ValueTask<AccessReviewScheduleDefinitionDeleteResponse> AccessReviewScheduleDefinitionDeleteAsync(AccessReviewScheduleDefinitionDeleteParameter parameter)
         {
-            return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewScheduleDefinitionDeleteParameter, AccessReviewScheduleDefinitionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionDeleteResponse> AccessreviewscheduledefinitionDeleteAsync(AccessreviewscheduledefinitionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewScheduleDefinitionDeleteResponse> AccessReviewScheduleDefinitionDeleteAsync(AccessReviewScheduleDefinitionDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewscheduledefinitionDeleteParameter, AccessreviewscheduledefinitionDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewScheduleDefinitionDeleteParameter, AccessReviewScheduleDefinitionDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

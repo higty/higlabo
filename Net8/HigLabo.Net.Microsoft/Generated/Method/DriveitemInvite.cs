@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemInviteParameter : IRestApiParameter
+    public partial class DriveItemInviteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
         public string? Password { get; set; }
         public bool? RetainInheritedPermissions { get; set; }
     }
-    public partial class DriveitemInviteResponse : RestApiResponse
+    public partial class DriveItemInviteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -68,32 +68,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync()
+        public async ValueTask<DriveItemInviteResponse> DriveItemInviteAsync()
         {
-            var p = new DriveitemInviteParameter();
-            return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(p, CancellationToken.None);
+            var p = new DriveItemInviteParameter();
+            return await this.SendAsync<DriveItemInviteParameter, DriveItemInviteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemInviteResponse> DriveItemInviteAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemInviteParameter();
-            return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(p, cancellationToken);
+            var p = new DriveItemInviteParameter();
+            return await this.SendAsync<DriveItemInviteParameter, DriveItemInviteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter)
+        public async ValueTask<DriveItemInviteResponse> DriveItemInviteAsync(DriveItemInviteParameter parameter)
         {
-            return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemInviteParameter, DriveItemInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemInviteResponse> DriveItemInviteAsync(DriveItemInviteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemInviteParameter, DriveItemInviteResponse>(parameter, cancellationToken);
         }
     }
 }

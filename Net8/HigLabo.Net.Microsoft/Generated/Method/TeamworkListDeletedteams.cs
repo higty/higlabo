@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamworkListDeletedteamsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TeamworkListDeletedTeamsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,8 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Channels,
         }
         public enum ApiPath
         {
@@ -49,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TeamworkListDeletedteamsResponse : RestApiResponse
+    public partial class TeamworkListDeletedTeamsResponse : RestApiResponse<DeletedTeam>
     {
-        public DeletedTeam[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
@@ -61,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync()
+        public async ValueTask<TeamworkListDeletedTeamsResponse> TeamworkListDeletedTeamsAsync()
         {
-            var p = new TeamworkListDeletedteamsParameter();
-            return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(p, CancellationToken.None);
+            var p = new TeamworkListDeletedTeamsParameter();
+            return await this.SendAsync<TeamworkListDeletedTeamsParameter, TeamworkListDeletedTeamsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworkListDeletedTeamsResponse> TeamworkListDeletedTeamsAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamworkListDeletedteamsParameter();
-            return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(p, cancellationToken);
+            var p = new TeamworkListDeletedTeamsParameter();
+            return await this.SendAsync<TeamworkListDeletedTeamsParameter, TeamworkListDeletedTeamsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(TeamworkListDeletedteamsParameter parameter)
+        public async ValueTask<TeamworkListDeletedTeamsResponse> TeamworkListDeletedTeamsAsync(TeamworkListDeletedTeamsParameter parameter)
         {
-            return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamworkListDeletedTeamsParameter, TeamworkListDeletedTeamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkListDeletedteamsResponse> TeamworkListDeletedteamsAsync(TeamworkListDeletedteamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworkListDeletedTeamsResponse> TeamworkListDeletedTeamsAsync(TeamworkListDeletedTeamsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamworkListDeletedteamsParameter, TeamworkListDeletedteamsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamworkListDeletedTeamsParameter, TeamworkListDeletedTeamsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DeletedTeam> TeamworkListDeletedTeamsEnumerateAsync(TeamworkListDeletedTeamsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TeamworkListDeletedTeamsParameter, TeamworkListDeletedTeamsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DeletedTeam>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -62,12 +62,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContentType,
-            Id,
-            IsInline,
-            LastModifiedDateTime,
-            Name,
-            Size,
         }
         public enum ApiPath
         {
@@ -121,12 +115,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AttachmentGetResponse : RestApiResponse
     {
-        public string? ContentType { get; set; }
-        public string? Id { get; set; }
-        public bool? IsInline { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public string? Name { get; set; }
-        public Int32? Size { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0

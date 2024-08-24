@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewscheduledefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewScheduleDefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewscheduledefinitionGetResponse : RestApiResponse
+    public partial class AccessReviewScheduleDefinitionGetResponse : RestApiResponse
     {
         public AccessReviewNotificationRecipientItem[]? AdditionalNotificationRecipients { get; set; }
         public UserIdentity? CreatedBy { get; set; }
@@ -75,32 +75,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionGetResponse> AccessreviewscheduledefinitionGetAsync()
+        public async ValueTask<AccessReviewScheduleDefinitionGetResponse> AccessReviewScheduleDefinitionGetAsync()
         {
-            var p = new AccessreviewscheduledefinitionGetParameter();
-            return await this.SendAsync<AccessreviewscheduledefinitionGetParameter, AccessreviewscheduledefinitionGetResponse>(p, CancellationToken.None);
+            var p = new AccessReviewScheduleDefinitionGetParameter();
+            return await this.SendAsync<AccessReviewScheduleDefinitionGetParameter, AccessReviewScheduleDefinitionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionGetResponse> AccessreviewscheduledefinitionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewScheduleDefinitionGetResponse> AccessReviewScheduleDefinitionGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewscheduledefinitionGetParameter();
-            return await this.SendAsync<AccessreviewscheduledefinitionGetParameter, AccessreviewscheduledefinitionGetResponse>(p, cancellationToken);
+            var p = new AccessReviewScheduleDefinitionGetParameter();
+            return await this.SendAsync<AccessReviewScheduleDefinitionGetParameter, AccessReviewScheduleDefinitionGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionGetResponse> AccessreviewscheduledefinitionGetAsync(AccessreviewscheduledefinitionGetParameter parameter)
+        public async ValueTask<AccessReviewScheduleDefinitionGetResponse> AccessReviewScheduleDefinitionGetAsync(AccessReviewScheduleDefinitionGetParameter parameter)
         {
-            return await this.SendAsync<AccessreviewscheduledefinitionGetParameter, AccessreviewscheduledefinitionGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewScheduleDefinitionGetParameter, AccessReviewScheduleDefinitionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionGetResponse> AccessreviewscheduledefinitionGetAsync(AccessreviewscheduledefinitionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewScheduleDefinitionGetResponse> AccessReviewScheduleDefinitionGetAsync(AccessReviewScheduleDefinitionGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewscheduledefinitionGetParameter, AccessreviewscheduledefinitionGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewScheduleDefinitionGetParameter, AccessReviewScheduleDefinitionGetResponse>(parameter, cancellationToken);
         }
     }
 }

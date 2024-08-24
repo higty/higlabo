@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,26 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Birthday,
-            CompanyName,
-            Department,
-            DisplayName,
-            GivenName,
-            Id,
-            ImAddress,
-            IsFavorite,
-            JobTitle,
-            OfficeLocation,
-            PersonNotes,
-            PersonType,
-            Phones,
-            PostalAddresses,
-            Profession,
-            ScoredEmailAddresses,
-            Surname,
-            UserPrincipalName,
-            Websites,
-            YomiCompany,
         }
         public enum ApiPath
         {
@@ -70,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListPeopleResponse : RestApiResponse
+    public partial class UserListPeopleResponse : RestApiResponse<Person>
     {
-        public Person[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
@@ -108,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Person> UserListPeopleEnumerateAsync(UserListPeopleParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Person>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public ExternalConnectorsSearchSettings? SearchSettings { get; set; }
         public ExternalConnectorsExternalconnectionExternalConnectorsConnectionState State { get; set; }
-        public ExternalConnectorsExternalitem[]? Items { get; set; }
+        public ExternalConnectorsExternalItem[]? Items { get; set; }
         public ExternalConnectorsConnectionOperation[]? Operations { get; set; }
         public ExternalConnectorsSchema? Schema { get; set; }
     }

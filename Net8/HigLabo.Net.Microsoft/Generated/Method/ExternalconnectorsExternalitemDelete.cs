@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class ExternalConnectorsExternalitemDeleteParameter : IRestApiParameter
+    public partial class ExternalConnectorsExternalItemDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ExternalConnectorsExternalitemDeleteResponse : RestApiResponse
+    public partial class ExternalConnectorsExternalItemDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync()
+        public async ValueTask<ExternalConnectorsExternalItemDeleteResponse> ExternalConnectorsExternalItemDeleteAsync()
         {
-            var p = new ExternalConnectorsExternalitemDeleteParameter();
-            return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsExternalItemDeleteParameter();
+            return await this.SendAsync<ExternalConnectorsExternalItemDeleteParameter, ExternalConnectorsExternalItemDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalItemDeleteResponse> ExternalConnectorsExternalItemDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalConnectorsExternalitemDeleteParameter();
-            return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsExternalItemDeleteParameter();
+            return await this.SendAsync<ExternalConnectorsExternalItemDeleteParameter, ExternalConnectorsExternalItemDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync(ExternalConnectorsExternalitemDeleteParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalItemDeleteResponse> ExternalConnectorsExternalItemDeleteAsync(ExternalConnectorsExternalItemDeleteParameter parameter)
         {
-            return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsExternalItemDeleteParameter, ExternalConnectorsExternalItemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync(ExternalConnectorsExternalitemDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalItemDeleteResponse> ExternalConnectorsExternalItemDeleteAsync(ExternalConnectorsExternalItemDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsExternalItemDeleteParameter, ExternalConnectorsExternalItemDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

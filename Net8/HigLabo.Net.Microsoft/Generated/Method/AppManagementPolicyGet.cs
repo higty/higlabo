@@ -24,12 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
-            Description,
-            IsEnabled,
-            Restrictions,
-            AppliesTo,
         }
         public enum ApiPath
         {

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityUserflowattributeGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityUserflowAttributeGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityUserflowattributeGetResponse : RestApiResponse
+    public partial class IdentityUserflowAttributeGetResponse : RestApiResponse
     {
         public enum IdentityUserFlowAttributeIdentityUserFlowAttributeDataType
         {
@@ -79,32 +79,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync()
+        public async ValueTask<IdentityUserflowAttributeGetResponse> IdentityUserflowAttributeGetAsync()
         {
-            var p = new IdentityUserflowattributeGetParameter();
-            return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowAttributeGetParameter();
+            return await this.SendAsync<IdentityUserflowAttributeGetParameter, IdentityUserflowAttributeGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeGetResponse> IdentityUserflowAttributeGetAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityUserflowattributeGetParameter();
-            return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(p, cancellationToken);
+            var p = new IdentityUserflowAttributeGetParameter();
+            return await this.SendAsync<IdentityUserflowAttributeGetParameter, IdentityUserflowAttributeGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync(IdentityUserflowattributeGetParameter parameter)
+        public async ValueTask<IdentityUserflowAttributeGetResponse> IdentityUserflowAttributeGetAsync(IdentityUserflowAttributeGetParameter parameter)
         {
-            return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowAttributeGetParameter, IdentityUserflowAttributeGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync(IdentityUserflowattributeGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeGetResponse> IdentityUserflowAttributeGetAsync(IdentityUserflowAttributeGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowAttributeGetParameter, IdentityUserflowAttributeGetResponse>(parameter, cancellationToken);
         }
     }
 }

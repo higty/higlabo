@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0
     /// </summary>
-    public partial class ApplicationtemplateInstantiateParameter : IRestApiParameter
+    public partial class ApplicationTemplateInstantiateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         public Application? Application { get; set; }
         public ServicePrincipal? ServicePrincipal { get; set; }
     }
-    public partial class ApplicationtemplateInstantiateResponse : RestApiResponse
+    public partial class ApplicationTemplateInstantiateResponse : RestApiResponse
     {
         public Application? Application { get; set; }
         public ServicePrincipal? ServicePrincipal { get; set; }
@@ -53,32 +53,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateInstantiateResponse> ApplicationtemplateInstantiateAsync()
+        public async ValueTask<ApplicationTemplateInstantiateResponse> ApplicationTemplateInstantiateAsync()
         {
-            var p = new ApplicationtemplateInstantiateParameter();
-            return await this.SendAsync<ApplicationtemplateInstantiateParameter, ApplicationtemplateInstantiateResponse>(p, CancellationToken.None);
+            var p = new ApplicationTemplateInstantiateParameter();
+            return await this.SendAsync<ApplicationTemplateInstantiateParameter, ApplicationTemplateInstantiateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateInstantiateResponse> ApplicationtemplateInstantiateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationTemplateInstantiateResponse> ApplicationTemplateInstantiateAsync(CancellationToken cancellationToken)
         {
-            var p = new ApplicationtemplateInstantiateParameter();
-            return await this.SendAsync<ApplicationtemplateInstantiateParameter, ApplicationtemplateInstantiateResponse>(p, cancellationToken);
+            var p = new ApplicationTemplateInstantiateParameter();
+            return await this.SendAsync<ApplicationTemplateInstantiateParameter, ApplicationTemplateInstantiateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateInstantiateResponse> ApplicationtemplateInstantiateAsync(ApplicationtemplateInstantiateParameter parameter)
+        public async ValueTask<ApplicationTemplateInstantiateResponse> ApplicationTemplateInstantiateAsync(ApplicationTemplateInstantiateParameter parameter)
         {
-            return await this.SendAsync<ApplicationtemplateInstantiateParameter, ApplicationtemplateInstantiateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ApplicationTemplateInstantiateParameter, ApplicationTemplateInstantiateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateInstantiateResponse> ApplicationtemplateInstantiateAsync(ApplicationtemplateInstantiateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationTemplateInstantiateResponse> ApplicationTemplateInstantiateAsync(ApplicationTemplateInstantiateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ApplicationtemplateInstantiateParameter, ApplicationtemplateInstantiateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ApplicationTemplateInstantiateParameter, ApplicationTemplateInstantiateResponse>(parameter, cancellationToken);
         }
     }
 }

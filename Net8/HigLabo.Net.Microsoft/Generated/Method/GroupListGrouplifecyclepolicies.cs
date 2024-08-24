@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,10 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AlternateNotificationEmails,
-            GroupLifetimeInDays,
-            Id,
-            ManagedGroupTypes,
         }
         public enum ApiPath
         {
@@ -52,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupListGrouplifecyclepoliciesResponse : RestApiResponse
+    public partial class GroupListGrouplifecyclepoliciesResponse : RestApiResponse<GroupLifecyclePolicy>
     {
-        public GroupLifecyclePolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
@@ -90,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<GroupListGrouplifecyclepoliciesResponse> GroupListGrouplifecyclepoliciesAsync(GroupListGrouplifecyclepoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListGrouplifecyclepoliciesParameter, GroupListGrouplifecyclepoliciesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<GroupLifecyclePolicy> GroupListGrouplifecyclepoliciesEnumerateAsync(GroupListGrouplifecyclepoliciesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<GroupListGrouplifecyclepoliciesParameter, GroupListGrouplifecyclepoliciesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<GroupLifecyclePolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

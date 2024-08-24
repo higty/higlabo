@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -48,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AssociatedteaminfoListResponse : RestApiResponse
+    public partial class AssociatedteaminfoListResponse : RestApiResponse<AssociatedTeamInfo>
     {
-        public AssociatedTeamInfo[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/associatedteaminfo-list?view=graph-rest-1.0
@@ -86,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AssociatedteaminfoListResponse> AssociatedteaminfoListAsync(AssociatedteaminfoListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AssociatedteaminfoListParameter, AssociatedteaminfoListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/associatedteaminfo-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AssociatedTeamInfo> AssociatedteaminfoListEnumerateAsync(AssociatedteaminfoListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AssociatedteaminfoListParameter, AssociatedteaminfoListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AssociatedTeamInfo>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,15 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowedCombinations,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Id,
-            ModifiedDateTime,
-            PolicyType,
-            RequirementsSatisfied,
-            CombinationConfigurations,
         }
         public enum ApiPath
         {
@@ -56,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AuthenticationstrengthRootListPoliciesResponse : RestApiResponse
+    public partial class AuthenticationstrengthRootListPoliciesResponse : RestApiResponse<AuthenticationStrengthPolicy>
     {
-        public AuthenticationStrengthPolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
@@ -94,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AuthenticationstrengthRootListPoliciesResponse> AuthenticationstrengthRootListPoliciesAsync(AuthenticationstrengthRootListPoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationstrengthRootListPoliciesParameter, AuthenticationstrengthRootListPoliciesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AuthenticationStrengthPolicy> AuthenticationstrengthRootListPoliciesEnumerateAsync(AuthenticationstrengthRootListPoliciesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AuthenticationstrengthRootListPoliciesParameter, AuthenticationstrengthRootListPoliciesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AuthenticationStrengthPolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

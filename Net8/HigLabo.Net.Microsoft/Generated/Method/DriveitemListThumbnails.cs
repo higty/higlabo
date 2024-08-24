@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemListThumbnailsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemListThumbnailsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -60,9 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemListThumbnailsResponse : RestApiResponse
+    public partial class DriveItemListThumbnailsResponse : RestApiResponse<ThumbnailSet>
     {
-        public ThumbnailSet[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
@@ -72,32 +72,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListThumbnailsResponse> DriveitemListThumbnailsAsync()
+        public async ValueTask<DriveItemListThumbnailsResponse> DriveItemListThumbnailsAsync()
         {
-            var p = new DriveitemListThumbnailsParameter();
-            return await this.SendAsync<DriveitemListThumbnailsParameter, DriveitemListThumbnailsResponse>(p, CancellationToken.None);
+            var p = new DriveItemListThumbnailsParameter();
+            return await this.SendAsync<DriveItemListThumbnailsParameter, DriveItemListThumbnailsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListThumbnailsResponse> DriveitemListThumbnailsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListThumbnailsResponse> DriveItemListThumbnailsAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemListThumbnailsParameter();
-            return await this.SendAsync<DriveitemListThumbnailsParameter, DriveitemListThumbnailsResponse>(p, cancellationToken);
+            var p = new DriveItemListThumbnailsParameter();
+            return await this.SendAsync<DriveItemListThumbnailsParameter, DriveItemListThumbnailsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListThumbnailsResponse> DriveitemListThumbnailsAsync(DriveitemListThumbnailsParameter parameter)
+        public async ValueTask<DriveItemListThumbnailsResponse> DriveItemListThumbnailsAsync(DriveItemListThumbnailsParameter parameter)
         {
-            return await this.SendAsync<DriveitemListThumbnailsParameter, DriveitemListThumbnailsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemListThumbnailsParameter, DriveItemListThumbnailsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListThumbnailsResponse> DriveitemListThumbnailsAsync(DriveitemListThumbnailsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListThumbnailsResponse> DriveItemListThumbnailsAsync(DriveItemListThumbnailsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemListThumbnailsParameter, DriveitemListThumbnailsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemListThumbnailsParameter, DriveItemListThumbnailsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-thumbnails?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ThumbnailSet> DriveItemListThumbnailsEnumerateAsync(DriveItemListThumbnailsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveItemListThumbnailsParameter, DriveItemListThumbnailsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ThumbnailSet>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

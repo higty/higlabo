@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,73 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowExternalSenders,
-            AssignedLabels,
-            AssignedLicenses,
-            AutoSubscribeNewMembers,
-            Classification,
-            CreatedDateTime,
-            DeletedDateTime,
-            Description,
-            DisplayName,
-            ExpirationDateTime,
-            GroupTypes,
-            HasMembersWithLicenseErrors,
-            HideFromAddressLists,
-            HideFromOutlookClients,
-            Id,
-            IsArchived,
-            IsAssignableToRole,
-            IsSubscribedByMail,
-            LicenseProcessingState,
-            Mail,
-            MailEnabled,
-            MailNickname,
-            MembershipRule,
-            MembershipRuleProcessingState,
-            OnPremisesLastSyncDateTime,
-            OnPremisesProvisioningErrors,
-            OnPremisesSamAccountName,
-            OnPremisesSecurityIdentifier,
-            OnPremisesSyncEnabled,
-            PreferredDataLocation,
-            PreferredLanguage,
-            ProxyAddresses,
-            RenewedDateTime,
-            ResourceBehaviorOptions,
-            ResourceProvisioningOptions,
-            SecurityEnabled,
-            SecurityIdentifier,
-            Theme,
-            UnseenCount,
-            Visibility,
-            AcceptedSenders,
-            AppRoleAssignments,
-            Calendar,
-            CalendarView,
-            Conversations,
-            CreatedOnBehalfOf,
-            Drive,
-            Drives,
-            Events,
-            Extensions,
-            GroupLifecyclePolicies,
-            MemberOf,
-            Members,
-            MembersWithLicenseErrors,
-            Onenote,
-            Owners,
-            PermissionGrants,
-            Photo,
-            Photos,
-            Planner,
-            RejectedSenders,
-            Settings,
-            Sites,
-            Team,
-            Threads,
-            TransitiveMemberOf,
-            TransitiveMembers,
         }
         public enum ApiPath
         {
@@ -114,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupDeltaResponse : RestApiResponse
+    public partial class GroupDeltaResponse : RestApiResponse<Group>
     {
-        public Group[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
@@ -152,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Group> GroupDeltaEnumerateAsync(GroupDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Group>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

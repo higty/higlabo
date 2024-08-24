@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,8 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Stages,
         }
         public enum ApiPath
         {
@@ -49,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ApprovalFilterbycurrentUserResponse : RestApiResponse
+    public partial class ApprovalFilterbycurrentUserResponse : RestApiResponse<Approval>
     {
-        public Approval[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
@@ -87,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Approval> ApprovalFilterbycurrentUserEnumerateAsync(ApprovalFilterbycurrentUserParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Approval>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationcategoryGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationCategoryGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationcategoryGetResponse : RestApiResponse
+    public partial class EducationCategoryGetResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync()
+        public async ValueTask<EducationCategoryGetResponse> EducationCategoryGetAsync()
         {
-            var p = new EducationcategoryGetParameter();
-            return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(p, CancellationToken.None);
+            var p = new EducationCategoryGetParameter();
+            return await this.SendAsync<EducationCategoryGetParameter, EducationCategoryGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationCategoryGetResponse> EducationCategoryGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationcategoryGetParameter();
-            return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(p, cancellationToken);
+            var p = new EducationCategoryGetParameter();
+            return await this.SendAsync<EducationCategoryGetParameter, EducationCategoryGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync(EducationcategoryGetParameter parameter)
+        public async ValueTask<EducationCategoryGetResponse> EducationCategoryGetAsync(EducationCategoryGetParameter parameter)
         {
-            return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationCategoryGetParameter, EducationCategoryGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationcategoryGetResponse> EducationcategoryGetAsync(EducationcategoryGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationCategoryGetResponse> EducationCategoryGetAsync(EducationCategoryGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationcategoryGetParameter, EducationcategoryGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationCategoryGetParameter, EducationCategoryGetResponse>(parameter, cancellationToken);
         }
     }
 }

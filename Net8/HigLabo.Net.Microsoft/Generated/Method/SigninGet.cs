@@ -125,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         public string? ResourceId { get; set; }
         public SignInRiskDetail RiskDetail { get; set; }
         public SignInRiskEventType RiskEventTypes { get; set; }
-        public String[]? RiskEventTypes_v2 { get; set; }
+        public String[]? RiskEventTypes_V2 { get; set; }
         public SignInRiskLevel RiskLevelAggregated { get; set; }
         public SignInRiskLevel RiskLevelDuringSignIn { get; set; }
         public SignInRiskState RiskState { get; set; }

@@ -28,24 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Body,
-            Categories,
-            ChangeKey,
-            ConversationId,
-            ConversationThreadId,
-            CreatedDateTime,
-            From,
-            HasAttachments,
-            Id,
-            LastModifiedDateTime,
-            NewParticipants,
-            ReceivedDateTime,
-            Sender,
-            Attachments,
-            Extensions,
-            InReplyTo,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {

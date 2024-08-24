@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
     /// </summary>
-    public partial class UserconsentrequestFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserconsentRequestFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApprovalId,
-            CompletedDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            CustomData,
-            Id,
-            Reason,
-            Status,
-            Approval,
         }
         public enum ApiPath
         {
@@ -57,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserconsentrequestFilterbycurrentUserResponse : RestApiResponse
+    public partial class UserconsentRequestFilterbycurrentUserResponse : RestApiResponse<UserConsentRequest>
     {
-        public UserConsentRequest[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
@@ -69,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync()
+        public async ValueTask<UserconsentRequestFilterbycurrentUserResponse> UserconsentRequestFilterbycurrentUserAsync()
         {
-            var p = new UserconsentrequestFilterbycurrentUserParameter();
-            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(p, CancellationToken.None);
+            var p = new UserconsentRequestFilterbycurrentUserParameter();
+            return await this.SendAsync<UserconsentRequestFilterbycurrentUserParameter, UserconsentRequestFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserconsentRequestFilterbycurrentUserResponse> UserconsentRequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new UserconsentrequestFilterbycurrentUserParameter();
-            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(p, cancellationToken);
+            var p = new UserconsentRequestFilterbycurrentUserParameter();
+            return await this.SendAsync<UserconsentRequestFilterbycurrentUserParameter, UserconsentRequestFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(UserconsentrequestFilterbycurrentUserParameter parameter)
+        public async ValueTask<UserconsentRequestFilterbycurrentUserResponse> UserconsentRequestFilterbycurrentUserAsync(UserconsentRequestFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserconsentRequestFilterbycurrentUserParameter, UserconsentRequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(UserconsentrequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserconsentRequestFilterbycurrentUserResponse> UserconsentRequestFilterbycurrentUserAsync(UserconsentRequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserconsentRequestFilterbycurrentUserParameter, UserconsentRequestFilterbycurrentUserResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UserConsentRequest> UserconsentRequestFilterbycurrentUserEnumerateAsync(UserconsentRequestFilterbycurrentUserParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserconsentRequestFilterbycurrentUserParameter, UserconsentRequestFilterbycurrentUserResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UserConsentRequest>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

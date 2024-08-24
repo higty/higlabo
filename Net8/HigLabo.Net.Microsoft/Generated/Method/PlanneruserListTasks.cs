@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,32 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ActiveChecklistItemCount,
-            AppliedCategories,
-            AssigneePriority,
-            Assignments,
-            BucketId,
-            ChecklistItemCount,
-            CompletedBy,
-            CompletedDateTime,
-            ConversationThreadId,
-            CreatedBy,
-            CreatedDateTime,
-            DueDateTime,
-            HasDescription,
-            Id,
-            OrderHint,
-            PercentComplete,
-            PlanId,
-            PreviewType,
-            Priority,
-            ReferenceCount,
-            StartDateTime,
-            Title,
-            AssignedToTaskBoardFormat,
-            BucketTaskBoardFormat,
-            Details,
-            ProgressTaskBoardFormat,
         }
         public enum ApiPath
         {
@@ -78,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PlannerUserListTasksResponse : RestApiResponse
+    public partial class PlannerUserListTasksResponse : RestApiResponse<PlannerTask>
     {
-        public PlannerTask[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
@@ -116,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PlannerTask> PlannerUserListTasksEnumerateAsync(PlannerUserListTasksParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PlannerTask>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

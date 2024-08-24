@@ -24,34 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Classification,
-            ClassSettings,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            FunSettings,
-            GuestSettings,
-            InternalId,
-            IsArchived,
-            MemberSettings,
-            MessagingSettings,
-            Specialization,
-            Summary,
-            TenantId,
-            Visibility,
-            WebUrl,
-            AllChannels,
-            Channels,
-            IncomingChannels,
-            InstalledApps,
-            Members,
-            Operations,
-            Photo,
-            PrimaryChannel,
-            Schedule,
-            Tags,
-            Template,
         }
         public enum ApiPath
         {

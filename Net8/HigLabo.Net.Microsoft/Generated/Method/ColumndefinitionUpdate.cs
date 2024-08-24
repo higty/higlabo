@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ColumndefinitionUpdateParameter : IRestApiParameter
+    public partial class ColumnDefinitionUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
     }
-    public partial class ColumndefinitionUpdateResponse : RestApiResponse
+    public partial class ColumnDefinitionUpdateResponse : RestApiResponse
     {
         public BooleanColumn? Boolean { get; set; }
         public CalculatedColumn? Calculated { get; set; }
@@ -90,32 +90,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync()
+        public async ValueTask<ColumnDefinitionUpdateResponse> ColumnDefinitionUpdateAsync()
         {
-            var p = new ColumndefinitionUpdateParameter();
-            return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(p, CancellationToken.None);
+            var p = new ColumnDefinitionUpdateParameter();
+            return await this.SendAsync<ColumnDefinitionUpdateParameter, ColumnDefinitionUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ColumnDefinitionUpdateResponse> ColumnDefinitionUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ColumndefinitionUpdateParameter();
-            return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(p, cancellationToken);
+            var p = new ColumnDefinitionUpdateParameter();
+            return await this.SendAsync<ColumnDefinitionUpdateParameter, ColumnDefinitionUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(ColumndefinitionUpdateParameter parameter)
+        public async ValueTask<ColumnDefinitionUpdateResponse> ColumnDefinitionUpdateAsync(ColumnDefinitionUpdateParameter parameter)
         {
-            return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ColumnDefinitionUpdateParameter, ColumnDefinitionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionUpdateResponse> ColumndefinitionUpdateAsync(ColumndefinitionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ColumnDefinitionUpdateResponse> ColumnDefinitionUpdateAsync(ColumnDefinitionUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ColumndefinitionUpdateParameter, ColumndefinitionUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ColumnDefinitionUpdateParameter, ColumnDefinitionUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

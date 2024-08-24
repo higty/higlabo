@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
     /// </summary>
-    public partial class ApplicationtemplateListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ApplicationTemplateListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,15 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Categories,
-            Description,
-            DisplayName,
-            HomePageUrl,
-            Id,
-            LogoUrl,
-            Publisher,
-            SupportedProvisioningTypes,
-            SupportedSingleSignOnModes,
         }
         public enum ApiPath
         {
@@ -56,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ApplicationtemplateListResponse : RestApiResponse
+    public partial class ApplicationTemplateListResponse : RestApiResponse<ApplicationTemplate>
     {
-        public ApplicationTemplate[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
@@ -68,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync()
+        public async ValueTask<ApplicationTemplateListResponse> ApplicationTemplateListAsync()
         {
-            var p = new ApplicationtemplateListParameter();
-            return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(p, CancellationToken.None);
+            var p = new ApplicationTemplateListParameter();
+            return await this.SendAsync<ApplicationTemplateListParameter, ApplicationTemplateListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationTemplateListResponse> ApplicationTemplateListAsync(CancellationToken cancellationToken)
         {
-            var p = new ApplicationtemplateListParameter();
-            return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(p, cancellationToken);
+            var p = new ApplicationTemplateListParameter();
+            return await this.SendAsync<ApplicationTemplateListParameter, ApplicationTemplateListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync(ApplicationtemplateListParameter parameter)
+        public async ValueTask<ApplicationTemplateListResponse> ApplicationTemplateListAsync(ApplicationTemplateListParameter parameter)
         {
-            return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ApplicationTemplateListParameter, ApplicationTemplateListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateListResponse> ApplicationtemplateListAsync(ApplicationtemplateListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationTemplateListResponse> ApplicationTemplateListAsync(ApplicationTemplateListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ApplicationtemplateListParameter, ApplicationtemplateListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ApplicationTemplateListParameter, ApplicationTemplateListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ApplicationTemplate> ApplicationTemplateListEnumerateAsync(ApplicationTemplateListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ApplicationTemplateListParameter, ApplicationTemplateListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ApplicationTemplate>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

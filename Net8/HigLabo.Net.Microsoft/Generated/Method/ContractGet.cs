@@ -24,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContractType,
-            CustomerId,
-            DefaultDomainName,
-            DisplayName,
-            Id,
         }
         public enum ApiPath
         {

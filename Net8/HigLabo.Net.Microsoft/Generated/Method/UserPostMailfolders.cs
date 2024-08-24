@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
     /// </summary>
-    public partial class UserPostMailfoldersParameter : IRestApiParameter
+    public partial class UserPostMailFoldersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class UserPostMailfoldersResponse : RestApiResponse
+    public partial class UserPostMailFoldersResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -74,32 +74,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync()
+        public async ValueTask<UserPostMailFoldersResponse> UserPostMailFoldersAsync()
         {
-            var p = new UserPostMailfoldersParameter();
-            return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(p, CancellationToken.None);
+            var p = new UserPostMailFoldersParameter();
+            return await this.SendAsync<UserPostMailFoldersParameter, UserPostMailFoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostMailFoldersResponse> UserPostMailFoldersAsync(CancellationToken cancellationToken)
         {
-            var p = new UserPostMailfoldersParameter();
-            return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(p, cancellationToken);
+            var p = new UserPostMailFoldersParameter();
+            return await this.SendAsync<UserPostMailFoldersParameter, UserPostMailFoldersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter)
+        public async ValueTask<UserPostMailFoldersResponse> UserPostMailFoldersAsync(UserPostMailFoldersParameter parameter)
         {
-            return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserPostMailFoldersParameter, UserPostMailFoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostMailFoldersResponse> UserPostMailFoldersAsync(UserPostMailFoldersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserPostMailFoldersParameter, UserPostMailFoldersResponse>(parameter, cancellationToken);
         }
     }
 }

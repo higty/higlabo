@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,12 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApiVersion,
-            DisplayName,
-            Encryption,
-            IsActive,
-            SupportedEntities,
-            Url,
         }
         public enum ApiPath
         {
@@ -53,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class WorkforceintegrationListResponse : RestApiResponse
+    public partial class WorkforceintegrationListResponse : RestApiResponse<WorkforceIntegration>
     {
-        public WorkforceIntegration[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-list?view=graph-rest-1.0
@@ -91,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<WorkforceintegrationListResponse> WorkforceintegrationListAsync(WorkforceintegrationListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkforceintegrationListParameter, WorkforceintegrationListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<WorkforceIntegration> WorkforceintegrationListEnumerateAsync(WorkforceintegrationListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<WorkforceintegrationListParameter, WorkforceintegrationListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<WorkforceIntegration>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

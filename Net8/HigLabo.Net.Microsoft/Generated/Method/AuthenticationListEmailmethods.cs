@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            EmailAddress,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AuthenticationListEmailmethodsResponse : RestApiResponse
+    public partial class AuthenticationListEmailmethodsResponse : RestApiResponse<EmailAuthenticationMethod>
     {
-        public EmailAuthenticationMethod[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/authentication-list-emailmethods?view=graph-rest-1.0
@@ -90,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AuthenticationListEmailmethodsResponse> AuthenticationListEmailmethodsAsync(AuthenticationListEmailmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListEmailmethodsParameter, AuthenticationListEmailmethodsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-emailmethods?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EmailAuthenticationMethod> AuthenticationListEmailmethodsEnumerateAsync(AuthenticationListEmailmethodsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AuthenticationListEmailmethodsParameter, AuthenticationListEmailmethodsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EmailAuthenticationMethod>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

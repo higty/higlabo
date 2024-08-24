@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
     /// </summary>
-    public partial class AttacksimulationRootListSimulationsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AttackSimulationRootListSimulationsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,22 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AttackTechnique,
-            AttackType,
-            AutomationId,
-            CompletionDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Id,
-            IsAutomated,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            LaunchDateTime,
-            PayloadDeliveryPlatform,
-            Report,
-            Status,
         }
         public enum ApiPath
         {
@@ -63,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AttacksimulationRootListSimulationsResponse : RestApiResponse
+    public partial class AttackSimulationRootListSimulationsResponse : RestApiResponse<Simulation>
     {
-        public Simulation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
@@ -75,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AttacksimulationRootListSimulationsResponse> AttacksimulationRootListSimulationsAsync()
+        public async ValueTask<AttackSimulationRootListSimulationsResponse> AttackSimulationRootListSimulationsAsync()
         {
-            var p = new AttacksimulationRootListSimulationsParameter();
-            return await this.SendAsync<AttacksimulationRootListSimulationsParameter, AttacksimulationRootListSimulationsResponse>(p, CancellationToken.None);
+            var p = new AttackSimulationRootListSimulationsParameter();
+            return await this.SendAsync<AttackSimulationRootListSimulationsParameter, AttackSimulationRootListSimulationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AttacksimulationRootListSimulationsResponse> AttacksimulationRootListSimulationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AttackSimulationRootListSimulationsResponse> AttackSimulationRootListSimulationsAsync(CancellationToken cancellationToken)
         {
-            var p = new AttacksimulationRootListSimulationsParameter();
-            return await this.SendAsync<AttacksimulationRootListSimulationsParameter, AttacksimulationRootListSimulationsResponse>(p, cancellationToken);
+            var p = new AttackSimulationRootListSimulationsParameter();
+            return await this.SendAsync<AttackSimulationRootListSimulationsParameter, AttackSimulationRootListSimulationsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AttacksimulationRootListSimulationsResponse> AttacksimulationRootListSimulationsAsync(AttacksimulationRootListSimulationsParameter parameter)
+        public async ValueTask<AttackSimulationRootListSimulationsResponse> AttackSimulationRootListSimulationsAsync(AttackSimulationRootListSimulationsParameter parameter)
         {
-            return await this.SendAsync<AttacksimulationRootListSimulationsParameter, AttacksimulationRootListSimulationsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AttackSimulationRootListSimulationsParameter, AttackSimulationRootListSimulationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AttacksimulationRootListSimulationsResponse> AttacksimulationRootListSimulationsAsync(AttacksimulationRootListSimulationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AttackSimulationRootListSimulationsResponse> AttackSimulationRootListSimulationsAsync(AttackSimulationRootListSimulationsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AttacksimulationRootListSimulationsParameter, AttacksimulationRootListSimulationsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AttackSimulationRootListSimulationsParameter, AttackSimulationRootListSimulationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Simulation> AttackSimulationRootListSimulationsEnumerateAsync(AttackSimulationRootListSimulationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AttackSimulationRootListSimulationsParameter, AttackSimulationRootListSimulationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Simulation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

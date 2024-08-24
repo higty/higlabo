@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
     /// </summary>
-    public partial class UserListOwnedobjectsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserListOwnedObjectsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListOwnedobjectsResponse : RestApiResponse
+    public partial class UserListOwnedObjectsResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync()
+        public async ValueTask<UserListOwnedObjectsResponse> UserListOwnedObjectsAsync()
         {
-            var p = new UserListOwnedobjectsParameter();
-            return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(p, CancellationToken.None);
+            var p = new UserListOwnedObjectsParameter();
+            return await this.SendAsync<UserListOwnedObjectsParameter, UserListOwnedObjectsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListOwnedObjectsResponse> UserListOwnedObjectsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserListOwnedobjectsParameter();
-            return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(p, cancellationToken);
+            var p = new UserListOwnedObjectsParameter();
+            return await this.SendAsync<UserListOwnedObjectsParameter, UserListOwnedObjectsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(UserListOwnedobjectsParameter parameter)
+        public async ValueTask<UserListOwnedObjectsResponse> UserListOwnedObjectsAsync(UserListOwnedObjectsParameter parameter)
         {
-            return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserListOwnedObjectsParameter, UserListOwnedObjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListOwnedobjectsResponse> UserListOwnedobjectsAsync(UserListOwnedobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListOwnedObjectsResponse> UserListOwnedObjectsAsync(UserListOwnedObjectsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserListOwnedobjectsParameter, UserListOwnedobjectsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserListOwnedObjectsParameter, UserListOwnedObjectsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-ownedobjects?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> UserListOwnedObjectsEnumerateAsync(UserListOwnedObjectsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListOwnedObjectsParameter, UserListOwnedObjectsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalListOwnedobjectsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalListOwnedObjectsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalListOwnedobjectsResponse : RestApiResponse
+    public partial class ServicePrincipalListOwnedObjectsResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnedobjectsResponse> ServiceprincipalListOwnedobjectsAsync()
+        public async ValueTask<ServicePrincipalListOwnedObjectsResponse> ServicePrincipalListOwnedObjectsAsync()
         {
-            var p = new ServiceprincipalListOwnedobjectsParameter();
-            return await this.SendAsync<ServiceprincipalListOwnedobjectsParameter, ServiceprincipalListOwnedobjectsResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalListOwnedObjectsParameter();
+            return await this.SendAsync<ServicePrincipalListOwnedObjectsParameter, ServicePrincipalListOwnedObjectsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnedobjectsResponse> ServiceprincipalListOwnedobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListOwnedObjectsResponse> ServicePrincipalListOwnedObjectsAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalListOwnedobjectsParameter();
-            return await this.SendAsync<ServiceprincipalListOwnedobjectsParameter, ServiceprincipalListOwnedobjectsResponse>(p, cancellationToken);
+            var p = new ServicePrincipalListOwnedObjectsParameter();
+            return await this.SendAsync<ServicePrincipalListOwnedObjectsParameter, ServicePrincipalListOwnedObjectsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnedobjectsResponse> ServiceprincipalListOwnedobjectsAsync(ServiceprincipalListOwnedobjectsParameter parameter)
+        public async ValueTask<ServicePrincipalListOwnedObjectsResponse> ServicePrincipalListOwnedObjectsAsync(ServicePrincipalListOwnedObjectsParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalListOwnedobjectsParameter, ServiceprincipalListOwnedobjectsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalListOwnedObjectsParameter, ServicePrincipalListOwnedObjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnedobjectsResponse> ServiceprincipalListOwnedobjectsAsync(ServiceprincipalListOwnedobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListOwnedObjectsResponse> ServicePrincipalListOwnedObjectsAsync(ServicePrincipalListOwnedObjectsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalListOwnedobjectsParameter, ServiceprincipalListOwnedobjectsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalListOwnedObjectsParameter, ServicePrincipalListOwnedObjectsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-ownedobjects?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> ServicePrincipalListOwnedObjectsEnumerateAsync(ServicePrincipalListOwnedObjectsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalListOwnedObjectsParameter, ServicePrincipalListOwnedObjectsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

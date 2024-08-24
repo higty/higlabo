@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-list?view=graph-rest-1.0
     /// </summary>
-    public partial class TimeoffrequestListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TimeoffRequestListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TimeoffrequestListResponse : RestApiResponse
+    public partial class TimeoffRequestListResponse : RestApiResponse
     {
         public DateTimeOffset? EndDateTime { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestListResponse> TimeoffrequestListAsync()
+        public async ValueTask<TimeoffRequestListResponse> TimeoffRequestListAsync()
         {
-            var p = new TimeoffrequestListParameter();
-            return await this.SendAsync<TimeoffrequestListParameter, TimeoffrequestListResponse>(p, CancellationToken.None);
+            var p = new TimeoffRequestListParameter();
+            return await this.SendAsync<TimeoffRequestListParameter, TimeoffRequestListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestListResponse> TimeoffrequestListAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffRequestListResponse> TimeoffRequestListAsync(CancellationToken cancellationToken)
         {
-            var p = new TimeoffrequestListParameter();
-            return await this.SendAsync<TimeoffrequestListParameter, TimeoffrequestListResponse>(p, cancellationToken);
+            var p = new TimeoffRequestListParameter();
+            return await this.SendAsync<TimeoffRequestListParameter, TimeoffRequestListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestListResponse> TimeoffrequestListAsync(TimeoffrequestListParameter parameter)
+        public async ValueTask<TimeoffRequestListResponse> TimeoffRequestListAsync(TimeoffRequestListParameter parameter)
         {
-            return await this.SendAsync<TimeoffrequestListParameter, TimeoffrequestListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TimeoffRequestListParameter, TimeoffRequestListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestListResponse> TimeoffrequestListAsync(TimeoffrequestListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffRequestListResponse> TimeoffRequestListAsync(TimeoffRequestListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TimeoffrequestListParameter, TimeoffrequestListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TimeoffRequestListParameter, TimeoffRequestListResponse>(parameter, cancellationToken);
         }
     }
 }

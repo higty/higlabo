@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,21 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Classification,
-            Details,
-            EndDateTime,
-            Feature,
-            FeatureGroup,
-            Id,
-            ImpactDescription,
-            IsResolved,
-            LastModifiedDateTime,
-            Origin,
-            Posts,
-            Service,
-            StartDateTime,
-            Status,
-            Title,
         }
         public enum ApiPath
         {
@@ -62,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceannouncementListIssuesResponse : RestApiResponse
+    public partial class ServiceannouncementListIssuesResponse : RestApiResponse<ServiceHealthIssue>
     {
-        public ServiceHealthIssue[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
@@ -100,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ServiceHealthIssue> ServiceannouncementListIssuesEnumerateAsync(ServiceannouncementListIssuesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ServiceHealthIssue>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

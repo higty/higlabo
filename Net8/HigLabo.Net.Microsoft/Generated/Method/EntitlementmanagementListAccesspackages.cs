@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
     /// </summary>
-    public partial class EntitlementManagementListAccesspackagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EntitlementManagementListAccessPackagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Id,
-            IsHidden,
-            ModifiedDateTime,
-            AccessPackagesIncompatibleWith,
-            AssignmentPolicies,
-            Catalog,
-            IncompatibleAccessPackages,
-            IncompatibleGroups,
         }
         public enum ApiPath
         {
@@ -58,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementManagementListAccesspackagesResponse : RestApiResponse
+    public partial class EntitlementManagementListAccessPackagesResponse : RestApiResponse<AccessPackage>
     {
-        public AccessPackage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
@@ -70,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync()
+        public async ValueTask<EntitlementManagementListAccessPackagesResponse> EntitlementManagementListAccessPackagesAsync()
         {
-            var p = new EntitlementManagementListAccesspackagesParameter();
-            return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(p, CancellationToken.None);
+            var p = new EntitlementManagementListAccessPackagesParameter();
+            return await this.SendAsync<EntitlementManagementListAccessPackagesParameter, EntitlementManagementListAccessPackagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListAccessPackagesResponse> EntitlementManagementListAccessPackagesAsync(CancellationToken cancellationToken)
         {
-            var p = new EntitlementManagementListAccesspackagesParameter();
-            return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(p, cancellationToken);
+            var p = new EntitlementManagementListAccessPackagesParameter();
+            return await this.SendAsync<EntitlementManagementListAccessPackagesParameter, EntitlementManagementListAccessPackagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter)
+        public async ValueTask<EntitlementManagementListAccessPackagesResponse> EntitlementManagementListAccessPackagesAsync(EntitlementManagementListAccessPackagesParameter parameter)
         {
-            return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EntitlementManagementListAccessPackagesParameter, EntitlementManagementListAccessPackagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListAccessPackagesResponse> EntitlementManagementListAccessPackagesAsync(EntitlementManagementListAccessPackagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EntitlementManagementListAccessPackagesParameter, EntitlementManagementListAccessPackagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessPackage> EntitlementManagementListAccessPackagesEnumerateAsync(EntitlementManagementListAccessPackagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EntitlementManagementListAccessPackagesParameter, EntitlementManagementListAccessPackagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessPackage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

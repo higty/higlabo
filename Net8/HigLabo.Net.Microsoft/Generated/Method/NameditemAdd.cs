@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
     /// </summary>
-    public partial class NameditemAddParameter : IRestApiParameter
+    public partial class NamedItemAddParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
         public bool? Visible { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
-    public partial class NameditemAddResponse : RestApiResponse
+    public partial class NamedItemAddResponse : RestApiResponse
     {
         public enum NamedItemstring
         {
@@ -88,32 +88,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemAddResponse> NameditemAddAsync()
+        public async ValueTask<NamedItemAddResponse> NamedItemAddAsync()
         {
-            var p = new NameditemAddParameter();
-            return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(p, CancellationToken.None);
+            var p = new NamedItemAddParameter();
+            return await this.SendAsync<NamedItemAddParameter, NamedItemAddResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemAddResponse> NameditemAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<NamedItemAddResponse> NamedItemAddAsync(CancellationToken cancellationToken)
         {
-            var p = new NameditemAddParameter();
-            return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(p, cancellationToken);
+            var p = new NamedItemAddParameter();
+            return await this.SendAsync<NamedItemAddParameter, NamedItemAddResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemAddResponse> NameditemAddAsync(NameditemAddParameter parameter)
+        public async ValueTask<NamedItemAddResponse> NamedItemAddAsync(NamedItemAddParameter parameter)
         {
-            return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<NamedItemAddParameter, NamedItemAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemAddResponse> NameditemAddAsync(NameditemAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NamedItemAddResponse> NamedItemAddAsync(NamedItemAddParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(parameter, cancellationToken);
+            return await this.SendAsync<NamedItemAddParameter, NamedItemAddResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
     /// </summary>
-    public partial class OutlookUserPostMastercategoriesParameter : IRestApiParameter
+    public partial class OutlookUserPostMasterCategoriesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public string? Color { get; set; }
         public string? DisplayName { get; set; }
     }
-    public partial class OutlookUserPostMastercategoriesResponse : RestApiResponse
+    public partial class OutlookUserPostMasterCategoriesResponse : RestApiResponse
     {
         public string? Color { get; set; }
         public string? DisplayName { get; set; }
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync()
+        public async ValueTask<OutlookUserPostMasterCategoriesResponse> OutlookUserPostMasterCategoriesAsync()
         {
-            var p = new OutlookUserPostMastercategoriesParameter();
-            return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(p, CancellationToken.None);
+            var p = new OutlookUserPostMasterCategoriesParameter();
+            return await this.SendAsync<OutlookUserPostMasterCategoriesParameter, OutlookUserPostMasterCategoriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserPostMasterCategoriesResponse> OutlookUserPostMasterCategoriesAsync(CancellationToken cancellationToken)
         {
-            var p = new OutlookUserPostMastercategoriesParameter();
-            return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(p, cancellationToken);
+            var p = new OutlookUserPostMasterCategoriesParameter();
+            return await this.SendAsync<OutlookUserPostMasterCategoriesParameter, OutlookUserPostMasterCategoriesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync(OutlookUserPostMastercategoriesParameter parameter)
+        public async ValueTask<OutlookUserPostMasterCategoriesResponse> OutlookUserPostMasterCategoriesAsync(OutlookUserPostMasterCategoriesParameter parameter)
         {
-            return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OutlookUserPostMasterCategoriesParameter, OutlookUserPostMasterCategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync(OutlookUserPostMastercategoriesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookUserPostMasterCategoriesResponse> OutlookUserPostMasterCategoriesAsync(OutlookUserPostMasterCategoriesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OutlookUserPostMasterCategoriesParameter, OutlookUserPostMasterCategoriesResponse>(parameter, cancellationToken);
         }
     }
 }

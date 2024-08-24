@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackagePostIncompatibleAccesspackageParameter : IRestApiParameter
+    public partial class AccessPackagePostIncompatibleAccessPackageParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class AccesspackagePostIncompatibleAccesspackageResponse : RestApiResponse
+    public partial class AccessPackagePostIncompatibleAccessPackageResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync()
+        public async ValueTask<AccessPackagePostIncompatibleAccessPackageResponse> AccessPackagePostIncompatibleAccessPackageAsync()
         {
-            var p = new AccesspackagePostIncompatibleAccesspackageParameter();
-            return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(p, CancellationToken.None);
+            var p = new AccessPackagePostIncompatibleAccessPackageParameter();
+            return await this.SendAsync<AccessPackagePostIncompatibleAccessPackageParameter, AccessPackagePostIncompatibleAccessPackageResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackagePostIncompatibleAccessPackageResponse> AccessPackagePostIncompatibleAccessPackageAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackagePostIncompatibleAccesspackageParameter();
-            return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(p, cancellationToken);
+            var p = new AccessPackagePostIncompatibleAccessPackageParameter();
+            return await this.SendAsync<AccessPackagePostIncompatibleAccessPackageParameter, AccessPackagePostIncompatibleAccessPackageResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(AccesspackagePostIncompatibleAccesspackageParameter parameter)
+        public async ValueTask<AccessPackagePostIncompatibleAccessPackageResponse> AccessPackagePostIncompatibleAccessPackageAsync(AccessPackagePostIncompatibleAccessPackageParameter parameter)
         {
-            return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackagePostIncompatibleAccessPackageParameter, AccessPackagePostIncompatibleAccessPackageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagePostIncompatibleAccesspackageResponse> AccesspackagePostIncompatibleAccesspackageAsync(AccesspackagePostIncompatibleAccesspackageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackagePostIncompatibleAccessPackageResponse> AccessPackagePostIncompatibleAccessPackageAsync(AccessPackagePostIncompatibleAccessPackageParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackagePostIncompatibleAccesspackageParameter, AccesspackagePostIncompatibleAccesspackageResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackagePostIncompatibleAccessPackageParameter, AccessPackagePostIncompatibleAccessPackageResponse>(parameter, cancellationToken);
         }
     }
 }

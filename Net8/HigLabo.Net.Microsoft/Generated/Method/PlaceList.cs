@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,11 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Address,
-            DisplayName,
-            GeoCoordinates,
-            Id,
-            Phone,
         }
         public enum ApiPath
         {
@@ -57,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PlaceListResponse : RestApiResponse
+    public partial class PlaceListResponse : RestApiResponse<Place>
     {
-        public Place[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/place-list?view=graph-rest-1.0
@@ -95,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PlaceListResponse> PlaceListAsync(PlaceListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlaceListParameter, PlaceListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/place-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Place> PlaceListEnumerateAsync(PlaceListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PlaceListParameter, PlaceListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Place>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

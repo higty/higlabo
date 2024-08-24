@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,13 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApiConnectorConfiguration,
-            Id,
-            UserFlowType,
-            UserFlowTypeVersion,
-            IdentityProviders,
-            Languages,
-            UserAttributeAssignments,
         }
         public enum ApiPath
         {
@@ -54,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentitycontainerListB2xUserflowsResponse : RestApiResponse
+    public partial class IdentitycontainerListB2xUserflowsResponse : RestApiResponse<B2xIdentityUserFlow>
     {
-        public B2xIdentityUserFlow[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
@@ -92,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<B2xIdentityUserFlow> IdentitycontainerListB2xUserflowsEnumerateAsync(IdentitycontainerListB2xUserflowsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<B2xIdentityUserFlow>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

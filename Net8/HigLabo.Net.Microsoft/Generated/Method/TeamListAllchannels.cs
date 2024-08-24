@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,21 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Email,
-            Id,
-            IsFavoriteByDefault,
-            MembershipType,
-            TenantId,
-            WebUrl,
-            FilesFolder,
-            Members,
-            Messages,
-            Operations,
-            SharedWithTeams,
-            Tabs,
         }
         public enum ApiPath
         {
@@ -63,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TeamListAllchannelsResponse : RestApiResponse
+    public partial class TeamListAllchannelsResponse : RestApiResponse<Channel>
     {
-        public Channel[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/team-list-allchannels?view=graph-rest-1.0
@@ -101,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TeamListAllchannelsResponse> TeamListAllchannelsAsync(TeamListAllchannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamListAllchannelsParameter, TeamListAllchannelsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/team-list-allchannels?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Channel> TeamListAllchannelsEnumerateAsync(TeamListAllchannelsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TeamListAllchannelsParameter, TeamListAllchannelsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Channel>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

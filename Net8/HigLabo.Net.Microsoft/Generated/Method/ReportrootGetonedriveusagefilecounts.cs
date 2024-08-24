@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetonedriveusagefilecountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetOneDriveusagefilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetonedriveusagefilecountsResponse : RestApiResponse
+    public partial class ReportRootGetOneDriveusagefilecountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync()
+        public async ValueTask<ReportRootGetOneDriveusagefilecountsResponse> ReportRootGetOneDriveusagefilecountsAsync()
         {
-            var p = new ReportRootGetonedriveusagefilecountsParameter();
-            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetOneDriveusagefilecountsParameter();
+            return await this.SendAsync<ReportRootGetOneDriveusagefilecountsParameter, ReportRootGetOneDriveusagefilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveusagefilecountsResponse> ReportRootGetOneDriveusagefilecountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetonedriveusagefilecountsParameter();
-            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetOneDriveusagefilecountsParameter();
+            return await this.SendAsync<ReportRootGetOneDriveusagefilecountsParameter, ReportRootGetOneDriveusagefilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync(ReportRootGetonedriveusagefilecountsParameter parameter)
+        public async ValueTask<ReportRootGetOneDriveusagefilecountsResponse> ReportRootGetOneDriveusagefilecountsAsync(ReportRootGetOneDriveusagefilecountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetOneDriveusagefilecountsParameter, ReportRootGetOneDriveusagefilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync(ReportRootGetonedriveusagefilecountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveusagefilecountsResponse> ReportRootGetOneDriveusagefilecountsAsync(ReportRootGetOneDriveusagefilecountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetOneDriveusagefilecountsParameter, ReportRootGetOneDriveusagefilecountsResponse>(parameter, cancellationToken);
         }
     }
 }

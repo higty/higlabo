@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -90,9 +91,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListMessagesResponse : RestApiResponse
+    public partial class UserListMessagesResponse : RestApiResponse<Message>
     {
-        public Message[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-messages?view=graph-rest-1.0
@@ -128,6 +128,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserListMessagesResponse> UserListMessagesAsync(UserListMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListMessagesParameter, UserListMessagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-messages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Message> UserListMessagesEnumerateAsync(UserListMessagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListMessagesParameter, UserListMessagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Message>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

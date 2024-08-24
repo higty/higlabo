@@ -24,21 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApplicationId,
-            ChangeType,
-            ClientState,
-            CreatorId,
-            EncryptionCertificate,
-            EncryptionCertificateId,
-            ExpirationDateTime,
-            Id,
-            IncludeResourceData,
-            LatestSupportedTlsVersion,
-            LifecycleNotificationUrl,
-            NotificationQueryOptions,
-            NotificationUrl,
-            NotificationUrlAppId,
-            Resource,
         }
         public enum ApiPath
         {

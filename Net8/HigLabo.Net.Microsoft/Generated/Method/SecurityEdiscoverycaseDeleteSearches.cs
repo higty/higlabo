@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseDeleteSearchesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycaseDeleteSearchesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class SecurityEdiscoverycaseDeleteSearchesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseDeleteSearchesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync()
+        public async ValueTask<SecurityEDiscoverycaseDeleteSearchesResponse> SecurityEDiscoverycaseDeleteSearchesAsync()
         {
-            var p = new SecurityEdiscoverycaseDeleteSearchesParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseDeleteSearchesParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseDeleteSearchesParameter, SecurityEDiscoverycaseDeleteSearchesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseDeleteSearchesResponse> SecurityEDiscoverycaseDeleteSearchesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseDeleteSearchesParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseDeleteSearchesParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseDeleteSearchesParameter, SecurityEDiscoverycaseDeleteSearchesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(SecurityEdiscoverycaseDeleteSearchesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseDeleteSearchesResponse> SecurityEDiscoverycaseDeleteSearchesAsync(SecurityEDiscoverycaseDeleteSearchesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseDeleteSearchesParameter, SecurityEDiscoverycaseDeleteSearchesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseDeleteSearchesResponse> SecurityEdiscoverycaseDeleteSearchesAsync(SecurityEdiscoverycaseDeleteSearchesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseDeleteSearchesResponse> SecurityEDiscoverycaseDeleteSearchesAsync(SecurityEDiscoverycaseDeleteSearchesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseDeleteSearchesParameter, SecurityEdiscoverycaseDeleteSearchesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseDeleteSearchesParameter, SecurityEDiscoverycaseDeleteSearchesResponse>(parameter, cancellationToken);
         }
     }
 }

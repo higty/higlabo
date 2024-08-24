@@ -13,4 +13,8 @@ namespace HigLabo.Net.Microsoft
         public string ODataContext { get; set; } = "";
         public string ODataNextLink { get; set; } = "";
     }
+    public class RestApiResponse<T> : RestApiResponse
+    {
+        public T[]? Value { get; set; }
+    }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
     /// </summary>
-    public partial class Oauth2permissiongrantPostParameter : IRestApiParameter
+    public partial class Oauth2PermissionGrantPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Microsoft
         public string? ResourceId { get; set; }
         public string? Scope { get; set; }
     }
-    public partial class Oauth2permissiongrantPostResponse : RestApiResponse
+    public partial class Oauth2PermissionGrantPostResponse : RestApiResponse
     {
         public string? ClientId { get; set; }
         public string? ConsentType { get; set; }
@@ -59,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync()
+        public async ValueTask<Oauth2PermissionGrantPostResponse> Oauth2PermissionGrantPostAsync()
         {
-            var p = new Oauth2permissiongrantPostParameter();
-            return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(p, CancellationToken.None);
+            var p = new Oauth2PermissionGrantPostParameter();
+            return await this.SendAsync<Oauth2PermissionGrantPostParameter, Oauth2PermissionGrantPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<Oauth2PermissionGrantPostResponse> Oauth2PermissionGrantPostAsync(CancellationToken cancellationToken)
         {
-            var p = new Oauth2permissiongrantPostParameter();
-            return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(p, cancellationToken);
+            var p = new Oauth2PermissionGrantPostParameter();
+            return await this.SendAsync<Oauth2PermissionGrantPostParameter, Oauth2PermissionGrantPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync(Oauth2permissiongrantPostParameter parameter)
+        public async ValueTask<Oauth2PermissionGrantPostResponse> Oauth2PermissionGrantPostAsync(Oauth2PermissionGrantPostParameter parameter)
         {
-            return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<Oauth2PermissionGrantPostParameter, Oauth2PermissionGrantPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync(Oauth2permissiongrantPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Oauth2PermissionGrantPostResponse> Oauth2PermissionGrantPostAsync(Oauth2PermissionGrantPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<Oauth2PermissionGrantPostParameter, Oauth2PermissionGrantPostResponse>(parameter, cancellationToken);
         }
     }
 }

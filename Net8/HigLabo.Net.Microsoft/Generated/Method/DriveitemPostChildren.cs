@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemPostChildrenParameter : IRestApiParameter
+    public partial class DriveItemPostChildrenParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Microsoft
         public DriveItemVersion[]? Versions { get; set; }
         public Workbook? Workbook { get; set; }
     }
-    public partial class DriveitemPostChildrenResponse : RestApiResponse
+    public partial class DriveItemPostChildrenResponse : RestApiResponse
     {
         public Audio? Audio { get; set; }
         public Bundle? Bundle { get; set; }
@@ -150,32 +150,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync()
+        public async ValueTask<DriveItemPostChildrenResponse> DriveItemPostChildrenAsync()
         {
-            var p = new DriveitemPostChildrenParameter();
-            return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(p, CancellationToken.None);
+            var p = new DriveItemPostChildrenParameter();
+            return await this.SendAsync<DriveItemPostChildrenParameter, DriveItemPostChildrenResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemPostChildrenResponse> DriveItemPostChildrenAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemPostChildrenParameter();
-            return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(p, cancellationToken);
+            var p = new DriveItemPostChildrenParameter();
+            return await this.SendAsync<DriveItemPostChildrenParameter, DriveItemPostChildrenResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(DriveitemPostChildrenParameter parameter)
+        public async ValueTask<DriveItemPostChildrenResponse> DriveItemPostChildrenAsync(DriveItemPostChildrenParameter parameter)
         {
-            return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemPostChildrenParameter, DriveItemPostChildrenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-post-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPostChildrenResponse> DriveitemPostChildrenAsync(DriveitemPostChildrenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemPostChildrenResponse> DriveItemPostChildrenAsync(DriveItemPostChildrenParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemPostChildrenParameter, DriveitemPostChildrenResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemPostChildrenParameter, DriveItemPostChildrenResponse>(parameter, cancellationToken);
         }
     }
 }

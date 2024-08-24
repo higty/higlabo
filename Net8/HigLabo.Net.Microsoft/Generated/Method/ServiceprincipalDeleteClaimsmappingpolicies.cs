@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-claimsmappingpolicies?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalDeleteClaimsmappingpoliciesParameter : IRestApiParameter
+    public partial class ServicePrincipalDeleteClaimsmappingpoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ServiceprincipalDeleteClaimsmappingpoliciesResponse : RestApiResponse
+    public partial class ServicePrincipalDeleteClaimsmappingpoliciesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteClaimsmappingpoliciesResponse> ServiceprincipalDeleteClaimsmappingpoliciesAsync()
+        public async ValueTask<ServicePrincipalDeleteClaimsmappingpoliciesResponse> ServicePrincipalDeleteClaimsmappingpoliciesAsync()
         {
-            var p = new ServiceprincipalDeleteClaimsmappingpoliciesParameter();
-            return await this.SendAsync<ServiceprincipalDeleteClaimsmappingpoliciesParameter, ServiceprincipalDeleteClaimsmappingpoliciesResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalDeleteClaimsmappingpoliciesParameter();
+            return await this.SendAsync<ServicePrincipalDeleteClaimsmappingpoliciesParameter, ServicePrincipalDeleteClaimsmappingpoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteClaimsmappingpoliciesResponse> ServiceprincipalDeleteClaimsmappingpoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeleteClaimsmappingpoliciesResponse> ServicePrincipalDeleteClaimsmappingpoliciesAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalDeleteClaimsmappingpoliciesParameter();
-            return await this.SendAsync<ServiceprincipalDeleteClaimsmappingpoliciesParameter, ServiceprincipalDeleteClaimsmappingpoliciesResponse>(p, cancellationToken);
+            var p = new ServicePrincipalDeleteClaimsmappingpoliciesParameter();
+            return await this.SendAsync<ServicePrincipalDeleteClaimsmappingpoliciesParameter, ServicePrincipalDeleteClaimsmappingpoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteClaimsmappingpoliciesResponse> ServiceprincipalDeleteClaimsmappingpoliciesAsync(ServiceprincipalDeleteClaimsmappingpoliciesParameter parameter)
+        public async ValueTask<ServicePrincipalDeleteClaimsmappingpoliciesResponse> ServicePrincipalDeleteClaimsmappingpoliciesAsync(ServicePrincipalDeleteClaimsmappingpoliciesParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalDeleteClaimsmappingpoliciesParameter, ServiceprincipalDeleteClaimsmappingpoliciesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalDeleteClaimsmappingpoliciesParameter, ServicePrincipalDeleteClaimsmappingpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteClaimsmappingpoliciesResponse> ServiceprincipalDeleteClaimsmappingpoliciesAsync(ServiceprincipalDeleteClaimsmappingpoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeleteClaimsmappingpoliciesResponse> ServicePrincipalDeleteClaimsmappingpoliciesAsync(ServicePrincipalDeleteClaimsmappingpoliciesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalDeleteClaimsmappingpoliciesParameter, ServiceprincipalDeleteClaimsmappingpoliciesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalDeleteClaimsmappingpoliciesParameter, ServicePrincipalDeleteClaimsmappingpoliciesResponse>(parameter, cancellationToken);
         }
     }
 }

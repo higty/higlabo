@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycaseGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,9 +48,9 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycaseGetResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseGetResponse : RestApiResponse
     {
-        public enum EdiscoveryCaseSecurityCaseStatus
+        public enum EDiscoveryCaseSecurityCaseStatus
         {
             Unknown,
             Active,
@@ -70,14 +70,14 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public EdiscoveryCaseSecurityCaseStatus Status { get; set; }
-        public EdiscoveryCustodian[]? Custodians { get; set; }
-        public EdiscoveryNoncustodialDataSource[]? NoncustodialDataSources { get; set; }
+        public EDiscoveryCaseSecurityCaseStatus Status { get; set; }
+        public EDiscoveryCustodian[]? Custodians { get; set; }
+        public EDiscoveryNoncustodialDataSource[]? NoncustodialDataSources { get; set; }
         public CaseOperation[]? Operations { get; set; }
-        public EdiscoveryReviewSet[]? ReviewSets { get; set; }
-        public EdiscoverySearch[]? Searches { get; set; }
-        public EdiscoveryCaseSettings? Settings { get; set; }
-        public EdiscoveryReviewTag[]? Tags { get; set; }
+        public EDiscoveryReviewSet[]? ReviewSets { get; set; }
+        public EDiscoverySearch[]? Searches { get; set; }
+        public EDiscoveryCaseSettings? Settings { get; set; }
+        public EDiscoveryReviewTag[]? Tags { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
@@ -87,32 +87,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync()
+        public async ValueTask<SecurityEDiscoverycaseGetResponse> SecurityEDiscoverycaseGetAsync()
         {
-            var p = new SecurityEdiscoverycaseGetParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseGetParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseGetParameter, SecurityEDiscoverycaseGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseGetResponse> SecurityEDiscoverycaseGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseGetParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseGetParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseGetParameter, SecurityEDiscoverycaseGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(SecurityEdiscoverycaseGetParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseGetResponse> SecurityEDiscoverycaseGetAsync(SecurityEDiscoverycaseGetParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseGetParameter, SecurityEDiscoverycaseGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseGetResponse> SecurityEdiscoverycaseGetAsync(SecurityEdiscoverycaseGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseGetResponse> SecurityEDiscoverycaseGetAsync(SecurityEDiscoverycaseGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseGetParameter, SecurityEdiscoverycaseGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseGetParameter, SecurityEDiscoverycaseGetResponse>(parameter, cancellationToken);
         }
     }
 }

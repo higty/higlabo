@@ -33,16 +33,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ExpirationDateTime,
-            Id,
-            HasPassword,
-            GrantedToIdentitiesV2,
-            GrantedToV2,
-            InheritedFrom,
-            Invitation,
-            Link,
-            Roles,
-            ShareId,
         }
         public enum ApiPath
         {

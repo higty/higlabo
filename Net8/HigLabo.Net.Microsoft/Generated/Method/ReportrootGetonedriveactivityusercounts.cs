@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetonedriveactivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetOneDriveActivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetonedriveactivityUsercountsResponse : RestApiResponse
+    public partial class ReportRootGetOneDriveActivityUsercountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityUsercountsResponse> ReportRootGetonedriveactivityUsercountsAsync()
+        public async ValueTask<ReportRootGetOneDriveActivityUsercountsResponse> ReportRootGetOneDriveActivityUsercountsAsync()
         {
-            var p = new ReportRootGetonedriveactivityUsercountsParameter();
-            return await this.SendAsync<ReportRootGetonedriveactivityUsercountsParameter, ReportRootGetonedriveactivityUsercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetOneDriveActivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetOneDriveActivityUsercountsParameter, ReportRootGetOneDriveActivityUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityUsercountsResponse> ReportRootGetonedriveactivityUsercountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveActivityUsercountsResponse> ReportRootGetOneDriveActivityUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetonedriveactivityUsercountsParameter();
-            return await this.SendAsync<ReportRootGetonedriveactivityUsercountsParameter, ReportRootGetonedriveactivityUsercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetOneDriveActivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetOneDriveActivityUsercountsParameter, ReportRootGetOneDriveActivityUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityUsercountsResponse> ReportRootGetonedriveactivityUsercountsAsync(ReportRootGetonedriveactivityUsercountsParameter parameter)
+        public async ValueTask<ReportRootGetOneDriveActivityUsercountsResponse> ReportRootGetOneDriveActivityUsercountsAsync(ReportRootGetOneDriveActivityUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetonedriveactivityUsercountsParameter, ReportRootGetonedriveactivityUsercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetOneDriveActivityUsercountsParameter, ReportRootGetOneDriveActivityUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityUsercountsResponse> ReportRootGetonedriveactivityUsercountsAsync(ReportRootGetonedriveactivityUsercountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveActivityUsercountsResponse> ReportRootGetOneDriveActivityUsercountsAsync(ReportRootGetOneDriveActivityUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetonedriveactivityUsercountsParameter, ReportRootGetonedriveactivityUsercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetOneDriveActivityUsercountsParameter, ReportRootGetOneDriveActivityUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

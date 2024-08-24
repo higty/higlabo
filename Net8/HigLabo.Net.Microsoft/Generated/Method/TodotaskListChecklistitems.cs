@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
     /// </summary>
-    public partial class TodotaskListChecklistitemsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TodotaskListChecklistItemsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -27,11 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CheckedDateTime,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            IsChecked,
         }
         public enum ApiPath
         {
@@ -57,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TodotaskListChecklistitemsResponse : RestApiResponse
+    public partial class TodotaskListChecklistItemsResponse : RestApiResponse<ChecklistItem>
     {
-        public ChecklistItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
@@ -69,32 +64,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync()
+        public async ValueTask<TodotaskListChecklistItemsResponse> TodotaskListChecklistItemsAsync()
         {
-            var p = new TodotaskListChecklistitemsParameter();
-            return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(p, CancellationToken.None);
+            var p = new TodotaskListChecklistItemsParameter();
+            return await this.SendAsync<TodotaskListChecklistItemsParameter, TodotaskListChecklistItemsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskListChecklistItemsResponse> TodotaskListChecklistItemsAsync(CancellationToken cancellationToken)
         {
-            var p = new TodotaskListChecklistitemsParameter();
-            return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(p, cancellationToken);
+            var p = new TodotaskListChecklistItemsParameter();
+            return await this.SendAsync<TodotaskListChecklistItemsParameter, TodotaskListChecklistItemsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync(TodotaskListChecklistitemsParameter parameter)
+        public async ValueTask<TodotaskListChecklistItemsResponse> TodotaskListChecklistItemsAsync(TodotaskListChecklistItemsParameter parameter)
         {
-            return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TodotaskListChecklistItemsParameter, TodotaskListChecklistItemsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync(TodotaskListChecklistitemsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskListChecklistItemsResponse> TodotaskListChecklistItemsAsync(TodotaskListChecklistItemsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TodotaskListChecklistItemsParameter, TodotaskListChecklistItemsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ChecklistItem> TodotaskListChecklistItemsEnumerateAsync(TodotaskListChecklistItemsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TodotaskListChecklistItemsParameter, TodotaskListChecklistItemsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ChecklistItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

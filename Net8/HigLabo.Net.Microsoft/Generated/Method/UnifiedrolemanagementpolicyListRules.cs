@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -48,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UnifiedroleManagementPolicyListRulesResponse : RestApiResponse
+    public partial class UnifiedroleManagementPolicyListRulesResponse : RestApiResponse<UnifiedRoleManagementPolicyRule>
     {
-        public UnifiedRoleManagementPolicyRule[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicy-list-rules?view=graph-rest-1.0
@@ -86,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UnifiedroleManagementPolicyListRulesResponse> UnifiedroleManagementPolicyListRulesAsync(UnifiedroleManagementPolicyListRulesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UnifiedroleManagementPolicyListRulesParameter, UnifiedroleManagementPolicyListRulesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicy-list-rules?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UnifiedRoleManagementPolicyRule> UnifiedroleManagementPolicyListRulesEnumerateAsync(UnifiedroleManagementPolicyListRulesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UnifiedroleManagementPolicyListRulesParameter, UnifiedroleManagementPolicyListRulesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UnifiedRoleManagementPolicyRule>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetteamsdeviceusageUserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetTeamsdeviceusageUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetteamsdeviceusageUserdetailResponse : RestApiResponse
+    public partial class ReportRootGetTeamsdeviceusageUserdetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync()
+        public async ValueTask<ReportRootGetTeamsdeviceusageUserdetailResponse> ReportRootGetTeamsdeviceusageUserdetailAsync()
         {
-            var p = new ReportRootGetteamsdeviceusageUserdetailParameter();
-            return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetTeamsdeviceusageUserdetailParameter();
+            return await this.SendAsync<ReportRootGetTeamsdeviceusageUserdetailParameter, ReportRootGetTeamsdeviceusageUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsdeviceusageUserdetailResponse> ReportRootGetTeamsdeviceusageUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetteamsdeviceusageUserdetailParameter();
-            return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetTeamsdeviceusageUserdetailParameter();
+            return await this.SendAsync<ReportRootGetTeamsdeviceusageUserdetailParameter, ReportRootGetTeamsdeviceusageUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync(ReportRootGetteamsdeviceusageUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetTeamsdeviceusageUserdetailResponse> ReportRootGetTeamsdeviceusageUserdetailAsync(ReportRootGetTeamsdeviceusageUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetTeamsdeviceusageUserdetailParameter, ReportRootGetTeamsdeviceusageUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync(ReportRootGetteamsdeviceusageUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsdeviceusageUserdetailResponse> ReportRootGetTeamsdeviceusageUserdetailAsync(ReportRootGetTeamsdeviceusageUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetTeamsdeviceusageUserdetailParameter, ReportRootGetTeamsdeviceusageUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

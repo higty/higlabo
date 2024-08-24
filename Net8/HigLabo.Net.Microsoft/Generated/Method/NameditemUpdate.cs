@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
     /// </summary>
-    public partial class NameditemUpdateParameter : IRestApiParameter
+    public partial class NamedItemUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         public bool? Visible { get; set; }
         public string? Comment { get; set; }
     }
-    public partial class NameditemUpdateResponse : RestApiResponse
+    public partial class NamedItemUpdateResponse : RestApiResponse
     {
         public enum NamedItemstring
         {
@@ -70,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync()
+        public async ValueTask<NamedItemUpdateResponse> NamedItemUpdateAsync()
         {
-            var p = new NameditemUpdateParameter();
-            return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(p, CancellationToken.None);
+            var p = new NamedItemUpdateParameter();
+            return await this.SendAsync<NamedItemUpdateParameter, NamedItemUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<NamedItemUpdateResponse> NamedItemUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new NameditemUpdateParameter();
-            return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(p, cancellationToken);
+            var p = new NamedItemUpdateParameter();
+            return await this.SendAsync<NamedItemUpdateParameter, NamedItemUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter)
+        public async ValueTask<NamedItemUpdateResponse> NamedItemUpdateAsync(NamedItemUpdateParameter parameter)
         {
-            return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<NamedItemUpdateParameter, NamedItemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NamedItemUpdateResponse> NamedItemUpdateAsync(NamedItemUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<NamedItemUpdateParameter, NamedItemUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

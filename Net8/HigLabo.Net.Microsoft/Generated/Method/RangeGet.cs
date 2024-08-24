@@ -33,26 +33,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Address,
-            AddressLocal,
-            CellCount,
-            ColumnCount,
-            ColumnHidden,
-            ColumnIndex,
-            Formulas,
-            FormulasLocal,
-            FormulasR1C1,
-            Hidden,
-            NumberFormat,
-            RowCount,
-            RowHidden,
-            RowIndex,
-            Text,
-            ValueTypes,
-            Values,
-            Format,
-            Sort,
-            Worksheet,
         }
         public enum ApiPath
         {

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
     /// </summary>
-    public partial class UserflowlanguageConfigurationListDefaultpagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserflowlanguageConfigurationListDefaultPagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,7 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
         }
         public enum ApiPath
         {
@@ -50,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserflowlanguageConfigurationListDefaultpagesResponse : RestApiResponse
+    public partial class UserflowlanguageConfigurationListDefaultPagesResponse : RestApiResponse<UserFlowLanguagePage>
     {
-        public UserFlowLanguagePage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
@@ -62,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync()
+        public async ValueTask<UserflowlanguageConfigurationListDefaultPagesResponse> UserflowlanguageConfigurationListDefaultPagesAsync()
         {
-            var p = new UserflowlanguageConfigurationListDefaultpagesParameter();
-            return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(p, CancellationToken.None);
+            var p = new UserflowlanguageConfigurationListDefaultPagesParameter();
+            return await this.SendAsync<UserflowlanguageConfigurationListDefaultPagesParameter, UserflowlanguageConfigurationListDefaultPagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationListDefaultPagesResponse> UserflowlanguageConfigurationListDefaultPagesAsync(CancellationToken cancellationToken)
         {
-            var p = new UserflowlanguageConfigurationListDefaultpagesParameter();
-            return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(p, cancellationToken);
+            var p = new UserflowlanguageConfigurationListDefaultPagesParameter();
+            return await this.SendAsync<UserflowlanguageConfigurationListDefaultPagesParameter, UserflowlanguageConfigurationListDefaultPagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter)
+        public async ValueTask<UserflowlanguageConfigurationListDefaultPagesResponse> UserflowlanguageConfigurationListDefaultPagesAsync(UserflowlanguageConfigurationListDefaultPagesParameter parameter)
         {
-            return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserflowlanguageConfigurationListDefaultPagesParameter, UserflowlanguageConfigurationListDefaultPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationListDefaultPagesResponse> UserflowlanguageConfigurationListDefaultPagesAsync(UserflowlanguageConfigurationListDefaultPagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserflowlanguageConfigurationListDefaultPagesParameter, UserflowlanguageConfigurationListDefaultPagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UserFlowLanguagePage> UserflowlanguageConfigurationListDefaultPagesEnumerateAsync(UserflowlanguageConfigurationListDefaultPagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserflowlanguageConfigurationListDefaultPagesParameter, UserflowlanguageConfigurationListDefaultPagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UserFlowLanguagePage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

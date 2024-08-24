@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,24 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Address,
-            CreatedBy,
-            Description,
-            DisplayName,
-            ExternalId,
-            ExternalPrincipalId,
-            ExternalSource,
-            ExternalSourceDetail,
-            HighestGrade,
-            Id,
-            LowestGrade,
-            Phone,
-            PrincipalEmail,
-            PrincipalName,
-            SchoolNumber,
-            AdministrativeUnit,
-            Classes,
-            Users,
         }
         public enum ApiPath
         {
@@ -65,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationSchoolDeltaResponse : RestApiResponse
+    public partial class EducationSchoolDeltaResponse : RestApiResponse<EducationSchool>
     {
-        public EducationSchool[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
@@ -103,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationSchool> EducationSchoolDeltaEnumerateAsync(EducationSchoolDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationSchool>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

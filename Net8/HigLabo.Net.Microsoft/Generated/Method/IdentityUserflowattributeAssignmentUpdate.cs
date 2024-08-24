@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityUserflowattributeAssignmentUpdateParameter : IRestApiParameter
+    public partial class IdentityUserflowAttributeAssignmentUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum IdentityUserflowattributeAssignmentUpdateParameterIdentityUserFlowAttributeInputType
+        public enum IdentityUserflowAttributeAssignmentUpdateParameterIdentityUserFlowAttributeInputType
         {
             TextBox,
             DateTimeDropdown,
@@ -50,9 +50,9 @@ namespace HigLabo.Net.Microsoft
         public bool? IsOptional { get; set; }
         public bool? RequiresVerification { get; set; }
         public UserAttributeValuesItem[]? UserAttributeValues { get; set; }
-        public IdentityUserflowattributeAssignmentUpdateParameterIdentityUserFlowAttributeInputType UserInputType { get; set; }
+        public IdentityUserflowAttributeAssignmentUpdateParameterIdentityUserFlowAttributeInputType UserInputType { get; set; }
     }
-    public partial class IdentityUserflowattributeAssignmentUpdateResponse : RestApiResponse
+    public partial class IdentityUserflowAttributeAssignmentUpdateResponse : RestApiResponse
     {
         public enum IdentityUserFlowAttributeAssignmentIdentityUserFlowAttributeInputType
         {
@@ -80,32 +80,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentUpdateResponse> IdentityUserflowattributeAssignmentUpdateAsync()
+        public async ValueTask<IdentityUserflowAttributeAssignmentUpdateResponse> IdentityUserflowAttributeAssignmentUpdateAsync()
         {
-            var p = new IdentityUserflowattributeAssignmentUpdateParameter();
-            return await this.SendAsync<IdentityUserflowattributeAssignmentUpdateParameter, IdentityUserflowattributeAssignmentUpdateResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowAttributeAssignmentUpdateParameter();
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentUpdateParameter, IdentityUserflowAttributeAssignmentUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentUpdateResponse> IdentityUserflowattributeAssignmentUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeAssignmentUpdateResponse> IdentityUserflowAttributeAssignmentUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityUserflowattributeAssignmentUpdateParameter();
-            return await this.SendAsync<IdentityUserflowattributeAssignmentUpdateParameter, IdentityUserflowattributeAssignmentUpdateResponse>(p, cancellationToken);
+            var p = new IdentityUserflowAttributeAssignmentUpdateParameter();
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentUpdateParameter, IdentityUserflowAttributeAssignmentUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentUpdateResponse> IdentityUserflowattributeAssignmentUpdateAsync(IdentityUserflowattributeAssignmentUpdateParameter parameter)
+        public async ValueTask<IdentityUserflowAttributeAssignmentUpdateResponse> IdentityUserflowAttributeAssignmentUpdateAsync(IdentityUserflowAttributeAssignmentUpdateParameter parameter)
         {
-            return await this.SendAsync<IdentityUserflowattributeAssignmentUpdateParameter, IdentityUserflowattributeAssignmentUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentUpdateParameter, IdentityUserflowAttributeAssignmentUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentUpdateResponse> IdentityUserflowattributeAssignmentUpdateAsync(IdentityUserflowattributeAssignmentUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeAssignmentUpdateResponse> IdentityUserflowAttributeAssignmentUpdateAsync(IdentityUserflowAttributeAssignmentUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityUserflowattributeAssignmentUpdateParameter, IdentityUserflowattributeAssignmentUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentUpdateParameter, IdentityUserflowAttributeAssignmentUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,14 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppliesTo,
-            CapabilityStatus,
-            ConsumedUnits,
-            Id,
-            PrepaidUnits,
-            ServicePlans,
-            SkuId,
-            SkuPartNumber,
         }
         public enum ApiPath
         {
@@ -55,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SubscribedskuListResponse : RestApiResponse
+    public partial class SubscribedskuListResponse : RestApiResponse<SubscribedSku>
     {
-        public SubscribedSku[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
@@ -93,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<SubscribedSku> SubscribedskuListEnumerateAsync(SubscribedskuListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<SubscribedSku>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

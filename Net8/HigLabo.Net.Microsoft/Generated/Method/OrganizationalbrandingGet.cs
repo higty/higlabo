@@ -24,18 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            BackgroundColor,
-            BackgroundImage,
-            BackgroundImageRelativeUrl,
-            BannerLogo,
-            BannerLogoRelativeUrl,
-            CdnList,
-            Id,
-            SignInPageText,
-            SquareLogo,
-            SquareLogoRelativeUrl,
-            UsernameHintText,
-            Localizations,
         }
         public enum ApiPath
         {

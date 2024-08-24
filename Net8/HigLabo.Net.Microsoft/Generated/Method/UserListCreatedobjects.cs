@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
     /// </summary>
-    public partial class UserListCreatedobjectsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserListCreatedObjectsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListCreatedobjectsResponse : RestApiResponse
+    public partial class UserListCreatedObjectsResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync()
+        public async ValueTask<UserListCreatedObjectsResponse> UserListCreatedObjectsAsync()
         {
-            var p = new UserListCreatedobjectsParameter();
-            return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(p, CancellationToken.None);
+            var p = new UserListCreatedObjectsParameter();
+            return await this.SendAsync<UserListCreatedObjectsParameter, UserListCreatedObjectsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListCreatedObjectsResponse> UserListCreatedObjectsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserListCreatedobjectsParameter();
-            return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(p, cancellationToken);
+            var p = new UserListCreatedObjectsParameter();
+            return await this.SendAsync<UserListCreatedObjectsParameter, UserListCreatedObjectsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(UserListCreatedobjectsParameter parameter)
+        public async ValueTask<UserListCreatedObjectsResponse> UserListCreatedObjectsAsync(UserListCreatedObjectsParameter parameter)
         {
-            return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserListCreatedObjectsParameter, UserListCreatedObjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListCreatedobjectsResponse> UserListCreatedobjectsAsync(UserListCreatedobjectsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListCreatedObjectsResponse> UserListCreatedObjectsAsync(UserListCreatedObjectsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserListCreatedobjectsParameter, UserListCreatedobjectsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserListCreatedObjectsParameter, UserListCreatedObjectsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-createdobjects?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> UserListCreatedObjectsEnumerateAsync(UserListCreatedObjectsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListCreatedObjectsParameter, UserListCreatedObjectsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

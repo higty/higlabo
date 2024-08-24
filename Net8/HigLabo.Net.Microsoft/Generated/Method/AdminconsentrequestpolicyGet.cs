@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AdminconsentrequestPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AdminconsentRequestPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AdminconsentrequestPolicyGetResponse : RestApiResponse
+    public partial class AdminconsentRequestPolicyGetResponse : RestApiResponse
     {
         public bool? IsEnabled { get; set; }
         public bool? NotifyReviewers { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync()
+        public async ValueTask<AdminconsentRequestPolicyGetResponse> AdminconsentRequestPolicyGetAsync()
         {
-            var p = new AdminconsentrequestPolicyGetParameter();
-            return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(p, CancellationToken.None);
+            var p = new AdminconsentRequestPolicyGetParameter();
+            return await this.SendAsync<AdminconsentRequestPolicyGetParameter, AdminconsentRequestPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdminconsentRequestPolicyGetResponse> AdminconsentRequestPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AdminconsentrequestPolicyGetParameter();
-            return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(p, cancellationToken);
+            var p = new AdminconsentRequestPolicyGetParameter();
+            return await this.SendAsync<AdminconsentRequestPolicyGetParameter, AdminconsentRequestPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync(AdminconsentrequestPolicyGetParameter parameter)
+        public async ValueTask<AdminconsentRequestPolicyGetResponse> AdminconsentRequestPolicyGetAsync(AdminconsentRequestPolicyGetParameter parameter)
         {
-            return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AdminconsentRequestPolicyGetParameter, AdminconsentRequestPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync(AdminconsentrequestPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdminconsentRequestPolicyGetResponse> AdminconsentRequestPolicyGetAsync(AdminconsentRequestPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AdminconsentRequestPolicyGetParameter, AdminconsentRequestPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

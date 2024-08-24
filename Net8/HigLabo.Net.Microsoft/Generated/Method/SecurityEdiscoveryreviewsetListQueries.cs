@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoveryreviewsetListQueriesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoveryReviewsetListQueriesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,13 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Query,
         }
         public enum ApiPath
         {
@@ -56,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoveryreviewsetListQueriesResponse : RestApiResponse
+    public partial class SecurityEDiscoveryReviewsetListQueriesResponse : RestApiResponse<EDiscoveryReviewSetQuery>
     {
-        public EdiscoveryReviewSetQuery[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
@@ -68,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetListQueriesResponse> SecurityEdiscoveryreviewsetListQueriesAsync()
+        public async ValueTask<SecurityEDiscoveryReviewsetListQueriesResponse> SecurityEDiscoveryReviewsetListQueriesAsync()
         {
-            var p = new SecurityEdiscoveryreviewsetListQueriesParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewsetListQueriesParameter, SecurityEdiscoveryreviewsetListQueriesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoveryReviewsetListQueriesParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewsetListQueriesParameter, SecurityEDiscoveryReviewsetListQueriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetListQueriesResponse> SecurityEdiscoveryreviewsetListQueriesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewsetListQueriesResponse> SecurityEDiscoveryReviewsetListQueriesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoveryreviewsetListQueriesParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewsetListQueriesParameter, SecurityEdiscoveryreviewsetListQueriesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoveryReviewsetListQueriesParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewsetListQueriesParameter, SecurityEDiscoveryReviewsetListQueriesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetListQueriesResponse> SecurityEdiscoveryreviewsetListQueriesAsync(SecurityEdiscoveryreviewsetListQueriesParameter parameter)
+        public async ValueTask<SecurityEDiscoveryReviewsetListQueriesResponse> SecurityEDiscoveryReviewsetListQueriesAsync(SecurityEDiscoveryReviewsetListQueriesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewsetListQueriesParameter, SecurityEdiscoveryreviewsetListQueriesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoveryReviewsetListQueriesParameter, SecurityEDiscoveryReviewsetListQueriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetListQueriesResponse> SecurityEdiscoveryreviewsetListQueriesAsync(SecurityEdiscoveryreviewsetListQueriesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewsetListQueriesResponse> SecurityEDiscoveryReviewsetListQueriesAsync(SecurityEDiscoveryReviewsetListQueriesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewsetListQueriesParameter, SecurityEdiscoveryreviewsetListQueriesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoveryReviewsetListQueriesParameter, SecurityEDiscoveryReviewsetListQueriesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoveryReviewSetQuery> SecurityEDiscoveryReviewsetListQueriesEnumerateAsync(SecurityEDiscoveryReviewsetListQueriesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoveryReviewsetListQueriesParameter, SecurityEDiscoveryReviewsetListQueriesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoveryReviewSetQuery>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

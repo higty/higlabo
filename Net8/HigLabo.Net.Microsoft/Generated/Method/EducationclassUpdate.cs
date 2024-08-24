@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-update?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationclassUpdateParameter : IRestApiParameter
+    public partial class EducationClassUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum EducationclassUpdateParameterEducationExternalSource
+        public enum EducationClassUpdateParameterEducationExternalSource
         {
             Sis,
             Manual,
@@ -47,12 +47,12 @@ namespace HigLabo.Net.Microsoft
         public IdentitySet? CreatedBy { get; set; }
         public string? ClassCode { get; set; }
         public string? ExternalId { get; set; }
-        public EducationclassUpdateParameterEducationExternalSource ExternalSource { get; set; }
+        public EducationClassUpdateParameterEducationExternalSource ExternalSource { get; set; }
         public string? ExternalSourceDetail { get; set; }
         public string? Grade { get; set; }
         public EducationTerm? Term { get; set; }
     }
-    public partial class EducationclassUpdateResponse : RestApiResponse
+    public partial class EducationClassUpdateResponse : RestApiResponse
     {
         public enum EducationClassEducationExternalSource
         {
@@ -89,32 +89,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassUpdateResponse> EducationclassUpdateAsync()
+        public async ValueTask<EducationClassUpdateResponse> EducationClassUpdateAsync()
         {
-            var p = new EducationclassUpdateParameter();
-            return await this.SendAsync<EducationclassUpdateParameter, EducationclassUpdateResponse>(p, CancellationToken.None);
+            var p = new EducationClassUpdateParameter();
+            return await this.SendAsync<EducationClassUpdateParameter, EducationClassUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassUpdateResponse> EducationclassUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationClassUpdateResponse> EducationClassUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationclassUpdateParameter();
-            return await this.SendAsync<EducationclassUpdateParameter, EducationclassUpdateResponse>(p, cancellationToken);
+            var p = new EducationClassUpdateParameter();
+            return await this.SendAsync<EducationClassUpdateParameter, EducationClassUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassUpdateResponse> EducationclassUpdateAsync(EducationclassUpdateParameter parameter)
+        public async ValueTask<EducationClassUpdateResponse> EducationClassUpdateAsync(EducationClassUpdateParameter parameter)
         {
-            return await this.SendAsync<EducationclassUpdateParameter, EducationclassUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationClassUpdateParameter, EducationClassUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassUpdateResponse> EducationclassUpdateAsync(EducationclassUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationClassUpdateResponse> EducationClassUpdateAsync(EducationClassUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationclassUpdateParameter, EducationclassUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationClassUpdateParameter, EducationClassUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
     /// </summary>
-    public partial class ListitemCreateParameter : IRestApiParameter
+    public partial class ListItemCreateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Microsoft
         public FieldValueSet? Fields { get; set; }
         public ListItemVersion[]? Versions { get; set; }
     }
-    public partial class ListitemCreateResponse : RestApiResponse
+    public partial class ListItemCreateResponse : RestApiResponse
     {
         public ContentTypeInfo? ContentType { get; set; }
         public ItemActivity[]? Activities { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync()
+        public async ValueTask<ListItemCreateResponse> ListItemCreateAsync()
         {
-            var p = new ListitemCreateParameter();
-            return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(p, CancellationToken.None);
+            var p = new ListItemCreateParameter();
+            return await this.SendAsync<ListItemCreateParameter, ListItemCreateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListItemCreateResponse> ListItemCreateAsync(CancellationToken cancellationToken)
         {
-            var p = new ListitemCreateParameter();
-            return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(p, cancellationToken);
+            var p = new ListItemCreateParameter();
+            return await this.SendAsync<ListItemCreateParameter, ListItemCreateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter)
+        public async ValueTask<ListItemCreateResponse> ListItemCreateAsync(ListItemCreateParameter parameter)
         {
-            return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ListItemCreateParameter, ListItemCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListItemCreateResponse> ListItemCreateAsync(ListItemCreateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ListItemCreateParameter, ListItemCreateResponse>(parameter, cancellationToken);
         }
     }
 }

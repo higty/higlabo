@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetsharepointsiteusagedetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetSharepointsiteusagedetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetsharepointsiteusagedetailResponse : RestApiResponse
+    public partial class ReportRootGetSharepointsiteusagedetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync()
+        public async ValueTask<ReportRootGetSharepointsiteusagedetailResponse> ReportRootGetSharepointsiteusagedetailAsync()
         {
-            var p = new ReportRootGetsharepointsiteusagedetailParameter();
-            return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetSharepointsiteusagedetailParameter();
+            return await this.SendAsync<ReportRootGetSharepointsiteusagedetailParameter, ReportRootGetSharepointsiteusagedetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSharepointsiteusagedetailResponse> ReportRootGetSharepointsiteusagedetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetsharepointsiteusagedetailParameter();
-            return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetSharepointsiteusagedetailParameter();
+            return await this.SendAsync<ReportRootGetSharepointsiteusagedetailParameter, ReportRootGetSharepointsiteusagedetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync(ReportRootGetsharepointsiteusagedetailParameter parameter)
+        public async ValueTask<ReportRootGetSharepointsiteusagedetailResponse> ReportRootGetSharepointsiteusagedetailAsync(ReportRootGetSharepointsiteusagedetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetSharepointsiteusagedetailParameter, ReportRootGetSharepointsiteusagedetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync(ReportRootGetsharepointsiteusagedetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSharepointsiteusagedetailResponse> ReportRootGetSharepointsiteusagedetailAsync(ReportRootGetSharepointsiteusagedetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetSharepointsiteusagedetailParameter, ReportRootGetSharepointsiteusagedetailResponse>(parameter, cancellationToken);
         }
     }
 }

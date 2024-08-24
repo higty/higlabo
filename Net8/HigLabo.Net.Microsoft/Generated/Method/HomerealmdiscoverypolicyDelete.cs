@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class HomerealmdiscoveryPolicyDeleteParameter : IRestApiParameter
+    public partial class HomeRealmDiscoveryPolicyDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class HomerealmdiscoveryPolicyDeleteResponse : RestApiResponse
+    public partial class HomeRealmDiscoveryPolicyDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync()
+        public async ValueTask<HomeRealmDiscoveryPolicyDeleteResponse> HomeRealmDiscoveryPolicyDeleteAsync()
         {
-            var p = new HomerealmdiscoveryPolicyDeleteParameter();
-            return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new HomeRealmDiscoveryPolicyDeleteParameter();
+            return await this.SendAsync<HomeRealmDiscoveryPolicyDeleteParameter, HomeRealmDiscoveryPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<HomeRealmDiscoveryPolicyDeleteResponse> HomeRealmDiscoveryPolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new HomerealmdiscoveryPolicyDeleteParameter();
-            return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(p, cancellationToken);
+            var p = new HomeRealmDiscoveryPolicyDeleteParameter();
+            return await this.SendAsync<HomeRealmDiscoveryPolicyDeleteParameter, HomeRealmDiscoveryPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync(HomerealmdiscoveryPolicyDeleteParameter parameter)
+        public async ValueTask<HomeRealmDiscoveryPolicyDeleteResponse> HomeRealmDiscoveryPolicyDeleteAsync(HomeRealmDiscoveryPolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<HomeRealmDiscoveryPolicyDeleteParameter, HomeRealmDiscoveryPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync(HomerealmdiscoveryPolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<HomeRealmDiscoveryPolicyDeleteResponse> HomeRealmDiscoveryPolicyDeleteAsync(HomeRealmDiscoveryPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<HomeRealmDiscoveryPolicyDeleteParameter, HomeRealmDiscoveryPolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

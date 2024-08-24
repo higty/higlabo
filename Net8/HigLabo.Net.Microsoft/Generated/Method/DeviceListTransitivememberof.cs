@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
     /// </summary>
-    public partial class DeviceListTransitivememberofParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DeviceListTransitiveMemberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DeviceListTransitivememberofResponse : RestApiResponse
+    public partial class DeviceListTransitiveMemberofResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync()
+        public async ValueTask<DeviceListTransitiveMemberofResponse> DeviceListTransitiveMemberofAsync()
         {
-            var p = new DeviceListTransitivememberofParameter();
-            return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(p, CancellationToken.None);
+            var p = new DeviceListTransitiveMemberofParameter();
+            return await this.SendAsync<DeviceListTransitiveMemberofParameter, DeviceListTransitiveMemberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<DeviceListTransitiveMemberofResponse> DeviceListTransitiveMemberofAsync(CancellationToken cancellationToken)
         {
-            var p = new DeviceListTransitivememberofParameter();
-            return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(p, cancellationToken);
+            var p = new DeviceListTransitiveMemberofParameter();
+            return await this.SendAsync<DeviceListTransitiveMemberofParameter, DeviceListTransitiveMemberofResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(DeviceListTransitivememberofParameter parameter)
+        public async ValueTask<DeviceListTransitiveMemberofResponse> DeviceListTransitiveMemberofAsync(DeviceListTransitiveMemberofParameter parameter)
         {
-            return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DeviceListTransitiveMemberofParameter, DeviceListTransitiveMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DeviceListTransitivememberofResponse> DeviceListTransitivememberofAsync(DeviceListTransitivememberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DeviceListTransitiveMemberofResponse> DeviceListTransitiveMemberofAsync(DeviceListTransitiveMemberofParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DeviceListTransitivememberofParameter, DeviceListTransitivememberofResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DeviceListTransitiveMemberofParameter, DeviceListTransitiveMemberofResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/device-list-transitivememberof?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> DeviceListTransitiveMemberofEnumerateAsync(DeviceListTransitiveMemberofParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DeviceListTransitiveMemberofParameter, DeviceListTransitiveMemberofResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

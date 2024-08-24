@@ -29,7 +29,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum MessageImportance
+        public enum MessageUpdateParameterImportance
         {
             Low,
             Normal,
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
         public Recipient[]? CcRecipients { get; set; }
         public FollowupFlag? Flag { get; set; }
         public Recipient? From { get; set; }
-        public MessageImportance? Importance { get; set; }
+        public MessageUpdateParameterImportance? Importance { get; set; }
         public string? InferenceClassification { get; set; }
         public string? InternetMessageId { get; set; }
         public bool? IsDeliveryReceiptRequested { get; set; }
@@ -98,8 +98,8 @@ namespace HigLabo.Net.Microsoft
         public Recipient? From { get; set; }
         public bool? HasAttachments { get; set; }
         public string? Id { get; set; }
-        public MessageImportance Importance { get; set; }
-        public MessageInferenceClassificationType InferenceClassification { get; set; }
+        public MessageImportance? Importance { get; set; }
+        public MessageInferenceClassificationType? InferenceClassification { get; set; }
         public InternetMessageHeader[]? InternetMessageHeaders { get; set; }
         public string? InternetMessageId { get; set; }
         public bool? IsDeliveryReceiptRequested { get; set; }

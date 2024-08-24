@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
     /// </summary>
-    public partial class RiskyserviceprincipalDismissParameter : IRestApiParameter
+    public partial class RiskyServicePrincipalDismissParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -36,7 +36,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class RiskyserviceprincipalDismissResponse : RestApiResponse
+    public partial class RiskyServicePrincipalDismissResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -47,32 +47,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync()
+        public async ValueTask<RiskyServicePrincipalDismissResponse> RiskyServicePrincipalDismissAsync()
         {
-            var p = new RiskyserviceprincipalDismissParameter();
-            return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(p, CancellationToken.None);
+            var p = new RiskyServicePrincipalDismissParameter();
+            return await this.SendAsync<RiskyServicePrincipalDismissParameter, RiskyServicePrincipalDismissResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyServicePrincipalDismissResponse> RiskyServicePrincipalDismissAsync(CancellationToken cancellationToken)
         {
-            var p = new RiskyserviceprincipalDismissParameter();
-            return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(p, cancellationToken);
+            var p = new RiskyServicePrincipalDismissParameter();
+            return await this.SendAsync<RiskyServicePrincipalDismissParameter, RiskyServicePrincipalDismissResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(RiskyserviceprincipalDismissParameter parameter)
+        public async ValueTask<RiskyServicePrincipalDismissResponse> RiskyServicePrincipalDismissAsync(RiskyServicePrincipalDismissParameter parameter)
         {
-            return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RiskyServicePrincipalDismissParameter, RiskyServicePrincipalDismissResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalDismissResponse> RiskyserviceprincipalDismissAsync(RiskyserviceprincipalDismissParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyServicePrincipalDismissResponse> RiskyServicePrincipalDismissAsync(RiskyServicePrincipalDismissParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RiskyserviceprincipalDismissParameter, RiskyserviceprincipalDismissResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RiskyServicePrincipalDismissParameter, RiskyServicePrincipalDismissResponse>(parameter, cancellationToken);
         }
     }
 }

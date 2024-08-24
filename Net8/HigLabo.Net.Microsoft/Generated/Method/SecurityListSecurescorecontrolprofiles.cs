@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityListSecurescorecontrolprofilesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityListSecureScorecontrolprofilesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityListSecurescorecontrolprofilesResponse : RestApiResponse
+    public partial class SecurityListSecureScorecontrolprofilesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync()
+        public async ValueTask<SecurityListSecureScorecontrolprofilesResponse> SecurityListSecureScorecontrolprofilesAsync()
         {
-            var p = new SecurityListSecurescorecontrolprofilesParameter();
-            return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(p, CancellationToken.None);
+            var p = new SecurityListSecureScorecontrolprofilesParameter();
+            return await this.SendAsync<SecurityListSecureScorecontrolprofilesParameter, SecurityListSecureScorecontrolprofilesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecureScorecontrolprofilesResponse> SecurityListSecureScorecontrolprofilesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityListSecurescorecontrolprofilesParameter();
-            return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(p, cancellationToken);
+            var p = new SecurityListSecureScorecontrolprofilesParameter();
+            return await this.SendAsync<SecurityListSecureScorecontrolprofilesParameter, SecurityListSecureScorecontrolprofilesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(SecurityListSecurescorecontrolprofilesParameter parameter)
+        public async ValueTask<SecurityListSecureScorecontrolprofilesResponse> SecurityListSecureScorecontrolprofilesAsync(SecurityListSecureScorecontrolprofilesParameter parameter)
         {
-            return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityListSecureScorecontrolprofilesParameter, SecurityListSecureScorecontrolprofilesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescorecontrolprofiles?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescorecontrolprofilesResponse> SecurityListSecurescorecontrolprofilesAsync(SecurityListSecurescorecontrolprofilesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecureScorecontrolprofilesResponse> SecurityListSecureScorecontrolprofilesAsync(SecurityListSecureScorecontrolprofilesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityListSecurescorecontrolprofilesParameter, SecurityListSecurescorecontrolprofilesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityListSecureScorecontrolprofilesParameter, SecurityListSecureScorecontrolprofilesResponse>(parameter, cancellationToken);
         }
     }
 }

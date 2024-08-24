@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,16 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ActivitySettings,
-            Configuration,
-            Description,
-            Id,
-            Name,
-            SearchSettings,
-            State,
-            Items,
-            Operations,
-            Schema,
         }
         public enum ApiPath
         {
@@ -57,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ExternalConnectorsExternalconnectionListResponse : RestApiResponse
+    public partial class ExternalConnectorsExternalconnectionListResponse : RestApiResponse<ExternalConnectorsExternalconnection>
     {
-        public ExternalConnectorsExternalconnection[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
@@ -95,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ExternalConnectorsExternalconnection> ExternalConnectorsExternalconnectionListEnumerateAsync(ExternalConnectorsExternalconnectionListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ExternalConnectorsExternalconnection>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

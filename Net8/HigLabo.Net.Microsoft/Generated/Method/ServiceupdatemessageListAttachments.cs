@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,12 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Content,
-            ContentType,
-            Id,
-            LastModifiedDateTime,
-            Name,
-            Size,
         }
         public enum ApiPath
         {
@@ -54,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceupdatemessageListAttachmentsResponse : RestApiResponse
+    public partial class ServiceupdatemessageListAttachmentsResponse : RestApiResponse<ServiceAnnouncementAttachment>
     {
-        public ServiceAnnouncementAttachment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0
@@ -92,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ServiceupdatemessageListAttachmentsResponse> ServiceupdatemessageListAttachmentsAsync(ServiceupdatemessageListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceupdatemessageListAttachmentsParameter, ServiceupdatemessageListAttachmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ServiceAnnouncementAttachment> ServiceupdatemessageListAttachmentsEnumerateAsync(ServiceupdatemessageListAttachmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServiceupdatemessageListAttachmentsParameter, ServiceupdatemessageListAttachmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ServiceAnnouncementAttachment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

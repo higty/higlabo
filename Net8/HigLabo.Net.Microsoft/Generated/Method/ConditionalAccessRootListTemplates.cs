@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            Details,
-            Id,
-            Name,
-            Scenarios,
         }
         public enum ApiPath
         {
@@ -52,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ConditionalAccessRootListTemplatesResponse : RestApiResponse
+    public partial class ConditionalAccessRootListTemplatesResponse : RestApiResponse<ConditionalAccessTemplate>
     {
-        public ConditionalAccessTemplate[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0
@@ -90,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ConditionalAccessRootListTemplatesResponse> ConditionalAccessRootListTemplatesAsync(ConditionalAccessRootListTemplatesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccessRootListTemplatesParameter, ConditionalAccessRootListTemplatesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ConditionalAccessTemplate> ConditionalAccessRootListTemplatesEnumerateAsync(ConditionalAccessRootListTemplatesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ConditionalAccessRootListTemplatesParameter, ConditionalAccessRootListTemplatesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ConditionalAccessTemplate>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

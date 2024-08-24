@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ThreatassessmentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ThreatassessmentRequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ThreatassessmentrequestGetResponse : RestApiResponse
+    public partial class ThreatassessmentRequestGetResponse : RestApiResponse
     {
         public enum ThreatAssessmentRequestThreatCategory
         {
@@ -95,32 +95,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync()
+        public async ValueTask<ThreatassessmentRequestGetResponse> ThreatassessmentRequestGetAsync()
         {
-            var p = new ThreatassessmentrequestGetParameter();
-            return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(p, CancellationToken.None);
+            var p = new ThreatassessmentRequestGetParameter();
+            return await this.SendAsync<ThreatassessmentRequestGetParameter, ThreatassessmentRequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ThreatassessmentRequestGetResponse> ThreatassessmentRequestGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ThreatassessmentrequestGetParameter();
-            return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(p, cancellationToken);
+            var p = new ThreatassessmentRequestGetParameter();
+            return await this.SendAsync<ThreatassessmentRequestGetParameter, ThreatassessmentRequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter)
+        public async ValueTask<ThreatassessmentRequestGetResponse> ThreatassessmentRequestGetAsync(ThreatassessmentRequestGetParameter parameter)
         {
-            return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ThreatassessmentRequestGetParameter, ThreatassessmentRequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ThreatassessmentRequestGetResponse> ThreatassessmentRequestGetAsync(ThreatassessmentRequestGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ThreatassessmentRequestGetParameter, ThreatassessmentRequestGetResponse>(parameter, cancellationToken);
         }
     }
 }

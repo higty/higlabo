@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityProtectionRootListRiskyserviceprincipalsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityProtectionRootListRiskyServicePrincipalsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppId,
-            DisplayName,
-            Id,
-            IsEnabled,
-            IsProcessing,
-            RiskDetail,
-            RiskLastUpdatedDateTime,
-            RiskLevel,
-            RiskState,
-            ServicePrincipalType,
-            History,
         }
         public enum ApiPath
         {
@@ -58,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityProtectionRootListRiskyserviceprincipalsResponse : RestApiResponse
+    public partial class IdentityProtectionRootListRiskyServicePrincipalsResponse : RestApiResponse<RiskyServicePrincipal>
     {
-        public RiskyServicePrincipal[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
@@ -70,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityProtectionRootListRiskyserviceprincipalsResponse> IdentityProtectionRootListRiskyserviceprincipalsAsync()
+        public async ValueTask<IdentityProtectionRootListRiskyServicePrincipalsResponse> IdentityProtectionRootListRiskyServicePrincipalsAsync()
         {
-            var p = new IdentityProtectionRootListRiskyserviceprincipalsParameter();
-            return await this.SendAsync<IdentityProtectionRootListRiskyserviceprincipalsParameter, IdentityProtectionRootListRiskyserviceprincipalsResponse>(p, CancellationToken.None);
+            var p = new IdentityProtectionRootListRiskyServicePrincipalsParameter();
+            return await this.SendAsync<IdentityProtectionRootListRiskyServicePrincipalsParameter, IdentityProtectionRootListRiskyServicePrincipalsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityProtectionRootListRiskyserviceprincipalsResponse> IdentityProtectionRootListRiskyserviceprincipalsAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProtectionRootListRiskyServicePrincipalsResponse> IdentityProtectionRootListRiskyServicePrincipalsAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityProtectionRootListRiskyserviceprincipalsParameter();
-            return await this.SendAsync<IdentityProtectionRootListRiskyserviceprincipalsParameter, IdentityProtectionRootListRiskyserviceprincipalsResponse>(p, cancellationToken);
+            var p = new IdentityProtectionRootListRiskyServicePrincipalsParameter();
+            return await this.SendAsync<IdentityProtectionRootListRiskyServicePrincipalsParameter, IdentityProtectionRootListRiskyServicePrincipalsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityProtectionRootListRiskyserviceprincipalsResponse> IdentityProtectionRootListRiskyserviceprincipalsAsync(IdentityProtectionRootListRiskyserviceprincipalsParameter parameter)
+        public async ValueTask<IdentityProtectionRootListRiskyServicePrincipalsResponse> IdentityProtectionRootListRiskyServicePrincipalsAsync(IdentityProtectionRootListRiskyServicePrincipalsParameter parameter)
         {
-            return await this.SendAsync<IdentityProtectionRootListRiskyserviceprincipalsParameter, IdentityProtectionRootListRiskyserviceprincipalsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityProtectionRootListRiskyServicePrincipalsParameter, IdentityProtectionRootListRiskyServicePrincipalsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityProtectionRootListRiskyserviceprincipalsResponse> IdentityProtectionRootListRiskyserviceprincipalsAsync(IdentityProtectionRootListRiskyserviceprincipalsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProtectionRootListRiskyServicePrincipalsResponse> IdentityProtectionRootListRiskyServicePrincipalsAsync(IdentityProtectionRootListRiskyServicePrincipalsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityProtectionRootListRiskyserviceprincipalsParameter, IdentityProtectionRootListRiskyserviceprincipalsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityProtectionRootListRiskyServicePrincipalsParameter, IdentityProtectionRootListRiskyServicePrincipalsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<RiskyServicePrincipal> IdentityProtectionRootListRiskyServicePrincipalsEnumerateAsync(IdentityProtectionRootListRiskyServicePrincipalsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<IdentityProtectionRootListRiskyServicePrincipalsParameter, IdentityProtectionRootListRiskyServicePrincipalsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<RiskyServicePrincipal>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

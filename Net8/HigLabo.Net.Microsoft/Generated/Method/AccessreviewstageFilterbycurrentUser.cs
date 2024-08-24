@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewstageFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReViewStageFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,13 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            EndDateTime,
-            FallbackReviewers,
-            Id,
-            Reviewers,
-            StartDateTime,
-            Status,
-            Decisions,
         }
         public enum ApiPath
         {
@@ -56,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewstageFilterbycurrentUserResponse : RestApiResponse
+    public partial class AccessReViewStageFilterbycurrentUserResponse : RestApiResponse<AccessReviewStage>
     {
-        public AccessReviewStage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
@@ -68,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync()
+        public async ValueTask<AccessReViewStageFilterbycurrentUserResponse> AccessReViewStageFilterbycurrentUserAsync()
         {
-            var p = new AccessreviewstageFilterbycurrentUserParameter();
-            return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(p, CancellationToken.None);
+            var p = new AccessReViewStageFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessReViewStageFilterbycurrentUserParameter, AccessReViewStageFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReViewStageFilterbycurrentUserResponse> AccessReViewStageFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewstageFilterbycurrentUserParameter();
-            return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(p, cancellationToken);
+            var p = new AccessReViewStageFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessReViewStageFilterbycurrentUserParameter, AccessReViewStageFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(AccessreviewstageFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccessReViewStageFilterbycurrentUserResponse> AccessReViewStageFilterbycurrentUserAsync(AccessReViewStageFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReViewStageFilterbycurrentUserParameter, AccessReViewStageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageFilterbycurrentUserResponse> AccessreviewstageFilterbycurrentUserAsync(AccessreviewstageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReViewStageFilterbycurrentUserResponse> AccessReViewStageFilterbycurrentUserAsync(AccessReViewStageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewstageFilterbycurrentUserParameter, AccessreviewstageFilterbycurrentUserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReViewStageFilterbycurrentUserParameter, AccessReViewStageFilterbycurrentUserResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-filterbycurrentuser?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewStage> AccessReViewStageFilterbycurrentUserEnumerateAsync(AccessReViewStageFilterbycurrentUserParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReViewStageFilterbycurrentUserParameter, AccessReViewStageFilterbycurrentUserResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewStage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

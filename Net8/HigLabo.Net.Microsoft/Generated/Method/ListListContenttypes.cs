@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,26 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssociatedHubsUrls,
-            Description,
-            DocumentSet,
-            DocumentTemplate,
-            Group,
-            Hidden,
-            Id,
-            InheritedFrom,
-            IsBuiltIn,
-            Name,
-            Order,
-            ParentId,
-            PropagateChanges,
-            ReadOnly,
-            Sealed,
-            Base,
-            ColumnLinks,
-            BaseTypes,
-            ColumnPositions,
-            Columns,
         }
         public enum ApiPath
         {
@@ -69,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ListListContentTypesResponse : RestApiResponse
+    public partial class ListListContentTypesResponse : RestApiResponse<ContentType>
     {
-        public ContentType[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/list-list-contenttypes?view=graph-rest-1.0
@@ -107,6 +87,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ListListContentTypesResponse> ListListContentTypesAsync(ListListContentTypesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListListContentTypesParameter, ListListContentTypesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/list-list-contenttypes?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ContentType> ListListContentTypesEnumerateAsync(ListListContentTypesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ListListContentTypesParameter, ListListContentTypesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ContentType>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

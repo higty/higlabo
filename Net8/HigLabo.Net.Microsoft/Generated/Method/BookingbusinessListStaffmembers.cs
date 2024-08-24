@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessListStaffmembersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingBusinessListStaffMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AvailabilityIsAffectedByPersonalCalendar,
-            DisplayName,
-            EmailAddress,
-            Id,
-            IsEmailNotificationEnabled,
-            Role,
-            TimeZone,
-            UseBusinessHours,
-            WorkingHours,
         }
         public enum ApiPath
         {
@@ -57,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingbusinessListStaffmembersResponse : RestApiResponse
+    public partial class BookingBusinessListStaffMembersResponse : RestApiResponse<BookingStaffMember>
     {
-        public BookingStaffMember[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
@@ -69,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListStaffmembersResponse> BookingbusinessListStaffmembersAsync()
+        public async ValueTask<BookingBusinessListStaffMembersResponse> BookingBusinessListStaffMembersAsync()
         {
-            var p = new BookingbusinessListStaffmembersParameter();
-            return await this.SendAsync<BookingbusinessListStaffmembersParameter, BookingbusinessListStaffmembersResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessListStaffMembersParameter();
+            return await this.SendAsync<BookingBusinessListStaffMembersParameter, BookingBusinessListStaffMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListStaffmembersResponse> BookingbusinessListStaffmembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListStaffMembersResponse> BookingBusinessListStaffMembersAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessListStaffmembersParameter();
-            return await this.SendAsync<BookingbusinessListStaffmembersParameter, BookingbusinessListStaffmembersResponse>(p, cancellationToken);
+            var p = new BookingBusinessListStaffMembersParameter();
+            return await this.SendAsync<BookingBusinessListStaffMembersParameter, BookingBusinessListStaffMembersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListStaffmembersResponse> BookingbusinessListStaffmembersAsync(BookingbusinessListStaffmembersParameter parameter)
+        public async ValueTask<BookingBusinessListStaffMembersResponse> BookingBusinessListStaffMembersAsync(BookingBusinessListStaffMembersParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessListStaffmembersParameter, BookingbusinessListStaffmembersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessListStaffMembersParameter, BookingBusinessListStaffMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListStaffmembersResponse> BookingbusinessListStaffmembersAsync(BookingbusinessListStaffmembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListStaffMembersResponse> BookingBusinessListStaffMembersAsync(BookingBusinessListStaffMembersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessListStaffmembersParameter, BookingbusinessListStaffmembersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessListStaffMembersParameter, BookingBusinessListStaffMembersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BookingStaffMember> BookingBusinessListStaffMembersEnumerateAsync(BookingBusinessListStaffMembersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<BookingBusinessListStaffMembersParameter, BookingBusinessListStaffMembersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BookingStaffMember>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

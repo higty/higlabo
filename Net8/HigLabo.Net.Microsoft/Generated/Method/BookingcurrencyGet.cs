@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingcurrencyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingCurrencyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingcurrencyGetResponse : RestApiResponse
+    public partial class BookingCurrencyGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? Symbol { get; set; }
@@ -61,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync()
+        public async ValueTask<BookingCurrencyGetResponse> BookingCurrencyGetAsync()
         {
-            var p = new BookingcurrencyGetParameter();
-            return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(p, CancellationToken.None);
+            var p = new BookingCurrencyGetParameter();
+            return await this.SendAsync<BookingCurrencyGetParameter, BookingCurrencyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingCurrencyGetResponse> BookingCurrencyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingcurrencyGetParameter();
-            return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(p, cancellationToken);
+            var p = new BookingCurrencyGetParameter();
+            return await this.SendAsync<BookingCurrencyGetParameter, BookingCurrencyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync(BookingcurrencyGetParameter parameter)
+        public async ValueTask<BookingCurrencyGetResponse> BookingCurrencyGetAsync(BookingCurrencyGetParameter parameter)
         {
-            return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingCurrencyGetParameter, BookingCurrencyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyGetResponse> BookingcurrencyGetAsync(BookingcurrencyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingCurrencyGetResponse> BookingCurrencyGetAsync(BookingCurrencyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingcurrencyGetParameter, BookingcurrencyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingCurrencyGetParameter, BookingCurrencyGetResponse>(parameter, cancellationToken);
         }
     }
 }

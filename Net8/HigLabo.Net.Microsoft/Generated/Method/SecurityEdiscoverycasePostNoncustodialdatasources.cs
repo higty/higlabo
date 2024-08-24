@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycasePostNoncustodialdatasourcesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycasePostNoncustodialdatasourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum EdiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus
+        public enum EDiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus
         {
             NotApplied,
             Applied,
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Microsoft
             Removing,
             Partial,
         }
-        public enum EdiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus
+        public enum EDiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus
         {
             Active,
             Released,
@@ -52,16 +52,16 @@ namespace HigLabo.Net.Microsoft
         public DataSource? DataSource { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
-        public EdiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
+        public EDiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? ReleasedDateTime { get; set; }
-        public EdiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus Status { get; set; }
-        public EdiscoveryIndexOperation? LastIndexOperation { get; set; }
+        public EDiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus Status { get; set; }
+        public EDiscoveryIndexOperation? LastIndexOperation { get; set; }
     }
-    public partial class SecurityEdiscoverycasePostNoncustodialdatasourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycasePostNoncustodialdatasourcesResponse : RestApiResponse
     {
-        public enum EdiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus
+        public enum EDiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus
         {
             NotApplied,
             Applied,
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             Removing,
             Partial,
         }
-        public enum EdiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus
+        public enum EDiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus
         {
             Active,
             Released,
@@ -77,13 +77,13 @@ namespace HigLabo.Net.Microsoft
 
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
-        public EdiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
+        public EDiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? ReleasedDateTime { get; set; }
-        public EdiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus Status { get; set; }
+        public EDiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus Status { get; set; }
         public DataSource? DataSource { get; set; }
-        public EdiscoveryIndexOperation? LastIndexOperation { get; set; }
+        public EDiscoveryIndexOperation? LastIndexOperation { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0
@@ -93,32 +93,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostNoncustodialdatasourcesResponse> SecurityEdiscoverycasePostNoncustodialdatasourcesAsync()
+        public async ValueTask<SecurityEDiscoverycasePostNoncustodialdatasourcesResponse> SecurityEDiscoverycasePostNoncustodialdatasourcesAsync()
         {
-            var p = new SecurityEdiscoverycasePostNoncustodialdatasourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostNoncustodialdatasourcesParameter, SecurityEdiscoverycasePostNoncustodialdatasourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycasePostNoncustodialdatasourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostNoncustodialdatasourcesParameter, SecurityEDiscoverycasePostNoncustodialdatasourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostNoncustodialdatasourcesResponse> SecurityEdiscoverycasePostNoncustodialdatasourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostNoncustodialdatasourcesResponse> SecurityEDiscoverycasePostNoncustodialdatasourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycasePostNoncustodialdatasourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostNoncustodialdatasourcesParameter, SecurityEdiscoverycasePostNoncustodialdatasourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycasePostNoncustodialdatasourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostNoncustodialdatasourcesParameter, SecurityEDiscoverycasePostNoncustodialdatasourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostNoncustodialdatasourcesResponse> SecurityEdiscoverycasePostNoncustodialdatasourcesAsync(SecurityEdiscoverycasePostNoncustodialdatasourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycasePostNoncustodialdatasourcesResponse> SecurityEDiscoverycasePostNoncustodialdatasourcesAsync(SecurityEDiscoverycasePostNoncustodialdatasourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostNoncustodialdatasourcesParameter, SecurityEdiscoverycasePostNoncustodialdatasourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycasePostNoncustodialdatasourcesParameter, SecurityEDiscoverycasePostNoncustodialdatasourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostNoncustodialdatasourcesResponse> SecurityEdiscoverycasePostNoncustodialdatasourcesAsync(SecurityEdiscoverycasePostNoncustodialdatasourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostNoncustodialdatasourcesResponse> SecurityEDiscoverycasePostNoncustodialdatasourcesAsync(SecurityEDiscoverycasePostNoncustodialdatasourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostNoncustodialdatasourcesParameter, SecurityEdiscoverycasePostNoncustodialdatasourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycasePostNoncustodialdatasourcesParameter, SecurityEDiscoverycasePostNoncustodialdatasourcesResponse>(parameter, cancellationToken);
         }
     }
 }

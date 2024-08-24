@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,26 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Body,
-            BodyLastModifiedDateTime,
-            Categories,
-            CompletedDateTime,
-            CreatedDateTime,
-            DueDateTime,
-            HasAttachments,
-            Id,
-            Importance,
-            IsReminderOn,
-            LastModifiedDateTime,
-            Recurrence,
-            ReminderDateTime,
-            StartDateTime,
-            Status,
-            Title,
-            Attachments,
-            ChecklistItems,
-            Extensions,
-            LinkedResources,
         }
         public enum ApiPath
         {
@@ -71,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TodotasklistListTasksResponse : RestApiResponse
+    public partial class TodotasklistListTasksResponse : RestApiResponse<TodoTask>
     {
-        public TodoTask[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todotasklist-list-tasks?view=graph-rest-1.0
@@ -109,6 +89,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TodotasklistListTasksResponse> TodotasklistListTasksAsync(TodotasklistListTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotasklistListTasksParameter, TodotasklistListTasksResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-list-tasks?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TodoTask> TodotasklistListTasksEnumerateAsync(TodotasklistListTasksParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TodotasklistListTasksParameter, TodotasklistListTasksResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TodoTask>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

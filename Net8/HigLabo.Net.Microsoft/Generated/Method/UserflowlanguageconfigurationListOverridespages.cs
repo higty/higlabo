@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
     /// </summary>
-    public partial class UserflowlanguageConfigurationListOverridespagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserflowlanguageConfigurationListOverridesPagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,7 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
         }
         public enum ApiPath
         {
@@ -50,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserflowlanguageConfigurationListOverridespagesResponse : RestApiResponse
+    public partial class UserflowlanguageConfigurationListOverridesPagesResponse : RestApiResponse<UserFlowLanguagePage>
     {
-        public UserFlowLanguagePage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
@@ -62,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListOverridespagesResponse> UserflowlanguageConfigurationListOverridespagesAsync()
+        public async ValueTask<UserflowlanguageConfigurationListOverridesPagesResponse> UserflowlanguageConfigurationListOverridesPagesAsync()
         {
-            var p = new UserflowlanguageConfigurationListOverridespagesParameter();
-            return await this.SendAsync<UserflowlanguageConfigurationListOverridespagesParameter, UserflowlanguageConfigurationListOverridespagesResponse>(p, CancellationToken.None);
+            var p = new UserflowlanguageConfigurationListOverridesPagesParameter();
+            return await this.SendAsync<UserflowlanguageConfigurationListOverridesPagesParameter, UserflowlanguageConfigurationListOverridesPagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListOverridespagesResponse> UserflowlanguageConfigurationListOverridespagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationListOverridesPagesResponse> UserflowlanguageConfigurationListOverridesPagesAsync(CancellationToken cancellationToken)
         {
-            var p = new UserflowlanguageConfigurationListOverridespagesParameter();
-            return await this.SendAsync<UserflowlanguageConfigurationListOverridespagesParameter, UserflowlanguageConfigurationListOverridespagesResponse>(p, cancellationToken);
+            var p = new UserflowlanguageConfigurationListOverridesPagesParameter();
+            return await this.SendAsync<UserflowlanguageConfigurationListOverridesPagesParameter, UserflowlanguageConfigurationListOverridesPagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListOverridespagesResponse> UserflowlanguageConfigurationListOverridespagesAsync(UserflowlanguageConfigurationListOverridespagesParameter parameter)
+        public async ValueTask<UserflowlanguageConfigurationListOverridesPagesResponse> UserflowlanguageConfigurationListOverridesPagesAsync(UserflowlanguageConfigurationListOverridesPagesParameter parameter)
         {
-            return await this.SendAsync<UserflowlanguageConfigurationListOverridespagesParameter, UserflowlanguageConfigurationListOverridespagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserflowlanguageConfigurationListOverridesPagesParameter, UserflowlanguageConfigurationListOverridesPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserflowlanguageConfigurationListOverridespagesResponse> UserflowlanguageConfigurationListOverridespagesAsync(UserflowlanguageConfigurationListOverridespagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserflowlanguageConfigurationListOverridesPagesResponse> UserflowlanguageConfigurationListOverridesPagesAsync(UserflowlanguageConfigurationListOverridesPagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserflowlanguageConfigurationListOverridespagesParameter, UserflowlanguageConfigurationListOverridespagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserflowlanguageConfigurationListOverridesPagesParameter, UserflowlanguageConfigurationListOverridesPagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UserFlowLanguagePage> UserflowlanguageConfigurationListOverridesPagesEnumerateAsync(UserflowlanguageConfigurationListOverridesPagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserflowlanguageConfigurationListOverridesPagesParameter, UserflowlanguageConfigurationListOverridesPagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UserFlowLanguagePage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

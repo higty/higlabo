@@ -25,23 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Capabilities,
-            Defaults,
-            DisplayName,
-            HasPhysicalDevice,
-            Id,
-            IsAcceptingJobs,
-            IsShared,
-            LastSeenDateTime,
-            Location,
-            Manufacturer,
-            Model,
-            RegisteredDateTime,
-            Status,
-            Connectors,
-            Jobs,
-            Shares,
-            TaskTriggers,
         }
         public enum ApiPath
         {

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityUserflowattributeDeleteParameter : IRestApiParameter
+    public partial class IdentityUserflowAttributeDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class IdentityUserflowattributeDeleteResponse : RestApiResponse
+    public partial class IdentityUserflowAttributeDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeDeleteResponse> IdentityUserflowattributeDeleteAsync()
+        public async ValueTask<IdentityUserflowAttributeDeleteResponse> IdentityUserflowAttributeDeleteAsync()
         {
-            var p = new IdentityUserflowattributeDeleteParameter();
-            return await this.SendAsync<IdentityUserflowattributeDeleteParameter, IdentityUserflowattributeDeleteResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowAttributeDeleteParameter();
+            return await this.SendAsync<IdentityUserflowAttributeDeleteParameter, IdentityUserflowAttributeDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeDeleteResponse> IdentityUserflowattributeDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeDeleteResponse> IdentityUserflowAttributeDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityUserflowattributeDeleteParameter();
-            return await this.SendAsync<IdentityUserflowattributeDeleteParameter, IdentityUserflowattributeDeleteResponse>(p, cancellationToken);
+            var p = new IdentityUserflowAttributeDeleteParameter();
+            return await this.SendAsync<IdentityUserflowAttributeDeleteParameter, IdentityUserflowAttributeDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeDeleteResponse> IdentityUserflowattributeDeleteAsync(IdentityUserflowattributeDeleteParameter parameter)
+        public async ValueTask<IdentityUserflowAttributeDeleteResponse> IdentityUserflowAttributeDeleteAsync(IdentityUserflowAttributeDeleteParameter parameter)
         {
-            return await this.SendAsync<IdentityUserflowattributeDeleteParameter, IdentityUserflowattributeDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowAttributeDeleteParameter, IdentityUserflowAttributeDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeDeleteResponse> IdentityUserflowattributeDeleteAsync(IdentityUserflowattributeDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeDeleteResponse> IdentityUserflowAttributeDeleteAsync(IdentityUserflowAttributeDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityUserflowattributeDeleteParameter, IdentityUserflowattributeDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowAttributeDeleteParameter, IdentityUserflowAttributeDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

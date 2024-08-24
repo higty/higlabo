@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-noncustodialdatasources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseListNoncustodialdatasourcesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycaseListNoncustodialdatasourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,9 +37,8 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class SecurityEdiscoverycaseListNoncustodialdatasourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseListNoncustodialdatasourcesResponse : RestApiResponse<EDiscoveryNoncustodialDataSource>
     {
-        public EdiscoveryNoncustodialDataSource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-noncustodialdatasources?view=graph-rest-1.0
@@ -49,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListNoncustodialdatasourcesResponse> SecurityEdiscoverycaseListNoncustodialdatasourcesAsync()
+        public async ValueTask<SecurityEDiscoverycaseListNoncustodialdatasourcesResponse> SecurityEDiscoverycaseListNoncustodialdatasourcesAsync()
         {
-            var p = new SecurityEdiscoverycaseListNoncustodialdatasourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListNoncustodialdatasourcesParameter, SecurityEdiscoverycaseListNoncustodialdatasourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseListNoncustodialdatasourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListNoncustodialdatasourcesParameter, SecurityEDiscoverycaseListNoncustodialdatasourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListNoncustodialdatasourcesResponse> SecurityEdiscoverycaseListNoncustodialdatasourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListNoncustodialdatasourcesResponse> SecurityEDiscoverycaseListNoncustodialdatasourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseListNoncustodialdatasourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListNoncustodialdatasourcesParameter, SecurityEdiscoverycaseListNoncustodialdatasourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseListNoncustodialdatasourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListNoncustodialdatasourcesParameter, SecurityEDiscoverycaseListNoncustodialdatasourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListNoncustodialdatasourcesResponse> SecurityEdiscoverycaseListNoncustodialdatasourcesAsync(SecurityEdiscoverycaseListNoncustodialdatasourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseListNoncustodialdatasourcesResponse> SecurityEDiscoverycaseListNoncustodialdatasourcesAsync(SecurityEDiscoverycaseListNoncustodialdatasourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListNoncustodialdatasourcesParameter, SecurityEdiscoverycaseListNoncustodialdatasourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseListNoncustodialdatasourcesParameter, SecurityEDiscoverycaseListNoncustodialdatasourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-noncustodialdatasources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListNoncustodialdatasourcesResponse> SecurityEdiscoverycaseListNoncustodialdatasourcesAsync(SecurityEdiscoverycaseListNoncustodialdatasourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListNoncustodialdatasourcesResponse> SecurityEDiscoverycaseListNoncustodialdatasourcesAsync(SecurityEDiscoverycaseListNoncustodialdatasourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListNoncustodialdatasourcesParameter, SecurityEdiscoverycaseListNoncustodialdatasourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseListNoncustodialdatasourcesParameter, SecurityEDiscoverycaseListNoncustodialdatasourcesResponse>(parameter, cancellationToken);
         }
     }
 }

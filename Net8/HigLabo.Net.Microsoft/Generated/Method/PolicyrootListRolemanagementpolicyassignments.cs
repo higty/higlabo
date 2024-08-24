@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,12 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            PolicyId,
-            RoleDefinitionId,
-            ScopeId,
-            ScopeType,
-            Policy,
         }
         public enum ApiPath
         {
@@ -53,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PolicyRootListRoleManagementPolicyAssignmentsResponse : RestApiResponse
+    public partial class PolicyRootListRoleManagementPolicyAssignmentsResponse : RestApiResponse<UnifiedRoleManagementPolicyAssignment>
     {
-        public UnifiedRoleManagementPolicyAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
@@ -91,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(PolicyRootListRoleManagementPolicyAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UnifiedRoleManagementPolicyAssignment> PolicyRootListRoleManagementPolicyAssignmentsEnumerateAsync(PolicyRootListRoleManagementPolicyAssignmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UnifiedRoleManagementPolicyAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

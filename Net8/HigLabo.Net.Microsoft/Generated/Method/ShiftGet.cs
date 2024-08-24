@@ -25,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            DraftShift,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            SchedulingGroupId,
-            SharedShift,
-            UserId,
         }
         public enum ApiPath
         {

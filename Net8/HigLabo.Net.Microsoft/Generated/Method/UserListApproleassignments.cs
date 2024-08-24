@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppRoleId,
-            CreatedDateTime,
-            DeletedDateTime,
-            Id,
-            PrincipalDisplayName,
-            PrincipalId,
-            PrincipalType,
-            ResourceDisplayName,
-            ResourceId,
         }
         public enum ApiPath
         {
@@ -57,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListApproleAssignmentsResponse : RestApiResponse
+    public partial class UserListApproleAssignmentsResponse : RestApiResponse<AppRoleAssignment>
     {
-        public AppRoleAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
@@ -95,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AppRoleAssignment> UserListApproleAssignmentsEnumerateAsync(UserListApproleAssignmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AppRoleAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

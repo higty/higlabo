@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            DisplayName,
-            FileData,
-            FileName,
-            Id,
-            IsDefault,
-            IsMajorVersion,
-            Language,
-            Versions,
         }
         public enum ApiPath
         {
@@ -57,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AgreementListFilesResponse : RestApiResponse
+    public partial class AgreementListFilesResponse : RestApiResponse<AgreementFileLocalization>
     {
-        public AgreementFileLocalization[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
@@ -95,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AgreementFileLocalization> AgreementListFilesEnumerateAsync(AgreementListFilesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AgreementFileLocalization>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

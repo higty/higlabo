@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/informationprotection-post-threatassessmentrequests?view=graph-rest-1.0
     /// </summary>
-    public partial class InformationProtectionPostThreatassessmentrequestsParameter : IRestApiParameter
+    public partial class InformationProtectionPostThreatassessmentRequestsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         public ThreatAssessmentRequestThreatAssessmentStatus Status { get; set; }
         public ThreatAssessmentResult[]? Results { get; set; }
     }
-    public partial class InformationProtectionPostThreatassessmentrequestsResponse : RestApiResponse
+    public partial class InformationProtectionPostThreatassessmentRequestsResponse : RestApiResponse
     {
         public enum ThreatAssessmentRequestThreatCategory
         {
@@ -118,32 +118,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/informationprotection-post-threatassessmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InformationProtectionPostThreatassessmentrequestsResponse> InformationProtectionPostThreatassessmentrequestsAsync()
+        public async ValueTask<InformationProtectionPostThreatassessmentRequestsResponse> InformationProtectionPostThreatassessmentRequestsAsync()
         {
-            var p = new InformationProtectionPostThreatassessmentrequestsParameter();
-            return await this.SendAsync<InformationProtectionPostThreatassessmentrequestsParameter, InformationProtectionPostThreatassessmentrequestsResponse>(p, CancellationToken.None);
+            var p = new InformationProtectionPostThreatassessmentRequestsParameter();
+            return await this.SendAsync<InformationProtectionPostThreatassessmentRequestsParameter, InformationProtectionPostThreatassessmentRequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/informationprotection-post-threatassessmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InformationProtectionPostThreatassessmentrequestsResponse> InformationProtectionPostThreatassessmentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<InformationProtectionPostThreatassessmentRequestsResponse> InformationProtectionPostThreatassessmentRequestsAsync(CancellationToken cancellationToken)
         {
-            var p = new InformationProtectionPostThreatassessmentrequestsParameter();
-            return await this.SendAsync<InformationProtectionPostThreatassessmentrequestsParameter, InformationProtectionPostThreatassessmentrequestsResponse>(p, cancellationToken);
+            var p = new InformationProtectionPostThreatassessmentRequestsParameter();
+            return await this.SendAsync<InformationProtectionPostThreatassessmentRequestsParameter, InformationProtectionPostThreatassessmentRequestsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/informationprotection-post-threatassessmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InformationProtectionPostThreatassessmentrequestsResponse> InformationProtectionPostThreatassessmentrequestsAsync(InformationProtectionPostThreatassessmentrequestsParameter parameter)
+        public async ValueTask<InformationProtectionPostThreatassessmentRequestsResponse> InformationProtectionPostThreatassessmentRequestsAsync(InformationProtectionPostThreatassessmentRequestsParameter parameter)
         {
-            return await this.SendAsync<InformationProtectionPostThreatassessmentrequestsParameter, InformationProtectionPostThreatassessmentrequestsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<InformationProtectionPostThreatassessmentRequestsParameter, InformationProtectionPostThreatassessmentRequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/informationprotection-post-threatassessmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InformationProtectionPostThreatassessmentrequestsResponse> InformationProtectionPostThreatassessmentrequestsAsync(InformationProtectionPostThreatassessmentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InformationProtectionPostThreatassessmentRequestsResponse> InformationProtectionPostThreatassessmentRequestsAsync(InformationProtectionPostThreatassessmentRequestsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<InformationProtectionPostThreatassessmentrequestsParameter, InformationProtectionPostThreatassessmentrequestsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<InformationProtectionPostThreatassessmentRequestsParameter, InformationProtectionPostThreatassessmentRequestsResponse>(parameter, cancellationToken);
         }
     }
 }

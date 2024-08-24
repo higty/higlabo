@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -28,25 +29,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowedOnlineMeetingProviders,
-            CanEdit,
-            CanShare,
-            CanViewPrivateItems,
-            ChangeKey,
-            Color,
-            DefaultOnlineMeetingProvider,
-            HexColor,
-            Id,
-            IsDefaultCalendar,
-            IsRemovable,
-            IsTallyingResponses,
-            Name,
-            Owner,
-            CalendarPermissions,
-            CalendarView,
-            Events,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -74,9 +56,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListCalendarsResponse : RestApiResponse
+    public partial class UserListCalendarsResponse : RestApiResponse<Calendar>
     {
-        public Calendar[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-calendars?view=graph-rest-1.0
@@ -112,6 +93,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserListCalendarsResponse> UserListCalendarsAsync(UserListCalendarsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListCalendarsParameter, UserListCalendarsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-calendars?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Calendar> UserListCalendarsEnumerateAsync(UserListCalendarsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListCalendarsParameter, UserListCalendarsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Calendar>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

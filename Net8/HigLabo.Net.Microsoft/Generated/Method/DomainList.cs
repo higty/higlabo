@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,22 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AuthenticationType,
-            AvailabilityStatus,
-            Id,
-            IsAdminManaged,
-            IsDefault,
-            IsInitial,
-            IsRoot,
-            IsVerified,
-            PasswordNotificationWindowInDays,
-            PasswordValidityPeriodInDays,
-            State,
-            SupportedServices,
-            DomainNameReferences,
-            ServiceConfigurationRecords,
-            VerificationDnsRecords,
-            FederationConfiguration,
         }
         public enum ApiPath
         {
@@ -63,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DomainListResponse : RestApiResponse
+    public partial class DomainListResponse : RestApiResponse<Domain>
     {
-        public Domain[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
@@ -101,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<DomainListResponse> DomainListAsync(DomainListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainListParameter, DomainListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Domain> DomainListEnumerateAsync(DomainListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DomainListParameter, DomainListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Domain>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

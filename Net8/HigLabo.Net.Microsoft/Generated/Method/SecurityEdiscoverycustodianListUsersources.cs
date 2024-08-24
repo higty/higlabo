@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycustodianListUsersourcesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycustodianListUsersourcesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -52,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycustodianListUsersourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycustodianListUsersourcesResponse : RestApiResponse<UserSource>
     {
-        public UserSource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
@@ -64,32 +64,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUsersourcesResponse> SecurityEdiscoverycustodianListUsersourcesAsync()
+        public async ValueTask<SecurityEDiscoverycustodianListUsersourcesResponse> SecurityEDiscoverycustodianListUsersourcesAsync()
         {
-            var p = new SecurityEdiscoverycustodianListUsersourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianListUsersourcesParameter, SecurityEdiscoverycustodianListUsersourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycustodianListUsersourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianListUsersourcesParameter, SecurityEDiscoverycustodianListUsersourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUsersourcesResponse> SecurityEdiscoverycustodianListUsersourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianListUsersourcesResponse> SecurityEDiscoverycustodianListUsersourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycustodianListUsersourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianListUsersourcesParameter, SecurityEdiscoverycustodianListUsersourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycustodianListUsersourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianListUsersourcesParameter, SecurityEDiscoverycustodianListUsersourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUsersourcesResponse> SecurityEdiscoverycustodianListUsersourcesAsync(SecurityEdiscoverycustodianListUsersourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycustodianListUsersourcesResponse> SecurityEDiscoverycustodianListUsersourcesAsync(SecurityEDiscoverycustodianListUsersourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianListUsersourcesParameter, SecurityEdiscoverycustodianListUsersourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycustodianListUsersourcesParameter, SecurityEDiscoverycustodianListUsersourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUsersourcesResponse> SecurityEdiscoverycustodianListUsersourcesAsync(SecurityEdiscoverycustodianListUsersourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianListUsersourcesResponse> SecurityEDiscoverycustodianListUsersourcesAsync(SecurityEDiscoverycustodianListUsersourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianListUsersourcesParameter, SecurityEdiscoverycustodianListUsersourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycustodianListUsersourcesParameter, SecurityEDiscoverycustodianListUsersourcesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-usersources?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UserSource> SecurityEDiscoverycustodianListUsersourcesEnumerateAsync(SecurityEDiscoverycustodianListUsersourcesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycustodianListUsersourcesParameter, SecurityEDiscoverycustodianListUsersourcesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UserSource>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

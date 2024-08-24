@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todotask-post-checklistitems?view=graph-rest-1.0
     /// </summary>
-    public partial class TodotaskPostChecklistitemsParameter : IRestApiParameter
+    public partial class TodotaskPostChecklistItemsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsChecked { get; set; }
         public string? Id { get; set; }
     }
-    public partial class TodotaskPostChecklistitemsResponse : RestApiResponse
+    public partial class TodotaskPostChecklistItemsResponse : RestApiResponse
     {
         public DateTimeOffset? CheckedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskPostChecklistitemsResponse> TodotaskPostChecklistitemsAsync()
+        public async ValueTask<TodotaskPostChecklistItemsResponse> TodotaskPostChecklistItemsAsync()
         {
-            var p = new TodotaskPostChecklistitemsParameter();
-            return await this.SendAsync<TodotaskPostChecklistitemsParameter, TodotaskPostChecklistitemsResponse>(p, CancellationToken.None);
+            var p = new TodotaskPostChecklistItemsParameter();
+            return await this.SendAsync<TodotaskPostChecklistItemsParameter, TodotaskPostChecklistItemsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskPostChecklistitemsResponse> TodotaskPostChecklistitemsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TodotaskPostChecklistItemsResponse> TodotaskPostChecklistItemsAsync(CancellationToken cancellationToken)
         {
-            var p = new TodotaskPostChecklistitemsParameter();
-            return await this.SendAsync<TodotaskPostChecklistitemsParameter, TodotaskPostChecklistitemsResponse>(p, cancellationToken);
+            var p = new TodotaskPostChecklistItemsParameter();
+            return await this.SendAsync<TodotaskPostChecklistItemsParameter, TodotaskPostChecklistItemsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskPostChecklistitemsResponse> TodotaskPostChecklistitemsAsync(TodotaskPostChecklistitemsParameter parameter)
+        public async ValueTask<TodotaskPostChecklistItemsResponse> TodotaskPostChecklistItemsAsync(TodotaskPostChecklistItemsParameter parameter)
         {
-            return await this.SendAsync<TodotaskPostChecklistitemsParameter, TodotaskPostChecklistitemsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TodotaskPostChecklistItemsParameter, TodotaskPostChecklistItemsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/todotask-post-checklistitems?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TodotaskPostChecklistitemsResponse> TodotaskPostChecklistitemsAsync(TodotaskPostChecklistitemsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TodotaskPostChecklistItemsResponse> TodotaskPostChecklistItemsAsync(TodotaskPostChecklistItemsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TodotaskPostChecklistitemsParameter, TodotaskPostChecklistitemsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TodotaskPostChecklistItemsParameter, TodotaskPostChecklistItemsResponse>(parameter, cancellationToken);
         }
     }
 }

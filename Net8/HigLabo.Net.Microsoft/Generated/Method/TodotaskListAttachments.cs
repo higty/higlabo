@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -29,12 +30,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContentBytes,
-            ContentType,
-            Id,
-            LastModifiedDateTime,
-            Name,
-            Size,
         }
         public enum ApiPath
         {
@@ -60,9 +55,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TodotaskListAttachmentsResponse : RestApiResponse
+    public partial class TodotaskListAttachmentsResponse : RestApiResponse<TaskFileAttachment>
     {
-        public TaskFileAttachment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todotask-list-attachments?view=graph-rest-1.0
@@ -98,6 +92,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TodotaskListAttachmentsResponse> TodotaskListAttachmentsAsync(TodotaskListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskListAttachmentsParameter, TodotaskListAttachmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-attachments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TaskFileAttachment> TodotaskListAttachmentsEnumerateAsync(TodotaskListAttachmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TodotaskListAttachmentsParameter, TodotaskListAttachmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TaskFileAttachment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

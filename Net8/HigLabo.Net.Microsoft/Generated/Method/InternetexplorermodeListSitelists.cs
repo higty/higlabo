@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            PublishedBy,
-            PublishedDateTime,
-            Revision,
-            Status,
-            SharedCookies,
-            Sites,
         }
         public enum ApiPath
         {
@@ -58,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class InternetexplorermodeListSitelistsResponse : RestApiResponse
+    public partial class InternetexplorermodeListSitelistsResponse : RestApiResponse<BrowserSiteList>
     {
-        public BrowserSiteList[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-list-sitelists?view=graph-rest-1.0
@@ -96,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<InternetexplorermodeListSitelistsResponse> InternetexplorermodeListSitelistsAsync(InternetexplorermodeListSitelistsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<InternetexplorermodeListSitelistsParameter, InternetexplorermodeListSitelistsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/internetexplorermode-list-sitelists?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BrowserSiteList> InternetexplorermodeListSitelistsEnumerateAsync(InternetexplorermodeListSitelistsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<InternetexplorermodeListSitelistsParameter, InternetexplorermodeListSitelistsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BrowserSiteList>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

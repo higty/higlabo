@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-get?view=graph-rest-1.0
     /// </summary>
-    public partial class BrowsersharedcookieGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BrowserSharedcookieGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BrowsersharedcookieGetResponse : RestApiResponse
+    public partial class BrowserSharedcookieGetResponse : RestApiResponse
     {
         public enum BrowserSharedCookieBrowserSharedCookieSourceEnvironment
         {
@@ -89,32 +89,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BrowsersharedcookieGetResponse> BrowsersharedcookieGetAsync()
+        public async ValueTask<BrowserSharedcookieGetResponse> BrowserSharedcookieGetAsync()
         {
-            var p = new BrowsersharedcookieGetParameter();
-            return await this.SendAsync<BrowsersharedcookieGetParameter, BrowsersharedcookieGetResponse>(p, CancellationToken.None);
+            var p = new BrowserSharedcookieGetParameter();
+            return await this.SendAsync<BrowserSharedcookieGetParameter, BrowserSharedcookieGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BrowsersharedcookieGetResponse> BrowsersharedcookieGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BrowserSharedcookieGetResponse> BrowserSharedcookieGetAsync(CancellationToken cancellationToken)
         {
-            var p = new BrowsersharedcookieGetParameter();
-            return await this.SendAsync<BrowsersharedcookieGetParameter, BrowsersharedcookieGetResponse>(p, cancellationToken);
+            var p = new BrowserSharedcookieGetParameter();
+            return await this.SendAsync<BrowserSharedcookieGetParameter, BrowserSharedcookieGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BrowsersharedcookieGetResponse> BrowsersharedcookieGetAsync(BrowsersharedcookieGetParameter parameter)
+        public async ValueTask<BrowserSharedcookieGetResponse> BrowserSharedcookieGetAsync(BrowserSharedcookieGetParameter parameter)
         {
-            return await this.SendAsync<BrowsersharedcookieGetParameter, BrowsersharedcookieGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BrowserSharedcookieGetParameter, BrowserSharedcookieGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/browsersharedcookie-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BrowsersharedcookieGetResponse> BrowsersharedcookieGetAsync(BrowsersharedcookieGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BrowserSharedcookieGetResponse> BrowserSharedcookieGetAsync(BrowserSharedcookieGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BrowsersharedcookieGetParameter, BrowsersharedcookieGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BrowserSharedcookieGetParameter, BrowserSharedcookieGetResponse>(parameter, cancellationToken);
         }
     }
 }

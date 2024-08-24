@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
     /// </summary>
-    public partial class AdministrativeunitDeleteScopedrolemembersParameter : IRestApiParameter
+    public partial class AdministrativeunitDeleteScopedroleMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class AdministrativeunitDeleteScopedrolemembersResponse : RestApiResponse
+    public partial class AdministrativeunitDeleteScopedroleMembersResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync()
+        public async ValueTask<AdministrativeunitDeleteScopedroleMembersResponse> AdministrativeunitDeleteScopedroleMembersAsync()
         {
-            var p = new AdministrativeunitDeleteScopedrolemembersParameter();
-            return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(p, CancellationToken.None);
+            var p = new AdministrativeunitDeleteScopedroleMembersParameter();
+            return await this.SendAsync<AdministrativeunitDeleteScopedroleMembersParameter, AdministrativeunitDeleteScopedroleMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteScopedroleMembersResponse> AdministrativeunitDeleteScopedroleMembersAsync(CancellationToken cancellationToken)
         {
-            var p = new AdministrativeunitDeleteScopedrolemembersParameter();
-            return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(p, cancellationToken);
+            var p = new AdministrativeunitDeleteScopedroleMembersParameter();
+            return await this.SendAsync<AdministrativeunitDeleteScopedroleMembersParameter, AdministrativeunitDeleteScopedroleMembersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(AdministrativeunitDeleteScopedrolemembersParameter parameter)
+        public async ValueTask<AdministrativeunitDeleteScopedroleMembersResponse> AdministrativeunitDeleteScopedroleMembersAsync(AdministrativeunitDeleteScopedroleMembersParameter parameter)
         {
-            return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AdministrativeunitDeleteScopedroleMembersParameter, AdministrativeunitDeleteScopedroleMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AdministrativeunitDeleteScopedrolemembersResponse> AdministrativeunitDeleteScopedrolemembersAsync(AdministrativeunitDeleteScopedrolemembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AdministrativeunitDeleteScopedroleMembersResponse> AdministrativeunitDeleteScopedroleMembersAsync(AdministrativeunitDeleteScopedroleMembersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AdministrativeunitDeleteScopedrolemembersParameter, AdministrativeunitDeleteScopedrolemembersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AdministrativeunitDeleteScopedroleMembersParameter, AdministrativeunitDeleteScopedroleMembersResponse>(parameter, cancellationToken);
         }
     }
 }

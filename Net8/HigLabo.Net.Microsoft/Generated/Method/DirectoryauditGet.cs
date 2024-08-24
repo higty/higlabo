@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryauditGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DirectoryAuditGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DirectoryauditGetResponse : RestApiResponse
+    public partial class DirectoryAuditGetResponse : RestApiResponse
     {
         public enum DirectoryAuditOperationResult
         {
@@ -79,32 +79,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryauditGetResponse> DirectoryauditGetAsync()
+        public async ValueTask<DirectoryAuditGetResponse> DirectoryAuditGetAsync()
         {
-            var p = new DirectoryauditGetParameter();
-            return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(p, CancellationToken.None);
+            var p = new DirectoryAuditGetParameter();
+            return await this.SendAsync<DirectoryAuditGetParameter, DirectoryAuditGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryauditGetResponse> DirectoryauditGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryAuditGetResponse> DirectoryAuditGetAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryauditGetParameter();
-            return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(p, cancellationToken);
+            var p = new DirectoryAuditGetParameter();
+            return await this.SendAsync<DirectoryAuditGetParameter, DirectoryAuditGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryauditGetResponse> DirectoryauditGetAsync(DirectoryauditGetParameter parameter)
+        public async ValueTask<DirectoryAuditGetResponse> DirectoryAuditGetAsync(DirectoryAuditGetParameter parameter)
         {
-            return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryAuditGetParameter, DirectoryAuditGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryauditGetResponse> DirectoryauditGetAsync(DirectoryauditGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryAuditGetResponse> DirectoryAuditGetAsync(DirectoryAuditGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryAuditGetParameter, DirectoryAuditGetResponse>(parameter, cancellationToken);
         }
     }
 }

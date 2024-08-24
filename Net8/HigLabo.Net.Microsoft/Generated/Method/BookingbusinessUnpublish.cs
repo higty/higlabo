@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessUnpublishParameter : IRestApiParameter
+    public partial class BookingBusinessUnpublishParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class BookingbusinessUnpublishResponse : RestApiResponse
+    public partial class BookingBusinessUnpublishResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessUnpublishResponse> BookingbusinessUnpublishAsync()
+        public async ValueTask<BookingBusinessUnpublishResponse> BookingBusinessUnpublishAsync()
         {
-            var p = new BookingbusinessUnpublishParameter();
-            return await this.SendAsync<BookingbusinessUnpublishParameter, BookingbusinessUnpublishResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessUnpublishParameter();
+            return await this.SendAsync<BookingBusinessUnpublishParameter, BookingBusinessUnpublishResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessUnpublishResponse> BookingbusinessUnpublishAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessUnpublishResponse> BookingBusinessUnpublishAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessUnpublishParameter();
-            return await this.SendAsync<BookingbusinessUnpublishParameter, BookingbusinessUnpublishResponse>(p, cancellationToken);
+            var p = new BookingBusinessUnpublishParameter();
+            return await this.SendAsync<BookingBusinessUnpublishParameter, BookingBusinessUnpublishResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessUnpublishResponse> BookingbusinessUnpublishAsync(BookingbusinessUnpublishParameter parameter)
+        public async ValueTask<BookingBusinessUnpublishResponse> BookingBusinessUnpublishAsync(BookingBusinessUnpublishParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessUnpublishParameter, BookingbusinessUnpublishResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessUnpublishParameter, BookingBusinessUnpublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessUnpublishResponse> BookingbusinessUnpublishAsync(BookingbusinessUnpublishParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessUnpublishResponse> BookingBusinessUnpublishAsync(BookingBusinessUnpublishParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessUnpublishParameter, BookingbusinessUnpublishResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessUnpublishParameter, BookingBusinessUnpublishResponse>(parameter, cancellationToken);
         }
     }
 }

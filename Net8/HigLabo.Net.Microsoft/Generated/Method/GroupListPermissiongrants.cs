@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
     /// </summary>
-    public partial class GroupListPermissiongrantsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class GroupListPermissionGrantsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupListPermissiongrantsResponse : RestApiResponse
+    public partial class GroupListPermissionGrantsResponse : RestApiResponse
     {
         public enum ResourceSpecificPermissionGrantstring
         {
@@ -72,32 +72,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync()
+        public async ValueTask<GroupListPermissionGrantsResponse> GroupListPermissionGrantsAsync()
         {
-            var p = new GroupListPermissiongrantsParameter();
-            return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(p, CancellationToken.None);
+            var p = new GroupListPermissionGrantsParameter();
+            return await this.SendAsync<GroupListPermissionGrantsParameter, GroupListPermissionGrantsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupListPermissionGrantsResponse> GroupListPermissionGrantsAsync(CancellationToken cancellationToken)
         {
-            var p = new GroupListPermissiongrantsParameter();
-            return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(p, cancellationToken);
+            var p = new GroupListPermissionGrantsParameter();
+            return await this.SendAsync<GroupListPermissionGrantsParameter, GroupListPermissionGrantsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter)
+        public async ValueTask<GroupListPermissionGrantsResponse> GroupListPermissionGrantsAsync(GroupListPermissionGrantsParameter parameter)
         {
-            return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GroupListPermissionGrantsParameter, GroupListPermissionGrantsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupListPermissionGrantsResponse> GroupListPermissionGrantsAsync(GroupListPermissionGrantsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GroupListPermissionGrantsParameter, GroupListPermissionGrantsResponse>(parameter, cancellationToken);
         }
     }
 }

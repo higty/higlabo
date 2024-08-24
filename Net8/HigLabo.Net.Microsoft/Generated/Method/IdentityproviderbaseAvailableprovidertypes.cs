@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityproviderbaseAvailableproviderTypesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityProviderbaseAvailableProviderTypesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityproviderbaseAvailableproviderTypesResponse : RestApiResponse
+    public partial class IdentityProviderbaseAvailableProviderTypesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync()
+        public async ValueTask<IdentityProviderbaseAvailableProviderTypesResponse> IdentityProviderbaseAvailableProviderTypesAsync()
         {
-            var p = new IdentityproviderbaseAvailableproviderTypesParameter();
-            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(p, CancellationToken.None);
+            var p = new IdentityProviderbaseAvailableProviderTypesParameter();
+            return await this.SendAsync<IdentityProviderbaseAvailableProviderTypesParameter, IdentityProviderbaseAvailableProviderTypesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderbaseAvailableProviderTypesResponse> IdentityProviderbaseAvailableProviderTypesAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityproviderbaseAvailableproviderTypesParameter();
-            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(p, cancellationToken);
+            var p = new IdentityProviderbaseAvailableProviderTypesParameter();
+            return await this.SendAsync<IdentityProviderbaseAvailableProviderTypesParameter, IdentityProviderbaseAvailableProviderTypesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync(IdentityproviderbaseAvailableproviderTypesParameter parameter)
+        public async ValueTask<IdentityProviderbaseAvailableProviderTypesResponse> IdentityProviderbaseAvailableProviderTypesAsync(IdentityProviderbaseAvailableProviderTypesParameter parameter)
         {
-            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityProviderbaseAvailableProviderTypesParameter, IdentityProviderbaseAvailableProviderTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync(IdentityproviderbaseAvailableproviderTypesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderbaseAvailableProviderTypesResponse> IdentityProviderbaseAvailableProviderTypesAsync(IdentityProviderbaseAvailableProviderTypesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityProviderbaseAvailableProviderTypesParameter, IdentityProviderbaseAvailableProviderTypesResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0
     /// </summary>
-    public partial class ContactfolderPostChildfoldersParameter : IRestApiParameter
+    public partial class ContactFolderPostChildFoldersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class ContactfolderPostChildfoldersResponse : RestApiResponse
+    public partial class ContactFolderPostChildFoldersResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -65,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostChildfoldersResponse> ContactfolderPostChildfoldersAsync()
+        public async ValueTask<ContactFolderPostChildFoldersResponse> ContactFolderPostChildFoldersAsync()
         {
-            var p = new ContactfolderPostChildfoldersParameter();
-            return await this.SendAsync<ContactfolderPostChildfoldersParameter, ContactfolderPostChildfoldersResponse>(p, CancellationToken.None);
+            var p = new ContactFolderPostChildFoldersParameter();
+            return await this.SendAsync<ContactFolderPostChildFoldersParameter, ContactFolderPostChildFoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostChildfoldersResponse> ContactfolderPostChildfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderPostChildFoldersResponse> ContactFolderPostChildFoldersAsync(CancellationToken cancellationToken)
         {
-            var p = new ContactfolderPostChildfoldersParameter();
-            return await this.SendAsync<ContactfolderPostChildfoldersParameter, ContactfolderPostChildfoldersResponse>(p, cancellationToken);
+            var p = new ContactFolderPostChildFoldersParameter();
+            return await this.SendAsync<ContactFolderPostChildFoldersParameter, ContactFolderPostChildFoldersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostChildfoldersResponse> ContactfolderPostChildfoldersAsync(ContactfolderPostChildfoldersParameter parameter)
+        public async ValueTask<ContactFolderPostChildFoldersResponse> ContactFolderPostChildFoldersAsync(ContactFolderPostChildFoldersParameter parameter)
         {
-            return await this.SendAsync<ContactfolderPostChildfoldersParameter, ContactfolderPostChildfoldersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContactFolderPostChildFoldersParameter, ContactFolderPostChildFoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostChildfoldersResponse> ContactfolderPostChildfoldersAsync(ContactfolderPostChildfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderPostChildFoldersResponse> ContactFolderPostChildFoldersAsync(ContactFolderPostChildFoldersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContactfolderPostChildfoldersParameter, ContactfolderPostChildfoldersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContactFolderPostChildFoldersParameter, ContactFolderPostChildFoldersResponse>(parameter, cancellationToken);
         }
     }
 }

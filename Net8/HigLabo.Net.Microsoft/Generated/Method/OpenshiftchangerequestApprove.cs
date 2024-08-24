@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenshiftchangerequestApproveParameter : IRestApiParameter
+    public partial class OpenShiftChangeRequestApproveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
     }
-    public partial class OpenshiftchangerequestApproveResponse : RestApiResponse
+    public partial class OpenShiftChangeRequestApproveResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync()
+        public async ValueTask<OpenShiftChangeRequestApproveResponse> OpenShiftChangeRequestApproveAsync()
         {
-            var p = new OpenshiftchangerequestApproveParameter();
-            return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(p, CancellationToken.None);
+            var p = new OpenShiftChangeRequestApproveParameter();
+            return await this.SendAsync<OpenShiftChangeRequestApproveParameter, OpenShiftChangeRequestApproveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftChangeRequestApproveResponse> OpenShiftChangeRequestApproveAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenshiftchangerequestApproveParameter();
-            return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(p, cancellationToken);
+            var p = new OpenShiftChangeRequestApproveParameter();
+            return await this.SendAsync<OpenShiftChangeRequestApproveParameter, OpenShiftChangeRequestApproveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(OpenshiftchangerequestApproveParameter parameter)
+        public async ValueTask<OpenShiftChangeRequestApproveResponse> OpenShiftChangeRequestApproveAsync(OpenShiftChangeRequestApproveParameter parameter)
         {
-            return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenShiftChangeRequestApproveParameter, OpenShiftChangeRequestApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestApproveResponse> OpenshiftchangerequestApproveAsync(OpenshiftchangerequestApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftChangeRequestApproveResponse> OpenShiftChangeRequestApproveAsync(OpenShiftChangeRequestApproveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenshiftchangerequestApproveParameter, OpenshiftchangerequestApproveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenShiftChangeRequestApproveParameter, OpenShiftChangeRequestApproveResponse>(parameter, cancellationToken);
         }
     }
 }

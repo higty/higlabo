@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/resources/accessreviewnotificationrecipientscope?view=graph-rest-1.0
     /// </summary>
-    public partial class Accessreviewnotificationrecipientscope
+    public partial class AccessReviewnotificationrecipientscope
     {
     }
 }

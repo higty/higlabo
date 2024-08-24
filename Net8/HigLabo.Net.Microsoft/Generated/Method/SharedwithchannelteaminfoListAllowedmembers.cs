@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
     /// </summary>
-    public partial class SharedwithchannelteaminfoListAllowedmembersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SharedwithchannelteaminfoListAllowedMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -50,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SharedwithchannelteaminfoListAllowedmembersResponse : RestApiResponse
+    public partial class SharedwithchannelteaminfoListAllowedMembersResponse : RestApiResponse<ConversationMember>
     {
-        public ConversationMember[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
@@ -62,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync()
+        public async ValueTask<SharedwithchannelteaminfoListAllowedMembersResponse> SharedwithchannelteaminfoListAllowedMembersAsync()
         {
-            var p = new SharedwithchannelteaminfoListAllowedmembersParameter();
-            return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(p, CancellationToken.None);
+            var p = new SharedwithchannelteaminfoListAllowedMembersParameter();
+            return await this.SendAsync<SharedwithchannelteaminfoListAllowedMembersParameter, SharedwithchannelteaminfoListAllowedMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoListAllowedMembersResponse> SharedwithchannelteaminfoListAllowedMembersAsync(CancellationToken cancellationToken)
         {
-            var p = new SharedwithchannelteaminfoListAllowedmembersParameter();
-            return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(p, cancellationToken);
+            var p = new SharedwithchannelteaminfoListAllowedMembersParameter();
+            return await this.SendAsync<SharedwithchannelteaminfoListAllowedMembersParameter, SharedwithchannelteaminfoListAllowedMembersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(SharedwithchannelteaminfoListAllowedmembersParameter parameter)
+        public async ValueTask<SharedwithchannelteaminfoListAllowedMembersResponse> SharedwithchannelteaminfoListAllowedMembersAsync(SharedwithchannelteaminfoListAllowedMembersParameter parameter)
         {
-            return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SharedwithchannelteaminfoListAllowedMembersParameter, SharedwithchannelteaminfoListAllowedMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SharedwithchannelteaminfoListAllowedmembersResponse> SharedwithchannelteaminfoListAllowedmembersAsync(SharedwithchannelteaminfoListAllowedmembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SharedwithchannelteaminfoListAllowedMembersResponse> SharedwithchannelteaminfoListAllowedMembersAsync(SharedwithchannelteaminfoListAllowedMembersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SharedwithchannelteaminfoListAllowedmembersParameter, SharedwithchannelteaminfoListAllowedmembersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SharedwithchannelteaminfoListAllowedMembersParameter, SharedwithchannelteaminfoListAllowedMembersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ConversationMember> SharedwithchannelteaminfoListAllowedMembersEnumerateAsync(SharedwithchannelteaminfoListAllowedMembersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SharedwithchannelteaminfoListAllowedMembersParameter, SharedwithchannelteaminfoListAllowedMembersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ConversationMember>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

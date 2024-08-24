@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityfilecounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetsharepointactivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetSharepointActivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetsharepointactivityfilecountsResponse : RestApiResponse
+    public partial class ReportRootGetSharepointActivityfilecountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivityfilecountsResponse> ReportRootGetsharepointactivityfilecountsAsync()
+        public async ValueTask<ReportRootGetSharepointActivityfilecountsResponse> ReportRootGetSharepointActivityfilecountsAsync()
         {
-            var p = new ReportRootGetsharepointactivityfilecountsParameter();
-            return await this.SendAsync<ReportRootGetsharepointactivityfilecountsParameter, ReportRootGetsharepointactivityfilecountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetSharepointActivityfilecountsParameter();
+            return await this.SendAsync<ReportRootGetSharepointActivityfilecountsParameter, ReportRootGetSharepointActivityfilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivityfilecountsResponse> ReportRootGetsharepointactivityfilecountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSharepointActivityfilecountsResponse> ReportRootGetSharepointActivityfilecountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetsharepointactivityfilecountsParameter();
-            return await this.SendAsync<ReportRootGetsharepointactivityfilecountsParameter, ReportRootGetsharepointactivityfilecountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetSharepointActivityfilecountsParameter();
+            return await this.SendAsync<ReportRootGetSharepointActivityfilecountsParameter, ReportRootGetSharepointActivityfilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivityfilecountsResponse> ReportRootGetsharepointactivityfilecountsAsync(ReportRootGetsharepointactivityfilecountsParameter parameter)
+        public async ValueTask<ReportRootGetSharepointActivityfilecountsResponse> ReportRootGetSharepointActivityfilecountsAsync(ReportRootGetSharepointActivityfilecountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetsharepointactivityfilecountsParameter, ReportRootGetsharepointactivityfilecountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetSharepointActivityfilecountsParameter, ReportRootGetSharepointActivityfilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetsharepointactivityfilecountsResponse> ReportRootGetsharepointactivityfilecountsAsync(ReportRootGetsharepointactivityfilecountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSharepointActivityfilecountsResponse> ReportRootGetSharepointActivityfilecountsAsync(ReportRootGetSharepointActivityfilecountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetsharepointactivityfilecountsParameter, ReportRootGetsharepointactivityfilecountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetSharepointActivityfilecountsParameter, ReportRootGetSharepointActivityfilecountsResponse>(parameter, cancellationToken);
         }
     }
 }

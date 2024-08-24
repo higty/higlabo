@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
     /// </summary>
-    public partial class OutlookcategoryGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OutlookCategoryGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OutlookcategoryGetResponse : RestApiResponse
+    public partial class OutlookCategoryGetResponse : RestApiResponse
     {
         public string? Color { get; set; }
         public string? DisplayName { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync()
+        public async ValueTask<OutlookCategoryGetResponse> OutlookCategoryGetAsync()
         {
-            var p = new OutlookcategoryGetParameter();
-            return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(p, CancellationToken.None);
+            var p = new OutlookCategoryGetParameter();
+            return await this.SendAsync<OutlookCategoryGetParameter, OutlookCategoryGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookCategoryGetResponse> OutlookCategoryGetAsync(CancellationToken cancellationToken)
         {
-            var p = new OutlookcategoryGetParameter();
-            return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(p, cancellationToken);
+            var p = new OutlookCategoryGetParameter();
+            return await this.SendAsync<OutlookCategoryGetParameter, OutlookCategoryGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter)
+        public async ValueTask<OutlookCategoryGetResponse> OutlookCategoryGetAsync(OutlookCategoryGetParameter parameter)
         {
-            return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OutlookCategoryGetParameter, OutlookCategoryGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookCategoryGetResponse> OutlookCategoryGetAsync(OutlookCategoryGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OutlookCategoryGetParameter, OutlookCategoryGetResponse>(parameter, cancellationToken);
         }
     }
 }

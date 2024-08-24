@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemListPermissionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemListPermissionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -34,16 +35,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ExpirationDateTime,
-            Id,
-            HasPassword,
-            GrantedToIdentitiesV2,
-            GrantedToV2,
-            InheritedFrom,
-            Invitation,
-            Link,
-            Roles,
-            ShareId,
         }
         public enum ApiPath
         {
@@ -73,9 +64,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemListPermissionsResponse : RestApiResponse
+    public partial class DriveItemListPermissionsResponse : RestApiResponse<Permission>
     {
-        public Permission[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
@@ -85,32 +75,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync()
+        public async ValueTask<DriveItemListPermissionsResponse> DriveItemListPermissionsAsync()
         {
-            var p = new DriveitemListPermissionsParameter();
-            return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(p, CancellationToken.None);
+            var p = new DriveItemListPermissionsParameter();
+            return await this.SendAsync<DriveItemListPermissionsParameter, DriveItemListPermissionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListPermissionsResponse> DriveItemListPermissionsAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemListPermissionsParameter();
-            return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(p, cancellationToken);
+            var p = new DriveItemListPermissionsParameter();
+            return await this.SendAsync<DriveItemListPermissionsParameter, DriveItemListPermissionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync(DriveitemListPermissionsParameter parameter)
+        public async ValueTask<DriveItemListPermissionsResponse> DriveItemListPermissionsAsync(DriveItemListPermissionsParameter parameter)
         {
-            return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemListPermissionsParameter, DriveItemListPermissionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync(DriveitemListPermissionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListPermissionsResponse> DriveItemListPermissionsAsync(DriveItemListPermissionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemListPermissionsParameter, DriveItemListPermissionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Permission> DriveItemListPermissionsEnumerateAsync(DriveItemListPermissionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveItemListPermissionsParameter, DriveItemListPermissionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Permission>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -47,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootListDailyprintusagebyprinterResponse : RestApiResponse
+    public partial class ReportRootListDailyprintusagebyprinterResponse : RestApiResponse<PrintUsageByPrinter>
     {
-        public PrintUsageByPrinter[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
@@ -85,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PrintUsageByPrinter> ReportRootListDailyprintusagebyprinterEnumerateAsync(ReportRootListDailyprintusagebyprinterParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PrintUsageByPrinter>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

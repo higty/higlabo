@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
     /// </summary>
-    public partial class RbacapplicationListRoledefinitionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RbacApplicationListRoleDefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            IsBuiltIn,
-            IsEnabled,
-            ResourceScopes,
-            RolePermissions,
-            TemplateId,
-            Version,
-            InheritsPermissionsFrom,
         }
         public enum ApiPath
         {
@@ -59,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RbacapplicationListRoledefinitionsResponse : RestApiResponse
+    public partial class RbacApplicationListRoleDefinitionsResponse : RestApiResponse<UnifiedRoleDefinition>
     {
-        public UnifiedRoleDefinition[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
@@ -71,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync()
+        public async ValueTask<RbacApplicationListRoleDefinitionsResponse> RbacApplicationListRoleDefinitionsAsync()
         {
-            var p = new RbacapplicationListRoledefinitionsParameter();
-            return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(p, CancellationToken.None);
+            var p = new RbacApplicationListRoleDefinitionsParameter();
+            return await this.SendAsync<RbacApplicationListRoleDefinitionsParameter, RbacApplicationListRoleDefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<RbacApplicationListRoleDefinitionsResponse> RbacApplicationListRoleDefinitionsAsync(CancellationToken cancellationToken)
         {
-            var p = new RbacapplicationListRoledefinitionsParameter();
-            return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(p, cancellationToken);
+            var p = new RbacApplicationListRoleDefinitionsParameter();
+            return await this.SendAsync<RbacApplicationListRoleDefinitionsParameter, RbacApplicationListRoleDefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync(RbacapplicationListRoledefinitionsParameter parameter)
+        public async ValueTask<RbacApplicationListRoleDefinitionsResponse> RbacApplicationListRoleDefinitionsAsync(RbacApplicationListRoleDefinitionsParameter parameter)
         {
-            return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RbacApplicationListRoleDefinitionsParameter, RbacApplicationListRoleDefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync(RbacapplicationListRoledefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RbacApplicationListRoleDefinitionsResponse> RbacApplicationListRoleDefinitionsAsync(RbacApplicationListRoleDefinitionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RbacApplicationListRoleDefinitionsParameter, RbacApplicationListRoleDefinitionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UnifiedRoleDefinition> RbacApplicationListRoleDefinitionsEnumerateAsync(RbacApplicationListRoleDefinitionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<RbacApplicationListRoleDefinitionsParameter, RbacApplicationListRoleDefinitionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UnifiedRoleDefinition>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemListVersionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemListVersionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -60,9 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemListVersionsResponse : RestApiResponse
+    public partial class DriveItemListVersionsResponse : RestApiResponse<DriveItemVersion>
     {
-        public DriveItemVersion[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
@@ -72,32 +72,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync()
+        public async ValueTask<DriveItemListVersionsResponse> DriveItemListVersionsAsync()
         {
-            var p = new DriveitemListVersionsParameter();
-            return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(p, CancellationToken.None);
+            var p = new DriveItemListVersionsParameter();
+            return await this.SendAsync<DriveItemListVersionsParameter, DriveItemListVersionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListVersionsResponse> DriveItemListVersionsAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemListVersionsParameter();
-            return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(p, cancellationToken);
+            var p = new DriveItemListVersionsParameter();
+            return await this.SendAsync<DriveItemListVersionsParameter, DriveItemListVersionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync(DriveitemListVersionsParameter parameter)
+        public async ValueTask<DriveItemListVersionsResponse> DriveItemListVersionsAsync(DriveItemListVersionsParameter parameter)
         {
-            return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemListVersionsParameter, DriveItemListVersionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListVersionsResponse> DriveitemListVersionsAsync(DriveitemListVersionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListVersionsResponse> DriveItemListVersionsAsync(DriveItemListVersionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemListVersionsParameter, DriveitemListVersionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemListVersionsParameter, DriveItemListVersionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-versions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DriveItemVersion> DriveItemListVersionsEnumerateAsync(DriveItemListVersionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveItemListVersionsParameter, DriveItemListVersionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DriveItemVersion>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

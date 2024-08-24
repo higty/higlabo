@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class B2xidentityUserflowPostIdentityprovidersParameter : IRestApiParameter
+    public partial class B2xidentityUserflowPostIdentityProvidersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class B2xidentityUserflowPostIdentityprovidersResponse : RestApiResponse
+    public partial class B2xidentityUserflowPostIdentityProvidersResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync()
+        public async ValueTask<B2xidentityUserflowPostIdentityProvidersResponse> B2xidentityUserflowPostIdentityProvidersAsync()
         {
-            var p = new B2xidentityUserflowPostIdentityprovidersParameter();
-            return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(p, CancellationToken.None);
+            var p = new B2xidentityUserflowPostIdentityProvidersParameter();
+            return await this.SendAsync<B2xidentityUserflowPostIdentityProvidersParameter, B2xidentityUserflowPostIdentityProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowPostIdentityProvidersResponse> B2xidentityUserflowPostIdentityProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new B2xidentityUserflowPostIdentityprovidersParameter();
-            return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(p, cancellationToken);
+            var p = new B2xidentityUserflowPostIdentityProvidersParameter();
+            return await this.SendAsync<B2xidentityUserflowPostIdentityProvidersParameter, B2xidentityUserflowPostIdentityProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync(B2xidentityUserflowPostIdentityprovidersParameter parameter)
+        public async ValueTask<B2xidentityUserflowPostIdentityProvidersResponse> B2xidentityUserflowPostIdentityProvidersAsync(B2xidentityUserflowPostIdentityProvidersParameter parameter)
         {
-            return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<B2xidentityUserflowPostIdentityProvidersParameter, B2xidentityUserflowPostIdentityProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync(B2xidentityUserflowPostIdentityprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowPostIdentityProvidersResponse> B2xidentityUserflowPostIdentityProvidersAsync(B2xidentityUserflowPostIdentityProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<B2xidentityUserflowPostIdentityProvidersParameter, B2xidentityUserflowPostIdentityProvidersResponse>(parameter, cancellationToken);
         }
     }
 }

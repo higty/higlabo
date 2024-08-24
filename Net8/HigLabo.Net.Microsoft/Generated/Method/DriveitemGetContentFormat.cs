@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content-format?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemGetContentFormatParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemGetContentFormatParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemGetContentFormatResponse : RestApiResponse
+    public partial class DriveItemGetContentFormatResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content-format?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentFormatResponse> DriveitemGetContentFormatAsync()
+        public async ValueTask<DriveItemGetContentFormatResponse> DriveItemGetContentFormatAsync()
         {
-            var p = new DriveitemGetContentFormatParameter();
-            return await this.SendAsync<DriveitemGetContentFormatParameter, DriveitemGetContentFormatResponse>(p, CancellationToken.None);
+            var p = new DriveItemGetContentFormatParameter();
+            return await this.SendAsync<DriveItemGetContentFormatParameter, DriveItemGetContentFormatResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content-format?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentFormatResponse> DriveitemGetContentFormatAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemGetContentFormatResponse> DriveItemGetContentFormatAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemGetContentFormatParameter();
-            return await this.SendAsync<DriveitemGetContentFormatParameter, DriveitemGetContentFormatResponse>(p, cancellationToken);
+            var p = new DriveItemGetContentFormatParameter();
+            return await this.SendAsync<DriveItemGetContentFormatParameter, DriveItemGetContentFormatResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content-format?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentFormatResponse> DriveitemGetContentFormatAsync(DriveitemGetContentFormatParameter parameter)
+        public async ValueTask<DriveItemGetContentFormatResponse> DriveItemGetContentFormatAsync(DriveItemGetContentFormatParameter parameter)
         {
-            return await this.SendAsync<DriveitemGetContentFormatParameter, DriveitemGetContentFormatResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemGetContentFormatParameter, DriveItemGetContentFormatResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content-format?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentFormatResponse> DriveitemGetContentFormatAsync(DriveitemGetContentFormatParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemGetContentFormatResponse> DriveItemGetContentFormatAsync(DriveItemGetContentFormatParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemGetContentFormatParameter, DriveitemGetContentFormatResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemGetContentFormatParameter, DriveItemGetContentFormatResponse>(parameter, cancellationToken);
         }
     }
 }

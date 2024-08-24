@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewinstanceFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            EndDateTime,
-            FallbackReviewers,
-            Id,
-            Reviewers,
-            Scope,
-            StartDateTime,
-            Status,
-            ContactedReviewers,
-            Decisions,
-            Stages,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewinstanceFilterbycurrentUserResponse : RestApiResponse
+    public partial class AccessReviewinstanceFilterbycurrentUserResponse : RestApiResponse<AccessReviewInstance>
     {
-        public AccessReviewInstance[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
@@ -70,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync()
+        public async ValueTask<AccessReviewinstanceFilterbycurrentUserResponse> AccessReviewinstanceFilterbycurrentUserAsync()
         {
-            var p = new AccessreviewinstanceFilterbycurrentUserParameter();
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessReviewinstanceFilterbycurrentUserParameter, AccessReviewinstanceFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceFilterbycurrentUserResponse> AccessReviewinstanceFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceFilterbycurrentUserParameter();
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessReviewinstanceFilterbycurrentUserParameter, AccessReviewinstanceFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(AccessreviewinstanceFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccessReviewinstanceFilterbycurrentUserResponse> AccessReviewinstanceFilterbycurrentUserAsync(AccessReviewinstanceFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceFilterbycurrentUserParameter, AccessReviewinstanceFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(AccessreviewinstanceFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceFilterbycurrentUserResponse> AccessReviewinstanceFilterbycurrentUserAsync(AccessReviewinstanceFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceFilterbycurrentUserParameter, AccessReviewinstanceFilterbycurrentUserResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewInstance> AccessReviewinstanceFilterbycurrentUserEnumerateAsync(AccessReviewinstanceFilterbycurrentUserParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewinstanceFilterbycurrentUserParameter, AccessReviewinstanceFilterbycurrentUserResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewInstance>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

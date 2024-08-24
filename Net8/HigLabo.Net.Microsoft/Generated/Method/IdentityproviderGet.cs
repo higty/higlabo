@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityproviderGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityProviderGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityproviderGetResponse : RestApiResponse
+    public partial class IdentityProviderGetResponse : RestApiResponse
     {
         public string? ClientId { get; set; }
         public string? ClientSecret { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync()
+        public async ValueTask<IdentityProviderGetResponse> IdentityProviderGetAsync()
         {
-            var p = new IdentityproviderGetParameter();
-            return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(p, CancellationToken.None);
+            var p = new IdentityProviderGetParameter();
+            return await this.SendAsync<IdentityProviderGetParameter, IdentityProviderGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderGetResponse> IdentityProviderGetAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityproviderGetParameter();
-            return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(p, cancellationToken);
+            var p = new IdentityProviderGetParameter();
+            return await this.SendAsync<IdentityProviderGetParameter, IdentityProviderGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter)
+        public async ValueTask<IdentityProviderGetResponse> IdentityProviderGetAsync(IdentityProviderGetParameter parameter)
         {
-            return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityProviderGetParameter, IdentityProviderGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderGetResponse> IdentityProviderGetAsync(IdentityProviderGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityProviderGetParameter, IdentityProviderGetResponse>(parameter, cancellationToken);
         }
     }
 }

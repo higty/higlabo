@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -48,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DomainListServiceConfigurationrecordsResponse : RestApiResponse
+    public partial class DomainListServiceConfigurationrecordsResponse : RestApiResponse<DomainDnsRecord>
     {
-        public DomainDnsRecord[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
@@ -86,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DomainDnsRecord> DomainListServiceConfigurationrecordsEnumerateAsync(DomainListServiceConfigurationrecordsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DomainDnsRecord>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

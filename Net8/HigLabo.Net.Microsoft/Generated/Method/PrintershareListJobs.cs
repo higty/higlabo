@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintershareListJobsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrinterShareListJobsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Configuration,
-            CreatedBy,
-            CreatedDateTime,
-            Id,
-            IsFetchable,
-            RedirectedFrom,
-            RedirectedTo,
-            Status,
-            Documents,
-            Tasks,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrintershareListJobsResponse : RestApiResponse
+    public partial class PrinterShareListJobsResponse : RestApiResponse<PrintJob>
     {
-        public PrintJob[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
@@ -70,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListJobsResponse> PrintershareListJobsAsync()
+        public async ValueTask<PrinterShareListJobsResponse> PrinterShareListJobsAsync()
         {
-            var p = new PrintershareListJobsParameter();
-            return await this.SendAsync<PrintershareListJobsParameter, PrintershareListJobsResponse>(p, CancellationToken.None);
+            var p = new PrinterShareListJobsParameter();
+            return await this.SendAsync<PrinterShareListJobsParameter, PrinterShareListJobsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListJobsResponse> PrintershareListJobsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareListJobsResponse> PrinterShareListJobsAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareListJobsParameter();
-            return await this.SendAsync<PrintershareListJobsParameter, PrintershareListJobsResponse>(p, cancellationToken);
+            var p = new PrinterShareListJobsParameter();
+            return await this.SendAsync<PrinterShareListJobsParameter, PrinterShareListJobsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListJobsResponse> PrintershareListJobsAsync(PrintershareListJobsParameter parameter)
+        public async ValueTask<PrinterShareListJobsResponse> PrinterShareListJobsAsync(PrinterShareListJobsParameter parameter)
         {
-            return await this.SendAsync<PrintershareListJobsParameter, PrintershareListJobsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterShareListJobsParameter, PrinterShareListJobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListJobsResponse> PrintershareListJobsAsync(PrintershareListJobsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareListJobsResponse> PrinterShareListJobsAsync(PrinterShareListJobsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareListJobsParameter, PrintershareListJobsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterShareListJobsParameter, PrinterShareListJobsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-list-jobs?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PrintJob> PrinterShareListJobsEnumerateAsync(PrinterShareListJobsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PrinterShareListJobsParameter, PrinterShareListJobsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PrintJob>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

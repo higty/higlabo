@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstancedecisionitemGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewinstancedecisionItemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewinstancedecisionitemGetResponse : RestApiResponse
+    public partial class AccessReviewinstancedecisionItemGetResponse : RestApiResponse
     {
         public string? AccessReviewId { get; set; }
         public UserIdentity? AppliedBy { get; set; }
@@ -78,32 +78,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync()
+        public async ValueTask<AccessReviewinstancedecisionItemGetResponse> AccessReviewinstancedecisionItemGetAsync()
         {
-            var p = new AccessreviewinstancedecisionitemGetParameter();
-            return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstancedecisionItemGetParameter();
+            return await this.SendAsync<AccessReviewinstancedecisionItemGetParameter, AccessReviewinstancedecisionItemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstancedecisionItemGetResponse> AccessReviewinstancedecisionItemGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstancedecisionitemGetParameter();
-            return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(p, cancellationToken);
+            var p = new AccessReviewinstancedecisionItemGetParameter();
+            return await this.SendAsync<AccessReviewinstancedecisionItemGetParameter, AccessReviewinstancedecisionItemGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync(AccessreviewinstancedecisionitemGetParameter parameter)
+        public async ValueTask<AccessReviewinstancedecisionItemGetResponse> AccessReviewinstancedecisionItemGetAsync(AccessReviewinstancedecisionItemGetParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstancedecisionItemGetParameter, AccessReviewinstancedecisionItemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync(AccessreviewinstancedecisionitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstancedecisionItemGetResponse> AccessReviewinstancedecisionItemGetAsync(AccessReviewinstancedecisionItemGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstancedecisionItemGetParameter, AccessReviewinstancedecisionItemGetResponse>(parameter, cancellationToken);
         }
     }
 }

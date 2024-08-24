@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ColumndefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ColumnDefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ColumndefinitionGetResponse : RestApiResponse
+    public partial class ColumnDefinitionGetResponse : RestApiResponse
     {
         public BooleanColumn? Boolean { get; set; }
         public CalculatedColumn? Calculated { get; set; }
@@ -101,32 +101,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync()
+        public async ValueTask<ColumnDefinitionGetResponse> ColumnDefinitionGetAsync()
         {
-            var p = new ColumndefinitionGetParameter();
-            return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(p, CancellationToken.None);
+            var p = new ColumnDefinitionGetParameter();
+            return await this.SendAsync<ColumnDefinitionGetParameter, ColumnDefinitionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ColumnDefinitionGetResponse> ColumnDefinitionGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ColumndefinitionGetParameter();
-            return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(p, cancellationToken);
+            var p = new ColumnDefinitionGetParameter();
+            return await this.SendAsync<ColumnDefinitionGetParameter, ColumnDefinitionGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync(ColumndefinitionGetParameter parameter)
+        public async ValueTask<ColumnDefinitionGetResponse> ColumnDefinitionGetAsync(ColumnDefinitionGetParameter parameter)
         {
-            return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ColumnDefinitionGetParameter, ColumnDefinitionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionGetResponse> ColumndefinitionGetAsync(ColumndefinitionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ColumnDefinitionGetResponse> ColumnDefinitionGetAsync(ColumnDefinitionGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ColumndefinitionGetParameter, ColumndefinitionGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ColumnDefinitionGetParameter, ColumnDefinitionGetResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationclassGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationClassGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationclassGetResponse : RestApiResponse
+    public partial class EducationClassGetResponse : RestApiResponse
     {
         public enum EducationClassEducationExternalSource
         {
@@ -85,32 +85,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync()
+        public async ValueTask<EducationClassGetResponse> EducationClassGetAsync()
         {
-            var p = new EducationclassGetParameter();
-            return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(p, CancellationToken.None);
+            var p = new EducationClassGetParameter();
+            return await this.SendAsync<EducationClassGetParameter, EducationClassGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationClassGetResponse> EducationClassGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationclassGetParameter();
-            return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(p, cancellationToken);
+            var p = new EducationClassGetParameter();
+            return await this.SendAsync<EducationClassGetParameter, EducationClassGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync(EducationclassGetParameter parameter)
+        public async ValueTask<EducationClassGetResponse> EducationClassGetAsync(EducationClassGetParameter parameter)
         {
-            return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationClassGetParameter, EducationClassGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassGetResponse> EducationclassGetAsync(EducationclassGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationClassGetResponse> EducationClassGetAsync(EducationClassGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationclassGetParameter, EducationclassGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationClassGetParameter, EducationClassGetResponse>(parameter, cancellationToken);
         }
     }
 }

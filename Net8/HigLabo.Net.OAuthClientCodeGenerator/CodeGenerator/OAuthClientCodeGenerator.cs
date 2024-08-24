@@ -378,6 +378,10 @@ namespace HigLabo.Net.CodeGenerator
                 else
                 {
                     property.TypeName.Name = em.Name;
+                    if (parameter.Required == false && property.TypeName.Name.EndsWith("?") == false)
+                    {
+                        property.TypeName.Name += "?"; 
+                    }
                 }
                 foreach (var item in parameter.EnumValues)
                 {
@@ -405,7 +409,7 @@ namespace HigLabo.Net.CodeGenerator
         {
             var c = new Class(AccessModifier.Public, className);
             c.Modifier.Partial = true;
-            c.ImplementInterfaces.Add(new TypeName("RestApiResponse"));
+            c.BaseClass = new TypeName("RestApiResponse");
 
             return c;
         }

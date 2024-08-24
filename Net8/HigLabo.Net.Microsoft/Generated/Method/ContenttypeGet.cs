@@ -27,26 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssociatedHubsUrls,
-            Description,
-            DocumentSet,
-            DocumentTemplate,
-            Group,
-            Hidden,
-            Id,
-            InheritedFrom,
-            IsBuiltIn,
-            Name,
-            Order,
-            ParentId,
-            PropagateChanges,
-            ReadOnly,
-            Sealed,
-            Base,
-            ColumnLinks,
-            BaseTypes,
-            ColumnPositions,
-            Columns,
         }
         public enum ApiPath
         {

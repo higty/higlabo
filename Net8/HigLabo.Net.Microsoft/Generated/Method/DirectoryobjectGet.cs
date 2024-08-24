@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryobjectGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DirectoryObjectGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DirectoryobjectGetResponse : RestApiResponse
+    public partial class DirectoryObjectGetResponse : RestApiResponse
     {
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
@@ -61,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync()
+        public async ValueTask<DirectoryObjectGetResponse> DirectoryObjectGetAsync()
         {
-            var p = new DirectoryobjectGetParameter();
-            return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(p, CancellationToken.None);
+            var p = new DirectoryObjectGetParameter();
+            return await this.SendAsync<DirectoryObjectGetParameter, DirectoryObjectGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectGetResponse> DirectoryObjectGetAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryobjectGetParameter();
-            return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(p, cancellationToken);
+            var p = new DirectoryObjectGetParameter();
+            return await this.SendAsync<DirectoryObjectGetParameter, DirectoryObjectGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter)
+        public async ValueTask<DirectoryObjectGetResponse> DirectoryObjectGetAsync(DirectoryObjectGetParameter parameter)
         {
-            return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryObjectGetParameter, DirectoryObjectGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectGetResponse> DirectoryObjectGetAsync(DirectoryObjectGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryObjectGetParameter, DirectoryObjectGetResponse>(parameter, cancellationToken);
         }
     }
 }

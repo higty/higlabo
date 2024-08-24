@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class CalendarpermissionDeleteParameter : IRestApiParameter
+    public partial class CalendarPermissionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class CalendarpermissionDeleteResponse : RestApiResponse
+    public partial class CalendarPermissionDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -55,32 +55,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync()
+        public async ValueTask<CalendarPermissionDeleteResponse> CalendarPermissionDeleteAsync()
         {
-            var p = new CalendarpermissionDeleteParameter();
-            return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(p, CancellationToken.None);
+            var p = new CalendarPermissionDeleteParameter();
+            return await this.SendAsync<CalendarPermissionDeleteParameter, CalendarPermissionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarPermissionDeleteResponse> CalendarPermissionDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new CalendarpermissionDeleteParameter();
-            return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(p, cancellationToken);
+            var p = new CalendarPermissionDeleteParameter();
+            return await this.SendAsync<CalendarPermissionDeleteParameter, CalendarPermissionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CalendarpermissionDeleteParameter parameter)
+        public async ValueTask<CalendarPermissionDeleteResponse> CalendarPermissionDeleteAsync(CalendarPermissionDeleteParameter parameter)
         {
-            return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CalendarPermissionDeleteParameter, CalendarPermissionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionDeleteResponse> CalendarpermissionDeleteAsync(CalendarpermissionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarPermissionDeleteResponse> CalendarPermissionDeleteAsync(CalendarPermissionDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CalendarpermissionDeleteParameter, CalendarpermissionDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CalendarPermissionDeleteParameter, CalendarPermissionDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-update?view=graph-rest-1.0
     /// </summary>
-    public partial class CalendarpermissionUpdateParameter : IRestApiParameter
+    public partial class CalendarPermissionUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public CalendarPermission? Role { get; set; }
     }
-    public partial class CalendarpermissionUpdateResponse : RestApiResponse
+    public partial class CalendarPermissionUpdateResponse : RestApiResponse
     {
         public enum CalendarPermissionCalendarRoleType
         {
@@ -74,32 +74,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionUpdateResponse> CalendarpermissionUpdateAsync()
+        public async ValueTask<CalendarPermissionUpdateResponse> CalendarPermissionUpdateAsync()
         {
-            var p = new CalendarpermissionUpdateParameter();
-            return await this.SendAsync<CalendarpermissionUpdateParameter, CalendarpermissionUpdateResponse>(p, CancellationToken.None);
+            var p = new CalendarPermissionUpdateParameter();
+            return await this.SendAsync<CalendarPermissionUpdateParameter, CalendarPermissionUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionUpdateResponse> CalendarpermissionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarPermissionUpdateResponse> CalendarPermissionUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new CalendarpermissionUpdateParameter();
-            return await this.SendAsync<CalendarpermissionUpdateParameter, CalendarpermissionUpdateResponse>(p, cancellationToken);
+            var p = new CalendarPermissionUpdateParameter();
+            return await this.SendAsync<CalendarPermissionUpdateParameter, CalendarPermissionUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionUpdateResponse> CalendarpermissionUpdateAsync(CalendarpermissionUpdateParameter parameter)
+        public async ValueTask<CalendarPermissionUpdateResponse> CalendarPermissionUpdateAsync(CalendarPermissionUpdateParameter parameter)
         {
-            return await this.SendAsync<CalendarpermissionUpdateParameter, CalendarpermissionUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CalendarPermissionUpdateParameter, CalendarPermissionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendarpermission-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarpermissionUpdateResponse> CalendarpermissionUpdateAsync(CalendarpermissionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarPermissionUpdateResponse> CalendarPermissionUpdateAsync(CalendarPermissionUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CalendarpermissionUpdateParameter, CalendarpermissionUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CalendarPermissionUpdateParameter, CalendarPermissionUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

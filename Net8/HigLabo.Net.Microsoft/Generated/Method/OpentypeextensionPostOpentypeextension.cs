@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenTypeextensionPostOpenTypeextensionParameter : IRestApiParameter
+    public partial class OpenTypeExtensionPostOpenTypeExtensionParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? ExtensionName { get; set; }
     }
-    public partial class OpenTypeextensionPostOpenTypeextensionResponse : RestApiResponse
+    public partial class OpenTypeExtensionPostOpenTypeExtensionResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -91,32 +91,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync()
+        public async ValueTask<OpenTypeExtensionPostOpenTypeExtensionResponse> OpenTypeExtensionPostOpenTypeExtensionAsync()
         {
-            var p = new OpenTypeextensionPostOpenTypeextensionParameter();
-            return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(p, CancellationToken.None);
+            var p = new OpenTypeExtensionPostOpenTypeExtensionParameter();
+            return await this.SendAsync<OpenTypeExtensionPostOpenTypeExtensionParameter, OpenTypeExtensionPostOpenTypeExtensionResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeExtensionPostOpenTypeExtensionResponse> OpenTypeExtensionPostOpenTypeExtensionAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenTypeextensionPostOpenTypeextensionParameter();
-            return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(p, cancellationToken);
+            var p = new OpenTypeExtensionPostOpenTypeExtensionParameter();
+            return await this.SendAsync<OpenTypeExtensionPostOpenTypeExtensionParameter, OpenTypeExtensionPostOpenTypeExtensionResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync(OpenTypeextensionPostOpenTypeextensionParameter parameter)
+        public async ValueTask<OpenTypeExtensionPostOpenTypeExtensionResponse> OpenTypeExtensionPostOpenTypeExtensionAsync(OpenTypeExtensionPostOpenTypeExtensionParameter parameter)
         {
-            return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenTypeExtensionPostOpenTypeExtensionParameter, OpenTypeExtensionPostOpenTypeExtensionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync(OpenTypeextensionPostOpenTypeextensionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeExtensionPostOpenTypeExtensionResponse> OpenTypeExtensionPostOpenTypeExtensionAsync(OpenTypeExtensionPostOpenTypeExtensionParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenTypeExtensionPostOpenTypeExtensionParameter, OpenTypeExtensionPostOpenTypeExtensionResponse>(parameter, cancellationToken);
         }
     }
 }

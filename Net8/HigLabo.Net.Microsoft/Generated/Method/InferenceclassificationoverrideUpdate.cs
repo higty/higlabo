@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0
     /// </summary>
-    public partial class InferenceclassificationoverrideUpdateParameter : IRestApiParameter
+    public partial class InferenceClassificationOverrideUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum InferenceclassificationoverrideUpdateParameterstring
+        public enum InferenceClassificationOverrideUpdateParameterstring
         {
             Focused,
             Other,
@@ -45,9 +45,9 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
-        public InferenceclassificationoverrideUpdateParameterstring ClassifyAs { get; set; }
+        public InferenceClassificationOverrideUpdateParameterstring ClassifyAs { get; set; }
     }
-    public partial class InferenceclassificationoverrideUpdateResponse : RestApiResponse
+    public partial class InferenceClassificationOverrideUpdateResponse : RestApiResponse
     {
         public enum InferenceClassificationOverrideInferenceClassificationType
         {
@@ -67,32 +67,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationoverrideUpdateResponse> InferenceclassificationoverrideUpdateAsync()
+        public async ValueTask<InferenceClassificationOverrideUpdateResponse> InferenceClassificationOverrideUpdateAsync()
         {
-            var p = new InferenceclassificationoverrideUpdateParameter();
-            return await this.SendAsync<InferenceclassificationoverrideUpdateParameter, InferenceclassificationoverrideUpdateResponse>(p, CancellationToken.None);
+            var p = new InferenceClassificationOverrideUpdateParameter();
+            return await this.SendAsync<InferenceClassificationOverrideUpdateParameter, InferenceClassificationOverrideUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationoverrideUpdateResponse> InferenceclassificationoverrideUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<InferenceClassificationOverrideUpdateResponse> InferenceClassificationOverrideUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new InferenceclassificationoverrideUpdateParameter();
-            return await this.SendAsync<InferenceclassificationoverrideUpdateParameter, InferenceclassificationoverrideUpdateResponse>(p, cancellationToken);
+            var p = new InferenceClassificationOverrideUpdateParameter();
+            return await this.SendAsync<InferenceClassificationOverrideUpdateParameter, InferenceClassificationOverrideUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationoverrideUpdateResponse> InferenceclassificationoverrideUpdateAsync(InferenceclassificationoverrideUpdateParameter parameter)
+        public async ValueTask<InferenceClassificationOverrideUpdateResponse> InferenceClassificationOverrideUpdateAsync(InferenceClassificationOverrideUpdateParameter parameter)
         {
-            return await this.SendAsync<InferenceclassificationoverrideUpdateParameter, InferenceclassificationoverrideUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<InferenceClassificationOverrideUpdateParameter, InferenceClassificationOverrideUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationoverrideUpdateResponse> InferenceclassificationoverrideUpdateAsync(InferenceclassificationoverrideUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InferenceClassificationOverrideUpdateResponse> InferenceClassificationOverrideUpdateAsync(InferenceClassificationOverrideUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<InferenceclassificationoverrideUpdateParameter, InferenceclassificationoverrideUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<InferenceClassificationOverrideUpdateParameter, InferenceClassificationOverrideUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

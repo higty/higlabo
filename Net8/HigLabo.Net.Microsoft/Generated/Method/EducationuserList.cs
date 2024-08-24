@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,43 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccountEnabled,
-            AssignedLicenses,
-            AssignedPlans,
-            BusinessPhones,
-            CreatedBy,
-            Department,
-            DisplayName,
-            ExternalSource,
-            ExternalSourceDetail,
-            GivenName,
-            Id,
-            Mail,
-            MailingAddress,
-            MailNickname,
-            MiddleName,
-            MobilePhone,
-            OnPremisesInfo,
-            PasswordPolicies,
-            PasswordProfile,
-            PreferredLanguage,
-            PrimaryRole,
-            ProvisionedPlans,
-            RelatedContacts,
-            ResidenceAddress,
-            ShowInAddressList,
-            Student,
-            Surname,
-            Teacher,
-            UsageLocation,
-            UserPrincipalName,
-            UserType,
-            Assignments,
-            Classes,
-            Schools,
-            TaughtClasses,
-            User,
-            Rubrics,
         }
         public enum ApiPath
         {
@@ -84,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationUserListResponse : RestApiResponse
+    public partial class EducationUserListResponse : RestApiResponse<EducationUser>
     {
-        public EducationUser[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationuser-list?view=graph-rest-1.0
@@ -122,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationUserListResponse> EducationUserListAsync(EducationUserListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserListParameter, EducationUserListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationUser> EducationUserListEnumerateAsync(EducationUserListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationUserListParameter, EducationUserListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationUser>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,7 +27,6 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Contactfolders_Id_Contacts: return $"/users/{IdOrUserPrincipalName}/contactfolders/{Id}/contacts";
                     case ApiPath.Me_ContactFolders_Id_ChildFolders_Id__Contacts: return $"/me/contactFolders/{ContactFoldersId}/childFolders/{ChildFoldersId}/.../contacts";
                     case ApiPath.Users_IdOrUserPrincipalName_ContactFolders_Id_ChildFolders_Id_Contacts: return $"/users/{UsersIdOrUserPrincipalName}/contactFolders/{ContactFoldersId}/childFolders/{ChildFoldersId}/contacts";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Me_Contacts: return $"/ttps://graph.microsoft.com/v1.0/me/contacts";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -34,48 +34,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssistantName,
-            Birthday,
-            BusinessAddress,
-            BusinessHomePage,
-            BusinessPhones,
-            Categories,
-            ChangeKey,
-            Children,
-            CompanyName,
-            CreatedDateTime,
-            Department,
-            DisplayName,
-            EmailAddresses,
-            FileAs,
-            Generation,
-            GivenName,
-            HomeAddress,
-            HomePhones,
-            Id,
-            ImAddresses,
-            Initials,
-            JobTitle,
-            LastModifiedDateTime,
-            Manager,
-            MiddleName,
-            MobilePhone,
-            NickName,
-            OfficeLocation,
-            OtherAddress,
-            ParentFolderId,
-            PersonalNotes,
-            Profession,
-            SpouseName,
-            Surname,
-            Title,
-            YomiCompanyName,
-            YomiGivenName,
-            YomiSurname,
-            Extensions,
-            MultiValueExtendedProperties,
-            Photo,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -85,7 +43,6 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Contactfolders_Id_Contacts,
             Me_ContactFolders_Id_ChildFolders_Id__Contacts,
             Users_IdOrUserPrincipalName_ContactFolders_Id_ChildFolders_Id_Contacts,
-            Ttps__Graphmicrosoftcom_V10_Me_Contacts,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -106,9 +63,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListContactsResponse : RestApiResponse
+    public partial class UserListContactsResponse : RestApiResponse<Contact>
     {
-        public Contact[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
@@ -144,6 +100,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserListContactsResponse> UserListContactsAsync(UserListContactsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserListContactsParameter, UserListContactsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Contact> UserListContactsEnumerateAsync(UserListContactsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListContactsParameter, UserListContactsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Contact>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

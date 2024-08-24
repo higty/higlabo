@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageListIncompatibleGroupsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessPackageListIncompatibleGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,73 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowExternalSenders,
-            AssignedLabels,
-            AssignedLicenses,
-            AutoSubscribeNewMembers,
-            Classification,
-            CreatedDateTime,
-            DeletedDateTime,
-            Description,
-            DisplayName,
-            ExpirationDateTime,
-            GroupTypes,
-            HasMembersWithLicenseErrors,
-            HideFromAddressLists,
-            HideFromOutlookClients,
-            Id,
-            IsArchived,
-            IsAssignableToRole,
-            IsSubscribedByMail,
-            LicenseProcessingState,
-            Mail,
-            MailEnabled,
-            MailNickname,
-            MembershipRule,
-            MembershipRuleProcessingState,
-            OnPremisesLastSyncDateTime,
-            OnPremisesProvisioningErrors,
-            OnPremisesSamAccountName,
-            OnPremisesSecurityIdentifier,
-            OnPremisesSyncEnabled,
-            PreferredDataLocation,
-            PreferredLanguage,
-            ProxyAddresses,
-            RenewedDateTime,
-            ResourceBehaviorOptions,
-            ResourceProvisioningOptions,
-            SecurityEnabled,
-            SecurityIdentifier,
-            Theme,
-            UnseenCount,
-            Visibility,
-            AcceptedSenders,
-            AppRoleAssignments,
-            Calendar,
-            CalendarView,
-            Conversations,
-            CreatedOnBehalfOf,
-            Drive,
-            Drives,
-            Events,
-            Extensions,
-            GroupLifecyclePolicies,
-            MemberOf,
-            Members,
-            MembersWithLicenseErrors,
-            Onenote,
-            Owners,
-            PermissionGrants,
-            Photo,
-            Photos,
-            Planner,
-            RejectedSenders,
-            Settings,
-            Sites,
-            Team,
-            Threads,
-            TransitiveMemberOf,
-            TransitiveMembers,
         }
         public enum ApiPath
         {
@@ -115,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccesspackageListIncompatibleGroupsResponse : RestApiResponse
+    public partial class AccessPackageListIncompatibleGroupsResponse : RestApiResponse<Group>
     {
-        public Group[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
@@ -127,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync()
+        public async ValueTask<AccessPackageListIncompatibleGroupsResponse> AccessPackageListIncompatibleGroupsAsync()
         {
-            var p = new AccesspackageListIncompatibleGroupsParameter();
-            return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(p, CancellationToken.None);
+            var p = new AccessPackageListIncompatibleGroupsParameter();
+            return await this.SendAsync<AccessPackageListIncompatibleGroupsParameter, AccessPackageListIncompatibleGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageListIncompatibleGroupsResponse> AccessPackageListIncompatibleGroupsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageListIncompatibleGroupsParameter();
-            return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(p, cancellationToken);
+            var p = new AccessPackageListIncompatibleGroupsParameter();
+            return await this.SendAsync<AccessPackageListIncompatibleGroupsParameter, AccessPackageListIncompatibleGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(AccesspackageListIncompatibleGroupsParameter parameter)
+        public async ValueTask<AccessPackageListIncompatibleGroupsResponse> AccessPackageListIncompatibleGroupsAsync(AccessPackageListIncompatibleGroupsParameter parameter)
         {
-            return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageListIncompatibleGroupsParameter, AccessPackageListIncompatibleGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageListIncompatibleGroupsResponse> AccesspackageListIncompatibleGroupsAsync(AccesspackageListIncompatibleGroupsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageListIncompatibleGroupsResponse> AccessPackageListIncompatibleGroupsAsync(AccessPackageListIncompatibleGroupsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageListIncompatibleGroupsParameter, AccesspackageListIncompatibleGroupsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageListIncompatibleGroupsParameter, AccessPackageListIncompatibleGroupsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Group> AccessPackageListIncompatibleGroupsEnumerateAsync(AccessPackageListIncompatibleGroupsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessPackageListIncompatibleGroupsParameter, AccessPackageListIncompatibleGroupsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Group>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

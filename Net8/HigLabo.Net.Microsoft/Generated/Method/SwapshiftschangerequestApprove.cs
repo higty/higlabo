@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-approve?view=graph-rest-1.0
     /// </summary>
-    public partial class SwapshiftschangerequestApproveParameter : IRestApiParameter
+    public partial class SwapShiftsChangeRequestApproveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
     }
-    public partial class SwapshiftschangerequestApproveResponse : RestApiResponse
+    public partial class SwapShiftsChangeRequestApproveResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestApproveResponse> SwapshiftschangerequestApproveAsync()
+        public async ValueTask<SwapShiftsChangeRequestApproveResponse> SwapShiftsChangeRequestApproveAsync()
         {
-            var p = new SwapshiftschangerequestApproveParameter();
-            return await this.SendAsync<SwapshiftschangerequestApproveParameter, SwapshiftschangerequestApproveResponse>(p, CancellationToken.None);
+            var p = new SwapShiftsChangeRequestApproveParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestApproveParameter, SwapShiftsChangeRequestApproveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestApproveResponse> SwapshiftschangerequestApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestApproveResponse> SwapShiftsChangeRequestApproveAsync(CancellationToken cancellationToken)
         {
-            var p = new SwapshiftschangerequestApproveParameter();
-            return await this.SendAsync<SwapshiftschangerequestApproveParameter, SwapshiftschangerequestApproveResponse>(p, cancellationToken);
+            var p = new SwapShiftsChangeRequestApproveParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestApproveParameter, SwapShiftsChangeRequestApproveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestApproveResponse> SwapshiftschangerequestApproveAsync(SwapshiftschangerequestApproveParameter parameter)
+        public async ValueTask<SwapShiftsChangeRequestApproveResponse> SwapShiftsChangeRequestApproveAsync(SwapShiftsChangeRequestApproveParameter parameter)
         {
-            return await this.SendAsync<SwapshiftschangerequestApproveParameter, SwapshiftschangerequestApproveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SwapShiftsChangeRequestApproveParameter, SwapShiftsChangeRequestApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestApproveResponse> SwapshiftschangerequestApproveAsync(SwapshiftschangerequestApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestApproveResponse> SwapShiftsChangeRequestApproveAsync(SwapShiftsChangeRequestApproveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SwapshiftschangerequestApproveParameter, SwapshiftschangerequestApproveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SwapShiftsChangeRequestApproveParameter, SwapShiftsChangeRequestApproveResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,10 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            ModifiedDateTime,
         }
         public enum ApiPath
         {
@@ -51,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ConditionalAccessRootListNamedLocationsResponse : RestApiResponse
+    public partial class ConditionalAccessRootListNamedLocationsResponse : RestApiResponse<NamedLocation>
     {
-        public NamedLocation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
@@ -89,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ConditionalAccessRootListNamedLocationsResponse> ConditionalAccessRootListNamedLocationsAsync(ConditionalAccessRootListNamedLocationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConditionalAccessRootListNamedLocationsParameter, ConditionalAccessRootListNamedLocationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<NamedLocation> ConditionalAccessRootListNamedLocationsEnumerateAsync(ConditionalAccessRootListNamedLocationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ConditionalAccessRootListNamedLocationsParameter, ConditionalAccessRootListNamedLocationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<NamedLocation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

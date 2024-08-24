@@ -37,9 +37,8 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public String[]? Ids { get; set; }
     }
-    public partial class CloudcommunicationsGetpresencesbyUseridResponse : RestApiResponse
+    public partial class CloudcommunicationsGetpresencesbyUseridResponse : RestApiResponse<Presence>
     {
-        public Presence[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0

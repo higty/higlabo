@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,30 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            ETag,
-            Id,
-            LastModifiedDateTime,
-            Name,
-            Root,
-            SharepointIds,
-            SiteCollection,
-            WebUrl,
-            Analytics,
-            Columns,
-            ContentTypes,
-            Drive,
-            Drives,
-            Items,
-            Lists,
-            Onenote,
-            Operations,
-            Permissions,
-            Sites,
-            TermStore,
-            TermStores,
         }
         public enum ApiPath
         {
@@ -72,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SiteListSubsitesResponse : RestApiResponse
+    public partial class SiteListSubsitesResponse : RestApiResponse<Site>
     {
-        public Site[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
@@ -110,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Site> SiteListSubsitesEnumerateAsync(SiteListSubsitesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Site>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

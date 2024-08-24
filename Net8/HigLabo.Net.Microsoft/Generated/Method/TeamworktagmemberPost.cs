@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-post?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamworktagmemberPostParameter : IRestApiParameter
+    public partial class TeamworktagMemberPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? TenantId { get; set; }
     }
-    public partial class TeamworktagmemberPostResponse : RestApiResponse
+    public partial class TeamworktagMemberPostResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -57,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberPostResponse> TeamworktagmemberPostAsync()
+        public async ValueTask<TeamworktagMemberPostResponse> TeamworktagMemberPostAsync()
         {
-            var p = new TeamworktagmemberPostParameter();
-            return await this.SendAsync<TeamworktagmemberPostParameter, TeamworktagmemberPostResponse>(p, CancellationToken.None);
+            var p = new TeamworktagMemberPostParameter();
+            return await this.SendAsync<TeamworktagMemberPostParameter, TeamworktagMemberPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberPostResponse> TeamworktagmemberPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagMemberPostResponse> TeamworktagMemberPostAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamworktagmemberPostParameter();
-            return await this.SendAsync<TeamworktagmemberPostParameter, TeamworktagmemberPostResponse>(p, cancellationToken);
+            var p = new TeamworktagMemberPostParameter();
+            return await this.SendAsync<TeamworktagMemberPostParameter, TeamworktagMemberPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberPostResponse> TeamworktagmemberPostAsync(TeamworktagmemberPostParameter parameter)
+        public async ValueTask<TeamworktagMemberPostResponse> TeamworktagMemberPostAsync(TeamworktagMemberPostParameter parameter)
         {
-            return await this.SendAsync<TeamworktagmemberPostParameter, TeamworktagmemberPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamworktagMemberPostParameter, TeamworktagMemberPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberPostResponse> TeamworktagmemberPostAsync(TeamworktagmemberPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagMemberPostResponse> TeamworktagMemberPostAsync(TeamworktagMemberPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamworktagmemberPostParameter, TeamworktagmemberPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamworktagMemberPostParameter, TeamworktagMemberPostResponse>(parameter, cancellationToken);
         }
     }
 }

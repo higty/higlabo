@@ -26,11 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Name,
-            ChangeKey,
-            ClassId,
-            Id,
-            Calendars,
         }
         public enum ApiPath
         {

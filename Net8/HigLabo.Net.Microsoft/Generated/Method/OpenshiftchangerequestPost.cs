@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenshiftchangerequestPostParameter : IRestApiParameter
+    public partial class OpenShiftChangeRequestPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? OpenShiftId { get; set; }
     }
-    public partial class OpenshiftchangerequestPostResponse : RestApiResponse
+    public partial class OpenShiftChangeRequestPostResponse : RestApiResponse
     {
         public string? OpenShiftId { get; set; }
     }
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync()
+        public async ValueTask<OpenShiftChangeRequestPostResponse> OpenShiftChangeRequestPostAsync()
         {
-            var p = new OpenshiftchangerequestPostParameter();
-            return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(p, CancellationToken.None);
+            var p = new OpenShiftChangeRequestPostParameter();
+            return await this.SendAsync<OpenShiftChangeRequestPostParameter, OpenShiftChangeRequestPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftChangeRequestPostResponse> OpenShiftChangeRequestPostAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenshiftchangerequestPostParameter();
-            return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(p, cancellationToken);
+            var p = new OpenShiftChangeRequestPostParameter();
+            return await this.SendAsync<OpenShiftChangeRequestPostParameter, OpenShiftChangeRequestPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(OpenshiftchangerequestPostParameter parameter)
+        public async ValueTask<OpenShiftChangeRequestPostResponse> OpenShiftChangeRequestPostAsync(OpenShiftChangeRequestPostParameter parameter)
         {
-            return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenShiftChangeRequestPostParameter, OpenShiftChangeRequestPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftchangerequestPostResponse> OpenshiftchangerequestPostAsync(OpenshiftchangerequestPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftChangeRequestPostResponse> OpenShiftChangeRequestPostAsync(OpenShiftChangeRequestPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenshiftchangerequestPostParameter, OpenshiftchangerequestPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenShiftChangeRequestPostParameter, OpenShiftChangeRequestPostResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
     /// </summary>
-    public partial class MessageCreatereplyParameter : IRestApiParameter
+    public partial class MessageCreateReplyParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -57,8 +57,43 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public Recipient[]? BccRecipients { get; set; }
+        public ItemBody? Body { get; set; }
+        public string? BodyPreview { get; set; }
+        public String[]? Categories { get; set; }
+        public Recipient[]? CcRecipients { get; set; }
+        public string? ChangeKey { get; set; }
+        public string? ConversationId { get; set; }
+        public string? ConversationIndex { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public FollowupFlag? Flag { get; set; }
+        public Recipient? From { get; set; }
+        public bool? HasAttachments { get; set; }
+        public string? Id { get; set; }
+        public MessageImportance Importance { get; set; }
+        public MessageInferenceClassificationType InferenceClassification { get; set; }
+        public InternetMessageHeader[]? InternetMessageHeaders { get; set; }
+        public string? InternetMessageId { get; set; }
+        public bool? IsDeliveryReceiptRequested { get; set; }
+        public bool? IsDraft { get; set; }
+        public bool? IsRead { get; set; }
+        public bool? IsReadReceiptRequested { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? ParentFolderId { get; set; }
+        public DateTimeOffset? ReceivedDateTime { get; set; }
+        public Recipient[]? ReplyTo { get; set; }
+        public Recipient? Sender { get; set; }
+        public DateTimeOffset? SentDateTime { get; set; }
+        public string? Subject { get; set; }
+        public Recipient[]? ToRecipients { get; set; }
+        public ItemBody? UniqueBody { get; set; }
+        public string? WebLink { get; set; }
+        public Attachment[]? Attachments { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class MessageCreatereplyResponse : RestApiResponse
+    public partial class MessageCreateReplyResponse : RestApiResponse
     {
         public enum MessageImportance
         {
@@ -116,32 +151,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync()
+        public async ValueTask<MessageCreateReplyResponse> MessageCreateReplyAsync()
         {
-            var p = new MessageCreatereplyParameter();
-            return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(p, CancellationToken.None);
+            var p = new MessageCreateReplyParameter();
+            return await this.SendAsync<MessageCreateReplyParameter, MessageCreateReplyResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync(CancellationToken cancellationToken)
+        public async ValueTask<MessageCreateReplyResponse> MessageCreateReplyAsync(CancellationToken cancellationToken)
         {
-            var p = new MessageCreatereplyParameter();
-            return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(p, cancellationToken);
+            var p = new MessageCreateReplyParameter();
+            return await this.SendAsync<MessageCreateReplyParameter, MessageCreateReplyResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter)
+        public async ValueTask<MessageCreateReplyResponse> MessageCreateReplyAsync(MessageCreateReplyParameter parameter)
         {
-            return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MessageCreateReplyParameter, MessageCreateReplyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MessageCreateReplyResponse> MessageCreateReplyAsync(MessageCreateReplyParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MessageCreateReplyParameter, MessageCreateReplyResponse>(parameter, cancellationToken);
         }
     }
 }

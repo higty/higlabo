@@ -5,14 +5,13 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintershareGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrinterShareGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
             public string? PrinterShareId { get; set; }
             public string? PrinterId { get; set; }
-            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -20,7 +19,6 @@ namespace HigLabo.Net.Microsoft
                 {
                     case ApiPath.Print_Shares_PrinterShareId: return $"/print/shares/{PrinterShareId}";
                     case ApiPath.Print_Printers_PrinterId_Shares_PrinterShareId: return $"/print/printers/{PrinterId}/shares/{PrinterShareId}";
-                    case ApiPath.Print_Printers_Id: return $"/print/printers/{Id}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -33,7 +31,6 @@ namespace HigLabo.Net.Microsoft
         {
             Print_Shares_PrinterShareId,
             Print_Printers_PrinterId_Shares_PrinterShareId,
-            Print_Printers_Id,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -54,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrintershareGetResponse : RestApiResponse
+    public partial class PrinterShareGetResponse : RestApiResponse
     {
         public bool? AllowAllUsers { get; set; }
         public PrinterCapabilities? Capabilities { get; set; }
@@ -80,32 +77,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync()
+        public async ValueTask<PrinterShareGetResponse> PrinterShareGetAsync()
         {
-            var p = new PrintershareGetParameter();
-            return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(p, CancellationToken.None);
+            var p = new PrinterShareGetParameter();
+            return await this.SendAsync<PrinterShareGetParameter, PrinterShareGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareGetResponse> PrinterShareGetAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareGetParameter();
-            return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(p, cancellationToken);
+            var p = new PrinterShareGetParameter();
+            return await this.SendAsync<PrinterShareGetParameter, PrinterShareGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter)
+        public async ValueTask<PrinterShareGetResponse> PrinterShareGetAsync(PrinterShareGetParameter parameter)
         {
-            return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterShareGetParameter, PrinterShareGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareGetResponse> PrinterShareGetAsync(PrinterShareGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterShareGetParameter, PrinterShareGetResponse>(parameter, cancellationToken);
         }
     }
 }

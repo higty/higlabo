@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceUpdateParameter : IRestApiParameter
+    public partial class AccessReviewinstanceUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewReviewerScope[]? Reviewers { get; set; }
         public AccessReviewScope? Scope { get; set; }
     }
-    public partial class AccessreviewinstanceUpdateResponse : RestApiResponse
+    public partial class AccessReviewinstanceUpdateResponse : RestApiResponse
     {
         public DateTimeOffset? EndDateTime { get; set; }
         public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync()
+        public async ValueTask<AccessReviewinstanceUpdateResponse> AccessReviewinstanceUpdateAsync()
         {
-            var p = new AccessreviewinstanceUpdateParameter();
-            return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceUpdateParameter();
+            return await this.SendAsync<AccessReviewinstanceUpdateParameter, AccessReviewinstanceUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceUpdateResponse> AccessReviewinstanceUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceUpdateParameter();
-            return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceUpdateParameter();
+            return await this.SendAsync<AccessReviewinstanceUpdateParameter, AccessReviewinstanceUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter)
+        public async ValueTask<AccessReviewinstanceUpdateResponse> AccessReviewinstanceUpdateAsync(AccessReviewinstanceUpdateParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceUpdateParameter, AccessReviewinstanceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceUpdateResponse> AccessReviewinstanceUpdateAsync(AccessReviewinstanceUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceUpdateParameter, AccessReviewinstanceUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

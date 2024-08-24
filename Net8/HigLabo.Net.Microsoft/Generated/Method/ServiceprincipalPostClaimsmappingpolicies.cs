@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-claimsmappingpolicies?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalPostClaimsmappingpoliciesParameter : IRestApiParameter
+    public partial class ServicePrincipalPostClaimsmappingpoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class ServiceprincipalPostClaimsmappingpoliciesResponse : RestApiResponse
+    public partial class ServicePrincipalPostClaimsmappingpoliciesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostClaimsmappingpoliciesResponse> ServiceprincipalPostClaimsmappingpoliciesAsync()
+        public async ValueTask<ServicePrincipalPostClaimsmappingpoliciesResponse> ServicePrincipalPostClaimsmappingpoliciesAsync()
         {
-            var p = new ServiceprincipalPostClaimsmappingpoliciesParameter();
-            return await this.SendAsync<ServiceprincipalPostClaimsmappingpoliciesParameter, ServiceprincipalPostClaimsmappingpoliciesResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalPostClaimsmappingpoliciesParameter();
+            return await this.SendAsync<ServicePrincipalPostClaimsmappingpoliciesParameter, ServicePrincipalPostClaimsmappingpoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostClaimsmappingpoliciesResponse> ServiceprincipalPostClaimsmappingpoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostClaimsmappingpoliciesResponse> ServicePrincipalPostClaimsmappingpoliciesAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalPostClaimsmappingpoliciesParameter();
-            return await this.SendAsync<ServiceprincipalPostClaimsmappingpoliciesParameter, ServiceprincipalPostClaimsmappingpoliciesResponse>(p, cancellationToken);
+            var p = new ServicePrincipalPostClaimsmappingpoliciesParameter();
+            return await this.SendAsync<ServicePrincipalPostClaimsmappingpoliciesParameter, ServicePrincipalPostClaimsmappingpoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostClaimsmappingpoliciesResponse> ServiceprincipalPostClaimsmappingpoliciesAsync(ServiceprincipalPostClaimsmappingpoliciesParameter parameter)
+        public async ValueTask<ServicePrincipalPostClaimsmappingpoliciesResponse> ServicePrincipalPostClaimsmappingpoliciesAsync(ServicePrincipalPostClaimsmappingpoliciesParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalPostClaimsmappingpoliciesParameter, ServiceprincipalPostClaimsmappingpoliciesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalPostClaimsmappingpoliciesParameter, ServicePrincipalPostClaimsmappingpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostClaimsmappingpoliciesResponse> ServiceprincipalPostClaimsmappingpoliciesAsync(ServiceprincipalPostClaimsmappingpoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostClaimsmappingpoliciesResponse> ServicePrincipalPostClaimsmappingpoliciesAsync(ServicePrincipalPostClaimsmappingpoliciesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalPostClaimsmappingpoliciesParameter, ServiceprincipalPostClaimsmappingpoliciesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalPostClaimsmappingpoliciesParameter, ServicePrincipalPostClaimsmappingpoliciesResponse>(parameter, cancellationToken);
         }
     }
 }

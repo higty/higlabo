@@ -31,25 +31,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            Description,
-            DriveType,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Name,
-            Owner,
-            Quota,
-            SharepointIds,
-            System,
-            WebUrl,
-            Bundles,
-            Following,
-            Items,
-            List,
-            Root,
-            Special,
         }
         public enum ApiPath
         {

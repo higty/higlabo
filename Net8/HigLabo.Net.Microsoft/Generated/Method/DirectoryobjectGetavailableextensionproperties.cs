@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryobjectGetavailableextensionpropertiesParameter : IRestApiParameter
+    public partial class DirectoryObjectGetavailableExtensionpropertiesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,9 +37,8 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public bool? IsSyncedFromOnPremises { get; set; }
     }
-    public partial class DirectoryobjectGetavailableextensionpropertiesResponse : RestApiResponse
+    public partial class DirectoryObjectGetavailableExtensionpropertiesResponse : RestApiResponse<ExtensionProperty>
     {
-        public ExtensionProperty[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
@@ -49,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetavailableextensionpropertiesResponse> DirectoryobjectGetavailableextensionpropertiesAsync()
+        public async ValueTask<DirectoryObjectGetavailableExtensionpropertiesResponse> DirectoryObjectGetavailableExtensionpropertiesAsync()
         {
-            var p = new DirectoryobjectGetavailableextensionpropertiesParameter();
-            return await this.SendAsync<DirectoryobjectGetavailableextensionpropertiesParameter, DirectoryobjectGetavailableextensionpropertiesResponse>(p, CancellationToken.None);
+            var p = new DirectoryObjectGetavailableExtensionpropertiesParameter();
+            return await this.SendAsync<DirectoryObjectGetavailableExtensionpropertiesParameter, DirectoryObjectGetavailableExtensionpropertiesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetavailableextensionpropertiesResponse> DirectoryobjectGetavailableextensionpropertiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectGetavailableExtensionpropertiesResponse> DirectoryObjectGetavailableExtensionpropertiesAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryobjectGetavailableextensionpropertiesParameter();
-            return await this.SendAsync<DirectoryobjectGetavailableextensionpropertiesParameter, DirectoryobjectGetavailableextensionpropertiesResponse>(p, cancellationToken);
+            var p = new DirectoryObjectGetavailableExtensionpropertiesParameter();
+            return await this.SendAsync<DirectoryObjectGetavailableExtensionpropertiesParameter, DirectoryObjectGetavailableExtensionpropertiesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetavailableextensionpropertiesResponse> DirectoryobjectGetavailableextensionpropertiesAsync(DirectoryobjectGetavailableextensionpropertiesParameter parameter)
+        public async ValueTask<DirectoryObjectGetavailableExtensionpropertiesResponse> DirectoryObjectGetavailableExtensionpropertiesAsync(DirectoryObjectGetavailableExtensionpropertiesParameter parameter)
         {
-            return await this.SendAsync<DirectoryobjectGetavailableextensionpropertiesParameter, DirectoryobjectGetavailableextensionpropertiesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryObjectGetavailableExtensionpropertiesParameter, DirectoryObjectGetavailableExtensionpropertiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectGetavailableextensionpropertiesResponse> DirectoryobjectGetavailableextensionpropertiesAsync(DirectoryobjectGetavailableextensionpropertiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectGetavailableExtensionpropertiesResponse> DirectoryObjectGetavailableExtensionpropertiesAsync(DirectoryObjectGetavailableExtensionpropertiesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryobjectGetavailableextensionpropertiesParameter, DirectoryobjectGetavailableextensionpropertiesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryObjectGetavailableExtensionpropertiesParameter, DirectoryObjectGetavailableExtensionpropertiesResponse>(parameter, cancellationToken);
         }
     }
 }

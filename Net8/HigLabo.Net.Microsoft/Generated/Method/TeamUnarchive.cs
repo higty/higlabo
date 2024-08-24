@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamUnarchiveParameter : IRestApiParameter
+    public partial class TeamUnArchiveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         public Guid? TargetResourceId { get; set; }
         public string? TargetResourceLocation { get; set; }
     }
-    public partial class TeamUnarchiveResponse : RestApiResponse
+    public partial class TeamUnArchiveResponse : RestApiResponse
     {
         public Int32? AttemptsCount { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -66,32 +66,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamUnarchiveResponse> TeamUnarchiveAsync()
+        public async ValueTask<TeamUnArchiveResponse> TeamUnArchiveAsync()
         {
-            var p = new TeamUnarchiveParameter();
-            return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(p, CancellationToken.None);
+            var p = new TeamUnArchiveParameter();
+            return await this.SendAsync<TeamUnArchiveParameter, TeamUnArchiveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamUnarchiveResponse> TeamUnarchiveAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamUnArchiveResponse> TeamUnArchiveAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamUnarchiveParameter();
-            return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(p, cancellationToken);
+            var p = new TeamUnArchiveParameter();
+            return await this.SendAsync<TeamUnArchiveParameter, TeamUnArchiveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamUnarchiveResponse> TeamUnarchiveAsync(TeamUnarchiveParameter parameter)
+        public async ValueTask<TeamUnArchiveResponse> TeamUnArchiveAsync(TeamUnArchiveParameter parameter)
         {
-            return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamUnArchiveParameter, TeamUnArchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamUnarchiveResponse> TeamUnarchiveAsync(TeamUnarchiveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamUnArchiveResponse> TeamUnArchiveAsync(TeamUnArchiveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamUnArchiveParameter, TeamUnArchiveResponse>(parameter, cancellationToken);
         }
     }
 }

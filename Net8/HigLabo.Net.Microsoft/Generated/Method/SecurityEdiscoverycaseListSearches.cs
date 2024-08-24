@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseListSearchesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycaseListSearchesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,20 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContentQuery,
-            CreatedBy,
-            CreatedDateTime,
-            DataSourceScopes,
-            Description,
-            DisplayName,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            AdditionalSources,
-            AddToReviewSetOperation,
-            CustodianSources,
-            LastEstimateStatisticsOperation,
-            NoncustodialSources,
         }
         public enum ApiPath
         {
@@ -62,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycaseListSearchesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseListSearchesResponse : RestApiResponse<EDiscoverySearch>
     {
-        public EdiscoverySearch[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
@@ -74,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListSearchesResponse> SecurityEdiscoverycaseListSearchesAsync()
+        public async ValueTask<SecurityEDiscoverycaseListSearchesResponse> SecurityEDiscoverycaseListSearchesAsync()
         {
-            var p = new SecurityEdiscoverycaseListSearchesParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListSearchesParameter, SecurityEdiscoverycaseListSearchesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseListSearchesParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListSearchesParameter, SecurityEDiscoverycaseListSearchesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListSearchesResponse> SecurityEdiscoverycaseListSearchesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListSearchesResponse> SecurityEDiscoverycaseListSearchesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseListSearchesParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListSearchesParameter, SecurityEdiscoverycaseListSearchesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseListSearchesParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListSearchesParameter, SecurityEDiscoverycaseListSearchesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListSearchesResponse> SecurityEdiscoverycaseListSearchesAsync(SecurityEdiscoverycaseListSearchesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseListSearchesResponse> SecurityEDiscoverycaseListSearchesAsync(SecurityEDiscoverycaseListSearchesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListSearchesParameter, SecurityEdiscoverycaseListSearchesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseListSearchesParameter, SecurityEDiscoverycaseListSearchesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListSearchesResponse> SecurityEdiscoverycaseListSearchesAsync(SecurityEdiscoverycaseListSearchesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListSearchesResponse> SecurityEDiscoverycaseListSearchesAsync(SecurityEDiscoverycaseListSearchesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListSearchesParameter, SecurityEdiscoverycaseListSearchesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseListSearchesParameter, SecurityEDiscoverycaseListSearchesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoverySearch> SecurityEDiscoverycaseListSearchesEnumerateAsync(SecurityEDiscoverycaseListSearchesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycaseListSearchesParameter, SecurityEDiscoverycaseListSearchesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoverySearch>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

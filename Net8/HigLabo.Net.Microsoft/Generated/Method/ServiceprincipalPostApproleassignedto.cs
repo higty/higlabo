@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalPostApproleassignedtoParameter : IRestApiParameter
+    public partial class ServicePrincipalPostApproleassignedtoParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         public string? ResourceDisplayName { get; set; }
         public Guid? ResourceId { get; set; }
     }
-    public partial class ServiceprincipalPostApproleassignedtoResponse : RestApiResponse
+    public partial class ServicePrincipalPostApproleassignedtoResponse : RestApiResponse
     {
         public Guid? AppRoleId { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -68,32 +68,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostApproleassignedtoResponse> ServiceprincipalPostApproleassignedtoAsync()
+        public async ValueTask<ServicePrincipalPostApproleassignedtoResponse> ServicePrincipalPostApproleassignedtoAsync()
         {
-            var p = new ServiceprincipalPostApproleassignedtoParameter();
-            return await this.SendAsync<ServiceprincipalPostApproleassignedtoParameter, ServiceprincipalPostApproleassignedtoResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalPostApproleassignedtoParameter();
+            return await this.SendAsync<ServicePrincipalPostApproleassignedtoParameter, ServicePrincipalPostApproleassignedtoResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostApproleassignedtoResponse> ServiceprincipalPostApproleassignedtoAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostApproleassignedtoResponse> ServicePrincipalPostApproleassignedtoAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalPostApproleassignedtoParameter();
-            return await this.SendAsync<ServiceprincipalPostApproleassignedtoParameter, ServiceprincipalPostApproleassignedtoResponse>(p, cancellationToken);
+            var p = new ServicePrincipalPostApproleassignedtoParameter();
+            return await this.SendAsync<ServicePrincipalPostApproleassignedtoParameter, ServicePrincipalPostApproleassignedtoResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostApproleassignedtoResponse> ServiceprincipalPostApproleassignedtoAsync(ServiceprincipalPostApproleassignedtoParameter parameter)
+        public async ValueTask<ServicePrincipalPostApproleassignedtoResponse> ServicePrincipalPostApproleassignedtoAsync(ServicePrincipalPostApproleassignedtoParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalPostApproleassignedtoParameter, ServiceprincipalPostApproleassignedtoResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalPostApproleassignedtoParameter, ServicePrincipalPostApproleassignedtoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostApproleassignedtoResponse> ServiceprincipalPostApproleassignedtoAsync(ServiceprincipalPostApproleassignedtoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostApproleassignedtoResponse> ServicePrincipalPostApproleassignedtoAsync(ServicePrincipalPostApproleassignedtoParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalPostApproleassignedtoParameter, ServiceprincipalPostApproleassignedtoResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalPostApproleassignedtoParameter, ServicePrincipalPostApproleassignedtoResponse>(parameter, cancellationToken);
         }
     }
 }

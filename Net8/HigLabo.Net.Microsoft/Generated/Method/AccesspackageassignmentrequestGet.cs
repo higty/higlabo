@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageAssignmentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessPackageAssignmentRequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccesspackageAssignmentrequestGetResponse : RestApiResponse
+    public partial class AccessPackageAssignmentRequestGetResponse : RestApiResponse
     {
         public enum AccessPackageAssignmentRequestAccessPackageRequestType
         {
@@ -101,32 +101,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync()
+        public async ValueTask<AccessPackageAssignmentRequestGetResponse> AccessPackageAssignmentRequestGetAsync()
         {
-            var p = new AccesspackageAssignmentrequestGetParameter();
-            return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(p, CancellationToken.None);
+            var p = new AccessPackageAssignmentRequestGetParameter();
+            return await this.SendAsync<AccessPackageAssignmentRequestGetParameter, AccessPackageAssignmentRequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageAssignmentRequestGetResponse> AccessPackageAssignmentRequestGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageAssignmentrequestGetParameter();
-            return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(p, cancellationToken);
+            var p = new AccessPackageAssignmentRequestGetParameter();
+            return await this.SendAsync<AccessPackageAssignmentRequestGetParameter, AccessPackageAssignmentRequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync(AccesspackageAssignmentrequestGetParameter parameter)
+        public async ValueTask<AccessPackageAssignmentRequestGetResponse> AccessPackageAssignmentRequestGetAsync(AccessPackageAssignmentRequestGetParameter parameter)
         {
-            return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageAssignmentRequestGetParameter, AccessPackageAssignmentRequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync(AccesspackageAssignmentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageAssignmentRequestGetResponse> AccessPackageAssignmentRequestGetAsync(AccessPackageAssignmentRequestGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageAssignmentRequestGetParameter, AccessPackageAssignmentRequestGetResponse>(parameter, cancellationToken);
         }
     }
 }

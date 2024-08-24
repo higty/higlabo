@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
     /// </summary>
-    public partial class AppcatalogsListTeamsappsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AppCatalogsListTeamsappsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AppcatalogsListTeamsappsResponse : RestApiResponse
+    public partial class AppCatalogsListTeamsappsResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync()
+        public async ValueTask<AppCatalogsListTeamsappsResponse> AppCatalogsListTeamsappsAsync()
         {
-            var p = new AppcatalogsListTeamsappsParameter();
-            return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(p, CancellationToken.None);
+            var p = new AppCatalogsListTeamsappsParameter();
+            return await this.SendAsync<AppCatalogsListTeamsappsParameter, AppCatalogsListTeamsappsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppCatalogsListTeamsappsResponse> AppCatalogsListTeamsappsAsync(CancellationToken cancellationToken)
         {
-            var p = new AppcatalogsListTeamsappsParameter();
-            return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(p, cancellationToken);
+            var p = new AppCatalogsListTeamsappsParameter();
+            return await this.SendAsync<AppCatalogsListTeamsappsParameter, AppCatalogsListTeamsappsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(AppcatalogsListTeamsappsParameter parameter)
+        public async ValueTask<AppCatalogsListTeamsappsResponse> AppCatalogsListTeamsappsAsync(AppCatalogsListTeamsappsParameter parameter)
         {
-            return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AppCatalogsListTeamsappsParameter, AppCatalogsListTeamsappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appcatalogs-list-teamsapps?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppcatalogsListTeamsappsResponse> AppcatalogsListTeamsappsAsync(AppcatalogsListTeamsappsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppCatalogsListTeamsappsResponse> AppCatalogsListTeamsappsAsync(AppCatalogsListTeamsappsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AppcatalogsListTeamsappsParameter, AppcatalogsListTeamsappsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AppCatalogsListTeamsappsParameter, AppCatalogsListTeamsappsResponse>(parameter, cancellationToken);
         }
     }
 }

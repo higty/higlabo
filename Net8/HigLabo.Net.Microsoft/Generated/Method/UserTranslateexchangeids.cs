@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
     /// </summary>
-    public partial class UserTranslateExchangeidsParameter : IRestApiParameter
+    public partial class UserTranslateExChangeidsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -42,9 +42,8 @@ namespace HigLabo.Net.Microsoft
         public string? SourceIdType { get; set; }
         public string? TargetIdType { get; set; }
     }
-    public partial class UserTranslateExchangeidsResponse : RestApiResponse
+    public partial class UserTranslateExChangeidsResponse : RestApiResponse<ConvertIdResult>
     {
-        public ConvertIdResult[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
@@ -54,32 +53,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync()
+        public async ValueTask<UserTranslateExChangeidsResponse> UserTranslateExChangeidsAsync()
         {
-            var p = new UserTranslateExchangeidsParameter();
-            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(p, CancellationToken.None);
+            var p = new UserTranslateExChangeidsParameter();
+            return await this.SendAsync<UserTranslateExChangeidsParameter, UserTranslateExChangeidsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserTranslateExChangeidsResponse> UserTranslateExChangeidsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserTranslateExchangeidsParameter();
-            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(p, cancellationToken);
+            var p = new UserTranslateExChangeidsParameter();
+            return await this.SendAsync<UserTranslateExChangeidsParameter, UserTranslateExChangeidsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter)
+        public async ValueTask<UserTranslateExChangeidsResponse> UserTranslateExChangeidsAsync(UserTranslateExChangeidsParameter parameter)
         {
-            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserTranslateExChangeidsParameter, UserTranslateExChangeidsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserTranslateExChangeidsResponse> UserTranslateExChangeidsAsync(UserTranslateExChangeidsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserTranslateExChangeidsParameter, UserTranslateExChangeidsResponse>(parameter, cancellationToken);
         }
     }
 }

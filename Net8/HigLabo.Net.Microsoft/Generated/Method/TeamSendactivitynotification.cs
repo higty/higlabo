@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamSendactivitynotificationParameter : IRestApiParameter
+    public partial class TeamSendActivitynotificationParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         public KeyValuePair[]? TemplateParameters { get; set; }
         public TeamworkNotificationRecipient? Recipient { get; set; }
     }
-    public partial class TeamSendactivitynotificationResponse : RestApiResponse
+    public partial class TeamSendActivitynotificationResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync()
+        public async ValueTask<TeamSendActivitynotificationResponse> TeamSendActivitynotificationAsync()
         {
-            var p = new TeamSendactivitynotificationParameter();
-            return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(p, CancellationToken.None);
+            var p = new TeamSendActivitynotificationParameter();
+            return await this.SendAsync<TeamSendActivitynotificationParameter, TeamSendActivitynotificationResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamSendActivitynotificationResponse> TeamSendActivitynotificationAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamSendactivitynotificationParameter();
-            return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(p, cancellationToken);
+            var p = new TeamSendActivitynotificationParameter();
+            return await this.SendAsync<TeamSendActivitynotificationParameter, TeamSendActivitynotificationResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(TeamSendactivitynotificationParameter parameter)
+        public async ValueTask<TeamSendActivitynotificationResponse> TeamSendActivitynotificationAsync(TeamSendActivitynotificationParameter parameter)
         {
-            return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamSendActivitynotificationParameter, TeamSendActivitynotificationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/team-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamSendactivitynotificationResponse> TeamSendactivitynotificationAsync(TeamSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamSendActivitynotificationResponse> TeamSendActivitynotificationAsync(TeamSendActivitynotificationParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamSendactivitynotificationParameter, TeamSendactivitynotificationResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamSendActivitynotificationParameter, TeamSendActivitynotificationResponse>(parameter, cancellationToken);
         }
     }
 }

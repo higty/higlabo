@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryobjectValidatepropertiesParameter : IRestApiParameter
+    public partial class DirectoryObjectValidatepropertiesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         public string? MailNickname { get; set; }
         public Guid? OnBehalfOfUserId { get; set; }
     }
-    public partial class DirectoryobjectValidatepropertiesResponse : RestApiResponse
+    public partial class DirectoryObjectValidatepropertiesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync()
+        public async ValueTask<DirectoryObjectValidatepropertiesResponse> DirectoryObjectValidatepropertiesAsync()
         {
-            var p = new DirectoryobjectValidatepropertiesParameter();
-            return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(p, CancellationToken.None);
+            var p = new DirectoryObjectValidatepropertiesParameter();
+            return await this.SendAsync<DirectoryObjectValidatepropertiesParameter, DirectoryObjectValidatepropertiesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectValidatepropertiesResponse> DirectoryObjectValidatepropertiesAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryobjectValidatepropertiesParameter();
-            return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(p, cancellationToken);
+            var p = new DirectoryObjectValidatepropertiesParameter();
+            return await this.SendAsync<DirectoryObjectValidatepropertiesParameter, DirectoryObjectValidatepropertiesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync(DirectoryobjectValidatepropertiesParameter parameter)
+        public async ValueTask<DirectoryObjectValidatepropertiesResponse> DirectoryObjectValidatepropertiesAsync(DirectoryObjectValidatepropertiesParameter parameter)
         {
-            return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryObjectValidatepropertiesParameter, DirectoryObjectValidatepropertiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync(DirectoryobjectValidatepropertiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectValidatepropertiesResponse> DirectoryObjectValidatepropertiesAsync(DirectoryObjectValidatepropertiesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryObjectValidatepropertiesParameter, DirectoryObjectValidatepropertiesResponse>(parameter, cancellationToken);
         }
     }
 }

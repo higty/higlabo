@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
     /// </summary>
-    public partial class GroupsettingUpdateParameter : IRestApiParameter
+    public partial class GroupSettingUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public SettingValue[]? Values { get; set; }
     }
-    public partial class GroupsettingUpdateResponse : RestApiResponse
+    public partial class GroupSettingUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync()
+        public async ValueTask<GroupSettingUpdateResponse> GroupSettingUpdateAsync()
         {
-            var p = new GroupsettingUpdateParameter();
-            return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(p, CancellationToken.None);
+            var p = new GroupSettingUpdateParameter();
+            return await this.SendAsync<GroupSettingUpdateParameter, GroupSettingUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupSettingUpdateResponse> GroupSettingUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new GroupsettingUpdateParameter();
-            return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(p, cancellationToken);
+            var p = new GroupSettingUpdateParameter();
+            return await this.SendAsync<GroupSettingUpdateParameter, GroupSettingUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync(GroupsettingUpdateParameter parameter)
+        public async ValueTask<GroupSettingUpdateResponse> GroupSettingUpdateAsync(GroupSettingUpdateParameter parameter)
         {
-            return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GroupSettingUpdateParameter, GroupSettingUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingUpdateResponse> GroupsettingUpdateAsync(GroupsettingUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupSettingUpdateResponse> GroupSettingUpdateAsync(GroupSettingUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GroupsettingUpdateParameter, GroupsettingUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GroupSettingUpdateParameter, GroupSettingUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

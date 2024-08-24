@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,23 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ActionRequiredByDateTime,
-            AttachmentsArchive,
-            Body,
-            Category,
-            Details,
-            EndDateTime,
-            HasAttachments,
-            Id,
-            IsMajorChange,
-            LastModifiedDateTime,
-            Services,
-            Severity,
-            StartDateTime,
-            Tags,
-            Title,
-            ViewPoint,
-            Attachments,
         }
         public enum ApiPath
         {
@@ -64,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceannouncementListMessagesResponse : RestApiResponse
+    public partial class ServiceannouncementListMessagesResponse : RestApiResponse<ServiceUpdateMessage>
     {
-        public ServiceUpdateMessage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
@@ -102,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ServiceannouncementListMessagesResponse> ServiceannouncementListMessagesAsync(ServiceannouncementListMessagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ServiceannouncementListMessagesParameter, ServiceannouncementListMessagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ServiceUpdateMessage> ServiceannouncementListMessagesEnumerateAsync(ServiceannouncementListMessagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServiceannouncementListMessagesParameter, ServiceannouncementListMessagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ServiceUpdateMessage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

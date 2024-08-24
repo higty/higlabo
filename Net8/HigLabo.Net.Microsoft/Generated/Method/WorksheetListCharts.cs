@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -27,19 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Height,
-            Id,
-            Left,
-            Name,
-            Top,
-            Width,
-            Axes,
-            DataLabels,
-            Format,
-            Legend,
-            Series,
-            Title,
-            Worksheet,
         }
         public enum ApiPath
         {
@@ -65,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class WorksheetListChartsResponse : RestApiResponse
+    public partial class WorksheetListChartsResponse : RestApiResponse<Chart>
     {
-        public Chart[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-charts?view=graph-rest-1.0
@@ -103,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<WorksheetListChartsResponse> WorksheetListChartsAsync(WorksheetListChartsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorksheetListChartsParameter, WorksheetListChartsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-charts?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Chart> WorksheetListChartsEnumerateAsync(WorksheetListChartsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<WorksheetListChartsParameter, WorksheetListChartsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Chart>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

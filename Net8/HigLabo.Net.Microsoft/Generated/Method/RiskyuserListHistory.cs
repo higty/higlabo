@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -51,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RiskyUserListHistoryResponse : RestApiResponse
+    public partial class RiskyUserListHistoryResponse : RestApiResponse<RiskyUserHistoryItem>
     {
-        public RiskyUserHistoryItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
@@ -89,6 +89,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<RiskyUserHistoryItem> RiskyUserListHistoryEnumerateAsync(RiskyUserListHistoryParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<RiskyUserHistoryItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

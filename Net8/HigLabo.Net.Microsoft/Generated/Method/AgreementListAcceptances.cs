@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,20 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AgreementFileId,
-            AgreementId,
-            DeviceDisplayName,
-            DeviceId,
-            DeviceOSType,
-            DeviceOSVersion,
-            ExpirationDateTime,
-            Id,
-            RecordedDateTime,
-            State,
-            UserDisplayName,
-            UserEmail,
-            UserId,
-            UserPrincipalName,
         }
         public enum ApiPath
         {
@@ -62,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AgreementListAcceptancesResponse : RestApiResponse
+    public partial class AgreementListAcceptancesResponse : RestApiResponse<AgreementAcceptance>
     {
-        public AgreementAcceptance[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/agreement-list-acceptances?view=graph-rest-1.0
@@ -100,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AgreementListAcceptancesResponse> AgreementListAcceptancesAsync(AgreementListAcceptancesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AgreementListAcceptancesParameter, AgreementListAcceptancesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-list-acceptances?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AgreementAcceptance> AgreementListAcceptancesEnumerateAsync(AgreementListAcceptancesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AgreementListAcceptancesParameter, AgreementListAcceptancesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AgreementAcceptance>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderPostMessagerulesParameter : IRestApiParameter
+    public partial class MailFolderPostMessagerulesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsEnabled { get; set; }
         public Int32? Sequence { get; set; }
     }
-    public partial class MailfolderPostMessagerulesResponse : RestApiResponse
+    public partial class MailFolderPostMessagerulesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -56,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostMessagerulesResponse> MailfolderPostMessagerulesAsync()
+        public async ValueTask<MailFolderPostMessagerulesResponse> MailFolderPostMessagerulesAsync()
         {
-            var p = new MailfolderPostMessagerulesParameter();
-            return await this.SendAsync<MailfolderPostMessagerulesParameter, MailfolderPostMessagerulesResponse>(p, CancellationToken.None);
+            var p = new MailFolderPostMessagerulesParameter();
+            return await this.SendAsync<MailFolderPostMessagerulesParameter, MailFolderPostMessagerulesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostMessagerulesResponse> MailfolderPostMessagerulesAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderPostMessagerulesResponse> MailFolderPostMessagerulesAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderPostMessagerulesParameter();
-            return await this.SendAsync<MailfolderPostMessagerulesParameter, MailfolderPostMessagerulesResponse>(p, cancellationToken);
+            var p = new MailFolderPostMessagerulesParameter();
+            return await this.SendAsync<MailFolderPostMessagerulesParameter, MailFolderPostMessagerulesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostMessagerulesResponse> MailfolderPostMessagerulesAsync(MailfolderPostMessagerulesParameter parameter)
+        public async ValueTask<MailFolderPostMessagerulesResponse> MailFolderPostMessagerulesAsync(MailFolderPostMessagerulesParameter parameter)
         {
-            return await this.SendAsync<MailfolderPostMessagerulesParameter, MailfolderPostMessagerulesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderPostMessagerulesParameter, MailFolderPostMessagerulesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostMessagerulesResponse> MailfolderPostMessagerulesAsync(MailfolderPostMessagerulesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderPostMessagerulesResponse> MailFolderPostMessagerulesAsync(MailFolderPostMessagerulesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderPostMessagerulesParameter, MailfolderPostMessagerulesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderPostMessagerulesParameter, MailFolderPostMessagerulesResponse>(parameter, cancellationToken);
         }
     }
 }

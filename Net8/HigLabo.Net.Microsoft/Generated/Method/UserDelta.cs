@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,114 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AboutMe,
-            AccountEnabled,
-            AgeGroup,
-            AssignedLicenses,
-            AssignedPlans,
-            Birthday,
-            BusinessPhones,
-            City,
-            CompanyName,
-            ConsentProvidedForMinor,
-            Country,
-            CreatedDateTime,
-            CreationType,
-            DeletedDateTime,
-            Department,
-            DisplayName,
-            EmployeeHireDate,
-            EmployeeLeaveDateTime,
-            EmployeeId,
-            EmployeeOrgData,
-            EmployeeType,
-            ExternalUserState,
-            ExternalUserStateChangeDateTime,
-            FaxNumber,
-            GivenName,
-            HireDate,
-            Id,
-            Identities,
-            ImAddresses,
-            Interests,
-            IsResourceAccount,
-            JobTitle,
-            LastPasswordChangeDateTime,
-            LegalAgeGroupClassification,
-            LicenseAssignmentStates,
-            Mail,
-            MailboxSettings,
-            MailNickname,
-            MobilePhone,
-            MySite,
-            OfficeLocation,
-            OnPremisesDistinguishedName,
-            OnPremisesDomainName,
-            OnPremisesExtensionAttributes,
-            OnPremisesImmutableId,
-            OnPremisesLastSyncDateTime,
-            OnPremisesProvisioningErrors,
-            OnPremisesSamAccountName,
-            OnPremisesSecurityIdentifier,
-            OnPremisesSyncEnabled,
-            OnPremisesUserPrincipalName,
-            OtherMails,
-            PasswordPolicies,
-            PasswordProfile,
-            PastProjects,
-            PostalCode,
-            PreferredDataLocation,
-            PreferredLanguage,
-            PreferredName,
-            ProvisionedPlans,
-            ProxyAddresses,
-            RefreshTokensValidFromDateTime,
-            Responsibilities,
-            Schools,
-            SecurityIdentifier,
-            ShowInAddressList,
-            SignInActivity,
-            SignInSessionsValidFromDateTime,
-            Skills,
-            State,
-            StreetAddress,
-            Surname,
-            UsageLocation,
-            UserPrincipalName,
-            UserType,
-            Activities,
-            AgreementAcceptances,
-            AppRoleAssignments,
-            Authentication,
-            Calendar,
-            CalendarGroups,
-            Calendars,
-            CalendarView,
-            ContactFolders,
-            Contacts,
-            CreatedObjects,
-            DirectReports,
-            Drive,
-            Drives,
-            Events,
-            Extensions,
-            InferenceClassification,
-            Insights,
-            LicenseDetails,
-            MailFolders,
-            Manager,
-            MemberOf,
-            Messages,
-            Onenote,
-            Outlook,
-            OwnedDevices,
-            OwnedObjects,
-            People,
-            Photo,
-            Planner,
-            RegisteredDevices,
-            Todo,
-            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -155,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserDeltaResponse : RestApiResponse
+    public partial class UserDeltaResponse : RestApiResponse<User>
     {
-        public User[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-delta?view=graph-rest-1.0
@@ -193,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserDeltaResponse> UserDeltaAsync(UserDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserDeltaParameter, UserDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<User> UserDeltaEnumerateAsync(UserDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserDeltaParameter, UserDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<User>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

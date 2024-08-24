@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceListStagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewinstanceListStagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,13 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            EndDateTime,
-            FallbackReviewers,
-            Id,
-            Reviewers,
-            StartDateTime,
-            Status,
-            Decisions,
         }
         public enum ApiPath
         {
@@ -56,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewinstanceListStagesResponse : RestApiResponse
+    public partial class AccessReviewinstanceListStagesResponse : RestApiResponse<AccessReviewStage>
     {
-        public AccessReviewStage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
@@ -68,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListStagesResponse> AccessreviewinstanceListStagesAsync()
+        public async ValueTask<AccessReviewinstanceListStagesResponse> AccessReviewinstanceListStagesAsync()
         {
-            var p = new AccessreviewinstanceListStagesParameter();
-            return await this.SendAsync<AccessreviewinstanceListStagesParameter, AccessreviewinstanceListStagesResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceListStagesParameter();
+            return await this.SendAsync<AccessReviewinstanceListStagesParameter, AccessReviewinstanceListStagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListStagesResponse> AccessreviewinstanceListStagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceListStagesResponse> AccessReviewinstanceListStagesAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceListStagesParameter();
-            return await this.SendAsync<AccessreviewinstanceListStagesParameter, AccessreviewinstanceListStagesResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceListStagesParameter();
+            return await this.SendAsync<AccessReviewinstanceListStagesParameter, AccessReviewinstanceListStagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListStagesResponse> AccessreviewinstanceListStagesAsync(AccessreviewinstanceListStagesParameter parameter)
+        public async ValueTask<AccessReviewinstanceListStagesResponse> AccessReviewinstanceListStagesAsync(AccessReviewinstanceListStagesParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceListStagesParameter, AccessreviewinstanceListStagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceListStagesParameter, AccessReviewinstanceListStagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListStagesResponse> AccessreviewinstanceListStagesAsync(AccessreviewinstanceListStagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceListStagesResponse> AccessReviewinstanceListStagesAsync(AccessReviewinstanceListStagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceListStagesParameter, AccessreviewinstanceListStagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceListStagesParameter, AccessReviewinstanceListStagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-stages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewStage> AccessReviewinstanceListStagesEnumerateAsync(AccessReviewinstanceListStagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewinstanceListStagesParameter, AccessReviewinstanceListStagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewStage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

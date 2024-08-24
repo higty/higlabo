@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderListMessagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class MailFolderListMessagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -26,41 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            BccRecipients,
-            Body,
-            BodyPreview,
-            Categories,
-            CcRecipients,
-            ChangeKey,
-            ConversationId,
-            ConversationIndex,
-            CreatedDateTime,
-            Flag,
-            From,
-            HasAttachments,
-            Id,
-            Importance,
-            InferenceClassification,
-            InternetMessageHeaders,
-            InternetMessageId,
-            IsDeliveryReceiptRequested,
-            IsDraft,
-            IsRead,
-            IsReadReceiptRequested,
-            LastModifiedDateTime,
-            ParentFolderId,
-            ReceivedDateTime,
-            ReplyTo,
-            Sender,
-            SentDateTime,
-            Subject,
-            ToRecipients,
-            UniqueBody,
-            WebLink,
-            Attachments,
-            Extensions,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -86,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MailfolderListMessagesResponse : RestApiResponse
+    public partial class MailFolderListMessagesResponse : RestApiResponse<Message>
     {
-        public Message[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
@@ -98,32 +63,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync()
+        public async ValueTask<MailFolderListMessagesResponse> MailFolderListMessagesAsync()
         {
-            var p = new MailfolderListMessagesParameter();
-            return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(p, CancellationToken.None);
+            var p = new MailFolderListMessagesParameter();
+            return await this.SendAsync<MailFolderListMessagesParameter, MailFolderListMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderListMessagesResponse> MailFolderListMessagesAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderListMessagesParameter();
-            return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(p, cancellationToken);
+            var p = new MailFolderListMessagesParameter();
+            return await this.SendAsync<MailFolderListMessagesParameter, MailFolderListMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync(MailfolderListMessagesParameter parameter)
+        public async ValueTask<MailFolderListMessagesResponse> MailFolderListMessagesAsync(MailFolderListMessagesParameter parameter)
         {
-            return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderListMessagesParameter, MailFolderListMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagesResponse> MailfolderListMessagesAsync(MailfolderListMessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderListMessagesResponse> MailFolderListMessagesAsync(MailFolderListMessagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderListMessagesParameter, MailfolderListMessagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderListMessagesParameter, MailFolderListMessagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Message> MailFolderListMessagesEnumerateAsync(MailFolderListMessagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<MailFolderListMessagesParameter, MailFolderListMessagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Message>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

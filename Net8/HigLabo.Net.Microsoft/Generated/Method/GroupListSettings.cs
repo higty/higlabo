@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,10 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            TemplateId,
-            Values,
         }
         public enum ApiPath
         {
@@ -54,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupListSettingsResponse : RestApiResponse
+    public partial class GroupListSettingsResponse : RestApiResponse<GroupSetting>
     {
-        public GroupSetting[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
@@ -92,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<GroupSetting> GroupListSettingsEnumerateAsync(GroupListSettingsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<GroupSetting>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

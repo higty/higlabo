@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
     /// </summary>
-    public partial class UserListJoinedteamsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserListJoinedTeamsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,34 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Classification,
-            ClassSettings,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            FunSettings,
-            GuestSettings,
-            InternalId,
-            IsArchived,
-            MemberSettings,
-            MessagingSettings,
-            Specialization,
-            Summary,
-            TenantId,
-            Visibility,
-            WebUrl,
-            AllChannels,
-            Channels,
-            IncomingChannels,
-            InstalledApps,
-            Members,
-            Operations,
-            Photo,
-            PrimaryChannel,
-            Schedule,
-            Tags,
-            Template,
         }
         public enum ApiPath
         {
@@ -78,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListJoinedteamsResponse : RestApiResponse
+    public partial class UserListJoinedTeamsResponse : RestApiResponse<Team>
     {
-        public Team[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
@@ -90,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync()
+        public async ValueTask<UserListJoinedTeamsResponse> UserListJoinedTeamsAsync()
         {
-            var p = new UserListJoinedteamsParameter();
-            return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(p, CancellationToken.None);
+            var p = new UserListJoinedTeamsParameter();
+            return await this.SendAsync<UserListJoinedTeamsParameter, UserListJoinedTeamsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListJoinedTeamsResponse> UserListJoinedTeamsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserListJoinedteamsParameter();
-            return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(p, cancellationToken);
+            var p = new UserListJoinedTeamsParameter();
+            return await this.SendAsync<UserListJoinedTeamsParameter, UserListJoinedTeamsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter)
+        public async ValueTask<UserListJoinedTeamsResponse> UserListJoinedTeamsAsync(UserListJoinedTeamsParameter parameter)
         {
-            return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserListJoinedTeamsParameter, UserListJoinedTeamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListJoinedTeamsResponse> UserListJoinedTeamsAsync(UserListJoinedTeamsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserListJoinedTeamsParameter, UserListJoinedTeamsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Team> UserListJoinedTeamsEnumerateAsync(UserListJoinedTeamsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListJoinedTeamsParameter, UserListJoinedTeamsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Team>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

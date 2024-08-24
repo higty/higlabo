@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalriskdetectionGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalriskdetectionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalriskdetectionGetResponse : RestApiResponse
+    public partial class ServicePrincipalriskdetectionGetResponse : RestApiResponse
     {
         public enum ServicePrincipalRiskDetectionActivityType
         {
@@ -120,32 +120,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalriskdetectionGetResponse> ServiceprincipalriskdetectionGetAsync()
+        public async ValueTask<ServicePrincipalriskdetectionGetResponse> ServicePrincipalriskdetectionGetAsync()
         {
-            var p = new ServiceprincipalriskdetectionGetParameter();
-            return await this.SendAsync<ServiceprincipalriskdetectionGetParameter, ServiceprincipalriskdetectionGetResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalriskdetectionGetParameter();
+            return await this.SendAsync<ServicePrincipalriskdetectionGetParameter, ServicePrincipalriskdetectionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalriskdetectionGetResponse> ServiceprincipalriskdetectionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalriskdetectionGetResponse> ServicePrincipalriskdetectionGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalriskdetectionGetParameter();
-            return await this.SendAsync<ServiceprincipalriskdetectionGetParameter, ServiceprincipalriskdetectionGetResponse>(p, cancellationToken);
+            var p = new ServicePrincipalriskdetectionGetParameter();
+            return await this.SendAsync<ServicePrincipalriskdetectionGetParameter, ServicePrincipalriskdetectionGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalriskdetectionGetResponse> ServiceprincipalriskdetectionGetAsync(ServiceprincipalriskdetectionGetParameter parameter)
+        public async ValueTask<ServicePrincipalriskdetectionGetResponse> ServicePrincipalriskdetectionGetAsync(ServicePrincipalriskdetectionGetParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalriskdetectionGetParameter, ServiceprincipalriskdetectionGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalriskdetectionGetParameter, ServicePrincipalriskdetectionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalriskdetectionGetResponse> ServiceprincipalriskdetectionGetAsync(ServiceprincipalriskdetectionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalriskdetectionGetResponse> ServicePrincipalriskdetectionGetAsync(ServicePrincipalriskdetectionGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalriskdetectionGetParameter, ServiceprincipalriskdetectionGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalriskdetectionGetParameter, ServicePrincipalriskdetectionGetResponse>(parameter, cancellationToken);
         }
     }
 }

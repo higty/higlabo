@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintershareListAllowedUsersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrinterShareListAllowedUsersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,114 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AboutMe,
-            AccountEnabled,
-            AgeGroup,
-            AssignedLicenses,
-            AssignedPlans,
-            Birthday,
-            BusinessPhones,
-            City,
-            CompanyName,
-            ConsentProvidedForMinor,
-            Country,
-            CreatedDateTime,
-            CreationType,
-            DeletedDateTime,
-            Department,
-            DisplayName,
-            EmployeeHireDate,
-            EmployeeLeaveDateTime,
-            EmployeeId,
-            EmployeeOrgData,
-            EmployeeType,
-            ExternalUserState,
-            ExternalUserStateChangeDateTime,
-            FaxNumber,
-            GivenName,
-            HireDate,
-            Id,
-            Identities,
-            ImAddresses,
-            Interests,
-            IsResourceAccount,
-            JobTitle,
-            LastPasswordChangeDateTime,
-            LegalAgeGroupClassification,
-            LicenseAssignmentStates,
-            Mail,
-            MailboxSettings,
-            MailNickname,
-            MobilePhone,
-            MySite,
-            OfficeLocation,
-            OnPremisesDistinguishedName,
-            OnPremisesDomainName,
-            OnPremisesExtensionAttributes,
-            OnPremisesImmutableId,
-            OnPremisesLastSyncDateTime,
-            OnPremisesProvisioningErrors,
-            OnPremisesSamAccountName,
-            OnPremisesSecurityIdentifier,
-            OnPremisesSyncEnabled,
-            OnPremisesUserPrincipalName,
-            OtherMails,
-            PasswordPolicies,
-            PasswordProfile,
-            PastProjects,
-            PostalCode,
-            PreferredDataLocation,
-            PreferredLanguage,
-            PreferredName,
-            ProvisionedPlans,
-            ProxyAddresses,
-            RefreshTokensValidFromDateTime,
-            Responsibilities,
-            Schools,
-            SecurityIdentifier,
-            ShowInAddressList,
-            SignInActivity,
-            SignInSessionsValidFromDateTime,
-            Skills,
-            State,
-            StreetAddress,
-            Surname,
-            UsageLocation,
-            UserPrincipalName,
-            UserType,
-            Activities,
-            AgreementAcceptances,
-            AppRoleAssignments,
-            Authentication,
-            Calendar,
-            CalendarGroups,
-            Calendars,
-            CalendarView,
-            ContactFolders,
-            Contacts,
-            CreatedObjects,
-            DirectReports,
-            Drive,
-            Drives,
-            Events,
-            Extensions,
-            InferenceClassification,
-            Insights,
-            LicenseDetails,
-            MailFolders,
-            Manager,
-            MemberOf,
-            Messages,
-            Onenote,
-            Outlook,
-            OwnedDevices,
-            OwnedObjects,
-            People,
-            Photo,
-            Planner,
-            RegisteredDevices,
-            Todo,
-            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -156,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrintershareListAllowedUsersResponse : RestApiResponse
+    public partial class PrinterShareListAllowedUsersResponse : RestApiResponse<User>
     {
-        public User[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
@@ -168,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync()
+        public async ValueTask<PrinterShareListAllowedUsersResponse> PrinterShareListAllowedUsersAsync()
         {
-            var p = new PrintershareListAllowedUsersParameter();
-            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(p, CancellationToken.None);
+            var p = new PrinterShareListAllowedUsersParameter();
+            return await this.SendAsync<PrinterShareListAllowedUsersParameter, PrinterShareListAllowedUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareListAllowedUsersResponse> PrinterShareListAllowedUsersAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareListAllowedUsersParameter();
-            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(p, cancellationToken);
+            var p = new PrinterShareListAllowedUsersParameter();
+            return await this.SendAsync<PrinterShareListAllowedUsersParameter, PrinterShareListAllowedUsersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter)
+        public async ValueTask<PrinterShareListAllowedUsersResponse> PrinterShareListAllowedUsersAsync(PrinterShareListAllowedUsersParameter parameter)
         {
-            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterShareListAllowedUsersParameter, PrinterShareListAllowedUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareListAllowedUsersResponse> PrinterShareListAllowedUsersAsync(PrinterShareListAllowedUsersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterShareListAllowedUsersParameter, PrinterShareListAllowedUsersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<User> PrinterShareListAllowedUsersEnumerateAsync(PrinterShareListAllowedUsersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PrinterShareListAllowedUsersParameter, PrinterShareListAllowedUsersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<User>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

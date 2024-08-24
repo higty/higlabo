@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
     /// </summary>
-    public partial class ConnectedorganizationListExternalsponsorsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ConnectedOrganizationListExternalsponsorsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,8 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -50,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ConnectedorganizationListExternalsponsorsResponse : RestApiResponse
+    public partial class ConnectedOrganizationListExternalsponsorsResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
@@ -62,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync()
+        public async ValueTask<ConnectedOrganizationListExternalsponsorsResponse> ConnectedOrganizationListExternalsponsorsAsync()
         {
-            var p = new ConnectedorganizationListExternalsponsorsParameter();
-            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(p, CancellationToken.None);
+            var p = new ConnectedOrganizationListExternalsponsorsParameter();
+            return await this.SendAsync<ConnectedOrganizationListExternalsponsorsParameter, ConnectedOrganizationListExternalsponsorsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedOrganizationListExternalsponsorsResponse> ConnectedOrganizationListExternalsponsorsAsync(CancellationToken cancellationToken)
         {
-            var p = new ConnectedorganizationListExternalsponsorsParameter();
-            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(p, cancellationToken);
+            var p = new ConnectedOrganizationListExternalsponsorsParameter();
+            return await this.SendAsync<ConnectedOrganizationListExternalsponsorsParameter, ConnectedOrganizationListExternalsponsorsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter)
+        public async ValueTask<ConnectedOrganizationListExternalsponsorsResponse> ConnectedOrganizationListExternalsponsorsAsync(ConnectedOrganizationListExternalsponsorsParameter parameter)
         {
-            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConnectedOrganizationListExternalsponsorsParameter, ConnectedOrganizationListExternalsponsorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedOrganizationListExternalsponsorsResponse> ConnectedOrganizationListExternalsponsorsAsync(ConnectedOrganizationListExternalsponsorsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConnectedOrganizationListExternalsponsorsParameter, ConnectedOrganizationListExternalsponsorsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> ConnectedOrganizationListExternalsponsorsEnumerateAsync(ConnectedOrganizationListExternalsponsorsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ConnectedOrganizationListExternalsponsorsParameter, ConnectedOrganizationListExternalsponsorsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

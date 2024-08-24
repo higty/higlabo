@@ -28,11 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApplicationName,
-            DisplayName,
-            ExternalId,
-            Id,
-            WebUrl,
         }
         public enum ApiPath
         {

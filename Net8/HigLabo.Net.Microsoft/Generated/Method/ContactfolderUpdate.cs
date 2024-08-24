@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contactfolder-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ContactfolderUpdateParameter : IRestApiParameter
+    public partial class ContactFolderUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? ParentFolderId { get; set; }
     }
-    public partial class ContactfolderUpdateResponse : RestApiResponse
+    public partial class ContactFolderUpdateResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -60,32 +60,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderUpdateResponse> ContactfolderUpdateAsync()
+        public async ValueTask<ContactFolderUpdateResponse> ContactFolderUpdateAsync()
         {
-            var p = new ContactfolderUpdateParameter();
-            return await this.SendAsync<ContactfolderUpdateParameter, ContactfolderUpdateResponse>(p, CancellationToken.None);
+            var p = new ContactFolderUpdateParameter();
+            return await this.SendAsync<ContactFolderUpdateParameter, ContactFolderUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderUpdateResponse> ContactfolderUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderUpdateResponse> ContactFolderUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ContactfolderUpdateParameter();
-            return await this.SendAsync<ContactfolderUpdateParameter, ContactfolderUpdateResponse>(p, cancellationToken);
+            var p = new ContactFolderUpdateParameter();
+            return await this.SendAsync<ContactFolderUpdateParameter, ContactFolderUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderUpdateResponse> ContactfolderUpdateAsync(ContactfolderUpdateParameter parameter)
+        public async ValueTask<ContactFolderUpdateResponse> ContactFolderUpdateAsync(ContactFolderUpdateParameter parameter)
         {
-            return await this.SendAsync<ContactfolderUpdateParameter, ContactfolderUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContactFolderUpdateParameter, ContactFolderUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderUpdateResponse> ContactfolderUpdateAsync(ContactfolderUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderUpdateResponse> ContactFolderUpdateAsync(ContactFolderUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContactfolderUpdateParameter, ContactfolderUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContactFolderUpdateParameter, ContactFolderUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

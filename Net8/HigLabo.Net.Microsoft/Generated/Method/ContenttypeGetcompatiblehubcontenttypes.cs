@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,26 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssociatedHubsUrls,
-            Description,
-            DocumentSet,
-            DocumentTemplate,
-            Group,
-            Hidden,
-            Id,
-            InheritedFrom,
-            IsBuiltIn,
-            Name,
-            Order,
-            ParentId,
-            PropagateChanges,
-            ReadOnly,
-            Sealed,
-            Base,
-            ColumnLinks,
-            BaseTypes,
-            ColumnPositions,
-            Columns,
         }
         public enum ApiPath
         {
@@ -71,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ContentTypeGetcompatiblehubContentTypesResponse : RestApiResponse
+    public partial class ContentTypeGetcompatiblehubContentTypesResponse : RestApiResponse<ContentType>
     {
-        public ContentType[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
@@ -109,6 +89,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ContentType> ContentTypeGetcompatiblehubContentTypesEnumerateAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ContentType>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

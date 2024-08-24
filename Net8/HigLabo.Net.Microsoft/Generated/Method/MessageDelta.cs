@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -29,41 +30,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            BccRecipients,
-            Body,
-            BodyPreview,
-            Categories,
-            CcRecipients,
-            ChangeKey,
-            ConversationId,
-            ConversationIndex,
-            CreatedDateTime,
-            Flag,
-            From,
-            HasAttachments,
-            Id,
-            Importance,
-            InferenceClassification,
-            InternetMessageHeaders,
-            InternetMessageId,
-            IsDeliveryReceiptRequested,
-            IsDraft,
-            IsRead,
-            IsReadReceiptRequested,
-            LastModifiedDateTime,
-            ParentFolderId,
-            ReceivedDateTime,
-            ReplyTo,
-            Sender,
-            SentDateTime,
-            Subject,
-            ToRecipients,
-            UniqueBody,
-            WebLink,
-            Attachments,
-            Extensions,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -90,9 +56,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MessageDeltaResponse : RestApiResponse
+    public partial class MessageDeltaResponse : RestApiResponse<Message>
     {
-        public Message[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
@@ -128,6 +93,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<MessageDeltaResponse> MessageDeltaAsync(MessageDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageDeltaParameter, MessageDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Message> MessageDeltaEnumerateAsync(MessageDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<MessageDeltaParameter, MessageDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Message>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetteamsUseractivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetTeamsUserActivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetteamsUseractivityUserdetailResponse : RestApiResponse
+    public partial class ReportRootGetTeamsUserActivityUserdetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsUseractivityUserdetailResponse> ReportRootGetteamsUseractivityUserdetailAsync()
+        public async ValueTask<ReportRootGetTeamsUserActivityUserdetailResponse> ReportRootGetTeamsUserActivityUserdetailAsync()
         {
-            var p = new ReportRootGetteamsUseractivityUserdetailParameter();
-            return await this.SendAsync<ReportRootGetteamsUseractivityUserdetailParameter, ReportRootGetteamsUseractivityUserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetTeamsUserActivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetTeamsUserActivityUserdetailParameter, ReportRootGetTeamsUserActivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsUseractivityUserdetailResponse> ReportRootGetteamsUseractivityUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsUserActivityUserdetailResponse> ReportRootGetTeamsUserActivityUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetteamsUseractivityUserdetailParameter();
-            return await this.SendAsync<ReportRootGetteamsUseractivityUserdetailParameter, ReportRootGetteamsUseractivityUserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetTeamsUserActivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetTeamsUserActivityUserdetailParameter, ReportRootGetTeamsUserActivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsUseractivityUserdetailResponse> ReportRootGetteamsUseractivityUserdetailAsync(ReportRootGetteamsUseractivityUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetTeamsUserActivityUserdetailResponse> ReportRootGetTeamsUserActivityUserdetailAsync(ReportRootGetTeamsUserActivityUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetteamsUseractivityUserdetailParameter, ReportRootGetteamsUseractivityUserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetTeamsUserActivityUserdetailParameter, ReportRootGetTeamsUserActivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsUseractivityUserdetailResponse> ReportRootGetteamsUseractivityUserdetailAsync(ReportRootGetteamsUseractivityUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsUserActivityUserdetailResponse> ReportRootGetTeamsUserActivityUserdetailAsync(ReportRootGetTeamsUserActivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetteamsUseractivityUserdetailParameter, ReportRootGetteamsUseractivityUserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetTeamsUserActivityUserdetailParameter, ReportRootGetTeamsUserActivityUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

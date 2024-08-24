@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -31,19 +32,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            IsDefault,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Links,
-            PagesUrl,
-            Self,
-            Pages,
-            ParentNotebook,
-            ParentSectionGroup,
         }
         public enum ApiPath
         {
@@ -71,9 +59,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SectionGroupListSectionsResponse : RestApiResponse
+    public partial class SectionGroupListSectionsResponse : RestApiResponse<Section>
     {
-        public Section[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
@@ -109,6 +96,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SectionGroupListSectionsResponse> SectionGroupListSectionsAsync(SectionGroupListSectionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SectionGroupListSectionsParameter, SectionGroupListSectionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Section> SectionGroupListSectionsEnumerateAsync(SectionGroupListSectionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SectionGroupListSectionsParameter, SectionGroupListSectionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Section>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

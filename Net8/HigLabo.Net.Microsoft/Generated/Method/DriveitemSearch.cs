@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemSearchParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemSearchParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -31,51 +32,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Audio,
-            Bundle,
-            Content,
-            CreatedBy,
-            CreatedDateTime,
-            CTag,
-            Deleted,
-            Description,
-            ETag,
-            File,
-            FileSystemInfo,
-            Folder,
-            Id,
-            Image,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Location,
-            Malware,
-            Name,
-            Package,
-            ParentReference,
-            PendingOperations,
-            Photo,
-            Publication,
-            RemoteItem,
-            Root,
-            SearchResult,
-            Shared,
-            SharepointIds,
-            Size,
-            SpecialFolder,
-            Video,
-            WebDavUrl,
-            WebUrl,
-            Activities,
-            Analytics,
-            Children,
-            CreatedByUser,
-            LastModifiedByUser,
-            ListItem,
-            Permissions,
-            Subscriptions,
-            Thumbnails,
-            Versions,
-            Workbook,
         }
         public enum ApiPath
         {
@@ -104,9 +60,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemSearchResponse : RestApiResponse
+    public partial class DriveItemSearchResponse : RestApiResponse<DriveItem>
     {
-        public DriveItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
@@ -116,32 +71,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync()
+        public async ValueTask<DriveItemSearchResponse> DriveItemSearchAsync()
         {
-            var p = new DriveitemSearchParameter();
-            return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(p, CancellationToken.None);
+            var p = new DriveItemSearchParameter();
+            return await this.SendAsync<DriveItemSearchParameter, DriveItemSearchResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemSearchResponse> DriveItemSearchAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemSearchParameter();
-            return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(p, cancellationToken);
+            var p = new DriveItemSearchParameter();
+            return await this.SendAsync<DriveItemSearchParameter, DriveItemSearchResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter)
+        public async ValueTask<DriveItemSearchResponse> DriveItemSearchAsync(DriveItemSearchParameter parameter)
         {
-            return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemSearchParameter, DriveItemSearchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemSearchResponse> DriveItemSearchAsync(DriveItemSearchParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemSearchParameter, DriveItemSearchResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DriveItem> DriveItemSearchEnumerateAsync(DriveItemSearchParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveItemSearchParameter, DriveItemSearchResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DriveItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

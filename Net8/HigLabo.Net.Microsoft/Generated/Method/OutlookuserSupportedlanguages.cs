@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -50,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OutlookUserSupportedlanguagesResponse : RestApiResponse
+    public partial class OutlookUserSupportedlanguagesResponse : RestApiResponse<LocaleInfo>
     {
-        public LocaleInfo[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
@@ -88,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<LocaleInfo> OutlookUserSupportedlanguagesEnumerateAsync(OutlookUserSupportedlanguagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<LocaleInfo>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

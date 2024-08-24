@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class EmployeeexperienceListLearningprovidersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EmployeeexperienceListLearningProvidersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,14 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            LoginWebUrl,
-            LongLogoWebUrlForDarkTheme,
-            LongLogoWebUrlForLightTheme,
-            SquareLogoWebUrlForDarkTheme,
-            SquareLogoWebUrlForLightTheme,
-            LearningContents,
         }
         public enum ApiPath
         {
@@ -55,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EmployeeexperienceListLearningprovidersResponse : RestApiResponse
+    public partial class EmployeeexperienceListLearningProvidersResponse : RestApiResponse<LearningProvider>
     {
-        public LearningProvider[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
@@ -67,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync()
+        public async ValueTask<EmployeeexperienceListLearningProvidersResponse> EmployeeexperienceListLearningProvidersAsync()
         {
-            var p = new EmployeeexperienceListLearningprovidersParameter();
-            return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(p, CancellationToken.None);
+            var p = new EmployeeexperienceListLearningProvidersParameter();
+            return await this.SendAsync<EmployeeexperienceListLearningProvidersParameter, EmployeeexperienceListLearningProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperienceListLearningProvidersResponse> EmployeeexperienceListLearningProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new EmployeeexperienceListLearningprovidersParameter();
-            return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(p, cancellationToken);
+            var p = new EmployeeexperienceListLearningProvidersParameter();
+            return await this.SendAsync<EmployeeexperienceListLearningProvidersParameter, EmployeeexperienceListLearningProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(EmployeeexperienceListLearningprovidersParameter parameter)
+        public async ValueTask<EmployeeexperienceListLearningProvidersResponse> EmployeeexperienceListLearningProvidersAsync(EmployeeexperienceListLearningProvidersParameter parameter)
         {
-            return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EmployeeexperienceListLearningProvidersParameter, EmployeeexperienceListLearningProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperienceListLearningprovidersResponse> EmployeeexperienceListLearningprovidersAsync(EmployeeexperienceListLearningprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperienceListLearningProvidersResponse> EmployeeexperienceListLearningProvidersAsync(EmployeeexperienceListLearningProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EmployeeexperienceListLearningprovidersParameter, EmployeeexperienceListLearningprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EmployeeexperienceListLearningProvidersParameter, EmployeeexperienceListLearningProvidersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-list-learningproviders?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<LearningProvider> EmployeeexperienceListLearningProvidersEnumerateAsync(EmployeeexperienceListLearningProvidersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EmployeeexperienceListLearningProvidersParameter, EmployeeexperienceListLearningProvidersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<LearningProvider>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

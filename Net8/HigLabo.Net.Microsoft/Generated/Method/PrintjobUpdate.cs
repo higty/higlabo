@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printjob-update?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintjobUpdateParameter : IRestApiParameter
+    public partial class PrintJobUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
     }
-    public partial class PrintjobUpdateResponse : RestApiResponse
+    public partial class PrintJobUpdateResponse : RestApiResponse
     {
         public PrintJobConfiguration? Configuration { get; set; }
         public UserIdentity? CreatedBy { get; set; }
@@ -59,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobUpdateResponse> PrintjobUpdateAsync()
+        public async ValueTask<PrintJobUpdateResponse> PrintJobUpdateAsync()
         {
-            var p = new PrintjobUpdateParameter();
-            return await this.SendAsync<PrintjobUpdateParameter, PrintjobUpdateResponse>(p, CancellationToken.None);
+            var p = new PrintJobUpdateParameter();
+            return await this.SendAsync<PrintJobUpdateParameter, PrintJobUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobUpdateResponse> PrintjobUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintJobUpdateResponse> PrintJobUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintjobUpdateParameter();
-            return await this.SendAsync<PrintjobUpdateParameter, PrintjobUpdateResponse>(p, cancellationToken);
+            var p = new PrintJobUpdateParameter();
+            return await this.SendAsync<PrintJobUpdateParameter, PrintJobUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobUpdateResponse> PrintjobUpdateAsync(PrintjobUpdateParameter parameter)
+        public async ValueTask<PrintJobUpdateResponse> PrintJobUpdateAsync(PrintJobUpdateParameter parameter)
         {
-            return await this.SendAsync<PrintjobUpdateParameter, PrintjobUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintJobUpdateParameter, PrintJobUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobUpdateResponse> PrintjobUpdateAsync(PrintjobUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintJobUpdateResponse> PrintJobUpdateAsync(PrintJobUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintjobUpdateParameter, PrintjobUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintJobUpdateParameter, PrintJobUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

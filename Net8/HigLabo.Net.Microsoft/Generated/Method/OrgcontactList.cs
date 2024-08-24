@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,25 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Addresses,
-            CompanyName,
-            Department,
-            DisplayName,
-            GivenName,
-            Id,
-            JobTitle,
-            Mail,
-            MailNickname,
-            OnPremisesLastSyncDateTime,
-            OnPremisesProvisioningErrors,
-            OnPremisesSyncEnabled,
-            Phones,
-            ProxyAddresses,
-            Surname,
-            DirectReports,
-            Manager,
-            MemberOf,
-            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -66,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OrgcontactListResponse : RestApiResponse
+    public partial class OrgcontactListResponse : RestApiResponse<OrgContact>
     {
-        public OrgContact[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list?view=graph-rest-1.0
@@ -104,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<OrgcontactListResponse> OrgcontactListAsync(OrgcontactListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrgcontactListParameter, OrgcontactListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<OrgContact> OrgcontactListEnumerateAsync(OrgcontactListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<OrgcontactListParameter, OrgcontactListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<OrgContact>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,13 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AaGuid,
-            AttestationCertificates,
-            AttestationLevel,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            Model,
         }
         public enum ApiPath
         {
@@ -57,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class Fido2authenticationmethodListResponse : RestApiResponse
+    public partial class Fido2authenticationmethodListResponse : RestApiResponse<Fido2AuthenticationMethod>
     {
-        public Fido2AuthenticationMethod[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0
@@ -95,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<Fido2authenticationmethodListResponse> Fido2authenticationmethodListAsync(Fido2authenticationmethodListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<Fido2authenticationmethodListParameter, Fido2authenticationmethodListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Fido2AuthenticationMethod> Fido2authenticationmethodListEnumerateAsync(Fido2authenticationmethodListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<Fido2authenticationmethodListParameter, Fido2authenticationmethodListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Fido2AuthenticationMethod>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

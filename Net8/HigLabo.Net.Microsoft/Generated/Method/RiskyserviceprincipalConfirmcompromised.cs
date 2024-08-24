@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
     /// </summary>
-    public partial class RiskyserviceprincipalConfirmcompromisedParameter : IRestApiParameter
+    public partial class RiskyServicePrincipalConfirmcompromisedParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -36,7 +36,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class RiskyserviceprincipalConfirmcompromisedResponse : RestApiResponse
+    public partial class RiskyServicePrincipalConfirmcompromisedResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -47,32 +47,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync()
+        public async ValueTask<RiskyServicePrincipalConfirmcompromisedResponse> RiskyServicePrincipalConfirmcompromisedAsync()
         {
-            var p = new RiskyserviceprincipalConfirmcompromisedParameter();
-            return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(p, CancellationToken.None);
+            var p = new RiskyServicePrincipalConfirmcompromisedParameter();
+            return await this.SendAsync<RiskyServicePrincipalConfirmcompromisedParameter, RiskyServicePrincipalConfirmcompromisedResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyServicePrincipalConfirmcompromisedResponse> RiskyServicePrincipalConfirmcompromisedAsync(CancellationToken cancellationToken)
         {
-            var p = new RiskyserviceprincipalConfirmcompromisedParameter();
-            return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(p, cancellationToken);
+            var p = new RiskyServicePrincipalConfirmcompromisedParameter();
+            return await this.SendAsync<RiskyServicePrincipalConfirmcompromisedParameter, RiskyServicePrincipalConfirmcompromisedResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(RiskyserviceprincipalConfirmcompromisedParameter parameter)
+        public async ValueTask<RiskyServicePrincipalConfirmcompromisedResponse> RiskyServicePrincipalConfirmcompromisedAsync(RiskyServicePrincipalConfirmcompromisedParameter parameter)
         {
-            return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RiskyServicePrincipalConfirmcompromisedParameter, RiskyServicePrincipalConfirmcompromisedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalConfirmcompromisedResponse> RiskyserviceprincipalConfirmcompromisedAsync(RiskyserviceprincipalConfirmcompromisedParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyServicePrincipalConfirmcompromisedResponse> RiskyServicePrincipalConfirmcompromisedAsync(RiskyServicePrincipalConfirmcompromisedParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RiskyserviceprincipalConfirmcompromisedParameter, RiskyserviceprincipalConfirmcompromisedResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RiskyServicePrincipalConfirmcompromisedParameter, RiskyServicePrincipalConfirmcompromisedResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
     /// </summary>
-    public partial class ChannelGetallmessagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ChannelGetAllMessagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,21 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Email,
-            Id,
-            IsFavoriteByDefault,
-            MembershipType,
-            TenantId,
-            WebUrl,
-            FilesFolder,
-            Members,
-            Messages,
-            Operations,
-            SharedWithTeams,
-            Tabs,
         }
         public enum ApiPath
         {
@@ -63,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ChannelGetallmessagesResponse : RestApiResponse
+    public partial class ChannelGetAllMessagesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -74,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync()
+        public async ValueTask<ChannelGetAllMessagesResponse> ChannelGetAllMessagesAsync()
         {
-            var p = new ChannelGetallmessagesParameter();
-            return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(p, CancellationToken.None);
+            var p = new ChannelGetAllMessagesParameter();
+            return await this.SendAsync<ChannelGetAllMessagesParameter, ChannelGetAllMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetAllMessagesResponse> ChannelGetAllMessagesAsync(CancellationToken cancellationToken)
         {
-            var p = new ChannelGetallmessagesParameter();
-            return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(p, cancellationToken);
+            var p = new ChannelGetAllMessagesParameter();
+            return await this.SendAsync<ChannelGetAllMessagesParameter, ChannelGetAllMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(ChannelGetallmessagesParameter parameter)
+        public async ValueTask<ChannelGetAllMessagesResponse> ChannelGetAllMessagesAsync(ChannelGetAllMessagesParameter parameter)
         {
-            return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChannelGetAllMessagesParameter, ChannelGetAllMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/channel-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChannelGetallmessagesResponse> ChannelGetallmessagesAsync(ChannelGetallmessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChannelGetAllMessagesResponse> ChannelGetAllMessagesAsync(ChannelGetAllMessagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChannelGetallmessagesParameter, ChannelGetallmessagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChannelGetAllMessagesParameter, ChannelGetAllMessagesResponse>(parameter, cancellationToken);
         }
     }
 }

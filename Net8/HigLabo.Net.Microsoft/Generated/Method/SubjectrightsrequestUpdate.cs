@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
     /// </summary>
-    public partial class SubjectrightsrequestUpdateParameter : IRestApiParameter
+    public partial class SubjectrightsRequestUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public DateTimeOffset? InternalDueDateTime { get; set; }
     }
-    public partial class SubjectrightsrequestUpdateResponse : RestApiResponse
+    public partial class SubjectrightsRequestUpdateResponse : RestApiResponse
     {
         public enum SubjectRightsRequestDataSubjectType
         {
@@ -98,32 +98,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync()
+        public async ValueTask<SubjectrightsRequestUpdateResponse> SubjectrightsRequestUpdateAsync()
         {
-            var p = new SubjectrightsrequestUpdateParameter();
-            return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(p, CancellationToken.None);
+            var p = new SubjectrightsRequestUpdateParameter();
+            return await this.SendAsync<SubjectrightsRequestUpdateParameter, SubjectrightsRequestUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsRequestUpdateResponse> SubjectrightsRequestUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new SubjectrightsrequestUpdateParameter();
-            return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(p, cancellationToken);
+            var p = new SubjectrightsRequestUpdateParameter();
+            return await this.SendAsync<SubjectrightsRequestUpdateParameter, SubjectrightsRequestUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(SubjectrightsrequestUpdateParameter parameter)
+        public async ValueTask<SubjectrightsRequestUpdateResponse> SubjectrightsRequestUpdateAsync(SubjectrightsRequestUpdateParameter parameter)
         {
-            return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SubjectrightsRequestUpdateParameter, SubjectrightsRequestUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestUpdateResponse> SubjectrightsrequestUpdateAsync(SubjectrightsrequestUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsRequestUpdateResponse> SubjectrightsRequestUpdateAsync(SubjectrightsRequestUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SubjectrightsrequestUpdateParameter, SubjectrightsrequestUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SubjectrightsRequestUpdateParameter, SubjectrightsRequestUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

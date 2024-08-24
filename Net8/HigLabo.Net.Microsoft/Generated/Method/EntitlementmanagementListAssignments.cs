@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,14 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ExpiredDateTime,
-            Id,
-            Schedule,
-            State,
-            Status,
-            AccessPackage,
-            Target,
-            AssignmentPolicy,
         }
         public enum ApiPath
         {
@@ -55,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementManagementListAssignmentsResponse : RestApiResponse
+    public partial class EntitlementManagementListAssignmentsResponse : RestApiResponse<AccessPackageAssignment>
     {
-        public AccessPackageAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0
@@ -93,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EntitlementManagementListAssignmentsResponse> EntitlementManagementListAssignmentsAsync(EntitlementManagementListAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EntitlementManagementListAssignmentsParameter, EntitlementManagementListAssignmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessPackageAssignment> EntitlementManagementListAssignmentsEnumerateAsync(EntitlementManagementListAssignmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EntitlementManagementListAssignmentsParameter, EntitlementManagementListAssignmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessPackageAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

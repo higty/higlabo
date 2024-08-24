@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -27,11 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApplicationName,
-            DisplayName,
-            ExternalId,
-            Id,
-            WebUrl,
         }
         public enum ApiPath
         {
@@ -57,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TodotaskListLinkedResourcesResponse : RestApiResponse
+    public partial class TodotaskListLinkedResourcesResponse : RestApiResponse<LinkedResource>
     {
-        public LinkedResource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/todotask-list-linkedresources?view=graph-rest-1.0
@@ -95,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TodotaskListLinkedResourcesResponse> TodotaskListLinkedResourcesAsync(TodotaskListLinkedResourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TodotaskListLinkedResourcesParameter, TodotaskListLinkedResourcesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-linkedresources?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<LinkedResource> TodotaskListLinkedResourcesEnumerateAsync(TodotaskListLinkedResourcesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TodotaskListLinkedResourcesParameter, TodotaskListLinkedResourcesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<LinkedResource>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

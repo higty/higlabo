@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete-identityproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class B2xidentityUserflowDeleteIdentityprovidersParameter : IRestApiParameter
+    public partial class B2xidentityUserflowDeleteIdentityProvidersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class B2xidentityUserflowDeleteIdentityprovidersResponse : RestApiResponse
+    public partial class B2xidentityUserflowDeleteIdentityProvidersResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowDeleteIdentityprovidersResponse> B2xidentityUserflowDeleteIdentityprovidersAsync()
+        public async ValueTask<B2xidentityUserflowDeleteIdentityProvidersResponse> B2xidentityUserflowDeleteIdentityProvidersAsync()
         {
-            var p = new B2xidentityUserflowDeleteIdentityprovidersParameter();
-            return await this.SendAsync<B2xidentityUserflowDeleteIdentityprovidersParameter, B2xidentityUserflowDeleteIdentityprovidersResponse>(p, CancellationToken.None);
+            var p = new B2xidentityUserflowDeleteIdentityProvidersParameter();
+            return await this.SendAsync<B2xidentityUserflowDeleteIdentityProvidersParameter, B2xidentityUserflowDeleteIdentityProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowDeleteIdentityprovidersResponse> B2xidentityUserflowDeleteIdentityprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowDeleteIdentityProvidersResponse> B2xidentityUserflowDeleteIdentityProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new B2xidentityUserflowDeleteIdentityprovidersParameter();
-            return await this.SendAsync<B2xidentityUserflowDeleteIdentityprovidersParameter, B2xidentityUserflowDeleteIdentityprovidersResponse>(p, cancellationToken);
+            var p = new B2xidentityUserflowDeleteIdentityProvidersParameter();
+            return await this.SendAsync<B2xidentityUserflowDeleteIdentityProvidersParameter, B2xidentityUserflowDeleteIdentityProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowDeleteIdentityprovidersResponse> B2xidentityUserflowDeleteIdentityprovidersAsync(B2xidentityUserflowDeleteIdentityprovidersParameter parameter)
+        public async ValueTask<B2xidentityUserflowDeleteIdentityProvidersResponse> B2xidentityUserflowDeleteIdentityProvidersAsync(B2xidentityUserflowDeleteIdentityProvidersParameter parameter)
         {
-            return await this.SendAsync<B2xidentityUserflowDeleteIdentityprovidersParameter, B2xidentityUserflowDeleteIdentityprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<B2xidentityUserflowDeleteIdentityProvidersParameter, B2xidentityUserflowDeleteIdentityProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowDeleteIdentityprovidersResponse> B2xidentityUserflowDeleteIdentityprovidersAsync(B2xidentityUserflowDeleteIdentityprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowDeleteIdentityProvidersResponse> B2xidentityUserflowDeleteIdentityProvidersAsync(B2xidentityUserflowDeleteIdentityProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<B2xidentityUserflowDeleteIdentityprovidersParameter, B2xidentityUserflowDeleteIdentityprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<B2xidentityUserflowDeleteIdentityProvidersParameter, B2xidentityUserflowDeleteIdentityProvidersResponse>(parameter, cancellationToken);
         }
     }
 }

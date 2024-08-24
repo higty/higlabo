@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewhistorydefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewHistoryDefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DownloadUri,
-            ExpirationDateTime,
-            FulfilledDateTime,
-            Id,
-            ReviewHistoryPeriodEndDateTime,
-            ReviewHistoryPeriodStartDateTime,
-            RunDateTime,
-            Status,
         }
         public enum ApiPath
         {
@@ -56,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewhistorydefinitionListInstancesResponse : RestApiResponse
+    public partial class AccessReviewHistoryDefinitionListInstancesResponse : RestApiResponse<AccessReviewHistoryInstance>
     {
-        public AccessReviewHistoryInstance[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
@@ -68,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync()
+        public async ValueTask<AccessReviewHistoryDefinitionListInstancesResponse> AccessReviewHistoryDefinitionListInstancesAsync()
         {
-            var p = new AccessreviewhistorydefinitionListInstancesParameter();
-            return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(p, CancellationToken.None);
+            var p = new AccessReviewHistoryDefinitionListInstancesParameter();
+            return await this.SendAsync<AccessReviewHistoryDefinitionListInstancesParameter, AccessReviewHistoryDefinitionListInstancesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewHistoryDefinitionListInstancesResponse> AccessReviewHistoryDefinitionListInstancesAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewhistorydefinitionListInstancesParameter();
-            return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(p, cancellationToken);
+            var p = new AccessReviewHistoryDefinitionListInstancesParameter();
+            return await this.SendAsync<AccessReviewHistoryDefinitionListInstancesParameter, AccessReviewHistoryDefinitionListInstancesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync(AccessreviewhistorydefinitionListInstancesParameter parameter)
+        public async ValueTask<AccessReviewHistoryDefinitionListInstancesResponse> AccessReviewHistoryDefinitionListInstancesAsync(AccessReviewHistoryDefinitionListInstancesParameter parameter)
         {
-            return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewHistoryDefinitionListInstancesParameter, AccessReviewHistoryDefinitionListInstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync(AccessreviewhistorydefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewHistoryDefinitionListInstancesResponse> AccessReviewHistoryDefinitionListInstancesAsync(AccessReviewHistoryDefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewHistoryDefinitionListInstancesParameter, AccessReviewHistoryDefinitionListInstancesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewHistoryInstance> AccessReviewHistoryDefinitionListInstancesEnumerateAsync(AccessReviewHistoryDefinitionListInstancesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewHistoryDefinitionListInstancesParameter, AccessReviewHistoryDefinitionListInstancesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewHistoryInstance>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

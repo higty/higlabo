@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
     /// </summary>
-    public partial class ConnectedorganizationPostExternalsponsorsParameter : IRestApiParameter
+    public partial class ConnectedOrganizationPostExternalsponsorsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class ConnectedorganizationPostExternalsponsorsResponse : RestApiResponse
+    public partial class ConnectedOrganizationPostExternalsponsorsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync()
+        public async ValueTask<ConnectedOrganizationPostExternalsponsorsResponse> ConnectedOrganizationPostExternalsponsorsAsync()
         {
-            var p = new ConnectedorganizationPostExternalsponsorsParameter();
-            return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(p, CancellationToken.None);
+            var p = new ConnectedOrganizationPostExternalsponsorsParameter();
+            return await this.SendAsync<ConnectedOrganizationPostExternalsponsorsParameter, ConnectedOrganizationPostExternalsponsorsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConnectedOrganizationPostExternalsponsorsResponse> ConnectedOrganizationPostExternalsponsorsAsync(CancellationToken cancellationToken)
         {
-            var p = new ConnectedorganizationPostExternalsponsorsParameter();
-            return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(p, cancellationToken);
+            var p = new ConnectedOrganizationPostExternalsponsorsParameter();
+            return await this.SendAsync<ConnectedOrganizationPostExternalsponsorsParameter, ConnectedOrganizationPostExternalsponsorsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync(ConnectedorganizationPostExternalsponsorsParameter parameter)
+        public async ValueTask<ConnectedOrganizationPostExternalsponsorsResponse> ConnectedOrganizationPostExternalsponsorsAsync(ConnectedOrganizationPostExternalsponsorsParameter parameter)
         {
-            return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConnectedOrganizationPostExternalsponsorsParameter, ConnectedOrganizationPostExternalsponsorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync(ConnectedorganizationPostExternalsponsorsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConnectedOrganizationPostExternalsponsorsResponse> ConnectedOrganizationPostExternalsponsorsAsync(ConnectedOrganizationPostExternalsponsorsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConnectedOrganizationPostExternalsponsorsParameter, ConnectedOrganizationPostExternalsponsorsResponse>(parameter, cancellationToken);
         }
     }
 }

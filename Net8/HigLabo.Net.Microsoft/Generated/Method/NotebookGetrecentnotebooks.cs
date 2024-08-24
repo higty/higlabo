@@ -25,21 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            IsDefault,
-            IsShared,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Links,
-            SectionGroupsUrl,
-            SectionsUrl,
-            Self,
-            UserRole,
-            SectionGroups,
-            Sections,
         }
         public enum ApiPath
         {

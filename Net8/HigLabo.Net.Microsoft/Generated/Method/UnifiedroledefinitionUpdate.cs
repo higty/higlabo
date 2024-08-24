@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
     /// </summary>
-    public partial class UnifiedroledefinitionUpdateParameter : IRestApiParameter
+    public partial class UnifiedroleDefinitionUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Microsoft
         public string? TemplateId { get; set; }
         public string? Version { get; set; }
     }
-    public partial class UnifiedroledefinitionUpdateResponse : RestApiResponse
+    public partial class UnifiedroleDefinitionUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -55,32 +55,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync()
+        public async ValueTask<UnifiedroleDefinitionUpdateResponse> UnifiedroleDefinitionUpdateAsync()
         {
-            var p = new UnifiedroledefinitionUpdateParameter();
-            return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(p, CancellationToken.None);
+            var p = new UnifiedroleDefinitionUpdateParameter();
+            return await this.SendAsync<UnifiedroleDefinitionUpdateParameter, UnifiedroleDefinitionUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleDefinitionUpdateResponse> UnifiedroleDefinitionUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new UnifiedroledefinitionUpdateParameter();
-            return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(p, cancellationToken);
+            var p = new UnifiedroleDefinitionUpdateParameter();
+            return await this.SendAsync<UnifiedroleDefinitionUpdateParameter, UnifiedroleDefinitionUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(UnifiedroledefinitionUpdateParameter parameter)
+        public async ValueTask<UnifiedroleDefinitionUpdateResponse> UnifiedroleDefinitionUpdateAsync(UnifiedroleDefinitionUpdateParameter parameter)
         {
-            return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UnifiedroleDefinitionUpdateParameter, UnifiedroleDefinitionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/unifiedroledefinition-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UnifiedroledefinitionUpdateResponse> UnifiedroledefinitionUpdateAsync(UnifiedroledefinitionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UnifiedroleDefinitionUpdateResponse> UnifiedroleDefinitionUpdateAsync(UnifiedroleDefinitionUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UnifiedroledefinitionUpdateParameter, UnifiedroledefinitionUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UnifiedroleDefinitionUpdateParameter, UnifiedroleDefinitionUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

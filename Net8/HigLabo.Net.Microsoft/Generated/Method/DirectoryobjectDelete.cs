@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryobjectDeleteParameter : IRestApiParameter
+    public partial class DirectoryObjectDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class DirectoryobjectDeleteResponse : RestApiResponse
+    public partial class DirectoryObjectDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeleteResponse> DirectoryobjectDeleteAsync()
+        public async ValueTask<DirectoryObjectDeleteResponse> DirectoryObjectDeleteAsync()
         {
-            var p = new DirectoryobjectDeleteParameter();
-            return await this.SendAsync<DirectoryobjectDeleteParameter, DirectoryobjectDeleteResponse>(p, CancellationToken.None);
+            var p = new DirectoryObjectDeleteParameter();
+            return await this.SendAsync<DirectoryObjectDeleteParameter, DirectoryObjectDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeleteResponse> DirectoryobjectDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectDeleteResponse> DirectoryObjectDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryobjectDeleteParameter();
-            return await this.SendAsync<DirectoryobjectDeleteParameter, DirectoryobjectDeleteResponse>(p, cancellationToken);
+            var p = new DirectoryObjectDeleteParameter();
+            return await this.SendAsync<DirectoryObjectDeleteParameter, DirectoryObjectDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeleteResponse> DirectoryobjectDeleteAsync(DirectoryobjectDeleteParameter parameter)
+        public async ValueTask<DirectoryObjectDeleteResponse> DirectoryObjectDeleteAsync(DirectoryObjectDeleteParameter parameter)
         {
-            return await this.SendAsync<DirectoryobjectDeleteParameter, DirectoryobjectDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryObjectDeleteParameter, DirectoryObjectDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryobject-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryobjectDeleteResponse> DirectoryobjectDeleteAsync(DirectoryobjectDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryObjectDeleteResponse> DirectoryObjectDeleteAsync(DirectoryObjectDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryobjectDeleteParameter, DirectoryobjectDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryObjectDeleteParameter, DirectoryObjectDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

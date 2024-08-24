@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
     /// </summary>
-    public partial class HomerealmdiscoveryPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class HomeRealmDiscoveryPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class HomerealmdiscoveryPolicyGetResponse : RestApiResponse
+    public partial class HomeRealmDiscoveryPolicyGetResponse : RestApiResponse
     {
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
@@ -65,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync()
+        public async ValueTask<HomeRealmDiscoveryPolicyGetResponse> HomeRealmDiscoveryPolicyGetAsync()
         {
-            var p = new HomerealmdiscoveryPolicyGetParameter();
-            return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(p, CancellationToken.None);
+            var p = new HomeRealmDiscoveryPolicyGetParameter();
+            return await this.SendAsync<HomeRealmDiscoveryPolicyGetParameter, HomeRealmDiscoveryPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<HomeRealmDiscoveryPolicyGetResponse> HomeRealmDiscoveryPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new HomerealmdiscoveryPolicyGetParameter();
-            return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(p, cancellationToken);
+            var p = new HomeRealmDiscoveryPolicyGetParameter();
+            return await this.SendAsync<HomeRealmDiscoveryPolicyGetParameter, HomeRealmDiscoveryPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(HomerealmdiscoveryPolicyGetParameter parameter)
+        public async ValueTask<HomeRealmDiscoveryPolicyGetResponse> HomeRealmDiscoveryPolicyGetAsync(HomeRealmDiscoveryPolicyGetParameter parameter)
         {
-            return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<HomeRealmDiscoveryPolicyGetParameter, HomeRealmDiscoveryPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyGetResponse> HomerealmdiscoveryPolicyGetAsync(HomerealmdiscoveryPolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<HomeRealmDiscoveryPolicyGetResponse> HomeRealmDiscoveryPolicyGetAsync(HomeRealmDiscoveryPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<HomerealmdiscoveryPolicyGetParameter, HomerealmdiscoveryPolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<HomeRealmDiscoveryPolicyGetParameter, HomeRealmDiscoveryPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

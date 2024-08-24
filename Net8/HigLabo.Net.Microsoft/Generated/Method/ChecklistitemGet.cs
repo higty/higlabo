@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ChecklistitemGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ChecklistItemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ChecklistitemGetResponse : RestApiResponse
+    public partial class ChecklistItemGetResponse : RestApiResponse
     {
         public DateTimeOffset? CheckedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -69,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync()
+        public async ValueTask<ChecklistItemGetResponse> ChecklistItemGetAsync()
         {
-            var p = new ChecklistitemGetParameter();
-            return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(p, CancellationToken.None);
+            var p = new ChecklistItemGetParameter();
+            return await this.SendAsync<ChecklistItemGetParameter, ChecklistItemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChecklistItemGetResponse> ChecklistItemGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ChecklistitemGetParameter();
-            return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(p, cancellationToken);
+            var p = new ChecklistItemGetParameter();
+            return await this.SendAsync<ChecklistItemGetParameter, ChecklistItemGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter)
+        public async ValueTask<ChecklistItemGetResponse> ChecklistItemGetAsync(ChecklistItemGetParameter parameter)
         {
-            return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChecklistItemGetParameter, ChecklistItemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChecklistItemGetResponse> ChecklistItemGetAsync(ChecklistItemGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChecklistItemGetParameter, ChecklistItemGetResponse>(parameter, cancellationToken);
         }
     }
 }

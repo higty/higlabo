@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,13 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Feature,
-            Id,
-            IsAppliedToOrganization,
-            IsEnabled,
-            AppliesTo,
         }
         public enum ApiPath
         {
@@ -54,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class FeaturerolloutpoliciesListResponse : RestApiResponse
+    public partial class FeaturerolloutpoliciesListResponse : RestApiResponse<FeatureRolloutPolicy>
     {
-        public FeatureRolloutPolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0
@@ -92,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<FeaturerolloutpoliciesListResponse> FeaturerolloutpoliciesListAsync(FeaturerolloutpoliciesListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FeaturerolloutpoliciesListParameter, FeaturerolloutpoliciesListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<FeatureRolloutPolicy> FeaturerolloutpoliciesListEnumerateAsync(FeaturerolloutpoliciesListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<FeaturerolloutpoliciesListParameter, FeaturerolloutpoliciesListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<FeatureRolloutPolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-noncustodialsources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-noncustodialsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEdiscoverysearchDeleteNoncustodialsourcesAsync()
+        public async ValueTask<SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEDiscoverysearchDeleteNoncustodialsourcesAsync()
         {
-            var p = new SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-noncustodialsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEdiscoverysearchDeleteNoncustodialsourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEDiscoverysearchDeleteNoncustodialsourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-noncustodialsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEdiscoverysearchDeleteNoncustodialsourcesAsync(SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEDiscoverysearchDeleteNoncustodialsourcesAsync(SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-noncustodialsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEdiscoverysearchDeleteNoncustodialsourcesAsync(SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse> SecurityEDiscoverysearchDeleteNoncustodialsourcesAsync(SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEdiscoverysearchDeleteNoncustodialsourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteNoncustodialsourcesParameter, SecurityEDiscoverysearchDeleteNoncustodialsourcesResponse>(parameter, cancellationToken);
         }
     }
 }

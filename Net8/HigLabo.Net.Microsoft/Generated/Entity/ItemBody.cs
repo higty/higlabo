@@ -14,6 +14,6 @@ namespace HigLabo.Net.Microsoft
         }
 
         public string? Content { get; set; }
-        public ItemBodyBodyType ContentType { get; set; }
+        public ItemBodyBodyType? ContentType { get; set; }
     }
 }

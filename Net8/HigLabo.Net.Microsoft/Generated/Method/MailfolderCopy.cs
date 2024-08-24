@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderCopyParameter : IRestApiParameter
+    public partial class MailFolderCopyParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class MailfolderCopyResponse : RestApiResponse
+    public partial class MailFolderCopyResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -76,32 +76,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync()
+        public async ValueTask<MailFolderCopyResponse> MailFolderCopyAsync()
         {
-            var p = new MailfolderCopyParameter();
-            return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(p, CancellationToken.None);
+            var p = new MailFolderCopyParameter();
+            return await this.SendAsync<MailFolderCopyParameter, MailFolderCopyResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderCopyResponse> MailFolderCopyAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderCopyParameter();
-            return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(p, cancellationToken);
+            var p = new MailFolderCopyParameter();
+            return await this.SendAsync<MailFolderCopyParameter, MailFolderCopyResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync(MailfolderCopyParameter parameter)
+        public async ValueTask<MailFolderCopyResponse> MailFolderCopyAsync(MailFolderCopyParameter parameter)
         {
-            return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderCopyParameter, MailFolderCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderCopyResponse> MailfolderCopyAsync(MailfolderCopyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderCopyResponse> MailFolderCopyAsync(MailFolderCopyParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderCopyParameter, MailfolderCopyResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderCopyParameter, MailFolderCopyResponse>(parameter, cancellationToken);
         }
     }
 }

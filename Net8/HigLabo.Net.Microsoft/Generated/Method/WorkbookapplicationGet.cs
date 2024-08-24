@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
     /// </summary>
-    public partial class WorkbookapplicationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class WorkbookApplicationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class WorkbookapplicationGetResponse : RestApiResponse
+    public partial class WorkbookApplicationGetResponse : RestApiResponse
     {
         public enum WorkbookApplicationstring
         {
@@ -70,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync()
+        public async ValueTask<WorkbookApplicationGetResponse> WorkbookApplicationGetAsync()
         {
-            var p = new WorkbookapplicationGetParameter();
-            return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(p, CancellationToken.None);
+            var p = new WorkbookApplicationGetParameter();
+            return await this.SendAsync<WorkbookApplicationGetParameter, WorkbookApplicationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookApplicationGetResponse> WorkbookApplicationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new WorkbookapplicationGetParameter();
-            return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(p, cancellationToken);
+            var p = new WorkbookApplicationGetParameter();
+            return await this.SendAsync<WorkbookApplicationGetParameter, WorkbookApplicationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(WorkbookapplicationGetParameter parameter)
+        public async ValueTask<WorkbookApplicationGetResponse> WorkbookApplicationGetAsync(WorkbookApplicationGetParameter parameter)
         {
-            return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<WorkbookApplicationGetParameter, WorkbookApplicationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookapplication-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookapplicationGetResponse> WorkbookapplicationGetAsync(WorkbookapplicationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookApplicationGetResponse> WorkbookApplicationGetAsync(WorkbookApplicationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<WorkbookapplicationGetParameter, WorkbookapplicationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<WorkbookApplicationGetParameter, WorkbookApplicationGetResponse>(parameter, cancellationToken);
         }
     }
 }

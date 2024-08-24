@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -61,9 +62,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ItemanalyticsGetResponse : RestApiResponse
+    public partial class ItemanalyticsGetResponse : RestApiResponse<ItemAnalytics>
     {
-        public ItemAnalytics[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
@@ -99,6 +99,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ItemAnalytics> ItemanalyticsGetEnumerateAsync(ItemanalyticsGetParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ItemAnalytics>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

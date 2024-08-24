@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
     /// </summary>
-    public partial class EntitlementManagementListAssignmentrequestsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EntitlementManagementListAssignmentRequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Answers,
-            CompletedDateTime,
-            CreatedDateTime,
-            Id,
-            RequestType,
-            Schedule,
-            State,
-            Status,
-            AccessPackage,
-            Assignment,
-            Requestor,
         }
         public enum ApiPath
         {
@@ -58,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementManagementListAssignmentrequestsResponse : RestApiResponse
+    public partial class EntitlementManagementListAssignmentRequestsResponse : RestApiResponse<AccessPackageAssignmentRequest>
     {
-        public AccessPackageAssignmentRequest[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
@@ -70,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync()
+        public async ValueTask<EntitlementManagementListAssignmentRequestsResponse> EntitlementManagementListAssignmentRequestsAsync()
         {
-            var p = new EntitlementManagementListAssignmentrequestsParameter();
-            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(p, CancellationToken.None);
+            var p = new EntitlementManagementListAssignmentRequestsParameter();
+            return await this.SendAsync<EntitlementManagementListAssignmentRequestsParameter, EntitlementManagementListAssignmentRequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListAssignmentRequestsResponse> EntitlementManagementListAssignmentRequestsAsync(CancellationToken cancellationToken)
         {
-            var p = new EntitlementManagementListAssignmentrequestsParameter();
-            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(p, cancellationToken);
+            var p = new EntitlementManagementListAssignmentRequestsParameter();
+            return await this.SendAsync<EntitlementManagementListAssignmentRequestsParameter, EntitlementManagementListAssignmentRequestsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(EntitlementManagementListAssignmentrequestsParameter parameter)
+        public async ValueTask<EntitlementManagementListAssignmentRequestsResponse> EntitlementManagementListAssignmentRequestsAsync(EntitlementManagementListAssignmentRequestsParameter parameter)
         {
-            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EntitlementManagementListAssignmentRequestsParameter, EntitlementManagementListAssignmentRequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(EntitlementManagementListAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListAssignmentRequestsResponse> EntitlementManagementListAssignmentRequestsAsync(EntitlementManagementListAssignmentRequestsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EntitlementManagementListAssignmentRequestsParameter, EntitlementManagementListAssignmentRequestsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessPackageAssignmentRequest> EntitlementManagementListAssignmentRequestsEnumerateAsync(EntitlementManagementListAssignmentRequestsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EntitlementManagementListAssignmentRequestsParameter, EntitlementManagementListAssignmentRequestsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessPackageAssignmentRequest>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

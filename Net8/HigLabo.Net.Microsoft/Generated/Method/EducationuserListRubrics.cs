@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,16 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Grading,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Levels,
-            Qualities,
         }
         public enum ApiPath
         {
@@ -57,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationUserListRubricsResponse : RestApiResponse
+    public partial class EducationUserListRubricsResponse : RestApiResponse<EducationRubric>
     {
-        public EducationRubric[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-rubrics?view=graph-rest-1.0
@@ -95,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationUserListRubricsResponse> EducationUserListRubricsAsync(EducationUserListRubricsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserListRubricsParameter, EducationUserListRubricsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-rubrics?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationRubric> EducationUserListRubricsEnumerateAsync(EducationUserListRubricsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationUserListRubricsParameter, EducationUserListRubricsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationRubric>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

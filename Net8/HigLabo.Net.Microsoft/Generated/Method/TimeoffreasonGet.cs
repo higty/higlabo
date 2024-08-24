@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
     /// </summary>
-    public partial class TimeoffreasonGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TimeoffReasonGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TimeoffreasonGetResponse : RestApiResponse
+    public partial class TimeoffReasonGetResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
@@ -67,32 +67,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync()
+        public async ValueTask<TimeoffReasonGetResponse> TimeoffReasonGetAsync()
         {
-            var p = new TimeoffreasonGetParameter();
-            return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(p, CancellationToken.None);
+            var p = new TimeoffReasonGetParameter();
+            return await this.SendAsync<TimeoffReasonGetParameter, TimeoffReasonGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffReasonGetResponse> TimeoffReasonGetAsync(CancellationToken cancellationToken)
         {
-            var p = new TimeoffreasonGetParameter();
-            return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(p, cancellationToken);
+            var p = new TimeoffReasonGetParameter();
+            return await this.SendAsync<TimeoffReasonGetParameter, TimeoffReasonGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync(TimeoffreasonGetParameter parameter)
+        public async ValueTask<TimeoffReasonGetResponse> TimeoffReasonGetAsync(TimeoffReasonGetParameter parameter)
         {
-            return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TimeoffReasonGetParameter, TimeoffReasonGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonGetResponse> TimeoffreasonGetAsync(TimeoffreasonGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffReasonGetResponse> TimeoffReasonGetAsync(TimeoffReasonGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TimeoffreasonGetParameter, TimeoffreasonGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TimeoffReasonGetParameter, TimeoffReasonGetResponse>(parameter, cancellationToken);
         }
     }
 }

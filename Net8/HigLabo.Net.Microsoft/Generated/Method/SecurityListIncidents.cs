@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,21 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssignedTo,
-            Classification,
-            Comments,
-            CreatedDateTime,
-            CustomTags,
-            Determination,
-            DisplayName,
-            Id,
-            IncidentWebUrl,
-            LastUpdateDateTime,
-            RedirectIncidentId,
-            Severity,
-            Status,
-            TenantId,
-            Alerts,
         }
         public enum ApiPath
         {
@@ -62,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityListIncidentsResponse : RestApiResponse
+    public partial class SecurityListIncidentsResponse : RestApiResponse<Incident>
     {
-        public Incident[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-list-incidents?view=graph-rest-1.0
@@ -100,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SecurityListIncidentsResponse> SecurityListIncidentsAsync(SecurityListIncidentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SecurityListIncidentsParameter, SecurityListIncidentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-list-incidents?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Incident> SecurityListIncidentsEnumerateAsync(SecurityListIncidentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityListIncidentsParameter, SecurityListIncidentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Incident>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

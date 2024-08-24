@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ProfilephotoGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ProfilePhotoGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -89,7 +89,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ProfilephotoGetResponse : RestApiResponse
+    public partial class ProfilePhotoGetResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -100,32 +100,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync()
+        public async ValueTask<ProfilePhotoGetResponse> ProfilePhotoGetAsync()
         {
-            var p = new ProfilephotoGetParameter();
-            return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(p, CancellationToken.None);
+            var p = new ProfilePhotoGetParameter();
+            return await this.SendAsync<ProfilePhotoGetParameter, ProfilePhotoGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProfilePhotoGetResponse> ProfilePhotoGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ProfilephotoGetParameter();
-            return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(p, cancellationToken);
+            var p = new ProfilePhotoGetParameter();
+            return await this.SendAsync<ProfilePhotoGetParameter, ProfilePhotoGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter)
+        public async ValueTask<ProfilePhotoGetResponse> ProfilePhotoGetAsync(ProfilePhotoGetParameter parameter)
         {
-            return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ProfilePhotoGetParameter, ProfilePhotoGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProfilePhotoGetResponse> ProfilePhotoGetAsync(ProfilePhotoGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ProfilePhotoGetParameter, ProfilePhotoGetResponse>(parameter, cancellationToken);
         }
     }
 }

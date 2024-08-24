@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -33,8 +34,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Index,
-            Values,
         }
         public enum ApiPath
         {
@@ -62,9 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TablerowListResponse : RestApiResponse
+    public partial class TablerowListResponse : RestApiResponse<WorkbookTableRow>
     {
-        public WorkbookTableRow[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/tablerow-list?view=graph-rest-1.0
@@ -100,6 +98,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TablerowListResponse> TablerowListAsync(TablerowListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TablerowListParameter, TablerowListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/tablerow-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<WorkbookTableRow> TablerowListEnumerateAsync(TablerowListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TablerowListParameter, TablerowListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<WorkbookTableRow>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

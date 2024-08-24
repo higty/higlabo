@@ -23,30 +23,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            ETag,
-            Id,
-            LastModifiedDateTime,
-            Name,
-            Root,
-            SharepointIds,
-            SiteCollection,
-            WebUrl,
-            Analytics,
-            Columns,
-            ContentTypes,
-            Drive,
-            Drives,
-            Items,
-            Lists,
-            Onenote,
-            Operations,
-            Permissions,
-            Sites,
-            TermStore,
-            TermStores,
         }
         public enum ApiPath
         {

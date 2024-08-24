@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessPackageFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Id,
-            IsHidden,
-            ModifiedDateTime,
-            AccessPackagesIncompatibleWith,
-            AssignmentPolicies,
-            Catalog,
-            IncompatibleAccessPackages,
-            IncompatibleGroups,
         }
         public enum ApiPath
         {
@@ -58,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccesspackageFilterbycurrentUserResponse : RestApiResponse
+    public partial class AccessPackageFilterbycurrentUserResponse : RestApiResponse<AccessPackage>
     {
-        public AccessPackage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
@@ -70,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync()
+        public async ValueTask<AccessPackageFilterbycurrentUserResponse> AccessPackageFilterbycurrentUserAsync()
         {
-            var p = new AccesspackageFilterbycurrentUserParameter();
-            return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(p, CancellationToken.None);
+            var p = new AccessPackageFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessPackageFilterbycurrentUserParameter, AccessPackageFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageFilterbycurrentUserResponse> AccessPackageFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageFilterbycurrentUserParameter();
-            return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(p, cancellationToken);
+            var p = new AccessPackageFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessPackageFilterbycurrentUserParameter, AccessPackageFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter)
+        public async ValueTask<AccessPackageFilterbycurrentUserResponse> AccessPackageFilterbycurrentUserAsync(AccessPackageFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageFilterbycurrentUserParameter, AccessPackageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageFilterbycurrentUserResponse> AccessPackageFilterbycurrentUserAsync(AccessPackageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageFilterbycurrentUserParameter, AccessPackageFilterbycurrentUserResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessPackage> AccessPackageFilterbycurrentUserEnumerateAsync(AccessPackageFilterbycurrentUserParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessPackageFilterbycurrentUserParameter, AccessPackageFilterbycurrentUserResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessPackage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

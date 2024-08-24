@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityCasesRootListEdiscoverycasesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityCasesRootListEDiscoverycasesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,24 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClosedBy,
-            ClosedDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            ExternalId,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Status,
-            Custodians,
-            NoncustodialDataSources,
-            Operations,
-            ReviewSets,
-            Searches,
-            Settings,
-            Tags,
         }
         public enum ApiPath
         {
@@ -65,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityCasesRootListEdiscoverycasesResponse : RestApiResponse
+    public partial class SecurityCasesRootListEDiscoverycasesResponse : RestApiResponse<EDiscoveryCase>
     {
-        public EdiscoveryCase[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
@@ -77,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync()
+        public async ValueTask<SecurityCasesRootListEDiscoverycasesResponse> SecurityCasesRootListEDiscoverycasesAsync()
         {
-            var p = new SecurityCasesRootListEdiscoverycasesParameter();
-            return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(p, CancellationToken.None);
+            var p = new SecurityCasesRootListEDiscoverycasesParameter();
+            return await this.SendAsync<SecurityCasesRootListEDiscoverycasesParameter, SecurityCasesRootListEDiscoverycasesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootListEDiscoverycasesResponse> SecurityCasesRootListEDiscoverycasesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityCasesRootListEdiscoverycasesParameter();
-            return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(p, cancellationToken);
+            var p = new SecurityCasesRootListEDiscoverycasesParameter();
+            return await this.SendAsync<SecurityCasesRootListEDiscoverycasesParameter, SecurityCasesRootListEDiscoverycasesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(SecurityCasesRootListEdiscoverycasesParameter parameter)
+        public async ValueTask<SecurityCasesRootListEDiscoverycasesResponse> SecurityCasesRootListEDiscoverycasesAsync(SecurityCasesRootListEDiscoverycasesParameter parameter)
         {
-            return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityCasesRootListEDiscoverycasesParameter, SecurityCasesRootListEDiscoverycasesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityCasesRootListEdiscoverycasesResponse> SecurityCasesRootListEdiscoverycasesAsync(SecurityCasesRootListEdiscoverycasesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityCasesRootListEDiscoverycasesResponse> SecurityCasesRootListEDiscoverycasesAsync(SecurityCasesRootListEDiscoverycasesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityCasesRootListEdiscoverycasesParameter, SecurityCasesRootListEdiscoverycasesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityCasesRootListEDiscoverycasesParameter, SecurityCasesRootListEDiscoverycasesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoveryCase> SecurityCasesRootListEDiscoverycasesEnumerateAsync(SecurityCasesRootListEDiscoverycasesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityCasesRootListEDiscoverycasesParameter, SecurityCasesRootListEDiscoverycasesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoveryCase>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetm365appUsercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetM365appUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetm365appUsercountsResponse : RestApiResponse
+    public partial class ReportRootGetM365appUsercountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetm365appUsercountsResponse> ReportRootGetm365appUsercountsAsync()
+        public async ValueTask<ReportRootGetM365appUsercountsResponse> ReportRootGetM365appUsercountsAsync()
         {
-            var p = new ReportRootGetm365appUsercountsParameter();
-            return await this.SendAsync<ReportRootGetm365appUsercountsParameter, ReportRootGetm365appUsercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetM365appUsercountsParameter();
+            return await this.SendAsync<ReportRootGetM365appUsercountsParameter, ReportRootGetM365appUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetm365appUsercountsResponse> ReportRootGetm365appUsercountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetM365appUsercountsResponse> ReportRootGetM365appUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetm365appUsercountsParameter();
-            return await this.SendAsync<ReportRootGetm365appUsercountsParameter, ReportRootGetm365appUsercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetM365appUsercountsParameter();
+            return await this.SendAsync<ReportRootGetM365appUsercountsParameter, ReportRootGetM365appUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetm365appUsercountsResponse> ReportRootGetm365appUsercountsAsync(ReportRootGetm365appUsercountsParameter parameter)
+        public async ValueTask<ReportRootGetM365appUsercountsResponse> ReportRootGetM365appUsercountsAsync(ReportRootGetM365appUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetm365appUsercountsParameter, ReportRootGetm365appUsercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetM365appUsercountsParameter, ReportRootGetM365appUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetm365appUsercountsResponse> ReportRootGetm365appUsercountsAsync(ReportRootGetm365appUsercountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetM365appUsercountsResponse> ReportRootGetM365appUsercountsAsync(ReportRootGetM365appUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetm365appUsercountsParameter, ReportRootGetm365appUsercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetM365appUsercountsParameter, ReportRootGetM365appUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

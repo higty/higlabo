@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-update?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseUpdateParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycaseUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? ExternalId { get; set; }
     }
-    public partial class SecurityEdiscoverycaseUpdateResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseUpdateResponse> SecurityEdiscoverycaseUpdateAsync()
+        public async ValueTask<SecurityEDiscoverycaseUpdateResponse> SecurityEDiscoverycaseUpdateAsync()
         {
-            var p = new SecurityEdiscoverycaseUpdateParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseUpdateParameter, SecurityEdiscoverycaseUpdateResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseUpdateParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseUpdateParameter, SecurityEDiscoverycaseUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseUpdateResponse> SecurityEdiscoverycaseUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseUpdateResponse> SecurityEDiscoverycaseUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseUpdateParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseUpdateParameter, SecurityEdiscoverycaseUpdateResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseUpdateParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseUpdateParameter, SecurityEDiscoverycaseUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseUpdateResponse> SecurityEdiscoverycaseUpdateAsync(SecurityEdiscoverycaseUpdateParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseUpdateResponse> SecurityEDiscoverycaseUpdateAsync(SecurityEDiscoverycaseUpdateParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseUpdateParameter, SecurityEdiscoverycaseUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseUpdateParameter, SecurityEDiscoverycaseUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseUpdateResponse> SecurityEdiscoverycaseUpdateAsync(SecurityEdiscoverycaseUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseUpdateResponse> SecurityEDiscoverycaseUpdateAsync(SecurityEDiscoverycaseUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseUpdateParameter, SecurityEdiscoverycaseUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseUpdateParameter, SecurityEDiscoverycaseUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

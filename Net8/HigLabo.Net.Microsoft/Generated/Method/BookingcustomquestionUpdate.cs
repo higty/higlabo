@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingcustomquestionUpdateParameter : IRestApiParameter
+    public partial class BookingcustomQuestionUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum BookingcustomquestionUpdateParameterAnswerInputType
+        public enum BookingcustomQuestionUpdateParameterAnswerInputType
         {
             Text,
             RadioButton,
@@ -43,11 +43,11 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
-        public BookingcustomquestionUpdateParameterAnswerInputType AnswerInputType { get; set; }
+        public BookingcustomQuestionUpdateParameterAnswerInputType AnswerInputType { get; set; }
         public String[]? AnswerOptions { get; set; }
         public string? DisplayName { get; set; }
     }
-    public partial class BookingcustomquestionUpdateResponse : RestApiResponse
+    public partial class BookingcustomQuestionUpdateResponse : RestApiResponse
     {
         public enum BookingCustomQuestionAnswerInputType
         {
@@ -69,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync()
+        public async ValueTask<BookingcustomQuestionUpdateResponse> BookingcustomQuestionUpdateAsync()
         {
-            var p = new BookingcustomquestionUpdateParameter();
-            return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(p, CancellationToken.None);
+            var p = new BookingcustomQuestionUpdateParameter();
+            return await this.SendAsync<BookingcustomQuestionUpdateParameter, BookingcustomQuestionUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomQuestionUpdateResponse> BookingcustomQuestionUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingcustomquestionUpdateParameter();
-            return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(p, cancellationToken);
+            var p = new BookingcustomQuestionUpdateParameter();
+            return await this.SendAsync<BookingcustomQuestionUpdateParameter, BookingcustomQuestionUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(BookingcustomquestionUpdateParameter parameter)
+        public async ValueTask<BookingcustomQuestionUpdateResponse> BookingcustomQuestionUpdateAsync(BookingcustomQuestionUpdateParameter parameter)
         {
-            return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingcustomQuestionUpdateParameter, BookingcustomQuestionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionUpdateResponse> BookingcustomquestionUpdateAsync(BookingcustomquestionUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomQuestionUpdateResponse> BookingcustomQuestionUpdateAsync(BookingcustomQuestionUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingcustomquestionUpdateParameter, BookingcustomquestionUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingcustomQuestionUpdateParameter, BookingcustomQuestionUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

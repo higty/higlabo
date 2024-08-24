@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,13 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            MemberCount,
-            TagType,
-            TeamId,
-            Members,
         }
         public enum ApiPath
         {
@@ -55,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TeamworktagListResponse : RestApiResponse
+    public partial class TeamworktagListResponse : RestApiResponse<TeamworkTag>
     {
-        public TeamworkTag[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamworktag-list?view=graph-rest-1.0
@@ -93,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TeamworktagListResponse> TeamworktagListAsync(TeamworktagListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamworktagListParameter, TeamworktagListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/teamworktag-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TeamworkTag> TeamworktagListEnumerateAsync(TeamworktagListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TeamworktagListParameter, TeamworktagListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TeamworkTag>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

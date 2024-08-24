@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetteamsteamactivitydistributioncountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetTeamsteamActivitydistributioncountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetteamsteamactivitydistributioncountsResponse : RestApiResponse
+    public partial class ReportRootGetTeamsteamActivitydistributioncountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydistributioncountsResponse> ReportRootGetteamsteamactivitydistributioncountsAsync()
+        public async ValueTask<ReportRootGetTeamsteamActivitydistributioncountsResponse> ReportRootGetTeamsteamActivitydistributioncountsAsync()
         {
-            var p = new ReportRootGetteamsteamactivitydistributioncountsParameter();
-            return await this.SendAsync<ReportRootGetteamsteamactivitydistributioncountsParameter, ReportRootGetteamsteamactivitydistributioncountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetTeamsteamActivitydistributioncountsParameter();
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydistributioncountsParameter, ReportRootGetTeamsteamActivitydistributioncountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydistributioncountsResponse> ReportRootGetteamsteamactivitydistributioncountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsteamActivitydistributioncountsResponse> ReportRootGetTeamsteamActivitydistributioncountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetteamsteamactivitydistributioncountsParameter();
-            return await this.SendAsync<ReportRootGetteamsteamactivitydistributioncountsParameter, ReportRootGetteamsteamactivitydistributioncountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetTeamsteamActivitydistributioncountsParameter();
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydistributioncountsParameter, ReportRootGetTeamsteamActivitydistributioncountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydistributioncountsResponse> ReportRootGetteamsteamactivitydistributioncountsAsync(ReportRootGetteamsteamactivitydistributioncountsParameter parameter)
+        public async ValueTask<ReportRootGetTeamsteamActivitydistributioncountsResponse> ReportRootGetTeamsteamActivitydistributioncountsAsync(ReportRootGetTeamsteamActivitydistributioncountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetteamsteamactivitydistributioncountsParameter, ReportRootGetteamsteamactivitydistributioncountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydistributioncountsParameter, ReportRootGetTeamsteamActivitydistributioncountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydistributioncountsResponse> ReportRootGetteamsteamactivitydistributioncountsAsync(ReportRootGetteamsteamactivitydistributioncountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsteamActivitydistributioncountsResponse> ReportRootGetTeamsteamActivitydistributioncountsAsync(ReportRootGetTeamsteamActivitydistributioncountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetteamsteamactivitydistributioncountsParameter, ReportRootGetteamsteamactivitydistributioncountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydistributioncountsParameter, ReportRootGetTeamsteamActivitydistributioncountsResponse>(parameter, cancellationToken);
         }
     }
 }

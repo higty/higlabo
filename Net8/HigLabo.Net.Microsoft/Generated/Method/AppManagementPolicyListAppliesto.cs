@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,12 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
-            Description,
-            IsEnabled,
-            Restrictions,
-            AppliesTo,
         }
         public enum ApiPath
         {
@@ -54,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AppManagementPolicyListAppliestoResponse : RestApiResponse
+    public partial class AppManagementPolicyListAppliestoResponse : RestApiResponse<AppManagementPolicy>
     {
-        public AppManagementPolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0
@@ -92,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AppManagementPolicyListAppliestoResponse> AppManagementPolicyListAppliestoAsync(AppManagementPolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppManagementPolicyListAppliestoParameter, AppManagementPolicyListAppliestoResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AppManagementPolicy> AppManagementPolicyListAppliestoEnumerateAsync(AppManagementPolicyListAppliestoParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AppManagementPolicyListAppliestoParameter, AppManagementPolicyListAppliestoResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AppManagementPolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationsubmissionSetupResourcesfolderParameter : IRestApiParameter
+    public partial class EducationsubmissionSetupResourcesFolderParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class EducationsubmissionSetupResourcesfolderResponse : RestApiResponse
+    public partial class EducationsubmissionSetupResourcesFolderResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync()
+        public async ValueTask<EducationsubmissionSetupResourcesFolderResponse> EducationsubmissionSetupResourcesFolderAsync()
         {
-            var p = new EducationsubmissionSetupResourcesfolderParameter();
-            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(p, CancellationToken.None);
+            var p = new EducationsubmissionSetupResourcesFolderParameter();
+            return await this.SendAsync<EducationsubmissionSetupResourcesFolderParameter, EducationsubmissionSetupResourcesFolderResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionSetupResourcesFolderResponse> EducationsubmissionSetupResourcesFolderAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationsubmissionSetupResourcesfolderParameter();
-            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(p, cancellationToken);
+            var p = new EducationsubmissionSetupResourcesFolderParameter();
+            return await this.SendAsync<EducationsubmissionSetupResourcesFolderParameter, EducationsubmissionSetupResourcesFolderResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync(EducationsubmissionSetupResourcesfolderParameter parameter)
+        public async ValueTask<EducationsubmissionSetupResourcesFolderResponse> EducationsubmissionSetupResourcesFolderAsync(EducationsubmissionSetupResourcesFolderParameter parameter)
         {
-            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationsubmissionSetupResourcesFolderParameter, EducationsubmissionSetupResourcesFolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync(EducationsubmissionSetupResourcesfolderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationsubmissionSetupResourcesFolderResponse> EducationsubmissionSetupResourcesFolderAsync(EducationsubmissionSetupResourcesFolderParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationsubmissionSetupResourcesFolderParameter, EducationsubmissionSetupResourcesFolderResponse>(parameter, cancellationToken);
         }
     }
 }

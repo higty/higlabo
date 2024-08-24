@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamworkSendactivitynotificationtorecipientsParameter : IRestApiParameter
+    public partial class TeamworkSendActivitynotificationtorecipientsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         public string? TeamsAppId { get; set; }
         public TeamworkNotificationRecipient[]? Recipients { get; set; }
     }
-    public partial class TeamworkSendactivitynotificationtorecipientsResponse : RestApiResponse
+    public partial class TeamworkSendActivitynotificationtorecipientsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync()
+        public async ValueTask<TeamworkSendActivitynotificationtorecipientsResponse> TeamworkSendActivitynotificationtorecipientsAsync()
         {
-            var p = new TeamworkSendactivitynotificationtorecipientsParameter();
-            return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(p, CancellationToken.None);
+            var p = new TeamworkSendActivitynotificationtorecipientsParameter();
+            return await this.SendAsync<TeamworkSendActivitynotificationtorecipientsParameter, TeamworkSendActivitynotificationtorecipientsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworkSendActivitynotificationtorecipientsResponse> TeamworkSendActivitynotificationtorecipientsAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamworkSendactivitynotificationtorecipientsParameter();
-            return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(p, cancellationToken);
+            var p = new TeamworkSendActivitynotificationtorecipientsParameter();
+            return await this.SendAsync<TeamworkSendActivitynotificationtorecipientsParameter, TeamworkSendActivitynotificationtorecipientsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(TeamworkSendactivitynotificationtorecipientsParameter parameter)
+        public async ValueTask<TeamworkSendActivitynotificationtorecipientsResponse> TeamworkSendActivitynotificationtorecipientsAsync(TeamworkSendActivitynotificationtorecipientsParameter parameter)
         {
-            return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamworkSendActivitynotificationtorecipientsParameter, TeamworkSendActivitynotificationtorecipientsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamwork-sendactivitynotificationtorecipients?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworkSendactivitynotificationtorecipientsResponse> TeamworkSendactivitynotificationtorecipientsAsync(TeamworkSendactivitynotificationtorecipientsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworkSendActivitynotificationtorecipientsResponse> TeamworkSendActivitynotificationtorecipientsAsync(TeamworkSendActivitynotificationtorecipientsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamworkSendactivitynotificationtorecipientsParameter, TeamworkSendactivitynotificationtorecipientsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamworkSendActivitynotificationtorecipientsParameter, TeamworkSendActivitynotificationtorecipientsResponse>(parameter, cancellationToken);
         }
     }
 }

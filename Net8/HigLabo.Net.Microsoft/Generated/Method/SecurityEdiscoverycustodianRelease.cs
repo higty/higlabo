@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-release?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycustodianReleaseParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycustodianReleaseParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class SecurityEdiscoverycustodianReleaseResponse : RestApiResponse
+    public partial class SecurityEDiscoverycustodianReleaseResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-release?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianReleaseResponse> SecurityEdiscoverycustodianReleaseAsync()
+        public async ValueTask<SecurityEDiscoverycustodianReleaseResponse> SecurityEDiscoverycustodianReleaseAsync()
         {
-            var p = new SecurityEdiscoverycustodianReleaseParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianReleaseParameter, SecurityEdiscoverycustodianReleaseResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycustodianReleaseParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianReleaseParameter, SecurityEDiscoverycustodianReleaseResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-release?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianReleaseResponse> SecurityEdiscoverycustodianReleaseAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianReleaseResponse> SecurityEDiscoverycustodianReleaseAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycustodianReleaseParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianReleaseParameter, SecurityEdiscoverycustodianReleaseResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycustodianReleaseParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianReleaseParameter, SecurityEDiscoverycustodianReleaseResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-release?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianReleaseResponse> SecurityEdiscoverycustodianReleaseAsync(SecurityEdiscoverycustodianReleaseParameter parameter)
+        public async ValueTask<SecurityEDiscoverycustodianReleaseResponse> SecurityEDiscoverycustodianReleaseAsync(SecurityEDiscoverycustodianReleaseParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianReleaseParameter, SecurityEdiscoverycustodianReleaseResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycustodianReleaseParameter, SecurityEDiscoverycustodianReleaseResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-release?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianReleaseResponse> SecurityEdiscoverycustodianReleaseAsync(SecurityEdiscoverycustodianReleaseParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianReleaseResponse> SecurityEDiscoverycustodianReleaseAsync(SecurityEDiscoverycustodianReleaseParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianReleaseParameter, SecurityEdiscoverycustodianReleaseResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycustodianReleaseParameter, SecurityEDiscoverycustodianReleaseResponse>(parameter, cancellationToken);
         }
     }
 }

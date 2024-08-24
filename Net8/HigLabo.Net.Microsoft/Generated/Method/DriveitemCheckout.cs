@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemCheckoutParameter : IRestApiParameter
+    public partial class DriveItemCheckoutParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class DriveitemCheckoutResponse : RestApiResponse
+    public partial class DriveItemCheckoutResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -60,32 +60,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync()
+        public async ValueTask<DriveItemCheckoutResponse> DriveItemCheckoutAsync()
         {
-            var p = new DriveitemCheckoutParameter();
-            return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(p, CancellationToken.None);
+            var p = new DriveItemCheckoutParameter();
+            return await this.SendAsync<DriveItemCheckoutParameter, DriveItemCheckoutResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemCheckoutResponse> DriveItemCheckoutAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemCheckoutParameter();
-            return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(p, cancellationToken);
+            var p = new DriveItemCheckoutParameter();
+            return await this.SendAsync<DriveItemCheckoutParameter, DriveItemCheckoutResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter)
+        public async ValueTask<DriveItemCheckoutResponse> DriveItemCheckoutAsync(DriveItemCheckoutParameter parameter)
         {
-            return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemCheckoutParameter, DriveItemCheckoutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemCheckoutResponse> DriveItemCheckoutAsync(DriveItemCheckoutParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemCheckoutParameter, DriveItemCheckoutResponse>(parameter, cancellationToken);
         }
     }
 }

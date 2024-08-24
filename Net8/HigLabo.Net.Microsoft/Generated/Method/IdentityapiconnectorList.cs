@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,10 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AuthenticationConfiguration,
-            DisplayName,
-            Id,
-            TargetUrl,
         }
         public enum ApiPath
         {
@@ -51,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityapiConnectorListResponse : RestApiResponse
+    public partial class IdentityapiConnectorListResponse : RestApiResponse<IdentityApiConnector>
     {
-        public IdentityApiConnector[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
@@ -89,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<IdentityapiConnectorListResponse> IdentityapiConnectorListAsync(IdentityapiConnectorListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<IdentityapiConnectorListParameter, IdentityapiConnectorListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<IdentityApiConnector> IdentityapiConnectorListEnumerateAsync(IdentityapiConnectorListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<IdentityapiConnectorListParameter, IdentityapiConnectorListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<IdentityApiConnector>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

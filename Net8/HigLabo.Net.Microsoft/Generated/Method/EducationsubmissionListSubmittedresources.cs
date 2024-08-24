@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -50,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationsubmissionListSubmittedResourcesResponse : RestApiResponse
+    public partial class EducationsubmissionListSubmittedResourcesResponse : RestApiResponse<EducationSubmissionResource>
     {
-        public EducationSubmissionResource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
@@ -88,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationSubmissionResource> EducationsubmissionListSubmittedResourcesEnumerateAsync(EducationsubmissionListSubmittedResourcesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationSubmissionResource>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

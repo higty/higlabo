@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Info,
-            IsInLobby,
-            IsMuted,
-            MediaStreams,
-            Metadata,
-            RecordingInfo,
-            RestrictedExperience,
         }
         public enum ApiPath
         {
@@ -56,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class CallListParticipantsResponse : RestApiResponse
+    public partial class CallListParticipantsResponse : RestApiResponse<Participant>
     {
-        public Participant[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/call-list-participants?view=graph-rest-1.0
@@ -94,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<CallListParticipantsResponse> CallListParticipantsAsync(CallListParticipantsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallListParticipantsParameter, CallListParticipantsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/call-list-participants?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Participant> CallListParticipantsEnumerateAsync(CallListParticipantsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<CallListParticipantsParameter, CallListParticipantsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Participant>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderListChildfoldersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class MailFolderListChildFoldersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -26,18 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChildFolderCount,
-            DisplayName,
-            Id,
-            IsHidden,
-            ParentFolderId,
-            TotalItemCount,
-            UnreadItemCount,
-            ChildFolders,
-            MessageRules,
-            Messages,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -63,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MailfolderListChildfoldersResponse : RestApiResponse
+    public partial class MailFolderListChildFoldersResponse : RestApiResponse<MailFolder>
     {
-        public MailFolder[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
@@ -75,32 +63,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync()
+        public async ValueTask<MailFolderListChildFoldersResponse> MailFolderListChildFoldersAsync()
         {
-            var p = new MailfolderListChildfoldersParameter();
-            return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(p, CancellationToken.None);
+            var p = new MailFolderListChildFoldersParameter();
+            return await this.SendAsync<MailFolderListChildFoldersParameter, MailFolderListChildFoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderListChildFoldersResponse> MailFolderListChildFoldersAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderListChildfoldersParameter();
-            return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(p, cancellationToken);
+            var p = new MailFolderListChildFoldersParameter();
+            return await this.SendAsync<MailFolderListChildFoldersParameter, MailFolderListChildFoldersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(MailfolderListChildfoldersParameter parameter)
+        public async ValueTask<MailFolderListChildFoldersResponse> MailFolderListChildFoldersAsync(MailFolderListChildFoldersParameter parameter)
         {
-            return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderListChildFoldersParameter, MailFolderListChildFoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListChildfoldersResponse> MailfolderListChildfoldersAsync(MailfolderListChildfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderListChildFoldersResponse> MailFolderListChildFoldersAsync(MailFolderListChildFoldersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderListChildfoldersParameter, MailfolderListChildfoldersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderListChildFoldersParameter, MailFolderListChildFoldersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<MailFolder> MailFolderListChildFoldersEnumerateAsync(MailFolderListChildFoldersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<MailFolderListChildFoldersParameter, MailFolderListChildFoldersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<MailFolder>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

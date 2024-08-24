@@ -24,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DefaultLanguageTag,
-            Id,
-            LanguageTags,
-            Groups,
-            Sets,
         }
         public enum ApiPath
         {

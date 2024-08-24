@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenTypeextensionDeleteParameter : IRestApiParameter
+    public partial class OpenTypeExtensionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class OpenTypeextensionDeleteResponse : RestApiResponse
+    public partial class OpenTypeExtensionDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -84,32 +84,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync()
+        public async ValueTask<OpenTypeExtensionDeleteResponse> OpenTypeExtensionDeleteAsync()
         {
-            var p = new OpenTypeextensionDeleteParameter();
-            return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(p, CancellationToken.None);
+            var p = new OpenTypeExtensionDeleteParameter();
+            return await this.SendAsync<OpenTypeExtensionDeleteParameter, OpenTypeExtensionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeExtensionDeleteResponse> OpenTypeExtensionDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenTypeextensionDeleteParameter();
-            return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(p, cancellationToken);
+            var p = new OpenTypeExtensionDeleteParameter();
+            return await this.SendAsync<OpenTypeExtensionDeleteParameter, OpenTypeExtensionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter)
+        public async ValueTask<OpenTypeExtensionDeleteResponse> OpenTypeExtensionDeleteAsync(OpenTypeExtensionDeleteParameter parameter)
         {
-            return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenTypeExtensionDeleteParameter, OpenTypeExtensionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenTypeExtensionDeleteResponse> OpenTypeExtensionDeleteAsync(OpenTypeExtensionDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenTypeExtensionDeleteParameter, OpenTypeExtensionDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

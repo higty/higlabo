@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
     /// </summary>
-    public partial class InferenceclassificationPostOverridesParameter : IRestApiParameter
+    public partial class InferenceClassificationPostOverridesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public EmailAddress? SenderEmailAddress { get; set; }
     }
-    public partial class InferenceclassificationPostOverridesResponse : RestApiResponse
+    public partial class InferenceClassificationPostOverridesResponse : RestApiResponse
     {
         public enum InferenceClassificationOverrideInferenceClassificationType
         {
@@ -67,32 +67,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync()
+        public async ValueTask<InferenceClassificationPostOverridesResponse> InferenceClassificationPostOverridesAsync()
         {
-            var p = new InferenceclassificationPostOverridesParameter();
-            return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(p, CancellationToken.None);
+            var p = new InferenceClassificationPostOverridesParameter();
+            return await this.SendAsync<InferenceClassificationPostOverridesParameter, InferenceClassificationPostOverridesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(CancellationToken cancellationToken)
+        public async ValueTask<InferenceClassificationPostOverridesResponse> InferenceClassificationPostOverridesAsync(CancellationToken cancellationToken)
         {
-            var p = new InferenceclassificationPostOverridesParameter();
-            return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(p, cancellationToken);
+            var p = new InferenceClassificationPostOverridesParameter();
+            return await this.SendAsync<InferenceClassificationPostOverridesParameter, InferenceClassificationPostOverridesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(InferenceclassificationPostOverridesParameter parameter)
+        public async ValueTask<InferenceClassificationPostOverridesResponse> InferenceClassificationPostOverridesAsync(InferenceClassificationPostOverridesParameter parameter)
         {
-            return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<InferenceClassificationPostOverridesParameter, InferenceClassificationPostOverridesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationPostOverridesResponse> InferenceclassificationPostOverridesAsync(InferenceclassificationPostOverridesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InferenceClassificationPostOverridesResponse> InferenceClassificationPostOverridesAsync(InferenceClassificationPostOverridesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<InferenceclassificationPostOverridesParameter, InferenceclassificationPostOverridesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<InferenceClassificationPostOverridesParameter, InferenceClassificationPostOverridesResponse>(parameter, cancellationToken);
         }
     }
 }

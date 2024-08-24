@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-stop?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceStopParameter : IRestApiParameter
+    public partial class AccessReviewinstanceStopParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class AccessreviewinstanceStopResponse : RestApiResponse
+    public partial class AccessReviewinstanceStopResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-stop?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceStopResponse> AccessreviewinstanceStopAsync()
+        public async ValueTask<AccessReviewinstanceStopResponse> AccessReviewinstanceStopAsync()
         {
-            var p = new AccessreviewinstanceStopParameter();
-            return await this.SendAsync<AccessreviewinstanceStopParameter, AccessreviewinstanceStopResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceStopParameter();
+            return await this.SendAsync<AccessReviewinstanceStopParameter, AccessReviewinstanceStopResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-stop?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceStopResponse> AccessreviewinstanceStopAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceStopResponse> AccessReviewinstanceStopAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceStopParameter();
-            return await this.SendAsync<AccessreviewinstanceStopParameter, AccessreviewinstanceStopResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceStopParameter();
+            return await this.SendAsync<AccessReviewinstanceStopParameter, AccessReviewinstanceStopResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-stop?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceStopResponse> AccessreviewinstanceStopAsync(AccessreviewinstanceStopParameter parameter)
+        public async ValueTask<AccessReviewinstanceStopResponse> AccessReviewinstanceStopAsync(AccessReviewinstanceStopParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceStopParameter, AccessreviewinstanceStopResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceStopParameter, AccessReviewinstanceStopResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-stop?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceStopResponse> AccessreviewinstanceStopAsync(AccessreviewinstanceStopParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceStopResponse> AccessReviewinstanceStopAsync(AccessReviewinstanceStopParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceStopParameter, AccessreviewinstanceStopResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceStopParameter, AccessReviewinstanceStopResponse>(parameter, cancellationToken);
         }
     }
 }

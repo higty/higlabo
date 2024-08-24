@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageDeleteIncompatibleGroupParameter : IRestApiParameter
+    public partial class AccessPackageDeleteIncompatibleGroupParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class AccesspackageDeleteIncompatibleGroupResponse : RestApiResponse
+    public partial class AccessPackageDeleteIncompatibleGroupResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleGroupResponse> AccesspackageDeleteIncompatibleGroupAsync()
+        public async ValueTask<AccessPackageDeleteIncompatibleGroupResponse> AccessPackageDeleteIncompatibleGroupAsync()
         {
-            var p = new AccesspackageDeleteIncompatibleGroupParameter();
-            return await this.SendAsync<AccesspackageDeleteIncompatibleGroupParameter, AccesspackageDeleteIncompatibleGroupResponse>(p, CancellationToken.None);
+            var p = new AccessPackageDeleteIncompatibleGroupParameter();
+            return await this.SendAsync<AccessPackageDeleteIncompatibleGroupParameter, AccessPackageDeleteIncompatibleGroupResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleGroupResponse> AccesspackageDeleteIncompatibleGroupAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageDeleteIncompatibleGroupResponse> AccessPackageDeleteIncompatibleGroupAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageDeleteIncompatibleGroupParameter();
-            return await this.SendAsync<AccesspackageDeleteIncompatibleGroupParameter, AccesspackageDeleteIncompatibleGroupResponse>(p, cancellationToken);
+            var p = new AccessPackageDeleteIncompatibleGroupParameter();
+            return await this.SendAsync<AccessPackageDeleteIncompatibleGroupParameter, AccessPackageDeleteIncompatibleGroupResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleGroupResponse> AccesspackageDeleteIncompatibleGroupAsync(AccesspackageDeleteIncompatibleGroupParameter parameter)
+        public async ValueTask<AccessPackageDeleteIncompatibleGroupResponse> AccessPackageDeleteIncompatibleGroupAsync(AccessPackageDeleteIncompatibleGroupParameter parameter)
         {
-            return await this.SendAsync<AccesspackageDeleteIncompatibleGroupParameter, AccesspackageDeleteIncompatibleGroupResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageDeleteIncompatibleGroupParameter, AccessPackageDeleteIncompatibleGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleGroupResponse> AccesspackageDeleteIncompatibleGroupAsync(AccesspackageDeleteIncompatibleGroupParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageDeleteIncompatibleGroupResponse> AccessPackageDeleteIncompatibleGroupAsync(AccessPackageDeleteIncompatibleGroupParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageDeleteIncompatibleGroupParameter, AccesspackageDeleteIncompatibleGroupResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageDeleteIncompatibleGroupParameter, AccessPackageDeleteIncompatibleGroupResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceListContactedreviewersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewinstanceListContactedReviewersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewinstanceListContactedreviewersResponse : RestApiResponse
+    public partial class AccessReviewinstanceListContactedReviewersResponse : RestApiResponse<AccessReviewReviewer>
     {
-        public AccessReviewReviewer[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
@@ -61,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync()
+        public async ValueTask<AccessReviewinstanceListContactedReviewersResponse> AccessReviewinstanceListContactedReviewersAsync()
         {
-            var p = new AccessreviewinstanceListContactedreviewersParameter();
-            return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceListContactedReviewersParameter();
+            return await this.SendAsync<AccessReviewinstanceListContactedReviewersParameter, AccessReviewinstanceListContactedReviewersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceListContactedReviewersResponse> AccessReviewinstanceListContactedReviewersAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceListContactedreviewersParameter();
-            return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceListContactedReviewersParameter();
+            return await this.SendAsync<AccessReviewinstanceListContactedReviewersParameter, AccessReviewinstanceListContactedReviewersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter)
+        public async ValueTask<AccessReviewinstanceListContactedReviewersResponse> AccessReviewinstanceListContactedReviewersAsync(AccessReviewinstanceListContactedReviewersParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceListContactedReviewersParameter, AccessReviewinstanceListContactedReviewersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceListContactedReviewersResponse> AccessReviewinstanceListContactedReviewersAsync(AccessReviewinstanceListContactedReviewersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceListContactedReviewersParameter, AccessReviewinstanceListContactedReviewersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewReviewer> AccessReviewinstanceListContactedReviewersEnumerateAsync(AccessReviewinstanceListContactedReviewersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewinstanceListContactedReviewersParameter, AccessReviewinstanceListContactedReviewersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewReviewer>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

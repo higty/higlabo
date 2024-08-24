@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycasePostCustodiansParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycasePostCustodiansParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum EdiscoveryCustodianSecurityDataSourceHoldStatus
+        public enum EDiscoveryCustodianSecurityDataSourceHoldStatus
         {
             NotApplied,
             Applied,
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Microsoft
             Removing,
             Partial,
         }
-        public enum EdiscoveryCustodianSecurityCustodianStatus
+        public enum EDiscoveryCustodianSecurityCustodianStatus
         {
             Active,
             Released,
@@ -53,19 +53,19 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? AcknowledgedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
-        public EdiscoveryCustodianSecurityDataSourceHoldStatus HoldStatus { get; set; }
+        public EDiscoveryCustodianSecurityDataSourceHoldStatus HoldStatus { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? ReleasedDateTime { get; set; }
-        public EdiscoveryCustodianSecurityCustodianStatus Status { get; set; }
-        public EdiscoveryIndexOperation? LastIndexOperation { get; set; }
+        public EDiscoveryCustodianSecurityCustodianStatus Status { get; set; }
+        public EDiscoveryIndexOperation? LastIndexOperation { get; set; }
         public SiteSource[]? SiteSources { get; set; }
         public UnifiedGroupSource[]? UnifiedGroupSources { get; set; }
         public UserSource[]? UserSources { get; set; }
     }
-    public partial class SecurityEdiscoverycasePostCustodiansResponse : RestApiResponse
+    public partial class SecurityEDiscoverycasePostCustodiansResponse : RestApiResponse
     {
-        public enum EdiscoveryCustodianSecurityDataSourceHoldStatus
+        public enum EDiscoveryCustodianSecurityDataSourceHoldStatus
         {
             NotApplied,
             Applied,
@@ -73,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             Removing,
             Partial,
         }
-        public enum EdiscoveryCustodianSecurityCustodianStatus
+        public enum EDiscoveryCustodianSecurityCustodianStatus
         {
             Active,
             Released,
@@ -83,12 +83,12 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public string? Email { get; set; }
-        public EdiscoveryCustodianSecurityDataSourceHoldStatus HoldStatus { get; set; }
+        public EDiscoveryCustodianSecurityDataSourceHoldStatus HoldStatus { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? ReleasedDateTime { get; set; }
-        public EdiscoveryCustodianSecurityCustodianStatus Status { get; set; }
-        public EdiscoveryIndexOperation? LastIndexOperation { get; set; }
+        public EDiscoveryCustodianSecurityCustodianStatus Status { get; set; }
+        public EDiscoveryIndexOperation? LastIndexOperation { get; set; }
         public SiteSource[]? SiteSources { get; set; }
         public UnifiedGroupSource[]? UnifiedGroupSources { get; set; }
         public UserSource[]? UserSources { get; set; }
@@ -101,32 +101,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostCustodiansResponse> SecurityEdiscoverycasePostCustodiansAsync()
+        public async ValueTask<SecurityEDiscoverycasePostCustodiansResponse> SecurityEDiscoverycasePostCustodiansAsync()
         {
-            var p = new SecurityEdiscoverycasePostCustodiansParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostCustodiansParameter, SecurityEdiscoverycasePostCustodiansResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycasePostCustodiansParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostCustodiansParameter, SecurityEDiscoverycasePostCustodiansResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostCustodiansResponse> SecurityEdiscoverycasePostCustodiansAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostCustodiansResponse> SecurityEDiscoverycasePostCustodiansAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycasePostCustodiansParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostCustodiansParameter, SecurityEdiscoverycasePostCustodiansResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycasePostCustodiansParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostCustodiansParameter, SecurityEDiscoverycasePostCustodiansResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostCustodiansResponse> SecurityEdiscoverycasePostCustodiansAsync(SecurityEdiscoverycasePostCustodiansParameter parameter)
+        public async ValueTask<SecurityEDiscoverycasePostCustodiansResponse> SecurityEDiscoverycasePostCustodiansAsync(SecurityEDiscoverycasePostCustodiansParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostCustodiansParameter, SecurityEdiscoverycasePostCustodiansResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycasePostCustodiansParameter, SecurityEDiscoverycasePostCustodiansResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostCustodiansResponse> SecurityEdiscoverycasePostCustodiansAsync(SecurityEdiscoverycasePostCustodiansParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostCustodiansResponse> SecurityEDiscoverycasePostCustodiansAsync(SecurityEDiscoverycasePostCustodiansParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostCustodiansParameter, SecurityEdiscoverycasePostCustodiansResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycasePostCustodiansParameter, SecurityEDiscoverycasePostCustodiansResponse>(parameter, cancellationToken);
         }
     }
 }

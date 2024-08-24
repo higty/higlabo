@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemListChildrenParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemListChildrenParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -32,51 +33,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Audio,
-            Bundle,
-            Content,
-            CreatedBy,
-            CreatedDateTime,
-            CTag,
-            Deleted,
-            Description,
-            ETag,
-            File,
-            FileSystemInfo,
-            Folder,
-            Id,
-            Image,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Location,
-            Malware,
-            Name,
-            Package,
-            ParentReference,
-            PendingOperations,
-            Photo,
-            Publication,
-            RemoteItem,
-            Root,
-            SearchResult,
-            Shared,
-            SharepointIds,
-            Size,
-            SpecialFolder,
-            Video,
-            WebDavUrl,
-            WebUrl,
-            Activities,
-            Analytics,
-            Children,
-            CreatedByUser,
-            LastModifiedByUser,
-            ListItem,
-            Permissions,
-            Subscriptions,
-            Thumbnails,
-            Versions,
-            Workbook,
         }
         public enum ApiPath
         {
@@ -105,9 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemListChildrenResponse : RestApiResponse
+    public partial class DriveItemListChildrenResponse : RestApiResponse<DriveItem>
     {
-        public DriveItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
@@ -117,32 +72,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync()
+        public async ValueTask<DriveItemListChildrenResponse> DriveItemListChildrenAsync()
         {
-            var p = new DriveitemListChildrenParameter();
-            return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(p, CancellationToken.None);
+            var p = new DriveItemListChildrenParameter();
+            return await this.SendAsync<DriveItemListChildrenParameter, DriveItemListChildrenResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListChildrenResponse> DriveItemListChildrenAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemListChildrenParameter();
-            return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(p, cancellationToken);
+            var p = new DriveItemListChildrenParameter();
+            return await this.SendAsync<DriveItemListChildrenParameter, DriveItemListChildrenResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync(DriveitemListChildrenParameter parameter)
+        public async ValueTask<DriveItemListChildrenResponse> DriveItemListChildrenAsync(DriveItemListChildrenParameter parameter)
         {
-            return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemListChildrenParameter, DriveItemListChildrenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemListChildrenResponse> DriveitemListChildrenAsync(DriveitemListChildrenParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemListChildrenResponse> DriveItemListChildrenAsync(DriveItemListChildrenParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemListChildrenParameter, DriveitemListChildrenResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemListChildrenParameter, DriveItemListChildrenResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-children?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DriveItem> DriveItemListChildrenEnumerateAsync(DriveItemListChildrenParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveItemListChildrenParameter, DriveItemListChildrenResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DriveItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

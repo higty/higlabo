@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,19 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccessDetails,
-            ActivatedDateTime,
-            CreatedDateTime,
-            Customer,
-            DisplayName,
-            Duration,
-            EndDateTime,
-            Id,
-            LastModifiedDateTime,
-            Status,
-            AccessAssignments,
-            Operations,
-            Requests,
         }
         public enum ApiPath
         {
@@ -60,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TenantrelationshipListDelegatedadminrelationshipsResponse : RestApiResponse
+    public partial class TenantrelationshipListDelegatedadminrelationshipsResponse : RestApiResponse<DelegatedAdminRelationship>
     {
-        public DelegatedAdminRelationship[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadminrelationships?view=graph-rest-1.0
@@ -98,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TenantrelationshipListDelegatedadminrelationshipsResponse> TenantrelationshipListDelegatedadminrelationshipsAsync(TenantrelationshipListDelegatedadminrelationshipsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TenantrelationshipListDelegatedadminrelationshipsParameter, TenantrelationshipListDelegatedadminrelationshipsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadminrelationships?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DelegatedAdminRelationship> TenantrelationshipListDelegatedadminrelationshipsEnumerateAsync(TenantrelationshipListDelegatedadminrelationshipsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TenantrelationshipListDelegatedadminrelationshipsParameter, TenantrelationshipListDelegatedadminrelationshipsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DelegatedAdminRelationship>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentitycontainerListIdentityprovidersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentitycontainerListIdentityProvidersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClientId,
-            ClientSecret,
-            DisplayName,
-            Id,
-            IdentityProviderType,
         }
         public enum ApiPath
         {
@@ -52,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentitycontainerListIdentityprovidersResponse : RestApiResponse
+    public partial class IdentitycontainerListIdentityProvidersResponse : RestApiResponse<SocialIdentityProvider>
     {
-        public SocialIdentityProvider[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
@@ -64,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentitycontainerListIdentityprovidersResponse> IdentitycontainerListIdentityprovidersAsync()
+        public async ValueTask<IdentitycontainerListIdentityProvidersResponse> IdentitycontainerListIdentityProvidersAsync()
         {
-            var p = new IdentitycontainerListIdentityprovidersParameter();
-            return await this.SendAsync<IdentitycontainerListIdentityprovidersParameter, IdentitycontainerListIdentityprovidersResponse>(p, CancellationToken.None);
+            var p = new IdentitycontainerListIdentityProvidersParameter();
+            return await this.SendAsync<IdentitycontainerListIdentityProvidersParameter, IdentitycontainerListIdentityProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentitycontainerListIdentityprovidersResponse> IdentitycontainerListIdentityprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentitycontainerListIdentityProvidersResponse> IdentitycontainerListIdentityProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentitycontainerListIdentityprovidersParameter();
-            return await this.SendAsync<IdentitycontainerListIdentityprovidersParameter, IdentitycontainerListIdentityprovidersResponse>(p, cancellationToken);
+            var p = new IdentitycontainerListIdentityProvidersParameter();
+            return await this.SendAsync<IdentitycontainerListIdentityProvidersParameter, IdentitycontainerListIdentityProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentitycontainerListIdentityprovidersResponse> IdentitycontainerListIdentityprovidersAsync(IdentitycontainerListIdentityprovidersParameter parameter)
+        public async ValueTask<IdentitycontainerListIdentityProvidersResponse> IdentitycontainerListIdentityProvidersAsync(IdentitycontainerListIdentityProvidersParameter parameter)
         {
-            return await this.SendAsync<IdentitycontainerListIdentityprovidersParameter, IdentitycontainerListIdentityprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentitycontainerListIdentityProvidersParameter, IdentitycontainerListIdentityProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentitycontainerListIdentityprovidersResponse> IdentitycontainerListIdentityprovidersAsync(IdentitycontainerListIdentityprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentitycontainerListIdentityProvidersResponse> IdentitycontainerListIdentityProvidersAsync(IdentitycontainerListIdentityProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentitycontainerListIdentityprovidersParameter, IdentitycontainerListIdentityprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentitycontainerListIdentityProvidersParameter, IdentitycontainerListIdentityProvidersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<SocialIdentityProvider> IdentitycontainerListIdentityProvidersEnumerateAsync(IdentitycontainerListIdentityProvidersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<IdentitycontainerListIdentityProvidersParameter, IdentitycontainerListIdentityProvidersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<SocialIdentityProvider>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

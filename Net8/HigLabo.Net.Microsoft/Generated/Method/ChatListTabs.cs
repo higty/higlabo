@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,11 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Configuration,
-            DisplayName,
-            Id,
-            WebUrl,
-            TeamsApp,
         }
         public enum ApiPath
         {
@@ -53,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ChatListTabsResponse : RestApiResponse
+    public partial class ChatListTabsResponse : RestApiResponse<TeamsTab>
     {
-        public TeamsTab[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
@@ -91,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TeamsTab> ChatListTabsEnumerateAsync(ChatListTabsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TeamsTab>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

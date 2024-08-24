@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingcustomquestionDeleteParameter : IRestApiParameter
+    public partial class BookingcustomQuestionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class BookingcustomquestionDeleteResponse : RestApiResponse
+    public partial class BookingcustomQuestionDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionDeleteResponse> BookingcustomquestionDeleteAsync()
+        public async ValueTask<BookingcustomQuestionDeleteResponse> BookingcustomQuestionDeleteAsync()
         {
-            var p = new BookingcustomquestionDeleteParameter();
-            return await this.SendAsync<BookingcustomquestionDeleteParameter, BookingcustomquestionDeleteResponse>(p, CancellationToken.None);
+            var p = new BookingcustomQuestionDeleteParameter();
+            return await this.SendAsync<BookingcustomQuestionDeleteParameter, BookingcustomQuestionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionDeleteResponse> BookingcustomquestionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomQuestionDeleteResponse> BookingcustomQuestionDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingcustomquestionDeleteParameter();
-            return await this.SendAsync<BookingcustomquestionDeleteParameter, BookingcustomquestionDeleteResponse>(p, cancellationToken);
+            var p = new BookingcustomQuestionDeleteParameter();
+            return await this.SendAsync<BookingcustomQuestionDeleteParameter, BookingcustomQuestionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionDeleteResponse> BookingcustomquestionDeleteAsync(BookingcustomquestionDeleteParameter parameter)
+        public async ValueTask<BookingcustomQuestionDeleteResponse> BookingcustomQuestionDeleteAsync(BookingcustomQuestionDeleteParameter parameter)
         {
-            return await this.SendAsync<BookingcustomquestionDeleteParameter, BookingcustomquestionDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingcustomQuestionDeleteParameter, BookingcustomQuestionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomquestionDeleteResponse> BookingcustomquestionDeleteAsync(BookingcustomquestionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingcustomQuestionDeleteResponse> BookingcustomQuestionDeleteAsync(BookingcustomQuestionDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingcustomquestionDeleteParameter, BookingcustomquestionDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingcustomQuestionDeleteParameter, BookingcustomQuestionDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

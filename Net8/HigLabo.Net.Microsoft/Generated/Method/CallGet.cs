@@ -24,29 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CallbackUri,
-            CallChainId,
-            CallOptions,
-            CallRoutes,
-            ChatInfo,
-            Direction,
-            Id,
-            IncomingContext,
-            MediaConfig,
-            MediaState,
-            MeetingInfo,
-            MyParticipantId,
-            RequestedModalities,
-            ResultInfo,
-            Source,
-            State,
-            Subject,
-            Targets,
-            ToneInfo,
-            Transcription,
-            ContentSharingSessions,
-            Operations,
-            Participants,
         }
         public enum ApiPath
         {

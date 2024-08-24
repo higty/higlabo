@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityproviderListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityProviderListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClientId,
-            ClientSecret,
-            Id,
-            Name,
-            Type,
         }
         public enum ApiPath
         {
@@ -52,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityproviderListResponse : RestApiResponse
+    public partial class IdentityProviderListResponse : RestApiResponse<IdentityProvider>
     {
-        public IdentityProvider[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
@@ -64,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync()
+        public async ValueTask<IdentityProviderListResponse> IdentityProviderListAsync()
         {
-            var p = new IdentityproviderListParameter();
-            return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(p, CancellationToken.None);
+            var p = new IdentityProviderListParameter();
+            return await this.SendAsync<IdentityProviderListParameter, IdentityProviderListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderListResponse> IdentityProviderListAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityproviderListParameter();
-            return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(p, cancellationToken);
+            var p = new IdentityProviderListParameter();
+            return await this.SendAsync<IdentityProviderListParameter, IdentityProviderListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync(IdentityproviderListParameter parameter)
+        public async ValueTask<IdentityProviderListResponse> IdentityProviderListAsync(IdentityProviderListParameter parameter)
         {
-            return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityProviderListParameter, IdentityProviderListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderListResponse> IdentityproviderListAsync(IdentityproviderListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderListResponse> IdentityProviderListAsync(IdentityProviderListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityproviderListParameter, IdentityproviderListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityProviderListParameter, IdentityProviderListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/identityprovider-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<IdentityProvider> IdentityProviderListEnumerateAsync(IdentityProviderListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<IdentityProviderListParameter, IdentityProviderListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<IdentityProvider>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

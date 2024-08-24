@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycasePostTagsParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycasePostTagsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,12 +22,12 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum SecurityEdiscoverycasePostTagsParameterSecurityChildSelectability
+        public enum SecurityEDiscoverycasePostTagsParameterSecurityChildSelectability
         {
             One,
             Many,
         }
-        public enum EdiscoveryReviewTagSecurityChildSelectability
+        public enum EDiscoveryReviewTagSecurityChildSelectability
         {
             One,
             Many,
@@ -48,29 +48,29 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DisplayName { get; set; }
         public string? Description { get; set; }
-        public SecurityEdiscoverycasePostTagsParameterSecurityChildSelectability ChildSelectability { get; set; }
+        public SecurityEDiscoverycasePostTagsParameterSecurityChildSelectability ChildSelectability { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public EdiscoveryReviewTag[]? ChildTags { get; set; }
-        public EdiscoveryReviewTag? Parent { get; set; }
+        public EDiscoveryReviewTag[]? ChildTags { get; set; }
+        public EDiscoveryReviewTag? Parent { get; set; }
     }
-    public partial class SecurityEdiscoverycasePostTagsResponse : RestApiResponse
+    public partial class SecurityEDiscoverycasePostTagsResponse : RestApiResponse
     {
-        public enum EdiscoveryReviewTagSecurityChildSelectability
+        public enum EDiscoveryReviewTagSecurityChildSelectability
         {
             One,
             Many,
         }
 
-        public EdiscoveryReviewTagSecurityChildSelectability ChildSelectability { get; set; }
+        public EDiscoveryReviewTagSecurityChildSelectability ChildSelectability { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public EdiscoveryReviewTag[]? ChildTags { get; set; }
-        public EdiscoveryReviewTag? Parent { get; set; }
+        public EDiscoveryReviewTag[]? ChildTags { get; set; }
+        public EDiscoveryReviewTag? Parent { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0
@@ -80,32 +80,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostTagsResponse> SecurityEdiscoverycasePostTagsAsync()
+        public async ValueTask<SecurityEDiscoverycasePostTagsResponse> SecurityEDiscoverycasePostTagsAsync()
         {
-            var p = new SecurityEdiscoverycasePostTagsParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostTagsParameter, SecurityEdiscoverycasePostTagsResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycasePostTagsParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostTagsParameter, SecurityEDiscoverycasePostTagsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostTagsResponse> SecurityEdiscoverycasePostTagsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostTagsResponse> SecurityEDiscoverycasePostTagsAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycasePostTagsParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostTagsParameter, SecurityEdiscoverycasePostTagsResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycasePostTagsParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostTagsParameter, SecurityEDiscoverycasePostTagsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostTagsResponse> SecurityEdiscoverycasePostTagsAsync(SecurityEdiscoverycasePostTagsParameter parameter)
+        public async ValueTask<SecurityEDiscoverycasePostTagsResponse> SecurityEDiscoverycasePostTagsAsync(SecurityEDiscoverycasePostTagsParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostTagsParameter, SecurityEdiscoverycasePostTagsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycasePostTagsParameter, SecurityEDiscoverycasePostTagsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostTagsResponse> SecurityEdiscoverycasePostTagsAsync(SecurityEdiscoverycasePostTagsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostTagsResponse> SecurityEDiscoverycasePostTagsAsync(SecurityEDiscoverycasePostTagsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostTagsParameter, SecurityEdiscoverycasePostTagsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycasePostTagsParameter, SecurityEDiscoverycasePostTagsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamcounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetteamsteamcountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetTeamsteamcountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetteamsteamcountsResponse : RestApiResponse
+    public partial class ReportRootGetTeamsteamcountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamcounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamcountsResponse> ReportRootGetteamsteamcountsAsync()
+        public async ValueTask<ReportRootGetTeamsteamcountsResponse> ReportRootGetTeamsteamcountsAsync()
         {
-            var p = new ReportRootGetteamsteamcountsParameter();
-            return await this.SendAsync<ReportRootGetteamsteamcountsParameter, ReportRootGetteamsteamcountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetTeamsteamcountsParameter();
+            return await this.SendAsync<ReportRootGetTeamsteamcountsParameter, ReportRootGetTeamsteamcountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamcounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamcountsResponse> ReportRootGetteamsteamcountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsteamcountsResponse> ReportRootGetTeamsteamcountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetteamsteamcountsParameter();
-            return await this.SendAsync<ReportRootGetteamsteamcountsParameter, ReportRootGetteamsteamcountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetTeamsteamcountsParameter();
+            return await this.SendAsync<ReportRootGetTeamsteamcountsParameter, ReportRootGetTeamsteamcountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamcounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamcountsResponse> ReportRootGetteamsteamcountsAsync(ReportRootGetteamsteamcountsParameter parameter)
+        public async ValueTask<ReportRootGetTeamsteamcountsResponse> ReportRootGetTeamsteamcountsAsync(ReportRootGetTeamsteamcountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetteamsteamcountsParameter, ReportRootGetteamsteamcountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetTeamsteamcountsParameter, ReportRootGetTeamsteamcountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamcounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamcountsResponse> ReportRootGetteamsteamcountsAsync(ReportRootGetteamsteamcountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsteamcountsResponse> ReportRootGetTeamsteamcountsAsync(ReportRootGetTeamsteamcountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetteamsteamcountsParameter, ReportRootGetteamsteamcountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetTeamsteamcountsParameter, ReportRootGetTeamsteamcountsResponse>(parameter, cancellationToken);
         }
     }
 }

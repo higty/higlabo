@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ListitemGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ListItemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ListitemGetResponse : RestApiResponse
+    public partial class ListItemGetResponse : RestApiResponse
     {
         public ContentTypeInfo? ContentType { get; set; }
         public ItemActivity[]? Activities { get; set; }
@@ -68,32 +68,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemGetResponse> ListitemGetAsync()
+        public async ValueTask<ListItemGetResponse> ListItemGetAsync()
         {
-            var p = new ListitemGetParameter();
-            return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(p, CancellationToken.None);
+            var p = new ListItemGetParameter();
+            return await this.SendAsync<ListItemGetParameter, ListItemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemGetResponse> ListitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListItemGetResponse> ListItemGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ListitemGetParameter();
-            return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(p, cancellationToken);
+            var p = new ListItemGetParameter();
+            return await this.SendAsync<ListItemGetParameter, ListItemGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemGetResponse> ListitemGetAsync(ListitemGetParameter parameter)
+        public async ValueTask<ListItemGetResponse> ListItemGetAsync(ListItemGetParameter parameter)
         {
-            return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ListItemGetParameter, ListItemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemGetResponse> ListitemGetAsync(ListitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListItemGetResponse> ListItemGetAsync(ListItemGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ListitemGetParameter, ListitemGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ListItemGetParameter, ListItemGetResponse>(parameter, cancellationToken);
         }
     }
 }

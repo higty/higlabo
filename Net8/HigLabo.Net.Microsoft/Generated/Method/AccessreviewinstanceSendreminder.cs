@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceSendreminderParameter : IRestApiParameter
+    public partial class AccessReviewinstanceSendreminderParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class AccessreviewinstanceSendreminderResponse : RestApiResponse
+    public partial class AccessReviewinstanceSendreminderResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceSendreminderResponse> AccessreviewinstanceSendreminderAsync()
+        public async ValueTask<AccessReviewinstanceSendreminderResponse> AccessReviewinstanceSendreminderAsync()
         {
-            var p = new AccessreviewinstanceSendreminderParameter();
-            return await this.SendAsync<AccessreviewinstanceSendreminderParameter, AccessreviewinstanceSendreminderResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceSendreminderParameter();
+            return await this.SendAsync<AccessReviewinstanceSendreminderParameter, AccessReviewinstanceSendreminderResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceSendreminderResponse> AccessreviewinstanceSendreminderAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceSendreminderResponse> AccessReviewinstanceSendreminderAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceSendreminderParameter();
-            return await this.SendAsync<AccessreviewinstanceSendreminderParameter, AccessreviewinstanceSendreminderResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceSendreminderParameter();
+            return await this.SendAsync<AccessReviewinstanceSendreminderParameter, AccessReviewinstanceSendreminderResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceSendreminderResponse> AccessreviewinstanceSendreminderAsync(AccessreviewinstanceSendreminderParameter parameter)
+        public async ValueTask<AccessReviewinstanceSendreminderResponse> AccessReviewinstanceSendreminderAsync(AccessReviewinstanceSendreminderParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceSendreminderParameter, AccessreviewinstanceSendreminderResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceSendreminderParameter, AccessReviewinstanceSendreminderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceSendreminderResponse> AccessreviewinstanceSendreminderAsync(AccessreviewinstanceSendreminderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceSendreminderResponse> AccessReviewinstanceSendreminderAsync(AccessReviewinstanceSendreminderParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceSendreminderParameter, AccessreviewinstanceSendreminderResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceSendreminderParameter, AccessReviewinstanceSendreminderResponse>(parameter, cancellationToken);
         }
     }
 }

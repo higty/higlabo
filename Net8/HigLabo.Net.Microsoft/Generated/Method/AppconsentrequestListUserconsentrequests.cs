@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
     /// </summary>
-    public partial class AppconsentrequestListUserconsentrequestsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AppconsentRequestListUserconsentRequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApprovalId,
-            CompletedDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            CustomData,
-            Id,
-            Reason,
-            Status,
-            Approval,
         }
         public enum ApiPath
         {
@@ -57,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AppconsentrequestListUserconsentrequestsResponse : RestApiResponse
+    public partial class AppconsentRequestListUserconsentRequestsResponse : RestApiResponse<UserConsentRequest>
     {
-        public UserConsentRequest[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
@@ -69,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync()
+        public async ValueTask<AppconsentRequestListUserconsentRequestsResponse> AppconsentRequestListUserconsentRequestsAsync()
         {
-            var p = new AppconsentrequestListUserconsentrequestsParameter();
-            return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(p, CancellationToken.None);
+            var p = new AppconsentRequestListUserconsentRequestsParameter();
+            return await this.SendAsync<AppconsentRequestListUserconsentRequestsParameter, AppconsentRequestListUserconsentRequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentRequestListUserconsentRequestsResponse> AppconsentRequestListUserconsentRequestsAsync(CancellationToken cancellationToken)
         {
-            var p = new AppconsentrequestListUserconsentrequestsParameter();
-            return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(p, cancellationToken);
+            var p = new AppconsentRequestListUserconsentRequestsParameter();
+            return await this.SendAsync<AppconsentRequestListUserconsentRequestsParameter, AppconsentRequestListUserconsentRequestsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(AppconsentrequestListUserconsentrequestsParameter parameter)
+        public async ValueTask<AppconsentRequestListUserconsentRequestsResponse> AppconsentRequestListUserconsentRequestsAsync(AppconsentRequestListUserconsentRequestsParameter parameter)
         {
-            return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AppconsentRequestListUserconsentRequestsParameter, AppconsentRequestListUserconsentRequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestListUserconsentrequestsResponse> AppconsentrequestListUserconsentrequestsAsync(AppconsentrequestListUserconsentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentRequestListUserconsentRequestsResponse> AppconsentRequestListUserconsentRequestsAsync(AppconsentRequestListUserconsentRequestsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AppconsentrequestListUserconsentrequestsParameter, AppconsentrequestListUserconsentrequestsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AppconsentRequestListUserconsentRequestsParameter, AppconsentRequestListUserconsentRequestsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UserConsentRequest> AppconsentRequestListUserconsentRequestsEnumerateAsync(AppconsentRequestListUserconsentRequestsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AppconsentRequestListUserconsentRequestsParameter, AppconsentRequestListUserconsentRequestsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UserConsentRequest>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

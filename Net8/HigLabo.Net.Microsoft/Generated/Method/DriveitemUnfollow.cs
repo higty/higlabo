@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemUnfollowParameter : IRestApiParameter
+    public partial class DriveItemUnfollowParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class DriveitemUnfollowResponse : RestApiResponse
+    public partial class DriveItemUnfollowResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -55,32 +55,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync()
+        public async ValueTask<DriveItemUnfollowResponse> DriveItemUnfollowAsync()
         {
-            var p = new DriveitemUnfollowParameter();
-            return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(p, CancellationToken.None);
+            var p = new DriveItemUnfollowParameter();
+            return await this.SendAsync<DriveItemUnfollowParameter, DriveItemUnfollowResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemUnfollowResponse> DriveItemUnfollowAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemUnfollowParameter();
-            return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(p, cancellationToken);
+            var p = new DriveItemUnfollowParameter();
+            return await this.SendAsync<DriveItemUnfollowParameter, DriveItemUnfollowResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync(DriveitemUnfollowParameter parameter)
+        public async ValueTask<DriveItemUnfollowResponse> DriveItemUnfollowAsync(DriveItemUnfollowParameter parameter)
         {
-            return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemUnfollowParameter, DriveItemUnfollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-unfollow?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemUnfollowResponse> DriveitemUnfollowAsync(DriveitemUnfollowParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemUnfollowResponse> DriveItemUnfollowAsync(DriveItemUnfollowParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemUnfollowParameter, DriveitemUnfollowResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemUnfollowParameter, DriveItemUnfollowResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoveryreviewtagAshierarchyParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoveryReviewtagAshierarchyParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChildSelectability,
-            CreatedBy,
-            Description,
-            DisplayName,
-            Id,
-            LastModifiedDateTime,
-            ChildTags,
-            Parent,
         }
         public enum ApiPath
         {
@@ -56,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoveryreviewtagAshierarchyResponse : RestApiResponse
+    public partial class SecurityEDiscoveryReviewtagAshierarchyResponse : RestApiResponse<EDiscoveryReviewTag>
     {
-        public EdiscoveryReviewTag[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
@@ -68,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync()
+        public async ValueTask<SecurityEDiscoveryReviewtagAshierarchyResponse> SecurityEDiscoveryReviewtagAshierarchyAsync()
         {
-            var p = new SecurityEdiscoveryreviewtagAshierarchyParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoveryReviewtagAshierarchyParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewtagAshierarchyParameter, SecurityEDiscoveryReviewtagAshierarchyResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewtagAshierarchyResponse> SecurityEDiscoveryReviewtagAshierarchyAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoveryreviewtagAshierarchyParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoveryReviewtagAshierarchyParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewtagAshierarchyParameter, SecurityEDiscoveryReviewtagAshierarchyResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(SecurityEdiscoveryreviewtagAshierarchyParameter parameter)
+        public async ValueTask<SecurityEDiscoveryReviewtagAshierarchyResponse> SecurityEDiscoveryReviewtagAshierarchyAsync(SecurityEDiscoveryReviewtagAshierarchyParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoveryReviewtagAshierarchyParameter, SecurityEDiscoveryReviewtagAshierarchyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagAshierarchyResponse> SecurityEdiscoveryreviewtagAshierarchyAsync(SecurityEdiscoveryreviewtagAshierarchyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewtagAshierarchyResponse> SecurityEDiscoveryReviewtagAshierarchyAsync(SecurityEDiscoveryReviewtagAshierarchyParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewtagAshierarchyParameter, SecurityEdiscoveryreviewtagAshierarchyResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoveryReviewtagAshierarchyParameter, SecurityEDiscoveryReviewtagAshierarchyResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-ashierarchy?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoveryReviewTag> SecurityEDiscoveryReviewtagAshierarchyEnumerateAsync(SecurityEDiscoveryReviewtagAshierarchyParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoveryReviewtagAshierarchyParameter, SecurityEDiscoveryReviewtagAshierarchyResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoveryReviewTag>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

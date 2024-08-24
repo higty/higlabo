@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
     /// </summary>
-    public partial class UserListMailfoldersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserListMailFoldersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -27,18 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChildFolderCount,
-            DisplayName,
-            Id,
-            IsHidden,
-            ParentFolderId,
-            TotalItemCount,
-            UnreadItemCount,
-            ChildFolders,
-            MessageRules,
-            Messages,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -66,9 +55,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListMailfoldersResponse : RestApiResponse
+    public partial class UserListMailFoldersResponse : RestApiResponse<MailFolder>
     {
-        public MailFolder[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
@@ -78,32 +66,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListMailfoldersResponse> UserListMailfoldersAsync()
+        public async ValueTask<UserListMailFoldersResponse> UserListMailFoldersAsync()
         {
-            var p = new UserListMailfoldersParameter();
-            return await this.SendAsync<UserListMailfoldersParameter, UserListMailfoldersResponse>(p, CancellationToken.None);
+            var p = new UserListMailFoldersParameter();
+            return await this.SendAsync<UserListMailFoldersParameter, UserListMailFoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListMailfoldersResponse> UserListMailfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListMailFoldersResponse> UserListMailFoldersAsync(CancellationToken cancellationToken)
         {
-            var p = new UserListMailfoldersParameter();
-            return await this.SendAsync<UserListMailfoldersParameter, UserListMailfoldersResponse>(p, cancellationToken);
+            var p = new UserListMailFoldersParameter();
+            return await this.SendAsync<UserListMailFoldersParameter, UserListMailFoldersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListMailfoldersResponse> UserListMailfoldersAsync(UserListMailfoldersParameter parameter)
+        public async ValueTask<UserListMailFoldersResponse> UserListMailFoldersAsync(UserListMailFoldersParameter parameter)
         {
-            return await this.SendAsync<UserListMailfoldersParameter, UserListMailfoldersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserListMailFoldersParameter, UserListMailFoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListMailfoldersResponse> UserListMailfoldersAsync(UserListMailfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListMailFoldersResponse> UserListMailFoldersAsync(UserListMailFoldersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserListMailfoldersParameter, UserListMailfoldersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserListMailFoldersParameter, UserListMailFoldersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-mailfolders?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<MailFolder> UserListMailFoldersEnumerateAsync(UserListMailFoldersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListMailFoldersParameter, UserListMailFoldersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<MailFolder>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

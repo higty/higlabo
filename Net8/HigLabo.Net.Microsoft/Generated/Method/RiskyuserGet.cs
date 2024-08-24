@@ -24,16 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            IsDeleted,
-            IsProcessing,
-            RiskDetail,
-            RiskLastUpdatedDateTime,
-            RiskLevel,
-            RiskState,
-            UserDisplayName,
-            UserPrincipalName,
-            History,
         }
         public enum ApiPath
         {

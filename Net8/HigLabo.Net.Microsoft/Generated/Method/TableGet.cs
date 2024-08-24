@@ -33,21 +33,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            HighlightFirstColumn,
-            HighlightLastColumn,
-            Id,
-            LegacyId,
-            Name,
-            ShowBandedRows,
-            ShowBandedColumns,
-            ShowFilterButton,
-            ShowHeaders,
-            ShowTotals,
-            Style,
-            Columns,
-            Rows,
-            Sort,
-            Worksheet,
         }
         public enum ApiPath
         {

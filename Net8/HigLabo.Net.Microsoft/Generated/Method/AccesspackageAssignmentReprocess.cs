@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageAssignmentReprocessParameter : IRestApiParameter
+    public partial class AccessPackageAssignmentReprocessParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageSubject? Target { get; set; }
         public AccessPackageAssignmentPolicy? AssignmentPolicy { get; set; }
     }
-    public partial class AccesspackageAssignmentReprocessResponse : RestApiResponse
+    public partial class AccessPackageAssignmentReprocessResponse : RestApiResponse
     {
         public enum AccessPackageAssignmentAccessPackageAssignmentState
         {
@@ -85,32 +85,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync()
+        public async ValueTask<AccessPackageAssignmentReprocessResponse> AccessPackageAssignmentReprocessAsync()
         {
-            var p = new AccesspackageAssignmentReprocessParameter();
-            return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(p, CancellationToken.None);
+            var p = new AccessPackageAssignmentReprocessParameter();
+            return await this.SendAsync<AccessPackageAssignmentReprocessParameter, AccessPackageAssignmentReprocessResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageAssignmentReprocessResponse> AccessPackageAssignmentReprocessAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageAssignmentReprocessParameter();
-            return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(p, cancellationToken);
+            var p = new AccessPackageAssignmentReprocessParameter();
+            return await this.SendAsync<AccessPackageAssignmentReprocessParameter, AccessPackageAssignmentReprocessResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter)
+        public async ValueTask<AccessPackageAssignmentReprocessResponse> AccessPackageAssignmentReprocessAsync(AccessPackageAssignmentReprocessParameter parameter)
         {
-            return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageAssignmentReprocessParameter, AccessPackageAssignmentReprocessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageAssignmentReprocessResponse> AccessPackageAssignmentReprocessAsync(AccessPackageAssignmentReprocessParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageAssignmentReprocessParameter, AccessPackageAssignmentReprocessResponse>(parameter, cancellationToken);
         }
     }
 }

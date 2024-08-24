@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationAssignmentSetupfeedbackResourcesfolderParameter : IRestApiParameter
+    public partial class EducationAssignmentSetupfeedbackResourcesFolderParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Microsoft
         public EducationRubric? Rubric { get; set; }
         public EducationSubmission[]? Submissions { get; set; }
     }
-    public partial class EducationAssignmentSetupfeedbackResourcesfolderResponse : RestApiResponse
+    public partial class EducationAssignmentSetupfeedbackResourcesFolderResponse : RestApiResponse
     {
         public enum EducationAssignmentEducationAddToCalendarOptions
         {
@@ -134,32 +134,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationAssignmentSetupfeedbackResourcesfolderResponse> EducationAssignmentSetupfeedbackResourcesfolderAsync()
+        public async ValueTask<EducationAssignmentSetupfeedbackResourcesFolderResponse> EducationAssignmentSetupfeedbackResourcesFolderAsync()
         {
-            var p = new EducationAssignmentSetupfeedbackResourcesfolderParameter();
-            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesfolderParameter, EducationAssignmentSetupfeedbackResourcesfolderResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentSetupfeedbackResourcesFolderParameter();
+            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesFolderParameter, EducationAssignmentSetupfeedbackResourcesFolderResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationAssignmentSetupfeedbackResourcesfolderResponse> EducationAssignmentSetupfeedbackResourcesfolderAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentSetupfeedbackResourcesFolderResponse> EducationAssignmentSetupfeedbackResourcesFolderAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationAssignmentSetupfeedbackResourcesfolderParameter();
-            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesfolderParameter, EducationAssignmentSetupfeedbackResourcesfolderResponse>(p, cancellationToken);
+            var p = new EducationAssignmentSetupfeedbackResourcesFolderParameter();
+            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesFolderParameter, EducationAssignmentSetupfeedbackResourcesFolderResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationAssignmentSetupfeedbackResourcesfolderResponse> EducationAssignmentSetupfeedbackResourcesfolderAsync(EducationAssignmentSetupfeedbackResourcesfolderParameter parameter)
+        public async ValueTask<EducationAssignmentSetupfeedbackResourcesFolderResponse> EducationAssignmentSetupfeedbackResourcesFolderAsync(EducationAssignmentSetupfeedbackResourcesFolderParameter parameter)
         {
-            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesfolderParameter, EducationAssignmentSetupfeedbackResourcesfolderResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesFolderParameter, EducationAssignmentSetupfeedbackResourcesFolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationAssignmentSetupfeedbackResourcesfolderResponse> EducationAssignmentSetupfeedbackResourcesfolderAsync(EducationAssignmentSetupfeedbackResourcesfolderParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationAssignmentSetupfeedbackResourcesFolderResponse> EducationAssignmentSetupfeedbackResourcesFolderAsync(EducationAssignmentSetupfeedbackResourcesFolderParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesfolderParameter, EducationAssignmentSetupfeedbackResourcesfolderResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentSetupfeedbackResourcesFolderParameter, EducationAssignmentSetupfeedbackResourcesFolderResponse>(parameter, cancellationToken);
         }
     }
 }

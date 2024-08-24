@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Error,
-            Id,
-            LastActionDateTime,
-            PercentageComplete,
-            ResourceId,
-            ResourceLocation,
-            Status,
-            StatusDetail,
-            Type,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SiteListOperationsResponse : RestApiResponse
+    public partial class SiteListOperationsResponse : RestApiResponse<RichLongRunningOperation>
     {
-        public RichLongRunningOperation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/site-list-operations?view=graph-rest-1.0
@@ -96,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SiteListOperationsResponse> SiteListOperationsAsync(SiteListOperationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListOperationsParameter, SiteListOperationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-operations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<RichLongRunningOperation> SiteListOperationsEnumerateAsync(SiteListOperationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SiteListOperationsParameter, SiteListOperationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<RichLongRunningOperation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

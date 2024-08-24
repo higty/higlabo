@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,39 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Boolean,
-            Calculated,
-            Choice,
-            ColumnGroup,
-            ContentApprovalStatus,
-            Currency,
-            DateTime,
-            DefaultValue,
-            Description,
-            DisplayName,
-            EnforceUniqueValues,
-            Geolocation,
-            Hidden,
-            HyperlinkOrPicture,
-            IsDeletable,
-            IsReorderable,
-            Id,
-            Indexed,
-            IsSealed,
-            Lookup,
-            Name,
-            Number,
-            PersonOrGroup,
-            PropagateChanges,
-            ReadOnly,
-            Required,
-            SourceContentType,
-            Term,
-            Text,
-            Thumbnail,
-            Type,
-            Validation,
-            SourceColumn,
         }
         public enum ApiPath
         {
@@ -82,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ListListColumnsResponse : RestApiResponse
+    public partial class ListListColumnsResponse : RestApiResponse<ColumnDefinition>
     {
-        public ColumnDefinition[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/list-list-columns?view=graph-rest-1.0
@@ -120,6 +87,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ListListColumnsResponse> ListListColumnsAsync(ListListColumnsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ListListColumnsParameter, ListListColumnsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/list-list-columns?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ColumnDefinition> ListListColumnsEnumerateAsync(ListListColumnsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ListListColumnsParameter, ListListColumnsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ColumnDefinition>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewstageListDecisionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReViewStageListDecisionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -26,20 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccessReviewId,
-            AppliedBy,
-            AppliedDateTime,
-            ApplyResult,
-            Decision,
-            Id,
-            Justification,
-            Principal,
-            PrincipalLink,
-            Recommendation,
-            Resource,
-            ResourceLink,
-            ReviewedBy,
-            ReviewedDateTime,
         }
         public enum ApiPath
         {
@@ -64,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewstageListDecisionsResponse : RestApiResponse
+    public partial class AccessReViewStageListDecisionsResponse : RestApiResponse<AccessReviewInstanceDecisionItem>
     {
-        public AccessReviewInstanceDecisionItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
@@ -76,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync()
+        public async ValueTask<AccessReViewStageListDecisionsResponse> AccessReViewStageListDecisionsAsync()
         {
-            var p = new AccessreviewstageListDecisionsParameter();
-            return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(p, CancellationToken.None);
+            var p = new AccessReViewStageListDecisionsParameter();
+            return await this.SendAsync<AccessReViewStageListDecisionsParameter, AccessReViewStageListDecisionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReViewStageListDecisionsResponse> AccessReViewStageListDecisionsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewstageListDecisionsParameter();
-            return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(p, cancellationToken);
+            var p = new AccessReViewStageListDecisionsParameter();
+            return await this.SendAsync<AccessReViewStageListDecisionsParameter, AccessReViewStageListDecisionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(AccessreviewstageListDecisionsParameter parameter)
+        public async ValueTask<AccessReViewStageListDecisionsResponse> AccessReViewStageListDecisionsAsync(AccessReViewStageListDecisionsParameter parameter)
         {
-            return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReViewStageListDecisionsParameter, AccessReViewStageListDecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewstageListDecisionsResponse> AccessreviewstageListDecisionsAsync(AccessreviewstageListDecisionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReViewStageListDecisionsResponse> AccessReViewStageListDecisionsAsync(AccessReViewStageListDecisionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewstageListDecisionsParameter, AccessreviewstageListDecisionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReViewStageListDecisionsParameter, AccessReViewStageListDecisionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewstage-list-decisions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewInstanceDecisionItem> AccessReViewStageListDecisionsEnumerateAsync(AccessReViewStageListDecisionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReViewStageListDecisionsParameter, AccessReViewStageListDecisionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewInstanceDecisionItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

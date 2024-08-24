@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,15 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            Id,
-            LocalizedNames,
-            Properties,
-            Children,
-            ParentGroup,
-            Relations,
-            Terms,
         }
         public enum ApiPath
         {
@@ -58,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TermStoreGroupListSetsResponse : RestApiResponse
+    public partial class TermStoreGroupListSetsResponse : RestApiResponse<TermStoreSet>
     {
-        public TermStoreSet[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
@@ -96,6 +87,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TermStoreGroupListSetsResponse> TermStoreGroupListSetsAsync(TermStoreGroupListSetsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreGroupListSetsParameter, TermStoreGroupListSetsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TermStoreSet> TermStoreGroupListSetsEnumerateAsync(TermStoreGroupListSetsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TermStoreGroupListSetsParameter, TermStoreGroupListSetsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TermStoreSet>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }
