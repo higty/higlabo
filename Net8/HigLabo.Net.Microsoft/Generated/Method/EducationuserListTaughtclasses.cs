@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationUserListTaughtclassesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationUserListTaughtClassesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -18,7 +19,6 @@ namespace HigLabo.Net.Microsoft
                 {
                     case ApiPath.Education_Me_TaughtClasses: return $"/education/me/taughtClasses";
                     case ApiPath.Education_Users_EducationUserId_TaughtClasses: return $"/education/users/{EducationUserId}/taughtClasses";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -26,32 +26,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClassCode,
-            CreatedBy,
-            Description,
-            DisplayName,
-            ExternalId,
-            ExternalSource,
-            ExternalSourceDetail,
-            ExternalName,
-            Grade,
-            Id,
-            MailNickname,
-            Term,
-            Assignments,
-            AssignmentCategories,
-            AssignmentDefaults,
-            AssignmentSettings,
-            Group,
-            Members,
-            Schools,
-            Teachers,
         }
         public enum ApiPath
         {
             Education_Me_TaughtClasses,
             Education_Users_EducationUserId_TaughtClasses,
-            Ttps__Graphmicrosoftcom_V10_Groups,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -72,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationUserListTaughtclassesResponse : RestApiResponse
+    public partial class EducationUserListTaughtClassesResponse : RestApiResponse<EducationClass>
     {
-        public EducationClass[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
@@ -84,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync()
+        public async ValueTask<EducationUserListTaughtClassesResponse> EducationUserListTaughtClassesAsync()
         {
-            var p = new EducationUserListTaughtclassesParameter();
-            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(p, CancellationToken.None);
+            var p = new EducationUserListTaughtClassesParameter();
+            return await this.SendAsync<EducationUserListTaughtClassesParameter, EducationUserListTaughtClassesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationUserListTaughtClassesResponse> EducationUserListTaughtClassesAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationUserListTaughtclassesParameter();
-            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(p, cancellationToken);
+            var p = new EducationUserListTaughtClassesParameter();
+            return await this.SendAsync<EducationUserListTaughtClassesParameter, EducationUserListTaughtClassesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter)
+        public async ValueTask<EducationUserListTaughtClassesResponse> EducationUserListTaughtClassesAsync(EducationUserListTaughtClassesParameter parameter)
         {
-            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationUserListTaughtClassesParameter, EducationUserListTaughtClassesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationUserListTaughtClassesResponse> EducationUserListTaughtClassesAsync(EducationUserListTaughtClassesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationUserListTaughtClassesParameter, EducationUserListTaughtClassesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationClass> EducationUserListTaughtClassesEnumerateAsync(EducationUserListTaughtClassesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationUserListTaughtClassesParameter, EducationUserListTaughtClassesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationClass>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

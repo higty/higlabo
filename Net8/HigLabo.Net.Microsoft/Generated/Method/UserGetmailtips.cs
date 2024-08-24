@@ -41,9 +41,8 @@ namespace HigLabo.Net.Microsoft
         public String[]? EmailAddresses { get; set; }
         public string? MailTipsOptions { get; set; }
     }
-    public partial class UserGetmailtipsResponse : RestApiResponse
+    public partial class UserGetmailtipsResponse : RestApiResponse<MailTips>
     {
-        public MailTips[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0

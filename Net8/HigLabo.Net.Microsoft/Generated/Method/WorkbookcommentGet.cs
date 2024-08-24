@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-get?view=graph-rest-1.0
     /// </summary>
-    public partial class WorkbookcommentGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class WorkbookCommentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class WorkbookcommentGetResponse : RestApiResponse
+    public partial class WorkbookCommentGetResponse : RestApiResponse
     {
         public string? Content { get; set; }
         public string? ContentType { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentGetResponse> WorkbookcommentGetAsync()
+        public async ValueTask<WorkbookCommentGetResponse> WorkbookCommentGetAsync()
         {
-            var p = new WorkbookcommentGetParameter();
-            return await this.SendAsync<WorkbookcommentGetParameter, WorkbookcommentGetResponse>(p, CancellationToken.None);
+            var p = new WorkbookCommentGetParameter();
+            return await this.SendAsync<WorkbookCommentGetParameter, WorkbookCommentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentGetResponse> WorkbookcommentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookCommentGetResponse> WorkbookCommentGetAsync(CancellationToken cancellationToken)
         {
-            var p = new WorkbookcommentGetParameter();
-            return await this.SendAsync<WorkbookcommentGetParameter, WorkbookcommentGetResponse>(p, cancellationToken);
+            var p = new WorkbookCommentGetParameter();
+            return await this.SendAsync<WorkbookCommentGetParameter, WorkbookCommentGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentGetResponse> WorkbookcommentGetAsync(WorkbookcommentGetParameter parameter)
+        public async ValueTask<WorkbookCommentGetResponse> WorkbookCommentGetAsync(WorkbookCommentGetParameter parameter)
         {
-            return await this.SendAsync<WorkbookcommentGetParameter, WorkbookcommentGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<WorkbookCommentGetParameter, WorkbookCommentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentGetResponse> WorkbookcommentGetAsync(WorkbookcommentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookCommentGetResponse> WorkbookCommentGetAsync(WorkbookCommentGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<WorkbookcommentGetParameter, WorkbookcommentGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<WorkbookCommentGetParameter, WorkbookCommentGetResponse>(parameter, cancellationToken);
         }
     }
 }

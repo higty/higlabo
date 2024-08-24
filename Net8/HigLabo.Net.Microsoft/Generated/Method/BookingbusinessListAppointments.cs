@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessListAppointmentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingBusinessListAppointmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,31 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AdditionalInformation,
-            AnonymousJoinWebUrl,
-            Customers,
-            CustomerTimeZone,
-            Duration,
-            EndDateTime,
-            FilledAttendeesCount,
-            Id,
-            IsLocationOnline,
-            JoinWebUrl,
-            MaximumAttendeesCount,
-            OptOutOfCustomerEmail,
-            PostBuffer,
-            PreBuffer,
-            Price,
-            PriceType,
-            Reminders,
-            SelfServiceAppointmentId,
-            ServiceId,
-            ServiceLocation,
-            ServiceName,
-            ServiceNotes,
-            SmsNotificationsEnabled,
-            StaffMemberIds,
-            StartDateTime,
         }
         public enum ApiPath
         {
@@ -73,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingbusinessListAppointmentsResponse : RestApiResponse
+    public partial class BookingBusinessListAppointmentsResponse : RestApiResponse<BookingAppointment>
     {
-        public BookingAppointment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
@@ -85,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync()
+        public async ValueTask<BookingBusinessListAppointmentsResponse> BookingBusinessListAppointmentsAsync()
         {
-            var p = new BookingbusinessListAppointmentsParameter();
-            return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessListAppointmentsParameter();
+            return await this.SendAsync<BookingBusinessListAppointmentsParameter, BookingBusinessListAppointmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListAppointmentsResponse> BookingBusinessListAppointmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessListAppointmentsParameter();
-            return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(p, cancellationToken);
+            var p = new BookingBusinessListAppointmentsParameter();
+            return await this.SendAsync<BookingBusinessListAppointmentsParameter, BookingBusinessListAppointmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync(BookingbusinessListAppointmentsParameter parameter)
+        public async ValueTask<BookingBusinessListAppointmentsResponse> BookingBusinessListAppointmentsAsync(BookingBusinessListAppointmentsParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessListAppointmentsParameter, BookingBusinessListAppointmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync(BookingbusinessListAppointmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListAppointmentsResponse> BookingBusinessListAppointmentsAsync(BookingBusinessListAppointmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessListAppointmentsParameter, BookingBusinessListAppointmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BookingAppointment> BookingBusinessListAppointmentsEnumerateAsync(BookingBusinessListAppointmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<BookingBusinessListAppointmentsParameter, BookingBusinessListAppointmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BookingAppointment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

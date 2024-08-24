@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AddlargegalleryviewOperationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AddLargeGalleryviewOperationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AddlargegalleryviewOperationGetResponse : RestApiResponse
+    public partial class AddLargeGalleryviewOperationGetResponse : RestApiResponse
     {
         public enum AddLargeGalleryViewOperationOperationStatus
         {
@@ -74,32 +74,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync()
+        public async ValueTask<AddLargeGalleryviewOperationGetResponse> AddLargeGalleryviewOperationGetAsync()
         {
-            var p = new AddlargegalleryviewOperationGetParameter();
-            return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(p, CancellationToken.None);
+            var p = new AddLargeGalleryviewOperationGetParameter();
+            return await this.SendAsync<AddLargeGalleryviewOperationGetParameter, AddLargeGalleryviewOperationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AddLargeGalleryviewOperationGetResponse> AddLargeGalleryviewOperationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AddlargegalleryviewOperationGetParameter();
-            return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(p, cancellationToken);
+            var p = new AddLargeGalleryviewOperationGetParameter();
+            return await this.SendAsync<AddLargeGalleryviewOperationGetParameter, AddLargeGalleryviewOperationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(AddlargegalleryviewOperationGetParameter parameter)
+        public async ValueTask<AddLargeGalleryviewOperationGetResponse> AddLargeGalleryviewOperationGetAsync(AddLargeGalleryviewOperationGetParameter parameter)
         {
-            return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AddLargeGalleryviewOperationGetParameter, AddLargeGalleryviewOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AddlargegalleryviewOperationGetResponse> AddlargegalleryviewOperationGetAsync(AddlargegalleryviewOperationGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AddLargeGalleryviewOperationGetResponse> AddLargeGalleryviewOperationGetAsync(AddLargeGalleryviewOperationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AddlargegalleryviewOperationGetParameter, AddlargegalleryviewOperationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AddLargeGalleryviewOperationGetParameter, AddLargeGalleryviewOperationGetResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityreportsRootGetattacksimulationrepeatoffendersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityreportsRootGetattackSimulationrepeatoffendersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,8 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AttackSimulationUser,
-            RepeatOffenceCount,
         }
         public enum ApiPath
         {
@@ -49,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityreportsRootGetattacksimulationrepeatoffendersResponse : RestApiResponse
+    public partial class SecurityreportsRootGetattackSimulationrepeatoffendersResponse : RestApiResponse<AttackSimulationRepeatOffender>
     {
-        public AttackSimulationRepeatOffender[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
@@ -61,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityreportsRootGetattacksimulationrepeatoffendersResponse> SecurityreportsRootGetattacksimulationrepeatoffendersAsync()
+        public async ValueTask<SecurityreportsRootGetattackSimulationrepeatoffendersResponse> SecurityreportsRootGetattackSimulationrepeatoffendersAsync()
         {
-            var p = new SecurityreportsRootGetattacksimulationrepeatoffendersParameter();
-            return await this.SendAsync<SecurityreportsRootGetattacksimulationrepeatoffendersParameter, SecurityreportsRootGetattacksimulationrepeatoffendersResponse>(p, CancellationToken.None);
+            var p = new SecurityreportsRootGetattackSimulationrepeatoffendersParameter();
+            return await this.SendAsync<SecurityreportsRootGetattackSimulationrepeatoffendersParameter, SecurityreportsRootGetattackSimulationrepeatoffendersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityreportsRootGetattacksimulationrepeatoffendersResponse> SecurityreportsRootGetattacksimulationrepeatoffendersAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityreportsRootGetattackSimulationrepeatoffendersResponse> SecurityreportsRootGetattackSimulationrepeatoffendersAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityreportsRootGetattacksimulationrepeatoffendersParameter();
-            return await this.SendAsync<SecurityreportsRootGetattacksimulationrepeatoffendersParameter, SecurityreportsRootGetattacksimulationrepeatoffendersResponse>(p, cancellationToken);
+            var p = new SecurityreportsRootGetattackSimulationrepeatoffendersParameter();
+            return await this.SendAsync<SecurityreportsRootGetattackSimulationrepeatoffendersParameter, SecurityreportsRootGetattackSimulationrepeatoffendersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityreportsRootGetattacksimulationrepeatoffendersResponse> SecurityreportsRootGetattacksimulationrepeatoffendersAsync(SecurityreportsRootGetattacksimulationrepeatoffendersParameter parameter)
+        public async ValueTask<SecurityreportsRootGetattackSimulationrepeatoffendersResponse> SecurityreportsRootGetattackSimulationrepeatoffendersAsync(SecurityreportsRootGetattackSimulationrepeatoffendersParameter parameter)
         {
-            return await this.SendAsync<SecurityreportsRootGetattacksimulationrepeatoffendersParameter, SecurityreportsRootGetattacksimulationrepeatoffendersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityreportsRootGetattackSimulationrepeatoffendersParameter, SecurityreportsRootGetattackSimulationrepeatoffendersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityreportsRootGetattacksimulationrepeatoffendersResponse> SecurityreportsRootGetattacksimulationrepeatoffendersAsync(SecurityreportsRootGetattacksimulationrepeatoffendersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityreportsRootGetattackSimulationrepeatoffendersResponse> SecurityreportsRootGetattackSimulationrepeatoffendersAsync(SecurityreportsRootGetattackSimulationrepeatoffendersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityreportsRootGetattacksimulationrepeatoffendersParameter, SecurityreportsRootGetattacksimulationrepeatoffendersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityreportsRootGetattackSimulationrepeatoffendersParameter, SecurityreportsRootGetattackSimulationrepeatoffendersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/securityreportsroot-getattacksimulationrepeatoffenders?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AttackSimulationRepeatOffender> SecurityreportsRootGetattackSimulationrepeatoffendersEnumerateAsync(SecurityreportsRootGetattackSimulationrepeatoffendersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityreportsRootGetattackSimulationrepeatoffendersParameter, SecurityreportsRootGetattackSimulationrepeatoffendersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AttackSimulationRepeatOffender>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

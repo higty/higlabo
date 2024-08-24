@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetskypeforbusinessdeviceusageUserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetskypeforbusinessdeviceusageUserdetailResponse : RestApiResponse
+    public partial class ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessdeviceusageUserdetailResponse> ReportRootGetskypeforbusinessdeviceusageUserdetailAsync()
+        public async ValueTask<ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse> ReportRootGetSkypeforBusinessdeviceusageUserdetailAsync()
         {
-            var p = new ReportRootGetskypeforbusinessdeviceusageUserdetailParameter();
-            return await this.SendAsync<ReportRootGetskypeforbusinessdeviceusageUserdetailParameter, ReportRootGetskypeforbusinessdeviceusageUserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter();
+            return await this.SendAsync<ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter, ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessdeviceusageUserdetailResponse> ReportRootGetskypeforbusinessdeviceusageUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse> ReportRootGetSkypeforBusinessdeviceusageUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetskypeforbusinessdeviceusageUserdetailParameter();
-            return await this.SendAsync<ReportRootGetskypeforbusinessdeviceusageUserdetailParameter, ReportRootGetskypeforbusinessdeviceusageUserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter();
+            return await this.SendAsync<ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter, ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessdeviceusageUserdetailResponse> ReportRootGetskypeforbusinessdeviceusageUserdetailAsync(ReportRootGetskypeforbusinessdeviceusageUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse> ReportRootGetSkypeforBusinessdeviceusageUserdetailAsync(ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetskypeforbusinessdeviceusageUserdetailParameter, ReportRootGetskypeforbusinessdeviceusageUserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter, ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessdeviceusageUserdetailResponse> ReportRootGetskypeforbusinessdeviceusageUserdetailAsync(ReportRootGetskypeforbusinessdeviceusageUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse> ReportRootGetSkypeforBusinessdeviceusageUserdetailAsync(ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetskypeforbusinessdeviceusageUserdetailParameter, ReportRootGetskypeforbusinessdeviceusageUserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetSkypeforBusinessdeviceusageUserdetailParameter, ReportRootGetSkypeforBusinessdeviceusageUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

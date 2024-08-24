@@ -16,7 +16,7 @@ namespace HigLabo.Net.Microsoft
 
         public DateTimeTimeZone? CompletedDateTime { get; set; }
         public DateTimeTimeZone? DueDateTime { get; set; }
-        public FollowupFlagFollowupFlagStatus FlagStatus { get; set; }
+        public FollowupFlagFollowupFlagStatus? FlagStatus { get; set; }
         public DateTimeTimeZone? StartDateTime { get; set; }
     }
 }

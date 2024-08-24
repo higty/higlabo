@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalAddpasswordParameter : IRestApiParameter
+    public partial class ServicePrincipalAddpasswordParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         public Guid? KeyId { get; set; }
         public string? SecretText { get; set; }
     }
-    public partial class ServiceprincipalAddpasswordResponse : RestApiResponse
+    public partial class ServicePrincipalAddpasswordResponse : RestApiResponse
     {
         public string? CustomKeyIdentifier { get; set; }
         public string? DisplayName { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync()
+        public async ValueTask<ServicePrincipalAddpasswordResponse> ServicePrincipalAddpasswordAsync()
         {
-            var p = new ServiceprincipalAddpasswordParameter();
-            return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalAddpasswordParameter();
+            return await this.SendAsync<ServicePrincipalAddpasswordParameter, ServicePrincipalAddpasswordResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalAddpasswordResponse> ServicePrincipalAddpasswordAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalAddpasswordParameter();
-            return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(p, cancellationToken);
+            var p = new ServicePrincipalAddpasswordParameter();
+            return await this.SendAsync<ServicePrincipalAddpasswordParameter, ServicePrincipalAddpasswordResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(ServiceprincipalAddpasswordParameter parameter)
+        public async ValueTask<ServicePrincipalAddpasswordResponse> ServicePrincipalAddpasswordAsync(ServicePrincipalAddpasswordParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalAddpasswordParameter, ServicePrincipalAddpasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddpasswordResponse> ServiceprincipalAddpasswordAsync(ServiceprincipalAddpasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalAddpasswordResponse> ServicePrincipalAddpasswordAsync(ServicePrincipalAddpasswordParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalAddpasswordParameter, ServiceprincipalAddpasswordResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalAddpasswordParameter, ServicePrincipalAddpasswordResponse>(parameter, cancellationToken);
         }
     }
 }

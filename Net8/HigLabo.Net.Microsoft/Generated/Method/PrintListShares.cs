@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,21 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowAllUsers,
-            Capabilities,
-            CreatedDateTime,
-            Defaults,
-            DisplayName,
-            Id,
-            IsAcceptingJobs,
-            Location,
-            Manufacturer,
-            Model,
-            Status,
-            Printer,
-            AllowedUsers,
-            AllowedGroups,
-            Jobs,
         }
         public enum ApiPath
         {
@@ -62,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrintListSharesResponse : RestApiResponse
+    public partial class PrintListSharesResponse : RestApiResponse<PrinterShare>
     {
-        public PrinterShare[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/print-list-shares?view=graph-rest-1.0
@@ -100,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PrintListSharesResponse> PrintListSharesAsync(PrintListSharesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintListSharesParameter, PrintListSharesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-shares?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PrinterShare> PrintListSharesEnumerateAsync(PrintListSharesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PrintListSharesParameter, PrintListSharesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PrinterShare>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessPostStaffmembersParameter : IRestApiParameter
+    public partial class BookingBusinessPostStaffMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
         public bool? UseBusinessHours { get; set; }
         public BookingWorkHours[]? WorkingHours { get; set; }
     }
-    public partial class BookingbusinessPostStaffmembersResponse : RestApiResponse
+    public partial class BookingBusinessPostStaffMembersResponse : RestApiResponse
     {
         public enum BookingStaffMemberBookingStaffRole
         {
@@ -87,32 +87,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync()
+        public async ValueTask<BookingBusinessPostStaffMembersResponse> BookingBusinessPostStaffMembersAsync()
         {
-            var p = new BookingbusinessPostStaffmembersParameter();
-            return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessPostStaffMembersParameter();
+            return await this.SendAsync<BookingBusinessPostStaffMembersParameter, BookingBusinessPostStaffMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessPostStaffMembersResponse> BookingBusinessPostStaffMembersAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessPostStaffmembersParameter();
-            return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(p, cancellationToken);
+            var p = new BookingBusinessPostStaffMembersParameter();
+            return await this.SendAsync<BookingBusinessPostStaffMembersParameter, BookingBusinessPostStaffMembersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync(BookingbusinessPostStaffmembersParameter parameter)
+        public async ValueTask<BookingBusinessPostStaffMembersResponse> BookingBusinessPostStaffMembersAsync(BookingBusinessPostStaffMembersParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessPostStaffMembersParameter, BookingBusinessPostStaffMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync(BookingbusinessPostStaffmembersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessPostStaffMembersResponse> BookingBusinessPostStaffMembersAsync(BookingBusinessPostStaffMembersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessPostStaffMembersParameter, BookingBusinessPostStaffMembersResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintershareDeleteAllowedUserParameter : IRestApiParameter
+    public partial class PrinterShareDeleteAllowedUserParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class PrintershareDeleteAllowedUserResponse : RestApiResponse
+    public partial class PrinterShareDeleteAllowedUserResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync()
+        public async ValueTask<PrinterShareDeleteAllowedUserResponse> PrinterShareDeleteAllowedUserAsync()
         {
-            var p = new PrintershareDeleteAllowedUserParameter();
-            return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(p, CancellationToken.None);
+            var p = new PrinterShareDeleteAllowedUserParameter();
+            return await this.SendAsync<PrinterShareDeleteAllowedUserParameter, PrinterShareDeleteAllowedUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareDeleteAllowedUserResponse> PrinterShareDeleteAllowedUserAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareDeleteAllowedUserParameter();
-            return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(p, cancellationToken);
+            var p = new PrinterShareDeleteAllowedUserParameter();
+            return await this.SendAsync<PrinterShareDeleteAllowedUserParameter, PrinterShareDeleteAllowedUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(PrintershareDeleteAllowedUserParameter parameter)
+        public async ValueTask<PrinterShareDeleteAllowedUserResponse> PrinterShareDeleteAllowedUserAsync(PrinterShareDeleteAllowedUserParameter parameter)
         {
-            return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterShareDeleteAllowedUserParameter, PrinterShareDeleteAllowedUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteAllowedUserResponse> PrintershareDeleteAllowedUserAsync(PrintershareDeleteAllowedUserParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareDeleteAllowedUserResponse> PrinterShareDeleteAllowedUserAsync(PrinterShareDeleteAllowedUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareDeleteAllowedUserParameter, PrintershareDeleteAllowedUserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterShareDeleteAllowedUserParameter, PrinterShareDeleteAllowedUserResponse>(parameter, cancellationToken);
         }
     }
 }

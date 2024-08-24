@@ -5,9 +5,9 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/resources/security-ediscoverynoncustodialdatasource?view=graph-rest-1.0
     /// </summary>
-    public partial class EdiscoveryNoncustodialDataSource
+    public partial class EDiscoveryNoncustodialDataSource
     {
-        public enum EdiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus
+        public enum EDiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus
         {
             NotApplied,
             Applied,
@@ -15,7 +15,7 @@ namespace HigLabo.Net.Microsoft
             Removing,
             Partial,
         }
-        public enum EdiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus
+        public enum EDiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus
         {
             Active,
             Released,
@@ -23,12 +23,12 @@ namespace HigLabo.Net.Microsoft
 
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
-        public EdiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
+        public EDiscoveryNoncustodialDataSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? ReleasedDateTime { get; set; }
-        public EdiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus Status { get; set; }
+        public EDiscoveryNoncustodialDataSourceSecurityDataSourceContainerStatus Status { get; set; }
         public DataSource? DataSource { get; set; }
-        public EdiscoveryIndexOperation? LastIndexOperation { get; set; }
+        public EDiscoveryIndexOperation? LastIndexOperation { get; set; }
     }
 }

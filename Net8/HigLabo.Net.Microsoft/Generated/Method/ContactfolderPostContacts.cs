@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
     /// </summary>
-    public partial class ContactfolderPostContactsParameter : IRestApiParameter
+    public partial class ContactFolderPostContactsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -86,7 +86,7 @@ namespace HigLabo.Net.Microsoft
         public ProfilePhoto? Photo { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class ContactfolderPostContactsResponse : RestApiResponse
+    public partial class ContactFolderPostContactsResponse : RestApiResponse
     {
         public string? AssistantName { get; set; }
         public DateTimeOffset? Birthday { get; set; }
@@ -139,32 +139,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync()
+        public async ValueTask<ContactFolderPostContactsResponse> ContactFolderPostContactsAsync()
         {
-            var p = new ContactfolderPostContactsParameter();
-            return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(p, CancellationToken.None);
+            var p = new ContactFolderPostContactsParameter();
+            return await this.SendAsync<ContactFolderPostContactsParameter, ContactFolderPostContactsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderPostContactsResponse> ContactFolderPostContactsAsync(CancellationToken cancellationToken)
         {
-            var p = new ContactfolderPostContactsParameter();
-            return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(p, cancellationToken);
+            var p = new ContactFolderPostContactsParameter();
+            return await this.SendAsync<ContactFolderPostContactsParameter, ContactFolderPostContactsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync(ContactfolderPostContactsParameter parameter)
+        public async ValueTask<ContactFolderPostContactsResponse> ContactFolderPostContactsAsync(ContactFolderPostContactsParameter parameter)
         {
-            return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContactFolderPostContactsParameter, ContactFolderPostContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync(ContactfolderPostContactsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderPostContactsResponse> ContactFolderPostContactsAsync(ContactFolderPostContactsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContactFolderPostContactsParameter, ContactFolderPostContactsResponse>(parameter, cancellationToken);
         }
     }
 }

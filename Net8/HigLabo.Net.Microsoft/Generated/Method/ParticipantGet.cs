@@ -25,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Info,
-            IsInLobby,
-            IsMuted,
-            MediaStreams,
-            Metadata,
-            RecordingInfo,
-            RestrictedExperience,
         }
         public enum ApiPath
         {

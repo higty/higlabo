@@ -24,14 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppVersion,
-            DisplayName,
-            FullyQualifiedDomainName,
-            Id,
-            Location,
-            OperatingSystem,
-            RegisteredBy,
-            RegisteredDateTime,
         }
         public enum ApiPath
         {

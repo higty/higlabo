@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,8 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -50,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OrgcontactListMemberofResponse : RestApiResponse
+    public partial class OrgcontactListMemberofResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
@@ -88,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<OrgcontactListMemberofResponse> OrgcontactListMemberofAsync(OrgcontactListMemberofParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrgcontactListMemberofParameter, OrgcontactListMemberofResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> OrgcontactListMemberofEnumerateAsync(OrgcontactListMemberofParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<OrgcontactListMemberofParameter, OrgcontactListMemberofResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -24,22 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AttackTechnique,
-            AttackType,
-            AutomationId,
-            CompletionDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Id,
-            IsAutomated,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            LaunchDateTime,
-            PayloadDeliveryPlatform,
-            Report,
-            Status,
         }
         public enum ApiPath
         {

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/openshift-list?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenshiftListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OpenShiftListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OpenshiftListResponse : RestApiResponse
+    public partial class OpenShiftListResponse : RestApiResponse
     {
         public OpenShiftItem? DraftOpenShift { get; set; }
         public string? SchedulingGroupId { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftListResponse> OpenshiftListAsync()
+        public async ValueTask<OpenShiftListResponse> OpenShiftListAsync()
         {
-            var p = new OpenshiftListParameter();
-            return await this.SendAsync<OpenshiftListParameter, OpenshiftListResponse>(p, CancellationToken.None);
+            var p = new OpenShiftListParameter();
+            return await this.SendAsync<OpenShiftListParameter, OpenShiftListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftListResponse> OpenshiftListAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftListResponse> OpenShiftListAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenshiftListParameter();
-            return await this.SendAsync<OpenshiftListParameter, OpenshiftListResponse>(p, cancellationToken);
+            var p = new OpenShiftListParameter();
+            return await this.SendAsync<OpenShiftListParameter, OpenShiftListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftListResponse> OpenshiftListAsync(OpenshiftListParameter parameter)
+        public async ValueTask<OpenShiftListResponse> OpenShiftListAsync(OpenShiftListParameter parameter)
         {
-            return await this.SendAsync<OpenshiftListParameter, OpenshiftListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenShiftListParameter, OpenShiftListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftListResponse> OpenshiftListAsync(OpenshiftListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftListResponse> OpenShiftListAsync(OpenShiftListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenshiftListParameter, OpenshiftListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenShiftListParameter, OpenShiftListResponse>(parameter, cancellationToken);
         }
     }
 }

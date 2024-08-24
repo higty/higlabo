@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
     /// </summary>
-    public partial class WorkbookcommentPostRepliesParameter : IRestApiParameter
+    public partial class WorkbookCommentPostRepliesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Microsoft
         public string? ContentType { get; set; }
         public string? Id { get; set; }
     }
-    public partial class WorkbookcommentPostRepliesResponse : RestApiResponse
+    public partial class WorkbookCommentPostRepliesResponse : RestApiResponse
     {
         public string? Content { get; set; }
         public string? ContentType { get; set; }
@@ -59,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync()
+        public async ValueTask<WorkbookCommentPostRepliesResponse> WorkbookCommentPostRepliesAsync()
         {
-            var p = new WorkbookcommentPostRepliesParameter();
-            return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(p, CancellationToken.None);
+            var p = new WorkbookCommentPostRepliesParameter();
+            return await this.SendAsync<WorkbookCommentPostRepliesParameter, WorkbookCommentPostRepliesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync(CancellationToken cancellationToken)
+        public async ValueTask<WorkbookCommentPostRepliesResponse> WorkbookCommentPostRepliesAsync(CancellationToken cancellationToken)
         {
-            var p = new WorkbookcommentPostRepliesParameter();
-            return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(p, cancellationToken);
+            var p = new WorkbookCommentPostRepliesParameter();
+            return await this.SendAsync<WorkbookCommentPostRepliesParameter, WorkbookCommentPostRepliesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync(WorkbookcommentPostRepliesParameter parameter)
+        public async ValueTask<WorkbookCommentPostRepliesResponse> WorkbookCommentPostRepliesAsync(WorkbookCommentPostRepliesParameter parameter)
         {
-            return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<WorkbookCommentPostRepliesParameter, WorkbookCommentPostRepliesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync(WorkbookcommentPostRepliesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<WorkbookCommentPostRepliesResponse> WorkbookCommentPostRepliesAsync(WorkbookCommentPostRepliesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<WorkbookCommentPostRepliesParameter, WorkbookCommentPostRepliesResponse>(parameter, cancellationToken);
         }
     }
 }

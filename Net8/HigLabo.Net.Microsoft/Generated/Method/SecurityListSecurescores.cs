@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityListSecurescoresParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityListSecureScoresParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityListSecurescoresResponse : RestApiResponse
+    public partial class SecurityListSecureScoresResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync()
+        public async ValueTask<SecurityListSecureScoresResponse> SecurityListSecureScoresAsync()
         {
-            var p = new SecurityListSecurescoresParameter();
-            return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(p, CancellationToken.None);
+            var p = new SecurityListSecureScoresParameter();
+            return await this.SendAsync<SecurityListSecureScoresParameter, SecurityListSecureScoresResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecureScoresResponse> SecurityListSecureScoresAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityListSecurescoresParameter();
-            return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(p, cancellationToken);
+            var p = new SecurityListSecureScoresParameter();
+            return await this.SendAsync<SecurityListSecureScoresParameter, SecurityListSecureScoresResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(SecurityListSecurescoresParameter parameter)
+        public async ValueTask<SecurityListSecureScoresResponse> SecurityListSecureScoresAsync(SecurityListSecureScoresParameter parameter)
         {
-            return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityListSecureScoresParameter, SecurityListSecureScoresResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-list-securescores?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityListSecurescoresResponse> SecurityListSecurescoresAsync(SecurityListSecurescoresParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityListSecureScoresResponse> SecurityListSecureScoresAsync(SecurityListSecureScoresParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityListSecurescoresParameter, SecurityListSecurescoresResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityListSecureScoresParameter, SecurityListSecureScoresResponse>(parameter, cancellationToken);
         }
     }
 }

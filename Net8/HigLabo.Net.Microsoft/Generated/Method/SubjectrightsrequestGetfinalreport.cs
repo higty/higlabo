@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0
     /// </summary>
-    public partial class SubjectrightsrequestGetfinalreportParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SubjectrightsRequestGetfinalreportParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SubjectrightsrequestGetfinalreportResponse : RestApiResponse
+    public partial class SubjectrightsRequestGetfinalreportResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -59,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestGetfinalreportResponse> SubjectrightsrequestGetfinalreportAsync()
+        public async ValueTask<SubjectrightsRequestGetfinalreportResponse> SubjectrightsRequestGetfinalreportAsync()
         {
-            var p = new SubjectrightsrequestGetfinalreportParameter();
-            return await this.SendAsync<SubjectrightsrequestGetfinalreportParameter, SubjectrightsrequestGetfinalreportResponse>(p, CancellationToken.None);
+            var p = new SubjectrightsRequestGetfinalreportParameter();
+            return await this.SendAsync<SubjectrightsRequestGetfinalreportParameter, SubjectrightsRequestGetfinalreportResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestGetfinalreportResponse> SubjectrightsrequestGetfinalreportAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsRequestGetfinalreportResponse> SubjectrightsRequestGetfinalreportAsync(CancellationToken cancellationToken)
         {
-            var p = new SubjectrightsrequestGetfinalreportParameter();
-            return await this.SendAsync<SubjectrightsrequestGetfinalreportParameter, SubjectrightsrequestGetfinalreportResponse>(p, cancellationToken);
+            var p = new SubjectrightsRequestGetfinalreportParameter();
+            return await this.SendAsync<SubjectrightsRequestGetfinalreportParameter, SubjectrightsRequestGetfinalreportResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestGetfinalreportResponse> SubjectrightsrequestGetfinalreportAsync(SubjectrightsrequestGetfinalreportParameter parameter)
+        public async ValueTask<SubjectrightsRequestGetfinalreportResponse> SubjectrightsRequestGetfinalreportAsync(SubjectrightsRequestGetfinalreportParameter parameter)
         {
-            return await this.SendAsync<SubjectrightsrequestGetfinalreportParameter, SubjectrightsrequestGetfinalreportResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SubjectrightsRequestGetfinalreportParameter, SubjectrightsRequestGetfinalreportResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestGetfinalreportResponse> SubjectrightsrequestGetfinalreportAsync(SubjectrightsrequestGetfinalreportParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsRequestGetfinalreportResponse> SubjectrightsRequestGetfinalreportAsync(SubjectrightsRequestGetfinalreportParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SubjectrightsrequestGetfinalreportParameter, SubjectrightsrequestGetfinalreportResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SubjectrightsRequestGetfinalreportParameter, SubjectrightsRequestGetfinalreportResponse>(parameter, cancellationToken);
         }
     }
 }

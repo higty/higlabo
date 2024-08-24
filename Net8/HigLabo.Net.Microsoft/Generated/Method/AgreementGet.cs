@@ -24,15 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            IsPerDeviceAcceptanceRequired,
-            IsViewingBeforeAcceptanceRequired,
-            TermsExpiration,
-            UserReacceptRequiredFrequency,
-            Acceptances,
-            File,
-            Files,
         }
         public enum ApiPath
         {

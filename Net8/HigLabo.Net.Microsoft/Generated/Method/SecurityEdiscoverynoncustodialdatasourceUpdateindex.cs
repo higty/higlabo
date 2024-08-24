@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter : IRestApiParameter
+    public partial class SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse : RestApiResponse
+    public partial class SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEdiscoverynoncustodialdatasourceUpdateindexAsync()
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEDiscoverynoncustodialdatasourceUpdateindexAsync()
         {
-            var p = new SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter();
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter();
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEdiscoverynoncustodialdatasourceUpdateindexAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEDiscoverynoncustodialdatasourceUpdateindexAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter();
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter();
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEdiscoverynoncustodialdatasourceUpdateindexAsync(SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter parameter)
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEDiscoverynoncustodialdatasourceUpdateindexAsync(SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEdiscoverynoncustodialdatasourceUpdateindexAsync(SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse> SecurityEDiscoverynoncustodialdatasourceUpdateindexAsync(SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEdiscoverynoncustodialdatasourceUpdateindexResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceUpdateindexParameter, SecurityEDiscoverynoncustodialdatasourceUpdateindexResponse>(parameter, cancellationToken);
         }
     }
 }

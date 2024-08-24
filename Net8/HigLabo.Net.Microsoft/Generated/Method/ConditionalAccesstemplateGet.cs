@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ConditionalAccesstemplateGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ConditionalAccessTemplateGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ConditionalAccesstemplateGetResponse : RestApiResponse
+    public partial class ConditionalAccessTemplateGetResponse : RestApiResponse
     {
         public enum ConditionalAccessTemplateTemplateScenarios
         {
@@ -76,32 +76,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync()
+        public async ValueTask<ConditionalAccessTemplateGetResponse> ConditionalAccessTemplateGetAsync()
         {
-            var p = new ConditionalAccesstemplateGetParameter();
-            return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(p, CancellationToken.None);
+            var p = new ConditionalAccessTemplateGetParameter();
+            return await this.SendAsync<ConditionalAccessTemplateGetParameter, ConditionalAccessTemplateGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessTemplateGetResponse> ConditionalAccessTemplateGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ConditionalAccesstemplateGetParameter();
-            return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(p, cancellationToken);
+            var p = new ConditionalAccessTemplateGetParameter();
+            return await this.SendAsync<ConditionalAccessTemplateGetParameter, ConditionalAccessTemplateGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(ConditionalAccesstemplateGetParameter parameter)
+        public async ValueTask<ConditionalAccessTemplateGetResponse> ConditionalAccessTemplateGetAsync(ConditionalAccessTemplateGetParameter parameter)
         {
-            return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConditionalAccessTemplateGetParameter, ConditionalAccessTemplateGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConditionalAccesstemplateGetResponse> ConditionalAccesstemplateGetAsync(ConditionalAccesstemplateGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConditionalAccessTemplateGetResponse> ConditionalAccessTemplateGetAsync(ConditionalAccessTemplateGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConditionalAccesstemplateGetParameter, ConditionalAccesstemplateGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConditionalAccessTemplateGetParameter, ConditionalAccessTemplateGetResponse>(parameter, cancellationToken);
         }
     }
 }

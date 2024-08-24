@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseListCustodiansParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycaseListCustodiansParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,19 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AcknowledgedDateTime,
-            CreatedDateTime,
-            DisplayName,
-            Email,
-            HoldStatus,
-            Id,
-            LastModifiedDateTime,
-            ReleasedDateTime,
-            Status,
-            LastIndexOperation,
-            SiteSources,
-            UnifiedGroupSources,
-            UserSources,
         }
         public enum ApiPath
         {
@@ -61,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycaseListCustodiansResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseListCustodiansResponse : RestApiResponse<EDiscoveryCustodian>
     {
-        public EdiscoveryCustodian[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
@@ -73,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync()
+        public async ValueTask<SecurityEDiscoverycaseListCustodiansResponse> SecurityEDiscoverycaseListCustodiansAsync()
         {
-            var p = new SecurityEdiscoverycaseListCustodiansParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseListCustodiansParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListCustodiansParameter, SecurityEDiscoverycaseListCustodiansResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListCustodiansResponse> SecurityEDiscoverycaseListCustodiansAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseListCustodiansParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseListCustodiansParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListCustodiansParameter, SecurityEDiscoverycaseListCustodiansResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(SecurityEdiscoverycaseListCustodiansParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseListCustodiansResponse> SecurityEDiscoverycaseListCustodiansAsync(SecurityEDiscoverycaseListCustodiansParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseListCustodiansParameter, SecurityEDiscoverycaseListCustodiansResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListCustodiansResponse> SecurityEdiscoverycaseListCustodiansAsync(SecurityEdiscoverycaseListCustodiansParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListCustodiansResponse> SecurityEDiscoverycaseListCustodiansAsync(SecurityEDiscoverycaseListCustodiansParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListCustodiansParameter, SecurityEdiscoverycaseListCustodiansResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseListCustodiansParameter, SecurityEDiscoverycaseListCustodiansResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoveryCustodian> SecurityEDiscoverycaseListCustodiansEnumerateAsync(SecurityEDiscoverycaseListCustodiansParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycaseListCustodiansParameter, SecurityEDiscoverycaseListCustodiansResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoveryCustodian>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

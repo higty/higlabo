@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewinstanceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewinstanceGetResponse : RestApiResponse
+    public partial class AccessReviewinstanceGetResponse : RestApiResponse
     {
         public DateTimeOffset? EndDateTime { get; set; }
         public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
@@ -70,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync()
+        public async ValueTask<AccessReviewinstanceGetResponse> AccessReviewinstanceGetAsync()
         {
-            var p = new AccessreviewinstanceGetParameter();
-            return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceGetParameter();
+            return await this.SendAsync<AccessReviewinstanceGetParameter, AccessReviewinstanceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceGetResponse> AccessReviewinstanceGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceGetParameter();
-            return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceGetParameter();
+            return await this.SendAsync<AccessReviewinstanceGetParameter, AccessReviewinstanceGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(AccessreviewinstanceGetParameter parameter)
+        public async ValueTask<AccessReviewinstanceGetResponse> AccessReviewinstanceGetAsync(AccessReviewinstanceGetParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceGetParameter, AccessReviewinstanceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceGetResponse> AccessreviewinstanceGetAsync(AccessreviewinstanceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceGetResponse> AccessReviewinstanceGetAsync(AccessReviewinstanceGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceGetParameter, AccessreviewinstanceGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceGetParameter, AccessReviewinstanceGetResponse>(parameter, cancellationToken);
         }
     }
 }

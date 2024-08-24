@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseSettingsGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycaseSettingsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycaseSettingsGetResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseSettingsGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public OcrSettings? Ocr { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseSettingsGetResponse> SecurityEdiscoverycaseSettingsGetAsync()
+        public async ValueTask<SecurityEDiscoverycaseSettingsGetResponse> SecurityEDiscoverycaseSettingsGetAsync()
         {
-            var p = new SecurityEdiscoverycaseSettingsGetParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseSettingsGetParameter, SecurityEdiscoverycaseSettingsGetResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseSettingsGetParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseSettingsGetParameter, SecurityEDiscoverycaseSettingsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseSettingsGetResponse> SecurityEdiscoverycaseSettingsGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseSettingsGetResponse> SecurityEDiscoverycaseSettingsGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseSettingsGetParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseSettingsGetParameter, SecurityEdiscoverycaseSettingsGetResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseSettingsGetParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseSettingsGetParameter, SecurityEDiscoverycaseSettingsGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseSettingsGetResponse> SecurityEdiscoverycaseSettingsGetAsync(SecurityEdiscoverycaseSettingsGetParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseSettingsGetResponse> SecurityEDiscoverycaseSettingsGetAsync(SecurityEDiscoverycaseSettingsGetParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseSettingsGetParameter, SecurityEdiscoverycaseSettingsGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseSettingsGetParameter, SecurityEDiscoverycaseSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseSettingsGetResponse> SecurityEdiscoverycaseSettingsGetAsync(SecurityEdiscoverycaseSettingsGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseSettingsGetResponse> SecurityEDiscoverycaseSettingsGetAsync(SecurityEDiscoverycaseSettingsGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseSettingsGetParameter, SecurityEdiscoverycaseSettingsGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseSettingsGetParameter, SecurityEDiscoverycaseSettingsGetResponse>(parameter, cancellationToken);
         }
     }
 }

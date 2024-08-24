@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,11 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            IsEnabled,
-            DefaultPages,
-            OverridesPages,
         }
         public enum ApiPath
         {
@@ -53,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class B2xidentityUserflowListLanguagesResponse : RestApiResponse
+    public partial class B2xidentityUserflowListLanguagesResponse : RestApiResponse<UserFlowLanguageConfiguration>
     {
-        public UserFlowLanguageConfiguration[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
@@ -91,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<B2xidentityUserflowListLanguagesResponse> B2xidentityUserflowListLanguagesAsync(B2xidentityUserflowListLanguagesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<B2xidentityUserflowListLanguagesParameter, B2xidentityUserflowListLanguagesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UserFlowLanguageConfiguration> B2xidentityUserflowListLanguagesEnumerateAsync(B2xidentityUserflowListLanguagesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<B2xidentityUserflowListLanguagesParameter, B2xidentityUserflowListLanguagesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UserFlowLanguageConfiguration>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

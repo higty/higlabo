@@ -143,7 +143,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        protected async Task ProcessAccessTokenAsync()
+        protected async ValueTask ProcessAccessTokenAsync()
         {
             var result = await this.UpdateAccessTokenAsync();
             if (((IRestApiResponse)result).StatusCode == HttpStatusCode.OK)

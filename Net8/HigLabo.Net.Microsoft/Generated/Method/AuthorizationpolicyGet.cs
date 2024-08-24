@@ -23,17 +23,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowEmailVerifiedUsersToJoinOrganization,
-            AllowInvitesFrom,
-            AllowUserConsentForRiskyApps,
-            AllowedToSignUpEmailBasedSubscriptions,
-            AllowedToUseSSPR,
-            BlockMsolPowerShell,
-            DefaultUserRolePermissions,
-            Description,
-            DisplayName,
-            GuestUserRoleId,
-            Id,
         }
         public enum ApiPath
         {

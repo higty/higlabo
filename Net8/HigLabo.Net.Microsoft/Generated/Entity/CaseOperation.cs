@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/security-caseoperation?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/security-caseoperation?view=graph-rest-1.0#caseaction-values
     /// </summary>
     public partial class CaseOperation
     {
@@ -33,6 +33,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public Int32? PercentProgress { get; set; }
         public ResultInfo? ResultInfo { get; set; }
-        public CaseOperationSecurityCaseOperationStatus Status { get; set; }
+        public CaseOperation? Status { get; set; }
     }
 }

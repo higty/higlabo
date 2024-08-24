@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetteamsteamactivitydetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetTeamsteamActivitydetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetteamsteamactivitydetailResponse : RestApiResponse
+    public partial class ReportRootGetTeamsteamActivitydetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydetailResponse> ReportRootGetteamsteamactivitydetailAsync()
+        public async ValueTask<ReportRootGetTeamsteamActivitydetailResponse> ReportRootGetTeamsteamActivitydetailAsync()
         {
-            var p = new ReportRootGetteamsteamactivitydetailParameter();
-            return await this.SendAsync<ReportRootGetteamsteamactivitydetailParameter, ReportRootGetteamsteamactivitydetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetTeamsteamActivitydetailParameter();
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydetailParameter, ReportRootGetTeamsteamActivitydetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydetailResponse> ReportRootGetteamsteamactivitydetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsteamActivitydetailResponse> ReportRootGetTeamsteamActivitydetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetteamsteamactivitydetailParameter();
-            return await this.SendAsync<ReportRootGetteamsteamactivitydetailParameter, ReportRootGetteamsteamactivitydetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetTeamsteamActivitydetailParameter();
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydetailParameter, ReportRootGetTeamsteamActivitydetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydetailResponse> ReportRootGetteamsteamactivitydetailAsync(ReportRootGetteamsteamactivitydetailParameter parameter)
+        public async ValueTask<ReportRootGetTeamsteamActivitydetailResponse> ReportRootGetTeamsteamActivitydetailAsync(ReportRootGetTeamsteamActivitydetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetteamsteamactivitydetailParameter, ReportRootGetteamsteamactivitydetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydetailParameter, ReportRootGetTeamsteamActivitydetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsteamactivitydetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetteamsteamactivitydetailResponse> ReportRootGetteamsteamactivitydetailAsync(ReportRootGetteamsteamactivitydetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetTeamsteamActivitydetailResponse> ReportRootGetTeamsteamActivitydetailAsync(ReportRootGetTeamsteamActivitydetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetteamsteamactivitydetailParameter, ReportRootGetteamsteamactivitydetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetTeamsteamActivitydetailParameter, ReportRootGetTeamsteamActivitydetailResponse>(parameter, cancellationToken);
         }
     }
 }

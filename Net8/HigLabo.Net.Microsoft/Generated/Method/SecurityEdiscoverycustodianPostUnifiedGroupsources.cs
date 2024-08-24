@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-unifiedgroupsources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameterSecuritySourceType
+        public enum SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameterSecuritySourceType
         {
             Mailbox,
             Site,
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameterSecuritySourceType IncludedSources { get; set; }
+        public SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameterSecuritySourceType IncludedSources { get; set; }
         public string? Group { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         public UnifiedGroupSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
         public string? Id { get; set; }
     }
-    public partial class SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse : RestApiResponse
     {
         public enum UnifiedGroupSourceSecurityDataSourceHoldStatus
         {
@@ -95,32 +95,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianPostUnifiedGroupsourcesAsync()
+        public async ValueTask<SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianPostUnifiedGroupsourcesAsync()
         {
-            var p = new SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianPostUnifiedGroupsourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianPostUnifiedGroupsourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianPostUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianPostUnifiedGroupsourcesAsync(SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianPostUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianPostUnifiedGroupsourcesAsync(SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianPostUnifiedGroupsourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycustodianPostUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianPostUnifiedGroupsourcesResponse>(parameter, cancellationToken);
         }
     }
 }

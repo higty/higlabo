@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityUserflowattributeAssignmentGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityUserflowAttributeAssignmentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityUserflowattributeAssignmentGetResponse : RestApiResponse
+    public partial class IdentityUserflowAttributeAssignmentGetResponse : RestApiResponse
     {
         public enum IdentityUserFlowAttributeAssignmentIdentityUserFlowAttributeInputType
         {
@@ -77,32 +77,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync()
+        public async ValueTask<IdentityUserflowAttributeAssignmentGetResponse> IdentityUserflowAttributeAssignmentGetAsync()
         {
-            var p = new IdentityUserflowattributeAssignmentGetParameter();
-            return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowAttributeAssignmentGetParameter();
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentGetParameter, IdentityUserflowAttributeAssignmentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeAssignmentGetResponse> IdentityUserflowAttributeAssignmentGetAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityUserflowattributeAssignmentGetParameter();
-            return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(p, cancellationToken);
+            var p = new IdentityUserflowAttributeAssignmentGetParameter();
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentGetParameter, IdentityUserflowAttributeAssignmentGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter)
+        public async ValueTask<IdentityUserflowAttributeAssignmentGetResponse> IdentityUserflowAttributeAssignmentGetAsync(IdentityUserflowAttributeAssignmentGetParameter parameter)
         {
-            return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentGetParameter, IdentityUserflowAttributeAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeAssignmentGetResponse> IdentityUserflowAttributeAssignmentGetAsync(IdentityUserflowAttributeAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowAttributeAssignmentGetParameter, IdentityUserflowAttributeAssignmentGetResponse>(parameter, cancellationToken);
         }
     }
 }

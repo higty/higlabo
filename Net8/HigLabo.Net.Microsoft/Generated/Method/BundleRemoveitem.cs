@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
     /// </summary>
-    public partial class BundleRemoveitemParameter : IRestApiParameter
+    public partial class BundleRemoveItemParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class BundleRemoveitemResponse : RestApiResponse
+    public partial class BundleRemoveItemResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync()
+        public async ValueTask<BundleRemoveItemResponse> BundleRemoveItemAsync()
         {
-            var p = new BundleRemoveitemParameter();
-            return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(p, CancellationToken.None);
+            var p = new BundleRemoveItemParameter();
+            return await this.SendAsync<BundleRemoveItemParameter, BundleRemoveItemResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync(CancellationToken cancellationToken)
+        public async ValueTask<BundleRemoveItemResponse> BundleRemoveItemAsync(CancellationToken cancellationToken)
         {
-            var p = new BundleRemoveitemParameter();
-            return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(p, cancellationToken);
+            var p = new BundleRemoveItemParameter();
+            return await this.SendAsync<BundleRemoveItemParameter, BundleRemoveItemResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync(BundleRemoveitemParameter parameter)
+        public async ValueTask<BundleRemoveItemResponse> BundleRemoveItemAsync(BundleRemoveItemParameter parameter)
         {
-            return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BundleRemoveItemParameter, BundleRemoveItemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-removeitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleRemoveitemResponse> BundleRemoveitemAsync(BundleRemoveitemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BundleRemoveItemResponse> BundleRemoveItemAsync(BundleRemoveItemParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BundleRemoveitemParameter, BundleRemoveitemResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BundleRemoveItemParameter, BundleRemoveItemResponse>(parameter, cancellationToken);
         }
     }
 }

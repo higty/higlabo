@@ -29,13 +29,10 @@
                 var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net8\\HigLabo.Net.Microsoft\\Generated\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";
                 //await g.CreateResourceUrlMappingFile();
-                //await g.LoadUrlClassNameMappingList();
+                await g.LoadUrlClassNameMappingList();
 
-                await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/user-list-messages?view=graph-rest-1.0");
-                //await g.CreateEntitySourceCodeFile("https://learn.microsoft.com/en-us/graph/api/resources/educationuser?view=graph-rest-1.0", new CreateEntityClassContext());
-                //await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0");
-                //await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0");
-                //await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0");
+                await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/message-update?view=graph-rest-1.0");
+                //await g.CreateEntitySourceCodeFile("https://learn.microsoft.com/en-us/graph/api/resources/recentnotebook?view=graph-rest-1.0", new CreateEntityClassContext());
                 //await g.Execute();
             }
         }

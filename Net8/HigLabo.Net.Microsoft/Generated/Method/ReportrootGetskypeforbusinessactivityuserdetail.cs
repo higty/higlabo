@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetskypeforbusinessactivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetSkypeforBusinessActivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetskypeforbusinessactivityUserdetailResponse : RestApiResponse
+    public partial class ReportRootGetSkypeforBusinessActivityUserdetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync()
+        public async ValueTask<ReportRootGetSkypeforBusinessActivityUserdetailResponse> ReportRootGetSkypeforBusinessActivityUserdetailAsync()
         {
-            var p = new ReportRootGetskypeforbusinessactivityUserdetailParameter();
-            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetSkypeforBusinessActivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetSkypeforBusinessActivityUserdetailParameter, ReportRootGetSkypeforBusinessActivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSkypeforBusinessActivityUserdetailResponse> ReportRootGetSkypeforBusinessActivityUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetskypeforbusinessactivityUserdetailParameter();
-            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetSkypeforBusinessActivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetSkypeforBusinessActivityUserdetailParameter, ReportRootGetSkypeforBusinessActivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter)
+        public async ValueTask<ReportRootGetSkypeforBusinessActivityUserdetailResponse> ReportRootGetSkypeforBusinessActivityUserdetailAsync(ReportRootGetSkypeforBusinessActivityUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetSkypeforBusinessActivityUserdetailParameter, ReportRootGetSkypeforBusinessActivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSkypeforBusinessActivityUserdetailResponse> ReportRootGetSkypeforBusinessActivityUserdetailAsync(ReportRootGetSkypeforBusinessActivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetSkypeforBusinessActivityUserdetailParameter, ReportRootGetSkypeforBusinessActivityUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

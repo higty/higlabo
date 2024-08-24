@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printserviceendpoint-get?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintserviceendpointGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrintServiceendpointGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrintserviceendpointGetResponse : RestApiResponse
+    public partial class PrintServiceendpointGetResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printserviceendpoint-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintserviceendpointGetResponse> PrintserviceendpointGetAsync()
+        public async ValueTask<PrintServiceendpointGetResponse> PrintServiceendpointGetAsync()
         {
-            var p = new PrintserviceendpointGetParameter();
-            return await this.SendAsync<PrintserviceendpointGetParameter, PrintserviceendpointGetResponse>(p, CancellationToken.None);
+            var p = new PrintServiceendpointGetParameter();
+            return await this.SendAsync<PrintServiceendpointGetParameter, PrintServiceendpointGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printserviceendpoint-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintserviceendpointGetResponse> PrintserviceendpointGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintServiceendpointGetResponse> PrintServiceendpointGetAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintserviceendpointGetParameter();
-            return await this.SendAsync<PrintserviceendpointGetParameter, PrintserviceendpointGetResponse>(p, cancellationToken);
+            var p = new PrintServiceendpointGetParameter();
+            return await this.SendAsync<PrintServiceendpointGetParameter, PrintServiceendpointGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printserviceendpoint-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintserviceendpointGetResponse> PrintserviceendpointGetAsync(PrintserviceendpointGetParameter parameter)
+        public async ValueTask<PrintServiceendpointGetResponse> PrintServiceendpointGetAsync(PrintServiceendpointGetParameter parameter)
         {
-            return await this.SendAsync<PrintserviceendpointGetParameter, PrintserviceendpointGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintServiceendpointGetParameter, PrintServiceendpointGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printserviceendpoint-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintserviceendpointGetResponse> PrintserviceendpointGetAsync(PrintserviceendpointGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintServiceendpointGetResponse> PrintServiceendpointGetAsync(PrintServiceendpointGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintserviceendpointGetParameter, PrintserviceendpointGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintServiceendpointGetParameter, PrintServiceendpointGetResponse>(parameter, cancellationToken);
         }
     }
 }

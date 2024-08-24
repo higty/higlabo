@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurescorecontrolprofileUpdateParameter : IRestApiParameter
+    public partial class SecureScorecontrolprofileUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public string? State { get; set; }
         public SecurityVendorInformation? VendorInformation { get; set; }
     }
-    public partial class SecurescorecontrolprofileUpdateResponse : RestApiResponse
+    public partial class SecureScorecontrolprofileUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync()
+        public async ValueTask<SecureScorecontrolprofileUpdateResponse> SecureScorecontrolprofileUpdateAsync()
         {
-            var p = new SecurescorecontrolprofileUpdateParameter();
-            return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(p, CancellationToken.None);
+            var p = new SecureScorecontrolprofileUpdateParameter();
+            return await this.SendAsync<SecureScorecontrolprofileUpdateParameter, SecureScorecontrolprofileUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecureScorecontrolprofileUpdateResponse> SecureScorecontrolprofileUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurescorecontrolprofileUpdateParameter();
-            return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(p, cancellationToken);
+            var p = new SecureScorecontrolprofileUpdateParameter();
+            return await this.SendAsync<SecureScorecontrolprofileUpdateParameter, SecureScorecontrolprofileUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync(SecurescorecontrolprofileUpdateParameter parameter)
+        public async ValueTask<SecureScorecontrolprofileUpdateResponse> SecureScorecontrolprofileUpdateAsync(SecureScorecontrolprofileUpdateParameter parameter)
         {
-            return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecureScorecontrolprofileUpdateParameter, SecureScorecontrolprofileUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync(SecurescorecontrolprofileUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecureScorecontrolprofileUpdateResponse> SecureScorecontrolprofileUpdateAsync(SecureScorecontrolprofileUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecureScorecontrolprofileUpdateParameter, SecureScorecontrolprofileUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

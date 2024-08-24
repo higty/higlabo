@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamworktagmemberListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TeamworktagMemberListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,10 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            TenantId,
-            UserId,
         }
         public enum ApiPath
         {
@@ -53,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TeamworktagmemberListResponse : RestApiResponse
+    public partial class TeamworktagMemberListResponse : RestApiResponse<TeamworkTagMember>
     {
-        public TeamworkTagMember[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
@@ -65,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync()
+        public async ValueTask<TeamworktagMemberListResponse> TeamworktagMemberListAsync()
         {
-            var p = new TeamworktagmemberListParameter();
-            return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(p, CancellationToken.None);
+            var p = new TeamworktagMemberListParameter();
+            return await this.SendAsync<TeamworktagMemberListParameter, TeamworktagMemberListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagMemberListResponse> TeamworktagMemberListAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamworktagmemberListParameter();
-            return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(p, cancellationToken);
+            var p = new TeamworktagMemberListParameter();
+            return await this.SendAsync<TeamworktagMemberListParameter, TeamworktagMemberListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync(TeamworktagmemberListParameter parameter)
+        public async ValueTask<TeamworktagMemberListResponse> TeamworktagMemberListAsync(TeamworktagMemberListParameter parameter)
         {
-            return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamworktagMemberListParameter, TeamworktagMemberListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberListResponse> TeamworktagmemberListAsync(TeamworktagmemberListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagMemberListResponse> TeamworktagMemberListAsync(TeamworktagMemberListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamworktagmemberListParameter, TeamworktagmemberListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamworktagMemberListParameter, TeamworktagMemberListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TeamworkTagMember> TeamworktagMemberListEnumerateAsync(TeamworktagMemberListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TeamworktagMemberListParameter, TeamworktagMemberListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TeamworkTagMember>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

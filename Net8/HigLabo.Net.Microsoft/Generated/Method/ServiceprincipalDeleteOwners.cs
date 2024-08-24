@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalDeleteOwnersParameter : IRestApiParameter
+    public partial class ServicePrincipalDeleteOwnersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ServiceprincipalDeleteOwnersResponse : RestApiResponse
+    public partial class ServicePrincipalDeleteOwnersResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync()
+        public async ValueTask<ServicePrincipalDeleteOwnersResponse> ServicePrincipalDeleteOwnersAsync()
         {
-            var p = new ServiceprincipalDeleteOwnersParameter();
-            return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalDeleteOwnersParameter();
+            return await this.SendAsync<ServicePrincipalDeleteOwnersParameter, ServicePrincipalDeleteOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeleteOwnersResponse> ServicePrincipalDeleteOwnersAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalDeleteOwnersParameter();
-            return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(p, cancellationToken);
+            var p = new ServicePrincipalDeleteOwnersParameter();
+            return await this.SendAsync<ServicePrincipalDeleteOwnersParameter, ServicePrincipalDeleteOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter)
+        public async ValueTask<ServicePrincipalDeleteOwnersResponse> ServicePrincipalDeleteOwnersAsync(ServicePrincipalDeleteOwnersParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalDeleteOwnersParameter, ServicePrincipalDeleteOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeleteOwnersResponse> ServicePrincipalDeleteOwnersAsync(ServicePrincipalDeleteOwnersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalDeleteOwnersParameter, ServicePrincipalDeleteOwnersResponse>(parameter, cancellationToken);
         }
     }
 }

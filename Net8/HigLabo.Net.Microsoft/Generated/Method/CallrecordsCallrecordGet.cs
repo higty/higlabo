@@ -24,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            EndDateTime,
-            Id,
-            JoinWebUrl,
-            LastModifiedDateTime,
-            Modalities,
-            Organizer,
-            Participants,
-            StartDateTime,
-            Type,
-            Version,
-            Sessions,
         }
         public enum ApiPath
         {

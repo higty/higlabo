@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,12 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            RoleTemplateId,
-            Members,
-            ScopedMembers,
         }
         public enum ApiPath
         {
@@ -53,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DirectoryroleDeltaResponse : RestApiResponse
+    public partial class DirectoryroleDeltaResponse : RestApiResponse<DirectoryRole>
     {
-        public DirectoryRole[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delta?view=graph-rest-1.0
@@ -91,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<DirectoryroleDeltaResponse> DirectoryroleDeltaAsync(DirectoryroleDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DirectoryroleDeltaParameter, DirectoryroleDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryRole> DirectoryroleDeltaEnumerateAsync(DirectoryroleDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DirectoryroleDeltaParameter, DirectoryroleDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryRole>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

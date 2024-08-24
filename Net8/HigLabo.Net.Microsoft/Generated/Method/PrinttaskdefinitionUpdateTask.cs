@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-update-task?view=graph-rest-1.0
     /// </summary>
-    public partial class PrinttaskdefinitionUpdateTaskParameter : IRestApiParameter
+    public partial class PrinttaskDefinitionUpdateTaskParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public string? Status { get; set; }
     }
-    public partial class PrinttaskdefinitionUpdateTaskResponse : RestApiResponse
+    public partial class PrinttaskDefinitionUpdateTaskResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public PrintTaskStatus? Status { get; set; }
@@ -55,32 +55,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-update-task?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrinttaskdefinitionUpdateTaskResponse> PrinttaskdefinitionUpdateTaskAsync()
+        public async ValueTask<PrinttaskDefinitionUpdateTaskResponse> PrinttaskDefinitionUpdateTaskAsync()
         {
-            var p = new PrinttaskdefinitionUpdateTaskParameter();
-            return await this.SendAsync<PrinttaskdefinitionUpdateTaskParameter, PrinttaskdefinitionUpdateTaskResponse>(p, CancellationToken.None);
+            var p = new PrinttaskDefinitionUpdateTaskParameter();
+            return await this.SendAsync<PrinttaskDefinitionUpdateTaskParameter, PrinttaskDefinitionUpdateTaskResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-update-task?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrinttaskdefinitionUpdateTaskResponse> PrinttaskdefinitionUpdateTaskAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinttaskDefinitionUpdateTaskResponse> PrinttaskDefinitionUpdateTaskAsync(CancellationToken cancellationToken)
         {
-            var p = new PrinttaskdefinitionUpdateTaskParameter();
-            return await this.SendAsync<PrinttaskdefinitionUpdateTaskParameter, PrinttaskdefinitionUpdateTaskResponse>(p, cancellationToken);
+            var p = new PrinttaskDefinitionUpdateTaskParameter();
+            return await this.SendAsync<PrinttaskDefinitionUpdateTaskParameter, PrinttaskDefinitionUpdateTaskResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-update-task?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrinttaskdefinitionUpdateTaskResponse> PrinttaskdefinitionUpdateTaskAsync(PrinttaskdefinitionUpdateTaskParameter parameter)
+        public async ValueTask<PrinttaskDefinitionUpdateTaskResponse> PrinttaskDefinitionUpdateTaskAsync(PrinttaskDefinitionUpdateTaskParameter parameter)
         {
-            return await this.SendAsync<PrinttaskdefinitionUpdateTaskParameter, PrinttaskdefinitionUpdateTaskResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinttaskDefinitionUpdateTaskParameter, PrinttaskDefinitionUpdateTaskResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-update-task?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrinttaskdefinitionUpdateTaskResponse> PrinttaskdefinitionUpdateTaskAsync(PrinttaskdefinitionUpdateTaskParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinttaskDefinitionUpdateTaskResponse> PrinttaskDefinitionUpdateTaskAsync(PrinttaskDefinitionUpdateTaskParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrinttaskdefinitionUpdateTaskParameter, PrinttaskdefinitionUpdateTaskResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinttaskDefinitionUpdateTaskParameter, PrinttaskDefinitionUpdateTaskResponse>(parameter, cancellationToken);
         }
     }
 }

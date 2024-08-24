@@ -26,21 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Email,
-            Id,
-            IsFavoriteByDefault,
-            MembershipType,
-            TenantId,
-            WebUrl,
-            FilesFolder,
-            Members,
-            Messages,
-            Operations,
-            SharedWithTeams,
-            Tabs,
         }
         public enum ApiPath
         {

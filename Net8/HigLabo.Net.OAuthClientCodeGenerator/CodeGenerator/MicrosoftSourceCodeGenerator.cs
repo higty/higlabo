@@ -81,8 +81,8 @@ namespace HigLabo.Net.CodeGenerator
             l.Add("Root");
             l.Add("MessageRule");
             l.Add("Configuration");
-            l.Add("Reply");
             l.Add("ReplyAll");
+            l.Add("Reply");
             l.Add("Package");
             l.Add("Catalog");
             l.Add("History");
@@ -165,6 +165,8 @@ namespace HigLabo.Net.CodeGenerator
             l.Add("InstalledApps");
             l.Add("Comment");
             l.Add("Collection");
+            l.Add("Discovery");
+            l.Add("ItemContent");
         }
 
         public MicrosoftSourceCodeGenerator(string folderPath)
@@ -661,6 +663,10 @@ namespace HigLabo.Net.CodeGenerator
                 if (p.TypeName.IsNullOrEmpty()) { continue; }
                 if (p.TypeName.Contains("ElevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing)")) { continue; }
                 if (p.TypeName.Contains("Default. Enforces the legal minimum. This means parental consent is required for minors in the European Union and Korea")) { break; }
+                if (p.TypeName == "accessPackageRequestType" || p.TypeName == "accessPackageRequestState")
+                {
+                    p.TypeName = "string";
+                }
 
                 var hp = td2.QuerySelector("a");
                 if (hp != null && hp.GetAttribute("href")!.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
@@ -673,17 +679,26 @@ namespace HigLabo.Net.CodeGenerator
                 }
 
                 var td3 = row.QuerySelector("td:nth-child(3)");
+                if (td3 != null && td3.TextContent.StartsWith("The importance of the message."))
+                {
+                    p.TypeName = "Importance";
+                }
                 if (td3 != null && p.TypeName != "String" && p.TypeName != "String collection" && p.TypeName != "DateTimeOffset" && p.TypeName != "Boolean")
                 {
-                    if (td3.TextContent.Contains("The possible values are: ") ||
-                        td3.TextContent.Contains("The supported values") ||
+                    if (td3.TextContent.StartsWith("Represents the region of the organization or the user.") ||
+                        td3.TextContent.StartsWith("Represents the region of the organization or the tenant."))
+                    {
+
+                    }
+                    else if (td3.TextContent.Contains("The supported values") ||
+                        td3.TextContent.Contains("Supported values") ||
                         td3.TextContent.Contains("Supported values are") ||
                         td3.TextContent.Contains("Possible values are") ||
+                        td3.TextContent.Contains("The possible values are") ||
                         td3.TextContent.Contains("Possible value: ") ||
                         td3.TextContent.Contains("Possible values:") ||
                         td3.TextContent.Contains("Possible values are ") ||
                         td3.TextContent.Contains("The possible value are ") ||
-                        td3.TextContent.Contains("The possible values are ") ||
                         td3.TextContent.Contains("The property values are: ") ||
                         td3.TextContent.Contains("the values for this property will be") ||
                         td3.TextContent.Contains("which can be") ||
@@ -691,14 +706,17 @@ namespace HigLabo.Net.CodeGenerator
                         td3.TextContent.Contains("Allowed values: ") ||
                         td3.TextContent.Contains("The recurrence pattern type") ||
                         td3.TextContent.Contains("The current status of the operation") ||
-                        td3.TextContent.Contains("The type of event message"))
+                        td3.TextContent.Contains("The type of event message") ||
+                        td3.TextContent.Contains("The backend store where the Notebook resides, either "))
                     {
                         foreach (var code in td3.QuerySelectorAll("code"))
                         {
                             var eValue = code.TextContent.Replace(".", "");
+                            if (eValue == "As soon as they're ready") { break; }
                             if (eValue == "Prefer: include-unknown-enum-members") { continue; }
                             if (eValue == "Prefer: include - unknown -enum-members") { continue; }
                             if (eValue.StartsWith("$")) { continue; }
+                            if (eValue.Contains(",")) { continue; }
 
                             p.IsEnum = true;
                             if (eValue.ToInt32().HasValue) { continue; }
@@ -1026,7 +1044,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             return c;
         }
-        private Method CreateEnumerateAsyncMethod(string url string className, string valueClassName)
+        private Method CreateEnumerateAsyncMethod(string url, string className, string valueClassName)
         {
             var md = new Method(MethodAccessModifier.Public, className + "EnumerateAsync");
             md.Comment = url;

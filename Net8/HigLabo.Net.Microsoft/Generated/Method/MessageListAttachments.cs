@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -35,12 +36,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContentType,
-            Id,
-            IsInline,
-            LastModifiedDateTime,
-            Name,
-            Size,
         }
         public enum ApiPath
         {
@@ -70,9 +65,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MessageListAttachmentsResponse : RestApiResponse
+    public partial class MessageListAttachmentsResponse : RestApiResponse<Attachment>
     {
-        public Attachment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/message-list-attachments?view=graph-rest-1.0
@@ -108,6 +102,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<MessageListAttachmentsResponse> MessageListAttachmentsAsync(MessageListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageListAttachmentsParameter, MessageListAttachmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/message-list-attachments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Attachment> MessageListAttachmentsEnumerateAsync(MessageListAttachmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<MessageListAttachmentsParameter, MessageListAttachmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Attachment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

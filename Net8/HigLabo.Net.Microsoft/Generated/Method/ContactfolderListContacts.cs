@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
     /// </summary>
-    public partial class ContactfolderListContactsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ContactFolderListContactsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -28,48 +29,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssistantName,
-            Birthday,
-            BusinessAddress,
-            BusinessHomePage,
-            BusinessPhones,
-            Categories,
-            ChangeKey,
-            Children,
-            CompanyName,
-            CreatedDateTime,
-            Department,
-            DisplayName,
-            EmailAddresses,
-            FileAs,
-            Generation,
-            GivenName,
-            HomeAddress,
-            HomePhones,
-            Id,
-            ImAddresses,
-            Initials,
-            JobTitle,
-            LastModifiedDateTime,
-            Manager,
-            MiddleName,
-            MobilePhone,
-            NickName,
-            OfficeLocation,
-            OtherAddress,
-            ParentFolderId,
-            PersonalNotes,
-            Profession,
-            SpouseName,
-            Surname,
-            Title,
-            YomiCompanyName,
-            YomiGivenName,
-            YomiSurname,
-            Extensions,
-            MultiValueExtendedProperties,
-            Photo,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -97,9 +56,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ContactfolderListContactsResponse : RestApiResponse
+    public partial class ContactFolderListContactsResponse : RestApiResponse<Contact>
     {
-        public Contact[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
@@ -109,32 +67,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync()
+        public async ValueTask<ContactFolderListContactsResponse> ContactFolderListContactsAsync()
         {
-            var p = new ContactfolderListContactsParameter();
-            return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(p, CancellationToken.None);
+            var p = new ContactFolderListContactsParameter();
+            return await this.SendAsync<ContactFolderListContactsParameter, ContactFolderListContactsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderListContactsResponse> ContactFolderListContactsAsync(CancellationToken cancellationToken)
         {
-            var p = new ContactfolderListContactsParameter();
-            return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(p, cancellationToken);
+            var p = new ContactFolderListContactsParameter();
+            return await this.SendAsync<ContactFolderListContactsParameter, ContactFolderListContactsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync(ContactfolderListContactsParameter parameter)
+        public async ValueTask<ContactFolderListContactsResponse> ContactFolderListContactsAsync(ContactFolderListContactsParameter parameter)
         {
-            return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContactFolderListContactsParameter, ContactFolderListContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderListContactsResponse> ContactfolderListContactsAsync(ContactfolderListContactsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderListContactsResponse> ContactFolderListContactsAsync(ContactFolderListContactsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContactfolderListContactsParameter, ContactfolderListContactsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContactFolderListContactsParameter, ContactFolderListContactsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-list-contacts?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Contact> ContactFolderListContactsEnumerateAsync(ContactFolderListContactsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ContactFolderListContactsParameter, ContactFolderListContactsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Contact>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

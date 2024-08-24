@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExternalConnectorsActivitySettings
     {
-        public ExternalConnectorsUrltoitemresolverbase[]? UrlToItemResolvers { get; set; }
+        public ExternalConnectorsUrltoItemresolverbase[]? UrlToItemResolvers { get; set; }
     }
 }

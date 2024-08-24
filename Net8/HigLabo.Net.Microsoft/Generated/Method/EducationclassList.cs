@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationclassListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationClassListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -16,7 +17,6 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Education_Classes: return $"/education/classes";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -24,31 +24,10 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClassCode,
-            CreatedBy,
-            Description,
-            DisplayName,
-            ExternalId,
-            ExternalSource,
-            ExternalSourceDetail,
-            ExternalName,
-            Grade,
-            Id,
-            MailNickname,
-            Term,
-            Assignments,
-            AssignmentCategories,
-            AssignmentDefaults,
-            AssignmentSettings,
-            Group,
-            Members,
-            Schools,
-            Teachers,
         }
         public enum ApiPath
         {
             Education_Classes,
-            Ttps__Graphmicrosoftcom_V10_Groups,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -69,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationclassListResponse : RestApiResponse
+    public partial class EducationClassListResponse : RestApiResponse<EducationClass>
     {
-        public EducationClass[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
@@ -81,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassListResponse> EducationclassListAsync()
+        public async ValueTask<EducationClassListResponse> EducationClassListAsync()
         {
-            var p = new EducationclassListParameter();
-            return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(p, CancellationToken.None);
+            var p = new EducationClassListParameter();
+            return await this.SendAsync<EducationClassListParameter, EducationClassListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassListResponse> EducationclassListAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationClassListResponse> EducationClassListAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationclassListParameter();
-            return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(p, cancellationToken);
+            var p = new EducationClassListParameter();
+            return await this.SendAsync<EducationClassListParameter, EducationClassListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassListResponse> EducationclassListAsync(EducationclassListParameter parameter)
+        public async ValueTask<EducationClassListResponse> EducationClassListAsync(EducationClassListParameter parameter)
         {
-            return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationClassListParameter, EducationClassListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassListResponse> EducationclassListAsync(EducationclassListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationClassListResponse> EducationClassListAsync(EducationClassListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationclassListParameter, EducationclassListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationClassListParameter, EducationClassListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationClass> EducationClassListEnumerateAsync(EducationClassListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationClassListParameter, EducationClassListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationClass>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

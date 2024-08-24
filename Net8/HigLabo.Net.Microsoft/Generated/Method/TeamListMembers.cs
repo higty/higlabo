@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -48,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TeamListMembersResponse : RestApiResponse
+    public partial class TeamListMembersResponse : RestApiResponse<ConversationMember>
     {
-        public ConversationMember[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
@@ -86,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ConversationMember> TeamListMembersEnumerateAsync(TeamListMembersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ConversationMember>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

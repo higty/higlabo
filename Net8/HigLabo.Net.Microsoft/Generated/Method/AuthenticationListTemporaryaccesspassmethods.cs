@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,14 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Id,
-            IsUsable,
-            IsUsableOnce,
-            LifetimeInMinutes,
-            MethodUsabilityReason,
-            StartDateTime,
-            TemporaryAccessPass,
         }
         public enum ApiPath
         {
@@ -58,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AuthenticationListTemporaryAccesspassmethodsResponse : RestApiResponse
+    public partial class AuthenticationListTemporaryAccesspassmethodsResponse : RestApiResponse<TemporaryAccessPassAuthenticationMethod>
     {
-        public TemporaryAccessPassAuthenticationMethod[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
@@ -96,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<AuthenticationListTemporaryAccesspassmethodsResponse> AuthenticationListTemporaryAccesspassmethodsAsync(AuthenticationListTemporaryAccesspassmethodsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthenticationListTemporaryAccesspassmethodsParameter, AuthenticationListTemporaryAccesspassmethodsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TemporaryAccessPassAuthenticationMethod> AuthenticationListTemporaryAccesspassmethodsEnumerateAsync(AuthenticationListTemporaryAccesspassmethodsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AuthenticationListTemporaryAccesspassmethodsParameter, AuthenticationListTemporaryAccesspassmethodsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TemporaryAccessPassAuthenticationMethod>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

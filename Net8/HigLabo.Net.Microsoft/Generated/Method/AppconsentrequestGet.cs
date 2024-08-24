@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AppconsentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AppconsentRequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AppconsentrequestGetResponse : RestApiResponse
+    public partial class AppconsentRequestGetResponse : RestApiResponse
     {
         public string? AppDisplayName { get; set; }
         public string? AppId { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync()
+        public async ValueTask<AppconsentRequestGetResponse> AppconsentRequestGetAsync()
         {
-            var p = new AppconsentrequestGetParameter();
-            return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(p, CancellationToken.None);
+            var p = new AppconsentRequestGetParameter();
+            return await this.SendAsync<AppconsentRequestGetParameter, AppconsentRequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentRequestGetResponse> AppconsentRequestGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AppconsentrequestGetParameter();
-            return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(p, cancellationToken);
+            var p = new AppconsentRequestGetParameter();
+            return await this.SendAsync<AppconsentRequestGetParameter, AppconsentRequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter)
+        public async ValueTask<AppconsentRequestGetResponse> AppconsentRequestGetAsync(AppconsentRequestGetParameter parameter)
         {
-            return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AppconsentRequestGetParameter, AppconsentRequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentRequestGetResponse> AppconsentRequestGetAsync(AppconsentRequestGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AppconsentRequestGetParameter, AppconsentRequestGetResponse>(parameter, cancellationToken);
         }
     }
 }

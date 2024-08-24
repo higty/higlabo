@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directoryroletemplate-get?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryroletemplateGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DirectoryroleTemplateGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DirectoryroletemplateGetResponse : RestApiResponse
+    public partial class DirectoryroleTemplateGetResponse : RestApiResponse
     {
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryroletemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryroletemplateGetResponse> DirectoryroletemplateGetAsync()
+        public async ValueTask<DirectoryroleTemplateGetResponse> DirectoryroleTemplateGetAsync()
         {
-            var p = new DirectoryroletemplateGetParameter();
-            return await this.SendAsync<DirectoryroletemplateGetParameter, DirectoryroletemplateGetResponse>(p, CancellationToken.None);
+            var p = new DirectoryroleTemplateGetParameter();
+            return await this.SendAsync<DirectoryroleTemplateGetParameter, DirectoryroleTemplateGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryroletemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryroletemplateGetResponse> DirectoryroletemplateGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleTemplateGetResponse> DirectoryroleTemplateGetAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryroletemplateGetParameter();
-            return await this.SendAsync<DirectoryroletemplateGetParameter, DirectoryroletemplateGetResponse>(p, cancellationToken);
+            var p = new DirectoryroleTemplateGetParameter();
+            return await this.SendAsync<DirectoryroleTemplateGetParameter, DirectoryroleTemplateGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryroletemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryroletemplateGetResponse> DirectoryroletemplateGetAsync(DirectoryroletemplateGetParameter parameter)
+        public async ValueTask<DirectoryroleTemplateGetResponse> DirectoryroleTemplateGetAsync(DirectoryroleTemplateGetParameter parameter)
         {
-            return await this.SendAsync<DirectoryroletemplateGetParameter, DirectoryroletemplateGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryroleTemplateGetParameter, DirectoryroleTemplateGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directoryroletemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryroletemplateGetResponse> DirectoryroletemplateGetAsync(DirectoryroletemplateGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryroleTemplateGetResponse> DirectoryroleTemplateGetAsync(DirectoryroleTemplateGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryroletemplateGetParameter, DirectoryroletemplateGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryroleTemplateGetParameter, DirectoryroleTemplateGetResponse>(parameter, cancellationToken);
         }
     }
 }

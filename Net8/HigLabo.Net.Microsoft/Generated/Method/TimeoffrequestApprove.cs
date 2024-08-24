@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
     /// </summary>
-    public partial class TimeoffrequestApproveParameter : IRestApiParameter
+    public partial class TimeoffRequestApproveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
     }
-    public partial class TimeoffrequestApproveResponse : RestApiResponse
+    public partial class TimeoffRequestApproveResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync()
+        public async ValueTask<TimeoffRequestApproveResponse> TimeoffRequestApproveAsync()
         {
-            var p = new TimeoffrequestApproveParameter();
-            return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(p, CancellationToken.None);
+            var p = new TimeoffRequestApproveParameter();
+            return await this.SendAsync<TimeoffRequestApproveParameter, TimeoffRequestApproveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffRequestApproveResponse> TimeoffRequestApproveAsync(CancellationToken cancellationToken)
         {
-            var p = new TimeoffrequestApproveParameter();
-            return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(p, cancellationToken);
+            var p = new TimeoffRequestApproveParameter();
+            return await this.SendAsync<TimeoffRequestApproveParameter, TimeoffRequestApproveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(TimeoffrequestApproveParameter parameter)
+        public async ValueTask<TimeoffRequestApproveResponse> TimeoffRequestApproveAsync(TimeoffRequestApproveParameter parameter)
         {
-            return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TimeoffRequestApproveParameter, TimeoffRequestApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestApproveResponse> TimeoffrequestApproveAsync(TimeoffrequestApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffRequestApproveResponse> TimeoffRequestApproveAsync(TimeoffRequestApproveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TimeoffrequestApproveParameter, TimeoffrequestApproveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TimeoffRequestApproveParameter, TimeoffRequestApproveResponse>(parameter, cancellationToken);
         }
     }
 }

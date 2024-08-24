@@ -25,21 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChatType,
-            CreatedDateTime,
-            Id,
-            LastUpdatedDateTime,
-            OnlineMeetingInfo,
-            TenantId,
-            Topic,
-            Viewpoint,
-            WebUrl,
-            InstalledApps,
-            LastMessagePreview,
-            Members,
-            Messages,
-            PinnedMessages,
-            Tabs,
         }
         public enum ApiPath
         {

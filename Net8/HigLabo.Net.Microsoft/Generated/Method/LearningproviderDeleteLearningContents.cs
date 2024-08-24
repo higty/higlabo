@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
     /// </summary>
-    public partial class LearningproviderDeleteLearningContentsParameter : IRestApiParameter
+    public partial class LearningProviderDeleteLearningContentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class LearningproviderDeleteLearningContentsResponse : RestApiResponse
+    public partial class LearningProviderDeleteLearningContentsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderDeleteLearningContentsResponse> LearningproviderDeleteLearningContentsAsync()
+        public async ValueTask<LearningProviderDeleteLearningContentsResponse> LearningProviderDeleteLearningContentsAsync()
         {
-            var p = new LearningproviderDeleteLearningContentsParameter();
-            return await this.SendAsync<LearningproviderDeleteLearningContentsParameter, LearningproviderDeleteLearningContentsResponse>(p, CancellationToken.None);
+            var p = new LearningProviderDeleteLearningContentsParameter();
+            return await this.SendAsync<LearningProviderDeleteLearningContentsParameter, LearningProviderDeleteLearningContentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderDeleteLearningContentsResponse> LearningproviderDeleteLearningContentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningProviderDeleteLearningContentsResponse> LearningProviderDeleteLearningContentsAsync(CancellationToken cancellationToken)
         {
-            var p = new LearningproviderDeleteLearningContentsParameter();
-            return await this.SendAsync<LearningproviderDeleteLearningContentsParameter, LearningproviderDeleteLearningContentsResponse>(p, cancellationToken);
+            var p = new LearningProviderDeleteLearningContentsParameter();
+            return await this.SendAsync<LearningProviderDeleteLearningContentsParameter, LearningProviderDeleteLearningContentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderDeleteLearningContentsResponse> LearningproviderDeleteLearningContentsAsync(LearningproviderDeleteLearningContentsParameter parameter)
+        public async ValueTask<LearningProviderDeleteLearningContentsResponse> LearningProviderDeleteLearningContentsAsync(LearningProviderDeleteLearningContentsParameter parameter)
         {
-            return await this.SendAsync<LearningproviderDeleteLearningContentsParameter, LearningproviderDeleteLearningContentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<LearningProviderDeleteLearningContentsParameter, LearningProviderDeleteLearningContentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderDeleteLearningContentsResponse> LearningproviderDeleteLearningContentsAsync(LearningproviderDeleteLearningContentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningProviderDeleteLearningContentsResponse> LearningProviderDeleteLearningContentsAsync(LearningProviderDeleteLearningContentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<LearningproviderDeleteLearningContentsParameter, LearningproviderDeleteLearningContentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<LearningProviderDeleteLearningContentsParameter, LearningProviderDeleteLearningContentsResponse>(parameter, cancellationToken);
         }
     }
 }

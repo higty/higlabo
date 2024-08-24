@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintersharePostAllowedUsersParameter : IRestApiParameter
+    public partial class PrinterSharePostAllowedUsersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class PrintersharePostAllowedUsersResponse : RestApiResponse
+    public partial class PrinterSharePostAllowedUsersResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync()
+        public async ValueTask<PrinterSharePostAllowedUsersResponse> PrinterSharePostAllowedUsersAsync()
         {
-            var p = new PrintersharePostAllowedUsersParameter();
-            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(p, CancellationToken.None);
+            var p = new PrinterSharePostAllowedUsersParameter();
+            return await this.SendAsync<PrinterSharePostAllowedUsersParameter, PrinterSharePostAllowedUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterSharePostAllowedUsersResponse> PrinterSharePostAllowedUsersAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintersharePostAllowedUsersParameter();
-            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(p, cancellationToken);
+            var p = new PrinterSharePostAllowedUsersParameter();
+            return await this.SendAsync<PrinterSharePostAllowedUsersParameter, PrinterSharePostAllowedUsersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync(PrintersharePostAllowedUsersParameter parameter)
+        public async ValueTask<PrinterSharePostAllowedUsersResponse> PrinterSharePostAllowedUsersAsync(PrinterSharePostAllowedUsersParameter parameter)
         {
-            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterSharePostAllowedUsersParameter, PrinterSharePostAllowedUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync(PrintersharePostAllowedUsersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterSharePostAllowedUsersResponse> PrinterSharePostAllowedUsersAsync(PrinterSharePostAllowedUsersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterSharePostAllowedUsersParameter, PrinterSharePostAllowedUsersResponse>(parameter, cancellationToken);
         }
     }
 }

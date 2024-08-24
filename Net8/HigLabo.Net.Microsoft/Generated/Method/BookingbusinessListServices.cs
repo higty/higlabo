@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessListServicesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingBusinessListServicesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,28 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AdditionalInformation,
-            CustomQuestions,
-            DefaultDuration,
-            DefaultLocation,
-            DefaultPrice,
-            DefaultPriceType,
-            DefaultReminders,
-            Description,
-            DisplayName,
-            Id,
-            IsAnonymousJoinEnabled,
-            IsHiddenFromCustomers,
-            IsLocationOnline,
-            LanguageTag,
-            MaximumAttendeesCount,
-            Notes,
-            PostBuffer,
-            PreBuffer,
-            SchedulingPolicy,
-            SmsNotificationsEnabled,
-            StaffMemberIds,
-            WebUrl,
         }
         public enum ApiPath
         {
@@ -70,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingbusinessListServicesResponse : RestApiResponse
+    public partial class BookingBusinessListServicesResponse : RestApiResponse<BookingService>
     {
-        public BookingService[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
@@ -82,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListServicesResponse> BookingbusinessListServicesAsync()
+        public async ValueTask<BookingBusinessListServicesResponse> BookingBusinessListServicesAsync()
         {
-            var p = new BookingbusinessListServicesParameter();
-            return await this.SendAsync<BookingbusinessListServicesParameter, BookingbusinessListServicesResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessListServicesParameter();
+            return await this.SendAsync<BookingBusinessListServicesParameter, BookingBusinessListServicesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListServicesResponse> BookingbusinessListServicesAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListServicesResponse> BookingBusinessListServicesAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessListServicesParameter();
-            return await this.SendAsync<BookingbusinessListServicesParameter, BookingbusinessListServicesResponse>(p, cancellationToken);
+            var p = new BookingBusinessListServicesParameter();
+            return await this.SendAsync<BookingBusinessListServicesParameter, BookingBusinessListServicesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListServicesResponse> BookingbusinessListServicesAsync(BookingbusinessListServicesParameter parameter)
+        public async ValueTask<BookingBusinessListServicesResponse> BookingBusinessListServicesAsync(BookingBusinessListServicesParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessListServicesParameter, BookingbusinessListServicesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessListServicesParameter, BookingBusinessListServicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListServicesResponse> BookingbusinessListServicesAsync(BookingbusinessListServicesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListServicesResponse> BookingBusinessListServicesAsync(BookingBusinessListServicesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessListServicesParameter, BookingbusinessListServicesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessListServicesParameter, BookingBusinessListServicesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-services?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BookingService> BookingBusinessListServicesEnumerateAsync(BookingBusinessListServicesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<BookingBusinessListServicesParameter, BookingBusinessListServicesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BookingService>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

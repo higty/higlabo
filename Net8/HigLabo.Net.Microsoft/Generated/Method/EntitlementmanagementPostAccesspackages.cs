@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
     /// </summary>
-    public partial class EntitlementManagementPostAccesspackagesParameter : IRestApiParameter
+    public partial class EntitlementManagementPostAccessPackagesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
         public AccessPackage[]? IncompatibleAccessPackages { get; set; }
         public Group[]? IncompatibleGroups { get; set; }
     }
-    public partial class EntitlementManagementPostAccesspackagesResponse : RestApiResponse
+    public partial class EntitlementManagementPostAccessPackagesResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
@@ -69,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync()
+        public async ValueTask<EntitlementManagementPostAccessPackagesResponse> EntitlementManagementPostAccessPackagesAsync()
         {
-            var p = new EntitlementManagementPostAccesspackagesParameter();
-            return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(p, CancellationToken.None);
+            var p = new EntitlementManagementPostAccessPackagesParameter();
+            return await this.SendAsync<EntitlementManagementPostAccessPackagesParameter, EntitlementManagementPostAccessPackagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostAccessPackagesResponse> EntitlementManagementPostAccessPackagesAsync(CancellationToken cancellationToken)
         {
-            var p = new EntitlementManagementPostAccesspackagesParameter();
-            return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(p, cancellationToken);
+            var p = new EntitlementManagementPostAccessPackagesParameter();
+            return await this.SendAsync<EntitlementManagementPostAccessPackagesParameter, EntitlementManagementPostAccessPackagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync(EntitlementManagementPostAccesspackagesParameter parameter)
+        public async ValueTask<EntitlementManagementPostAccessPackagesResponse> EntitlementManagementPostAccessPackagesAsync(EntitlementManagementPostAccessPackagesParameter parameter)
         {
-            return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EntitlementManagementPostAccessPackagesParameter, EntitlementManagementPostAccessPackagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync(EntitlementManagementPostAccesspackagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementPostAccessPackagesResponse> EntitlementManagementPostAccessPackagesAsync(EntitlementManagementPostAccessPackagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EntitlementManagementPostAccessPackagesParameter, EntitlementManagementPostAccessPackagesResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverysearchListAdditionalsourcesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverysearchListAdditionalsourcesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverysearchListAdditionalsourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverysearchListAdditionalsourcesResponse : RestApiResponse<DataSource>
     {
-        public DataSource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
@@ -61,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync()
+        public async ValueTask<SecurityEDiscoverysearchListAdditionalsourcesResponse> SecurityEDiscoverysearchListAdditionalsourcesAsync()
         {
-            var p = new SecurityEdiscoverysearchListAdditionalsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverysearchListAdditionalsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchListAdditionalsourcesParameter, SecurityEDiscoverysearchListAdditionalsourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchListAdditionalsourcesResponse> SecurityEDiscoverysearchListAdditionalsourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverysearchListAdditionalsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverysearchListAdditionalsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchListAdditionalsourcesParameter, SecurityEDiscoverysearchListAdditionalsourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(SecurityEdiscoverysearchListAdditionalsourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverysearchListAdditionalsourcesResponse> SecurityEDiscoverysearchListAdditionalsourcesAsync(SecurityEDiscoverysearchListAdditionalsourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverysearchListAdditionalsourcesParameter, SecurityEDiscoverysearchListAdditionalsourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListAdditionalsourcesResponse> SecurityEdiscoverysearchListAdditionalsourcesAsync(SecurityEdiscoverysearchListAdditionalsourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchListAdditionalsourcesResponse> SecurityEDiscoverysearchListAdditionalsourcesAsync(SecurityEDiscoverysearchListAdditionalsourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchListAdditionalsourcesParameter, SecurityEdiscoverysearchListAdditionalsourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverysearchListAdditionalsourcesParameter, SecurityEDiscoverysearchListAdditionalsourcesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DataSource> SecurityEDiscoverysearchListAdditionalsourcesEnumerateAsync(SecurityEDiscoverysearchListAdditionalsourcesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverysearchListAdditionalsourcesParameter, SecurityEDiscoverysearchListAdditionalsourcesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DataSource>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

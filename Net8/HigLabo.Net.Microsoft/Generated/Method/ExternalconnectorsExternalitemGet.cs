@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ExternalConnectorsExternalitemGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ExternalConnectorsExternalItemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,11 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Acl,
-            Content,
-            Id,
-            Properties,
-            Activities,
         }
         public enum ApiPath
         {
@@ -54,13 +49,13 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ExternalConnectorsExternalitemGetResponse : RestApiResponse
+    public partial class ExternalConnectorsExternalItemGetResponse : RestApiResponse
     {
         public ExternalConnectorsAcl[]? Acl { get; set; }
-        public ExternalConnectorsExternalitemContent? Content { get; set; }
+        public ExternalConnectorsExternalItemContent? Content { get; set; }
         public string? Id { get; set; }
         public ExternalConnectorsProperties? Properties { get; set; }
-        public ExternalConnectorsExternalactivity[]? Activities { get; set; }
+        public ExternalConnectorsExternalActivity[]? Activities { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
@@ -70,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync()
+        public async ValueTask<ExternalConnectorsExternalItemGetResponse> ExternalConnectorsExternalItemGetAsync()
         {
-            var p = new ExternalConnectorsExternalitemGetParameter();
-            return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsExternalItemGetParameter();
+            return await this.SendAsync<ExternalConnectorsExternalItemGetParameter, ExternalConnectorsExternalItemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalItemGetResponse> ExternalConnectorsExternalItemGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalConnectorsExternalitemGetParameter();
-            return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsExternalItemGetParameter();
+            return await this.SendAsync<ExternalConnectorsExternalItemGetParameter, ExternalConnectorsExternalItemGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync(ExternalConnectorsExternalitemGetParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalItemGetResponse> ExternalConnectorsExternalItemGetAsync(ExternalConnectorsExternalItemGetParameter parameter)
         {
-            return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsExternalItemGetParameter, ExternalConnectorsExternalItemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync(ExternalConnectorsExternalitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalItemGetResponse> ExternalConnectorsExternalItemGetAsync(ExternalConnectorsExternalItemGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsExternalItemGetParameter, ExternalConnectorsExternalItemGetResponse>(parameter, cancellationToken);
         }
     }
 }

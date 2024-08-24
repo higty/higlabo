@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -31,19 +32,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            SectionGroupsUrl,
-            SectionsUrl,
-            Self,
-            ParentNotebook,
-            ParentSectionGroup,
-            SectionGroups,
-            Sections,
         }
         public enum ApiPath
         {
@@ -71,9 +59,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class NotebookListSectionGroupsResponse : RestApiResponse
+    public partial class NotebookListSectionGroupsResponse : RestApiResponse<SectionGroup>
     {
-        public SectionGroup[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
@@ -109,6 +96,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<SectionGroup> NotebookListSectionGroupsEnumerateAsync(NotebookListSectionGroupsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<SectionGroup>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

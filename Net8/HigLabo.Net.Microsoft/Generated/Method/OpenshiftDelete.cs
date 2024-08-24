@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/openshift-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class OpenshiftDeleteParameter : IRestApiParameter
+    public partial class OpenShiftDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class OpenshiftDeleteResponse : RestApiResponse
+    public partial class OpenShiftDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftDeleteResponse> OpenshiftDeleteAsync()
+        public async ValueTask<OpenShiftDeleteResponse> OpenShiftDeleteAsync()
         {
-            var p = new OpenshiftDeleteParameter();
-            return await this.SendAsync<OpenshiftDeleteParameter, OpenshiftDeleteResponse>(p, CancellationToken.None);
+            var p = new OpenShiftDeleteParameter();
+            return await this.SendAsync<OpenShiftDeleteParameter, OpenShiftDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftDeleteResponse> OpenshiftDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftDeleteResponse> OpenShiftDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new OpenshiftDeleteParameter();
-            return await this.SendAsync<OpenshiftDeleteParameter, OpenshiftDeleteResponse>(p, cancellationToken);
+            var p = new OpenShiftDeleteParameter();
+            return await this.SendAsync<OpenShiftDeleteParameter, OpenShiftDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftDeleteResponse> OpenshiftDeleteAsync(OpenshiftDeleteParameter parameter)
+        public async ValueTask<OpenShiftDeleteResponse> OpenShiftDeleteAsync(OpenShiftDeleteParameter parameter)
         {
-            return await this.SendAsync<OpenshiftDeleteParameter, OpenshiftDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenShiftDeleteParameter, OpenShiftDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/openshift-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OpenshiftDeleteResponse> OpenshiftDeleteAsync(OpenshiftDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OpenShiftDeleteResponse> OpenShiftDeleteAsync(OpenShiftDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpenshiftDeleteParameter, OpenshiftDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenShiftDeleteParameter, OpenShiftDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

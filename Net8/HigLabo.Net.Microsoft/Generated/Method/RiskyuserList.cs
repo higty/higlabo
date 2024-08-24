@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,16 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            IsDeleted,
-            IsProcessing,
-            RiskDetail,
-            RiskLastUpdatedDateTime,
-            RiskLevel,
-            RiskState,
-            UserDisplayName,
-            UserPrincipalName,
-            History,
         }
         public enum ApiPath
         {
@@ -57,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RiskyUserListResponse : RestApiResponse
+    public partial class RiskyUserListResponse : RestApiResponse<RiskyUser>
     {
-        public RiskyUser[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list?view=graph-rest-1.0
@@ -95,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<RiskyUserListResponse> RiskyUserListAsync(RiskyUserListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RiskyUserListParameter, RiskyUserListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<RiskyUser> RiskyUserListEnumerateAsync(RiskyUserListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<RiskyUserListParameter, RiskyUserListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<RiskyUser>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

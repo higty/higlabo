@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ContactfolderGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ContactFolderGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ContactfolderGetResponse : RestApiResponse
+    public partial class ContactFolderGetResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -69,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync()
+        public async ValueTask<ContactFolderGetResponse> ContactFolderGetAsync()
         {
-            var p = new ContactfolderGetParameter();
-            return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(p, CancellationToken.None);
+            var p = new ContactFolderGetParameter();
+            return await this.SendAsync<ContactFolderGetParameter, ContactFolderGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderGetResponse> ContactFolderGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ContactfolderGetParameter();
-            return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(p, cancellationToken);
+            var p = new ContactFolderGetParameter();
+            return await this.SendAsync<ContactFolderGetParameter, ContactFolderGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync(ContactfolderGetParameter parameter)
+        public async ValueTask<ContactFolderGetResponse> ContactFolderGetAsync(ContactFolderGetParameter parameter)
         {
-            return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContactFolderGetParameter, ContactFolderGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/contactfolder-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ContactfolderGetResponse> ContactfolderGetAsync(ContactfolderGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ContactFolderGetResponse> ContactFolderGetAsync(ContactFolderGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContactfolderGetParameter, ContactfolderGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContactFolderGetParameter, ContactFolderGetResponse>(parameter, cancellationToken);
         }
     }
 }

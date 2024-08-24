@@ -5,9 +5,9 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/resources/security-ediscoverycase?view=graph-rest-1.0
     /// </summary>
-    public partial class EdiscoveryCase
+    public partial class EDiscoveryCase
     {
-        public enum EdiscoveryCaseSecurityCaseStatus
+        public enum EDiscoveryCaseSecurityCaseStatus
         {
             Unknown,
             Active,
@@ -27,13 +27,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public EdiscoveryCaseSecurityCaseStatus Status { get; set; }
-        public EdiscoveryCustodian[]? Custodians { get; set; }
-        public EdiscoveryNoncustodialDataSource[]? NoncustodialDataSources { get; set; }
+        public EDiscoveryCaseSecurityCaseStatus Status { get; set; }
+        public EDiscoveryCustodian[]? Custodians { get; set; }
+        public EDiscoveryNoncustodialDataSource[]? NoncustodialDataSources { get; set; }
         public CaseOperation[]? Operations { get; set; }
-        public EdiscoveryReviewSet[]? ReviewSets { get; set; }
-        public EdiscoverySearch[]? Searches { get; set; }
-        public EdiscoveryCaseSettings? Settings { get; set; }
-        public EdiscoveryReviewTag[]? Tags { get; set; }
+        public EDiscoveryReviewSet[]? ReviewSets { get; set; }
+        public EDiscoverySearch[]? Searches { get; set; }
+        public EDiscoveryCaseSettings? Settings { get; set; }
+        public EDiscoveryReviewTag[]? Tags { get; set; }
     }
 }

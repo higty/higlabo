@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseListReviewsetsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycaseListReviewsetsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,11 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            Queries,
         }
         public enum ApiPath
         {
@@ -53,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycaseListReviewsetsResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseListReviewsetsResponse : RestApiResponse<EDiscoveryReviewSet>
     {
-        public EdiscoveryReviewSet[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
@@ -65,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListReviewsetsResponse> SecurityEdiscoverycaseListReviewsetsAsync()
+        public async ValueTask<SecurityEDiscoverycaseListReviewsetsResponse> SecurityEDiscoverycaseListReviewsetsAsync()
         {
-            var p = new SecurityEdiscoverycaseListReviewsetsParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListReviewsetsParameter, SecurityEdiscoverycaseListReviewsetsResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseListReviewsetsParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListReviewsetsParameter, SecurityEDiscoverycaseListReviewsetsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListReviewsetsResponse> SecurityEdiscoverycaseListReviewsetsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListReviewsetsResponse> SecurityEDiscoverycaseListReviewsetsAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseListReviewsetsParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListReviewsetsParameter, SecurityEdiscoverycaseListReviewsetsResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseListReviewsetsParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListReviewsetsParameter, SecurityEDiscoverycaseListReviewsetsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListReviewsetsResponse> SecurityEdiscoverycaseListReviewsetsAsync(SecurityEdiscoverycaseListReviewsetsParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseListReviewsetsResponse> SecurityEDiscoverycaseListReviewsetsAsync(SecurityEDiscoverycaseListReviewsetsParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListReviewsetsParameter, SecurityEdiscoverycaseListReviewsetsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseListReviewsetsParameter, SecurityEDiscoverycaseListReviewsetsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListReviewsetsResponse> SecurityEdiscoverycaseListReviewsetsAsync(SecurityEdiscoverycaseListReviewsetsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListReviewsetsResponse> SecurityEDiscoverycaseListReviewsetsAsync(SecurityEDiscoverycaseListReviewsetsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListReviewsetsParameter, SecurityEdiscoverycaseListReviewsetsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseListReviewsetsParameter, SecurityEDiscoverycaseListReviewsetsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoveryReviewSet> SecurityEDiscoverycaseListReviewsetsEnumerateAsync(SecurityEDiscoverycaseListReviewsetsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycaseListReviewsetsParameter, SecurityEDiscoverycaseListReviewsetsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoveryReviewSet>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

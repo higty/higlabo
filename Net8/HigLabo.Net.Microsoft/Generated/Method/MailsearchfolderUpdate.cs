@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
     /// </summary>
-    public partial class MailsearchfolderUpdateParameter : IRestApiParameter
+    public partial class MailsearchFolderUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Microsoft
         public String[]? SourceFolderIds { get; set; }
         public string? FilterQuery { get; set; }
     }
-    public partial class MailsearchfolderUpdateResponse : RestApiResponse
+    public partial class MailsearchFolderUpdateResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -67,32 +67,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync()
+        public async ValueTask<MailsearchFolderUpdateResponse> MailsearchFolderUpdateAsync()
         {
-            var p = new MailsearchfolderUpdateParameter();
-            return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(p, CancellationToken.None);
+            var p = new MailsearchFolderUpdateParameter();
+            return await this.SendAsync<MailsearchFolderUpdateParameter, MailsearchFolderUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailsearchFolderUpdateResponse> MailsearchFolderUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new MailsearchfolderUpdateParameter();
-            return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(p, cancellationToken);
+            var p = new MailsearchFolderUpdateParameter();
+            return await this.SendAsync<MailsearchFolderUpdateParameter, MailsearchFolderUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(MailsearchfolderUpdateParameter parameter)
+        public async ValueTask<MailsearchFolderUpdateResponse> MailsearchFolderUpdateAsync(MailsearchFolderUpdateParameter parameter)
         {
-            return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailsearchFolderUpdateParameter, MailsearchFolderUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailsearchfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailsearchfolderUpdateResponse> MailsearchfolderUpdateAsync(MailsearchfolderUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailsearchFolderUpdateResponse> MailsearchFolderUpdateAsync(MailsearchFolderUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailsearchfolderUpdateParameter, MailsearchfolderUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailsearchFolderUpdateParameter, MailsearchFolderUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

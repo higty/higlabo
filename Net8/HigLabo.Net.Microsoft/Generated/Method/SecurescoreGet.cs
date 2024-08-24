@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurescoreGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecureScoreGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurescoreGetResponse : RestApiResponse
+    public partial class SecureScoreGetResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -59,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync()
+        public async ValueTask<SecureScoreGetResponse> SecureScoreGetAsync()
         {
-            var p = new SecurescoreGetParameter();
-            return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(p, CancellationToken.None);
+            var p = new SecureScoreGetParameter();
+            return await this.SendAsync<SecureScoreGetParameter, SecureScoreGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecureScoreGetResponse> SecureScoreGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurescoreGetParameter();
-            return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(p, cancellationToken);
+            var p = new SecureScoreGetParameter();
+            return await this.SendAsync<SecureScoreGetParameter, SecureScoreGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync(SecurescoreGetParameter parameter)
+        public async ValueTask<SecureScoreGetResponse> SecureScoreGetAsync(SecureScoreGetParameter parameter)
         {
-            return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecureScoreGetParameter, SecureScoreGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescore-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescoreGetResponse> SecurescoreGetAsync(SecurescoreGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecureScoreGetResponse> SecureScoreGetAsync(SecureScoreGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurescoreGetParameter, SecurescoreGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecureScoreGetParameter, SecureScoreGetResponse>(parameter, cancellationToken);
         }
     }
 }

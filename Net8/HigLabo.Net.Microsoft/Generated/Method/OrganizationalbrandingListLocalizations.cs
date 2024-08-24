@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,17 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            BackgroundColor,
-            BackgroundImage,
-            BackgroundImageRelativeUrl,
-            BannerLogo,
-            BannerLogoRelativeUrl,
-            CdnList,
-            Id,
-            SignInPageText,
-            SquareLogo,
-            SquareLogoRelativeUrl,
-            UsernameHintText,
         }
         public enum ApiPath
         {
@@ -59,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OrganizationalBrandingListLocalizationsResponse : RestApiResponse
+    public partial class OrganizationalBrandingListLocalizationsResponse : RestApiResponse<OrganizationalBrandingLocalization>
     {
-        public OrganizationalBrandingLocalization[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0
@@ -97,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<OrganizationalBrandingListLocalizationsResponse> OrganizationalBrandingListLocalizationsAsync(OrganizationalBrandingListLocalizationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OrganizationalBrandingListLocalizationsParameter, OrganizationalBrandingListLocalizationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<OrganizationalBrandingLocalization> OrganizationalBrandingListLocalizationsEnumerateAsync(OrganizationalBrandingListLocalizationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<OrganizationalBrandingListLocalizationsParameter, OrganizationalBrandingListLocalizationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<OrganizationalBrandingLocalization>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

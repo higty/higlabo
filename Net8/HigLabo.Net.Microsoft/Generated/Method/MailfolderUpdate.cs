@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-update?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderUpdateParameter : IRestApiParameter
+    public partial class MailFolderUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public string? DisplayName { get; set; }
     }
-    public partial class MailfolderUpdateResponse : RestApiResponse
+    public partial class MailFolderUpdateResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderUpdateResponse> MailfolderUpdateAsync()
+        public async ValueTask<MailFolderUpdateResponse> MailFolderUpdateAsync()
         {
-            var p = new MailfolderUpdateParameter();
-            return await this.SendAsync<MailfolderUpdateParameter, MailfolderUpdateResponse>(p, CancellationToken.None);
+            var p = new MailFolderUpdateParameter();
+            return await this.SendAsync<MailFolderUpdateParameter, MailFolderUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderUpdateResponse> MailfolderUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderUpdateResponse> MailFolderUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderUpdateParameter();
-            return await this.SendAsync<MailfolderUpdateParameter, MailfolderUpdateResponse>(p, cancellationToken);
+            var p = new MailFolderUpdateParameter();
+            return await this.SendAsync<MailFolderUpdateParameter, MailFolderUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderUpdateResponse> MailfolderUpdateAsync(MailfolderUpdateParameter parameter)
+        public async ValueTask<MailFolderUpdateResponse> MailFolderUpdateAsync(MailFolderUpdateParameter parameter)
         {
-            return await this.SendAsync<MailfolderUpdateParameter, MailfolderUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderUpdateParameter, MailFolderUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderUpdateResponse> MailfolderUpdateAsync(MailfolderUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderUpdateResponse> MailFolderUpdateAsync(MailFolderUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderUpdateParameter, MailfolderUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderUpdateParameter, MailFolderUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

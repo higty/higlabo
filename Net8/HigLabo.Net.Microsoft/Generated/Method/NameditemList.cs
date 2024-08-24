@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
     /// </summary>
-    public partial class NameditemListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class NamedItemListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -26,13 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Comment,
-            Name,
-            Scope,
-            Type,
-            Value,
-            Visible,
-            Worksheet,
         }
         public enum ApiPath
         {
@@ -58,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class NameditemListResponse : RestApiResponse
+    public partial class NamedItemListResponse : RestApiResponse<NamedItem>
     {
-        public NamedItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
@@ -70,32 +63,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemListResponse> NameditemListAsync()
+        public async ValueTask<NamedItemListResponse> NamedItemListAsync()
         {
-            var p = new NameditemListParameter();
-            return await this.SendAsync<NameditemListParameter, NameditemListResponse>(p, CancellationToken.None);
+            var p = new NamedItemListParameter();
+            return await this.SendAsync<NamedItemListParameter, NamedItemListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemListResponse> NameditemListAsync(CancellationToken cancellationToken)
+        public async ValueTask<NamedItemListResponse> NamedItemListAsync(CancellationToken cancellationToken)
         {
-            var p = new NameditemListParameter();
-            return await this.SendAsync<NameditemListParameter, NameditemListResponse>(p, cancellationToken);
+            var p = new NamedItemListParameter();
+            return await this.SendAsync<NamedItemListParameter, NamedItemListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemListResponse> NameditemListAsync(NameditemListParameter parameter)
+        public async ValueTask<NamedItemListResponse> NamedItemListAsync(NamedItemListParameter parameter)
         {
-            return await this.SendAsync<NameditemListParameter, NameditemListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<NamedItemListParameter, NamedItemListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<NameditemListResponse> NameditemListAsync(NameditemListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<NamedItemListResponse> NamedItemListAsync(NamedItemListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<NameditemListParameter, NameditemListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<NamedItemListParameter, NamedItemListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<NamedItem> NamedItemListEnumerateAsync(NamedItemListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<NamedItemListParameter, NamedItemListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<NamedItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

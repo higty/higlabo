@@ -24,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Address,
-            DisplayName,
-            GeoCoordinates,
-            Id,
-            Phone,
         }
         public enum ApiPath
         {

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
     /// </summary>
-    public partial class ConversationmembersAddParameter : IRestApiParameter
+    public partial class ConversationMembersAddParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,9 +38,8 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public ConversationMember[]? Values { get; set; }
     }
-    public partial class ConversationmembersAddResponse : RestApiResponse
+    public partial class ConversationMembersAddResponse : RestApiResponse<ActionResultPart>
     {
-        public ActionResultPart[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
@@ -50,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync()
+        public async ValueTask<ConversationMembersAddResponse> ConversationMembersAddAsync()
         {
-            var p = new ConversationmembersAddParameter();
-            return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(p, CancellationToken.None);
+            var p = new ConversationMembersAddParameter();
+            return await this.SendAsync<ConversationMembersAddParameter, ConversationMembersAddResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync(CancellationToken cancellationToken)
+        public async ValueTask<ConversationMembersAddResponse> ConversationMembersAddAsync(CancellationToken cancellationToken)
         {
-            var p = new ConversationmembersAddParameter();
-            return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(p, cancellationToken);
+            var p = new ConversationMembersAddParameter();
+            return await this.SendAsync<ConversationMembersAddParameter, ConversationMembersAddResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync(ConversationmembersAddParameter parameter)
+        public async ValueTask<ConversationMembersAddResponse> ConversationMembersAddAsync(ConversationMembersAddParameter parameter)
         {
-            return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConversationMembersAddParameter, ConversationMembersAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/conversationmembers-add?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ConversationmembersAddResponse> ConversationmembersAddAsync(ConversationmembersAddParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ConversationMembersAddResponse> ConversationMembersAddAsync(ConversationMembersAddParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConversationmembersAddParameter, ConversationmembersAddResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConversationMembersAddParameter, ConversationMembersAddResponse>(parameter, cancellationToken);
         }
     }
 }

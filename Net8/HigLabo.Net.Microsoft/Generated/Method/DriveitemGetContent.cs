@@ -3,9 +3,9 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0&tabs=http
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemGetContentParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemGetContentParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -66,43 +66,43 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemGetContentResponse : RestApiResponse
+    public partial class DriveItemGetContentResponse : RestApiResponse
     {
     }
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0&tabs=http
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
     /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0&tabs=http
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentResponse> DriveitemGetContentAsync()
+        public async ValueTask<DriveItemGetContentResponse> DriveItemGetContentAsync()
         {
-            var p = new DriveitemGetContentParameter();
-            return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(p, CancellationToken.None);
+            var p = new DriveItemGetContentParameter();
+            return await this.SendAsync<DriveItemGetContentParameter, DriveItemGetContentResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0&tabs=http
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentResponse> DriveitemGetContentAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemGetContentResponse> DriveItemGetContentAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemGetContentParameter();
-            return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(p, cancellationToken);
+            var p = new DriveItemGetContentParameter();
+            return await this.SendAsync<DriveItemGetContentParameter, DriveItemGetContentResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0&tabs=http
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentResponse> DriveitemGetContentAsync(DriveitemGetContentParameter parameter)
+        public async ValueTask<DriveItemGetContentResponse> DriveItemGetContentAsync(DriveItemGetContentParameter parameter)
         {
-            return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemGetContentParameter, DriveItemGetContentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0&tabs=http
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetContentResponse> DriveitemGetContentAsync(DriveitemGetContentParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemGetContentResponse> DriveItemGetContentAsync(DriveItemGetContentParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemGetContentParameter, DriveItemGetContentResponse>(parameter, cancellationToken);
         }
     }
 }

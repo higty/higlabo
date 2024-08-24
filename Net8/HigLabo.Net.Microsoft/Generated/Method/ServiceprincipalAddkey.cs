@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalAddkeyParameter : IRestApiParameter
+    public partial class ServicePrincipalAddkeyParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         public string? Type { get; set; }
         public string? Usage { get; set; }
     }
-    public partial class ServiceprincipalAddkeyResponse : RestApiResponse
+    public partial class ServicePrincipalAddkeyResponse : RestApiResponse
     {
         public string? CustomKeyIdentifier { get; set; }
         public string? DisplayName { get; set; }
@@ -69,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync()
+        public async ValueTask<ServicePrincipalAddkeyResponse> ServicePrincipalAddkeyAsync()
         {
-            var p = new ServiceprincipalAddkeyParameter();
-            return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalAddkeyParameter();
+            return await this.SendAsync<ServicePrincipalAddkeyParameter, ServicePrincipalAddkeyResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalAddkeyResponse> ServicePrincipalAddkeyAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalAddkeyParameter();
-            return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(p, cancellationToken);
+            var p = new ServicePrincipalAddkeyParameter();
+            return await this.SendAsync<ServicePrincipalAddkeyParameter, ServicePrincipalAddkeyResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync(ServiceprincipalAddkeyParameter parameter)
+        public async ValueTask<ServicePrincipalAddkeyResponse> ServicePrincipalAddkeyAsync(ServicePrincipalAddkeyParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalAddkeyParameter, ServicePrincipalAddkeyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync(ServiceprincipalAddkeyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalAddkeyResponse> ServicePrincipalAddkeyAsync(ServicePrincipalAddkeyParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalAddkeyParameter, ServicePrincipalAddkeyResponse>(parameter, cancellationToken);
         }
     }
 }

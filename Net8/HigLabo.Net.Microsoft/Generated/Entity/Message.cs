@@ -32,8 +32,8 @@ namespace HigLabo.Net.Microsoft
         public Recipient? From { get; set; }
         public bool? HasAttachments { get; set; }
         public string? Id { get; set; }
-        public MessageImportance Importance { get; set; }
-        public MessageInferenceClassificationType InferenceClassification { get; set; }
+        public MessageImportance? Importance { get; set; }
+        public MessageInferenceClassificationType? InferenceClassification { get; set; }
         public InternetMessageHeader[]? InternetMessageHeaders { get; set; }
         public string? InternetMessageId { get; set; }
         public bool? IsDeliveryReceiptRequested { get; set; }

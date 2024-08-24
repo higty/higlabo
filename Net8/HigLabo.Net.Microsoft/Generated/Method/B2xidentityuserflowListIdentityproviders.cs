@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class B2xidentityUserflowListIdentityprovidersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class B2xidentityUserflowListIdentityProvidersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,11 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClientId,
-            ClientSecret,
-            Id,
-            Name,
-            Type,
         }
         public enum ApiPath
         {
@@ -53,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class B2xidentityUserflowListIdentityprovidersResponse : RestApiResponse
+    public partial class B2xidentityUserflowListIdentityProvidersResponse : RestApiResponse<IdentityProvider>
     {
-        public IdentityProvider[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
@@ -65,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync()
+        public async ValueTask<B2xidentityUserflowListIdentityProvidersResponse> B2xidentityUserflowListIdentityProvidersAsync()
         {
-            var p = new B2xidentityUserflowListIdentityprovidersParameter();
-            return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(p, CancellationToken.None);
+            var p = new B2xidentityUserflowListIdentityProvidersParameter();
+            return await this.SendAsync<B2xidentityUserflowListIdentityProvidersParameter, B2xidentityUserflowListIdentityProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowListIdentityProvidersResponse> B2xidentityUserflowListIdentityProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new B2xidentityUserflowListIdentityprovidersParameter();
-            return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(p, cancellationToken);
+            var p = new B2xidentityUserflowListIdentityProvidersParameter();
+            return await this.SendAsync<B2xidentityUserflowListIdentityProvidersParameter, B2xidentityUserflowListIdentityProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(B2xidentityUserflowListIdentityprovidersParameter parameter)
+        public async ValueTask<B2xidentityUserflowListIdentityProvidersResponse> B2xidentityUserflowListIdentityProvidersAsync(B2xidentityUserflowListIdentityProvidersParameter parameter)
         {
-            return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<B2xidentityUserflowListIdentityProvidersParameter, B2xidentityUserflowListIdentityProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<B2xidentityUserflowListIdentityprovidersResponse> B2xidentityUserflowListIdentityprovidersAsync(B2xidentityUserflowListIdentityprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<B2xidentityUserflowListIdentityProvidersResponse> B2xidentityUserflowListIdentityProvidersAsync(B2xidentityUserflowListIdentityProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<B2xidentityUserflowListIdentityprovidersParameter, B2xidentityUserflowListIdentityprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<B2xidentityUserflowListIdentityProvidersParameter, B2xidentityUserflowListIdentityProvidersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<IdentityProvider> B2xidentityUserflowListIdentityProvidersEnumerateAsync(B2xidentityUserflowListIdentityProvidersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<B2xidentityUserflowListIdentityProvidersParameter, B2xidentityUserflowListIdentityProvidersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<IdentityProvider>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemPreviewParameter : IRestApiParameter
+    public partial class DriveItemPReviewParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
         public string? Page { get; set; }
         public double? Zoom { get; set; }
     }
-    public partial class DriveitemPreviewResponse : RestApiResponse
+    public partial class DriveItemPReviewResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -65,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync()
+        public async ValueTask<DriveItemPReviewResponse> DriveItemPReviewAsync()
         {
-            var p = new DriveitemPreviewParameter();
-            return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(p, CancellationToken.None);
+            var p = new DriveItemPReviewParameter();
+            return await this.SendAsync<DriveItemPReviewParameter, DriveItemPReviewResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemPReviewResponse> DriveItemPReviewAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemPreviewParameter();
-            return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(p, cancellationToken);
+            var p = new DriveItemPReviewParameter();
+            return await this.SendAsync<DriveItemPReviewParameter, DriveItemPReviewResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync(DriveitemPreviewParameter parameter)
+        public async ValueTask<DriveItemPReviewResponse> DriveItemPReviewAsync(DriveItemPReviewParameter parameter)
         {
-            return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemPReviewParameter, DriveItemPReviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-preview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemPreviewResponse> DriveitemPreviewAsync(DriveitemPreviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemPReviewResponse> DriveItemPReviewAsync(DriveItemPReviewParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemPreviewParameter, DriveitemPreviewResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemPReviewParameter, DriveItemPReviewResponse>(parameter, cancellationToken);
         }
     }
 }

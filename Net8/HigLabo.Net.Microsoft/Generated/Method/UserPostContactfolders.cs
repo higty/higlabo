@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-post-contactfolders?view=graph-rest-1.0
     /// </summary>
-    public partial class UserPostContactfoldersParameter : IRestApiParameter
+    public partial class UserPostContactFoldersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class UserPostContactfoldersResponse : RestApiResponse
+    public partial class UserPostContactFoldersResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -64,32 +64,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contactfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostContactfoldersResponse> UserPostContactfoldersAsync()
+        public async ValueTask<UserPostContactFoldersResponse> UserPostContactFoldersAsync()
         {
-            var p = new UserPostContactfoldersParameter();
-            return await this.SendAsync<UserPostContactfoldersParameter, UserPostContactfoldersResponse>(p, CancellationToken.None);
+            var p = new UserPostContactFoldersParameter();
+            return await this.SendAsync<UserPostContactFoldersParameter, UserPostContactFoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contactfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostContactfoldersResponse> UserPostContactfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserPostContactFoldersResponse> UserPostContactFoldersAsync(CancellationToken cancellationToken)
         {
-            var p = new UserPostContactfoldersParameter();
-            return await this.SendAsync<UserPostContactfoldersParameter, UserPostContactfoldersResponse>(p, cancellationToken);
+            var p = new UserPostContactFoldersParameter();
+            return await this.SendAsync<UserPostContactFoldersParameter, UserPostContactFoldersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contactfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostContactfoldersResponse> UserPostContactfoldersAsync(UserPostContactfoldersParameter parameter)
+        public async ValueTask<UserPostContactFoldersResponse> UserPostContactFoldersAsync(UserPostContactFoldersParameter parameter)
         {
-            return await this.SendAsync<UserPostContactfoldersParameter, UserPostContactfoldersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserPostContactFoldersParameter, UserPostContactFoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-post-contactfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserPostContactfoldersResponse> UserPostContactfoldersAsync(UserPostContactfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserPostContactFoldersResponse> UserPostContactFoldersAsync(UserPostContactFoldersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserPostContactfoldersParameter, UserPostContactfoldersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserPostContactFoldersParameter, UserPostContactFoldersResponse>(parameter, cancellationToken);
         }
     }
 }

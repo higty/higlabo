@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,31 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Attachments,
-            Body,
-            ChatId,
-            ChannelIdentity,
-            CreatedDateTime,
-            DeletedDateTime,
-            Etag,
-            EventDetail,
-            From,
-            Id,
-            Importance,
-            LastModifiedDateTime,
-            LastEditedDateTime,
-            Locale,
-            Mentions,
-            MessageHistory,
-            MessageType,
-            PolicyViolation,
-            Reactions,
-            ReplyToId,
-            Subject,
-            Summary,
-            WebUrl,
-            HostedContents,
-            Replies,
         }
         public enum ApiPath
         {
@@ -75,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ChatmessageListRepliesResponse : RestApiResponse
+    public partial class ChatmessageListRepliesResponse : RestApiResponse<ChatMessage>
     {
-        public ChatMessage[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
@@ -113,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ChatMessage> ChatmessageListRepliesEnumerateAsync(ChatmessageListRepliesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ChatMessage>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

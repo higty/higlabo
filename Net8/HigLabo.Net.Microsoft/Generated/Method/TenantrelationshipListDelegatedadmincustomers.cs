@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
     /// </summary>
-    public partial class TenantrelationshipListDelegatedadmincustomersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TenantrelationshipListDelegatedadminCustomersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,10 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            TenantId,
-            ServiceManagementDetails,
         }
         public enum ApiPath
         {
@@ -51,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TenantrelationshipListDelegatedadmincustomersResponse : RestApiResponse
+    public partial class TenantrelationshipListDelegatedadminCustomersResponse : RestApiResponse<DelegatedAdminCustomer>
     {
-        public DelegatedAdminCustomer[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
@@ -63,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TenantrelationshipListDelegatedadmincustomersResponse> TenantrelationshipListDelegatedadmincustomersAsync()
+        public async ValueTask<TenantrelationshipListDelegatedadminCustomersResponse> TenantrelationshipListDelegatedadminCustomersAsync()
         {
-            var p = new TenantrelationshipListDelegatedadmincustomersParameter();
-            return await this.SendAsync<TenantrelationshipListDelegatedadmincustomersParameter, TenantrelationshipListDelegatedadmincustomersResponse>(p, CancellationToken.None);
+            var p = new TenantrelationshipListDelegatedadminCustomersParameter();
+            return await this.SendAsync<TenantrelationshipListDelegatedadminCustomersParameter, TenantrelationshipListDelegatedadminCustomersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TenantrelationshipListDelegatedadmincustomersResponse> TenantrelationshipListDelegatedadmincustomersAsync(CancellationToken cancellationToken)
+        public async ValueTask<TenantrelationshipListDelegatedadminCustomersResponse> TenantrelationshipListDelegatedadminCustomersAsync(CancellationToken cancellationToken)
         {
-            var p = new TenantrelationshipListDelegatedadmincustomersParameter();
-            return await this.SendAsync<TenantrelationshipListDelegatedadmincustomersParameter, TenantrelationshipListDelegatedadmincustomersResponse>(p, cancellationToken);
+            var p = new TenantrelationshipListDelegatedadminCustomersParameter();
+            return await this.SendAsync<TenantrelationshipListDelegatedadminCustomersParameter, TenantrelationshipListDelegatedadminCustomersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TenantrelationshipListDelegatedadmincustomersResponse> TenantrelationshipListDelegatedadmincustomersAsync(TenantrelationshipListDelegatedadmincustomersParameter parameter)
+        public async ValueTask<TenantrelationshipListDelegatedadminCustomersResponse> TenantrelationshipListDelegatedadminCustomersAsync(TenantrelationshipListDelegatedadminCustomersParameter parameter)
         {
-            return await this.SendAsync<TenantrelationshipListDelegatedadmincustomersParameter, TenantrelationshipListDelegatedadmincustomersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TenantrelationshipListDelegatedadminCustomersParameter, TenantrelationshipListDelegatedadminCustomersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TenantrelationshipListDelegatedadmincustomersResponse> TenantrelationshipListDelegatedadmincustomersAsync(TenantrelationshipListDelegatedadmincustomersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TenantrelationshipListDelegatedadminCustomersResponse> TenantrelationshipListDelegatedadminCustomersAsync(TenantrelationshipListDelegatedadminCustomersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TenantrelationshipListDelegatedadmincustomersParameter, TenantrelationshipListDelegatedadmincustomersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TenantrelationshipListDelegatedadminCustomersParameter, TenantrelationshipListDelegatedadminCustomersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DelegatedAdminCustomer> TenantrelationshipListDelegatedadminCustomersEnumerateAsync(TenantrelationshipListDelegatedadminCustomersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TenantrelationshipListDelegatedadminCustomersParameter, TenantrelationshipListDelegatedadminCustomersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DelegatedAdminCustomer>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

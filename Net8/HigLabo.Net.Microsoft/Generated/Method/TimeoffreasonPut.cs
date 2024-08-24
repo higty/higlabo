@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
     /// </summary>
-    public partial class TimeoffreasonPutParameter : IRestApiParameter
+    public partial class TimeoffReasonPutParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PUT";
     }
-    public partial class TimeoffreasonPutResponse : RestApiResponse
+    public partial class TimeoffReasonPutResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
@@ -56,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonPutResponse> TimeoffreasonPutAsync()
+        public async ValueTask<TimeoffReasonPutResponse> TimeoffReasonPutAsync()
         {
-            var p = new TimeoffreasonPutParameter();
-            return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(p, CancellationToken.None);
+            var p = new TimeoffReasonPutParameter();
+            return await this.SendAsync<TimeoffReasonPutParameter, TimeoffReasonPutResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonPutResponse> TimeoffreasonPutAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffReasonPutResponse> TimeoffReasonPutAsync(CancellationToken cancellationToken)
         {
-            var p = new TimeoffreasonPutParameter();
-            return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(p, cancellationToken);
+            var p = new TimeoffReasonPutParameter();
+            return await this.SendAsync<TimeoffReasonPutParameter, TimeoffReasonPutResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonPutResponse> TimeoffreasonPutAsync(TimeoffreasonPutParameter parameter)
+        public async ValueTask<TimeoffReasonPutResponse> TimeoffReasonPutAsync(TimeoffReasonPutParameter parameter)
         {
-            return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TimeoffReasonPutParameter, TimeoffReasonPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonPutResponse> TimeoffreasonPutAsync(TimeoffreasonPutParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffReasonPutResponse> TimeoffReasonPutAsync(TimeoffReasonPutParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TimeoffReasonPutParameter, TimeoffReasonPutResponse>(parameter, cancellationToken);
         }
     }
 }

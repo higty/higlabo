@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-post?view=graph-rest-1.0
     /// </summary>
-    public partial class SubjectrightsrequestPostParameter : IRestApiParameter
+    public partial class SubjectrightsRequestPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -21,7 +21,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum SubjectrightsrequestPostParameterDataSubjectType
+        public enum SubjectrightsRequestPostParameterDataSubjectType
         {
             Customer,
             CurrentEmployee,
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Microsoft
             Other,
             UnknownFutureValue,
         }
-        public enum SubjectrightsrequestPostParameterSubjectRightsRequestType
+        public enum SubjectrightsRequestPostParameterSubjectRightsRequestType
         {
             Export,
             Delete,
@@ -82,12 +82,12 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public DataSubject? DataSubject { get; set; }
-        public SubjectrightsrequestPostParameterDataSubjectType DataSubjectType { get; set; }
+        public SubjectrightsRequestPostParameterDataSubjectType DataSubjectType { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public DateTimeOffset? InternalDueDateTime { get; set; }
         public String[]? Regulations { get; set; }
-        public SubjectrightsrequestPostParameterSubjectRightsRequestType Type { get; set; }
+        public SubjectrightsRequestPostParameterSubjectRightsRequestType Type { get; set; }
         public Identity? AssignedTo { get; set; }
         public DateTimeOffset? ClosedDateTime { get; set; }
         public IdentitySet? CreatedBy { get; set; }
@@ -101,7 +101,7 @@ namespace HigLabo.Net.Microsoft
         public AuthoredNote[]? Notes { get; set; }
         public Team? Team { get; set; }
     }
-    public partial class SubjectrightsrequestPostResponse : RestApiResponse
+    public partial class SubjectrightsRequestPostResponse : RestApiResponse
     {
         public enum SubjectRightsRequestDataSubjectType
         {
@@ -158,32 +158,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestPostResponse> SubjectrightsrequestPostAsync()
+        public async ValueTask<SubjectrightsRequestPostResponse> SubjectrightsRequestPostAsync()
         {
-            var p = new SubjectrightsrequestPostParameter();
-            return await this.SendAsync<SubjectrightsrequestPostParameter, SubjectrightsrequestPostResponse>(p, CancellationToken.None);
+            var p = new SubjectrightsRequestPostParameter();
+            return await this.SendAsync<SubjectrightsRequestPostParameter, SubjectrightsRequestPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestPostResponse> SubjectrightsrequestPostAsync(CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsRequestPostResponse> SubjectrightsRequestPostAsync(CancellationToken cancellationToken)
         {
-            var p = new SubjectrightsrequestPostParameter();
-            return await this.SendAsync<SubjectrightsrequestPostParameter, SubjectrightsrequestPostResponse>(p, cancellationToken);
+            var p = new SubjectrightsRequestPostParameter();
+            return await this.SendAsync<SubjectrightsRequestPostParameter, SubjectrightsRequestPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestPostResponse> SubjectrightsrequestPostAsync(SubjectrightsrequestPostParameter parameter)
+        public async ValueTask<SubjectrightsRequestPostResponse> SubjectrightsRequestPostAsync(SubjectrightsRequestPostParameter parameter)
         {
-            return await this.SendAsync<SubjectrightsrequestPostParameter, SubjectrightsrequestPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SubjectrightsRequestPostParameter, SubjectrightsRequestPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-post?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SubjectrightsrequestPostResponse> SubjectrightsrequestPostAsync(SubjectrightsrequestPostParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SubjectrightsRequestPostResponse> SubjectrightsRequestPostAsync(SubjectrightsRequestPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SubjectrightsrequestPostParameter, SubjectrightsrequestPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SubjectrightsRequestPostParameter, SubjectrightsRequestPostResponse>(parameter, cancellationToken);
         }
     }
 }

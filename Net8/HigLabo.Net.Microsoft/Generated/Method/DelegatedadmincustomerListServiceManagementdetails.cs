@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
     /// </summary>
-    public partial class DelegatedadmincustomerListServiceManagementdetailsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DelegatedadminCustomerListServiceManagementdetailsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,9 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ServiceName,
-            ServiceManagementUrl,
         }
         public enum ApiPath
         {
@@ -51,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DelegatedadmincustomerListServiceManagementdetailsResponse : RestApiResponse
+    public partial class DelegatedadminCustomerListServiceManagementdetailsResponse : RestApiResponse<DelegatedAdminServiceManagementDetail>
     {
-        public DelegatedAdminServiceManagementDetail[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
@@ -63,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync()
+        public async ValueTask<DelegatedadminCustomerListServiceManagementdetailsResponse> DelegatedadminCustomerListServiceManagementdetailsAsync()
         {
-            var p = new DelegatedadmincustomerListServiceManagementdetailsParameter();
-            return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(p, CancellationToken.None);
+            var p = new DelegatedadminCustomerListServiceManagementdetailsParameter();
+            return await this.SendAsync<DelegatedadminCustomerListServiceManagementdetailsParameter, DelegatedadminCustomerListServiceManagementdetailsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminCustomerListServiceManagementdetailsResponse> DelegatedadminCustomerListServiceManagementdetailsAsync(CancellationToken cancellationToken)
         {
-            var p = new DelegatedadmincustomerListServiceManagementdetailsParameter();
-            return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(p, cancellationToken);
+            var p = new DelegatedadminCustomerListServiceManagementdetailsParameter();
+            return await this.SendAsync<DelegatedadminCustomerListServiceManagementdetailsParameter, DelegatedadminCustomerListServiceManagementdetailsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(DelegatedadmincustomerListServiceManagementdetailsParameter parameter)
+        public async ValueTask<DelegatedadminCustomerListServiceManagementdetailsResponse> DelegatedadminCustomerListServiceManagementdetailsAsync(DelegatedadminCustomerListServiceManagementdetailsParameter parameter)
         {
-            return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DelegatedadminCustomerListServiceManagementdetailsParameter, DelegatedadminCustomerListServiceManagementdetailsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerListServiceManagementdetailsResponse> DelegatedadmincustomerListServiceManagementdetailsAsync(DelegatedadmincustomerListServiceManagementdetailsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminCustomerListServiceManagementdetailsResponse> DelegatedadminCustomerListServiceManagementdetailsAsync(DelegatedadminCustomerListServiceManagementdetailsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DelegatedadmincustomerListServiceManagementdetailsParameter, DelegatedadmincustomerListServiceManagementdetailsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DelegatedadminCustomerListServiceManagementdetailsParameter, DelegatedadminCustomerListServiceManagementdetailsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DelegatedAdminServiceManagementDetail> DelegatedadminCustomerListServiceManagementdetailsEnumerateAsync(DelegatedadminCustomerListServiceManagementdetailsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DelegatedadminCustomerListServiceManagementdetailsParameter, DelegatedadminCustomerListServiceManagementdetailsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DelegatedAdminServiceManagementDetail>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

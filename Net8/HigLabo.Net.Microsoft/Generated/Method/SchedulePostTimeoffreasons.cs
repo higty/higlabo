@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
     /// </summary>
-    public partial class SchedulePostTimeoffreasonsParameter : IRestApiParameter
+    public partial class SchedulePostTimeoffReasonsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Microsoft
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
-    public partial class SchedulePostTimeoffreasonsResponse : RestApiResponse
+    public partial class SchedulePostTimeoffReasonsResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync()
+        public async ValueTask<SchedulePostTimeoffReasonsResponse> SchedulePostTimeoffReasonsAsync()
         {
-            var p = new SchedulePostTimeoffreasonsParameter();
-            return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(p, CancellationToken.None);
+            var p = new SchedulePostTimeoffReasonsParameter();
+            return await this.SendAsync<SchedulePostTimeoffReasonsParameter, SchedulePostTimeoffReasonsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostTimeoffReasonsResponse> SchedulePostTimeoffReasonsAsync(CancellationToken cancellationToken)
         {
-            var p = new SchedulePostTimeoffreasonsParameter();
-            return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(p, cancellationToken);
+            var p = new SchedulePostTimeoffReasonsParameter();
+            return await this.SendAsync<SchedulePostTimeoffReasonsParameter, SchedulePostTimeoffReasonsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter)
+        public async ValueTask<SchedulePostTimeoffReasonsResponse> SchedulePostTimeoffReasonsAsync(SchedulePostTimeoffReasonsParameter parameter)
         {
-            return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SchedulePostTimeoffReasonsParameter, SchedulePostTimeoffReasonsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchedulePostTimeoffReasonsResponse> SchedulePostTimeoffReasonsAsync(SchedulePostTimeoffReasonsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SchedulePostTimeoffReasonsParameter, SchedulePostTimeoffReasonsResponse>(parameter, cancellationToken);
         }
     }
 }

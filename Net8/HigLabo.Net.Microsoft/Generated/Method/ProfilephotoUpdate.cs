@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ProfilephotoUpdateParameter : IRestApiParameter
+    public partial class ProfilePhotoUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
     }
-    public partial class ProfilephotoUpdateResponse : RestApiResponse
+    public partial class ProfilePhotoUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -64,37 +64,37 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync()
+        public async ValueTask<ProfilePhotoUpdateResponse> ProfilePhotoUpdateAsync()
         {
-            var p = new ProfilephotoUpdateParameter();
-            return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(p, CancellationToken.None);
+            var p = new ProfilePhotoUpdateParameter();
+            return await this.SendAsync<ProfilePhotoUpdateParameter, ProfilePhotoUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProfilePhotoUpdateResponse> ProfilePhotoUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ProfilephotoUpdateParameter();
-            return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(p, cancellationToken);
+            var p = new ProfilePhotoUpdateParameter();
+            return await this.SendAsync<ProfilePhotoUpdateParameter, ProfilePhotoUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(ProfilephotoUpdateParameter parameter)
+        public async ValueTask<ProfilePhotoUpdateResponse> ProfilePhotoUpdateAsync(ProfilePhotoUpdateParameter parameter)
         {
-            return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ProfilePhotoUpdateParameter, ProfilePhotoUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProfilephotoUpdateResponse> ProfilephotoUpdateAsync(ProfilephotoUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProfilePhotoUpdateResponse> ProfilePhotoUpdateAsync(ProfilePhotoUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ProfilephotoUpdateParameter, ProfilephotoUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ProfilePhotoUpdateParameter, ProfilePhotoUpdateResponse>(parameter, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/profilephoto-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<Stream> ProfilephotoUpdateStreamAsync(ProfilephotoUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<Stream> ProfilePhotoUpdateStreamAsync(ProfilePhotoUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.DownloadStreamAsync(parameter, cancellationToken);
         }

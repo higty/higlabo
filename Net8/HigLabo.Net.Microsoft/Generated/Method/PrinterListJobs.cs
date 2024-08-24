@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Configuration,
-            CreatedBy,
-            CreatedDateTime,
-            Id,
-            IsFetchable,
-            RedirectedFrom,
-            RedirectedTo,
-            Status,
-            Documents,
-            Tasks,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrinterListJobsResponse : RestApiResponse
+    public partial class PrinterListJobsResponse : RestApiResponse<PrintJob>
     {
-        public PrintJob[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printer-list-jobs?view=graph-rest-1.0
@@ -96,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PrinterListJobsResponse> PrinterListJobsAsync(PrinterListJobsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterListJobsParameter, PrinterListJobsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-jobs?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PrintJob> PrinterListJobsEnumerateAsync(PrinterListJobsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PrinterListJobsParameter, PrinterListJobsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PrintJob>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

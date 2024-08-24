@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewsetListHistorydefinitionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewsetListHistoryDefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,17 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            Decisions,
-            DisplayName,
-            Id,
-            ReviewHistoryPeriodEndDateTime,
-            ReviewHistoryPeriodStartDateTime,
-            ScheduleSettings,
-            Scopes,
-            Status,
-            Instances,
         }
         public enum ApiPath
         {
@@ -58,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewsetListHistorydefinitionsResponse : RestApiResponse
+    public partial class AccessReviewsetListHistoryDefinitionsResponse : RestApiResponse<AccessReviewHistoryDefinition>
     {
-        public AccessReviewHistoryDefinition[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
@@ -70,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync()
+        public async ValueTask<AccessReviewsetListHistoryDefinitionsResponse> AccessReviewsetListHistoryDefinitionsAsync()
         {
-            var p = new AccessreviewsetListHistorydefinitionsParameter();
-            return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(p, CancellationToken.None);
+            var p = new AccessReviewsetListHistoryDefinitionsParameter();
+            return await this.SendAsync<AccessReviewsetListHistoryDefinitionsParameter, AccessReviewsetListHistoryDefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewsetListHistoryDefinitionsResponse> AccessReviewsetListHistoryDefinitionsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewsetListHistorydefinitionsParameter();
-            return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(p, cancellationToken);
+            var p = new AccessReviewsetListHistoryDefinitionsParameter();
+            return await this.SendAsync<AccessReviewsetListHistoryDefinitionsParameter, AccessReviewsetListHistoryDefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(AccessreviewsetListHistorydefinitionsParameter parameter)
+        public async ValueTask<AccessReviewsetListHistoryDefinitionsResponse> AccessReviewsetListHistoryDefinitionsAsync(AccessReviewsetListHistoryDefinitionsParameter parameter)
         {
-            return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewsetListHistoryDefinitionsParameter, AccessReviewsetListHistoryDefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListHistorydefinitionsResponse> AccessreviewsetListHistorydefinitionsAsync(AccessreviewsetListHistorydefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewsetListHistoryDefinitionsResponse> AccessReviewsetListHistoryDefinitionsAsync(AccessReviewsetListHistoryDefinitionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewsetListHistorydefinitionsParameter, AccessreviewsetListHistorydefinitionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewsetListHistoryDefinitionsParameter, AccessReviewsetListHistoryDefinitionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewHistoryDefinition> AccessReviewsetListHistoryDefinitionsEnumerateAsync(AccessReviewsetListHistoryDefinitionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewsetListHistoryDefinitionsParameter, AccessReviewsetListHistoryDefinitionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewHistoryDefinition>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

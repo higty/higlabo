@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalDeleteApproleassignedtoParameter : IRestApiParameter
+    public partial class ServicePrincipalDeleteApproleassignedtoParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ServiceprincipalDeleteApproleassignedtoResponse : RestApiResponse
+    public partial class ServicePrincipalDeleteApproleassignedtoResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync()
+        public async ValueTask<ServicePrincipalDeleteApproleassignedtoResponse> ServicePrincipalDeleteApproleassignedtoAsync()
         {
-            var p = new ServiceprincipalDeleteApproleassignedtoParameter();
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalDeleteApproleassignedtoParameter();
+            return await this.SendAsync<ServicePrincipalDeleteApproleassignedtoParameter, ServicePrincipalDeleteApproleassignedtoResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeleteApproleassignedtoResponse> ServicePrincipalDeleteApproleassignedtoAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalDeleteApproleassignedtoParameter();
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(p, cancellationToken);
+            var p = new ServicePrincipalDeleteApproleassignedtoParameter();
+            return await this.SendAsync<ServicePrincipalDeleteApproleassignedtoParameter, ServicePrincipalDeleteApproleassignedtoResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync(ServiceprincipalDeleteApproleassignedtoParameter parameter)
+        public async ValueTask<ServicePrincipalDeleteApproleassignedtoResponse> ServicePrincipalDeleteApproleassignedtoAsync(ServicePrincipalDeleteApproleassignedtoParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalDeleteApproleassignedtoParameter, ServicePrincipalDeleteApproleassignedtoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync(ServiceprincipalDeleteApproleassignedtoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeleteApproleassignedtoResponse> ServicePrincipalDeleteApproleassignedtoAsync(ServicePrincipalDeleteApproleassignedtoParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalDeleteApproleassignedtoParameter, ServicePrincipalDeleteApproleassignedtoResponse>(parameter, cancellationToken);
         }
     }
 }

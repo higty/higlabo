@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
     /// </summary>
-    public partial class LearningproviderUpdateParameter : IRestApiParameter
+    public partial class LearningProviderUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         public string? SquareLogoWebUrlForDarkTheme { get; set; }
         public string? SquareLogoWebUrlForLightTheme { get; set; }
     }
-    public partial class LearningproviderUpdateResponse : RestApiResponse
+    public partial class LearningProviderUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync()
+        public async ValueTask<LearningProviderUpdateResponse> LearningProviderUpdateAsync()
         {
-            var p = new LearningproviderUpdateParameter();
-            return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(p, CancellationToken.None);
+            var p = new LearningProviderUpdateParameter();
+            return await this.SendAsync<LearningProviderUpdateParameter, LearningProviderUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningProviderUpdateResponse> LearningProviderUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new LearningproviderUpdateParameter();
-            return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(p, cancellationToken);
+            var p = new LearningProviderUpdateParameter();
+            return await this.SendAsync<LearningProviderUpdateParameter, LearningProviderUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync(LearningproviderUpdateParameter parameter)
+        public async ValueTask<LearningProviderUpdateResponse> LearningProviderUpdateAsync(LearningProviderUpdateParameter parameter)
         {
-            return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<LearningProviderUpdateParameter, LearningProviderUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderUpdateResponse> LearningproviderUpdateAsync(LearningproviderUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningProviderUpdateResponse> LearningProviderUpdateAsync(LearningProviderUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<LearningproviderUpdateParameter, LearningproviderUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<LearningProviderUpdateParameter, LearningProviderUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

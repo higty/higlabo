@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycustodianListLastindexOperationParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycustodianListLastindexOperationParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -52,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycustodianListLastindexOperationResponse : RestApiResponse
+    public partial class SecurityEDiscoverycustodianListLastindexOperationResponse : RestApiResponse<EDiscoveryIndexOperation>
     {
-        public EdiscoveryIndexOperation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
@@ -64,32 +64,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync()
+        public async ValueTask<SecurityEDiscoverycustodianListLastindexOperationResponse> SecurityEDiscoverycustodianListLastindexOperationAsync()
         {
-            var p = new SecurityEdiscoverycustodianListLastindexOperationParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycustodianListLastindexOperationParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianListLastindexOperationParameter, SecurityEDiscoverycustodianListLastindexOperationResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianListLastindexOperationResponse> SecurityEDiscoverycustodianListLastindexOperationAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycustodianListLastindexOperationParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycustodianListLastindexOperationParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianListLastindexOperationParameter, SecurityEDiscoverycustodianListLastindexOperationResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(SecurityEdiscoverycustodianListLastindexOperationParameter parameter)
+        public async ValueTask<SecurityEDiscoverycustodianListLastindexOperationResponse> SecurityEDiscoverycustodianListLastindexOperationAsync(SecurityEDiscoverycustodianListLastindexOperationParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycustodianListLastindexOperationParameter, SecurityEDiscoverycustodianListLastindexOperationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListLastindexOperationResponse> SecurityEdiscoverycustodianListLastindexOperationAsync(SecurityEdiscoverycustodianListLastindexOperationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianListLastindexOperationResponse> SecurityEDiscoverycustodianListLastindexOperationAsync(SecurityEDiscoverycustodianListLastindexOperationParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianListLastindexOperationParameter, SecurityEdiscoverycustodianListLastindexOperationResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycustodianListLastindexOperationParameter, SecurityEDiscoverycustodianListLastindexOperationResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EDiscoveryIndexOperation> SecurityEDiscoverycustodianListLastindexOperationEnumerateAsync(SecurityEDiscoverycustodianListLastindexOperationParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycustodianListLastindexOperationParameter, SecurityEDiscoverycustodianListLastindexOperationResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EDiscoveryIndexOperation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

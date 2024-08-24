@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetonedriveactivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetOneDriveActivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetonedriveactivityfilecountsResponse : RestApiResponse
+    public partial class ReportRootGetOneDriveActivityfilecountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync()
+        public async ValueTask<ReportRootGetOneDriveActivityfilecountsResponse> ReportRootGetOneDriveActivityfilecountsAsync()
         {
-            var p = new ReportRootGetonedriveactivityfilecountsParameter();
-            return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetOneDriveActivityfilecountsParameter();
+            return await this.SendAsync<ReportRootGetOneDriveActivityfilecountsParameter, ReportRootGetOneDriveActivityfilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveActivityfilecountsResponse> ReportRootGetOneDriveActivityfilecountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetonedriveactivityfilecountsParameter();
-            return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetOneDriveActivityfilecountsParameter();
+            return await this.SendAsync<ReportRootGetOneDriveActivityfilecountsParameter, ReportRootGetOneDriveActivityfilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync(ReportRootGetonedriveactivityfilecountsParameter parameter)
+        public async ValueTask<ReportRootGetOneDriveActivityfilecountsResponse> ReportRootGetOneDriveActivityfilecountsAsync(ReportRootGetOneDriveActivityfilecountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetOneDriveActivityfilecountsParameter, ReportRootGetOneDriveActivityfilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync(ReportRootGetonedriveactivityfilecountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveActivityfilecountsResponse> ReportRootGetOneDriveActivityfilecountsAsync(ReportRootGetOneDriveActivityfilecountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetOneDriveActivityfilecountsParameter, ReportRootGetOneDriveActivityfilecountsResponse>(parameter, cancellationToken);
         }
     }
 }

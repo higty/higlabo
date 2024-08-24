@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,19 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Comment,
-            CreatedDateTime,
-            DeletedDateTime,
-            DisplayName,
-            History,
-            HostOnly,
-            HostOrDomain,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Path,
-            SourceEnvironment,
-            Status,
         }
         public enum ApiPath
         {
@@ -61,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BrowsersitelistListSharedcookiesResponse : RestApiResponse
+    public partial class BrowsersitelistListSharedcookiesResponse : RestApiResponse<BrowserSharedCookie>
     {
-        public BrowserSharedCookie[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sharedcookies?view=graph-rest-1.0
@@ -99,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<BrowsersitelistListSharedcookiesResponse> BrowsersitelistListSharedcookiesAsync(BrowsersitelistListSharedcookiesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BrowsersitelistListSharedcookiesParameter, BrowsersitelistListSharedcookiesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/browsersitelist-list-sharedcookies?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BrowserSharedCookie> BrowsersitelistListSharedcookiesEnumerateAsync(BrowsersitelistListSharedcookiesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<BrowsersitelistListSharedcookiesParameter, BrowsersitelistListSharedcookiesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BrowserSharedCookie>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -28,19 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Height,
-            Id,
-            Left,
-            Name,
-            Top,
-            Width,
-            Axes,
-            DataLabels,
-            Format,
-            Legend,
-            Series,
-            Title,
-            Worksheet,
         }
         public enum ApiPath
         {

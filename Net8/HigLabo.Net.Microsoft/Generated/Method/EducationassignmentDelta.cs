@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -26,33 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AddedStudentAction,
-            AddToCalendarAction,
-            AllowLateSubmissions,
-            AllowStudentsToAddResourcesToSubmission,
-            AssignDateTime,
-            AssignTo,
-            AssignedDateTime,
-            ClassId,
-            CloseDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            DueDateTime,
-            FeedbackResourcesFolderUrl,
-            Grading,
-            Id,
-            Instructions,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            NotificationChannelUrl,
-            ResourcesFolderUrl,
-            Status,
-            WebUrl,
-            Categories,
-            Resources,
-            Rubric,
-            Submissions,
         }
         public enum ApiPath
         {
@@ -78,9 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationAssignmentDeltaResponse : RestApiResponse
+    public partial class EducationAssignmentDeltaResponse : RestApiResponse<EducationAssignment>
     {
-        public EducationAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
@@ -116,6 +89,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(EducationAssignmentDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationAssignment> EducationAssignmentDeltaEnumerateAsync(EducationAssignmentDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
     /// </summary>
-    public partial class UserconsentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserconsentRequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserconsentrequestGetResponse : RestApiResponse
+    public partial class UserconsentRequestGetResponse : RestApiResponse
     {
         public string? ApprovalId { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -69,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync()
+        public async ValueTask<UserconsentRequestGetResponse> UserconsentRequestGetAsync()
         {
-            var p = new UserconsentrequestGetParameter();
-            return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(p, CancellationToken.None);
+            var p = new UserconsentRequestGetParameter();
+            return await this.SendAsync<UserconsentRequestGetParameter, UserconsentRequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserconsentRequestGetResponse> UserconsentRequestGetAsync(CancellationToken cancellationToken)
         {
-            var p = new UserconsentrequestGetParameter();
-            return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(p, cancellationToken);
+            var p = new UserconsentRequestGetParameter();
+            return await this.SendAsync<UserconsentRequestGetParameter, UserconsentRequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync(UserconsentrequestGetParameter parameter)
+        public async ValueTask<UserconsentRequestGetResponse> UserconsentRequestGetAsync(UserconsentRequestGetParameter parameter)
         {
-            return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserconsentRequestGetParameter, UserconsentRequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserconsentrequestGetResponse> UserconsentrequestGetAsync(UserconsentrequestGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserconsentRequestGetResponse> UserconsentRequestGetAsync(UserconsentRequestGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserconsentrequestGetParameter, UserconsentrequestGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserconsentRequestGetParameter, UserconsentRequestGetResponse>(parameter, cancellationToken);
         }
     }
 }

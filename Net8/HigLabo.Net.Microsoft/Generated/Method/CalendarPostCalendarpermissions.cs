@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0
     /// </summary>
-    public partial class CalendarPostCalendarpermissionsParameter : IRestApiParameter
+    public partial class CalendarPostCalendarPermissionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class CalendarPostCalendarpermissionsResponse : RestApiResponse
+    public partial class CalendarPostCalendarPermissionsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarPostCalendarpermissionsResponse> CalendarPostCalendarpermissionsAsync()
+        public async ValueTask<CalendarPostCalendarPermissionsResponse> CalendarPostCalendarPermissionsAsync()
         {
-            var p = new CalendarPostCalendarpermissionsParameter();
-            return await this.SendAsync<CalendarPostCalendarpermissionsParameter, CalendarPostCalendarpermissionsResponse>(p, CancellationToken.None);
+            var p = new CalendarPostCalendarPermissionsParameter();
+            return await this.SendAsync<CalendarPostCalendarPermissionsParameter, CalendarPostCalendarPermissionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarPostCalendarpermissionsResponse> CalendarPostCalendarpermissionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarPostCalendarPermissionsResponse> CalendarPostCalendarPermissionsAsync(CancellationToken cancellationToken)
         {
-            var p = new CalendarPostCalendarpermissionsParameter();
-            return await this.SendAsync<CalendarPostCalendarpermissionsParameter, CalendarPostCalendarpermissionsResponse>(p, cancellationToken);
+            var p = new CalendarPostCalendarPermissionsParameter();
+            return await this.SendAsync<CalendarPostCalendarPermissionsParameter, CalendarPostCalendarPermissionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarPostCalendarpermissionsResponse> CalendarPostCalendarpermissionsAsync(CalendarPostCalendarpermissionsParameter parameter)
+        public async ValueTask<CalendarPostCalendarPermissionsResponse> CalendarPostCalendarPermissionsAsync(CalendarPostCalendarPermissionsParameter parameter)
         {
-            return await this.SendAsync<CalendarPostCalendarpermissionsParameter, CalendarPostCalendarpermissionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CalendarPostCalendarPermissionsParameter, CalendarPostCalendarPermissionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarPostCalendarpermissionsResponse> CalendarPostCalendarpermissionsAsync(CalendarPostCalendarpermissionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarPostCalendarPermissionsResponse> CalendarPostCalendarPermissionsAsync(CalendarPostCalendarPermissionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CalendarPostCalendarpermissionsParameter, CalendarPostCalendarpermissionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CalendarPostCalendarPermissionsParameter, CalendarPostCalendarPermissionsResponse>(parameter, cancellationToken);
         }
     }
 }

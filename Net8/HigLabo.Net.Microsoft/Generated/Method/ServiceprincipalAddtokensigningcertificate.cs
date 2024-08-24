@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addtokensigningcertificate?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalAddTokensigningcertificateParameter : IRestApiParameter
+    public partial class ServicePrincipalAddTokensigningcertificateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
         public string? Usage { get; set; }
         public string? Thumbprint { get; set; }
     }
-    public partial class ServiceprincipalAddTokensigningcertificateResponse : RestApiResponse
+    public partial class ServicePrincipalAddTokensigningcertificateResponse : RestApiResponse
     {
         public string? CustomKeyIdentifier { get; set; }
         public string? DisplayName { get; set; }
@@ -68,32 +68,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addtokensigningcertificate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddTokensigningcertificateResponse> ServiceprincipalAddTokensigningcertificateAsync()
+        public async ValueTask<ServicePrincipalAddTokensigningcertificateResponse> ServicePrincipalAddTokensigningcertificateAsync()
         {
-            var p = new ServiceprincipalAddTokensigningcertificateParameter();
-            return await this.SendAsync<ServiceprincipalAddTokensigningcertificateParameter, ServiceprincipalAddTokensigningcertificateResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalAddTokensigningcertificateParameter();
+            return await this.SendAsync<ServicePrincipalAddTokensigningcertificateParameter, ServicePrincipalAddTokensigningcertificateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addtokensigningcertificate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddTokensigningcertificateResponse> ServiceprincipalAddTokensigningcertificateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalAddTokensigningcertificateResponse> ServicePrincipalAddTokensigningcertificateAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalAddTokensigningcertificateParameter();
-            return await this.SendAsync<ServiceprincipalAddTokensigningcertificateParameter, ServiceprincipalAddTokensigningcertificateResponse>(p, cancellationToken);
+            var p = new ServicePrincipalAddTokensigningcertificateParameter();
+            return await this.SendAsync<ServicePrincipalAddTokensigningcertificateParameter, ServicePrincipalAddTokensigningcertificateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addtokensigningcertificate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddTokensigningcertificateResponse> ServiceprincipalAddTokensigningcertificateAsync(ServiceprincipalAddTokensigningcertificateParameter parameter)
+        public async ValueTask<ServicePrincipalAddTokensigningcertificateResponse> ServicePrincipalAddTokensigningcertificateAsync(ServicePrincipalAddTokensigningcertificateParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalAddTokensigningcertificateParameter, ServiceprincipalAddTokensigningcertificateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalAddTokensigningcertificateParameter, ServicePrincipalAddTokensigningcertificateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addtokensigningcertificate?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalAddTokensigningcertificateResponse> ServiceprincipalAddTokensigningcertificateAsync(ServiceprincipalAddTokensigningcertificateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalAddTokensigningcertificateResponse> ServicePrincipalAddTokensigningcertificateAsync(ServicePrincipalAddTokensigningcertificateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalAddTokensigningcertificateParameter, ServiceprincipalAddTokensigningcertificateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalAddTokensigningcertificateParameter, ServicePrincipalAddTokensigningcertificateResponse>(parameter, cancellationToken);
         }
     }
 }

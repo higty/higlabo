@@ -24,24 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Address,
-            CreatedBy,
-            Description,
-            DisplayName,
-            ExternalId,
-            ExternalPrincipalId,
-            ExternalSource,
-            ExternalSourceDetail,
-            HighestGrade,
-            Id,
-            LowestGrade,
-            Phone,
-            PrincipalEmail,
-            PrincipalName,
-            SchoolNumber,
-            AdministrativeUnit,
-            Classes,
-            Users,
         }
         public enum ApiPath
         {

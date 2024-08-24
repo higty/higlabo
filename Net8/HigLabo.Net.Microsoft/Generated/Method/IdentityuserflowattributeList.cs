@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityUserflowattributeListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityUserflowAttributeListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DataType,
-            Description,
-            DisplayName,
-            Id,
-            UserFlowAttributeType,
         }
         public enum ApiPath
         {
@@ -52,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityUserflowattributeListResponse : RestApiResponse
+    public partial class IdentityUserflowAttributeListResponse : RestApiResponse<IdentityUserFlowAttribute>
     {
-        public IdentityUserFlowAttribute[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
@@ -64,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeListResponse> IdentityUserflowattributeListAsync()
+        public async ValueTask<IdentityUserflowAttributeListResponse> IdentityUserflowAttributeListAsync()
         {
-            var p = new IdentityUserflowattributeListParameter();
-            return await this.SendAsync<IdentityUserflowattributeListParameter, IdentityUserflowattributeListResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowAttributeListParameter();
+            return await this.SendAsync<IdentityUserflowAttributeListParameter, IdentityUserflowAttributeListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeListResponse> IdentityUserflowattributeListAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeListResponse> IdentityUserflowAttributeListAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityUserflowattributeListParameter();
-            return await this.SendAsync<IdentityUserflowattributeListParameter, IdentityUserflowattributeListResponse>(p, cancellationToken);
+            var p = new IdentityUserflowAttributeListParameter();
+            return await this.SendAsync<IdentityUserflowAttributeListParameter, IdentityUserflowAttributeListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeListResponse> IdentityUserflowattributeListAsync(IdentityUserflowattributeListParameter parameter)
+        public async ValueTask<IdentityUserflowAttributeListResponse> IdentityUserflowAttributeListAsync(IdentityUserflowAttributeListParameter parameter)
         {
-            return await this.SendAsync<IdentityUserflowattributeListParameter, IdentityUserflowattributeListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowAttributeListParameter, IdentityUserflowAttributeListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityUserflowattributeListResponse> IdentityUserflowattributeListAsync(IdentityUserflowattributeListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityUserflowAttributeListResponse> IdentityUserflowAttributeListAsync(IdentityUserflowAttributeListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityUserflowattributeListParameter, IdentityUserflowattributeListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowAttributeListParameter, IdentityUserflowAttributeListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<IdentityUserFlowAttribute> IdentityUserflowAttributeListEnumerateAsync(IdentityUserflowAttributeListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<IdentityUserflowAttributeListParameter, IdentityUserflowAttributeListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<IdentityUserFlowAttribute>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

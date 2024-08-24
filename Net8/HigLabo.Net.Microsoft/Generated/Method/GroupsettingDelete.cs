@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/groupsetting-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class GroupsettingDeleteParameter : IRestApiParameter
+    public partial class GroupSettingDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class GroupsettingDeleteResponse : RestApiResponse
+    public partial class GroupSettingDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingDeleteResponse> GroupsettingDeleteAsync()
+        public async ValueTask<GroupSettingDeleteResponse> GroupSettingDeleteAsync()
         {
-            var p = new GroupsettingDeleteParameter();
-            return await this.SendAsync<GroupsettingDeleteParameter, GroupsettingDeleteResponse>(p, CancellationToken.None);
+            var p = new GroupSettingDeleteParameter();
+            return await this.SendAsync<GroupSettingDeleteParameter, GroupSettingDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingDeleteResponse> GroupsettingDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupSettingDeleteResponse> GroupSettingDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new GroupsettingDeleteParameter();
-            return await this.SendAsync<GroupsettingDeleteParameter, GroupsettingDeleteResponse>(p, cancellationToken);
+            var p = new GroupSettingDeleteParameter();
+            return await this.SendAsync<GroupSettingDeleteParameter, GroupSettingDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingDeleteResponse> GroupsettingDeleteAsync(GroupsettingDeleteParameter parameter)
+        public async ValueTask<GroupSettingDeleteResponse> GroupSettingDeleteAsync(GroupSettingDeleteParameter parameter)
         {
-            return await this.SendAsync<GroupsettingDeleteParameter, GroupsettingDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GroupSettingDeleteParameter, GroupSettingDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingDeleteResponse> GroupsettingDeleteAsync(GroupsettingDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupSettingDeleteResponse> GroupSettingDeleteAsync(GroupSettingDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GroupsettingDeleteParameter, GroupsettingDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GroupSettingDeleteParameter, GroupSettingDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

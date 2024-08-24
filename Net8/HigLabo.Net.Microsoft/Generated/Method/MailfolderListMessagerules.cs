@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderListMessagerulesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class MailFolderListMessagerulesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,15 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Actions,
-            Conditions,
-            DisplayName,
-            Exceptions,
-            HasError,
-            Id,
-            IsEnabled,
-            IsReadOnly,
-            Sequence,
         }
         public enum ApiPath
         {
@@ -59,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class MailfolderListMessagerulesResponse : RestApiResponse
+    public partial class MailFolderListMessagerulesResponse : RestApiResponse<MessageRule>
     {
-        public MessageRule[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
@@ -71,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync()
+        public async ValueTask<MailFolderListMessagerulesResponse> MailFolderListMessagerulesAsync()
         {
-            var p = new MailfolderListMessagerulesParameter();
-            return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(p, CancellationToken.None);
+            var p = new MailFolderListMessagerulesParameter();
+            return await this.SendAsync<MailFolderListMessagerulesParameter, MailFolderListMessagerulesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderListMessagerulesResponse> MailFolderListMessagerulesAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderListMessagerulesParameter();
-            return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(p, cancellationToken);
+            var p = new MailFolderListMessagerulesParameter();
+            return await this.SendAsync<MailFolderListMessagerulesParameter, MailFolderListMessagerulesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync(MailfolderListMessagerulesParameter parameter)
+        public async ValueTask<MailFolderListMessagerulesResponse> MailFolderListMessagerulesAsync(MailFolderListMessagerulesParameter parameter)
         {
-            return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderListMessagerulesParameter, MailFolderListMessagerulesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync(MailfolderListMessagerulesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderListMessagerulesResponse> MailFolderListMessagerulesAsync(MailFolderListMessagerulesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderListMessagerulesParameter, MailFolderListMessagerulesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<MessageRule> MailFolderListMessagerulesEnumerateAsync(MailFolderListMessagerulesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<MailFolderListMessagerulesParameter, MailFolderListMessagerulesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<MessageRule>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

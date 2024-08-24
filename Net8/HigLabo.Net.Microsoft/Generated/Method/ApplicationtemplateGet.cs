@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
     /// </summary>
-    public partial class ApplicationtemplateGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ApplicationTemplateGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ApplicationtemplateGetResponse : RestApiResponse
+    public partial class ApplicationTemplateGetResponse : RestApiResponse
     {
         public String[]? Categories { get; set; }
         public string? Description { get; set; }
@@ -68,32 +68,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync()
+        public async ValueTask<ApplicationTemplateGetResponse> ApplicationTemplateGetAsync()
         {
-            var p = new ApplicationtemplateGetParameter();
-            return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(p, CancellationToken.None);
+            var p = new ApplicationTemplateGetParameter();
+            return await this.SendAsync<ApplicationTemplateGetParameter, ApplicationTemplateGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<ApplicationTemplateGetResponse> ApplicationTemplateGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ApplicationtemplateGetParameter();
-            return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(p, cancellationToken);
+            var p = new ApplicationTemplateGetParameter();
+            return await this.SendAsync<ApplicationTemplateGetParameter, ApplicationTemplateGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync(ApplicationtemplateGetParameter parameter)
+        public async ValueTask<ApplicationTemplateGetResponse> ApplicationTemplateGetAsync(ApplicationTemplateGetParameter parameter)
         {
-            return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ApplicationTemplateGetParameter, ApplicationTemplateGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync(ApplicationtemplateGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ApplicationTemplateGetResponse> ApplicationTemplateGetAsync(ApplicationTemplateGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ApplicationTemplateGetParameter, ApplicationTemplateGetResponse>(parameter, cancellationToken);
         }
     }
 }

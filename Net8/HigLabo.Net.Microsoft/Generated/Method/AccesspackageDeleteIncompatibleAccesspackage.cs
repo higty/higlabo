@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageDeleteIncompatibleAccesspackageParameter : IRestApiParameter
+    public partial class AccessPackageDeleteIncompatibleAccessPackageParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class AccesspackageDeleteIncompatibleAccesspackageResponse : RestApiResponse
+    public partial class AccessPackageDeleteIncompatibleAccessPackageResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync()
+        public async ValueTask<AccessPackageDeleteIncompatibleAccessPackageResponse> AccessPackageDeleteIncompatibleAccessPackageAsync()
         {
-            var p = new AccesspackageDeleteIncompatibleAccesspackageParameter();
-            return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(p, CancellationToken.None);
+            var p = new AccessPackageDeleteIncompatibleAccessPackageParameter();
+            return await this.SendAsync<AccessPackageDeleteIncompatibleAccessPackageParameter, AccessPackageDeleteIncompatibleAccessPackageResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageDeleteIncompatibleAccessPackageResponse> AccessPackageDeleteIncompatibleAccessPackageAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageDeleteIncompatibleAccesspackageParameter();
-            return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(p, cancellationToken);
+            var p = new AccessPackageDeleteIncompatibleAccessPackageParameter();
+            return await this.SendAsync<AccessPackageDeleteIncompatibleAccessPackageParameter, AccessPackageDeleteIncompatibleAccessPackageResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(AccesspackageDeleteIncompatibleAccesspackageParameter parameter)
+        public async ValueTask<AccessPackageDeleteIncompatibleAccessPackageResponse> AccessPackageDeleteIncompatibleAccessPackageAsync(AccessPackageDeleteIncompatibleAccessPackageParameter parameter)
         {
-            return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageDeleteIncompatibleAccessPackageParameter, AccessPackageDeleteIncompatibleAccessPackageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageDeleteIncompatibleAccesspackageResponse> AccesspackageDeleteIncompatibleAccesspackageAsync(AccesspackageDeleteIncompatibleAccesspackageParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageDeleteIncompatibleAccessPackageResponse> AccessPackageDeleteIncompatibleAccessPackageAsync(AccessPackageDeleteIncompatibleAccessPackageParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageDeleteIncompatibleAccesspackageParameter, AccesspackageDeleteIncompatibleAccesspackageResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageDeleteIncompatibleAccessPackageParameter, AccessPackageDeleteIncompatibleAccessPackageResponse>(parameter, cancellationToken);
         }
     }
 }

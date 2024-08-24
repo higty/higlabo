@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamworktagmemberDeleteParameter : IRestApiParameter
+    public partial class TeamworktagMemberDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class TeamworktagmemberDeleteResponse : RestApiResponse
+    public partial class TeamworktagMemberDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberDeleteResponse> TeamworktagmemberDeleteAsync()
+        public async ValueTask<TeamworktagMemberDeleteResponse> TeamworktagMemberDeleteAsync()
         {
-            var p = new TeamworktagmemberDeleteParameter();
-            return await this.SendAsync<TeamworktagmemberDeleteParameter, TeamworktagmemberDeleteResponse>(p, CancellationToken.None);
+            var p = new TeamworktagMemberDeleteParameter();
+            return await this.SendAsync<TeamworktagMemberDeleteParameter, TeamworktagMemberDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberDeleteResponse> TeamworktagmemberDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagMemberDeleteResponse> TeamworktagMemberDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new TeamworktagmemberDeleteParameter();
-            return await this.SendAsync<TeamworktagmemberDeleteParameter, TeamworktagmemberDeleteResponse>(p, cancellationToken);
+            var p = new TeamworktagMemberDeleteParameter();
+            return await this.SendAsync<TeamworktagMemberDeleteParameter, TeamworktagMemberDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberDeleteResponse> TeamworktagmemberDeleteAsync(TeamworktagmemberDeleteParameter parameter)
+        public async ValueTask<TeamworktagMemberDeleteResponse> TeamworktagMemberDeleteAsync(TeamworktagMemberDeleteParameter parameter)
         {
-            return await this.SendAsync<TeamworktagmemberDeleteParameter, TeamworktagmemberDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TeamworktagMemberDeleteParameter, TeamworktagMemberDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/teamworktagmember-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TeamworktagmemberDeleteResponse> TeamworktagmemberDeleteAsync(TeamworktagmemberDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TeamworktagMemberDeleteResponse> TeamworktagMemberDeleteAsync(TeamworktagMemberDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TeamworktagmemberDeleteParameter, TeamworktagmemberDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TeamworktagMemberDeleteParameter, TeamworktagMemberDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

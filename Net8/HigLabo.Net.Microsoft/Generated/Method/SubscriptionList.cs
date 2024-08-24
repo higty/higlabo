@@ -23,21 +23,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ApplicationId,
-            ChangeType,
-            ClientState,
-            CreatorId,
-            EncryptionCertificate,
-            EncryptionCertificateId,
-            ExpirationDateTime,
-            Id,
-            IncludeResourceData,
-            LatestSupportedTlsVersion,
-            LifecycleNotificationUrl,
-            NotificationQueryOptions,
-            NotificationUrl,
-            NotificationUrlAppId,
-            Resource,
         }
         public enum ApiPath
         {
@@ -64,7 +49,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SubscriptionListResponse : RestApiResponse
     {
-        public Subscription[]? Value { get; set; }
         public string? ApplicationId { get; set; }
         public string? ChangeType { get; set; }
         public string? ClientState { get; set; }

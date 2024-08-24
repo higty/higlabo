@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,54 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccountEnabled,
-            AddIns,
-            AlternativeNames,
-            AppDescription,
-            AppDisplayName,
-            AppId,
-            ApplicationTemplateId,
-            AppOwnerOrganizationId,
-            AppRoleAssignmentRequired,
-            AppRoles,
-            DeletedDateTime,
-            Description,
-            DisabledByMicrosoftStatus,
-            DisplayName,
-            Homepage,
-            Id,
-            Info,
-            KeyCredentials,
-            LoginUrl,
-            LogoutUrl,
-            Notes,
-            NotificationEmailAddresses,
-            Oauth2PermissionScopes,
-            PasswordCredentials,
-            PreferredSingleSignOnMode,
-            PreferredTokenSigningKeyThumbprint,
-            ReplyUrls,
-            ResourceSpecificApplicationPermissions,
-            SamlSingleSignOnSettings,
-            ServicePrincipalNames,
-            ServicePrincipalType,
-            SignInAudience,
-            Tags,
-            TokenEncryptionKeyId,
-            VerifiedPublisher,
-            AppManagementPolicies,
-            AppRoleAssignedTo,
-            AppRoleAssignments,
-            ClaimsMappingPolicies,
-            CreatedObjects,
-            FederatedIdentityCredentials,
-            HomeRealmDiscoveryPolicies,
-            MemberOf,
-            Oauth2PermissionGrants,
-            OwnedObjects,
-            Owners,
-            TokenIssuancePolicies,
-            TokenLifetimePolicies,
         }
         public enum ApiPath
         {
@@ -95,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalDeltaResponse : RestApiResponse
+    public partial class ServicePrincipalDeltaResponse : RestApiResponse<ServicePrincipal>
     {
-        public ServicePrincipal[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
@@ -107,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync()
+        public async ValueTask<ServicePrincipalDeltaResponse> ServicePrincipalDeltaAsync()
         {
-            var p = new ServiceprincipalDeltaParameter();
-            return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalDeltaParameter();
+            return await this.SendAsync<ServicePrincipalDeltaParameter, ServicePrincipalDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeltaResponse> ServicePrincipalDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalDeltaParameter();
-            return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(p, cancellationToken);
+            var p = new ServicePrincipalDeltaParameter();
+            return await this.SendAsync<ServicePrincipalDeltaParameter, ServicePrincipalDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter)
+        public async ValueTask<ServicePrincipalDeltaResponse> ServicePrincipalDeltaAsync(ServicePrincipalDeltaParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalDeltaParameter, ServicePrincipalDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalDeltaResponse> ServicePrincipalDeltaAsync(ServicePrincipalDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalDeltaParameter, ServicePrincipalDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ServicePrincipal> ServicePrincipalDeltaEnumerateAsync(ServicePrincipalDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalDeltaParameter, ServicePrincipalDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ServicePrincipal>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

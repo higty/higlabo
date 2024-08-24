@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationclassDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationClassDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,26 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ClassCode,
-            CreatedBy,
-            Description,
-            DisplayName,
-            ExternalId,
-            ExternalSource,
-            ExternalSourceDetail,
-            ExternalName,
-            Grade,
-            Id,
-            MailNickname,
-            Term,
-            Assignments,
-            AssignmentCategories,
-            AssignmentDefaults,
-            AssignmentSettings,
-            Group,
-            Members,
-            Schools,
-            Teachers,
         }
         public enum ApiPath
         {
@@ -67,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationclassDeltaResponse : RestApiResponse
+    public partial class EducationClassDeltaResponse : RestApiResponse<EducationClass>
     {
-        public EducationClass[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
@@ -79,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassDeltaResponse> EducationclassDeltaAsync()
+        public async ValueTask<EducationClassDeltaResponse> EducationClassDeltaAsync()
         {
-            var p = new EducationclassDeltaParameter();
-            return await this.SendAsync<EducationclassDeltaParameter, EducationclassDeltaResponse>(p, CancellationToken.None);
+            var p = new EducationClassDeltaParameter();
+            return await this.SendAsync<EducationClassDeltaParameter, EducationClassDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassDeltaResponse> EducationclassDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationClassDeltaResponse> EducationClassDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationclassDeltaParameter();
-            return await this.SendAsync<EducationclassDeltaParameter, EducationclassDeltaResponse>(p, cancellationToken);
+            var p = new EducationClassDeltaParameter();
+            return await this.SendAsync<EducationClassDeltaParameter, EducationClassDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassDeltaResponse> EducationclassDeltaAsync(EducationclassDeltaParameter parameter)
+        public async ValueTask<EducationClassDeltaResponse> EducationClassDeltaAsync(EducationClassDeltaParameter parameter)
         {
-            return await this.SendAsync<EducationclassDeltaParameter, EducationclassDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationClassDeltaParameter, EducationClassDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassDeltaResponse> EducationclassDeltaAsync(EducationclassDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationClassDeltaResponse> EducationClassDeltaAsync(EducationClassDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationclassDeltaParameter, EducationclassDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationClassDeltaParameter, EducationClassDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationClass> EducationClassDeltaEnumerateAsync(EducationClassDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationClassDeltaParameter, EducationClassDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationClass>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

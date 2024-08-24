@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityproviderbaseDeleteParameter : IRestApiParameter
+    public partial class IdentityProviderbaseDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class IdentityproviderbaseDeleteResponse : RestApiResponse
+    public partial class IdentityProviderbaseDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseDeleteResponse> IdentityproviderbaseDeleteAsync()
+        public async ValueTask<IdentityProviderbaseDeleteResponse> IdentityProviderbaseDeleteAsync()
         {
-            var p = new IdentityproviderbaseDeleteParameter();
-            return await this.SendAsync<IdentityproviderbaseDeleteParameter, IdentityproviderbaseDeleteResponse>(p, CancellationToken.None);
+            var p = new IdentityProviderbaseDeleteParameter();
+            return await this.SendAsync<IdentityProviderbaseDeleteParameter, IdentityProviderbaseDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseDeleteResponse> IdentityproviderbaseDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderbaseDeleteResponse> IdentityProviderbaseDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityproviderbaseDeleteParameter();
-            return await this.SendAsync<IdentityproviderbaseDeleteParameter, IdentityproviderbaseDeleteResponse>(p, cancellationToken);
+            var p = new IdentityProviderbaseDeleteParameter();
+            return await this.SendAsync<IdentityProviderbaseDeleteParameter, IdentityProviderbaseDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseDeleteResponse> IdentityproviderbaseDeleteAsync(IdentityproviderbaseDeleteParameter parameter)
+        public async ValueTask<IdentityProviderbaseDeleteResponse> IdentityProviderbaseDeleteAsync(IdentityProviderbaseDeleteParameter parameter)
         {
-            return await this.SendAsync<IdentityproviderbaseDeleteParameter, IdentityproviderbaseDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityProviderbaseDeleteParameter, IdentityProviderbaseDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderbaseDeleteResponse> IdentityproviderbaseDeleteAsync(IdentityproviderbaseDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderbaseDeleteResponse> IdentityProviderbaseDeleteAsync(IdentityProviderbaseDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityproviderbaseDeleteParameter, IdentityproviderbaseDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityProviderbaseDeleteParameter, IdentityProviderbaseDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

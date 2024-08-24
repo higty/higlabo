@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ExpirationDateTime,
-            Id,
-            HasPassword,
-            GrantedToIdentitiesV2,
-            GrantedToV2,
-            InheritedFrom,
-            Invitation,
-            Link,
-            Roles,
-            ShareId,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SiteListPermissionsResponse : RestApiResponse
+    public partial class SiteListPermissionsResponse : RestApiResponse<Permission>
     {
-        public Permission[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/site-list-permissions?view=graph-rest-1.0
@@ -96,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SiteListPermissionsResponse> SiteListPermissionsAsync(SiteListPermissionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SiteListPermissionsParameter, SiteListPermissionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-permissions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Permission> SiteListPermissionsEnumerateAsync(SiteListPermissionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SiteListPermissionsParameter, SiteListPermissionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Permission>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

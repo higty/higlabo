@@ -23,35 +23,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowedDomainGuidsForSyncApp,
-            AvailableManagedPathsForSiteCreation,
-            DeletedUserPersonalSiteRetentionPeriodInDays,
-            ExcludedFileExtensionsForSyncApp,
-            IdleSessionSignOut,
-            ImageTaggingOption,
-            IsCommentingOnSitePagesEnabled,
-            IsFileActivityNotificationEnabled,
-            IsLegacyAuthProtocolsEnabled,
-            IsLoopEnabled,
-            IsMacSyncAppEnabled,
-            IsRequireAcceptingUserToMatchInvitedUserEnabled,
-            IsResharingByExternalUsersEnabled,
-            IsSharePointMobileNotificationEnabled,
-            IsSharePointNewsfeedEnabled,
-            IsSiteCreationEnabled,
-            IsSiteCreationUIEnabled,
-            IsSitePagesCreationEnabled,
-            IsSitesStorageLimitAutomatic,
-            IsSyncButtonHiddenOnPersonalSite,
-            IsUnmanagedSyncAppForTenantRestricted,
-            PersonalSiteDefaultStorageLimitInMB,
-            SharingAllowedDomainList,
-            SharingBlockedDomainList,
-            SharingCapability,
-            SharingDomainRestrictionMode,
-            SiteCreationDefaultManagedPath,
-            SiteCreationDefaultStorageLimitInMB,
-            TenantDefaultTimezone,
         }
         public enum ApiPath
         {

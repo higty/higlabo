@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0
     /// </summary>
-    public partial class HomerealmdiscoveryPolicyUpdateParameter : IRestApiParameter
+    public partial class HomeRealmDiscoveryPolicyUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public bool? IsOrganizationDefault { get; set; }
     }
-    public partial class HomerealmdiscoveryPolicyUpdateResponse : RestApiResponse
+    public partial class HomeRealmDiscoveryPolicyUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyUpdateResponse> HomerealmdiscoveryPolicyUpdateAsync()
+        public async ValueTask<HomeRealmDiscoveryPolicyUpdateResponse> HomeRealmDiscoveryPolicyUpdateAsync()
         {
-            var p = new HomerealmdiscoveryPolicyUpdateParameter();
-            return await this.SendAsync<HomerealmdiscoveryPolicyUpdateParameter, HomerealmdiscoveryPolicyUpdateResponse>(p, CancellationToken.None);
+            var p = new HomeRealmDiscoveryPolicyUpdateParameter();
+            return await this.SendAsync<HomeRealmDiscoveryPolicyUpdateParameter, HomeRealmDiscoveryPolicyUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyUpdateResponse> HomerealmdiscoveryPolicyUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<HomeRealmDiscoveryPolicyUpdateResponse> HomeRealmDiscoveryPolicyUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new HomerealmdiscoveryPolicyUpdateParameter();
-            return await this.SendAsync<HomerealmdiscoveryPolicyUpdateParameter, HomerealmdiscoveryPolicyUpdateResponse>(p, cancellationToken);
+            var p = new HomeRealmDiscoveryPolicyUpdateParameter();
+            return await this.SendAsync<HomeRealmDiscoveryPolicyUpdateParameter, HomeRealmDiscoveryPolicyUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyUpdateResponse> HomerealmdiscoveryPolicyUpdateAsync(HomerealmdiscoveryPolicyUpdateParameter parameter)
+        public async ValueTask<HomeRealmDiscoveryPolicyUpdateResponse> HomeRealmDiscoveryPolicyUpdateAsync(HomeRealmDiscoveryPolicyUpdateParameter parameter)
         {
-            return await this.SendAsync<HomerealmdiscoveryPolicyUpdateParameter, HomerealmdiscoveryPolicyUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<HomeRealmDiscoveryPolicyUpdateParameter, HomeRealmDiscoveryPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<HomerealmdiscoveryPolicyUpdateResponse> HomerealmdiscoveryPolicyUpdateAsync(HomerealmdiscoveryPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<HomeRealmDiscoveryPolicyUpdateResponse> HomeRealmDiscoveryPolicyUpdateAsync(HomeRealmDiscoveryPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<HomerealmdiscoveryPolicyUpdateParameter, HomerealmdiscoveryPolicyUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<HomeRealmDiscoveryPolicyUpdateParameter, HomeRealmDiscoveryPolicyUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,20 +5,18 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/chats-getallmessages?view=graph-rest-1.0
     /// </summary>
-    public partial class ChatsGetallmessagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ChatsGetAllMessagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
             public string? IdOrUserPrincipalName { get; set; }
-            public string? Id { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
                     case ApiPath.Users_IdOrUserPrincipalName_Chats_GetAllMessages: return $"/users/{IdOrUserPrincipalName}/chats/getAllMessages";
-                    case ApiPath.Users_Id_Chats_GetAllMessages: return $"/users/{Id}/chats/getAllMessages";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -30,7 +28,6 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Users_IdOrUserPrincipalName_Chats_GetAllMessages,
-            Users_Id_Chats_GetAllMessages,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -51,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ChatsGetallmessagesResponse : RestApiResponse
+    public partial class ChatsGetAllMessagesResponse : RestApiResponse
     {
         public enum ChatMessagestring
         {
@@ -102,32 +99,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chats-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatsGetallmessagesResponse> ChatsGetallmessagesAsync()
+        public async ValueTask<ChatsGetAllMessagesResponse> ChatsGetAllMessagesAsync()
         {
-            var p = new ChatsGetallmessagesParameter();
-            return await this.SendAsync<ChatsGetallmessagesParameter, ChatsGetallmessagesResponse>(p, CancellationToken.None);
+            var p = new ChatsGetAllMessagesParameter();
+            return await this.SendAsync<ChatsGetAllMessagesParameter, ChatsGetAllMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chats-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatsGetallmessagesResponse> ChatsGetallmessagesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatsGetAllMessagesResponse> ChatsGetAllMessagesAsync(CancellationToken cancellationToken)
         {
-            var p = new ChatsGetallmessagesParameter();
-            return await this.SendAsync<ChatsGetallmessagesParameter, ChatsGetallmessagesResponse>(p, cancellationToken);
+            var p = new ChatsGetAllMessagesParameter();
+            return await this.SendAsync<ChatsGetAllMessagesParameter, ChatsGetAllMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chats-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatsGetallmessagesResponse> ChatsGetallmessagesAsync(ChatsGetallmessagesParameter parameter)
+        public async ValueTask<ChatsGetAllMessagesResponse> ChatsGetAllMessagesAsync(ChatsGetAllMessagesParameter parameter)
         {
-            return await this.SendAsync<ChatsGetallmessagesParameter, ChatsGetallmessagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChatsGetAllMessagesParameter, ChatsGetAllMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chats-getallmessages?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatsGetallmessagesResponse> ChatsGetallmessagesAsync(ChatsGetallmessagesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatsGetAllMessagesResponse> ChatsGetAllMessagesAsync(ChatsGetAllMessagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChatsGetallmessagesParameter, ChatsGetallmessagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChatsGetAllMessagesParameter, ChatsGetAllMessagesResponse>(parameter, cancellationToken);
         }
     }
 }

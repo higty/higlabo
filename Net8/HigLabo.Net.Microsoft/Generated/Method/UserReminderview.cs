@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -48,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserReminderviewResponse : RestApiResponse
+    public partial class UserReminderviewResponse : RestApiResponse<Reminder>
     {
-        public Reminder[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
@@ -86,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Reminder> UserReminderviewEnumerateAsync(UserReminderviewParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Reminder>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

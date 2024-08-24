@@ -31,19 +31,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Content,
-            ContentUrl,
-            CreatedByAppId,
-            CreatedDateTime,
-            Id,
-            LastModifiedDateTime,
-            Level,
-            Links,
-            Order,
-            Self,
-            Title,
-            ParentNotebook,
-            ParentSection,
         }
         public enum ApiPath
         {

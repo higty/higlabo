@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverysearchDeleteCustodiansourcesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverysearchDeleteCustodiansourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class SecurityEdiscoverysearchDeleteCustodiansourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverysearchDeleteCustodiansourcesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync()
+        public async ValueTask<SecurityEDiscoverysearchDeleteCustodiansourcesResponse> SecurityEDiscoverysearchDeleteCustodiansourcesAsync()
         {
-            var p = new SecurityEdiscoverysearchDeleteCustodiansourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverysearchDeleteCustodiansourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteCustodiansourcesParameter, SecurityEDiscoverysearchDeleteCustodiansourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchDeleteCustodiansourcesResponse> SecurityEDiscoverysearchDeleteCustodiansourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverysearchDeleteCustodiansourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverysearchDeleteCustodiansourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteCustodiansourcesParameter, SecurityEDiscoverysearchDeleteCustodiansourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(SecurityEdiscoverysearchDeleteCustodiansourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverysearchDeleteCustodiansourcesResponse> SecurityEDiscoverysearchDeleteCustodiansourcesAsync(SecurityEDiscoverysearchDeleteCustodiansourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteCustodiansourcesParameter, SecurityEDiscoverysearchDeleteCustodiansourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-delete-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchDeleteCustodiansourcesResponse> SecurityEdiscoverysearchDeleteCustodiansourcesAsync(SecurityEdiscoverysearchDeleteCustodiansourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchDeleteCustodiansourcesResponse> SecurityEDiscoverysearchDeleteCustodiansourcesAsync(SecurityEDiscoverysearchDeleteCustodiansourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchDeleteCustodiansourcesParameter, SecurityEdiscoverysearchDeleteCustodiansourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverysearchDeleteCustodiansourcesParameter, SecurityEDiscoverysearchDeleteCustodiansourcesResponse>(parameter, cancellationToken);
         }
     }
 }

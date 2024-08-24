@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse : RestApiResponse<UnifiedGroupSource>
     {
-        public UnifiedGroupSource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
@@ -61,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync()
+        public async ValueTask<SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianListUnifiedGroupsourcesAsync()
         {
-            var p = new SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianListUnifiedGroupsourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEdiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse> SecurityEDiscoverycustodianListUnifiedGroupsourcesAsync(SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEdiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-list-unifiedgroupsources?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UnifiedGroupSource> SecurityEDiscoverycustodianListUnifiedGroupsourcesEnumerateAsync(SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycustodianListUnifiedGroupsourcesParameter, SecurityEDiscoverycustodianListUnifiedGroupsourcesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UnifiedGroupSource>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

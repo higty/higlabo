@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessReviewNotificationRecipientItem
     {
-        public Accessreviewnotificationrecipientscope? NotificationRecipientScope { get; set; }
+        public AccessReviewnotificationrecipientscope? NotificationRecipientScope { get; set; }
         public string? NotificationTemplateType { get; set; }
     }
 }

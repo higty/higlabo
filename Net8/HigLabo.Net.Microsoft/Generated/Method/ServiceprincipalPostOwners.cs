@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalPostOwnersParameter : IRestApiParameter
+    public partial class ServicePrincipalPostOwnersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
     }
-    public partial class ServiceprincipalPostOwnersResponse : RestApiResponse
+    public partial class ServicePrincipalPostOwnersResponse : RestApiResponse
     {
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync()
+        public async ValueTask<ServicePrincipalPostOwnersResponse> ServicePrincipalPostOwnersAsync()
         {
-            var p = new ServiceprincipalPostOwnersParameter();
-            return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalPostOwnersParameter();
+            return await this.SendAsync<ServicePrincipalPostOwnersParameter, ServicePrincipalPostOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostOwnersResponse> ServicePrincipalPostOwnersAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalPostOwnersParameter();
-            return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(p, cancellationToken);
+            var p = new ServicePrincipalPostOwnersParameter();
+            return await this.SendAsync<ServicePrincipalPostOwnersParameter, ServicePrincipalPostOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter)
+        public async ValueTask<ServicePrincipalPostOwnersResponse> ServicePrincipalPostOwnersAsync(ServicePrincipalPostOwnersParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalPostOwnersParameter, ServicePrincipalPostOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostOwnersResponse> ServicePrincipalPostOwnersAsync(ServicePrincipalPostOwnersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalPostOwnersParameter, ServicePrincipalPostOwnersResponse>(parameter, cancellationToken);
         }
     }
 }

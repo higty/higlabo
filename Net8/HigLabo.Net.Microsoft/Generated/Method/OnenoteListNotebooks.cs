@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -28,21 +29,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            IsDefault,
-            IsShared,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Links,
-            SectionGroupsUrl,
-            SectionsUrl,
-            Self,
-            UserRole,
-            SectionGroups,
-            Sections,
         }
         public enum ApiPath
         {
@@ -70,9 +56,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class OnenoteListNotebooksResponse : RestApiResponse
+    public partial class OnenoteListNotebooksResponse : RestApiResponse<Notebook>
     {
-        public Notebook[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
@@ -108,6 +93,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Notebook> OnenoteListNotebooksEnumerateAsync(OnenoteListNotebooksParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Notebook>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

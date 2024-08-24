@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoveryreviewsetAddtoreviewsetParameter : IRestApiParameter
+    public partial class SecurityEDiscoveryReviewsetAddtoReviewsetParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,10 +37,10 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public EdiscoverySearch? Search { get; set; }
+        public EDiscoverySearch? Search { get; set; }
         public AdditionalDataOptions? AdditionalDataOptions { get; set; }
     }
-    public partial class SecurityEdiscoveryreviewsetAddtoreviewsetResponse : RestApiResponse
+    public partial class SecurityEDiscoveryReviewsetAddtoReviewsetResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetAddtoreviewsetResponse> SecurityEdiscoveryreviewsetAddtoreviewsetAsync()
+        public async ValueTask<SecurityEDiscoveryReviewsetAddtoReviewsetResponse> SecurityEDiscoveryReviewsetAddtoReviewsetAsync()
         {
-            var p = new SecurityEdiscoveryreviewsetAddtoreviewsetParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewsetAddtoreviewsetParameter, SecurityEdiscoveryreviewsetAddtoreviewsetResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoveryReviewsetAddtoReviewsetParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewsetAddtoReviewsetParameter, SecurityEDiscoveryReviewsetAddtoReviewsetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetAddtoreviewsetResponse> SecurityEdiscoveryreviewsetAddtoreviewsetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewsetAddtoReviewsetResponse> SecurityEDiscoveryReviewsetAddtoReviewsetAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoveryreviewsetAddtoreviewsetParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewsetAddtoreviewsetParameter, SecurityEdiscoveryreviewsetAddtoreviewsetResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoveryReviewsetAddtoReviewsetParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewsetAddtoReviewsetParameter, SecurityEDiscoveryReviewsetAddtoReviewsetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetAddtoreviewsetResponse> SecurityEdiscoveryreviewsetAddtoreviewsetAsync(SecurityEdiscoveryreviewsetAddtoreviewsetParameter parameter)
+        public async ValueTask<SecurityEDiscoveryReviewsetAddtoReviewsetResponse> SecurityEDiscoveryReviewsetAddtoReviewsetAsync(SecurityEDiscoveryReviewsetAddtoReviewsetParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewsetAddtoreviewsetParameter, SecurityEdiscoveryreviewsetAddtoreviewsetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoveryReviewsetAddtoReviewsetParameter, SecurityEDiscoveryReviewsetAddtoReviewsetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewsetAddtoreviewsetResponse> SecurityEdiscoveryreviewsetAddtoreviewsetAsync(SecurityEdiscoveryreviewsetAddtoreviewsetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewsetAddtoReviewsetResponse> SecurityEDiscoveryReviewsetAddtoReviewsetAsync(SecurityEDiscoveryReviewsetAddtoReviewsetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewsetAddtoreviewsetParameter, SecurityEdiscoveryreviewsetAddtoreviewsetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoveryReviewsetAddtoReviewsetParameter, SecurityEDiscoveryReviewsetAddtoReviewsetResponse>(parameter, cancellationToken);
         }
     }
 }

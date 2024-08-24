@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,16 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            IsOrganizationDefault,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            ScopeId,
-            ScopeType,
-            EffectiveRules,
-            Rules,
         }
         public enum ApiPath
         {
@@ -57,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PolicyRootListRoleManagementpoliciesResponse : RestApiResponse
+    public partial class PolicyRootListRoleManagementpoliciesResponse : RestApiResponse<UnifiedRoleManagementPolicy>
     {
-        public UnifiedRoleManagementPolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0
@@ -95,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PolicyRootListRoleManagementpoliciesResponse> PolicyRootListRoleManagementpoliciesAsync(PolicyRootListRoleManagementpoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PolicyRootListRoleManagementpoliciesParameter, PolicyRootListRoleManagementpoliciesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UnifiedRoleManagementPolicy> PolicyRootListRoleManagementpoliciesEnumerateAsync(PolicyRootListRoleManagementpoliciesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PolicyRootListRoleManagementpoliciesParameter, PolicyRootListRoleManagementpoliciesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UnifiedRoleManagementPolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

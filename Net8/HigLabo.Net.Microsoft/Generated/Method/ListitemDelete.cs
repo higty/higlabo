@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class ListitemDeleteParameter : IRestApiParameter
+    public partial class ListItemDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ListitemDeleteResponse : RestApiResponse
+    public partial class ListItemDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync()
+        public async ValueTask<ListItemDeleteResponse> ListItemDeleteAsync()
         {
-            var p = new ListitemDeleteParameter();
-            return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(p, CancellationToken.None);
+            var p = new ListItemDeleteParameter();
+            return await this.SendAsync<ListItemDeleteParameter, ListItemDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListItemDeleteResponse> ListItemDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new ListitemDeleteParameter();
-            return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(p, cancellationToken);
+            var p = new ListItemDeleteParameter();
+            return await this.SendAsync<ListItemDeleteParameter, ListItemDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync(ListitemDeleteParameter parameter)
+        public async ValueTask<ListItemDeleteResponse> ListItemDeleteAsync(ListItemDeleteParameter parameter)
         {
-            return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ListItemDeleteParameter, ListItemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemDeleteResponse> ListitemDeleteAsync(ListitemDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListItemDeleteResponse> ListItemDeleteAsync(ListItemDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ListitemDeleteParameter, ListitemDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ListItemDeleteParameter, ListItemDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinesspeertopeeractivityusercounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse : RestApiResponse
+    public partial class ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinesspeertopeeractivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse> ReportRootGetskypeforbusinesspeertopeeractivityUsercountsAsync()
+        public async ValueTask<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse> ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsAsync()
         {
-            var p = new ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter();
-            return await this.SendAsync<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter, ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter, ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinesspeertopeeractivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse> ReportRootGetskypeforbusinesspeertopeeractivityUsercountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse> ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter();
-            return await this.SendAsync<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter, ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter, ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinesspeertopeeractivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse> ReportRootGetskypeforbusinesspeertopeeractivityUsercountsAsync(ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter parameter)
+        public async ValueTask<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse> ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsAsync(ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter, ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter, ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinesspeertopeeractivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse> ReportRootGetskypeforbusinesspeertopeeractivityUsercountsAsync(ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse> ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsAsync(ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetskypeforbusinesspeertopeeractivityUsercountsParameter, ReportRootGetskypeforbusinesspeertopeeractivityUsercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsParameter, ReportRootGetSkypeforBusinesspeertopeerActivityUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

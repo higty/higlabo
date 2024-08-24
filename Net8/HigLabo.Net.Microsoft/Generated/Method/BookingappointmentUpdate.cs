@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-update?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingappointmentUpdateParameter : IRestApiParameter
+    public partial class BookingAppointmentUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum BookingappointmentUpdateParameterBookingPriceType
+        public enum BookingAppointmentUpdateParameterBookingPriceType
         {
             Undefined,
             FixedPrice,
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
         public string? PostBuffer { get; set; }
         public string? PreBuffer { get; set; }
         public Double? Price { get; set; }
-        public BookingappointmentUpdateParameterBookingPriceType PriceType { get; set; }
+        public BookingAppointmentUpdateParameterBookingPriceType PriceType { get; set; }
         public BookingReminder[]? Reminders { get; set; }
         public string? SelfServiceAppointmentId { get; set; }
         public string? ServiceId { get; set; }
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         public String[]? StaffMemberIds { get; set; }
         public DateTimeTimeZone? StartDateTime { get; set; }
     }
-    public partial class BookingappointmentUpdateResponse : RestApiResponse
+    public partial class BookingAppointmentUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -82,32 +82,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingappointmentUpdateResponse> BookingappointmentUpdateAsync()
+        public async ValueTask<BookingAppointmentUpdateResponse> BookingAppointmentUpdateAsync()
         {
-            var p = new BookingappointmentUpdateParameter();
-            return await this.SendAsync<BookingappointmentUpdateParameter, BookingappointmentUpdateResponse>(p, CancellationToken.None);
+            var p = new BookingAppointmentUpdateParameter();
+            return await this.SendAsync<BookingAppointmentUpdateParameter, BookingAppointmentUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingappointmentUpdateResponse> BookingappointmentUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingAppointmentUpdateResponse> BookingAppointmentUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingappointmentUpdateParameter();
-            return await this.SendAsync<BookingappointmentUpdateParameter, BookingappointmentUpdateResponse>(p, cancellationToken);
+            var p = new BookingAppointmentUpdateParameter();
+            return await this.SendAsync<BookingAppointmentUpdateParameter, BookingAppointmentUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingappointmentUpdateResponse> BookingappointmentUpdateAsync(BookingappointmentUpdateParameter parameter)
+        public async ValueTask<BookingAppointmentUpdateResponse> BookingAppointmentUpdateAsync(BookingAppointmentUpdateParameter parameter)
         {
-            return await this.SendAsync<BookingappointmentUpdateParameter, BookingappointmentUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingAppointmentUpdateParameter, BookingAppointmentUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingappointment-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingappointmentUpdateResponse> BookingappointmentUpdateAsync(BookingappointmentUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingAppointmentUpdateResponse> BookingAppointmentUpdateAsync(BookingAppointmentUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingappointmentUpdateParameter, BookingappointmentUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingAppointmentUpdateParameter, BookingAppointmentUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

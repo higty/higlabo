@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,21 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowedTargetScope,
-            AutomaticRequestSettings,
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Expiration,
-            Id,
-            ModifiedDateTime,
-            RequestApprovalSettings,
-            RequestorSettings,
-            ReviewSettings,
-            SpecificAllowedTargets,
-            AccessPackage,
-            Catalog,
-            Questions,
         }
         public enum ApiPath
         {
@@ -62,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementManagementListAssignmentpoliciesResponse : RestApiResponse
+    public partial class EntitlementManagementListAssignmentpoliciesResponse : RestApiResponse<AccessPackageAssignmentPolicy>
     {
-        public AccessPackageAssignmentPolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentpolicies?view=graph-rest-1.0
@@ -100,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EntitlementManagementListAssignmentpoliciesResponse> EntitlementManagementListAssignmentpoliciesAsync(EntitlementManagementListAssignmentpoliciesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EntitlementManagementListAssignmentpoliciesParameter, EntitlementManagementListAssignmentpoliciesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentpolicies?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessPackageAssignmentPolicy> EntitlementManagementListAssignmentpoliciesEnumerateAsync(EntitlementManagementListAssignmentpoliciesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EntitlementManagementListAssignmentpoliciesParameter, EntitlementManagementListAssignmentpoliciesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessPackageAssignmentPolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

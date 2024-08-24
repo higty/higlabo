@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class ColumndefinitionDeleteParameter : IRestApiParameter
+    public partial class ColumnDefinitionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ColumndefinitionDeleteResponse : RestApiResponse
+    public partial class ColumnDefinitionDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -57,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync()
+        public async ValueTask<ColumnDefinitionDeleteResponse> ColumnDefinitionDeleteAsync()
         {
-            var p = new ColumndefinitionDeleteParameter();
-            return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(p, CancellationToken.None);
+            var p = new ColumnDefinitionDeleteParameter();
+            return await this.SendAsync<ColumnDefinitionDeleteParameter, ColumnDefinitionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<ColumnDefinitionDeleteResponse> ColumnDefinitionDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new ColumndefinitionDeleteParameter();
-            return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(p, cancellationToken);
+            var p = new ColumnDefinitionDeleteParameter();
+            return await this.SendAsync<ColumnDefinitionDeleteParameter, ColumnDefinitionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(ColumndefinitionDeleteParameter parameter)
+        public async ValueTask<ColumnDefinitionDeleteResponse> ColumnDefinitionDeleteAsync(ColumnDefinitionDeleteParameter parameter)
         {
-            return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ColumnDefinitionDeleteParameter, ColumnDefinitionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/columndefinition-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ColumndefinitionDeleteResponse> ColumndefinitionDeleteAsync(ColumndefinitionDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ColumnDefinitionDeleteResponse> ColumnDefinitionDeleteAsync(ColumnDefinitionDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ColumndefinitionDeleteParameter, ColumndefinitionDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ColumnDefinitionDeleteParameter, ColumnDefinitionDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

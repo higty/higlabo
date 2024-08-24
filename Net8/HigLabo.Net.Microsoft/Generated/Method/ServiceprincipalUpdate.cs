@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalUpdateParameter : IRestApiParameter
+    public partial class ServicePrincipalUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum ServiceprincipalUpdateParameterstring
+        public enum ServicePrincipalUpdateParameterstring
         {
             Password,
             Saml,
@@ -55,13 +55,13 @@ namespace HigLabo.Net.Microsoft
         public KeyCredential[]? KeyCredentials { get; set; }
         public string? LogoutUrl { get; set; }
         public PermissionScope[]? Oauth2PermissionScopes { get; set; }
-        public ServiceprincipalUpdateParameterstring PreferredSingleSignOnMode { get; set; }
+        public ServicePrincipalUpdateParameterstring PreferredSingleSignOnMode { get; set; }
         public String[]? ReplyUrls { get; set; }
         public String[]? ServicePrincipalNames { get; set; }
         public String[]? Tags { get; set; }
         public string? TokenEncryptionKeyId { get; set; }
     }
-    public partial class ServiceprincipalUpdateResponse : RestApiResponse
+    public partial class ServicePrincipalUpdateResponse : RestApiResponse
     {
         public enum ServicePrincipalstring
         {
@@ -128,32 +128,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalUpdateResponse> ServiceprincipalUpdateAsync()
+        public async ValueTask<ServicePrincipalUpdateResponse> ServicePrincipalUpdateAsync()
         {
-            var p = new ServiceprincipalUpdateParameter();
-            return await this.SendAsync<ServiceprincipalUpdateParameter, ServiceprincipalUpdateResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalUpdateParameter();
+            return await this.SendAsync<ServicePrincipalUpdateParameter, ServicePrincipalUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalUpdateResponse> ServiceprincipalUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalUpdateResponse> ServicePrincipalUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalUpdateParameter();
-            return await this.SendAsync<ServiceprincipalUpdateParameter, ServiceprincipalUpdateResponse>(p, cancellationToken);
+            var p = new ServicePrincipalUpdateParameter();
+            return await this.SendAsync<ServicePrincipalUpdateParameter, ServicePrincipalUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalUpdateResponse> ServiceprincipalUpdateAsync(ServiceprincipalUpdateParameter parameter)
+        public async ValueTask<ServicePrincipalUpdateResponse> ServicePrincipalUpdateAsync(ServicePrincipalUpdateParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalUpdateParameter, ServiceprincipalUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalUpdateParameter, ServicePrincipalUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalUpdateResponse> ServiceprincipalUpdateAsync(ServiceprincipalUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalUpdateResponse> ServicePrincipalUpdateAsync(ServicePrincipalUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalUpdateParameter, ServiceprincipalUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalUpdateParameter, ServicePrincipalUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

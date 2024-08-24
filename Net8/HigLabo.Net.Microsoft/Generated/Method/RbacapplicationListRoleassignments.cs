@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
     /// </summary>
-    public partial class RbacapplicationListRoleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RbacApplicationListRoleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppScopeId,
-            DirectoryScopeId,
-            Id,
-            RoleDefinitionId,
-            PrincipalId,
-            AppScope,
-            DirectoryScope,
-            Principal,
-            RoleDefinition,
         }
         public enum ApiPath
         {
@@ -58,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RbacapplicationListRoleAssignmentsResponse : RestApiResponse
+    public partial class RbacApplicationListRoleAssignmentsResponse : RestApiResponse<UnifiedRoleAssignment>
     {
-        public UnifiedRoleAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
@@ -70,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync()
+        public async ValueTask<RbacApplicationListRoleAssignmentsResponse> RbacApplicationListRoleAssignmentsAsync()
         {
-            var p = new RbacapplicationListRoleAssignmentsParameter();
-            return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(p, CancellationToken.None);
+            var p = new RbacApplicationListRoleAssignmentsParameter();
+            return await this.SendAsync<RbacApplicationListRoleAssignmentsParameter, RbacApplicationListRoleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<RbacApplicationListRoleAssignmentsResponse> RbacApplicationListRoleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new RbacapplicationListRoleAssignmentsParameter();
-            return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(p, cancellationToken);
+            var p = new RbacApplicationListRoleAssignmentsParameter();
+            return await this.SendAsync<RbacApplicationListRoleAssignmentsParameter, RbacApplicationListRoleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter)
+        public async ValueTask<RbacApplicationListRoleAssignmentsResponse> RbacApplicationListRoleAssignmentsAsync(RbacApplicationListRoleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RbacApplicationListRoleAssignmentsParameter, RbacApplicationListRoleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RbacApplicationListRoleAssignmentsResponse> RbacApplicationListRoleAssignmentsAsync(RbacApplicationListRoleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RbacApplicationListRoleAssignmentsParameter, RbacApplicationListRoleAssignmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<UnifiedRoleAssignment> RbacApplicationListRoleAssignmentsEnumerateAsync(RbacApplicationListRoleAssignmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<RbacApplicationListRoleAssignmentsParameter, RbacApplicationListRoleAssignmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<UnifiedRoleAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

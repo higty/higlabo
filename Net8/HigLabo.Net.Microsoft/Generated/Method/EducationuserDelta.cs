@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,43 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccountEnabled,
-            AssignedLicenses,
-            AssignedPlans,
-            BusinessPhones,
-            CreatedBy,
-            Department,
-            DisplayName,
-            ExternalSource,
-            ExternalSourceDetail,
-            GivenName,
-            Id,
-            Mail,
-            MailingAddress,
-            MailNickname,
-            MiddleName,
-            MobilePhone,
-            OnPremisesInfo,
-            PasswordPolicies,
-            PasswordProfile,
-            PreferredLanguage,
-            PrimaryRole,
-            ProvisionedPlans,
-            RelatedContacts,
-            ResidenceAddress,
-            ShowInAddressList,
-            Student,
-            Surname,
-            Teacher,
-            UsageLocation,
-            UserPrincipalName,
-            UserType,
-            Assignments,
-            Classes,
-            Schools,
-            TaughtClasses,
-            User,
-            Rubrics,
         }
         public enum ApiPath
         {
@@ -84,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationUserDeltaResponse : RestApiResponse
+    public partial class EducationUserDeltaResponse : RestApiResponse<EducationUser>
     {
-        public EducationUser[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationuser-delta?view=graph-rest-1.0
@@ -122,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationUserDeltaResponse> EducationUserDeltaAsync(EducationUserDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationUserDeltaParameter, EducationUserDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationUser> EducationUserDeltaEnumerateAsync(EducationUserDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationUserDeltaParameter, EducationUserDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationUser>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,32 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ActiveChecklistItemCount,
-            AppliedCategories,
-            AssigneePriority,
-            Assignments,
-            BucketId,
-            ChecklistItemCount,
-            CompletedBy,
-            CompletedDateTime,
-            ConversationThreadId,
-            CreatedBy,
-            CreatedDateTime,
-            DueDateTime,
-            HasDescription,
-            Id,
-            OrderHint,
-            PercentComplete,
-            PlanId,
-            PreviewType,
-            Priority,
-            ReferenceCount,
-            StartDateTime,
-            Title,
-            AssignedToTaskBoardFormat,
-            BucketTaskBoardFormat,
-            Details,
-            ProgressTaskBoardFormat,
         }
         public enum ApiPath
         {
@@ -74,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PlannerbucketListTasksResponse : RestApiResponse
+    public partial class PlannerbucketListTasksResponse : RestApiResponse<PlannerTask>
     {
-        public PlannerTask[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
@@ -112,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PlannerbucketListTasksResponse> PlannerbucketListTasksAsync(PlannerbucketListTasksParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PlannerbucketListTasksParameter, PlannerbucketListTasksResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PlannerTask> PlannerbucketListTasksEnumerateAsync(PlannerbucketListTasksParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PlannerbucketListTasksParameter, PlannerbucketListTasksResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PlannerTask>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

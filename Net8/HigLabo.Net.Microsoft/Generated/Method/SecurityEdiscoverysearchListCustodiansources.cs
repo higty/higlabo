@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverysearchListCustodiansourcesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverysearchListCustodiansourcesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverysearchListCustodiansourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverysearchListCustodiansourcesResponse : RestApiResponse<DataSource>
     {
-        public DataSource[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
@@ -61,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListCustodiansourcesResponse> SecurityEdiscoverysearchListCustodiansourcesAsync()
+        public async ValueTask<SecurityEDiscoverysearchListCustodiansourcesResponse> SecurityEDiscoverysearchListCustodiansourcesAsync()
         {
-            var p = new SecurityEdiscoverysearchListCustodiansourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchListCustodiansourcesParameter, SecurityEdiscoverysearchListCustodiansourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverysearchListCustodiansourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchListCustodiansourcesParameter, SecurityEDiscoverysearchListCustodiansourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListCustodiansourcesResponse> SecurityEdiscoverysearchListCustodiansourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchListCustodiansourcesResponse> SecurityEDiscoverysearchListCustodiansourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverysearchListCustodiansourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchListCustodiansourcesParameter, SecurityEdiscoverysearchListCustodiansourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverysearchListCustodiansourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchListCustodiansourcesParameter, SecurityEDiscoverysearchListCustodiansourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListCustodiansourcesResponse> SecurityEdiscoverysearchListCustodiansourcesAsync(SecurityEdiscoverysearchListCustodiansourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverysearchListCustodiansourcesResponse> SecurityEDiscoverysearchListCustodiansourcesAsync(SecurityEDiscoverysearchListCustodiansourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchListCustodiansourcesParameter, SecurityEdiscoverysearchListCustodiansourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverysearchListCustodiansourcesParameter, SecurityEDiscoverysearchListCustodiansourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchListCustodiansourcesResponse> SecurityEdiscoverysearchListCustodiansourcesAsync(SecurityEdiscoverysearchListCustodiansourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchListCustodiansourcesResponse> SecurityEDiscoverysearchListCustodiansourcesAsync(SecurityEDiscoverysearchListCustodiansourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchListCustodiansourcesParameter, SecurityEdiscoverysearchListCustodiansourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverysearchListCustodiansourcesParameter, SecurityEDiscoverysearchListCustodiansourcesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DataSource> SecurityEDiscoverysearchListCustodiansourcesEnumerateAsync(SecurityEDiscoverysearchListCustodiansourcesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverysearchListCustodiansourcesParameter, SecurityEDiscoverysearchListCustodiansourcesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DataSource>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

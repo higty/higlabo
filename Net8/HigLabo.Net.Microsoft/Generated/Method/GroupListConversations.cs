@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,13 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            HasAttachments,
-            Id,
-            LastDeliveredDateTime,
-            Preview,
-            Topic,
-            UniqueSenders,
-            Threads,
         }
         public enum ApiPath
         {
@@ -55,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupListConversationsResponse : RestApiResponse
+    public partial class GroupListConversationsResponse : RestApiResponse<Conversation>
     {
-        public Conversation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-list-conversations?view=graph-rest-1.0
@@ -93,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<GroupListConversationsResponse> GroupListConversationsAsync(GroupListConversationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListConversationsParameter, GroupListConversationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-conversations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Conversation> GroupListConversationsEnumerateAsync(GroupListConversationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<GroupListConversationsParameter, GroupListConversationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Conversation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

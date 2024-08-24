@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
     /// </summary>
-    public partial class CallAddlargegalleryviewParameter : IRestApiParameter
+    public partial class CallAddLargeGalleryviewParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
         public ResultInfo? ResultInfo { get; set; }
         public AddLargeGalleryViewOperationOperationStatus Status { get; set; }
     }
-    public partial class CallAddlargegalleryviewResponse : RestApiResponse
+    public partial class CallAddLargeGalleryviewResponse : RestApiResponse
     {
         public enum AddLargeGalleryViewOperationOperationStatus
         {
@@ -73,32 +73,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync()
+        public async ValueTask<CallAddLargeGalleryviewResponse> CallAddLargeGalleryviewAsync()
         {
-            var p = new CallAddlargegalleryviewParameter();
-            return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(p, CancellationToken.None);
+            var p = new CallAddLargeGalleryviewParameter();
+            return await this.SendAsync<CallAddLargeGalleryviewParameter, CallAddLargeGalleryviewResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CancellationToken cancellationToken)
+        public async ValueTask<CallAddLargeGalleryviewResponse> CallAddLargeGalleryviewAsync(CancellationToken cancellationToken)
         {
-            var p = new CallAddlargegalleryviewParameter();
-            return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(p, cancellationToken);
+            var p = new CallAddLargeGalleryviewParameter();
+            return await this.SendAsync<CallAddLargeGalleryviewParameter, CallAddLargeGalleryviewResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CallAddlargegalleryviewParameter parameter)
+        public async ValueTask<CallAddLargeGalleryviewResponse> CallAddLargeGalleryviewAsync(CallAddLargeGalleryviewParameter parameter)
         {
-            return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CallAddLargeGalleryviewParameter, CallAddLargeGalleryviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/call-addlargegalleryview?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CallAddlargegalleryviewResponse> CallAddlargegalleryviewAsync(CallAddlargegalleryviewParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CallAddLargeGalleryviewResponse> CallAddLargeGalleryviewAsync(CallAddLargeGalleryviewParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CallAddlargegalleryviewParameter, CallAddlargegalleryviewResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CallAddLargeGalleryviewParameter, CallAddLargeGalleryviewResponse>(parameter, cancellationToken);
         }
     }
 }

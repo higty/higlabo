@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
     /// </summary>
-    public partial class EducationclassPostCategoryParameter : IRestApiParameter
+    public partial class EducationClassPostCategoryParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
     }
-    public partial class EducationclassPostCategoryResponse : RestApiResponse
+    public partial class EducationClassPostCategoryResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync()
+        public async ValueTask<EducationClassPostCategoryResponse> EducationClassPostCategoryAsync()
         {
-            var p = new EducationclassPostCategoryParameter();
-            return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(p, CancellationToken.None);
+            var p = new EducationClassPostCategoryParameter();
+            return await this.SendAsync<EducationClassPostCategoryParameter, EducationClassPostCategoryResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(CancellationToken cancellationToken)
+        public async ValueTask<EducationClassPostCategoryResponse> EducationClassPostCategoryAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationclassPostCategoryParameter();
-            return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(p, cancellationToken);
+            var p = new EducationClassPostCategoryParameter();
+            return await this.SendAsync<EducationClassPostCategoryParameter, EducationClassPostCategoryResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter)
+        public async ValueTask<EducationClassPostCategoryResponse> EducationClassPostCategoryAsync(EducationClassPostCategoryParameter parameter)
         {
-            return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationClassPostCategoryParameter, EducationClassPostCategoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EducationClassPostCategoryResponse> EducationClassPostCategoryAsync(EducationClassPostCategoryParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationClassPostCategoryParameter, EducationClassPostCategoryResponse>(parameter, cancellationToken);
         }
     }
 }

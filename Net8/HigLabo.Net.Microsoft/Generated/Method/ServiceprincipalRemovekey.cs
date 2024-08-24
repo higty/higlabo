@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalRemovekeyParameter : IRestApiParameter
+    public partial class ServicePrincipalRemovekeyParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public Guid? KeyId { get; set; }
         public string? Proof { get; set; }
     }
-    public partial class ServiceprincipalRemovekeyResponse : RestApiResponse
+    public partial class ServicePrincipalRemovekeyResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync()
+        public async ValueTask<ServicePrincipalRemovekeyResponse> ServicePrincipalRemovekeyAsync()
         {
-            var p = new ServiceprincipalRemovekeyParameter();
-            return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalRemovekeyParameter();
+            return await this.SendAsync<ServicePrincipalRemovekeyParameter, ServicePrincipalRemovekeyResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalRemovekeyResponse> ServicePrincipalRemovekeyAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalRemovekeyParameter();
-            return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(p, cancellationToken);
+            var p = new ServicePrincipalRemovekeyParameter();
+            return await this.SendAsync<ServicePrincipalRemovekeyParameter, ServicePrincipalRemovekeyResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(ServiceprincipalRemovekeyParameter parameter)
+        public async ValueTask<ServicePrincipalRemovekeyResponse> ServicePrincipalRemovekeyAsync(ServicePrincipalRemovekeyParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalRemovekeyParameter, ServicePrincipalRemovekeyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removekey?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovekeyResponse> ServiceprincipalRemovekeyAsync(ServiceprincipalRemovekeyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalRemovekeyResponse> ServicePrincipalRemovekeyAsync(ServicePrincipalRemovekeyParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalRemovekeyParameter, ServiceprincipalRemovekeyResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalRemovekeyParameter, ServicePrincipalRemovekeyResponse>(parameter, cancellationToken);
         }
     }
 }

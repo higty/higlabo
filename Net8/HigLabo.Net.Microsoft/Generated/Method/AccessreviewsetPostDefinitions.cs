@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewsetPostDefinitionsParameter : IRestApiParameter
+    public partial class AccessReviewsetPostDefinitionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         public string? Status { get; set; }
         public AccessReviewInstance[]? Instances { get; set; }
     }
-    public partial class AccessreviewsetPostDefinitionsResponse : RestApiResponse
+    public partial class AccessReviewsetPostDefinitionsResponse : RestApiResponse
     {
         public AccessReviewNotificationRecipientItem[]? AdditionalNotificationRecipients { get; set; }
         public UserIdentity? CreatedBy { get; set; }
@@ -79,32 +79,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync()
+        public async ValueTask<AccessReviewsetPostDefinitionsResponse> AccessReviewsetPostDefinitionsAsync()
         {
-            var p = new AccessreviewsetPostDefinitionsParameter();
-            return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(p, CancellationToken.None);
+            var p = new AccessReviewsetPostDefinitionsParameter();
+            return await this.SendAsync<AccessReviewsetPostDefinitionsParameter, AccessReviewsetPostDefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewsetPostDefinitionsResponse> AccessReviewsetPostDefinitionsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewsetPostDefinitionsParameter();
-            return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(p, cancellationToken);
+            var p = new AccessReviewsetPostDefinitionsParameter();
+            return await this.SendAsync<AccessReviewsetPostDefinitionsParameter, AccessReviewsetPostDefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(AccessreviewsetPostDefinitionsParameter parameter)
+        public async ValueTask<AccessReviewsetPostDefinitionsResponse> AccessReviewsetPostDefinitionsAsync(AccessReviewsetPostDefinitionsParameter parameter)
         {
-            return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewsetPostDefinitionsParameter, AccessReviewsetPostDefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-post-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetPostDefinitionsResponse> AccessreviewsetPostDefinitionsAsync(AccessreviewsetPostDefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewsetPostDefinitionsResponse> AccessReviewsetPostDefinitionsAsync(AccessReviewsetPostDefinitionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewsetPostDefinitionsParameter, AccessreviewsetPostDefinitionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewsetPostDefinitionsParameter, AccessReviewsetPostDefinitionsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverysearchEstimatestatisticsParameter : IRestApiParameter
+    public partial class SecurityEDiscoverysearchEstimatestatisticsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum EdiscoveryEstimateOperationSecurityCaseAction
+        public enum EDiscoveryEstimateOperationSecurityCaseAction
         {
             AddToReviewSet,
             ApplyTags,
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Microsoft
             EstimateStatistics,
             PurgeData,
         }
-        public enum EdiscoveryEstimateOperationSecurityCaseOperationStatus
+        public enum EDiscoveryEstimateOperationSecurityCaseOperationStatus
         {
             NotStarted,
             SubmissionFailed,
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public EdiscoveryEstimateOperationSecurityCaseAction Action { get; set; }
+        public EDiscoveryEstimateOperationSecurityCaseAction Action { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -66,14 +66,14 @@ namespace HigLabo.Net.Microsoft
         public Int32? PercentProgress { get; set; }
         public ResultInfo? ResultInfo { get; set; }
         public Int32? SiteCount { get; set; }
-        public EdiscoveryEstimateOperationSecurityCaseOperationStatus Status { get; set; }
+        public EDiscoveryEstimateOperationSecurityCaseOperationStatus Status { get; set; }
         public Int64? UnindexedItemCount { get; set; }
         public Int64? UnindexedItemsSize { get; set; }
-        public EdiscoverySearch? Search { get; set; }
+        public EDiscoverySearch? Search { get; set; }
     }
-    public partial class SecurityEdiscoverysearchEstimatestatisticsResponse : RestApiResponse
+    public partial class SecurityEDiscoverysearchEstimatestatisticsResponse : RestApiResponse
     {
-        public enum EdiscoveryEstimateOperationSecurityCaseAction
+        public enum EDiscoveryEstimateOperationSecurityCaseAction
         {
             AddToReviewSet,
             ApplyTags,
@@ -82,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             EstimateStatistics,
             PurgeData,
         }
-        public enum EdiscoveryEstimateOperationSecurityCaseOperationStatus
+        public enum EDiscoveryEstimateOperationSecurityCaseOperationStatus
         {
             NotStarted,
             SubmissionFailed,
@@ -92,7 +92,7 @@ namespace HigLabo.Net.Microsoft
             Failed,
         }
 
-        public EdiscoveryEstimateOperationSecurityCaseAction Action { get; set; }
+        public EDiscoveryEstimateOperationSecurityCaseAction Action { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -103,10 +103,10 @@ namespace HigLabo.Net.Microsoft
         public Int32? PercentProgress { get; set; }
         public ResultInfo? ResultInfo { get; set; }
         public Int32? SiteCount { get; set; }
-        public EdiscoveryEstimateOperationSecurityCaseOperationStatus Status { get; set; }
+        public EDiscoveryEstimateOperationSecurityCaseOperationStatus Status { get; set; }
         public Int64? UnindexedItemCount { get; set; }
         public Int64? UnindexedItemsSize { get; set; }
-        public EdiscoverySearch? Search { get; set; }
+        public EDiscoverySearch? Search { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
@@ -116,32 +116,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchEstimatestatisticsResponse> SecurityEdiscoverysearchEstimatestatisticsAsync()
+        public async ValueTask<SecurityEDiscoverysearchEstimatestatisticsResponse> SecurityEDiscoverysearchEstimatestatisticsAsync()
         {
-            var p = new SecurityEdiscoverysearchEstimatestatisticsParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchEstimatestatisticsParameter, SecurityEdiscoverysearchEstimatestatisticsResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverysearchEstimatestatisticsParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchEstimatestatisticsParameter, SecurityEDiscoverysearchEstimatestatisticsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchEstimatestatisticsResponse> SecurityEdiscoverysearchEstimatestatisticsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchEstimatestatisticsResponse> SecurityEDiscoverysearchEstimatestatisticsAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverysearchEstimatestatisticsParameter();
-            return await this.SendAsync<SecurityEdiscoverysearchEstimatestatisticsParameter, SecurityEdiscoverysearchEstimatestatisticsResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverysearchEstimatestatisticsParameter();
+            return await this.SendAsync<SecurityEDiscoverysearchEstimatestatisticsParameter, SecurityEDiscoverysearchEstimatestatisticsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchEstimatestatisticsResponse> SecurityEdiscoverysearchEstimatestatisticsAsync(SecurityEdiscoverysearchEstimatestatisticsParameter parameter)
+        public async ValueTask<SecurityEDiscoverysearchEstimatestatisticsResponse> SecurityEDiscoverysearchEstimatestatisticsAsync(SecurityEDiscoverysearchEstimatestatisticsParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchEstimatestatisticsParameter, SecurityEdiscoverysearchEstimatestatisticsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverysearchEstimatestatisticsParameter, SecurityEDiscoverysearchEstimatestatisticsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverysearchEstimatestatisticsResponse> SecurityEdiscoverysearchEstimatestatisticsAsync(SecurityEdiscoverysearchEstimatestatisticsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverysearchEstimatestatisticsResponse> SecurityEDiscoverysearchEstimatestatisticsAsync(SecurityEDiscoverysearchEstimatestatisticsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverysearchEstimatestatisticsParameter, SecurityEdiscoverysearchEstimatestatisticsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverysearchEstimatestatisticsParameter, SecurityEDiscoverysearchEstimatestatisticsResponse>(parameter, cancellationToken);
         }
     }
 }

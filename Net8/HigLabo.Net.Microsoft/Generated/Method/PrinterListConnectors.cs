@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppVersion,
-            DisplayName,
-            FullyQualifiedDomainName,
-            Id,
-            Location,
-            OperatingSystem,
-            RegisteredBy,
-            RegisteredDateTime,
         }
         public enum ApiPath
         {
@@ -56,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrinterListConnectorsResponse : RestApiResponse
+    public partial class PrinterListConnectorsResponse : RestApiResponse<PrintConnector>
     {
-        public PrintConnector[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
@@ -94,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PrinterListConnectorsResponse> PrinterListConnectorsAsync(PrinterListConnectorsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrinterListConnectorsParameter, PrinterListConnectorsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PrintConnector> PrinterListConnectorsEnumerateAsync(PrinterListConnectorsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PrinterListConnectorsParameter, PrinterListConnectorsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PrintConnector>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

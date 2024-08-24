@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessPackageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccesspackageGetResponse : RestApiResponse
+    public partial class AccessPackageGetResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
@@ -70,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync()
+        public async ValueTask<AccessPackageGetResponse> AccessPackageGetAsync()
         {
-            var p = new AccesspackageGetParameter();
-            return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(p, CancellationToken.None);
+            var p = new AccessPackageGetParameter();
+            return await this.SendAsync<AccessPackageGetParameter, AccessPackageGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageGetResponse> AccessPackageGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageGetParameter();
-            return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(p, cancellationToken);
+            var p = new AccessPackageGetParameter();
+            return await this.SendAsync<AccessPackageGetParameter, AccessPackageGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter)
+        public async ValueTask<AccessPackageGetResponse> AccessPackageGetAsync(AccessPackageGetParameter parameter)
         {
-            return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageGetParameter, AccessPackageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageGetResponse> AccessPackageGetAsync(AccessPackageGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageGetParameter, AccessPackageGetResponse>(parameter, cancellationToken);
         }
     }
 }

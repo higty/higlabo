@@ -25,15 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            Id,
-            LocalizedNames,
-            Properties,
-            Children,
-            ParentGroup,
-            Relations,
-            Terms,
         }
         public enum ApiPath
         {

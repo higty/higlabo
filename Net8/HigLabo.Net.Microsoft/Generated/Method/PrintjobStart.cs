@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printjob-start?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintjobStartParameter : IRestApiParameter
+    public partial class PrintJobStartParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsAcquiredByPrinter { get; set; }
         public PrintJobProcessingState? State { get; set; }
     }
-    public partial class PrintjobStartResponse : RestApiResponse
+    public partial class PrintJobStartResponse : RestApiResponse
     {
         public string? Description { get; set; }
         public PrintJobProcessingDetail[]? Details { get; set; }
@@ -57,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-start?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobStartResponse> PrintjobStartAsync()
+        public async ValueTask<PrintJobStartResponse> PrintJobStartAsync()
         {
-            var p = new PrintjobStartParameter();
-            return await this.SendAsync<PrintjobStartParameter, PrintjobStartResponse>(p, CancellationToken.None);
+            var p = new PrintJobStartParameter();
+            return await this.SendAsync<PrintJobStartParameter, PrintJobStartResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-start?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobStartResponse> PrintjobStartAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintJobStartResponse> PrintJobStartAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintjobStartParameter();
-            return await this.SendAsync<PrintjobStartParameter, PrintjobStartResponse>(p, cancellationToken);
+            var p = new PrintJobStartParameter();
+            return await this.SendAsync<PrintJobStartParameter, PrintJobStartResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-start?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobStartResponse> PrintjobStartAsync(PrintjobStartParameter parameter)
+        public async ValueTask<PrintJobStartResponse> PrintJobStartAsync(PrintJobStartParameter parameter)
         {
-            return await this.SendAsync<PrintjobStartParameter, PrintjobStartResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintJobStartParameter, PrintJobStartResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-start?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobStartResponse> PrintjobStartAsync(PrintjobStartParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintJobStartResponse> PrintJobStartAsync(PrintJobStartParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintjobStartParameter, PrintjobStartResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintJobStartParameter, PrintJobStartResponse>(parameter, cancellationToken);
         }
     }
 }

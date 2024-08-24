@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetemailactivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetemailActivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetemailactivityUsercountsResponse : RestApiResponse
+    public partial class ReportRootGetemailActivityUsercountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetemailactivityUsercountsResponse> ReportRootGetemailactivityUsercountsAsync()
+        public async ValueTask<ReportRootGetemailActivityUsercountsResponse> ReportRootGetemailActivityUsercountsAsync()
         {
-            var p = new ReportRootGetemailactivityUsercountsParameter();
-            return await this.SendAsync<ReportRootGetemailactivityUsercountsParameter, ReportRootGetemailactivityUsercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetemailActivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetemailActivityUsercountsParameter, ReportRootGetemailActivityUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetemailactivityUsercountsResponse> ReportRootGetemailactivityUsercountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetemailActivityUsercountsResponse> ReportRootGetemailActivityUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetemailactivityUsercountsParameter();
-            return await this.SendAsync<ReportRootGetemailactivityUsercountsParameter, ReportRootGetemailactivityUsercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetemailActivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetemailActivityUsercountsParameter, ReportRootGetemailActivityUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetemailactivityUsercountsResponse> ReportRootGetemailactivityUsercountsAsync(ReportRootGetemailactivityUsercountsParameter parameter)
+        public async ValueTask<ReportRootGetemailActivityUsercountsResponse> ReportRootGetemailActivityUsercountsAsync(ReportRootGetemailActivityUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetemailactivityUsercountsParameter, ReportRootGetemailactivityUsercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetemailActivityUsercountsParameter, ReportRootGetemailActivityUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetemailactivityUsercountsResponse> ReportRootGetemailactivityUsercountsAsync(ReportRootGetemailactivityUsercountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetemailActivityUsercountsResponse> ReportRootGetemailActivityUsercountsAsync(ReportRootGetemailActivityUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetemailactivityUsercountsParameter, ReportRootGetemailactivityUsercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetemailActivityUsercountsParameter, ReportRootGetemailActivityUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

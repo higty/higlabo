@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintershareDeleteParameter : IRestApiParameter
+    public partial class PrinterShareDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class PrintershareDeleteResponse : RestApiResponse
+    public partial class PrinterShareDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync()
+        public async ValueTask<PrinterShareDeleteResponse> PrinterShareDeleteAsync()
         {
-            var p = new PrintershareDeleteParameter();
-            return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(p, CancellationToken.None);
+            var p = new PrinterShareDeleteParameter();
+            return await this.SendAsync<PrinterShareDeleteParameter, PrinterShareDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareDeleteResponse> PrinterShareDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareDeleteParameter();
-            return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(p, cancellationToken);
+            var p = new PrinterShareDeleteParameter();
+            return await this.SendAsync<PrinterShareDeleteParameter, PrinterShareDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter)
+        public async ValueTask<PrinterShareDeleteResponse> PrinterShareDeleteAsync(PrinterShareDeleteParameter parameter)
         {
-            return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterShareDeleteParameter, PrinterShareDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareDeleteResponse> PrinterShareDeleteAsync(PrinterShareDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterShareDeleteParameter, PrinterShareDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

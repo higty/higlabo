@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalPostServiceprincipalsParameter : IRestApiParameter
+    public partial class ServicePrincipalPostServicePrincipalsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
         public TokenIssuancePolicy[]? TokenIssuancePolicies { get; set; }
         public TokenLifetimePolicy[]? TokenLifetimePolicies { get; set; }
     }
-    public partial class ServiceprincipalPostServiceprincipalsResponse : RestApiResponse
+    public partial class ServicePrincipalPostServicePrincipalsResponse : RestApiResponse
     {
         public enum ServicePrincipalstring
         {
@@ -158,32 +158,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostServiceprincipalsResponse> ServiceprincipalPostServiceprincipalsAsync()
+        public async ValueTask<ServicePrincipalPostServicePrincipalsResponse> ServicePrincipalPostServicePrincipalsAsync()
         {
-            var p = new ServiceprincipalPostServiceprincipalsParameter();
-            return await this.SendAsync<ServiceprincipalPostServiceprincipalsParameter, ServiceprincipalPostServiceprincipalsResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalPostServicePrincipalsParameter();
+            return await this.SendAsync<ServicePrincipalPostServicePrincipalsParameter, ServicePrincipalPostServicePrincipalsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostServiceprincipalsResponse> ServiceprincipalPostServiceprincipalsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostServicePrincipalsResponse> ServicePrincipalPostServicePrincipalsAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalPostServiceprincipalsParameter();
-            return await this.SendAsync<ServiceprincipalPostServiceprincipalsParameter, ServiceprincipalPostServiceprincipalsResponse>(p, cancellationToken);
+            var p = new ServicePrincipalPostServicePrincipalsParameter();
+            return await this.SendAsync<ServicePrincipalPostServicePrincipalsParameter, ServicePrincipalPostServicePrincipalsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostServiceprincipalsResponse> ServiceprincipalPostServiceprincipalsAsync(ServiceprincipalPostServiceprincipalsParameter parameter)
+        public async ValueTask<ServicePrincipalPostServicePrincipalsResponse> ServicePrincipalPostServicePrincipalsAsync(ServicePrincipalPostServicePrincipalsParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalPostServiceprincipalsParameter, ServiceprincipalPostServiceprincipalsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalPostServicePrincipalsParameter, ServicePrincipalPostServicePrincipalsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostServiceprincipalsResponse> ServiceprincipalPostServiceprincipalsAsync(ServiceprincipalPostServiceprincipalsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostServicePrincipalsResponse> ServicePrincipalPostServicePrincipalsAsync(ServicePrincipalPostServicePrincipalsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalPostServiceprincipalsParameter, ServiceprincipalPostServiceprincipalsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalPostServicePrincipalsParameter, ServicePrincipalPostServicePrincipalsResponse>(parameter, cancellationToken);
         }
     }
 }

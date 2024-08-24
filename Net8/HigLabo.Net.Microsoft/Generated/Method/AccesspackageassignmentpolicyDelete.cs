@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageAssignmentPolicyDeleteParameter : IRestApiParameter
+    public partial class AccessPackageAssignmentPolicyDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class AccesspackageAssignmentPolicyDeleteResponse : RestApiResponse
+    public partial class AccessPackageAssignmentPolicyDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync()
+        public async ValueTask<AccessPackageAssignmentPolicyDeleteResponse> AccessPackageAssignmentPolicyDeleteAsync()
         {
-            var p = new AccesspackageAssignmentPolicyDeleteParameter();
-            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new AccessPackageAssignmentPolicyDeleteParameter();
+            return await this.SendAsync<AccessPackageAssignmentPolicyDeleteParameter, AccessPackageAssignmentPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageAssignmentPolicyDeleteResponse> AccessPackageAssignmentPolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageAssignmentPolicyDeleteParameter();
-            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(p, cancellationToken);
+            var p = new AccessPackageAssignmentPolicyDeleteParameter();
+            return await this.SendAsync<AccessPackageAssignmentPolicyDeleteParameter, AccessPackageAssignmentPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync(AccesspackageAssignmentPolicyDeleteParameter parameter)
+        public async ValueTask<AccessPackageAssignmentPolicyDeleteResponse> AccessPackageAssignmentPolicyDeleteAsync(AccessPackageAssignmentPolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageAssignmentPolicyDeleteParameter, AccessPackageAssignmentPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync(AccesspackageAssignmentPolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageAssignmentPolicyDeleteResponse> AccessPackageAssignmentPolicyDeleteAsync(AccessPackageAssignmentPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageAssignmentPolicyDeleteParameter, AccessPackageAssignmentPolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

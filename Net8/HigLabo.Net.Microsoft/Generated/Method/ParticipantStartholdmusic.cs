@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
     /// </summary>
-    public partial class ParticipantStartholdmusicParameter : IRestApiParameter
+    public partial class ParticipantStartholdMusicParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         public ResultInfo? ResultInfo { get; set; }
         public string? Status { get; set; }
     }
-    public partial class ParticipantStartholdmusicResponse : RestApiResponse
+    public partial class ParticipantStartholdMusicResponse : RestApiResponse
     {
         public string? ClientContext { get; set; }
         public string? Id { get; set; }
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync()
+        public async ValueTask<ParticipantStartholdMusicResponse> ParticipantStartholdMusicAsync()
         {
-            var p = new ParticipantStartholdmusicParameter();
-            return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(p, CancellationToken.None);
+            var p = new ParticipantStartholdMusicParameter();
+            return await this.SendAsync<ParticipantStartholdMusicParameter, ParticipantStartholdMusicResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(CancellationToken cancellationToken)
+        public async ValueTask<ParticipantStartholdMusicResponse> ParticipantStartholdMusicAsync(CancellationToken cancellationToken)
         {
-            var p = new ParticipantStartholdmusicParameter();
-            return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(p, cancellationToken);
+            var p = new ParticipantStartholdMusicParameter();
+            return await this.SendAsync<ParticipantStartholdMusicParameter, ParticipantStartholdMusicResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(ParticipantStartholdmusicParameter parameter)
+        public async ValueTask<ParticipantStartholdMusicResponse> ParticipantStartholdMusicAsync(ParticipantStartholdMusicParameter parameter)
         {
-            return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ParticipantStartholdMusicParameter, ParticipantStartholdMusicResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/participant-startholdmusic?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ParticipantStartholdmusicResponse> ParticipantStartholdmusicAsync(ParticipantStartholdmusicParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ParticipantStartholdMusicResponse> ParticipantStartholdMusicAsync(ParticipantStartholdMusicParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ParticipantStartholdmusicParameter, ParticipantStartholdmusicResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ParticipantStartholdMusicParameter, ParticipantStartholdMusicResponse>(parameter, cancellationToken);
         }
     }
 }

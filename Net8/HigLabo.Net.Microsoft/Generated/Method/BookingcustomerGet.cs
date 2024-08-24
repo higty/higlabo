@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-get?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingcustomerGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingCustomerGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingcustomerGetResponse : RestApiResponse
+    public partial class BookingCustomerGetResponse : RestApiResponse
     {
         public PhysicalAddress[]? Addresses { get; set; }
         public string? DisplayName { get; set; }
@@ -65,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomerGetResponse> BookingcustomerGetAsync()
+        public async ValueTask<BookingCustomerGetResponse> BookingCustomerGetAsync()
         {
-            var p = new BookingcustomerGetParameter();
-            return await this.SendAsync<BookingcustomerGetParameter, BookingcustomerGetResponse>(p, CancellationToken.None);
+            var p = new BookingCustomerGetParameter();
+            return await this.SendAsync<BookingCustomerGetParameter, BookingCustomerGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomerGetResponse> BookingcustomerGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingCustomerGetResponse> BookingCustomerGetAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingcustomerGetParameter();
-            return await this.SendAsync<BookingcustomerGetParameter, BookingcustomerGetResponse>(p, cancellationToken);
+            var p = new BookingCustomerGetParameter();
+            return await this.SendAsync<BookingCustomerGetParameter, BookingCustomerGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomerGetResponse> BookingcustomerGetAsync(BookingcustomerGetParameter parameter)
+        public async ValueTask<BookingCustomerGetResponse> BookingCustomerGetAsync(BookingCustomerGetParameter parameter)
         {
-            return await this.SendAsync<BookingcustomerGetParameter, BookingcustomerGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingCustomerGetParameter, BookingCustomerGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcustomerGetResponse> BookingcustomerGetAsync(BookingcustomerGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingCustomerGetResponse> BookingCustomerGetAsync(BookingCustomerGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingcustomerGetParameter, BookingcustomerGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingCustomerGetParameter, BookingCustomerGetResponse>(parameter, cancellationToken);
         }
     }
 }

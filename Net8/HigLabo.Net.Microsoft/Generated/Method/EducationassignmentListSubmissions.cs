@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,21 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ReassignedBy,
-            ReassignedDateTime,
-            Recipient,
-            ResourcesFolderUrl,
-            ReturnedBy,
-            ReturnedDateTime,
-            Status,
-            SubmittedBy,
-            SubmittedDateTime,
-            UnsubmittedBy,
-            UnsubmittedDateTime,
-            Outcomes,
-            Resources,
-            SubmittedResources,
         }
         public enum ApiPath
         {
@@ -64,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationAssignmentListSubmissionsResponse : RestApiResponse
+    public partial class EducationAssignmentListSubmissionsResponse : RestApiResponse<EducationSubmission>
     {
-        public EducationSubmission[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationassignment-list-submissions?view=graph-rest-1.0
@@ -102,6 +87,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationAssignmentListSubmissionsResponse> EducationAssignmentListSubmissionsAsync(EducationAssignmentListSubmissionsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentListSubmissionsParameter, EducationAssignmentListSubmissionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-list-submissions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationSubmission> EducationAssignmentListSubmissionsEnumerateAsync(EducationAssignmentListSubmissionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationAssignmentListSubmissionsParameter, EducationAssignmentListSubmissionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationSubmission>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackagecatalogGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessPackageCatalogGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccesspackagecatalogGetResponse : RestApiResponse
+    public partial class AccessPackageCatalogGetResponse : RestApiResponse
     {
         public enum AccessPackageCatalogAccessPackageCatalogType
         {
@@ -82,32 +82,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync()
+        public async ValueTask<AccessPackageCatalogGetResponse> AccessPackageCatalogGetAsync()
         {
-            var p = new AccesspackagecatalogGetParameter();
-            return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(p, CancellationToken.None);
+            var p = new AccessPackageCatalogGetParameter();
+            return await this.SendAsync<AccessPackageCatalogGetParameter, AccessPackageCatalogGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageCatalogGetResponse> AccessPackageCatalogGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackagecatalogGetParameter();
-            return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(p, cancellationToken);
+            var p = new AccessPackageCatalogGetParameter();
+            return await this.SendAsync<AccessPackageCatalogGetParameter, AccessPackageCatalogGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter)
+        public async ValueTask<AccessPackageCatalogGetResponse> AccessPackageCatalogGetAsync(AccessPackageCatalogGetParameter parameter)
         {
-            return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageCatalogGetParameter, AccessPackageCatalogGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageCatalogGetResponse> AccessPackageCatalogGetAsync(AccessPackageCatalogGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageCatalogGetParameter, AccessPackageCatalogGetResponse>(parameter, cancellationToken);
         }
     }
 }

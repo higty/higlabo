@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetoffice365GroupsactivitycountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetoffice365GroupsActivitycountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetoffice365GroupsactivitycountsResponse : RestApiResponse
+    public partial class ReportRootGetoffice365GroupsActivitycountsResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetoffice365GroupsactivitycountsResponse> ReportRootGetoffice365GroupsactivitycountsAsync()
+        public async ValueTask<ReportRootGetoffice365GroupsActivitycountsResponse> ReportRootGetoffice365GroupsActivitycountsAsync()
         {
-            var p = new ReportRootGetoffice365GroupsactivitycountsParameter();
-            return await this.SendAsync<ReportRootGetoffice365GroupsactivitycountsParameter, ReportRootGetoffice365GroupsactivitycountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetoffice365GroupsActivitycountsParameter();
+            return await this.SendAsync<ReportRootGetoffice365GroupsActivitycountsParameter, ReportRootGetoffice365GroupsActivitycountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetoffice365GroupsactivitycountsResponse> ReportRootGetoffice365GroupsactivitycountsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsActivitycountsResponse> ReportRootGetoffice365GroupsActivitycountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetoffice365GroupsactivitycountsParameter();
-            return await this.SendAsync<ReportRootGetoffice365GroupsactivitycountsParameter, ReportRootGetoffice365GroupsactivitycountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetoffice365GroupsActivitycountsParameter();
+            return await this.SendAsync<ReportRootGetoffice365GroupsActivitycountsParameter, ReportRootGetoffice365GroupsActivitycountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetoffice365GroupsactivitycountsResponse> ReportRootGetoffice365GroupsactivitycountsAsync(ReportRootGetoffice365GroupsactivitycountsParameter parameter)
+        public async ValueTask<ReportRootGetoffice365GroupsActivitycountsResponse> ReportRootGetoffice365GroupsActivitycountsAsync(ReportRootGetoffice365GroupsActivitycountsParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetoffice365GroupsactivitycountsParameter, ReportRootGetoffice365GroupsactivitycountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetoffice365GroupsActivitycountsParameter, ReportRootGetoffice365GroupsActivitycountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetoffice365GroupsactivitycountsResponse> ReportRootGetoffice365GroupsactivitycountsAsync(ReportRootGetoffice365GroupsactivitycountsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetoffice365GroupsActivitycountsResponse> ReportRootGetoffice365GroupsActivitycountsAsync(ReportRootGetoffice365GroupsActivitycountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetoffice365GroupsactivitycountsParameter, ReportRootGetoffice365GroupsactivitycountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetoffice365GroupsActivitycountsParameter, ReportRootGetoffice365GroupsActivitycountsResponse>(parameter, cancellationToken);
         }
     }
 }

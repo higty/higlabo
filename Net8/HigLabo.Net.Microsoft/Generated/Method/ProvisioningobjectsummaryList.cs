@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
     /// </summary>
-    public partial class ProvisioningobjectSummaryListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ProvisioningObjectSummaryListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,23 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ActivityDateTime,
-            ChangeId,
-            CycleId,
-            DurationInMilliseconds,
-            Id,
-            InitiatedBy,
-            JobId,
-            ModifiedProperties,
-            ProvisioningAction,
-            ProvisioningStatusInfo,
-            ProvisioningSteps,
-            ServicePrincipal,
-            SourceIdentity,
-            SourceSystem,
-            TargetIdentity,
-            TargetSystem,
-            TenantId,
         }
         public enum ApiPath
         {
@@ -64,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ProvisioningobjectSummaryListResponse : RestApiResponse
+    public partial class ProvisioningObjectSummaryListResponse : RestApiResponse<ProvisioningObjectSummary>
     {
-        public ProvisioningObjectSummary[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
@@ -76,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync()
+        public async ValueTask<ProvisioningObjectSummaryListResponse> ProvisioningObjectSummaryListAsync()
         {
-            var p = new ProvisioningobjectSummaryListParameter();
-            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, CancellationToken.None);
+            var p = new ProvisioningObjectSummaryListParameter();
+            return await this.SendAsync<ProvisioningObjectSummaryListParameter, ProvisioningObjectSummaryListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProvisioningObjectSummaryListResponse> ProvisioningObjectSummaryListAsync(CancellationToken cancellationToken)
         {
-            var p = new ProvisioningobjectSummaryListParameter();
-            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, cancellationToken);
+            var p = new ProvisioningObjectSummaryListParameter();
+            return await this.SendAsync<ProvisioningObjectSummaryListParameter, ProvisioningObjectSummaryListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter)
+        public async ValueTask<ProvisioningObjectSummaryListResponse> ProvisioningObjectSummaryListAsync(ProvisioningObjectSummaryListParameter parameter)
         {
-            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ProvisioningObjectSummaryListParameter, ProvisioningObjectSummaryListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProvisioningObjectSummaryListResponse> ProvisioningObjectSummaryListAsync(ProvisioningObjectSummaryListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ProvisioningObjectSummaryListParameter, ProvisioningObjectSummaryListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ProvisioningObjectSummary> ProvisioningObjectSummaryListEnumerateAsync(ProvisioningObjectSummaryListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ProvisioningObjectSummaryListParameter, ProvisioningObjectSummaryListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ProvisioningObjectSummary>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

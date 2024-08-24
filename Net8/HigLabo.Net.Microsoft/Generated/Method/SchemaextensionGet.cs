@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
     /// </summary>
-    public partial class SchemaextensionGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SchemaExtensionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SchemaextensionGetResponse : RestApiResponse
+    public partial class SchemaExtensionGetResponse : RestApiResponse
     {
         public string? Description { get; set; }
         public string? Id { get; set; }
@@ -65,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionGetResponse> SchemaextensionGetAsync()
+        public async ValueTask<SchemaExtensionGetResponse> SchemaExtensionGetAsync()
         {
-            var p = new SchemaextensionGetParameter();
-            return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(p, CancellationToken.None);
+            var p = new SchemaExtensionGetParameter();
+            return await this.SendAsync<SchemaExtensionGetParameter, SchemaExtensionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionGetResponse> SchemaextensionGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchemaExtensionGetResponse> SchemaExtensionGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SchemaextensionGetParameter();
-            return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(p, cancellationToken);
+            var p = new SchemaExtensionGetParameter();
+            return await this.SendAsync<SchemaExtensionGetParameter, SchemaExtensionGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionGetResponse> SchemaextensionGetAsync(SchemaextensionGetParameter parameter)
+        public async ValueTask<SchemaExtensionGetResponse> SchemaExtensionGetAsync(SchemaExtensionGetParameter parameter)
         {
-            return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SchemaExtensionGetParameter, SchemaExtensionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionGetResponse> SchemaextensionGetAsync(SchemaextensionGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchemaExtensionGetResponse> SchemaExtensionGetAsync(SchemaExtensionGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SchemaExtensionGetParameter, SchemaExtensionGetResponse>(parameter, cancellationToken);
         }
     }
 }

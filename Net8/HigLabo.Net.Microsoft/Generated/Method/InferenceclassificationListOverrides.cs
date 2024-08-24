@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
     /// </summary>
-    public partial class InferenceclassificationListOverridesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class InferenceClassificationListOverridesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -50,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class InferenceclassificationListOverridesResponse : RestApiResponse
+    public partial class InferenceClassificationListOverridesResponse : RestApiResponse<InferenceClassificationOverride>
     {
-        public InferenceClassificationOverride[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
@@ -62,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationListOverridesResponse> InferenceclassificationListOverridesAsync()
+        public async ValueTask<InferenceClassificationListOverridesResponse> InferenceClassificationListOverridesAsync()
         {
-            var p = new InferenceclassificationListOverridesParameter();
-            return await this.SendAsync<InferenceclassificationListOverridesParameter, InferenceclassificationListOverridesResponse>(p, CancellationToken.None);
+            var p = new InferenceClassificationListOverridesParameter();
+            return await this.SendAsync<InferenceClassificationListOverridesParameter, InferenceClassificationListOverridesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationListOverridesResponse> InferenceclassificationListOverridesAsync(CancellationToken cancellationToken)
+        public async ValueTask<InferenceClassificationListOverridesResponse> InferenceClassificationListOverridesAsync(CancellationToken cancellationToken)
         {
-            var p = new InferenceclassificationListOverridesParameter();
-            return await this.SendAsync<InferenceclassificationListOverridesParameter, InferenceclassificationListOverridesResponse>(p, cancellationToken);
+            var p = new InferenceClassificationListOverridesParameter();
+            return await this.SendAsync<InferenceClassificationListOverridesParameter, InferenceClassificationListOverridesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationListOverridesResponse> InferenceclassificationListOverridesAsync(InferenceclassificationListOverridesParameter parameter)
+        public async ValueTask<InferenceClassificationListOverridesResponse> InferenceClassificationListOverridesAsync(InferenceClassificationListOverridesParameter parameter)
         {
-            return await this.SendAsync<InferenceclassificationListOverridesParameter, InferenceclassificationListOverridesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<InferenceClassificationListOverridesParameter, InferenceClassificationListOverridesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<InferenceclassificationListOverridesResponse> InferenceclassificationListOverridesAsync(InferenceclassificationListOverridesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<InferenceClassificationListOverridesResponse> InferenceClassificationListOverridesAsync(InferenceClassificationListOverridesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<InferenceclassificationListOverridesParameter, InferenceclassificationListOverridesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<InferenceClassificationListOverridesParameter, InferenceClassificationListOverridesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<InferenceClassificationOverride> InferenceClassificationListOverridesEnumerateAsync(InferenceClassificationListOverridesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<InferenceClassificationListOverridesParameter, InferenceClassificationListOverridesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<InferenceClassificationOverride>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

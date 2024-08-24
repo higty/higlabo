@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,14 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
-            IssuerUri,
-            MetadataExchangeUri,
-            PassiveSignInUri,
-            PreferredAuthenticationProtocol,
-            SigningCertificate,
-            Domains,
         }
         public enum ApiPath
         {
@@ -55,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SamlorwsfedexternaldomainfederationListResponse : RestApiResponse
+    public partial class SamlorwsfedexternaldomainfederationListResponse : RestApiResponse<SamlOrWsFedExternalDomainFederation>
     {
-        public SamlOrWsFedExternalDomainFederation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
@@ -93,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<SamlOrWsFedExternalDomainFederation> SamlorwsfedexternaldomainfederationListEnumerateAsync(SamlorwsfedexternaldomainfederationListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<SamlOrWsFedExternalDomainFederation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

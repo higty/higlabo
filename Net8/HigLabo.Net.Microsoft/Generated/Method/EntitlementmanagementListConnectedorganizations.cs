@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
     /// </summary>
-    public partial class EntitlementManagementListConnectedorganizationsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EntitlementManagementListConnectedOrganizationsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,15 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Description,
-            DisplayName,
-            Id,
-            IdentitySources,
-            ModifiedDateTime,
-            State,
-            ExternalSponsors,
-            InternalSponsors,
         }
         public enum ApiPath
         {
@@ -56,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementManagementListConnectedorganizationsResponse : RestApiResponse
+    public partial class EntitlementManagementListConnectedOrganizationsResponse : RestApiResponse<ConnectedOrganization>
     {
-        public ConnectedOrganization[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
@@ -68,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync()
+        public async ValueTask<EntitlementManagementListConnectedOrganizationsResponse> EntitlementManagementListConnectedOrganizationsAsync()
         {
-            var p = new EntitlementManagementListConnectedorganizationsParameter();
-            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(p, CancellationToken.None);
+            var p = new EntitlementManagementListConnectedOrganizationsParameter();
+            return await this.SendAsync<EntitlementManagementListConnectedOrganizationsParameter, EntitlementManagementListConnectedOrganizationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListConnectedOrganizationsResponse> EntitlementManagementListConnectedOrganizationsAsync(CancellationToken cancellationToken)
         {
-            var p = new EntitlementManagementListConnectedorganizationsParameter();
-            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(p, cancellationToken);
+            var p = new EntitlementManagementListConnectedOrganizationsParameter();
+            return await this.SendAsync<EntitlementManagementListConnectedOrganizationsParameter, EntitlementManagementListConnectedOrganizationsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync(EntitlementManagementListConnectedorganizationsParameter parameter)
+        public async ValueTask<EntitlementManagementListConnectedOrganizationsResponse> EntitlementManagementListConnectedOrganizationsAsync(EntitlementManagementListConnectedOrganizationsParameter parameter)
         {
-            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EntitlementManagementListConnectedOrganizationsParameter, EntitlementManagementListConnectedOrganizationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync(EntitlementManagementListConnectedorganizationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EntitlementManagementListConnectedOrganizationsResponse> EntitlementManagementListConnectedOrganizationsAsync(EntitlementManagementListConnectedOrganizationsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EntitlementManagementListConnectedOrganizationsParameter, EntitlementManagementListConnectedOrganizationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ConnectedOrganization> EntitlementManagementListConnectedOrganizationsEnumerateAsync(EntitlementManagementListConnectedOrganizationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EntitlementManagementListConnectedOrganizationsParameter, EntitlementManagementListConnectedOrganizationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ConnectedOrganization>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

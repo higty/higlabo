@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintershareUpdateParameter : IRestApiParameter
+    public partial class PrinterShareUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public bool? AllowAllUsers { get; set; }
     }
-    public partial class PrintershareUpdateResponse : RestApiResponse
+    public partial class PrinterShareUpdateResponse : RestApiResponse
     {
         public bool? AllowAllUsers { get; set; }
         public PrinterCapabilities? Capabilities { get; set; }
@@ -66,32 +66,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync()
+        public async ValueTask<PrinterShareUpdateResponse> PrinterShareUpdateAsync()
         {
-            var p = new PrintershareUpdateParameter();
-            return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(p, CancellationToken.None);
+            var p = new PrinterShareUpdateParameter();
+            return await this.SendAsync<PrinterShareUpdateParameter, PrinterShareUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareUpdateResponse> PrinterShareUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareUpdateParameter();
-            return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(p, cancellationToken);
+            var p = new PrinterShareUpdateParameter();
+            return await this.SendAsync<PrinterShareUpdateParameter, PrinterShareUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync(PrintershareUpdateParameter parameter)
+        public async ValueTask<PrinterShareUpdateResponse> PrinterShareUpdateAsync(PrinterShareUpdateParameter parameter)
         {
-            return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrinterShareUpdateParameter, PrinterShareUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printershare-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintershareUpdateResponse> PrintershareUpdateAsync(PrintershareUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrinterShareUpdateResponse> PrinterShareUpdateAsync(PrinterShareUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareUpdateParameter, PrintershareUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrinterShareUpdateParameter, PrinterShareUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
     /// </summary>
-    public partial class LearningproviderListLearningContentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class LearningProviderListLearningContentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,25 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AdditionalTags,
-            ContentWebUrl,
-            Contributors,
-            CreatedDateTime,
-            Description,
-            Duration,
-            ExternalId,
-            Format,
-            Id,
-            IsActive,
-            IsPremium,
-            IsSearchable,
-            LanguageTag,
-            LastModifiedDateTime,
-            NumberOfPages,
-            SkillTags,
-            SourceName,
-            ThumbnailWebUrl,
-            Title,
         }
         public enum ApiPath
         {
@@ -67,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class LearningproviderListLearningContentsResponse : RestApiResponse
+    public partial class LearningProviderListLearningContentsResponse : RestApiResponse<LearningContent>
     {
-        public LearningContent[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
@@ -79,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync()
+        public async ValueTask<LearningProviderListLearningContentsResponse> LearningProviderListLearningContentsAsync()
         {
-            var p = new LearningproviderListLearningContentsParameter();
-            return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(p, CancellationToken.None);
+            var p = new LearningProviderListLearningContentsParameter();
+            return await this.SendAsync<LearningProviderListLearningContentsParameter, LearningProviderListLearningContentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<LearningProviderListLearningContentsResponse> LearningProviderListLearningContentsAsync(CancellationToken cancellationToken)
         {
-            var p = new LearningproviderListLearningContentsParameter();
-            return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(p, cancellationToken);
+            var p = new LearningProviderListLearningContentsParameter();
+            return await this.SendAsync<LearningProviderListLearningContentsParameter, LearningProviderListLearningContentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(LearningproviderListLearningContentsParameter parameter)
+        public async ValueTask<LearningProviderListLearningContentsResponse> LearningProviderListLearningContentsAsync(LearningProviderListLearningContentsParameter parameter)
         {
-            return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<LearningProviderListLearningContentsParameter, LearningProviderListLearningContentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<LearningproviderListLearningContentsResponse> LearningproviderListLearningContentsAsync(LearningproviderListLearningContentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<LearningProviderListLearningContentsResponse> LearningProviderListLearningContentsAsync(LearningProviderListLearningContentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<LearningproviderListLearningContentsParameter, LearningproviderListLearningContentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<LearningProviderListLearningContentsParameter, LearningProviderListLearningContentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<LearningContent> LearningProviderListLearningContentsEnumerateAsync(LearningProviderListLearningContentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<LearningProviderListLearningContentsParameter, LearningProviderListLearningContentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<LearningContent>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

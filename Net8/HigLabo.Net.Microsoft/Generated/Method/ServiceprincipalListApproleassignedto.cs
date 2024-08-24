@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalListApproleassignedtoParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalListApproleassignedtoParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,15 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppRoleId,
-            CreatedDateTime,
-            DeletedDateTime,
-            Id,
-            PrincipalDisplayName,
-            PrincipalId,
-            PrincipalType,
-            ResourceDisplayName,
-            ResourceId,
         }
         public enum ApiPath
         {
@@ -59,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalListApproleassignedtoResponse : RestApiResponse
+    public partial class ServicePrincipalListApproleassignedtoResponse : RestApiResponse<AppRoleAssignment>
     {
-        public AppRoleAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
@@ -71,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync()
+        public async ValueTask<ServicePrincipalListApproleassignedtoResponse> ServicePrincipalListApproleassignedtoAsync()
         {
-            var p = new ServiceprincipalListApproleassignedtoParameter();
-            return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalListApproleassignedtoParameter();
+            return await this.SendAsync<ServicePrincipalListApproleassignedtoParameter, ServicePrincipalListApproleassignedtoResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListApproleassignedtoResponse> ServicePrincipalListApproleassignedtoAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalListApproleassignedtoParameter();
-            return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(p, cancellationToken);
+            var p = new ServicePrincipalListApproleassignedtoParameter();
+            return await this.SendAsync<ServicePrincipalListApproleassignedtoParameter, ServicePrincipalListApproleassignedtoResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(ServiceprincipalListApproleassignedtoParameter parameter)
+        public async ValueTask<ServicePrincipalListApproleassignedtoResponse> ServicePrincipalListApproleassignedtoAsync(ServicePrincipalListApproleassignedtoParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalListApproleassignedtoParameter, ServicePrincipalListApproleassignedtoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleassignedtoResponse> ServiceprincipalListApproleassignedtoAsync(ServiceprincipalListApproleassignedtoParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListApproleassignedtoResponse> ServicePrincipalListApproleassignedtoAsync(ServicePrincipalListApproleassignedtoParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalListApproleassignedtoParameter, ServiceprincipalListApproleassignedtoResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalListApproleassignedtoParameter, ServicePrincipalListApproleassignedtoResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AppRoleAssignment> ServicePrincipalListApproleassignedtoEnumerateAsync(ServicePrincipalListApproleassignedtoParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalListApproleassignedtoParameter, ServicePrincipalListApproleassignedtoResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AppRoleAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

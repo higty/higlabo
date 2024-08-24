@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
     /// </summary>
-    public partial class ScheduleListTimeoffreasonsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ScheduleListTimeoffReasonsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,13 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            DisplayName,
-            IconType,
-            Id,
-            IsActive,
-            LastModifiedBy,
-            LastModifiedDateTime,
         }
         public enum ApiPath
         {
@@ -55,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ScheduleListTimeoffreasonsResponse : RestApiResponse
+    public partial class ScheduleListTimeoffReasonsResponse : RestApiResponse<TimeOffReason>
     {
-        public TimeOffReason[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
@@ -67,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync()
+        public async ValueTask<ScheduleListTimeoffReasonsResponse> ScheduleListTimeoffReasonsAsync()
         {
-            var p = new ScheduleListTimeoffreasonsParameter();
-            return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(p, CancellationToken.None);
+            var p = new ScheduleListTimeoffReasonsParameter();
+            return await this.SendAsync<ScheduleListTimeoffReasonsParameter, ScheduleListTimeoffReasonsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListTimeoffReasonsResponse> ScheduleListTimeoffReasonsAsync(CancellationToken cancellationToken)
         {
-            var p = new ScheduleListTimeoffreasonsParameter();
-            return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(p, cancellationToken);
+            var p = new ScheduleListTimeoffReasonsParameter();
+            return await this.SendAsync<ScheduleListTimeoffReasonsParameter, ScheduleListTimeoffReasonsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(ScheduleListTimeoffreasonsParameter parameter)
+        public async ValueTask<ScheduleListTimeoffReasonsResponse> ScheduleListTimeoffReasonsAsync(ScheduleListTimeoffReasonsParameter parameter)
         {
-            return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ScheduleListTimeoffReasonsParameter, ScheduleListTimeoffReasonsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ScheduleListTimeoffreasonsResponse> ScheduleListTimeoffreasonsAsync(ScheduleListTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ScheduleListTimeoffReasonsResponse> ScheduleListTimeoffReasonsAsync(ScheduleListTimeoffReasonsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ScheduleListTimeoffreasonsParameter, ScheduleListTimeoffreasonsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ScheduleListTimeoffReasonsParameter, ScheduleListTimeoffReasonsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TimeOffReason> ScheduleListTimeoffReasonsEnumerateAsync(ScheduleListTimeoffReasonsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ScheduleListTimeoffReasonsParameter, ScheduleListTimeoffReasonsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TimeOffReason>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class IdentityproviderPostIdentityprovidersParameter : IRestApiParameter
+    public partial class IdentityProviderPostIdentityProvidersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         public string? Type { get; set; }
         public string? Id { get; set; }
     }
-    public partial class IdentityproviderPostIdentityprovidersResponse : RestApiResponse
+    public partial class IdentityProviderPostIdentityProvidersResponse : RestApiResponse
     {
         public string? ClientId { get; set; }
         public string? ClientSecret { get; set; }
@@ -57,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderPostIdentityprovidersResponse> IdentityproviderPostIdentityprovidersAsync()
+        public async ValueTask<IdentityProviderPostIdentityProvidersResponse> IdentityProviderPostIdentityProvidersAsync()
         {
-            var p = new IdentityproviderPostIdentityprovidersParameter();
-            return await this.SendAsync<IdentityproviderPostIdentityprovidersParameter, IdentityproviderPostIdentityprovidersResponse>(p, CancellationToken.None);
+            var p = new IdentityProviderPostIdentityProvidersParameter();
+            return await this.SendAsync<IdentityProviderPostIdentityProvidersParameter, IdentityProviderPostIdentityProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderPostIdentityprovidersResponse> IdentityproviderPostIdentityprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderPostIdentityProvidersResponse> IdentityProviderPostIdentityProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityproviderPostIdentityprovidersParameter();
-            return await this.SendAsync<IdentityproviderPostIdentityprovidersParameter, IdentityproviderPostIdentityprovidersResponse>(p, cancellationToken);
+            var p = new IdentityProviderPostIdentityProvidersParameter();
+            return await this.SendAsync<IdentityProviderPostIdentityProvidersParameter, IdentityProviderPostIdentityProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderPostIdentityprovidersResponse> IdentityproviderPostIdentityprovidersAsync(IdentityproviderPostIdentityprovidersParameter parameter)
+        public async ValueTask<IdentityProviderPostIdentityProvidersResponse> IdentityProviderPostIdentityProvidersAsync(IdentityProviderPostIdentityProvidersParameter parameter)
         {
-            return await this.SendAsync<IdentityproviderPostIdentityprovidersParameter, IdentityproviderPostIdentityprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityProviderPostIdentityProvidersParameter, IdentityProviderPostIdentityProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<IdentityproviderPostIdentityprovidersResponse> IdentityproviderPostIdentityprovidersAsync(IdentityproviderPostIdentityprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<IdentityProviderPostIdentityProvidersResponse> IdentityProviderPostIdentityProvidersAsync(IdentityProviderPostIdentityProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityproviderPostIdentityprovidersParameter, IdentityproviderPostIdentityprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityProviderPostIdentityProvidersParameter, IdentityProviderPostIdentityProvidersResponse>(parameter, cancellationToken);
         }
     }
 }

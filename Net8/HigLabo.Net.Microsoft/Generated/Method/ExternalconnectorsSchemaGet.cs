@@ -24,8 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            BaseType,
-            Properties,
         }
         public enum ApiPath
         {

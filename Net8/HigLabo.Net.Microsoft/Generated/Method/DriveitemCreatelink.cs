@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemCreatelinkParameter : IRestApiParameter
+    public partial class DriveItemCreatelinkParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
         public string[]? Roles { get; set; }
         public string? ShareId { get; set; }
     }
-    public partial class DriveitemCreatelinkResponse : RestApiResponse
+    public partial class DriveItemCreatelinkResponse : RestApiResponse
     {
         public DateTimeOffset? ExpirationDateTime { get; set; }
         public string? Id { get; set; }
@@ -84,32 +84,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync()
+        public async ValueTask<DriveItemCreatelinkResponse> DriveItemCreatelinkAsync()
         {
-            var p = new DriveitemCreatelinkParameter();
-            return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(p, CancellationToken.None);
+            var p = new DriveItemCreatelinkParameter();
+            return await this.SendAsync<DriveItemCreatelinkParameter, DriveItemCreatelinkResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemCreatelinkResponse> DriveItemCreatelinkAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemCreatelinkParameter();
-            return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(p, cancellationToken);
+            var p = new DriveItemCreatelinkParameter();
+            return await this.SendAsync<DriveItemCreatelinkParameter, DriveItemCreatelinkResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter)
+        public async ValueTask<DriveItemCreatelinkResponse> DriveItemCreatelinkAsync(DriveItemCreatelinkParameter parameter)
         {
-            return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemCreatelinkParameter, DriveItemCreatelinkResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemCreatelinkResponse> DriveItemCreatelinkAsync(DriveItemCreatelinkParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemCreatelinkParameter, DriveItemCreatelinkResponse>(parameter, cancellationToken);
         }
     }
 }

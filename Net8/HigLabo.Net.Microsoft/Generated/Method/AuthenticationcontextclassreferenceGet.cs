@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0
     /// </summary>
-    public partial class AuthenticationcontextclassreferenceGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AuthenticationcontextClassreferenceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AuthenticationcontextclassreferenceGetResponse : RestApiResponse
+    public partial class AuthenticationcontextClassreferenceGetResponse : RestApiResponse
     {
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AuthenticationcontextclassreferenceGetResponse> AuthenticationcontextclassreferenceGetAsync()
+        public async ValueTask<AuthenticationcontextClassreferenceGetResponse> AuthenticationcontextClassreferenceGetAsync()
         {
-            var p = new AuthenticationcontextclassreferenceGetParameter();
-            return await this.SendAsync<AuthenticationcontextclassreferenceGetParameter, AuthenticationcontextclassreferenceGetResponse>(p, CancellationToken.None);
+            var p = new AuthenticationcontextClassreferenceGetParameter();
+            return await this.SendAsync<AuthenticationcontextClassreferenceGetParameter, AuthenticationcontextClassreferenceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AuthenticationcontextclassreferenceGetResponse> AuthenticationcontextclassreferenceGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcontextClassreferenceGetResponse> AuthenticationcontextClassreferenceGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AuthenticationcontextclassreferenceGetParameter();
-            return await this.SendAsync<AuthenticationcontextclassreferenceGetParameter, AuthenticationcontextclassreferenceGetResponse>(p, cancellationToken);
+            var p = new AuthenticationcontextClassreferenceGetParameter();
+            return await this.SendAsync<AuthenticationcontextClassreferenceGetParameter, AuthenticationcontextClassreferenceGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AuthenticationcontextclassreferenceGetResponse> AuthenticationcontextclassreferenceGetAsync(AuthenticationcontextclassreferenceGetParameter parameter)
+        public async ValueTask<AuthenticationcontextClassreferenceGetResponse> AuthenticationcontextClassreferenceGetAsync(AuthenticationcontextClassreferenceGetParameter parameter)
         {
-            return await this.SendAsync<AuthenticationcontextclassreferenceGetParameter, AuthenticationcontextclassreferenceGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AuthenticationcontextClassreferenceGetParameter, AuthenticationcontextClassreferenceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AuthenticationcontextclassreferenceGetResponse> AuthenticationcontextclassreferenceGetAsync(AuthenticationcontextclassreferenceGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AuthenticationcontextClassreferenceGetResponse> AuthenticationcontextClassreferenceGetAsync(AuthenticationcontextClassreferenceGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AuthenticationcontextclassreferenceGetParameter, AuthenticationcontextclassreferenceGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AuthenticationcontextClassreferenceGetParameter, AuthenticationcontextClassreferenceGetResponse>(parameter, cancellationToken);
         }
     }
 }

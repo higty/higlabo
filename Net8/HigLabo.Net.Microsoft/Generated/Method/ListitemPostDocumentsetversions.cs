@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0
     /// </summary>
-    public partial class ListitemPostDocumentsetversionsParameter : IRestApiParameter
+    public partial class ListItemPostDocumentsetversionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         public PublicationFacet? Published { get; set; }
         public FieldValueSet? Fields { get; set; }
     }
-    public partial class ListitemPostDocumentsetversionsResponse : RestApiResponse
+    public partial class ListItemPostDocumentsetversionsResponse : RestApiResponse
     {
         public string? Comment { get; set; }
         public IdentitySet? CreatedBy { get; set; }
@@ -70,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemPostDocumentsetversionsResponse> ListitemPostDocumentsetversionsAsync()
+        public async ValueTask<ListItemPostDocumentsetversionsResponse> ListItemPostDocumentsetversionsAsync()
         {
-            var p = new ListitemPostDocumentsetversionsParameter();
-            return await this.SendAsync<ListitemPostDocumentsetversionsParameter, ListitemPostDocumentsetversionsResponse>(p, CancellationToken.None);
+            var p = new ListItemPostDocumentsetversionsParameter();
+            return await this.SendAsync<ListItemPostDocumentsetversionsParameter, ListItemPostDocumentsetversionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemPostDocumentsetversionsResponse> ListitemPostDocumentsetversionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListItemPostDocumentsetversionsResponse> ListItemPostDocumentsetversionsAsync(CancellationToken cancellationToken)
         {
-            var p = new ListitemPostDocumentsetversionsParameter();
-            return await this.SendAsync<ListitemPostDocumentsetversionsParameter, ListitemPostDocumentsetversionsResponse>(p, cancellationToken);
+            var p = new ListItemPostDocumentsetversionsParameter();
+            return await this.SendAsync<ListItemPostDocumentsetversionsParameter, ListItemPostDocumentsetversionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemPostDocumentsetversionsResponse> ListitemPostDocumentsetversionsAsync(ListitemPostDocumentsetversionsParameter parameter)
+        public async ValueTask<ListItemPostDocumentsetversionsResponse> ListItemPostDocumentsetversionsAsync(ListItemPostDocumentsetversionsParameter parameter)
         {
-            return await this.SendAsync<ListitemPostDocumentsetversionsParameter, ListitemPostDocumentsetversionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ListItemPostDocumentsetversionsParameter, ListItemPostDocumentsetversionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemPostDocumentsetversionsResponse> ListitemPostDocumentsetversionsAsync(ListitemPostDocumentsetversionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListItemPostDocumentsetversionsResponse> ListItemPostDocumentsetversionsAsync(ListItemPostDocumentsetversionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ListitemPostDocumentsetversionsParameter, ListitemPostDocumentsetversionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ListItemPostDocumentsetversionsParameter, ListItemPostDocumentsetversionsResponse>(parameter, cancellationToken);
         }
     }
 }

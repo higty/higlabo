@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-applyhold?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverynoncustodialdatasourceApplyholdParameter : IRestApiParameter
+    public partial class SecurityEDiscoverynoncustodialdatasourceApplyholdParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public String[]? Ids { get; set; }
     }
-    public partial class SecurityEdiscoverynoncustodialdatasourceApplyholdResponse : RestApiResponse
+    public partial class SecurityEDiscoverynoncustodialdatasourceApplyholdResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-applyhold?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceApplyholdResponse> SecurityEdiscoverynoncustodialdatasourceApplyholdAsync()
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceApplyholdResponse> SecurityEDiscoverynoncustodialdatasourceApplyholdAsync()
         {
-            var p = new SecurityEdiscoverynoncustodialdatasourceApplyholdParameter();
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceApplyholdParameter, SecurityEdiscoverynoncustodialdatasourceApplyholdResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverynoncustodialdatasourceApplyholdParameter();
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceApplyholdParameter, SecurityEDiscoverynoncustodialdatasourceApplyholdResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-applyhold?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceApplyholdResponse> SecurityEdiscoverynoncustodialdatasourceApplyholdAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceApplyholdResponse> SecurityEDiscoverynoncustodialdatasourceApplyholdAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverynoncustodialdatasourceApplyholdParameter();
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceApplyholdParameter, SecurityEdiscoverynoncustodialdatasourceApplyholdResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverynoncustodialdatasourceApplyholdParameter();
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceApplyholdParameter, SecurityEDiscoverynoncustodialdatasourceApplyholdResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-applyhold?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceApplyholdResponse> SecurityEdiscoverynoncustodialdatasourceApplyholdAsync(SecurityEdiscoverynoncustodialdatasourceApplyholdParameter parameter)
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceApplyholdResponse> SecurityEDiscoverynoncustodialdatasourceApplyholdAsync(SecurityEDiscoverynoncustodialdatasourceApplyholdParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceApplyholdParameter, SecurityEdiscoverynoncustodialdatasourceApplyholdResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceApplyholdParameter, SecurityEDiscoverynoncustodialdatasourceApplyholdResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverynoncustodialdatasource-applyhold?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverynoncustodialdatasourceApplyholdResponse> SecurityEdiscoverynoncustodialdatasourceApplyholdAsync(SecurityEdiscoverynoncustodialdatasourceApplyholdParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverynoncustodialdatasourceApplyholdResponse> SecurityEDiscoverynoncustodialdatasourceApplyholdAsync(SecurityEDiscoverynoncustodialdatasourceApplyholdParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverynoncustodialdatasourceApplyholdParameter, SecurityEdiscoverynoncustodialdatasourceApplyholdResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverynoncustodialdatasourceApplyholdParameter, SecurityEDiscoverynoncustodialdatasourceApplyholdResponse>(parameter, cancellationToken);
         }
     }
 }

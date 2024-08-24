@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ListitemUpdateParameter : IRestApiParameter
+    public partial class ListItemUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -41,7 +41,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
     }
-    public partial class ListitemUpdateResponse : RestApiResponse
+    public partial class ListItemUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync()
+        public async ValueTask<ListItemUpdateResponse> ListItemUpdateAsync()
         {
-            var p = new ListitemUpdateParameter();
-            return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(p, CancellationToken.None);
+            var p = new ListItemUpdateParameter();
+            return await this.SendAsync<ListItemUpdateParameter, ListItemUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListItemUpdateResponse> ListItemUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ListitemUpdateParameter();
-            return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(p, cancellationToken);
+            var p = new ListItemUpdateParameter();
+            return await this.SendAsync<ListItemUpdateParameter, ListItemUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync(ListitemUpdateParameter parameter)
+        public async ValueTask<ListItemUpdateResponse> ListItemUpdateAsync(ListItemUpdateParameter parameter)
         {
-            return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ListItemUpdateParameter, ListItemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemUpdateResponse> ListitemUpdateAsync(ListitemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListItemUpdateResponse> ListItemUpdateAsync(ListItemUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ListitemUpdateParameter, ListitemUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ListItemUpdateParameter, ListItemUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

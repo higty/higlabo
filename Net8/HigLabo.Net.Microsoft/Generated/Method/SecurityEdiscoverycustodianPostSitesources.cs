@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycustodianPostSitesourcesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycustodianPostSitesourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public SiteSourceSecurityDataSourceHoldStatus HoldStatus { get; set; }
     }
-    public partial class SecurityEdiscoverycustodianPostSitesourcesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycustodianPostSitesourcesResponse : RestApiResponse
     {
         public enum SiteSourceSecurityDataSourceHoldStatus
         {
@@ -78,32 +78,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostSitesourcesResponse> SecurityEdiscoverycustodianPostSitesourcesAsync()
+        public async ValueTask<SecurityEDiscoverycustodianPostSitesourcesResponse> SecurityEDiscoverycustodianPostSitesourcesAsync()
         {
-            var p = new SecurityEdiscoverycustodianPostSitesourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianPostSitesourcesParameter, SecurityEdiscoverycustodianPostSitesourcesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycustodianPostSitesourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianPostSitesourcesParameter, SecurityEDiscoverycustodianPostSitesourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostSitesourcesResponse> SecurityEdiscoverycustodianPostSitesourcesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianPostSitesourcesResponse> SecurityEDiscoverycustodianPostSitesourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycustodianPostSitesourcesParameter();
-            return await this.SendAsync<SecurityEdiscoverycustodianPostSitesourcesParameter, SecurityEdiscoverycustodianPostSitesourcesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycustodianPostSitesourcesParameter();
+            return await this.SendAsync<SecurityEDiscoverycustodianPostSitesourcesParameter, SecurityEDiscoverycustodianPostSitesourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostSitesourcesResponse> SecurityEdiscoverycustodianPostSitesourcesAsync(SecurityEdiscoverycustodianPostSitesourcesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycustodianPostSitesourcesResponse> SecurityEDiscoverycustodianPostSitesourcesAsync(SecurityEDiscoverycustodianPostSitesourcesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianPostSitesourcesParameter, SecurityEdiscoverycustodianPostSitesourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycustodianPostSitesourcesParameter, SecurityEDiscoverycustodianPostSitesourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycustodianPostSitesourcesResponse> SecurityEdiscoverycustodianPostSitesourcesAsync(SecurityEdiscoverycustodianPostSitesourcesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycustodianPostSitesourcesResponse> SecurityEDiscoverycustodianPostSitesourcesAsync(SecurityEDiscoverycustodianPostSitesourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycustodianPostSitesourcesParameter, SecurityEdiscoverycustodianPostSitesourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycustodianPostSitesourcesParameter, SecurityEDiscoverycustodianPostSitesourcesResponse>(parameter, cancellationToken);
         }
     }
 }

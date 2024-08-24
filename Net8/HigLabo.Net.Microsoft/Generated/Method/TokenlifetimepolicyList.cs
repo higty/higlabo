@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,12 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Definition,
-            Description,
-            DisplayName,
-            Id,
-            IsOrganizationDefault,
-            AppliesTo,
         }
         public enum ApiPath
         {
@@ -53,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TokenlifetimePolicyListResponse : RestApiResponse
+    public partial class TokenlifetimePolicyListResponse : RestApiResponse<TokenLifetimePolicy>
     {
-        public TokenLifetimePolicy[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0
@@ -91,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TokenlifetimePolicyListResponse> TokenlifetimePolicyListAsync(TokenlifetimePolicyListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TokenlifetimePolicyListParameter, TokenlifetimePolicyListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TokenLifetimePolicy> TokenlifetimePolicyListEnumerateAsync(TokenlifetimePolicyListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TokenlifetimePolicyListParameter, TokenlifetimePolicyListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TokenLifetimePolicy>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

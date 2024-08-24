@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderPostChildfoldersParameter : IRestApiParameter
+    public partial class MailFolderPostChildFoldersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class MailfolderPostChildfoldersResponse : RestApiResponse
+    public partial class MailFolderPostChildFoldersResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -75,32 +75,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostChildfoldersResponse> MailfolderPostChildfoldersAsync()
+        public async ValueTask<MailFolderPostChildFoldersResponse> MailFolderPostChildFoldersAsync()
         {
-            var p = new MailfolderPostChildfoldersParameter();
-            return await this.SendAsync<MailfolderPostChildfoldersParameter, MailfolderPostChildfoldersResponse>(p, CancellationToken.None);
+            var p = new MailFolderPostChildFoldersParameter();
+            return await this.SendAsync<MailFolderPostChildFoldersParameter, MailFolderPostChildFoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostChildfoldersResponse> MailfolderPostChildfoldersAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderPostChildFoldersResponse> MailFolderPostChildFoldersAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderPostChildfoldersParameter();
-            return await this.SendAsync<MailfolderPostChildfoldersParameter, MailfolderPostChildfoldersResponse>(p, cancellationToken);
+            var p = new MailFolderPostChildFoldersParameter();
+            return await this.SendAsync<MailFolderPostChildFoldersParameter, MailFolderPostChildFoldersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostChildfoldersResponse> MailfolderPostChildfoldersAsync(MailfolderPostChildfoldersParameter parameter)
+        public async ValueTask<MailFolderPostChildFoldersResponse> MailFolderPostChildFoldersAsync(MailFolderPostChildFoldersParameter parameter)
         {
-            return await this.SendAsync<MailfolderPostChildfoldersParameter, MailfolderPostChildfoldersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderPostChildFoldersParameter, MailFolderPostChildFoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderPostChildfoldersResponse> MailfolderPostChildfoldersAsync(MailfolderPostChildfoldersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderPostChildFoldersResponse> MailFolderPostChildFoldersAsync(MailFolderPostChildFoldersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderPostChildfoldersParameter, MailfolderPostChildfoldersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderPostChildFoldersParameter, MailFolderPostChildFoldersResponse>(parameter, cancellationToken);
         }
     }
 }

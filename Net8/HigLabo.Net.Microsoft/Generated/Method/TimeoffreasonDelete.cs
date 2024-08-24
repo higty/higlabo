@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class TimeoffreasonDeleteParameter : IRestApiParameter
+    public partial class TimeoffReasonDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class TimeoffreasonDeleteResponse : RestApiResponse
+    public partial class TimeoffReasonDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonDeleteResponse> TimeoffreasonDeleteAsync()
+        public async ValueTask<TimeoffReasonDeleteResponse> TimeoffReasonDeleteAsync()
         {
-            var p = new TimeoffreasonDeleteParameter();
-            return await this.SendAsync<TimeoffreasonDeleteParameter, TimeoffreasonDeleteResponse>(p, CancellationToken.None);
+            var p = new TimeoffReasonDeleteParameter();
+            return await this.SendAsync<TimeoffReasonDeleteParameter, TimeoffReasonDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonDeleteResponse> TimeoffreasonDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffReasonDeleteResponse> TimeoffReasonDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new TimeoffreasonDeleteParameter();
-            return await this.SendAsync<TimeoffreasonDeleteParameter, TimeoffreasonDeleteResponse>(p, cancellationToken);
+            var p = new TimeoffReasonDeleteParameter();
+            return await this.SendAsync<TimeoffReasonDeleteParameter, TimeoffReasonDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonDeleteResponse> TimeoffreasonDeleteAsync(TimeoffreasonDeleteParameter parameter)
+        public async ValueTask<TimeoffReasonDeleteResponse> TimeoffReasonDeleteAsync(TimeoffReasonDeleteParameter parameter)
         {
-            return await this.SendAsync<TimeoffreasonDeleteParameter, TimeoffreasonDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TimeoffReasonDeleteParameter, TimeoffReasonDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffreasonDeleteResponse> TimeoffreasonDeleteAsync(TimeoffreasonDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffReasonDeleteResponse> TimeoffReasonDeleteAsync(TimeoffReasonDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TimeoffreasonDeleteParameter, TimeoffreasonDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TimeoffReasonDeleteParameter, TimeoffReasonDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

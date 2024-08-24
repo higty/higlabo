@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Id,
         }
         public enum ApiPath
         {
@@ -51,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationAssignmentListCategoriesResponse : RestApiResponse
+    public partial class EducationAssignmentListCategoriesResponse : RestApiResponse<EducationCategory>
     {
-        public EducationCategory[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/educationassignment-list-categories?view=graph-rest-1.0
@@ -89,6 +87,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EducationAssignmentListCategoriesResponse> EducationAssignmentListCategoriesAsync(EducationAssignmentListCategoriesParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EducationAssignmentListCategoriesParameter, EducationAssignmentListCategoriesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-list-categories?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<EducationCategory> EducationAssignmentListCategoriesEnumerateAsync(EducationAssignmentListCategoriesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EducationAssignmentListCategoriesParameter, EducationAssignmentListCategoriesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<EducationCategory>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

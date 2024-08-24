@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CcRecipients,
-            HasAttachments,
-            Id,
-            IsLocked,
-            LastDeliveredDateTime,
-            Preview,
-            Topic,
-            ToRecipients,
-            UniqueSenders,
-            Posts,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupListThreadsResponse : RestApiResponse
+    public partial class GroupListThreadsResponse : RestApiResponse<ConversationThread>
     {
-        public ConversationThread[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
@@ -96,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ConversationThread> GroupListThreadsEnumerateAsync(GroupListThreadsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ConversationThread>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

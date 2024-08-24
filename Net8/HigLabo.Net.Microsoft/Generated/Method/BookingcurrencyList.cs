@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingcurrencyListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingCurrencyListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,8 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Symbol,
         }
         public enum ApiPath
         {
@@ -49,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingcurrencyListResponse : RestApiResponse
+    public partial class BookingCurrencyListResponse : RestApiResponse<BookingCurrency>
     {
-        public BookingCurrency[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
@@ -61,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyListResponse> BookingcurrencyListAsync()
+        public async ValueTask<BookingCurrencyListResponse> BookingCurrencyListAsync()
         {
-            var p = new BookingcurrencyListParameter();
-            return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(p, CancellationToken.None);
+            var p = new BookingCurrencyListParameter();
+            return await this.SendAsync<BookingCurrencyListParameter, BookingCurrencyListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyListResponse> BookingcurrencyListAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingCurrencyListResponse> BookingCurrencyListAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingcurrencyListParameter();
-            return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(p, cancellationToken);
+            var p = new BookingCurrencyListParameter();
+            return await this.SendAsync<BookingCurrencyListParameter, BookingCurrencyListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyListResponse> BookingcurrencyListAsync(BookingcurrencyListParameter parameter)
+        public async ValueTask<BookingCurrencyListResponse> BookingCurrencyListAsync(BookingCurrencyListParameter parameter)
         {
-            return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingCurrencyListParameter, BookingCurrencyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingcurrencyListResponse> BookingcurrencyListAsync(BookingcurrencyListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingCurrencyListResponse> BookingCurrencyListAsync(BookingCurrencyListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingCurrencyListParameter, BookingCurrencyListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BookingCurrency> BookingCurrencyListEnumerateAsync(BookingCurrencyListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<BookingCurrencyListParameter, BookingCurrencyListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BookingCurrency>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

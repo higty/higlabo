@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintjobRedirectParameter : IRestApiParameter
+    public partial class PrintJobRedirectParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         public PrintDocument[]? Documents { get; set; }
         public PrintTask[]? Tasks { get; set; }
     }
-    public partial class PrintjobRedirectResponse : RestApiResponse
+    public partial class PrintJobRedirectResponse : RestApiResponse
     {
         public PrintJobConfiguration? Configuration { get; set; }
         public UserIdentity? CreatedBy { get; set; }
@@ -70,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync()
+        public async ValueTask<PrintJobRedirectResponse> PrintJobRedirectAsync()
         {
-            var p = new PrintjobRedirectParameter();
-            return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(p, CancellationToken.None);
+            var p = new PrintJobRedirectParameter();
+            return await this.SendAsync<PrintJobRedirectParameter, PrintJobRedirectResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintJobRedirectResponse> PrintJobRedirectAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintjobRedirectParameter();
-            return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(p, cancellationToken);
+            var p = new PrintJobRedirectParameter();
+            return await this.SendAsync<PrintJobRedirectParameter, PrintJobRedirectResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter)
+        public async ValueTask<PrintJobRedirectResponse> PrintJobRedirectAsync(PrintJobRedirectParameter parameter)
         {
-            return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintJobRedirectParameter, PrintJobRedirectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintJobRedirectResponse> PrintJobRedirectAsync(PrintJobRedirectParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintJobRedirectParameter, PrintJobRedirectResponse>(parameter, cancellationToken);
         }
     }
 }

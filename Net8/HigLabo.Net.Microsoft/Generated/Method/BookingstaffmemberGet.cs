@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingstaffmemberGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingStaffMemberGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingstaffmemberGetResponse : RestApiResponse
+    public partial class BookingStaffMemberGetResponse : RestApiResponse
     {
         public enum BookingStaffMemberBookingStaffRole
         {
@@ -80,32 +80,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync()
+        public async ValueTask<BookingStaffMemberGetResponse> BookingStaffMemberGetAsync()
         {
-            var p = new BookingstaffmemberGetParameter();
-            return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(p, CancellationToken.None);
+            var p = new BookingStaffMemberGetParameter();
+            return await this.SendAsync<BookingStaffMemberGetParameter, BookingStaffMemberGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingStaffMemberGetResponse> BookingStaffMemberGetAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingstaffmemberGetParameter();
-            return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(p, cancellationToken);
+            var p = new BookingStaffMemberGetParameter();
+            return await this.SendAsync<BookingStaffMemberGetParameter, BookingStaffMemberGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(BookingstaffmemberGetParameter parameter)
+        public async ValueTask<BookingStaffMemberGetResponse> BookingStaffMemberGetAsync(BookingStaffMemberGetParameter parameter)
         {
-            return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingStaffMemberGetParameter, BookingStaffMemberGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingstaffmemberGetResponse> BookingstaffmemberGetAsync(BookingstaffmemberGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingStaffMemberGetResponse> BookingStaffMemberGetAsync(BookingStaffMemberGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingstaffmemberGetParameter, BookingstaffmemberGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingStaffMemberGetParameter, BookingStaffMemberGetResponse>(parameter, cancellationToken);
         }
     }
 }

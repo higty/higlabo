@@ -5,9 +5,9 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/resources/security-ediscoveryindexoperation?view=graph-rest-1.0
     /// </summary>
-    public partial class EdiscoveryIndexOperation
+    public partial class EDiscoveryIndexOperation
     {
-        public enum EdiscoveryIndexOperationSecurityCaseAction
+        public enum EDiscoveryIndexOperationSecurityCaseAction
         {
             AddToReviewSet,
             ApplyTags,
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             EstimateStatistics,
             PurgeData,
         }
-        public enum EdiscoveryIndexOperationSecurityCaseOperationStatus
+        public enum EDiscoveryIndexOperationSecurityCaseOperationStatus
         {
             NotStarted,
             SubmissionFailed,
@@ -33,6 +33,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public Int32? PercentProgress { get; set; }
         public ResultInfo? ResultInfo { get; set; }
-        public EdiscoveryIndexOperationSecurityCaseOperationStatus Status { get; set; }
+        public EDiscoveryIndexOperationSecurityCaseOperationStatus Status { get; set; }
     }
 }

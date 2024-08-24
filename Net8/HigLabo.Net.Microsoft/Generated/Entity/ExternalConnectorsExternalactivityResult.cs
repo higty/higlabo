@@ -5,9 +5,9 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/resources/externalconnectors-externalactivityresult?view=graph-rest-1.0
     /// </summary>
-    public partial class ExternalConnectorsExternalactivityResult
+    public partial class ExternalConnectorsExternalActivityResult
     {
-        public enum ExternalConnectorsExternalactivityResultExternalConnectorsExternalActivityType
+        public enum ExternalConnectorsExternalActivityResultExternalConnectorsExternalActivityType
         {
             Viewed,
             Modified,
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Microsoft
 
         public PublicError? Error { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
-        public ExternalConnectorsExternalactivityResultExternalConnectorsExternalActivityType Type { get; set; }
+        public ExternalConnectorsExternalActivityResultExternalConnectorsExternalActivityType Type { get; set; }
         public ExternalConnectorsIdentity? PerformedBy { get; set; }
     }
 }

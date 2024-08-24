@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
     /// </summary>
-    public partial class TimeoffrequestDeclineParameter : IRestApiParameter
+    public partial class TimeoffRequestDeclineParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
     }
-    public partial class TimeoffrequestDeclineResponse : RestApiResponse
+    public partial class TimeoffRequestDeclineResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync()
+        public async ValueTask<TimeoffRequestDeclineResponse> TimeoffRequestDeclineAsync()
         {
-            var p = new TimeoffrequestDeclineParameter();
-            return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(p, CancellationToken.None);
+            var p = new TimeoffRequestDeclineParameter();
+            return await this.SendAsync<TimeoffRequestDeclineParameter, TimeoffRequestDeclineResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(CancellationToken cancellationToken)
+        public async ValueTask<TimeoffRequestDeclineResponse> TimeoffRequestDeclineAsync(CancellationToken cancellationToken)
         {
-            var p = new TimeoffrequestDeclineParameter();
-            return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(p, cancellationToken);
+            var p = new TimeoffRequestDeclineParameter();
+            return await this.SendAsync<TimeoffRequestDeclineParameter, TimeoffRequestDeclineResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(TimeoffrequestDeclineParameter parameter)
+        public async ValueTask<TimeoffRequestDeclineResponse> TimeoffRequestDeclineAsync(TimeoffRequestDeclineParameter parameter)
         {
-            return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TimeoffRequestDeclineParameter, TimeoffRequestDeclineResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-decline?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<TimeoffrequestDeclineResponse> TimeoffrequestDeclineAsync(TimeoffrequestDeclineParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<TimeoffRequestDeclineResponse> TimeoffRequestDeclineAsync(TimeoffRequestDeclineParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TimeoffrequestDeclineParameter, TimeoffrequestDeclineResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TimeoffRequestDeclineParameter, TimeoffRequestDeclineResponse>(parameter, cancellationToken);
         }
     }
 }

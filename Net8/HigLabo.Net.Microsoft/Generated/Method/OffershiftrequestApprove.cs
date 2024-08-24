@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-approve?view=graph-rest-1.0
     /// </summary>
-    public partial class OffershiftrequestApproveParameter : IRestApiParameter
+    public partial class OfferShiftRequestApproveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
     }
-    public partial class OffershiftrequestApproveResponse : RestApiResponse
+    public partial class OfferShiftRequestApproveResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OffershiftrequestApproveResponse> OffershiftrequestApproveAsync()
+        public async ValueTask<OfferShiftRequestApproveResponse> OfferShiftRequestApproveAsync()
         {
-            var p = new OffershiftrequestApproveParameter();
-            return await this.SendAsync<OffershiftrequestApproveParameter, OffershiftrequestApproveResponse>(p, CancellationToken.None);
+            var p = new OfferShiftRequestApproveParameter();
+            return await this.SendAsync<OfferShiftRequestApproveParameter, OfferShiftRequestApproveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OffershiftrequestApproveResponse> OffershiftrequestApproveAsync(CancellationToken cancellationToken)
+        public async ValueTask<OfferShiftRequestApproveResponse> OfferShiftRequestApproveAsync(CancellationToken cancellationToken)
         {
-            var p = new OffershiftrequestApproveParameter();
-            return await this.SendAsync<OffershiftrequestApproveParameter, OffershiftrequestApproveResponse>(p, cancellationToken);
+            var p = new OfferShiftRequestApproveParameter();
+            return await this.SendAsync<OfferShiftRequestApproveParameter, OfferShiftRequestApproveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OffershiftrequestApproveResponse> OffershiftrequestApproveAsync(OffershiftrequestApproveParameter parameter)
+        public async ValueTask<OfferShiftRequestApproveResponse> OfferShiftRequestApproveAsync(OfferShiftRequestApproveParameter parameter)
         {
-            return await this.SendAsync<OffershiftrequestApproveParameter, OffershiftrequestApproveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OfferShiftRequestApproveParameter, OfferShiftRequestApproveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-approve?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OffershiftrequestApproveResponse> OffershiftrequestApproveAsync(OffershiftrequestApproveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OfferShiftRequestApproveResponse> OfferShiftRequestApproveAsync(OfferShiftRequestApproveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OffershiftrequestApproveParameter, OffershiftrequestApproveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OfferShiftRequestApproveParameter, OfferShiftRequestApproveResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,9 +5,9 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/resources/security-ediscoveryestimateoperation?view=graph-rest-1.0
     /// </summary>
-    public partial class EdiscoveryEstimateOperation
+    public partial class EDiscoveryEstimateOperation
     {
-        public enum EdiscoveryEstimateOperationSecurityCaseAction
+        public enum EDiscoveryEstimateOperationSecurityCaseAction
         {
             AddToReviewSet,
             ApplyTags,
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             EstimateStatistics,
             PurgeData,
         }
-        public enum EdiscoveryEstimateOperationSecurityCaseOperationStatus
+        public enum EDiscoveryEstimateOperationSecurityCaseOperationStatus
         {
             NotStarted,
             SubmissionFailed,
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Microsoft
             Failed,
         }
 
-        public EdiscoveryEstimateOperationSecurityCaseAction Action { get; set; }
+        public EDiscoveryEstimateOperationSecurityCaseAction Action { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -37,9 +37,9 @@ namespace HigLabo.Net.Microsoft
         public Int32? PercentProgress { get; set; }
         public ResultInfo? ResultInfo { get; set; }
         public Int32? SiteCount { get; set; }
-        public EdiscoveryEstimateOperationSecurityCaseOperationStatus Status { get; set; }
+        public EDiscoveryEstimateOperationSecurityCaseOperationStatus Status { get; set; }
         public Int64? UnindexedItemCount { get; set; }
         public Int64? UnindexedItemsSize { get; set; }
-        public EdiscoverySearch? Search { get; set; }
+        public EDiscoverySearch? Search { get; set; }
     }
 }

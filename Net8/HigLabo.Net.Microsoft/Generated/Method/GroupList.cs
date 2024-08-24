@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -16,7 +17,6 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Groups: return $"/groups";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -24,78 +24,10 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowExternalSenders,
-            AssignedLabels,
-            AssignedLicenses,
-            AutoSubscribeNewMembers,
-            Classification,
-            CreatedDateTime,
-            DeletedDateTime,
-            Description,
-            DisplayName,
-            ExpirationDateTime,
-            GroupTypes,
-            HasMembersWithLicenseErrors,
-            HideFromAddressLists,
-            HideFromOutlookClients,
-            Id,
-            IsArchived,
-            IsAssignableToRole,
-            IsSubscribedByMail,
-            LicenseProcessingState,
-            Mail,
-            MailEnabled,
-            MailNickname,
-            MembershipRule,
-            MembershipRuleProcessingState,
-            OnPremisesLastSyncDateTime,
-            OnPremisesProvisioningErrors,
-            OnPremisesSamAccountName,
-            OnPremisesSecurityIdentifier,
-            OnPremisesSyncEnabled,
-            PreferredDataLocation,
-            PreferredLanguage,
-            ProxyAddresses,
-            RenewedDateTime,
-            ResourceBehaviorOptions,
-            ResourceProvisioningOptions,
-            SecurityEnabled,
-            SecurityIdentifier,
-            Theme,
-            UnseenCount,
-            Visibility,
-            AcceptedSenders,
-            AppRoleAssignments,
-            Calendar,
-            CalendarView,
-            Conversations,
-            CreatedOnBehalfOf,
-            Drive,
-            Drives,
-            Events,
-            Extensions,
-            GroupLifecyclePolicies,
-            MemberOf,
-            Members,
-            MembersWithLicenseErrors,
-            Onenote,
-            Owners,
-            PermissionGrants,
-            Photo,
-            Photos,
-            Planner,
-            RejectedSenders,
-            Settings,
-            Sites,
-            Team,
-            Threads,
-            TransitiveMemberOf,
-            TransitiveMembers,
         }
         public enum ApiPath
         {
             Groups,
-            Ttps__Graphmicrosoftcom_V10_Groups,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -116,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupListResponse : RestApiResponse
+    public partial class GroupListResponse : RestApiResponse<Group>
     {
-        public Group[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
@@ -154,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<GroupListResponse> GroupListAsync(GroupListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<GroupListParameter, GroupListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Group> GroupListEnumerateAsync(GroupListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<GroupListParameter, GroupListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Group>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

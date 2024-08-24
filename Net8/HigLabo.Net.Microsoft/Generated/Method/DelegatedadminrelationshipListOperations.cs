@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,12 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Data,
-            Id,
-            LastModifiedDateTime,
-            OperationType,
-            Status,
         }
         public enum ApiPath
         {
@@ -54,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DelegatedadminrelationshipListOperationsResponse : RestApiResponse
+    public partial class DelegatedadminrelationshipListOperationsResponse : RestApiResponse<DelegatedAdminRelationshipOperation>
     {
-        public DelegatedAdminRelationshipOperation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0
@@ -92,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<DelegatedadminrelationshipListOperationsResponse> DelegatedadminrelationshipListOperationsAsync(DelegatedadminrelationshipListOperationsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DelegatedadminrelationshipListOperationsParameter, DelegatedadminrelationshipListOperationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DelegatedAdminRelationshipOperation> DelegatedadminrelationshipListOperationsEnumerateAsync(DelegatedadminrelationshipListOperationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DelegatedadminrelationshipListOperationsParameter, DelegatedadminrelationshipListOperationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DelegatedAdminRelationshipOperation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

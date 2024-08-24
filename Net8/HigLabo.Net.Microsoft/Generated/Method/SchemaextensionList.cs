@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
     /// </summary>
-    public partial class SchemaextensionListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SchemaExtensionListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,12 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            Id,
-            Owner,
-            Properties,
-            Status,
-            TargetTypes,
         }
         public enum ApiPath
         {
@@ -53,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SchemaextensionListResponse : RestApiResponse
+    public partial class SchemaExtensionListResponse : RestApiResponse<SchemaExtension>
     {
-        public SchemaExtension[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
@@ -65,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync()
+        public async ValueTask<SchemaExtensionListResponse> SchemaExtensionListAsync()
         {
-            var p = new SchemaextensionListParameter();
-            return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(p, CancellationToken.None);
+            var p = new SchemaExtensionListParameter();
+            return await this.SendAsync<SchemaExtensionListParameter, SchemaExtensionListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SchemaExtensionListResponse> SchemaExtensionListAsync(CancellationToken cancellationToken)
         {
-            var p = new SchemaextensionListParameter();
-            return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(p, cancellationToken);
+            var p = new SchemaExtensionListParameter();
+            return await this.SendAsync<SchemaExtensionListParameter, SchemaExtensionListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync(SchemaextensionListParameter parameter)
+        public async ValueTask<SchemaExtensionListResponse> SchemaExtensionListAsync(SchemaExtensionListParameter parameter)
         {
-            return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SchemaExtensionListParameter, SchemaExtensionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SchemaextensionListResponse> SchemaextensionListAsync(SchemaextensionListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SchemaExtensionListResponse> SchemaExtensionListAsync(SchemaExtensionListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SchemaextensionListParameter, SchemaextensionListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SchemaExtensionListParameter, SchemaExtensionListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<SchemaExtension> SchemaExtensionListEnumerateAsync(SchemaExtensionListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SchemaExtensionListParameter, SchemaExtensionListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<SchemaExtension>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

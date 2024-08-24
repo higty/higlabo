@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
     /// </summary>
-    public partial class UserListTransitivememberofParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserListTransitiveMemberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UserListTransitivememberofResponse : RestApiResponse
+    public partial class UserListTransitiveMemberofResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync()
+        public async ValueTask<UserListTransitiveMemberofResponse> UserListTransitiveMemberofAsync()
         {
-            var p = new UserListTransitivememberofParameter();
-            return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(p, CancellationToken.None);
+            var p = new UserListTransitiveMemberofParameter();
+            return await this.SendAsync<UserListTransitiveMemberofParameter, UserListTransitiveMemberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<UserListTransitiveMemberofResponse> UserListTransitiveMemberofAsync(CancellationToken cancellationToken)
         {
-            var p = new UserListTransitivememberofParameter();
-            return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(p, cancellationToken);
+            var p = new UserListTransitiveMemberofParameter();
+            return await this.SendAsync<UserListTransitiveMemberofParameter, UserListTransitiveMemberofResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync(UserListTransitivememberofParameter parameter)
+        public async ValueTask<UserListTransitiveMemberofResponse> UserListTransitiveMemberofAsync(UserListTransitiveMemberofParameter parameter)
         {
-            return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserListTransitiveMemberofParameter, UserListTransitiveMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<UserListTransitivememberofResponse> UserListTransitivememberofAsync(UserListTransitivememberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<UserListTransitiveMemberofResponse> UserListTransitiveMemberofAsync(UserListTransitiveMemberofParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserListTransitivememberofParameter, UserListTransitivememberofResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserListTransitiveMemberofParameter, UserListTransitiveMemberofResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-transitivememberof?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> UserListTransitiveMemberofEnumerateAsync(UserListTransitiveMemberofParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<UserListTransitiveMemberofParameter, UserListTransitiveMemberofResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

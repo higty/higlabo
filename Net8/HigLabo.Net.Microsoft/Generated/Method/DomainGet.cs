@@ -24,22 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AuthenticationType,
-            AvailabilityStatus,
-            Id,
-            IsAdminManaged,
-            IsDefault,
-            IsInitial,
-            IsRoot,
-            IsVerified,
-            PasswordNotificationWindowInDays,
-            PasswordValidityPeriodInDays,
-            State,
-            SupportedServices,
-            DomainNameReferences,
-            ServiceConfigurationRecords,
-            VerificationDnsRecords,
-            FederationConfiguration,
         }
         public enum ApiPath
         {

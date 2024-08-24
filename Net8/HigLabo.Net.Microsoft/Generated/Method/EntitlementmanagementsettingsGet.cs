@@ -23,9 +23,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DurationUntilExternalUserDeletedAfterBlocked,
-            ExternalUserLifecycleAction,
-            Id,
         }
         public enum ApiPath
         {

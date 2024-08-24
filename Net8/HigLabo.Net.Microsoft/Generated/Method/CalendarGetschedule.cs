@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
     /// </summary>
-    public partial class CalendarGetscheduleParameter : IRestApiParameter
+    public partial class CalendarGetScheduleParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,9 +43,8 @@ namespace HigLabo.Net.Microsoft
         public String[]? Schedules { get; set; }
         public DateTimeTimeZone? StartTime { get; set; }
     }
-    public partial class CalendarGetscheduleResponse : RestApiResponse
+    public partial class CalendarGetScheduleResponse : RestApiResponse<ScheduleInformation>
     {
-        public ScheduleInformation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
@@ -55,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync()
+        public async ValueTask<CalendarGetScheduleResponse> CalendarGetScheduleAsync()
         {
-            var p = new CalendarGetscheduleParameter();
-            return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(p, CancellationToken.None);
+            var p = new CalendarGetScheduleParameter();
+            return await this.SendAsync<CalendarGetScheduleParameter, CalendarGetScheduleResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CancellationToken cancellationToken)
+        public async ValueTask<CalendarGetScheduleResponse> CalendarGetScheduleAsync(CancellationToken cancellationToken)
         {
-            var p = new CalendarGetscheduleParameter();
-            return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(p, cancellationToken);
+            var p = new CalendarGetScheduleParameter();
+            return await this.SendAsync<CalendarGetScheduleParameter, CalendarGetScheduleResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CalendarGetscheduleParameter parameter)
+        public async ValueTask<CalendarGetScheduleResponse> CalendarGetScheduleAsync(CalendarGetScheduleParameter parameter)
         {
-            return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CalendarGetScheduleParameter, CalendarGetScheduleResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<CalendarGetscheduleResponse> CalendarGetscheduleAsync(CalendarGetscheduleParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<CalendarGetScheduleResponse> CalendarGetScheduleAsync(CalendarGetScheduleParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CalendarGetscheduleParameter, CalendarGetscheduleResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CalendarGetScheduleParameter, CalendarGetScheduleResponse>(parameter, cancellationToken);
         }
     }
 }

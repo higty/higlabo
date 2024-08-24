@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
     /// </summary>
-    public partial class ChecklistitemUpdateParameter : IRestApiParameter
+    public partial class ChecklistItemUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public bool? IsChecked { get; set; }
     }
-    public partial class ChecklistitemUpdateResponse : RestApiResponse
+    public partial class ChecklistItemUpdateResponse : RestApiResponse
     {
         public DateTimeOffset? CheckedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync()
+        public async ValueTask<ChecklistItemUpdateResponse> ChecklistItemUpdateAsync()
         {
-            var p = new ChecklistitemUpdateParameter();
-            return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(p, CancellationToken.None);
+            var p = new ChecklistItemUpdateParameter();
+            return await this.SendAsync<ChecklistItemUpdateParameter, ChecklistItemUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChecklistItemUpdateResponse> ChecklistItemUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new ChecklistitemUpdateParameter();
-            return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(p, cancellationToken);
+            var p = new ChecklistItemUpdateParameter();
+            return await this.SendAsync<ChecklistItemUpdateParameter, ChecklistItemUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(ChecklistitemUpdateParameter parameter)
+        public async ValueTask<ChecklistItemUpdateResponse> ChecklistItemUpdateAsync(ChecklistItemUpdateParameter parameter)
         {
-            return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChecklistItemUpdateParameter, ChecklistItemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/checklistitem-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChecklistitemUpdateResponse> ChecklistitemUpdateAsync(ChecklistitemUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChecklistItemUpdateResponse> ChecklistItemUpdateAsync(ChecklistItemUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChecklistitemUpdateParameter, ChecklistitemUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChecklistItemUpdateParameter, ChecklistItemUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

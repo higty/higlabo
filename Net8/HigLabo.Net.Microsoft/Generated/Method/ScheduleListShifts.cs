@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            DraftShift,
-            Id,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            SchedulingGroupId,
-            SharedShift,
-            UserId,
         }
         public enum ApiPath
         {
@@ -56,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ScheduleListShiftsResponse : RestApiResponse
+    public partial class ScheduleListShiftsResponse : RestApiResponse<Shift>
     {
-        public Shift[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
@@ -94,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Shift> ScheduleListShiftsEnumerateAsync(ScheduleListShiftsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Shift>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

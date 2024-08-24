@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -27,15 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            Descriptions,
-            Id,
-            Labels,
-            LastModifiedDateTime,
-            Properties,
-            Children,
-            Relations,
-            Set,
         }
         public enum ApiPath
         {
@@ -61,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TermStoreTermListChildrenResponse : RestApiResponse
+    public partial class TermStoreTermListChildrenResponse : RestApiResponse<TermStoreTerm>
     {
-        public TermStoreTerm[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
@@ -99,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<TermStoreTerm> TermStoreTermListChildrenEnumerateAsync(TermStoreTermListChildrenParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<TermStoreTerm>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

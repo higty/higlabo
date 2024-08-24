@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0
     /// </summary>
-    public partial class ReportRootGetonedriveusageAccountdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetOneDriveusageAccountdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportRootGetonedriveusageAccountdetailResponse : RestApiResponse
+    public partial class ReportRootGetOneDriveusageAccountdetailResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusageAccountdetailResponse> ReportRootGetonedriveusageAccountdetailAsync()
+        public async ValueTask<ReportRootGetOneDriveusageAccountdetailResponse> ReportRootGetOneDriveusageAccountdetailAsync()
         {
-            var p = new ReportRootGetonedriveusageAccountdetailParameter();
-            return await this.SendAsync<ReportRootGetonedriveusageAccountdetailParameter, ReportRootGetonedriveusageAccountdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetOneDriveusageAccountdetailParameter();
+            return await this.SendAsync<ReportRootGetOneDriveusageAccountdetailParameter, ReportRootGetOneDriveusageAccountdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusageAccountdetailResponse> ReportRootGetonedriveusageAccountdetailAsync(CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveusageAccountdetailResponse> ReportRootGetOneDriveusageAccountdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportRootGetonedriveusageAccountdetailParameter();
-            return await this.SendAsync<ReportRootGetonedriveusageAccountdetailParameter, ReportRootGetonedriveusageAccountdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetOneDriveusageAccountdetailParameter();
+            return await this.SendAsync<ReportRootGetOneDriveusageAccountdetailParameter, ReportRootGetOneDriveusageAccountdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusageAccountdetailResponse> ReportRootGetonedriveusageAccountdetailAsync(ReportRootGetonedriveusageAccountdetailParameter parameter)
+        public async ValueTask<ReportRootGetOneDriveusageAccountdetailResponse> ReportRootGetOneDriveusageAccountdetailAsync(ReportRootGetOneDriveusageAccountdetailParameter parameter)
         {
-            return await this.SendAsync<ReportRootGetonedriveusageAccountdetailParameter, ReportRootGetonedriveusageAccountdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetOneDriveusageAccountdetailParameter, ReportRootGetOneDriveusageAccountdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ReportRootGetonedriveusageAccountdetailResponse> ReportRootGetonedriveusageAccountdetailAsync(ReportRootGetonedriveusageAccountdetailParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ReportRootGetOneDriveusageAccountdetailResponse> ReportRootGetOneDriveusageAccountdetailAsync(ReportRootGetOneDriveusageAccountdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportRootGetonedriveusageAccountdetailParameter, ReportRootGetonedriveusageAccountdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetOneDriveusageAccountdetailParameter, ReportRootGetOneDriveusageAccountdetailResponse>(parameter, cancellationToken);
         }
     }
 }

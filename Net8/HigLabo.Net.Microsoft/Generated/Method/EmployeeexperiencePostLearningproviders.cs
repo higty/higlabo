@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-post-learningproviders?view=graph-rest-1.0
     /// </summary>
-    public partial class EmployeeexperiencePostLearningprovidersParameter : IRestApiParameter
+    public partial class EmployeeexperiencePostLearningProvidersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -44,7 +44,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public LearningContent[]? LearningContents { get; set; }
     }
-    public partial class EmployeeexperiencePostLearningprovidersResponse : RestApiResponse
+    public partial class EmployeeexperiencePostLearningProvidersResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-post-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperiencePostLearningprovidersResponse> EmployeeexperiencePostLearningprovidersAsync()
+        public async ValueTask<EmployeeexperiencePostLearningProvidersResponse> EmployeeexperiencePostLearningProvidersAsync()
         {
-            var p = new EmployeeexperiencePostLearningprovidersParameter();
-            return await this.SendAsync<EmployeeexperiencePostLearningprovidersParameter, EmployeeexperiencePostLearningprovidersResponse>(p, CancellationToken.None);
+            var p = new EmployeeexperiencePostLearningProvidersParameter();
+            return await this.SendAsync<EmployeeexperiencePostLearningProvidersParameter, EmployeeexperiencePostLearningProvidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-post-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperiencePostLearningprovidersResponse> EmployeeexperiencePostLearningprovidersAsync(CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperiencePostLearningProvidersResponse> EmployeeexperiencePostLearningProvidersAsync(CancellationToken cancellationToken)
         {
-            var p = new EmployeeexperiencePostLearningprovidersParameter();
-            return await this.SendAsync<EmployeeexperiencePostLearningprovidersParameter, EmployeeexperiencePostLearningprovidersResponse>(p, cancellationToken);
+            var p = new EmployeeexperiencePostLearningProvidersParameter();
+            return await this.SendAsync<EmployeeexperiencePostLearningProvidersParameter, EmployeeexperiencePostLearningProvidersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-post-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperiencePostLearningprovidersResponse> EmployeeexperiencePostLearningprovidersAsync(EmployeeexperiencePostLearningprovidersParameter parameter)
+        public async ValueTask<EmployeeexperiencePostLearningProvidersResponse> EmployeeexperiencePostLearningProvidersAsync(EmployeeexperiencePostLearningProvidersParameter parameter)
         {
-            return await this.SendAsync<EmployeeexperiencePostLearningprovidersParameter, EmployeeexperiencePostLearningprovidersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EmployeeexperiencePostLearningProvidersParameter, EmployeeexperiencePostLearningProvidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/employeeexperience-post-learningproviders?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<EmployeeexperiencePostLearningprovidersResponse> EmployeeexperiencePostLearningprovidersAsync(EmployeeexperiencePostLearningprovidersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<EmployeeexperiencePostLearningProvidersResponse> EmployeeexperiencePostLearningProvidersAsync(EmployeeexperiencePostLearningProvidersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EmployeeexperiencePostLearningprovidersParameter, EmployeeexperiencePostLearningprovidersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EmployeeexperiencePostLearningProvidersParameter, EmployeeexperiencePostLearningProvidersResponse>(parameter, cancellationToken);
         }
     }
 }

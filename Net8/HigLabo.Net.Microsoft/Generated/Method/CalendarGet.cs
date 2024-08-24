@@ -34,25 +34,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowedOnlineMeetingProviders,
-            CanEdit,
-            CanShare,
-            CanViewPrivateItems,
-            ChangeKey,
-            Color,
-            DefaultOnlineMeetingProvider,
-            HexColor,
-            Id,
-            IsDefaultCalendar,
-            IsRemovable,
-            IsTallyingResponses,
-            Name,
-            Owner,
-            CalendarPermissions,
-            CalendarView,
-            Events,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {

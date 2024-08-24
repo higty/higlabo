@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewinstanceListDecisionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewinstanceListDecisionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,20 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccessReviewId,
-            AppliedBy,
-            AppliedDateTime,
-            ApplyResult,
-            Decision,
-            Id,
-            Justification,
-            Principal,
-            PrincipalLink,
-            Recommendation,
-            Resource,
-            ResourceLink,
-            ReviewedBy,
-            ReviewedDateTime,
         }
         public enum ApiPath
         {
@@ -63,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewinstanceListDecisionsResponse : RestApiResponse
+    public partial class AccessReviewinstanceListDecisionsResponse : RestApiResponse<AccessReviewInstanceDecisionItem>
     {
-        public AccessReviewInstanceDecisionItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
@@ -75,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync()
+        public async ValueTask<AccessReviewinstanceListDecisionsResponse> AccessReviewinstanceListDecisionsAsync()
         {
-            var p = new AccessreviewinstanceListDecisionsParameter();
-            return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(p, CancellationToken.None);
+            var p = new AccessReviewinstanceListDecisionsParameter();
+            return await this.SendAsync<AccessReviewinstanceListDecisionsParameter, AccessReviewinstanceListDecisionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceListDecisionsResponse> AccessReviewinstanceListDecisionsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceListDecisionsParameter();
-            return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(p, cancellationToken);
+            var p = new AccessReviewinstanceListDecisionsParameter();
+            return await this.SendAsync<AccessReviewinstanceListDecisionsParameter, AccessReviewinstanceListDecisionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter)
+        public async ValueTask<AccessReviewinstanceListDecisionsResponse> AccessReviewinstanceListDecisionsAsync(AccessReviewinstanceListDecisionsParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewinstanceListDecisionsParameter, AccessReviewinstanceListDecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewinstanceListDecisionsResponse> AccessReviewinstanceListDecisionsAsync(AccessReviewinstanceListDecisionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewinstanceListDecisionsParameter, AccessReviewinstanceListDecisionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewInstanceDecisionItem> AccessReviewinstanceListDecisionsEnumerateAsync(AccessReviewinstanceListDecisionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewinstanceListDecisionsParameter, AccessReviewinstanceListDecisionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewInstanceDecisionItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

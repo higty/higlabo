@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurescorecontrolprofileGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecureScorecontrolprofileGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurescorecontrolprofileGetResponse : RestApiResponse
+    public partial class SecureScorecontrolprofileGetResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -59,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync()
+        public async ValueTask<SecureScorecontrolprofileGetResponse> SecureScorecontrolprofileGetAsync()
         {
-            var p = new SecurescorecontrolprofileGetParameter();
-            return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(p, CancellationToken.None);
+            var p = new SecureScorecontrolprofileGetParameter();
+            return await this.SendAsync<SecureScorecontrolprofileGetParameter, SecureScorecontrolprofileGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecureScorecontrolprofileGetResponse> SecureScorecontrolprofileGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurescorecontrolprofileGetParameter();
-            return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(p, cancellationToken);
+            var p = new SecureScorecontrolprofileGetParameter();
+            return await this.SendAsync<SecureScorecontrolprofileGetParameter, SecureScorecontrolprofileGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter)
+        public async ValueTask<SecureScorecontrolprofileGetResponse> SecureScorecontrolprofileGetAsync(SecureScorecontrolprofileGetParameter parameter)
         {
-            return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecureScorecontrolprofileGetParameter, SecureScorecontrolprofileGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecureScorecontrolprofileGetResponse> SecureScorecontrolprofileGetAsync(SecureScorecontrolprofileGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecureScorecontrolprofileGetParameter, SecureScorecontrolprofileGetResponse>(parameter, cancellationToken);
         }
     }
 }

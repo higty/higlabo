@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalPostHomerealmdiscoverypoliciesParameter : IRestApiParameter
+    public partial class ServicePrincipalPostHomeRealmDiscoverypoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class ServiceprincipalPostHomerealmdiscoverypoliciesResponse : RestApiResponse
+    public partial class ServicePrincipalPostHomeRealmDiscoverypoliciesResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -50,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync()
+        public async ValueTask<ServicePrincipalPostHomeRealmDiscoverypoliciesResponse> ServicePrincipalPostHomeRealmDiscoverypoliciesAsync()
         {
-            var p = new ServiceprincipalPostHomerealmdiscoverypoliciesParameter();
-            return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalPostHomeRealmDiscoverypoliciesParameter();
+            return await this.SendAsync<ServicePrincipalPostHomeRealmDiscoverypoliciesParameter, ServicePrincipalPostHomeRealmDiscoverypoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostHomeRealmDiscoverypoliciesResponse> ServicePrincipalPostHomeRealmDiscoverypoliciesAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalPostHomerealmdiscoverypoliciesParameter();
-            return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(p, cancellationToken);
+            var p = new ServicePrincipalPostHomeRealmDiscoverypoliciesParameter();
+            return await this.SendAsync<ServicePrincipalPostHomeRealmDiscoverypoliciesParameter, ServicePrincipalPostHomeRealmDiscoverypoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync(ServiceprincipalPostHomerealmdiscoverypoliciesParameter parameter)
+        public async ValueTask<ServicePrincipalPostHomeRealmDiscoverypoliciesResponse> ServicePrincipalPostHomeRealmDiscoverypoliciesAsync(ServicePrincipalPostHomeRealmDiscoverypoliciesParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalPostHomeRealmDiscoverypoliciesParameter, ServicePrincipalPostHomeRealmDiscoverypoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync(ServiceprincipalPostHomerealmdiscoverypoliciesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalPostHomeRealmDiscoverypoliciesResponse> ServicePrincipalPostHomeRealmDiscoverypoliciesAsync(ServicePrincipalPostHomeRealmDiscoverypoliciesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalPostHomeRealmDiscoverypoliciesParameter, ServicePrincipalPostHomeRealmDiscoverypoliciesResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
     /// </summary>
-    public partial class SwapshiftschangerequestListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SwapShiftsChangeRequestListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SwapshiftschangerequestListResponse : RestApiResponse
+    public partial class SwapShiftsChangeRequestListResponse : RestApiResponse
     {
         public string? RecipientShiftId { get; set; }
     }
@@ -60,32 +60,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync()
+        public async ValueTask<SwapShiftsChangeRequestListResponse> SwapShiftsChangeRequestListAsync()
         {
-            var p = new SwapshiftschangerequestListParameter();
-            return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(p, CancellationToken.None);
+            var p = new SwapShiftsChangeRequestListParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestListParameter, SwapShiftsChangeRequestListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync(CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestListResponse> SwapShiftsChangeRequestListAsync(CancellationToken cancellationToken)
         {
-            var p = new SwapshiftschangerequestListParameter();
-            return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(p, cancellationToken);
+            var p = new SwapShiftsChangeRequestListParameter();
+            return await this.SendAsync<SwapShiftsChangeRequestListParameter, SwapShiftsChangeRequestListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync(SwapshiftschangerequestListParameter parameter)
+        public async ValueTask<SwapShiftsChangeRequestListResponse> SwapShiftsChangeRequestListAsync(SwapShiftsChangeRequestListParameter parameter)
         {
-            return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SwapShiftsChangeRequestListParameter, SwapShiftsChangeRequestListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync(SwapshiftschangerequestListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SwapShiftsChangeRequestListResponse> SwapShiftsChangeRequestListAsync(SwapShiftsChangeRequestListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SwapShiftsChangeRequestListParameter, SwapShiftsChangeRequestListResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycasePostReviewsetsParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycasePostReviewsetsParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,15 +40,15 @@ namespace HigLabo.Net.Microsoft
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
-        public EdiscoveryReviewSetQuery[]? Queries { get; set; }
+        public EDiscoveryReviewSetQuery[]? Queries { get; set; }
     }
-    public partial class SecurityEdiscoverycasePostReviewsetsResponse : RestApiResponse
+    public partial class SecurityEDiscoverycasePostReviewsetsResponse : RestApiResponse
     {
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
-        public EdiscoveryReviewSetQuery[]? Queries { get; set; }
+        public EDiscoveryReviewSetQuery[]? Queries { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostReviewsetsResponse> SecurityEdiscoverycasePostReviewsetsAsync()
+        public async ValueTask<SecurityEDiscoverycasePostReviewsetsResponse> SecurityEDiscoverycasePostReviewsetsAsync()
         {
-            var p = new SecurityEdiscoverycasePostReviewsetsParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostReviewsetsParameter, SecurityEdiscoverycasePostReviewsetsResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycasePostReviewsetsParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostReviewsetsParameter, SecurityEDiscoverycasePostReviewsetsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostReviewsetsResponse> SecurityEdiscoverycasePostReviewsetsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostReviewsetsResponse> SecurityEDiscoverycasePostReviewsetsAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycasePostReviewsetsParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostReviewsetsParameter, SecurityEdiscoverycasePostReviewsetsResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycasePostReviewsetsParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostReviewsetsParameter, SecurityEDiscoverycasePostReviewsetsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostReviewsetsResponse> SecurityEdiscoverycasePostReviewsetsAsync(SecurityEdiscoverycasePostReviewsetsParameter parameter)
+        public async ValueTask<SecurityEDiscoverycasePostReviewsetsResponse> SecurityEDiscoverycasePostReviewsetsAsync(SecurityEDiscoverycasePostReviewsetsParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostReviewsetsParameter, SecurityEdiscoverycasePostReviewsetsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycasePostReviewsetsParameter, SecurityEDiscoverycasePostReviewsetsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostReviewsetsResponse> SecurityEdiscoverycasePostReviewsetsAsync(SecurityEdiscoverycasePostReviewsetsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostReviewsetsResponse> SecurityEDiscoverycasePostReviewsetsAsync(SecurityEDiscoverycasePostReviewsetsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostReviewsetsParameter, SecurityEdiscoverycasePostReviewsetsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycasePostReviewsetsParameter, SecurityEDiscoverycasePostReviewsetsResponse>(parameter, cancellationToken);
         }
     }
 }

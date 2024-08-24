@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewscheduledefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewScheduleDefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,16 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            EndDateTime,
-            FallbackReviewers,
-            Id,
-            Reviewers,
-            Scope,
-            StartDateTime,
-            Status,
-            ContactedReviewers,
-            Decisions,
-            Stages,
         }
         public enum ApiPath
         {
@@ -58,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewscheduledefinitionListInstancesResponse : RestApiResponse
+    public partial class AccessReviewScheduleDefinitionListInstancesResponse : RestApiResponse<AccessReviewInstance>
     {
-        public AccessReviewInstance[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
@@ -70,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync()
+        public async ValueTask<AccessReviewScheduleDefinitionListInstancesResponse> AccessReviewScheduleDefinitionListInstancesAsync()
         {
-            var p = new AccessreviewscheduledefinitionListInstancesParameter();
-            return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(p, CancellationToken.None);
+            var p = new AccessReviewScheduleDefinitionListInstancesParameter();
+            return await this.SendAsync<AccessReviewScheduleDefinitionListInstancesParameter, AccessReviewScheduleDefinitionListInstancesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewScheduleDefinitionListInstancesResponse> AccessReviewScheduleDefinitionListInstancesAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewscheduledefinitionListInstancesParameter();
-            return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(p, cancellationToken);
+            var p = new AccessReviewScheduleDefinitionListInstancesParameter();
+            return await this.SendAsync<AccessReviewScheduleDefinitionListInstancesParameter, AccessReviewScheduleDefinitionListInstancesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(AccessreviewscheduledefinitionListInstancesParameter parameter)
+        public async ValueTask<AccessReviewScheduleDefinitionListInstancesResponse> AccessReviewScheduleDefinitionListInstancesAsync(AccessReviewScheduleDefinitionListInstancesParameter parameter)
         {
-            return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewScheduleDefinitionListInstancesParameter, AccessReviewScheduleDefinitionListInstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewscheduledefinitionListInstancesResponse> AccessreviewscheduledefinitionListInstancesAsync(AccessreviewscheduledefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewScheduleDefinitionListInstancesResponse> AccessReviewScheduleDefinitionListInstancesAsync(AccessReviewScheduleDefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewscheduledefinitionListInstancesParameter, AccessreviewscheduledefinitionListInstancesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewScheduleDefinitionListInstancesParameter, AccessReviewScheduleDefinitionListInstancesResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewInstance> AccessReviewScheduleDefinitionListInstancesEnumerateAsync(AccessReviewScheduleDefinitionListInstancesParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewScheduleDefinitionListInstancesParameter, AccessReviewScheduleDefinitionListInstancesResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewInstance>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

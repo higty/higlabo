@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalRemovepasswordParameter : IRestApiParameter
+    public partial class ServicePrincipalRemovepasswordParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public Guid? KeyId { get; set; }
     }
-    public partial class ServiceprincipalRemovepasswordResponse : RestApiResponse
+    public partial class ServicePrincipalRemovepasswordResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync()
+        public async ValueTask<ServicePrincipalRemovepasswordResponse> ServicePrincipalRemovepasswordAsync()
         {
-            var p = new ServiceprincipalRemovepasswordParameter();
-            return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalRemovepasswordParameter();
+            return await this.SendAsync<ServicePrincipalRemovepasswordParameter, ServicePrincipalRemovepasswordResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalRemovepasswordResponse> ServicePrincipalRemovepasswordAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalRemovepasswordParameter();
-            return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(p, cancellationToken);
+            var p = new ServicePrincipalRemovepasswordParameter();
+            return await this.SendAsync<ServicePrincipalRemovepasswordParameter, ServicePrincipalRemovepasswordResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync(ServiceprincipalRemovepasswordParameter parameter)
+        public async ValueTask<ServicePrincipalRemovepasswordResponse> ServicePrincipalRemovepasswordAsync(ServicePrincipalRemovepasswordParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalRemovepasswordParameter, ServicePrincipalRemovepasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync(ServiceprincipalRemovepasswordParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalRemovepasswordResponse> ServicePrincipalRemovepasswordAsync(ServicePrincipalRemovepasswordParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalRemovepasswordParameter, ServicePrincipalRemovepasswordResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycaseListOperationsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SecurityEDiscoverycaseListOperationsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,14 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Action,
-            CompletedDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            Id,
-            PercentProgress,
-            ResultInfo,
-            Status,
         }
         public enum ApiPath
         {
@@ -56,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class SecurityEdiscoverycaseListOperationsResponse : RestApiResponse
+    public partial class SecurityEDiscoverycaseListOperationsResponse : RestApiResponse<CaseOperation>
     {
-        public CaseOperation[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
@@ -68,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListOperationsResponse> SecurityEdiscoverycaseListOperationsAsync()
+        public async ValueTask<SecurityEDiscoverycaseListOperationsResponse> SecurityEDiscoverycaseListOperationsAsync()
         {
-            var p = new SecurityEdiscoverycaseListOperationsParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListOperationsParameter, SecurityEdiscoverycaseListOperationsResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycaseListOperationsParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListOperationsParameter, SecurityEDiscoverycaseListOperationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListOperationsResponse> SecurityEdiscoverycaseListOperationsAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListOperationsResponse> SecurityEDiscoverycaseListOperationsAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycaseListOperationsParameter();
-            return await this.SendAsync<SecurityEdiscoverycaseListOperationsParameter, SecurityEdiscoverycaseListOperationsResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycaseListOperationsParameter();
+            return await this.SendAsync<SecurityEDiscoverycaseListOperationsParameter, SecurityEDiscoverycaseListOperationsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListOperationsResponse> SecurityEdiscoverycaseListOperationsAsync(SecurityEdiscoverycaseListOperationsParameter parameter)
+        public async ValueTask<SecurityEDiscoverycaseListOperationsResponse> SecurityEDiscoverycaseListOperationsAsync(SecurityEDiscoverycaseListOperationsParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListOperationsParameter, SecurityEdiscoverycaseListOperationsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycaseListOperationsParameter, SecurityEDiscoverycaseListOperationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycaseListOperationsResponse> SecurityEdiscoverycaseListOperationsAsync(SecurityEdiscoverycaseListOperationsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycaseListOperationsResponse> SecurityEDiscoverycaseListOperationsAsync(SecurityEDiscoverycaseListOperationsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycaseListOperationsParameter, SecurityEdiscoverycaseListOperationsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycaseListOperationsParameter, SecurityEDiscoverycaseListOperationsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<CaseOperation> SecurityEDiscoverycaseListOperationsEnumerateAsync(SecurityEDiscoverycaseListOperationsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<SecurityEDiscoverycaseListOperationsParameter, SecurityEDiscoverycaseListOperationsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<CaseOperation>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

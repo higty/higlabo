@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
     /// </summary>
-    public partial class AppconsentapprovalrouteListAppconsentrequestsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AppconsentapprovalrouteListAppconsentRequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,11 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppDisplayName,
-            AppId,
-            Id,
-            PendingScopes,
-            UserConsentRequests,
         }
         public enum ApiPath
         {
@@ -52,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AppconsentapprovalrouteListAppconsentrequestsResponse : RestApiResponse
+    public partial class AppconsentapprovalrouteListAppconsentRequestsResponse : RestApiResponse<AppConsentRequest>
     {
-        public AppConsentRequest[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
@@ -64,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync()
+        public async ValueTask<AppconsentapprovalrouteListAppconsentRequestsResponse> AppconsentapprovalrouteListAppconsentRequestsAsync()
         {
-            var p = new AppconsentapprovalrouteListAppconsentrequestsParameter();
-            return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(p, CancellationToken.None);
+            var p = new AppconsentapprovalrouteListAppconsentRequestsParameter();
+            return await this.SendAsync<AppconsentapprovalrouteListAppconsentRequestsParameter, AppconsentapprovalrouteListAppconsentRequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AppconsentapprovalrouteListAppconsentRequestsResponse> AppconsentapprovalrouteListAppconsentRequestsAsync(CancellationToken cancellationToken)
         {
-            var p = new AppconsentapprovalrouteListAppconsentrequestsParameter();
-            return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(p, cancellationToken);
+            var p = new AppconsentapprovalrouteListAppconsentRequestsParameter();
+            return await this.SendAsync<AppconsentapprovalrouteListAppconsentRequestsParameter, AppconsentapprovalrouteListAppconsentRequestsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(AppconsentapprovalrouteListAppconsentrequestsParameter parameter)
+        public async ValueTask<AppconsentapprovalrouteListAppconsentRequestsResponse> AppconsentapprovalrouteListAppconsentRequestsAsync(AppconsentapprovalrouteListAppconsentRequestsParameter parameter)
         {
-            return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AppconsentapprovalrouteListAppconsentRequestsParameter, AppconsentapprovalrouteListAppconsentRequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AppconsentapprovalrouteListAppconsentrequestsResponse> AppconsentapprovalrouteListAppconsentrequestsAsync(AppconsentapprovalrouteListAppconsentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AppconsentapprovalrouteListAppconsentRequestsResponse> AppconsentapprovalrouteListAppconsentRequestsAsync(AppconsentapprovalrouteListAppconsentRequestsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AppconsentapprovalrouteListAppconsentrequestsParameter, AppconsentapprovalrouteListAppconsentrequestsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AppconsentapprovalrouteListAppconsentRequestsParameter, AppconsentapprovalrouteListAppconsentRequestsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AppConsentRequest> AppconsentapprovalrouteListAppconsentRequestsEnumerateAsync(AppconsentapprovalrouteListAppconsentRequestsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AppconsentapprovalrouteListAppconsentRequestsParameter, AppconsentapprovalrouteListAppconsentRequestsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AppConsentRequest>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

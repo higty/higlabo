@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,12 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Audiences,
-            Description,
-            Id,
-            Issuer,
-            Name,
-            Subject,
         }
         public enum ApiPath
         {
@@ -54,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ApplicationListFederatedidentitycredentialsResponse : RestApiResponse
+    public partial class ApplicationListFederatedidentitycredentialsResponse : RestApiResponse<FederatedIdentityCredential>
     {
-        public FederatedIdentityCredential[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0
@@ -92,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ApplicationListFederatedidentitycredentialsResponse> ApplicationListFederatedidentitycredentialsAsync(ApplicationListFederatedidentitycredentialsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ApplicationListFederatedidentitycredentialsParameter, ApplicationListFederatedidentitycredentialsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/application-list-federatedidentitycredentials?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<FederatedIdentityCredential> ApplicationListFederatedidentitycredentialsEnumerateAsync(ApplicationListFederatedidentitycredentialsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ApplicationListFederatedidentitycredentialsParameter, ApplicationListFederatedidentitycredentialsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<FederatedIdentityCredential>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

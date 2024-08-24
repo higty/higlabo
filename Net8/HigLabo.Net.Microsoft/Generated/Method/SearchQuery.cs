@@ -37,9 +37,8 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public SearchRequest[]? Requests { get; set; }
     }
-    public partial class SearchQueryResponse : RestApiResponse
+    public partial class SearchQueryResponse : RestApiResponse<SearchResponse>
     {
-        public SearchResponse[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0

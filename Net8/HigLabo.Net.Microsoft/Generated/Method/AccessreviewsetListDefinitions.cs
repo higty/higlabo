@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
     /// </summary>
-    public partial class AccessreviewsetListDefinitionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessReviewsetListDefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,22 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AdditionalNotificationRecipients,
-            CreatedBy,
-            CreatedDateTime,
-            DescriptionForAdmins,
-            DescriptionForReviewers,
-            DisplayName,
-            FallbackReviewers,
-            Id,
-            InstanceEnumerationScope,
-            LastModifiedDateTime,
-            Reviewers,
-            Scope,
-            Settings,
-            StageSettings,
-            Status,
-            Instances,
         }
         public enum ApiPath
         {
@@ -63,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccessreviewsetListDefinitionsResponse : RestApiResponse
+    public partial class AccessReviewsetListDefinitionsResponse : RestApiResponse<AccessReviewScheduleDefinition>
     {
-        public AccessReviewScheduleDefinition[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
@@ -75,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListDefinitionsResponse> AccessreviewsetListDefinitionsAsync()
+        public async ValueTask<AccessReviewsetListDefinitionsResponse> AccessReviewsetListDefinitionsAsync()
         {
-            var p = new AccessreviewsetListDefinitionsParameter();
-            return await this.SendAsync<AccessreviewsetListDefinitionsParameter, AccessreviewsetListDefinitionsResponse>(p, CancellationToken.None);
+            var p = new AccessReviewsetListDefinitionsParameter();
+            return await this.SendAsync<AccessReviewsetListDefinitionsParameter, AccessReviewsetListDefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListDefinitionsResponse> AccessreviewsetListDefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewsetListDefinitionsResponse> AccessReviewsetListDefinitionsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewsetListDefinitionsParameter();
-            return await this.SendAsync<AccessreviewsetListDefinitionsParameter, AccessreviewsetListDefinitionsResponse>(p, cancellationToken);
+            var p = new AccessReviewsetListDefinitionsParameter();
+            return await this.SendAsync<AccessReviewsetListDefinitionsParameter, AccessReviewsetListDefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListDefinitionsResponse> AccessreviewsetListDefinitionsAsync(AccessreviewsetListDefinitionsParameter parameter)
+        public async ValueTask<AccessReviewsetListDefinitionsResponse> AccessReviewsetListDefinitionsAsync(AccessReviewsetListDefinitionsParameter parameter)
         {
-            return await this.SendAsync<AccessreviewsetListDefinitionsParameter, AccessreviewsetListDefinitionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessReviewsetListDefinitionsParameter, AccessReviewsetListDefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccessreviewsetListDefinitionsResponse> AccessreviewsetListDefinitionsAsync(AccessreviewsetListDefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessReviewsetListDefinitionsResponse> AccessReviewsetListDefinitionsAsync(AccessReviewsetListDefinitionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewsetListDefinitionsParameter, AccessreviewsetListDefinitionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessReviewsetListDefinitionsParameter, AccessReviewsetListDefinitionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AccessReviewScheduleDefinition> AccessReviewsetListDefinitionsEnumerateAsync(AccessReviewsetListDefinitionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<AccessReviewsetListDefinitionsParameter, AccessReviewsetListDefinitionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AccessReviewScheduleDefinition>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

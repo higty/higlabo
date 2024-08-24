@@ -24,25 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Enabled,
-            Id,
-            OfferShiftRequestsEnabled,
-            OpenShiftsEnabled,
-            ProvisionStatus,
-            ProvisionStatusCode,
-            SwapShiftsRequestsEnabled,
-            TimeClockEnabled,
-            TimeOffRequestsEnabled,
-            TimeZone,
-            OpenShiftChangeRequests,
-            OpenShifts,
-            SchedulingGroups,
-            Shifts,
-            SwapShiftChangeRequests,
-            TimesOff,
-            TimeOffReasons,
-            Timeoffrequest,
-            WorkforceIntegrations,
         }
         public enum ApiPath
         {

@@ -25,9 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContributionToContentDiscoveryAsOrganizationDisabled,
-            ContributionToContentDiscoveryDisabled,
-            Id,
         }
         public enum ApiPath
         {

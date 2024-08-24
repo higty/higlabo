@@ -378,6 +378,10 @@ namespace HigLabo.Net.CodeGenerator
                 else
                 {
                     property.TypeName.Name = em.Name;
+                    if (parameter.Required == false && property.TypeName.Name.EndsWith("?") == false)
+                    {
+                        property.TypeName.Name += "?"; 
+                    }
                 }
                 foreach (var item in parameter.EnumValues)
                 {

@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExternalConnectorsSearchSettings
     {
-        public ExternalConnectorsDisplaytemplate[]? SearchResultTemplates { get; set; }
+        public ExternalConnectorsDisplayTemplate[]? SearchResultTemplates { get; set; }
     }
 }

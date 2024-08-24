@@ -27,15 +27,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Name,
-            Position,
-            Visibility,
-            Charts,
-            Names,
-            PivotTables,
-            Protection,
-            Tables,
         }
         public enum ApiPath
         {

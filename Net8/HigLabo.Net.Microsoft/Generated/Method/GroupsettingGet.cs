@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
     /// </summary>
-    public partial class GroupsettingGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class GroupSettingGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class GroupsettingGetResponse : RestApiResponse
+    public partial class GroupSettingGetResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -66,32 +66,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync()
+        public async ValueTask<GroupSettingGetResponse> GroupSettingGetAsync()
         {
-            var p = new GroupsettingGetParameter();
-            return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(p, CancellationToken.None);
+            var p = new GroupSettingGetParameter();
+            return await this.SendAsync<GroupSettingGetParameter, GroupSettingGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<GroupSettingGetResponse> GroupSettingGetAsync(CancellationToken cancellationToken)
         {
-            var p = new GroupsettingGetParameter();
-            return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(p, cancellationToken);
+            var p = new GroupSettingGetParameter();
+            return await this.SendAsync<GroupSettingGetParameter, GroupSettingGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync(GroupsettingGetParameter parameter)
+        public async ValueTask<GroupSettingGetResponse> GroupSettingGetAsync(GroupSettingGetParameter parameter)
         {
-            return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GroupSettingGetParameter, GroupSettingGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/groupsetting-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<GroupsettingGetResponse> GroupsettingGetAsync(GroupsettingGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<GroupSettingGetResponse> GroupSettingGetAsync(GroupSettingGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GroupsettingGetParameter, GroupsettingGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GroupSettingGetParameter, GroupSettingGetResponse>(parameter, cancellationToken);
         }
     }
 }

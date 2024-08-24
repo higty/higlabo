@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalListApproleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalListApproleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,15 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AppRoleId,
-            CreatedDateTime,
-            DeletedDateTime,
-            Id,
-            PrincipalDisplayName,
-            PrincipalId,
-            PrincipalType,
-            ResourceDisplayName,
-            ResourceId,
         }
         public enum ApiPath
         {
@@ -59,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalListApproleAssignmentsResponse : RestApiResponse
+    public partial class ServicePrincipalListApproleAssignmentsResponse : RestApiResponse<AppRoleAssignment>
     {
-        public AppRoleAssignment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
@@ -71,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync()
+        public async ValueTask<ServicePrincipalListApproleAssignmentsResponse> ServicePrincipalListApproleAssignmentsAsync()
         {
-            var p = new ServiceprincipalListApproleAssignmentsParameter();
-            return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalListApproleAssignmentsParameter();
+            return await this.SendAsync<ServicePrincipalListApproleAssignmentsParameter, ServicePrincipalListApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListApproleAssignmentsResponse> ServicePrincipalListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalListApproleAssignmentsParameter();
-            return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(p, cancellationToken);
+            var p = new ServicePrincipalListApproleAssignmentsParameter();
+            return await this.SendAsync<ServicePrincipalListApproleAssignmentsParameter, ServicePrincipalListApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync(ServiceprincipalListApproleAssignmentsParameter parameter)
+        public async ValueTask<ServicePrincipalListApproleAssignmentsResponse> ServicePrincipalListApproleAssignmentsAsync(ServicePrincipalListApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalListApproleAssignmentsParameter, ServicePrincipalListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync(ServiceprincipalListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListApproleAssignmentsResponse> ServicePrincipalListApproleAssignmentsAsync(ServicePrincipalListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalListApproleAssignmentsParameter, ServicePrincipalListApproleAssignmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<AppRoleAssignment> ServicePrincipalListApproleAssignmentsEnumerateAsync(ServicePrincipalListApproleAssignmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalListApproleAssignmentsParameter, ServicePrincipalListApproleAssignmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<AppRoleAssignment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

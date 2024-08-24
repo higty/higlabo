@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoveryreviewtagUpdateParameter : IRestApiParameter
+    public partial class SecurityEDiscoveryReviewtagUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum SecurityEdiscoveryreviewtagUpdateParameterSecurityChildSelectability
+        public enum SecurityEDiscoveryReviewtagUpdateParameterSecurityChildSelectability
         {
             One,
             Many,
@@ -44,9 +44,9 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public string? DisplayName { get; set; }
         public string? Description { get; set; }
-        public SecurityEdiscoveryreviewtagUpdateParameterSecurityChildSelectability ChildSelectability { get; set; }
+        public SecurityEDiscoveryReviewtagUpdateParameterSecurityChildSelectability ChildSelectability { get; set; }
     }
-    public partial class SecurityEdiscoveryreviewtagUpdateResponse : RestApiResponse
+    public partial class SecurityEDiscoveryReviewtagUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -57,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagUpdateResponse> SecurityEdiscoveryreviewtagUpdateAsync()
+        public async ValueTask<SecurityEDiscoveryReviewtagUpdateResponse> SecurityEDiscoveryReviewtagUpdateAsync()
         {
-            var p = new SecurityEdiscoveryreviewtagUpdateParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewtagUpdateParameter, SecurityEdiscoveryreviewtagUpdateResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoveryReviewtagUpdateParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewtagUpdateParameter, SecurityEDiscoveryReviewtagUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagUpdateResponse> SecurityEdiscoveryreviewtagUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewtagUpdateResponse> SecurityEDiscoveryReviewtagUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoveryreviewtagUpdateParameter();
-            return await this.SendAsync<SecurityEdiscoveryreviewtagUpdateParameter, SecurityEdiscoveryreviewtagUpdateResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoveryReviewtagUpdateParameter();
+            return await this.SendAsync<SecurityEDiscoveryReviewtagUpdateParameter, SecurityEDiscoveryReviewtagUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagUpdateResponse> SecurityEdiscoveryreviewtagUpdateAsync(SecurityEdiscoveryreviewtagUpdateParameter parameter)
+        public async ValueTask<SecurityEDiscoveryReviewtagUpdateResponse> SecurityEDiscoveryReviewtagUpdateAsync(SecurityEDiscoveryReviewtagUpdateParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewtagUpdateParameter, SecurityEdiscoveryreviewtagUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoveryReviewtagUpdateParameter, SecurityEDiscoveryReviewtagUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoveryreviewtagUpdateResponse> SecurityEdiscoveryreviewtagUpdateAsync(SecurityEdiscoveryreviewtagUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoveryReviewtagUpdateResponse> SecurityEDiscoveryReviewtagUpdateAsync(SecurityEDiscoveryReviewtagUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoveryreviewtagUpdateParameter, SecurityEdiscoveryreviewtagUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoveryReviewtagUpdateParameter, SecurityEDiscoveryReviewtagUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

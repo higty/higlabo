@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalListMemberofParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalListMemberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalListMemberofResponse : RestApiResponse
+    public partial class ServicePrincipalListMemberofResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListMemberofResponse> ServiceprincipalListMemberofAsync()
+        public async ValueTask<ServicePrincipalListMemberofResponse> ServicePrincipalListMemberofAsync()
         {
-            var p = new ServiceprincipalListMemberofParameter();
-            return await this.SendAsync<ServiceprincipalListMemberofParameter, ServiceprincipalListMemberofResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalListMemberofParameter();
+            return await this.SendAsync<ServicePrincipalListMemberofParameter, ServicePrincipalListMemberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListMemberofResponse> ServiceprincipalListMemberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListMemberofResponse> ServicePrincipalListMemberofAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalListMemberofParameter();
-            return await this.SendAsync<ServiceprincipalListMemberofParameter, ServiceprincipalListMemberofResponse>(p, cancellationToken);
+            var p = new ServicePrincipalListMemberofParameter();
+            return await this.SendAsync<ServicePrincipalListMemberofParameter, ServicePrincipalListMemberofResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListMemberofResponse> ServiceprincipalListMemberofAsync(ServiceprincipalListMemberofParameter parameter)
+        public async ValueTask<ServicePrincipalListMemberofResponse> ServicePrincipalListMemberofAsync(ServicePrincipalListMemberofParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalListMemberofParameter, ServiceprincipalListMemberofResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalListMemberofParameter, ServicePrincipalListMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListMemberofResponse> ServiceprincipalListMemberofAsync(ServiceprincipalListMemberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListMemberofResponse> ServicePrincipalListMemberofAsync(ServicePrincipalListMemberofParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalListMemberofParameter, ServiceprincipalListMemberofResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalListMemberofParameter, ServicePrincipalListMemberofResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> ServicePrincipalListMemberofEnumerateAsync(ServicePrincipalListMemberofParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalListMemberofParameter, ServicePrincipalListMemberofResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

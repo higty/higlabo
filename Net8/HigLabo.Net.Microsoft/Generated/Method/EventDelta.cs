@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -25,53 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowNewTimeProposals,
-            Attendees,
-            Body,
-            BodyPreview,
-            Categories,
-            ChangeKey,
-            CreatedDateTime,
-            End,
-            HasAttachments,
-            HideAttendees,
-            ICalUId,
-            Id,
-            Importance,
-            IsAllDay,
-            IsCancelled,
-            IsDraft,
-            IsOnlineMeeting,
-            IsOrganizer,
-            IsReminderOn,
-            LastModifiedDateTime,
-            Location,
-            Locations,
-            OnlineMeeting,
-            OnlineMeetingProvider,
-            OnlineMeetingUrl,
-            Organizer,
-            OriginalEndTimeZone,
-            OriginalStart,
-            OriginalStartTimeZone,
-            Recurrence,
-            ReminderMinutesBeforeStart,
-            ResponseRequested,
-            ResponseStatus,
-            Sensitivity,
-            SeriesMasterId,
-            ShowAs,
-            Start,
-            Subject,
-            TransactionId,
-            Type,
-            WebLink,
-            Attachments,
-            Calendar,
-            Extensions,
-            Instances,
-            MultiValueExtendedProperties,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -97,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EventDeltaResponse : RestApiResponse
+    public partial class EventDeltaResponse : RestApiResponse<Event>
     {
-        public Event[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/event-delta?view=graph-rest-1.0
@@ -135,6 +88,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<EventDeltaResponse> EventDeltaAsync(EventDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<EventDeltaParameter, EventDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/event-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Event> EventDeltaEnumerateAsync(EventDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<EventDeltaParameter, EventDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Event>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

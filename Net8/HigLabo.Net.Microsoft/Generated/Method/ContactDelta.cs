@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -27,48 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AssistantName,
-            Birthday,
-            BusinessAddress,
-            BusinessHomePage,
-            BusinessPhones,
-            Categories,
-            ChangeKey,
-            Children,
-            CompanyName,
-            CreatedDateTime,
-            Department,
-            DisplayName,
-            EmailAddresses,
-            FileAs,
-            Generation,
-            GivenName,
-            HomeAddress,
-            HomePhones,
-            Id,
-            ImAddresses,
-            Initials,
-            JobTitle,
-            LastModifiedDateTime,
-            Manager,
-            MiddleName,
-            MobilePhone,
-            NickName,
-            OfficeLocation,
-            OtherAddress,
-            ParentFolderId,
-            PersonalNotes,
-            Profession,
-            SpouseName,
-            Surname,
-            Title,
-            YomiCompanyName,
-            YomiGivenName,
-            YomiSurname,
-            Extensions,
-            MultiValueExtendedProperties,
-            Photo,
-            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -94,9 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ContactDeltaResponse : RestApiResponse
+    public partial class ContactDeltaResponse : RestApiResponse<Contact>
     {
-        public Contact[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
@@ -132,6 +90,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Contact> ContactDeltaEnumerateAsync(ContactDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Contact>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackageUpdateParameter : IRestApiParameter
+    public partial class AccessPackageUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         public string? Description { get; set; }
         public bool? IsHidden { get; set; }
     }
-    public partial class AccesspackageUpdateResponse : RestApiResponse
+    public partial class AccessPackageUpdateResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync()
+        public async ValueTask<AccessPackageUpdateResponse> AccessPackageUpdateAsync()
         {
-            var p = new AccesspackageUpdateParameter();
-            return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(p, CancellationToken.None);
+            var p = new AccessPackageUpdateParameter();
+            return await this.SendAsync<AccessPackageUpdateParameter, AccessPackageUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageUpdateResponse> AccessPackageUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageUpdateParameter();
-            return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(p, cancellationToken);
+            var p = new AccessPackageUpdateParameter();
+            return await this.SendAsync<AccessPackageUpdateParameter, AccessPackageUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync(AccesspackageUpdateParameter parameter)
+        public async ValueTask<AccessPackageUpdateResponse> AccessPackageUpdateAsync(AccessPackageUpdateParameter parameter)
         {
-            return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageUpdateParameter, AccessPackageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackage-update?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackageUpdateResponse> AccesspackageUpdateAsync(AccesspackageUpdateParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageUpdateResponse> AccessPackageUpdateAsync(AccessPackageUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageUpdateParameter, AccesspackageUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageUpdateParameter, AccessPackageUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

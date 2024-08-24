@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -31,51 +32,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Audio,
-            Bundle,
-            Content,
-            CreatedBy,
-            CreatedDateTime,
-            CTag,
-            Deleted,
-            Description,
-            ETag,
-            File,
-            FileSystemInfo,
-            Folder,
-            Id,
-            Image,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Location,
-            Malware,
-            Name,
-            Package,
-            ParentReference,
-            PendingOperations,
-            Photo,
-            Publication,
-            RemoteItem,
-            Root,
-            SearchResult,
-            Shared,
-            SharepointIds,
-            Size,
-            SpecialFolder,
-            Video,
-            WebDavUrl,
-            WebUrl,
-            Activities,
-            Analytics,
-            Children,
-            CreatedByUser,
-            LastModifiedByUser,
-            ListItem,
-            Permissions,
-            Subscriptions,
-            Thumbnails,
-            Versions,
-            Workbook,
         }
         public enum ApiPath
         {
@@ -104,9 +60,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemDeltaResponse : RestApiResponse
+    public partial class DriveItemDeltaResponse : RestApiResponse<DriveItem>
     {
-        public DriveItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
@@ -116,32 +71,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync()
+        public async ValueTask<DriveItemDeltaResponse> DriveItemDeltaAsync()
         {
-            var p = new DriveitemDeltaParameter();
-            return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(p, CancellationToken.None);
+            var p = new DriveItemDeltaParameter();
+            return await this.SendAsync<DriveItemDeltaParameter, DriveItemDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemDeltaResponse> DriveItemDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemDeltaParameter();
-            return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(p, cancellationToken);
+            var p = new DriveItemDeltaParameter();
+            return await this.SendAsync<DriveItemDeltaParameter, DriveItemDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync(DriveitemDeltaParameter parameter)
+        public async ValueTask<DriveItemDeltaResponse> DriveItemDeltaAsync(DriveItemDeltaParameter parameter)
         {
-            return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemDeltaParameter, DriveItemDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemDeltaResponse> DriveitemDeltaAsync(DriveitemDeltaParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemDeltaResponse> DriveItemDeltaAsync(DriveItemDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemDeltaParameter, DriveitemDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemDeltaParameter, DriveItemDeltaResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DriveItem> DriveItemDeltaEnumerateAsync(DriveItemDeltaParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveItemDeltaParameter, DriveItemDeltaResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DriveItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

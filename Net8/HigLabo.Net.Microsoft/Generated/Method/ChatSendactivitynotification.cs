@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
     /// </summary>
-    public partial class ChatSendactivitynotificationParameter : IRestApiParameter
+    public partial class ChatSendActivitynotificationParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Microsoft
         public KeyValuePair[]? TemplateParameters { get; set; }
         public TeamworkNotificationRecipient? Recipient { get; set; }
     }
-    public partial class ChatSendactivitynotificationResponse : RestApiResponse
+    public partial class ChatSendActivitynotificationResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync()
+        public async ValueTask<ChatSendActivitynotificationResponse> ChatSendActivitynotificationAsync()
         {
-            var p = new ChatSendactivitynotificationParameter();
-            return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(p, CancellationToken.None);
+            var p = new ChatSendActivitynotificationParameter();
+            return await this.SendAsync<ChatSendActivitynotificationParameter, ChatSendActivitynotificationResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync(CancellationToken cancellationToken)
+        public async ValueTask<ChatSendActivitynotificationResponse> ChatSendActivitynotificationAsync(CancellationToken cancellationToken)
         {
-            var p = new ChatSendactivitynotificationParameter();
-            return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(p, cancellationToken);
+            var p = new ChatSendActivitynotificationParameter();
+            return await this.SendAsync<ChatSendActivitynotificationParameter, ChatSendActivitynotificationResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync(ChatSendactivitynotificationParameter parameter)
+        public async ValueTask<ChatSendActivitynotificationResponse> ChatSendActivitynotificationAsync(ChatSendActivitynotificationParameter parameter)
         {
-            return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChatSendActivitynotificationParameter, ChatSendActivitynotificationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync(ChatSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ChatSendActivitynotificationResponse> ChatSendActivitynotificationAsync(ChatSendActivitynotificationParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChatSendActivitynotificationParameter, ChatSendActivitynotificationResponse>(parameter, cancellationToken);
         }
     }
 }

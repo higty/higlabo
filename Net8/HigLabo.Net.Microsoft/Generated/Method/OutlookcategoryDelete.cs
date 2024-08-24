@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class OutlookcategoryDeleteParameter : IRestApiParameter
+    public partial class OutlookCategoryDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class OutlookcategoryDeleteResponse : RestApiResponse
+    public partial class OutlookCategoryDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -51,32 +51,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync()
+        public async ValueTask<OutlookCategoryDeleteResponse> OutlookCategoryDeleteAsync()
         {
-            var p = new OutlookcategoryDeleteParameter();
-            return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(p, CancellationToken.None);
+            var p = new OutlookCategoryDeleteParameter();
+            return await this.SendAsync<OutlookCategoryDeleteParameter, OutlookCategoryDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<OutlookCategoryDeleteResponse> OutlookCategoryDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new OutlookcategoryDeleteParameter();
-            return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(p, cancellationToken);
+            var p = new OutlookCategoryDeleteParameter();
+            return await this.SendAsync<OutlookCategoryDeleteParameter, OutlookCategoryDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(OutlookcategoryDeleteParameter parameter)
+        public async ValueTask<OutlookCategoryDeleteResponse> OutlookCategoryDeleteAsync(OutlookCategoryDeleteParameter parameter)
         {
-            return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OutlookCategoryDeleteParameter, OutlookCategoryDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<OutlookcategoryDeleteResponse> OutlookcategoryDeleteAsync(OutlookcategoryDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<OutlookCategoryDeleteResponse> OutlookCategoryDeleteAsync(OutlookCategoryDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OutlookcategoryDeleteParameter, OutlookcategoryDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OutlookCategoryDeleteParameter, OutlookCategoryDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

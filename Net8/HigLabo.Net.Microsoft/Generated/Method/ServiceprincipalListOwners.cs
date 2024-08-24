@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalListOwnersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalListOwnersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalListOwnersResponse : RestApiResponse
+    public partial class ServicePrincipalListOwnersResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync()
+        public async ValueTask<ServicePrincipalListOwnersResponse> ServicePrincipalListOwnersAsync()
         {
-            var p = new ServiceprincipalListOwnersParameter();
-            return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalListOwnersParameter();
+            return await this.SendAsync<ServicePrincipalListOwnersParameter, ServicePrincipalListOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListOwnersResponse> ServicePrincipalListOwnersAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalListOwnersParameter();
-            return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(p, cancellationToken);
+            var p = new ServicePrincipalListOwnersParameter();
+            return await this.SendAsync<ServicePrincipalListOwnersParameter, ServicePrincipalListOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(ServiceprincipalListOwnersParameter parameter)
+        public async ValueTask<ServicePrincipalListOwnersResponse> ServicePrincipalListOwnersAsync(ServicePrincipalListOwnersParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalListOwnersParameter, ServicePrincipalListOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListOwnersResponse> ServiceprincipalListOwnersAsync(ServiceprincipalListOwnersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListOwnersResponse> ServicePrincipalListOwnersAsync(ServicePrincipalListOwnersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalListOwnersParameter, ServiceprincipalListOwnersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalListOwnersParameter, ServicePrincipalListOwnersResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> ServicePrincipalListOwnersEnumerateAsync(ServicePrincipalListOwnersParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalListOwnersParameter, ServicePrincipalListOwnersResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

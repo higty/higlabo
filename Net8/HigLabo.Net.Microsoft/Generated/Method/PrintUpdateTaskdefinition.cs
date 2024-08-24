@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintUpdateTaskdefinitionParameter : IRestApiParameter
+    public partial class PrintUpdateTaskDefinitionParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? CreatedBy { get; set; }
     }
-    public partial class PrintUpdateTaskdefinitionResponse : RestApiResponse
+    public partial class PrintUpdateTaskDefinitionResponse : RestApiResponse
     {
         public AppIdentity? CreatedBy { get; set; }
         public string? DisplayName { get; set; }
@@ -54,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync()
+        public async ValueTask<PrintUpdateTaskDefinitionResponse> PrintUpdateTaskDefinitionAsync()
         {
-            var p = new PrintUpdateTaskdefinitionParameter();
-            return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(p, CancellationToken.None);
+            var p = new PrintUpdateTaskDefinitionParameter();
+            return await this.SendAsync<PrintUpdateTaskDefinitionParameter, PrintUpdateTaskDefinitionResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintUpdateTaskDefinitionResponse> PrintUpdateTaskDefinitionAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintUpdateTaskdefinitionParameter();
-            return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(p, cancellationToken);
+            var p = new PrintUpdateTaskDefinitionParameter();
+            return await this.SendAsync<PrintUpdateTaskDefinitionParameter, PrintUpdateTaskDefinitionResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(PrintUpdateTaskdefinitionParameter parameter)
+        public async ValueTask<PrintUpdateTaskDefinitionResponse> PrintUpdateTaskDefinitionAsync(PrintUpdateTaskDefinitionParameter parameter)
         {
-            return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintUpdateTaskDefinitionParameter, PrintUpdateTaskDefinitionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-update-taskdefinition?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintUpdateTaskdefinitionResponse> PrintUpdateTaskdefinitionAsync(PrintUpdateTaskdefinitionParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintUpdateTaskDefinitionResponse> PrintUpdateTaskDefinitionAsync(PrintUpdateTaskDefinitionParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintUpdateTaskdefinitionParameter, PrintUpdateTaskdefinitionResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintUpdateTaskDefinitionParameter, PrintUpdateTaskDefinitionResponse>(parameter, cancellationToken);
         }
     }
 }

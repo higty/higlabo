@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
     /// </summary>
-    public partial class BundleAdditemParameter : IRestApiParameter
+    public partial class BundleAddItemParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class BundleAdditemResponse : RestApiResponse
+    public partial class BundleAddItemResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync()
+        public async ValueTask<BundleAddItemResponse> BundleAddItemAsync()
         {
-            var p = new BundleAdditemParameter();
-            return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(p, CancellationToken.None);
+            var p = new BundleAddItemParameter();
+            return await this.SendAsync<BundleAddItemParameter, BundleAddItemResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync(CancellationToken cancellationToken)
+        public async ValueTask<BundleAddItemResponse> BundleAddItemAsync(CancellationToken cancellationToken)
         {
-            var p = new BundleAdditemParameter();
-            return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(p, cancellationToken);
+            var p = new BundleAddItemParameter();
+            return await this.SendAsync<BundleAddItemParameter, BundleAddItemResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync(BundleAdditemParameter parameter)
+        public async ValueTask<BundleAddItemResponse> BundleAddItemAsync(BundleAddItemParameter parameter)
         {
-            return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BundleAddItemParameter, BundleAddItemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bundle-additem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BundleAdditemResponse> BundleAdditemAsync(BundleAdditemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BundleAddItemResponse> BundleAddItemAsync(BundleAddItemParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BundleAdditemParameter, BundleAdditemResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BundleAddItemParameter, BundleAddItemResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
     /// </summary>
-    public partial class ProjectromeDeleteHistoryitemParameter : IRestApiParameter
+    public partial class ProjectromeDeleteHistoryItemParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class ProjectromeDeleteHistoryitemResponse : RestApiResponse
+    public partial class ProjectromeDeleteHistoryItemResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -49,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync()
+        public async ValueTask<ProjectromeDeleteHistoryItemResponse> ProjectromeDeleteHistoryItemAsync()
         {
-            var p = new ProjectromeDeleteHistoryitemParameter();
-            return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(p, CancellationToken.None);
+            var p = new ProjectromeDeleteHistoryItemParameter();
+            return await this.SendAsync<ProjectromeDeleteHistoryItemParameter, ProjectromeDeleteHistoryItemResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(CancellationToken cancellationToken)
+        public async ValueTask<ProjectromeDeleteHistoryItemResponse> ProjectromeDeleteHistoryItemAsync(CancellationToken cancellationToken)
         {
-            var p = new ProjectromeDeleteHistoryitemParameter();
-            return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(p, cancellationToken);
+            var p = new ProjectromeDeleteHistoryItemParameter();
+            return await this.SendAsync<ProjectromeDeleteHistoryItemParameter, ProjectromeDeleteHistoryItemResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(ProjectromeDeleteHistoryitemParameter parameter)
+        public async ValueTask<ProjectromeDeleteHistoryItemResponse> ProjectromeDeleteHistoryItemAsync(ProjectromeDeleteHistoryItemParameter parameter)
         {
-            return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ProjectromeDeleteHistoryItemParameter, ProjectromeDeleteHistoryItemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ProjectromeDeleteHistoryitemResponse> ProjectromeDeleteHistoryitemAsync(ProjectromeDeleteHistoryitemParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ProjectromeDeleteHistoryItemResponse> ProjectromeDeleteHistoryItemAsync(ProjectromeDeleteHistoryItemParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ProjectromeDeleteHistoryitemParameter, ProjectromeDeleteHistoryitemResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ProjectromeDeleteHistoryItemParameter, ProjectromeDeleteHistoryItemResponse>(parameter, cancellationToken);
         }
     }
 }

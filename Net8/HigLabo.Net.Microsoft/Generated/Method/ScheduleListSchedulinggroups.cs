@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -24,13 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedDateTime,
-            DisplayName,
-            Id,
-            IsActive,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            UserIds,
         }
         public enum ApiPath
         {
@@ -55,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ScheduleListSchedulingGroupsResponse : RestApiResponse
+    public partial class ScheduleListSchedulingGroupsResponse : RestApiResponse<SchedulingGroup>
     {
-        public SchedulingGroup[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
@@ -93,6 +86,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(ScheduleListSchedulingGroupsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<SchedulingGroup> ScheduleListSchedulingGroupsEnumerateAsync(ScheduleListSchedulingGroupsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<SchedulingGroup>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

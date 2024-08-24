@@ -25,33 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AddedStudentAction,
-            AddToCalendarAction,
-            AllowLateSubmissions,
-            AllowStudentsToAddResourcesToSubmission,
-            AssignDateTime,
-            AssignTo,
-            AssignedDateTime,
-            ClassId,
-            CloseDateTime,
-            CreatedBy,
-            CreatedDateTime,
-            DisplayName,
-            DueDateTime,
-            FeedbackResourcesFolderUrl,
-            Grading,
-            Id,
-            Instructions,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            NotificationChannelUrl,
-            ResourcesFolderUrl,
-            Status,
-            WebUrl,
-            Categories,
-            Resources,
-            Rubric,
-            Submissions,
         }
         public enum ApiPath
         {

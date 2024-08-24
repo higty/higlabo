@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
     /// </summary>
-    public partial class DirectoryDeleteditemsReStoreParameter : IRestApiParameter
+    public partial class DirectoryDeletedItemsReStoreParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -39,7 +39,7 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
     }
-    public partial class DirectoryDeleteditemsReStoreResponse : RestApiResponse
+    public partial class DirectoryDeletedItemsReStoreResponse : RestApiResponse
     {
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
@@ -52,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync()
+        public async ValueTask<DirectoryDeletedItemsReStoreResponse> DirectoryDeletedItemsReStoreAsync()
         {
-            var p = new DirectoryDeleteditemsReStoreParameter();
-            return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(p, CancellationToken.None);
+            var p = new DirectoryDeletedItemsReStoreParameter();
+            return await this.SendAsync<DirectoryDeletedItemsReStoreParameter, DirectoryDeletedItemsReStoreResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeletedItemsReStoreResponse> DirectoryDeletedItemsReStoreAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryDeleteditemsReStoreParameter();
-            return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(p, cancellationToken);
+            var p = new DirectoryDeletedItemsReStoreParameter();
+            return await this.SendAsync<DirectoryDeletedItemsReStoreParameter, DirectoryDeletedItemsReStoreResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(DirectoryDeleteditemsReStoreParameter parameter)
+        public async ValueTask<DirectoryDeletedItemsReStoreResponse> DirectoryDeletedItemsReStoreAsync(DirectoryDeletedItemsReStoreParameter parameter)
         {
-            return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryDeletedItemsReStoreParameter, DirectoryDeletedItemsReStoreResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-restore?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DirectoryDeleteditemsReStoreResponse> DirectoryDeleteditemsReStoreAsync(DirectoryDeleteditemsReStoreParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DirectoryDeletedItemsReStoreResponse> DirectoryDeletedItemsReStoreAsync(DirectoryDeletedItemsReStoreParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryDeleteditemsReStoreParameter, DirectoryDeleteditemsReStoreResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryDeletedItemsReStoreParameter, DirectoryDeletedItemsReStoreResponse>(parameter, cancellationToken);
         }
     }
 }

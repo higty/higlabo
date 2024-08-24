@@ -25,38 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AccountEnabled,
-            AlternativeSecurityIds,
-            ApproximateLastSignInDateTime,
-            ComplianceExpirationDateTime,
-            DeviceCategory,
-            DeviceId,
-            DeviceMetadata,
-            DeviceOwnership,
-            DeviceVersion,
-            DisplayName,
-            EnrollmentProfileName,
-            ExtensionAttributes,
-            Id,
-            IsCompliant,
-            IsManaged,
-            Manufacturer,
-            MdmAppId,
-            Model,
-            OnPremisesLastSyncDateTime,
-            OnPremisesSyncEnabled,
-            OperatingSystem,
-            OperatingSystemVersion,
-            PhysicalIds,
-            ProfileType,
-            RegistrationDateTime,
-            SystemLabels,
-            TrustType,
-            Extensions,
-            MemberOf,
-            RegisteredOwners,
-            RegisteredUsers,
-            TransitiveMemberOf,
         }
         public enum ApiPath
         {

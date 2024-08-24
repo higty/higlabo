@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DriveItemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveitemGetResponse : RestApiResponse
+    public partial class DriveItemGetResponse : RestApiResponse
     {
         public Audio? Audio { get; set; }
         public Bundle? Bundle { get; set; }
@@ -130,32 +130,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync()
+        public async ValueTask<DriveItemGetResponse> DriveItemGetAsync()
         {
-            var p = new DriveitemGetParameter();
-            return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(p, CancellationToken.None);
+            var p = new DriveItemGetParameter();
+            return await this.SendAsync<DriveItemGetParameter, DriveItemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemGetResponse> DriveItemGetAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemGetParameter();
-            return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(p, cancellationToken);
+            var p = new DriveItemGetParameter();
+            return await this.SendAsync<DriveItemGetParameter, DriveItemGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync(DriveitemGetParameter parameter)
+        public async ValueTask<DriveItemGetResponse> DriveItemGetAsync(DriveItemGetParameter parameter)
         {
-            return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemGetParameter, DriveItemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemGetResponse> DriveitemGetAsync(DriveitemGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemGetResponse> DriveItemGetAsync(DriveItemGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemGetParameter, DriveitemGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemGetParameter, DriveItemGetResponse>(parameter, cancellationToken);
         }
     }
 }

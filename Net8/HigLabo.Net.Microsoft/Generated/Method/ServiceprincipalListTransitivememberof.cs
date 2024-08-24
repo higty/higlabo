@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
     /// </summary>
-    public partial class ServiceprincipalListTransitivememberofParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ServicePrincipalListTransitiveMemberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,8 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DeletedDateTime,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +51,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ServiceprincipalListTransitivememberofResponse : RestApiResponse
+    public partial class ServicePrincipalListTransitiveMemberofResponse : RestApiResponse<DirectoryObject>
     {
-        public DirectoryObject[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
@@ -64,32 +62,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync()
+        public async ValueTask<ServicePrincipalListTransitiveMemberofResponse> ServicePrincipalListTransitiveMemberofAsync()
         {
-            var p = new ServiceprincipalListTransitivememberofParameter();
-            return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(p, CancellationToken.None);
+            var p = new ServicePrincipalListTransitiveMemberofParameter();
+            return await this.SendAsync<ServicePrincipalListTransitiveMemberofParameter, ServicePrincipalListTransitiveMemberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync(CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListTransitiveMemberofResponse> ServicePrincipalListTransitiveMemberofAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalListTransitivememberofParameter();
-            return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(p, cancellationToken);
+            var p = new ServicePrincipalListTransitiveMemberofParameter();
+            return await this.SendAsync<ServicePrincipalListTransitiveMemberofParameter, ServicePrincipalListTransitiveMemberofResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync(ServiceprincipalListTransitivememberofParameter parameter)
+        public async ValueTask<ServicePrincipalListTransitiveMemberofResponse> ServicePrincipalListTransitiveMemberofAsync(ServicePrincipalListTransitiveMemberofParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServicePrincipalListTransitiveMemberofParameter, ServicePrincipalListTransitiveMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync(ServiceprincipalListTransitivememberofParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ServicePrincipalListTransitiveMemberofResponse> ServicePrincipalListTransitiveMemberofAsync(ServicePrincipalListTransitiveMemberofParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServicePrincipalListTransitiveMemberofParameter, ServicePrincipalListTransitiveMemberofResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DirectoryObject> ServicePrincipalListTransitiveMemberofEnumerateAsync(ServicePrincipalListTransitiveMemberofParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ServicePrincipalListTransitiveMemberofParameter, ServicePrincipalListTransitiveMemberofResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DirectoryObject>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0
     /// </summary>
-    public partial class AccesspackagecatalogDeleteParameter : IRestApiParameter
+    public partial class AccessPackageCatalogDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class AccesspackagecatalogDeleteResponse : RestApiResponse
+    public partial class AccessPackageCatalogDeleteResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogDeleteResponse> AccesspackagecatalogDeleteAsync()
+        public async ValueTask<AccessPackageCatalogDeleteResponse> AccessPackageCatalogDeleteAsync()
         {
-            var p = new AccesspackagecatalogDeleteParameter();
-            return await this.SendAsync<AccesspackagecatalogDeleteParameter, AccesspackagecatalogDeleteResponse>(p, CancellationToken.None);
+            var p = new AccessPackageCatalogDeleteParameter();
+            return await this.SendAsync<AccessPackageCatalogDeleteParameter, AccessPackageCatalogDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogDeleteResponse> AccesspackagecatalogDeleteAsync(CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageCatalogDeleteResponse> AccessPackageCatalogDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackagecatalogDeleteParameter();
-            return await this.SendAsync<AccesspackagecatalogDeleteParameter, AccesspackagecatalogDeleteResponse>(p, cancellationToken);
+            var p = new AccessPackageCatalogDeleteParameter();
+            return await this.SendAsync<AccessPackageCatalogDeleteParameter, AccessPackageCatalogDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogDeleteResponse> AccesspackagecatalogDeleteAsync(AccesspackagecatalogDeleteParameter parameter)
+        public async ValueTask<AccessPackageCatalogDeleteResponse> AccessPackageCatalogDeleteAsync(AccessPackageCatalogDeleteParameter parameter)
         {
-            return await this.SendAsync<AccesspackagecatalogDeleteParameter, AccesspackagecatalogDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessPackageCatalogDeleteParameter, AccessPackageCatalogDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<AccesspackagecatalogDeleteResponse> AccesspackagecatalogDeleteAsync(AccesspackagecatalogDeleteParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<AccessPackageCatalogDeleteResponse> AccessPackageCatalogDeleteAsync(AccessPackageCatalogDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackagecatalogDeleteParameter, AccesspackagecatalogDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessPackageCatalogDeleteParameter, AccessPackageCatalogDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

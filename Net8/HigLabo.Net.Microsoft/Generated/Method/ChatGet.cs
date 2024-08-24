@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -27,21 +28,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChatType,
-            CreatedDateTime,
-            Id,
-            LastUpdatedDateTime,
-            OnlineMeetingInfo,
-            TenantId,
-            Topic,
-            Viewpoint,
-            WebUrl,
-            InstalledApps,
-            LastMessagePreview,
-            Members,
-            Messages,
-            PinnedMessages,
-            Tabs,
         }
         public enum ApiPath
         {
@@ -68,32 +54,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ChatGetResponse : RestApiResponse
+    public partial class ChatGetResponse : RestApiResponse<Chat>
     {
-        public enum ChatChatType
-        {
-            Group,
-            OneOnOne,
-            Meeting,
-            UnknownFutureValue,
-        }
-
-        public Chat[]? Value { get; set; }
-        public ChatChatType ChatType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public string? Id { get; set; }
-        public DateTimeOffset? LastUpdatedDateTime { get; set; }
-        public TeamworkOnlineMeetingInfo? OnlineMeetingInfo { get; set; }
-        public string? TenantId { get; set; }
-        public string? Topic { get; set; }
-        public ChatViewpoint? Viewpoint { get; set; }
-        public string? WebUrl { get; set; }
-        public TeamsAppInstallation[]? InstalledApps { get; set; }
-        public ChatMessageInfo? LastMessagePreview { get; set; }
-        public ConversationMember[]? Members { get; set; }
-        public ChatMessage[]? Messages { get; set; }
-        public PinnedChatMessageInfo[]? PinnedMessages { get; set; }
-        public TeamsTab[]? Tabs { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/chat-get?view=graph-rest-1.0
@@ -129,6 +91,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<ChatGetResponse> ChatGetAsync(ChatGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatGetParameter, ChatGetResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Chat> ChatGetEnumerateAsync(ChatGetParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ChatGetParameter, ChatGetResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Chat>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -25,10 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Description,
-            DisplayName,
-            Id,
-            Members,
         }
         public enum ApiPath
         {
@@ -55,10 +51,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ExternalConnectorsExternalGroupGetResponse : RestApiResponse
     {
-        public string? Description { get; set; }
-        public string? DisplayName { get; set; }
-        public string? Id { get; set; }
-        public ExternalConnectorsIdentity[]? Members { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-get?view=graph-rest-1.0

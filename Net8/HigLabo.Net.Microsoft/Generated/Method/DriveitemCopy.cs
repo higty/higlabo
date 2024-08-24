@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemCopyParameter : IRestApiParameter
+    public partial class DriveItemCopyParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
         public ItemReference? ParentReference { get; set; }
         public string? Name { get; set; }
     }
-    public partial class DriveitemCopyResponse : RestApiResponse
+    public partial class DriveItemCopyResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync()
+        public async ValueTask<DriveItemCopyResponse> DriveItemCopyAsync()
         {
-            var p = new DriveitemCopyParameter();
-            return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(p, CancellationToken.None);
+            var p = new DriveItemCopyParameter();
+            return await this.SendAsync<DriveItemCopyParameter, DriveItemCopyResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemCopyResponse> DriveItemCopyAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemCopyParameter();
-            return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(p, cancellationToken);
+            var p = new DriveItemCopyParameter();
+            return await this.SendAsync<DriveItemCopyParameter, DriveItemCopyResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter)
+        public async ValueTask<DriveItemCopyResponse> DriveItemCopyAsync(DriveItemCopyParameter parameter)
         {
-            return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemCopyParameter, DriveItemCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemCopyResponse> DriveItemCopyAsync(DriveItemCopyParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemCopyParameter, DriveItemCopyResponse>(parameter, cancellationToken);
         }
     }
 }

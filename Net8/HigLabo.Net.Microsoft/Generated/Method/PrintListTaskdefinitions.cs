@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
     /// </summary>
-    public partial class PrintListTaskdefinitionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrintListTaskDefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -23,10 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            CreatedBy,
-            DisplayName,
-            Id,
-            Tasks,
         }
         public enum ApiPath
         {
@@ -51,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PrintListTaskdefinitionsResponse : RestApiResponse
+    public partial class PrintListTaskDefinitionsResponse : RestApiResponse<PrintTaskDefinition>
     {
-        public PrintTaskDefinition[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
@@ -63,32 +59,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync()
+        public async ValueTask<PrintListTaskDefinitionsResponse> PrintListTaskDefinitionsAsync()
         {
-            var p = new PrintListTaskdefinitionsParameter();
-            return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(p, CancellationToken.None);
+            var p = new PrintListTaskDefinitionsParameter();
+            return await this.SendAsync<PrintListTaskDefinitionsParameter, PrintListTaskDefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<PrintListTaskDefinitionsResponse> PrintListTaskDefinitionsAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintListTaskdefinitionsParameter();
-            return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(p, cancellationToken);
+            var p = new PrintListTaskDefinitionsParameter();
+            return await this.SendAsync<PrintListTaskDefinitionsParameter, PrintListTaskDefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync(PrintListTaskdefinitionsParameter parameter)
+        public async ValueTask<PrintListTaskDefinitionsResponse> PrintListTaskDefinitionsAsync(PrintListTaskDefinitionsParameter parameter)
         {
-            return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintListTaskDefinitionsParameter, PrintListTaskDefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync(PrintListTaskdefinitionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<PrintListTaskDefinitionsResponse> PrintListTaskDefinitionsAsync(PrintListTaskDefinitionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintListTaskDefinitionsParameter, PrintListTaskDefinitionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<PrintTaskDefinition> PrintListTaskDefinitionsEnumerateAsync(PrintListTaskDefinitionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PrintListTaskDefinitionsParameter, PrintListTaskDefinitionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<PrintTaskDefinition>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

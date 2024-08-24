@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessListCustomquestionsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class BookingBusinessListCustomQuestionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -24,10 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AnswerInputType,
-            AnswerOptions,
-            DisplayName,
-            Id,
         }
         public enum ApiPath
         {
@@ -52,9 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class BookingbusinessListCustomquestionsResponse : RestApiResponse
+    public partial class BookingBusinessListCustomQuestionsResponse : RestApiResponse<BookingCustomQuestion>
     {
-        public BookingCustomQuestion[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
@@ -64,32 +60,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync()
+        public async ValueTask<BookingBusinessListCustomQuestionsResponse> BookingBusinessListCustomQuestionsAsync()
         {
-            var p = new BookingbusinessListCustomquestionsParameter();
-            return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessListCustomQuestionsParameter();
+            return await this.SendAsync<BookingBusinessListCustomQuestionsParameter, BookingBusinessListCustomQuestionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListCustomQuestionsResponse> BookingBusinessListCustomQuestionsAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessListCustomquestionsParameter();
-            return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(p, cancellationToken);
+            var p = new BookingBusinessListCustomQuestionsParameter();
+            return await this.SendAsync<BookingBusinessListCustomQuestionsParameter, BookingBusinessListCustomQuestionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(BookingbusinessListCustomquestionsParameter parameter)
+        public async ValueTask<BookingBusinessListCustomQuestionsResponse> BookingBusinessListCustomQuestionsAsync(BookingBusinessListCustomQuestionsParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessListCustomQuestionsParameter, BookingBusinessListCustomQuestionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessListCustomquestionsResponse> BookingbusinessListCustomquestionsAsync(BookingbusinessListCustomquestionsParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessListCustomQuestionsResponse> BookingBusinessListCustomQuestionsAsync(BookingBusinessListCustomQuestionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessListCustomquestionsParameter, BookingbusinessListCustomquestionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessListCustomQuestionsParameter, BookingBusinessListCustomQuestionsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<BookingCustomQuestion> BookingBusinessListCustomQuestionsEnumerateAsync(BookingBusinessListCustomQuestionsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<BookingBusinessListCustomQuestionsParameter, BookingBusinessListCustomQuestionsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<BookingCustomQuestion>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

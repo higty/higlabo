@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-customers?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessPostCustomersParameter : IRestApiParameter
+    public partial class BookingBusinessPostCustomersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -42,7 +42,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public Phone[]? Phones { get; set; }
     }
-    public partial class BookingbusinessPostCustomersResponse : RestApiResponse
+    public partial class BookingBusinessPostCustomersResponse : RestApiResponse
     {
         public PhysicalAddress[]? Addresses { get; set; }
         public string? DisplayName { get; set; }
@@ -58,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-customers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostCustomersResponse> BookingbusinessPostCustomersAsync()
+        public async ValueTask<BookingBusinessPostCustomersResponse> BookingBusinessPostCustomersAsync()
         {
-            var p = new BookingbusinessPostCustomersParameter();
-            return await this.SendAsync<BookingbusinessPostCustomersParameter, BookingbusinessPostCustomersResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessPostCustomersParameter();
+            return await this.SendAsync<BookingBusinessPostCustomersParameter, BookingBusinessPostCustomersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-customers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostCustomersResponse> BookingbusinessPostCustomersAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessPostCustomersResponse> BookingBusinessPostCustomersAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessPostCustomersParameter();
-            return await this.SendAsync<BookingbusinessPostCustomersParameter, BookingbusinessPostCustomersResponse>(p, cancellationToken);
+            var p = new BookingBusinessPostCustomersParameter();
+            return await this.SendAsync<BookingBusinessPostCustomersParameter, BookingBusinessPostCustomersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-customers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostCustomersResponse> BookingbusinessPostCustomersAsync(BookingbusinessPostCustomersParameter parameter)
+        public async ValueTask<BookingBusinessPostCustomersResponse> BookingBusinessPostCustomersAsync(BookingBusinessPostCustomersParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessPostCustomersParameter, BookingbusinessPostCustomersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessPostCustomersParameter, BookingBusinessPostCustomersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-customers?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostCustomersResponse> BookingbusinessPostCustomersAsync(BookingbusinessPostCustomersParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessPostCustomersResponse> BookingBusinessPostCustomersAsync(BookingBusinessPostCustomersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessPostCustomersParameter, BookingbusinessPostCustomersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessPostCustomersParameter, BookingBusinessPostCustomersResponse>(parameter, cancellationToken);
         }
     }
 }

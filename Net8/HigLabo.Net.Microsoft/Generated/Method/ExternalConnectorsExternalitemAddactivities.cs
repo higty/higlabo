@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-addactivities?view=graph-rest-1.0
     /// </summary>
-    public partial class ExternalConnectorsExternalitemAddactivitiesParameter : IRestApiParameter
+    public partial class ExternalConnectorsExternalItemAddactivitiesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -37,11 +37,10 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public ExternalConnectorsExternalactivity[]? Activities { get; set; }
+        public ExternalConnectorsExternalActivity[]? Activities { get; set; }
     }
-    public partial class ExternalConnectorsExternalitemAddactivitiesResponse : RestApiResponse
+    public partial class ExternalConnectorsExternalItemAddactivitiesResponse : RestApiResponse<ExternalConnectorsExternalActivityResult>
     {
-        public ExternalConnectorsExternalactivityResult[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-addactivities?view=graph-rest-1.0
@@ -51,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-addactivities?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemAddactivitiesResponse> ExternalConnectorsExternalitemAddactivitiesAsync()
+        public async ValueTask<ExternalConnectorsExternalItemAddactivitiesResponse> ExternalConnectorsExternalItemAddactivitiesAsync()
         {
-            var p = new ExternalConnectorsExternalitemAddactivitiesParameter();
-            return await this.SendAsync<ExternalConnectorsExternalitemAddactivitiesParameter, ExternalConnectorsExternalitemAddactivitiesResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsExternalItemAddactivitiesParameter();
+            return await this.SendAsync<ExternalConnectorsExternalItemAddactivitiesParameter, ExternalConnectorsExternalItemAddactivitiesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-addactivities?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemAddactivitiesResponse> ExternalConnectorsExternalitemAddactivitiesAsync(CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalItemAddactivitiesResponse> ExternalConnectorsExternalItemAddactivitiesAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalConnectorsExternalitemAddactivitiesParameter();
-            return await this.SendAsync<ExternalConnectorsExternalitemAddactivitiesParameter, ExternalConnectorsExternalitemAddactivitiesResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsExternalItemAddactivitiesParameter();
+            return await this.SendAsync<ExternalConnectorsExternalItemAddactivitiesParameter, ExternalConnectorsExternalItemAddactivitiesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-addactivities?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemAddactivitiesResponse> ExternalConnectorsExternalitemAddactivitiesAsync(ExternalConnectorsExternalitemAddactivitiesParameter parameter)
+        public async ValueTask<ExternalConnectorsExternalItemAddactivitiesResponse> ExternalConnectorsExternalItemAddactivitiesAsync(ExternalConnectorsExternalItemAddactivitiesParameter parameter)
         {
-            return await this.SendAsync<ExternalConnectorsExternalitemAddactivitiesParameter, ExternalConnectorsExternalitemAddactivitiesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsExternalItemAddactivitiesParameter, ExternalConnectorsExternalItemAddactivitiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-addactivities?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ExternalConnectorsExternalitemAddactivitiesResponse> ExternalConnectorsExternalitemAddactivitiesAsync(ExternalConnectorsExternalitemAddactivitiesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ExternalConnectorsExternalItemAddactivitiesResponse> ExternalConnectorsExternalItemAddactivitiesAsync(ExternalConnectorsExternalItemAddactivitiesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalConnectorsExternalitemAddactivitiesParameter, ExternalConnectorsExternalitemAddactivitiesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsExternalItemAddactivitiesParameter, ExternalConnectorsExternalItemAddactivitiesResponse>(parameter, cancellationToken);
         }
     }
 }

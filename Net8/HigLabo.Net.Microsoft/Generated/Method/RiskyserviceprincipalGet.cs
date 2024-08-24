@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
     /// </summary>
-    public partial class RiskyserviceprincipalGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RiskyServicePrincipalGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RiskyserviceprincipalGetResponse : RestApiResponse
+    public partial class RiskyServicePrincipalGetResponse : RestApiResponse
     {
         public enum RiskyServicePrincipalRiskDetail
         {
@@ -99,32 +99,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync()
+        public async ValueTask<RiskyServicePrincipalGetResponse> RiskyServicePrincipalGetAsync()
         {
-            var p = new RiskyserviceprincipalGetParameter();
-            return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(p, CancellationToken.None);
+            var p = new RiskyServicePrincipalGetParameter();
+            return await this.SendAsync<RiskyServicePrincipalGetParameter, RiskyServicePrincipalGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<RiskyServicePrincipalGetResponse> RiskyServicePrincipalGetAsync(CancellationToken cancellationToken)
         {
-            var p = new RiskyserviceprincipalGetParameter();
-            return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(p, cancellationToken);
+            var p = new RiskyServicePrincipalGetParameter();
+            return await this.SendAsync<RiskyServicePrincipalGetParameter, RiskyServicePrincipalGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(RiskyserviceprincipalGetParameter parameter)
+        public async ValueTask<RiskyServicePrincipalGetResponse> RiskyServicePrincipalGetAsync(RiskyServicePrincipalGetParameter parameter)
         {
-            return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RiskyServicePrincipalGetParameter, RiskyServicePrincipalGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<RiskyserviceprincipalGetResponse> RiskyserviceprincipalGetAsync(RiskyserviceprincipalGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<RiskyServicePrincipalGetResponse> RiskyServicePrincipalGetAsync(RiskyServicePrincipalGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RiskyserviceprincipalGetParameter, RiskyserviceprincipalGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RiskyServicePrincipalGetParameter, RiskyServicePrincipalGetResponse>(parameter, cancellationToken);
         }
     }
 }

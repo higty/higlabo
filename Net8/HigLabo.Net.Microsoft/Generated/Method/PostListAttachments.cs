@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -21,7 +22,6 @@ namespace HigLabo.Net.Microsoft
                 {
                     case ApiPath.Groups_Id_Threads_Id_Posts_Id_Attachments: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}/attachments";
                     case ApiPath.Groups_Id_Conversations_Id_Threads_Id_Posts_Id_Attachments: return $"/groups/{GroupsId}/conversations/{ConversationsId}/threads/{ThreadsId}/posts/{PostsId}/attachments";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups_Id_Threads_Id_Posts_Id: return $"/ttps://graph.microsoft.com/v1.0/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -29,18 +29,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContentType,
-            Id,
-            IsInline,
-            LastModifiedDateTime,
-            Name,
-            Size,
         }
         public enum ApiPath
         {
             Groups_Id_Threads_Id_Posts_Id_Attachments,
             Groups_Id_Conversations_Id_Threads_Id_Posts_Id_Attachments,
-            Ttps__Graphmicrosoftcom_V10_Groups_Id_Threads_Id_Posts_Id,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -61,9 +54,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PostListAttachmentsResponse : RestApiResponse
+    public partial class PostListAttachmentsResponse : RestApiResponse<Attachment>
     {
-        public Attachment[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/post-list-attachments?view=graph-rest-1.0
@@ -99,6 +91,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<PostListAttachmentsResponse> PostListAttachmentsAsync(PostListAttachmentsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PostListAttachmentsParameter, PostListAttachmentsResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/post-list-attachments?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<Attachment> PostListAttachmentsEnumerateAsync(PostListAttachmentsParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<PostListAttachmentsParameter, PostListAttachmentsResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<Attachment>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

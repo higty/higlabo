@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0
     /// </summary>
-    public partial class SecurityEdiscoverycasePostSearchesParameter : IRestApiParameter
+    public partial class SecurityEDiscoverycasePostSearchesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum SecurityEdiscoverycasePostSearchesParameterSecurityDataSourceScopes
+        public enum SecurityEDiscoverycasePostSearchesParameterSecurityDataSourceScopes
         {
             None,
             AllTenantMailboxes,
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Microsoft
             AllCaseCustodians,
             AllCaseNoncustodialDataSources,
         }
-        public enum EdiscoverySearchSecurityDataSourceScopes
+        public enum EDiscoverySearchSecurityDataSourceScopes
         {
             None,
             AllTenantMailboxes,
@@ -55,21 +55,21 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Description { get; set; }
         public string? ContentQuery { get; set; }
-        public SecurityEdiscoverycasePostSearchesParameterSecurityDataSourceScopes DataSourceScopes { get; set; }
+        public SecurityEDiscoverycasePostSearchesParameterSecurityDataSourceScopes DataSourceScopes { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DataSource[]? AdditionalSources { get; set; }
-        public EdiscoveryAddToReviewSetOperation? AddToReviewSetOperation { get; set; }
+        public EDiscoveryAddToReviewSetOperation? AddToReviewSetOperation { get; set; }
         public DataSource[]? CustodianSources { get; set; }
-        public EdiscoveryEstimateOperation? LastEstimateStatisticsOperation { get; set; }
-        public EdiscoveryNoncustodialDataSource[]? NoncustodialSources { get; set; }
+        public EDiscoveryEstimateOperation? LastEstimateStatisticsOperation { get; set; }
+        public EDiscoveryNoncustodialDataSource[]? NoncustodialSources { get; set; }
     }
-    public partial class SecurityEdiscoverycasePostSearchesResponse : RestApiResponse
+    public partial class SecurityEDiscoverycasePostSearchesResponse : RestApiResponse
     {
-        public enum EdiscoverySearchSecurityDataSourceScopes
+        public enum EDiscoverySearchSecurityDataSourceScopes
         {
             None,
             AllTenantMailboxes,
@@ -81,17 +81,17 @@ namespace HigLabo.Net.Microsoft
         public string? ContentQuery { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public EdiscoverySearchSecurityDataSourceScopes DataSourceScopes { get; set; }
+        public EDiscoverySearchSecurityDataSourceScopes DataSourceScopes { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DataSource[]? AdditionalSources { get; set; }
-        public EdiscoveryAddToReviewSetOperation? AddToReviewSetOperation { get; set; }
+        public EDiscoveryAddToReviewSetOperation? AddToReviewSetOperation { get; set; }
         public DataSource[]? CustodianSources { get; set; }
-        public EdiscoveryEstimateOperation? LastEstimateStatisticsOperation { get; set; }
-        public EdiscoveryNoncustodialDataSource[]? NoncustodialSources { get; set; }
+        public EDiscoveryEstimateOperation? LastEstimateStatisticsOperation { get; set; }
+        public EDiscoveryNoncustodialDataSource[]? NoncustodialSources { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0
@@ -101,32 +101,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostSearchesResponse> SecurityEdiscoverycasePostSearchesAsync()
+        public async ValueTask<SecurityEDiscoverycasePostSearchesResponse> SecurityEDiscoverycasePostSearchesAsync()
         {
-            var p = new SecurityEdiscoverycasePostSearchesParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostSearchesParameter, SecurityEdiscoverycasePostSearchesResponse>(p, CancellationToken.None);
+            var p = new SecurityEDiscoverycasePostSearchesParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostSearchesParameter, SecurityEDiscoverycasePostSearchesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostSearchesResponse> SecurityEdiscoverycasePostSearchesAsync(CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostSearchesResponse> SecurityEDiscoverycasePostSearchesAsync(CancellationToken cancellationToken)
         {
-            var p = new SecurityEdiscoverycasePostSearchesParameter();
-            return await this.SendAsync<SecurityEdiscoverycasePostSearchesParameter, SecurityEdiscoverycasePostSearchesResponse>(p, cancellationToken);
+            var p = new SecurityEDiscoverycasePostSearchesParameter();
+            return await this.SendAsync<SecurityEDiscoverycasePostSearchesParameter, SecurityEDiscoverycasePostSearchesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostSearchesResponse> SecurityEdiscoverycasePostSearchesAsync(SecurityEdiscoverycasePostSearchesParameter parameter)
+        public async ValueTask<SecurityEDiscoverycasePostSearchesResponse> SecurityEDiscoverycasePostSearchesAsync(SecurityEDiscoverycasePostSearchesParameter parameter)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostSearchesParameter, SecurityEdiscoverycasePostSearchesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SecurityEDiscoverycasePostSearchesParameter, SecurityEDiscoverycasePostSearchesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<SecurityEdiscoverycasePostSearchesResponse> SecurityEdiscoverycasePostSearchesAsync(SecurityEdiscoverycasePostSearchesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<SecurityEDiscoverycasePostSearchesResponse> SecurityEDiscoverycasePostSearchesAsync(SecurityEDiscoverycasePostSearchesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SecurityEdiscoverycasePostSearchesParameter, SecurityEdiscoverycasePostSearchesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SecurityEDiscoverycasePostSearchesParameter, SecurityEDiscoverycasePostSearchesResponse>(parameter, cancellationToken);
         }
     }
 }

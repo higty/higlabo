@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/driveitem-move?view=graph-rest-1.0
     /// </summary>
-    public partial class DriveitemMoveParameter : IRestApiParameter
+    public partial class DriveItemMoveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
     }
-    public partial class DriveitemMoveResponse : RestApiResponse
+    public partial class DriveItemMoveResponse : RestApiResponse
     {
         public Audio? Audio { get; set; }
         public Bundle? Bundle { get; set; }
@@ -105,32 +105,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemMoveResponse> DriveitemMoveAsync()
+        public async ValueTask<DriveItemMoveResponse> DriveItemMoveAsync()
         {
-            var p = new DriveitemMoveParameter();
-            return await this.SendAsync<DriveitemMoveParameter, DriveitemMoveResponse>(p, CancellationToken.None);
+            var p = new DriveItemMoveParameter();
+            return await this.SendAsync<DriveItemMoveParameter, DriveItemMoveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemMoveResponse> DriveitemMoveAsync(CancellationToken cancellationToken)
+        public async ValueTask<DriveItemMoveResponse> DriveItemMoveAsync(CancellationToken cancellationToken)
         {
-            var p = new DriveitemMoveParameter();
-            return await this.SendAsync<DriveitemMoveParameter, DriveitemMoveResponse>(p, cancellationToken);
+            var p = new DriveItemMoveParameter();
+            return await this.SendAsync<DriveItemMoveParameter, DriveItemMoveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemMoveResponse> DriveitemMoveAsync(DriveitemMoveParameter parameter)
+        public async ValueTask<DriveItemMoveResponse> DriveItemMoveAsync(DriveItemMoveParameter parameter)
         {
-            return await this.SendAsync<DriveitemMoveParameter, DriveitemMoveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DriveItemMoveParameter, DriveItemMoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/driveitem-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DriveitemMoveResponse> DriveitemMoveAsync(DriveitemMoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DriveItemMoveResponse> DriveItemMoveAsync(DriveItemMoveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DriveitemMoveParameter, DriveitemMoveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DriveItemMoveParameter, DriveItemMoveResponse>(parameter, cancellationToken);
         }
     }
 }

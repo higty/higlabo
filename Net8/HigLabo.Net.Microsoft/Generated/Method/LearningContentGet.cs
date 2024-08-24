@@ -26,25 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AdditionalTags,
-            ContentWebUrl,
-            Contributors,
-            CreatedDateTime,
-            Description,
-            Duration,
-            ExternalId,
-            Format,
-            Id,
-            IsActive,
-            IsPremium,
-            IsSearchable,
-            LanguageTag,
-            LastModifiedDateTime,
-            NumberOfPages,
-            SkillTags,
-            SourceName,
-            ThumbnailWebUrl,
-            Title,
         }
         public enum ApiPath
         {

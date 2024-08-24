@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
     /// </summary>
-    public partial class VirtualappointmentGetvirtualappointmentjoinweburlParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class VirtualAppointmentGetvirtualAppointmentjoinweburlParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class VirtualappointmentGetvirtualappointmentjoinweburlResponse : RestApiResponse
+    public partial class VirtualAppointmentGetvirtualAppointmentjoinweburlResponse : RestApiResponse
     {
     }
     /// <summary>
@@ -62,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync()
+        public async ValueTask<VirtualAppointmentGetvirtualAppointmentjoinweburlResponse> VirtualAppointmentGetvirtualAppointmentjoinweburlAsync()
         {
-            var p = new VirtualappointmentGetvirtualappointmentjoinweburlParameter();
-            return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(p, CancellationToken.None);
+            var p = new VirtualAppointmentGetvirtualAppointmentjoinweburlParameter();
+            return await this.SendAsync<VirtualAppointmentGetvirtualAppointmentjoinweburlParameter, VirtualAppointmentGetvirtualAppointmentjoinweburlResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(CancellationToken cancellationToken)
+        public async ValueTask<VirtualAppointmentGetvirtualAppointmentjoinweburlResponse> VirtualAppointmentGetvirtualAppointmentjoinweburlAsync(CancellationToken cancellationToken)
         {
-            var p = new VirtualappointmentGetvirtualappointmentjoinweburlParameter();
-            return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(p, cancellationToken);
+            var p = new VirtualAppointmentGetvirtualAppointmentjoinweburlParameter();
+            return await this.SendAsync<VirtualAppointmentGetvirtualAppointmentjoinweburlParameter, VirtualAppointmentGetvirtualAppointmentjoinweburlResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(VirtualappointmentGetvirtualappointmentjoinweburlParameter parameter)
+        public async ValueTask<VirtualAppointmentGetvirtualAppointmentjoinweburlResponse> VirtualAppointmentGetvirtualAppointmentjoinweburlAsync(VirtualAppointmentGetvirtualAppointmentjoinweburlParameter parameter)
         {
-            return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<VirtualAppointmentGetvirtualAppointmentjoinweburlParameter, VirtualAppointmentGetvirtualAppointmentjoinweburlResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<VirtualappointmentGetvirtualappointmentjoinweburlResponse> VirtualappointmentGetvirtualappointmentjoinweburlAsync(VirtualappointmentGetvirtualappointmentjoinweburlParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<VirtualAppointmentGetvirtualAppointmentjoinweburlResponse> VirtualAppointmentGetvirtualAppointmentjoinweburlAsync(VirtualAppointmentGetvirtualAppointmentjoinweburlParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<VirtualappointmentGetvirtualappointmentjoinweburlParameter, VirtualappointmentGetvirtualappointmentjoinweburlResponse>(parameter, cancellationToken);
+            return await this.SendAsync<VirtualAppointmentGetvirtualAppointmentjoinweburlParameter, VirtualAppointmentGetvirtualAppointmentjoinweburlResponse>(parameter, cancellationToken);
         }
     }
 }

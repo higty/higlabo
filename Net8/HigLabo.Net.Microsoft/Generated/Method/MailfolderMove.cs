@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
     /// </summary>
-    public partial class MailfolderMoveParameter : IRestApiParameter
+    public partial class MailFolderMoveParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
-    public partial class MailfolderMoveResponse : RestApiResponse
+    public partial class MailFolderMoveResponse : RestApiResponse
     {
         public Int32? ChildFolderCount { get; set; }
         public string? DisplayName { get; set; }
@@ -76,32 +76,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync()
+        public async ValueTask<MailFolderMoveResponse> MailFolderMoveAsync()
         {
-            var p = new MailfolderMoveParameter();
-            return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(p, CancellationToken.None);
+            var p = new MailFolderMoveParameter();
+            return await this.SendAsync<MailFolderMoveParameter, MailFolderMoveResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync(CancellationToken cancellationToken)
+        public async ValueTask<MailFolderMoveResponse> MailFolderMoveAsync(CancellationToken cancellationToken)
         {
-            var p = new MailfolderMoveParameter();
-            return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(p, cancellationToken);
+            var p = new MailFolderMoveParameter();
+            return await this.SendAsync<MailFolderMoveParameter, MailFolderMoveResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync(MailfolderMoveParameter parameter)
+        public async ValueTask<MailFolderMoveResponse> MailFolderMoveAsync(MailFolderMoveParameter parameter)
         {
-            return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MailFolderMoveParameter, MailFolderMoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/mailfolder-move?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<MailfolderMoveResponse> MailfolderMoveAsync(MailfolderMoveParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<MailFolderMoveResponse> MailFolderMoveAsync(MailFolderMoveParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MailfolderMoveParameter, MailfolderMoveResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MailFolderMoveParameter, MailFolderMoveResponse>(parameter, cancellationToken);
         }
     }
 }

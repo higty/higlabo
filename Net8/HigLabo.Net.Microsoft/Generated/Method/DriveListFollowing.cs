@@ -1,4 +1,5 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
@@ -23,51 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Audio,
-            Bundle,
-            Content,
-            CreatedBy,
-            CreatedDateTime,
-            CTag,
-            Deleted,
-            Description,
-            ETag,
-            File,
-            FileSystemInfo,
-            Folder,
-            Id,
-            Image,
-            LastModifiedBy,
-            LastModifiedDateTime,
-            Location,
-            Malware,
-            Name,
-            Package,
-            ParentReference,
-            PendingOperations,
-            Photo,
-            Publication,
-            RemoteItem,
-            Root,
-            SearchResult,
-            Shared,
-            SharepointIds,
-            Size,
-            SpecialFolder,
-            Video,
-            WebDavUrl,
-            WebUrl,
-            Activities,
-            Analytics,
-            Children,
-            CreatedByUser,
-            LastModifiedByUser,
-            ListItem,
-            Permissions,
-            Subscriptions,
-            Thumbnails,
-            Versions,
-            Workbook,
         }
         public enum ApiPath
         {
@@ -92,9 +48,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DriveListFollowingResponse : RestApiResponse
+    public partial class DriveListFollowingResponse : RestApiResponse<DriveItem>
     {
-        public DriveItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
@@ -130,6 +85,27 @@ namespace HigLabo.Net.Microsoft
         public async ValueTask<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<DriveItem> DriveListFollowingEnumerateAsync(DriveListFollowingParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<DriveItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
+using System.Runtime.CompilerServices;
 
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
     /// </summary>
-    public partial class ListitemListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ListItemListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -25,13 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContentType,
-            Activities,
-            Analytics,
-            DocumentSetVersions,
-            DriveItem,
-            Fields,
-            Versions,
         }
         public enum ApiPath
         {
@@ -56,9 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ListitemListResponse : RestApiResponse
+    public partial class ListItemListResponse : RestApiResponse<ListItem>
     {
-        public ListItem[]? Value { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
@@ -68,32 +61,53 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemListResponse> ListitemListAsync()
+        public async ValueTask<ListItemListResponse> ListItemListAsync()
         {
-            var p = new ListitemListParameter();
-            return await this.SendAsync<ListitemListParameter, ListitemListResponse>(p, CancellationToken.None);
+            var p = new ListItemListParameter();
+            return await this.SendAsync<ListItemListParameter, ListItemListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemListResponse> ListitemListAsync(CancellationToken cancellationToken)
+        public async ValueTask<ListItemListResponse> ListItemListAsync(CancellationToken cancellationToken)
         {
-            var p = new ListitemListParameter();
-            return await this.SendAsync<ListitemListParameter, ListitemListResponse>(p, cancellationToken);
+            var p = new ListItemListParameter();
+            return await this.SendAsync<ListItemListParameter, ListItemListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemListResponse> ListitemListAsync(ListitemListParameter parameter)
+        public async ValueTask<ListItemListResponse> ListItemListAsync(ListItemListParameter parameter)
         {
-            return await this.SendAsync<ListitemListParameter, ListitemListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ListItemListParameter, ListItemListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<ListitemListResponse> ListitemListAsync(ListitemListParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<ListItemListResponse> ListItemListAsync(ListItemListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ListitemListParameter, ListitemListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ListItemListParameter, ListItemListResponse>(parameter, cancellationToken);
+        }
+        /// <summary>
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0
+        /// </summary>
+        public async IAsyncEnumerable<ListItem> ListItemListEnumerateAsync(ListItemListParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var res = await this.SendAsync<ListItemListParameter, ListItemListResponse>(parameter, cancellationToken);
+            if (res.Value != null)
+            {
+                foreach (var item in res.Value)
+                {
+                    yield return item;
+                }
+                if (res.ODataNextLink.HasValue())
+                {
+                    await foreach (var item in this.GetValueListAsync<ListItem>(res.ODataNextLink, cancellationToken))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
 }

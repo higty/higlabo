@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
     /// </summary>
-    public partial class DelegatedadmincustomerGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DelegatedadminCustomerGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class DelegatedadmincustomerGetResponse : RestApiResponse
+    public partial class DelegatedadminCustomerGetResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -63,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync()
+        public async ValueTask<DelegatedadminCustomerGetResponse> DelegatedadminCustomerGetAsync()
         {
-            var p = new DelegatedadmincustomerGetParameter();
-            return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(p, CancellationToken.None);
+            var p = new DelegatedadminCustomerGetParameter();
+            return await this.SendAsync<DelegatedadminCustomerGetParameter, DelegatedadminCustomerGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminCustomerGetResponse> DelegatedadminCustomerGetAsync(CancellationToken cancellationToken)
         {
-            var p = new DelegatedadmincustomerGetParameter();
-            return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(p, cancellationToken);
+            var p = new DelegatedadminCustomerGetParameter();
+            return await this.SendAsync<DelegatedadminCustomerGetParameter, DelegatedadminCustomerGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(DelegatedadmincustomerGetParameter parameter)
+        public async ValueTask<DelegatedadminCustomerGetResponse> DelegatedadminCustomerGetAsync(DelegatedadminCustomerGetParameter parameter)
         {
-            return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DelegatedadminCustomerGetParameter, DelegatedadminCustomerGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<DelegatedadmincustomerGetResponse> DelegatedadmincustomerGetAsync(DelegatedadmincustomerGetParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<DelegatedadminCustomerGetResponse> DelegatedadminCustomerGetAsync(DelegatedadminCustomerGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DelegatedadmincustomerGetParameter, DelegatedadmincustomerGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DelegatedadminCustomerGetParameter, DelegatedadminCustomerGetResponse>(parameter, cancellationToken);
         }
     }
 }

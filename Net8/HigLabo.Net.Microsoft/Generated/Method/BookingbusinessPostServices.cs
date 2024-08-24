@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-services?view=graph-rest-1.0
     /// </summary>
-    public partial class BookingbusinessPostServicesParameter : IRestApiParameter
+    public partial class BookingBusinessPostServicesParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
@@ -71,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         public String[]? StaffMemberIds { get; set; }
         public string? WebUrl { get; set; }
     }
-    public partial class BookingbusinessPostServicesResponse : RestApiResponse
+    public partial class BookingBusinessPostServicesResponse : RestApiResponse
     {
         public enum BookingServiceBookingPriceType
         {
@@ -117,32 +117,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostServicesResponse> BookingbusinessPostServicesAsync()
+        public async ValueTask<BookingBusinessPostServicesResponse> BookingBusinessPostServicesAsync()
         {
-            var p = new BookingbusinessPostServicesParameter();
-            return await this.SendAsync<BookingbusinessPostServicesParameter, BookingbusinessPostServicesResponse>(p, CancellationToken.None);
+            var p = new BookingBusinessPostServicesParameter();
+            return await this.SendAsync<BookingBusinessPostServicesParameter, BookingBusinessPostServicesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostServicesResponse> BookingbusinessPostServicesAsync(CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessPostServicesResponse> BookingBusinessPostServicesAsync(CancellationToken cancellationToken)
         {
-            var p = new BookingbusinessPostServicesParameter();
-            return await this.SendAsync<BookingbusinessPostServicesParameter, BookingbusinessPostServicesResponse>(p, cancellationToken);
+            var p = new BookingBusinessPostServicesParameter();
+            return await this.SendAsync<BookingBusinessPostServicesParameter, BookingBusinessPostServicesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostServicesResponse> BookingbusinessPostServicesAsync(BookingbusinessPostServicesParameter parameter)
+        public async ValueTask<BookingBusinessPostServicesResponse> BookingBusinessPostServicesAsync(BookingBusinessPostServicesParameter parameter)
         {
-            return await this.SendAsync<BookingbusinessPostServicesParameter, BookingbusinessPostServicesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<BookingBusinessPostServicesParameter, BookingBusinessPostServicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-services?view=graph-rest-1.0
         /// </summary>
-        public async ValueTask<BookingbusinessPostServicesResponse> BookingbusinessPostServicesAsync(BookingbusinessPostServicesParameter parameter, CancellationToken cancellationToken)
+        public async ValueTask<BookingBusinessPostServicesResponse> BookingBusinessPostServicesAsync(BookingBusinessPostServicesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<BookingbusinessPostServicesParameter, BookingbusinessPostServicesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<BookingBusinessPostServicesParameter, BookingBusinessPostServicesResponse>(parameter, cancellationToken);
         }
     }
 }
