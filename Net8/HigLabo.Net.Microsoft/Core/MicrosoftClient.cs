@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -120,6 +121,26 @@ namespace HigLabo.Net.Microsoft
                 await this.ProcessAccessTokenAsync();
             }
             return await this.DownloadStreamAsync(this.CreateHttpRequestMessage(this.ApiDomain + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
+        }
+
+        public async IAsyncEnumerable<T> GetValueListAsync<T>(string nextLink, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            if (nextLink.HasValue())
+            {
+                var url = nextLink;
+                while (true)
+                {
+                    var res1 = await this.SendAsync<RestApiResponse<T>>(new ODataNextLinkParameter(url));
+                    if (res1.Value == null) { yield break; }
+
+                    foreach (var item in res1.Value)
+                    {
+                        yield return item;
+                    }
+                    url = res1.ODataNextLink;
+                    if (url.IsNullOrEmpty()) { yield break; }
+                }
+            }
         }
 
         protected async Task ProcessAccessTokenAsync()

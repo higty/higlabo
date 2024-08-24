@@ -80,6 +80,91 @@ namespace HigLabo.Net.CodeGenerator
             l.Add("Result");
             l.Add("Root");
             l.Add("MessageRule");
+            l.Add("Configuration");
+            l.Add("Reply");
+            l.Add("ReplyAll");
+            l.Add("Package");
+            l.Add("Catalog");
+            l.Add("History");
+            l.Add("Review");
+            l.Add("Large");
+            l.Add("Gallery");
+            l.Add("ViewStage");
+            l.Add("Simulation");
+            l.Add("Policy");
+            l.Add("IdentityUserflow");
+            l.Add("Appointment");
+            l.Add("Business");
+            l.Add("Customer");
+            l.Add("Currency");
+            l.Add("Question");
+            l.Add("Staff");
+            l.Add("Member");
+            l.Add("BrowserSite");
+            l.Add("Permission");
+            l.Add("CallRecord");
+            l.Add("CheckList");
+            l.Add("Item");
+            l.Add("AccessPolicy");
+            l.Add("Folder");
+            l.Add("Organization");
+            l.Add("CountryNamed");
+            l.Add("AllMessage");
+            l.Add("Audit");
+            l.Add("Object");
+            l.Add("Class");
+            l.Add("School");
+            l.Add("Setting");
+            l.Add("Template");
+            l.Add("Discovery");
+            l.Add("Realm");
+            l.Add("ApiConnector");
+            l.Add("Provider");
+            l.Add("Attribute");
+            l.Add("Assignment");
+            l.Add("Classification");
+            l.Add("Override");
+            l.Add("InternalDomainFederation");
+            l.Add("OAuth");
+            l.Add("OfferShiftRequest");
+            l.Add("MicrosoftAuthenticatorAuthenticationMethod");
+            l.Add("Grant");
+            l.Add("Shift");
+            l.Add("OrgContact");
+            l.Add("Category");
+            l.Add("Categories");
+            l.Add("CopyToSection");
+            l.Add("Music");
+            l.Add("Share");
+            l.Add("Job");
+            l.Add("Service");
+            l.Add("PrintUsageByUser");
+            l.Add("Photo");
+            l.Add("RangeFormat");
+            l.Add("Application");
+            l.Add("ReportRootGetEmailAppUsage");
+            l.Add("M365");
+            l.Add("OneDrive");
+            l.Add("Activity");
+            l.Add("Pages");
+            l.Add("Skype");
+            l.Add("Teams");
+            l.Add("Extension");
+            l.Add("Group");
+            l.Add("Reason");
+            l.Add("Score");
+            l.Add("Principal");
+            l.Add("Archive");
+            l.Add("SubjectRightsRequest");
+            l.Add("Request");
+            l.Add("Change");
+            l.Add("Migration");
+            l.Add("Definition");
+            l.Add("Schedule");
+            l.Add("Acceptance");
+            l.Add("InstalledApps");
+            l.Add("Comment");
+            l.Add("Collection");
         }
 
         public MicrosoftSourceCodeGenerator(string folderPath)
@@ -349,6 +434,8 @@ namespace HigLabo.Net.CodeGenerator
             var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response")!;
             var rx = new Regex("{[^}]*}");
 
+            var cClient = sc.Namespaces[0].Classes.Find(el => el.Name == "MicrosoftClient")!;
+
             var entityUrl = "";
             if (cParameter.Name.Contains("Get"))
             {
@@ -379,10 +466,9 @@ namespace HigLabo.Net.CodeGenerator
                     }
                     catch { }
                 }
-                var pValueList = cResponse.Properties.Find(el => el.Name == "Value");
-                if (pValueList != null && pValueList.TypeName.Name.Contains("[]"))
+                if (cResponse.BaseClass != null && cResponse.BaseClass.Name.StartsWith("RestApiResponse<"))
                 {
-                    var responseListClassName = pValueList.TypeName.Name.Replace("[]?", "");
+                    var responseListClassName = cResponse.BaseClass.Name.ExtractString('<', '>');
                     var responseListUrl = this._UrlClassNameMappingList.Find(el => el.ClassName == responseListClassName)?.Url!;
                     if (responseListUrl.IsNullOrEmpty() == false)
                     {
@@ -392,10 +478,8 @@ namespace HigLabo.Net.CodeGenerator
                             cField.Values.AddIfNotExist(new EnumValue(item.Name), el => el.Text == item.Name);
                         }
                     }
-                }
-                else
-                {
-
+                    sc.UsingNamespaces.Add("System.Runtime.CompilerServices");
+                    cClient.Methods.Add(CreateEnumerateAsyncMethod(url, className, responseListClassName));
                 }
 
                 var p = new Property("QueryParameter<Field>", "Query", true);
@@ -498,7 +582,6 @@ namespace HigLabo.Net.CodeGenerator
 
             if (hasBinaryMethod == true)
             {
-                var cClient = sc.Namespaces[0].Classes.Find(el => el.Name == "MicrosoftClient")!;
                 var md = new Method(MethodAccessModifier.Public, className + "StreamAsync");
                 md.Comment = url;
                 md.Parameters.Add(new MethodParameter(className + "Parameter", "parameter"));
@@ -889,7 +972,7 @@ namespace HigLabo.Net.CodeGenerator
                                 var doc = this.GetDocumentAsync(href).GetAwaiter().GetResult();
                                 var cValue = this.CreateEntityClass(href, context).GetAwaiter().GetResult();
                                 this.CreateEntitySourceCodeFile(href, cValue);
-                                c.Properties.Add(new Property(cValue.Name + "[]?", "Value", true));
+                                c.BaseClass = new TypeName($"RestApiResponse<{cValue.Name}>");
                             }
                             else
                             {
@@ -914,7 +997,7 @@ namespace HigLabo.Net.CodeGenerator
                 var u = this._UrlClassNameMappingList.Find(el => el.ClassName == resourceName);
                 if (u != null)
                 {
-                    c.Properties.AddIfNotExist(new Property(resourceName + "[]?", "Value", true), el => el.Name == resourceName);
+                    c.BaseClass = new TypeName($"RestApiResponse<{resourceName}>");
                 }
             }
 
@@ -942,6 +1025,41 @@ namespace HigLabo.Net.CodeGenerator
                 catch { }
             }
             return c;
+        }
+        private Method CreateEnumerateAsyncMethod(string url string className, string valueClassName)
+        {
+            var md = new Method(MethodAccessModifier.Public, className + "EnumerateAsync");
+            md.Comment = url;
+            md.AddParameter(className + "Parameter", "parameter");
+            md.AddParameter("[EnumeratorCancellation] CancellationToken", "cancellationToken");
+            md.ReturnTypeName.Name = "async IAsyncEnumerable<" + valueClassName + ">";
+
+            md.Body.Add(SourceCodeLanguage.CSharp
+                , $"var res = await this.SendAsync<{className}Parameter, {className}Response>(parameter, cancellationToken);");
+            var cb = new CodeBlock(SourceCodeLanguage.CSharp, "if (res.Value != null)");
+            cb.CurlyBracket = true;
+            {
+                {
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, "foreach (var item in res.Value)");
+                    cb1.CurlyBracket = true;
+                    cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                    cb.CodeBlocks.Add(cb1);
+                }
+                {
+                    var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, "if (res.ODataNextLink.HasValue())");
+                    cb1.CurlyBracket = true;
+                    {
+                        var cb2 = new CodeBlock(SourceCodeLanguage.CSharp
+                            , $"await foreach (var item in this.GetValueListAsync<{valueClassName}>(res.ODataNextLink, cancellationToken))");
+                        cb2.CurlyBracket = true;
+                        cb2.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                        cb1.CodeBlocks.Add(cb2);
+                    }
+                    cb.CodeBlocks.Add(cb1);
+                }
+            }
+            md.Body.Add(cb);
+            return md;
         }
     }
 }
