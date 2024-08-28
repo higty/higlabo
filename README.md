@@ -1,4 +1,4 @@
-# higlabo
+# higLabo
 HigLabo library provide features 
 
 1. OpenAI client library
