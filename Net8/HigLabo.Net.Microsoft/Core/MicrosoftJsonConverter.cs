@@ -1,5 +1,6 @@
 ﻿using HigLabo.Core;
 using HigLabo.Net.OAuth;
+using HigLabo.Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;

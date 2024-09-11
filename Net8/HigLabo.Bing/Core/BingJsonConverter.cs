@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
 using HigLabo.RestApi;
+using HigLabo.Newtonsoft;
 
 namespace HigLabo.Bing
 {

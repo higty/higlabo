@@ -83,6 +83,10 @@ namespace HigLabo.Web
         {
             return request.Headers["Host"].ToString();
         }
+        public static String GetSchemeFqdn(this HttpRequest request)
+        {
+            return $"{request.Scheme}://{request.Headers["Host"].ToString()}";
+        }
         public static String GetClientIPAddressText(this HttpRequest request)
         {
             var req = request;

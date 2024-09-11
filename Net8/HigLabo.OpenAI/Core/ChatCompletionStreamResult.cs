@@ -9,11 +9,6 @@ namespace HigLabo.OpenAI
 {
     public class ChatCompletionStreamResult
     {
-        public class FunctionCallResult
-        {
-            public string Name { get; set; } = "";
-            public string Arguments { get; set; } = "";
-        }
         public List<ChatCompletionChunk> ChunkList { get; init; } = new();
 
         public void Process(ChatCompletionChunk chunk)
@@ -55,7 +50,7 @@ namespace HigLabo.OpenAI
                     {
                         if (toolCall.Function != null)
                         {
-                            if (toolCall.Function.Name.IsNullOrEmpty() == false)
+                            if (toolCall.Function.Name.HasValue())
                             {
                                 f = l.Find(el => el.Name == toolCall.Function.Name);
                                 if (f == null)
@@ -67,7 +62,7 @@ namespace HigLabo.OpenAI
                             }
                             if (f != null)
                             {
-                                if (toolCall.Function.Arguments.IsNullOrEmpty() == false)
+                                if (toolCall.Function.Arguments.HasValue())
                                 {
                                     f.Arguments += toolCall.Function.Arguments;
                                 }

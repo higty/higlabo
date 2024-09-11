@@ -103,7 +103,7 @@ namespace HigLabo.Core
             return await DeleteBlobAsync(containerName, blobName, deleteSnapshotsOption, null, CancellationToken.None);
         }
         public async Task<Response> DeleteBlobAsync(String containerName, String blobName
-            , DeleteSnapshotsOption deleteSnapshotsOption, BlobRequestConditions blobRequestConditions, CancellationToken cancellationToken)
+            , DeleteSnapshotsOption deleteSnapshotsOption, BlobRequestConditions? blobRequestConditions, CancellationToken cancellationToken)
         {
             var container = this.GetBlobContainer(containerName);
             var blob = container.GetBlobClient(blobName);
@@ -118,7 +118,7 @@ namespace HigLabo.Core
             return res;
         }
         public async Task<Response<Boolean>> DeleteBlobIfExistsAsync(String containerName, String blobName
-            , DeleteSnapshotsOption deleteSnapshotsOption, BlobRequestConditions blobRequestConditions, CancellationToken cancellationToken)
+            , DeleteSnapshotsOption deleteSnapshotsOption, BlobRequestConditions? blobRequestConditions, CancellationToken cancellationToken)
         {
             var container = this.GetBlobContainer(containerName);
             var blob = container.GetBlobClient(blobName);

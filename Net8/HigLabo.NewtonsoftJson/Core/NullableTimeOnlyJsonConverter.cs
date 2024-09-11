@@ -2,11 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HigLabo.Core;
 
-namespace HigLabo.Core
+namespace HigLabo.Newtonsoft
 {
     public class NullableTimeOnlyJsonConverter : JsonConverter<Nullable<TimeOnly>>
     {

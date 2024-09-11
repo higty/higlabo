@@ -19,8 +19,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetOpenAISetting();
-            await ChatCompletionJsonFormat();
+            SetAzureSetting();
+            await ChatCompletionStreamWithFunctionCalling();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -309,24 +309,23 @@ namespace HigLabo.OpenAI
             tool.Function.Name = "getWhether";
             tool.Function.Description = "This service can get whether of specified location.";
             //Use anonymous object to define json schema.
-            tool.Function.Parameters = new
-            {
-                type = "object",
-                properties = new
-                {
-                    location = new
-                    {
-                        type = "string",
-                        description = "Location list that you want to know.",
-                    },
-                }
-            };
+            #region
+            //tool.Function.Parameters = new
+            //{
+            //    type = "object",
+            //    properties = new
+            //    {
+            //        location = new
+            //        {
+            //            type = "string",
+            //            description = "Location list that you want to know.",
+            //        },
+            //    }
+            //};
+            #endregion
             //Use JsonSchema class to define json schema.
             var o = new JsonSchema();
-            o.Properties.Add("location", new JsonSchemaProperty("string")
-            {
-                Description = "Location list that you want to know.",
-            });
+            o.Properties.Add("location", new JsonSchemaProperty("string", "Location list that you want to know."));
             tool.Function.Parameters = o;
             return tool;
         }
@@ -361,31 +360,29 @@ namespace HigLabo.OpenAI
             tool.Function.Name = "getLatLong";
             tool.Function.Description = "This service can get latitude and longitude of specified location.";
             //Use anonymous object to define json schema.
-            tool.Function.Parameters = new
-            {
-                type = "object",
-                properties = new
-                {
-                    locationList = new
-                    {
-                        type = "array",
-                        description = "Location list that you want to know.",
-                        items = new
-                        {
-                            type = "string",
-                        }
-                    }
-                }
-            };
+            #region
+            //tool.Function.Parameters = new
+            //{
+            //    type = "object",
+            //    properties = new
+            //    {
+            //        locationList = new
+            //        {
+            //            type = "array",
+            //            description = "Location list that you want to know.",
+            //            items = new
+            //            {
+            //                type = "string",
+            //            }
+            //        }
+            //    }
+            //};
+            #endregion
             //Use JsonSchema class to define json schema.
             var o = new JsonSchema();
-            o.Properties.Add("locationList", new JsonSchemaProperty("array")
+            o.Properties.Add("locationList", new JsonSchemaProperty("array", "Location list that you want to know.")
             {
-                Description = "Location list that you want to know.",
-                Items = new JsonSchema()
-                {
-                    Type = "string",
-                }
+                Items = new JsonSchema("string"),
             });
             tool.Function.Parameters = o;
             return tool;
@@ -823,7 +820,6 @@ namespace HigLabo.OpenAI
                 p.AddImageFile(fileId);
                 var res = await cl.MessageCreateAsync(p);
             }
-            var runId = "";
             {
                 var p = new RunCreateParameter();
                 p.Assistant_Id = assistantId;

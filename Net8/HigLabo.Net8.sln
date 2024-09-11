@@ -131,7 +131,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.RestApi", "HigLabo.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Bing.SampleConsoleApp", "HigLabo.Bing.SampleConsoleApp\HigLabo.Bing.SampleConsoleApp.csproj", "{EC9F89FD-058C-48D0-8724-EB8BF82AD1E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.OpenAI.CodeGeneratorWebSite", "HigLabo.OpenAI.CodeGeneratorWebSite\HigLabo.OpenAI.CodeGeneratorWebSite.csproj", "{B36D7A12-6406-40BA-BFB0-D7A19AFF7E02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.OpenAI.CodeGeneratorWebSite", "HigLabo.OpenAI.CodeGeneratorWebSite\HigLabo.OpenAI.CodeGeneratorWebSite.csproj", "{B36D7A12-6406-40BA-BFB0-D7A19AFF7E02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

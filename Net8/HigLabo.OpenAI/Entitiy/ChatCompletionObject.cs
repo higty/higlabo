@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HigLabo.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,5 +47,44 @@ namespace HigLabo.OpenAI
         public string Model { get; set; } = "";
         public string System_Fingerprint { get; set; } = "";
         public ChatCompletionUsageResult Usage { get; set; } = new();
+
+        public FunctionCallResult? GetFunctionCall()
+        {
+            return this.GetFunctionCallList().FirstOrDefault();
+        }
+        public List<FunctionCallResult> GetFunctionCallList()
+        {
+            var l = new List<FunctionCallResult>();
+            FunctionCallResult? f = null;
+
+            foreach (var choice in this.Choices)
+            {
+                if (choice.Message == null) { continue; }
+                foreach (var toolCall in choice.Message.Tool_Calls)
+                {
+                    if (toolCall.Function != null)
+                    {
+                        if (toolCall.Function.Name.HasValue())
+                        {
+                            f = l.Find(el => el.Name == toolCall.Function.Name);
+                            if (f == null)
+                            {
+                                f = new FunctionCallResult();
+                                f.Name = toolCall.Function.Name;
+                                l.Add(f);
+                            }
+                        }
+                        if (f != null)
+                        {
+                            if (toolCall.Function.Arguments.HasValue())
+                            {
+                                f.Arguments += toolCall.Function.Arguments;
+                            }
+                        }
+                    }
+                }
+            }
+            return l;
+        }
     }
 }

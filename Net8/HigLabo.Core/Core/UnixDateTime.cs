@@ -20,5 +20,10 @@ namespace HigLabo.Core
             var ts = new TimeSpan(0, 0, 0, milliSeconds);
             return DateTime.UnixEpoch + ts;
         }
+        public static DateTime ToDateTime(double milliSeconds)
+        {
+            var ts = TimeSpan.FromMicroseconds(milliSeconds);
+            return DateTime.UnixEpoch + ts;
+        }
     }
 }

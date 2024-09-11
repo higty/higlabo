@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using HigLabo.Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;

@@ -8,5 +8,8 @@
         public Dictionary<string, JsonSchemaProperty> Properties { get; init; } = new();
         public bool AdditionalProperties { get; set; } = false;
         public string[]? Required { get; set; }
+
+        public JsonSchema() { }
+        public JsonSchema(string type) => Type = type;
     }
 }

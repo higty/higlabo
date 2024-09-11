@@ -4,12 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using HigLabo.Core;
 
-namespace HigLabo.Core
+namespace HigLabo.Newtonsoft
 {
-    public class NullToEmptyStringResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
+    public class NullToEmptyStringResolver : DefaultContractResolver
     {
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
