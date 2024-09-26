@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -62,7 +61,7 @@ namespace HigLabo.Service
                         Thread.Sleep(this.GetNextExecuteTimeSpan());
                         continue;
                     }
-                    Trace.WriteLine(String.Format("{0} {1} started.", now.ToString("yyyy/MM/dd HH:mm:ss"), this.Name));
+                    this.WriteLog("started.");
 
                     var l = new List<PeriodicCommand>();
                     lock (this._LockObject)
@@ -87,17 +86,21 @@ namespace HigLabo.Service
                         catch (Exception ex)
                         {
                             this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
-                            Trace.WriteLine(ex.ToString());
+                            this.WriteLog(ex.ToString());
                         }
                     }
                     Thread.Sleep(this.GetNextExecuteTimeSpan());
                 }
                 catch (Exception ex)
                 {
-                    Trace.WriteLine(ex.ToString());
+                    this.WriteLog(ex.ToString());
                     Thread.Sleep(this.GetNextExecuteTimeSpan());
                 }
             }
+        }
+        private void WriteLog(string text)
+        {
+            System.Diagnostics.Trace.WriteLine($"{DateTime.UtcNow.ToString("yyyy/MM/dd HH:mm:ss.fff")} {this.Name} {text}");
         }
         private TimeSpan GetNextExecuteTimeSpan()
         {
