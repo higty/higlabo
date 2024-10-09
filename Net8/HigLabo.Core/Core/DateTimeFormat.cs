@@ -66,12 +66,12 @@
                 case DateTimePart.DateHourMinuteSecond: return $"{value.ToString(format.GetFormat())} {value.ToString("HH:mm:ss")}";
                 case DateTimePart.MonthDayHourMinute: return $"{value.ToString(format.GetMonthDayFormat())} {value.ToString("HH:mm")}";
                 case DateTimePart.MonthDayHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())} {value.ToString("HH:mm:ss")}";
-                case DateTimePart.DateDayOfWeek: return $"{value.ToString(format.GetFormat())}{value.ToString("ddd")}";
-                case DateTimePart.MonthDayDayOfWeek: return $"{value.ToString(format.GetMonthDayFormat())}{value.ToString("ddd")}";
-                case DateTimePart.DateDayOfWeekHourMinute: return $"{value.ToString(format.GetFormat())}{value.ToString("ddd HH:mm")}";
-                case DateTimePart.DateDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetFormat())}{value.ToString("ddd HH:mm:ss")}";
-                case DateTimePart.MonthDayDayOfWeekHourMinute: return $"{value.ToString(format.GetMonthDayFormat())}{value.ToString("ddd HH:mm")}";
-                case DateTimePart.MonthDayDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())}{value.ToString("ddd HH:mm:ss")}";
+                case DateTimePart.DateDayOfWeek: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd")})";
+                case DateTimePart.MonthDayDayOfWeek: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd")})";
+                case DateTimePart.DateDayOfWeekHourMinute: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd")}){value.ToString("HH:mm")}";
+                case DateTimePart.DateDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd")}){value.ToString("HH:mm:ss")}";
+                case DateTimePart.MonthDayDayOfWeekHourMinute: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd")}){value.ToString("HH:mm")}";
+                case DateTimePart.MonthDayDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd")}){value.ToString("HH:mm:ss")}";
                 default: throw new InvalidOperationException();
             }
         }

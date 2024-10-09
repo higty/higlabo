@@ -99,6 +99,7 @@ namespace HigLabo.Data
                         throw;
                     }
                     this.Close();
+                    this.Connection = this.CreateConnection();
                     Thread.Sleep(retryIntervalMillisecondsList[i]);
                 }
             }
