@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/higlabo/reset.css" rel="stylesheet" />
+    <link href="/higlabo/color.css" rel="stylesheet" />
+    <link href="/higlabo/higlabo.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("~/HigLabo/View/Popup.cshtml");
+    }
+
+    <div style="height: 100dvh;">
+        <record-list-component id="TenantComponent">
+            <record-list-component-view-panel menu-row-count="1">
+                <div class="display-flex align-items-center">
+                    <div class="flex-right-panel">
+                        <button class="button border-radius-100vmax" hig-add="true"
+                                hx-trigger="click" hx-post="/View/TenantAddPanel"
+                                hx-target="#TenantComponent [hig-detail-view]" hx-swap="innerHTML">
+                            <span class="text">@T.Text.Add</span>
+                        </button>
+                    </div>
+
+                </div>
+                <record-list-component-record-list-panel api-path="/View/TenantListPanel" hx-include="#TenantComponent"></record-list-component-record-list-panel>
+                <record-list-component-footer-panel>
+                    <div class="flex-right-panel">
+                        <paging-panel></paging-panel>
+                    </div>
+                </record-list-component-footer-panel>
+            </record-list-component-view-panel>
+        </record-list-component>
+    </div>
+
+    <script src="/js/htmx.min.js"></script>
+    <script src="/js/json-higlabo.js"></script>
+    <script src="~/wwwroot/js/app.js"></script>
+</body>
+</html>

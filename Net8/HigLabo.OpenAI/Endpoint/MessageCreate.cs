@@ -1,4 +1,5 @@
 ﻿using HigLabo.OpenAI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,9 @@ namespace HigLabo.OpenAI
     {
         public MessageCreateContentType Type { get; set; } = MessageCreateContentType.Text;
         public string? Text { get; set; }
+        [JsonProperty("image_file")]
         public MessageCreateContentImageFile? Image_File { get; set; }
+        [JsonProperty("image_url")]
         public MessageCreateContentImageUrl? Image_Url { get; set; }
 
         public MessageCreateContent()

@@ -19,8 +19,8 @@ namespace HigLabo.OpenAI
 
         public async ValueTask ExecuteAsync()
         {
-            SetAzureSetting();
-            await ChatCompletionStreamWithFunctionCalling();
+            SetOpenAISetting();
+            await SendMessageWithImageUrlAsync();
             Console.WriteLine("■Completed");
         }
         private void SetOpenAISetting()
@@ -44,14 +44,14 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var res = await cl.AudioSpeechAsync("tts-1", "Stay Hungry. Stay Foolish. Thank you all very much.", "alloy");
-            File.WriteAllBytes("D:\\Data\\Dev\\GPT_Audio.mp3", res.Stream!.ToByteArray());
+            File.WriteAllBytes("C:\\Data\\Dev\\GPT_Audio.mp3", res.Stream!.ToByteArray());
         }
         private async ValueTask AudioTranslations()
         {
             var cl = OpenAIClient;
 
             var p = new AudioTranslationsParameter();
-            p.File.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
+            p.File.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("C:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
             p.Model = "whisper-1";
 
             var res = await cl.AudioTranslationsAsync(p);
@@ -75,7 +75,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new AudioTranscriptionsParameter();
-            p.File.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
+            p.File.SetFile("GoodMorningItFineDayToday.mp3", new MemoryStream(File.ReadAllBytes("C:\\Data\\Dev\\GoodMorningItFineDayToday.mp3")));
             p.Model = "whisper-1";
             
             var res = await cl.AudioTranscriptionsAsync(p);
@@ -237,7 +237,7 @@ namespace HigLabo.OpenAI
             p.Model = cl.ServiceProvider switch
             {
                 ServiceProvider.Groq => "llama3-70b-8192",
-                _ => "gpt-4o-2024-08-06",
+                _ => "gpt-4o",
             };
 
             //Use anonymous object to define json schema.
@@ -405,7 +405,7 @@ namespace HigLabo.OpenAI
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.File.SetFile("092332_hanrei.pdf", File.ReadAllBytes("D:\\Data\\CourtPdf\\092332_hanrei.pdf"));
+            p.File.SetFile("FinetuneSample.txt", File.ReadAllBytes("C:\\Data\\Dev\\FinetuneSample.txt"));
             p.SetPurpose(FilePurpose.Assistants);
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);
@@ -415,14 +415,14 @@ namespace HigLabo.OpenAI
 			var cl = OpenAIClient;
 
 			var fileResponse = await cl.FileContentGetAsync("file-ShIMh9E6jz4PNdLjWk5VJHQA");
-            File.WriteAllBytes("D:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
+            File.WriteAllBytes("C:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
 		}
 		private async ValueTask FileUpload_Finetune()
         {
             var cl = OpenAIClient;
 
             var p = new FileUploadParameter();
-            p.File.SetFile($"FinetuneSample{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt", File.ReadAllBytes("D:\\Data\\Dev\\FinetuneSample.txt"));
+            p.File.SetFile($"FinetuneSample{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt", File.ReadAllBytes("C:\\Data\\Dev\\FinetuneSample.txt"));
             p.Purpose = "fine-tune";
             var res = await cl.FileUploadAsync(p);
 
@@ -454,7 +454,7 @@ namespace HigLabo.OpenAI
         {
             var cl = OpenAIClient;
 
-            var res = await cl.ImagesVariationsAsync("Sea.png", new MemoryStream(File.ReadAllBytes("D:\\Data\\Dev\\Sea.png")));
+            var res = await cl.ImagesVariationsAsync("Sea.png", new MemoryStream(File.ReadAllBytes("C:\\Data\\Dev\\Sea.png")));
             foreach (var item in res.Data)
             {
                 Console.WriteLine(item.Url);
@@ -767,6 +767,36 @@ namespace HigLabo.OpenAI
                 Console.WriteLine();
             }
         }
+        private async ValueTask SendImageAsync()
+        {
+            var cl = OpenAIClient;
+
+            var (assistantId, threadId) = await this.CreateNewThread();
+            {
+                var p = new MessageCreateParameter();
+                p.Thread_Id = threadId;
+                p.Role = "user";
+                p.AddTextMessage("Please explain about this picture. And how do you feel to see this landscape?");
+                p.AddImageUrl("https://static.tinybetter.com/public-data/drone-image/DJI_0830-2MB.jpg");
+                var res = await cl.MessageCreateAsync(p);
+            }
+            var runId = "";
+            {
+                var p = new RunCreateParameter();
+                p.Assistant_Id = assistantId;
+                p.Thread_Id = threadId;
+
+                var streamResult = new AssistantMessageStreamResult();
+                await foreach (string text in cl.RunCreateStreamAsync(p, streamResult, CancellationToken.None))
+                {
+                    Console.Write(text);
+                }
+                runId = streamResult.Run?.Id ?? "";
+
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
         private async ValueTask SendMessageWithImageUrlAsync()
         {
             var cl = OpenAIClient;
@@ -888,7 +918,6 @@ namespace HigLabo.OpenAI
             }
         }
 
-
         private async ValueTask ProcessVectorStore()
         {
             var cl = OpenAIClient;
@@ -964,7 +993,7 @@ namespace HigLabo.OpenAI
             if (file_id.IsNullOrEmpty())
             {
                 var p = new FileUploadParameter();
-                p.File.SetFile("1bit_transformers.pdf", File.ReadAllBytes("D:\\Data\\1bit_transformers.pdf"));
+                p.File.SetFile("1bit_transformers.pdf", File.ReadAllBytes("C:\\Data\\Dev\\1bit_transformers.pdf"));
                 p.SetPurpose(FilePurpose.Assistants);
                 var res = await cl.FileUploadAsync(p);
                 Console.WriteLine(res);

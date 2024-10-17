@@ -1,4 +1,6 @@
-﻿namespace HigLabo.OpenAI
+﻿using Newtonsoft.Json;
+
+namespace HigLabo.OpenAI
 {
     public class JsonSchema
     {
