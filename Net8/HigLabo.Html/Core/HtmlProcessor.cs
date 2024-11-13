@@ -1,4 +1,6 @@
-﻿namespace HigLabo.Html
+﻿using HigLabo.Core;
+
+namespace HigLabo.Html
 {
     public class HtmlProcessor
     {
@@ -7,7 +9,12 @@
         public async ValueTask<HtmlProcessResult> ProcessAsync(String html)
         {
             var result = new HtmlProcessResult(html);
-
+            if (html.IsNullOrEmpty())
+            {
+                result.Html = "";
+                return result;
+            }
+            
             foreach (var converter in this.Converters)
             {
                 result.Html = await converter.ConvertAsync(result.Html);

@@ -25,7 +25,6 @@ namespace HigLabo.Web.TagHelpers
             output.Attributes.Add("allow-search", this.AllowSearch.ToString().ToLower());
             output.Attributes.Add("footer-visible", this.FooterVisible.ToString().ToLower());
             output.Attributes.Add("search-default-list", this.SearchDefaultList.ToString().ToLower());
-            output.Attributes.Add("show-data-record-popup-panel", "true");
 
             output.Attributes.Add("hx-trigger", "click,keyup[keyCode==13]");
             output.Attributes.Add("hx-post", this.HxPost);
@@ -45,6 +44,7 @@ namespace HigLabo.Web.TagHelpers
                 div.Attributes.Add("class", "add-panel");
                 div.Attributes.Add("add-panel", "true");
                 div.Attributes.Add("prevent-default", this.PreventDefault.ToString().ToLower());
+                div.Attributes.Add("show-data-record-popup-panel", "true");
                 div.Attributes.Add("target-panel-type", "input-record-list-panel");
                 div.InnerHtml.SetContent(this.AddRecordText);
                 output.Content.AppendHtml(div);

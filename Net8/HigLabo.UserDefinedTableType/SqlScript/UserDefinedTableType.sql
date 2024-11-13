@@ -9,6 +9,15 @@ Go
 
 
 /*-------------------------------------
+DateTable
+-------------------------------------*/
+CREATE TYPE DateTable AS TABLE
+([Value] Date NOT NULL
+)
+GO
+
+
+/*-------------------------------------
 Nvarchar32Table
 -------------------------------------*/
 Create Type Nvarchar32Table As Table

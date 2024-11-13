@@ -19,7 +19,7 @@ namespace HigLabo.Web.TagHelpers
             {
                 var span = new TagBuilder("span");
                 span.Attributes.Add("class", "icon-panel");
-                span.Attributes.Add("hig-page-number-increment", "-1");
+                span.Attributes.Add("page-number-increment", "-1");
 
                 if (this.PreviousPageIconUrl.HasValue())
                 {
@@ -53,7 +53,7 @@ namespace HigLabo.Web.TagHelpers
             {
                 var span = new TagBuilder("span");
                 span.Attributes.Add("class", "icon-panel");
-                span.Attributes.Add("hig-page-number-increment", "1");
+                span.Attributes.Add("page-number-increment", "1");
                 if (this.NextPageIconUrl.HasValue())
                 {
                     var img = new TagBuilder("img");

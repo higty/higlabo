@@ -2,7 +2,6 @@
 @import "color.scss";
 
 $width-checkbox-circle: 20px;
-$record-list-component-height: 100%;
 
 :root {
     --color-white: #ffffff;
@@ -34,6 +33,8 @@ $record-list-component-height: 100%;
     --color-panel-bg: #ffffff;
     --color-popup-panel-bg: #ffffff;
     --color-footer-bg: #eaeaea;
+    --color-button-bg: var(--color-set-primary-05);
+    --color-button-text: var(--color-white);
     --color-form-element-bg: var(--color-set-glay-01);
     --color-form-element-text: var(--color-text);
     --color-form-element-border: var(--color-border);
@@ -175,10 +176,40 @@ a.button-radius-8 {
     word-break: break-all;
 }
 
-.line-clamp {
+.line-clamp-1 {
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+.line-clamp-2 {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+.line-clamp-3 {
     -webkit-line-clamp: 3;
     display: -webkit-box;
-    overflow: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+.line-clamp-4 {
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+.line-clamp-5 {
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
 }
 
 .cursor-pointer {
@@ -737,18 +768,18 @@ dialog {
     cursor: pointer;
 }
 
-.record-list-component {
+.data-view {
     position: relative;
-    height: $record-list-component-height;
+    height: 100%;
 
     > * {
-        height: $record-list-component-height;
+        height: 100%;
     }
 
     .view-panel {
         display: grid;
         grid-template-rows: 40px 1fr 40px;
-        height: $record-list-component-height;
+        height: 100%;
 
         > .panel-menu {
             > .panel-menu-row {
@@ -779,7 +810,7 @@ dialog {
 
         > .record-list-panel {
             width: 100%;
-            height: calc($record-list-component-height - 80px);
+            height: 100%;
             overflow-y: auto;
         }
 
@@ -791,17 +822,13 @@ dialog {
 
         &.menu-row2 {
             grid-template-rows: 80px 1fr 40px;
-
-            .record-list-panel {
-                height: calc($record-list-component-height - 120px);
-            }
         }
     }
 
-    .detail-view-panel {
+    .detail-panel {
         width: 100%;
         margin: 0 auto;
-        height: $record-list-component-height;
+        height: 100%;
         overflow-y: auto;
 
         .edit-record-panel {
@@ -810,11 +837,11 @@ dialog {
         }
     }
 
-    .right-view-panel {
+    .right-panel {
         position: absolute;
         width: 400px;
         max-width: 100vw;
-        height: $record-list-component-height;
+        height: 100%;
         overflow-y: auto;
         top: 0;
         right: 0;
@@ -856,8 +883,8 @@ a.button-radius-4,
 a.button-radius-8,
 .large-button,
 a.large-button {
-    background-color: var(--color-set-primary-05);
-    color: var(--color-white);
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
 
     &:hover {
         background-color: var(--color-set-primary-04);
@@ -897,7 +924,7 @@ a.large-button {
     }
 }
 
-.record-list-component {
+.data-view {
     .view-panel {
         .panel-menu-row {
             background-color: var(--color-panel-menu-bg);
@@ -908,7 +935,7 @@ a.large-button {
         }
     }
 
-    .right-view-panel {
+    .right-panel {
         background-color: var(--color-panel-bg);
         border: solid 1px var(--color-border);
     }
