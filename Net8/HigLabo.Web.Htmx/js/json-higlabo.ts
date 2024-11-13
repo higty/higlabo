@@ -27,20 +27,11 @@
             }
         }
 
-        if (element.getAttribute("hig-property-type") == "Array") {
-            let pp = [];
-            for (var eIndex = 0; eIndex < ee.length; eIndex++) {
-                this.processParameter(pp, ee[eIndex]);
-            }
-            return JSON.stringify(pp);
+        let p = {};
+        for (var eIndex = 0; eIndex < ee.length; eIndex++) {
+            this.processParameter(p, ee[eIndex]);
         }
-        else {
-            let p = {};
-            for (var eIndex = 0; eIndex < ee.length; eIndex++) {
-                this.processParameter(p, ee[eIndex]);
-            }
-            return JSON.stringify(p);
-        }
+        return JSON.stringify(p);
     },
     processParameter: function (parameter, node: Node) {
         node.childNodes.forEach((childNode) => {

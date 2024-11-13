@@ -11,6 +11,8 @@ export class DataRecordPopupPanel {
         $("body").on("click", "[show-data-record-popup-panel]", this.panel_Click.bind(this));
         $("body").on("keydown", "[show-data-record-popup-panel]", this.panel_Keydown.bind(this));
 
+        $("body").on("click", "[selection-mode='Template'] [add-template]", this.addTemplate_Click.bind(this));
+
         $("body").on("click", "#data-record-popup-panel [search-button]", this.searchButton_Click.bind(this));
         $("body").on("keydown", "#data-record-popup-panel [search-textbox]", this.searchTextbox_Keydown.bind(this));
 
@@ -160,6 +162,15 @@ export class DataRecordPopupPanel {
                 $(this.panel).setStyle("top", (rect.y + rect.height) + "px");
             }
         }
+    }
+
+    private addTemplate_Click(target: Element, e: Event) {
+        const rpl = $(target).getFirstParent("[selection-mode='Template']").find("[record-list-panel]").getFirstElement();
+        const templateId = "#" + $(target).getAttribute("template-id");
+        const html = $(templateId).getInnerHtml();
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        rpl.insertAdjacentElement("beforeend", div.children[0]);
     }
 
     private searchButton_Click(element: Element, e: Event) {

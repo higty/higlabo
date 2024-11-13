@@ -12,6 +12,7 @@ namespace HigLabo.Web.TagHelpers
         public bool AllowSearch { get; set; } = true;
         public bool FooterVisible { get; set; } = true;
         public bool SearchDefaultList { get; set; } = false;
+        public string TemplateId { get; set; } = "";
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
@@ -29,6 +30,12 @@ namespace HigLabo.Web.TagHelpers
             output.Attributes.Add("hx-target", "#data-record-popup-panel [record-list-panel]");
             output.Attributes.Add("hx-swap", "innerHTML");
             output.Attributes.Add("selection-mode", "Single");
+
+            if (this.TemplateId.HasValue())
+            {
+                output.Attributes.Add("add-template", "true");
+                output.Attributes.Add("template-id", this.TemplateId);
+            }
 
             output.Attributes.Add("prevent-default", this.PreventDefault.ToString().ToLower());
 

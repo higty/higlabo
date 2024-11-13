@@ -23,8 +23,8 @@ namespace LanguageTextApplication
 
             this.AddButton.Content = T.Text.Add;
             this.DeleteButton.Content = T.Text.Delete;
-            this.ExecuteButton.Content = T.Text.Execute;
-            this.ShowSettingPanelButton.Content = T.Text.Close;
+            this.ExecuteButton.Content = T.Text.Execute + "(_E)";
+            this.ShowSettingPanelButton.Content = T.Text.Close + "(_C)";
         }
 
         private void UpdateFolderListView()

@@ -17,6 +17,7 @@ namespace HigLabo.Web.TagHelpers
                 if (this.Text.HasValue())
                 {
                     var span = new TagBuilder("span");
+                    span.Attributes.Add("class", "field-name");
                     span.InnerHtml.AppendHtml(this.Text);
                     output.Content.AppendHtml(span);
                 }

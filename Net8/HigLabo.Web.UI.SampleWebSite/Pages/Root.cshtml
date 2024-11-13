@@ -13,26 +13,26 @@
     }
 
     <div style="height: 100dvh;">
-        <record-list-component id="TenantComponent">
-            <record-list-component-view-panel menu-row-count="1">
+        <data-view id="TenantComponent">
+            <data-view-view-panel menu-row-count="1">
                 <div class="display-flex align-items-center">
                     <div class="flex-right-panel">
-                        <button class="button border-radius-100vmax" hig-add="true"
+                        <button class="button border-radius-100vmax" data-view-add="true"
                                 hx-trigger="click" hx-post="/View/TenantAddPanel"
-                                hx-target="#TenantComponent [hig-detail-view]" hx-swap="innerHTML">
+                                hx-target="#TenantComponent [data-view-detail-panel]" hx-swap="innerHTML">
                             <span class="text">@T.Text.Add</span>
                         </button>
                     </div>
 
                 </div>
-                <record-list-component-record-list-panel api-path="/View/TenantListPanel" hx-include="#TenantComponent"></record-list-component-record-list-panel>
-                <record-list-component-footer-panel>
+                <data-view-record-list-panel api-path="/View/TenantListPanel" hx-include="#TenantComponent"></data-view-record-list-panel>
+                <data-view-footer-panel>
                     <div class="flex-right-panel">
                         <paging-panel></paging-panel>
                     </div>
-                </record-list-component-footer-panel>
-            </record-list-component-view-panel>
-        </record-list-component>
+                </data-view-footer-panel>
+            </data-view-view-panel>
+        </data-view>
     </div>
 
     <script src="/js/htmx.min.js"></script>

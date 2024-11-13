@@ -315,6 +315,8 @@ button {
   --color-panel-bg: #ffffff;
   --color-popup-panel-bg: #ffffff;
   --color-footer-bg: #eaeaea;
+  --color-button-bg: var(--color-set-primary-05);
+  --color-button-text: var(--color-white);
   --color-form-element-bg: var(--color-set-glay-01);
   --color-form-element-text: var(--color-text);
   --color-form-element-border: var(--color-border);
@@ -455,10 +457,44 @@ a.button-radius-8 {
   word-break: break-all;
 }
 
-.line-clamp {
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-3 {
   -webkit-line-clamp: 3;
   display: -webkit-box;
-  overflow: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-4 {
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-5 {
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
 }
 
 .cursor-pointer {
@@ -951,25 +987,25 @@ dialog {
   cursor: pointer;
 }
 
-.record-list-component {
+.data-view {
   position: relative;
   height: 100%;
 }
-.record-list-component > * {
+.data-view > * {
   height: 100%;
 }
-.record-list-component .view-panel {
+.data-view .view-panel {
   display: grid;
   grid-template-rows: 40px 1fr 40px;
   height: 100%;
 }
-.record-list-component .view-panel > .panel-menu > .panel-menu-row {
+.data-view .view-panel > .panel-menu > .panel-menu-row {
   height: 40px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
 }
-.record-list-component .view-panel > .panel-menu > .panel-menu-row .panel-menu-item {
+.data-view .view-panel > .panel-menu > .panel-menu-row .panel-menu-item {
   min-width: 40px;
   height: 40px;
   display: flex;
@@ -978,39 +1014,36 @@ dialog {
   box-sizing: border-box;
   cursor: pointer;
 }
-.record-list-component .view-panel > .panel-menu > .panel-menu-row .panel-menu-item:hover {
+.data-view .view-panel > .panel-menu > .panel-menu-row .panel-menu-item:hover {
   background-color: var(--color-menu-link-hover);
 }
-.record-list-component .view-panel > .panel-menu > .panel-menu-row input[type=text] {
+.data-view .view-panel > .panel-menu > .panel-menu-row input[type=text] {
   width: 200px;
 }
-.record-list-component .view-panel > .record-list-panel {
+.data-view .view-panel > .record-list-panel {
   width: 100%;
-  height: calc(100% - 80px);
+  height: 100%;
   overflow-y: auto;
 }
-.record-list-component .view-panel > .footer-panel {
+.data-view .view-panel > .footer-panel {
   display: flex;
   align-items: center;
   height: 40px;
 }
-.record-list-component .view-panel.menu-row2 {
+.data-view .view-panel.menu-row2 {
   grid-template-rows: 80px 1fr 40px;
 }
-.record-list-component .view-panel.menu-row2 .record-list-panel {
-  height: calc(100% - 120px);
-}
-.record-list-component .detail-view-panel {
+.data-view .detail-panel {
   width: 100%;
   margin: 0 auto;
   height: 100%;
   overflow-y: auto;
 }
-.record-list-component .detail-view-panel .edit-record-panel {
+.data-view .detail-panel .edit-record-panel {
   width: calc(100% - 24px);
   margin: 12px auto 500px auto;
 }
-.record-list-component .right-view-panel {
+.data-view .right-panel {
   position: absolute;
   width: 400px;
   max-width: 100vw;
@@ -1020,7 +1053,7 @@ dialog {
   right: 0;
 }
 @media (max-width: 500px) {
-  .record-list-component .right-view-panel {
+  .data-view .right-panel {
     width: calc(100vw - 100px);
   }
 }
@@ -1055,8 +1088,8 @@ a.button-radius-4,
 a.button-radius-8,
 .large-button,
 a.large-button {
-  background-color: var(--color-set-primary-05);
-  color: var(--color-white);
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
 }
 .menu-button:hover,
 a.menu-button:hover,
@@ -1111,13 +1144,13 @@ a.large-button:focus {
   background-color: var(--color-item-current);
 }
 
-.record-list-component .view-panel .panel-menu-row {
+.data-view .view-panel .panel-menu-row {
   background-color: var(--color-panel-menu-bg);
 }
-.record-list-component .view-panel > .footer-panel {
+.data-view .view-panel > .footer-panel {
   background-color: var(--color-panel-menu-bg);
 }
-.record-list-component .right-view-panel {
+.data-view .right-panel {
   background-color: var(--color-panel-bg);
   border: solid 1px var(--color-border);
 }

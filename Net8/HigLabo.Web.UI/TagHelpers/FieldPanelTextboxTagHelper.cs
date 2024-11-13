@@ -10,6 +10,7 @@ namespace HigLabo.Web.TagHelpers
         public string Text { get; set; } = "";
         public string Name { get; set; } = "";
         public string Value { get; set; } = "";
+        public bool DatePicker { get; set; } = false;
         public string MessageText { get; set; } = "";
         public string InputErrorKey { get; set; } = "";
 
@@ -19,6 +20,7 @@ namespace HigLabo.Web.TagHelpers
             output.Attributes.Add("class", "field-panel");
             {
                 var span = new TagBuilder("span");
+                span.Attributes.Add("class", "field-name");
                 span.InnerHtml.AppendHtml(this.Text);
                 output.Content.AppendHtml(span);
 
@@ -28,6 +30,11 @@ namespace HigLabo.Web.TagHelpers
                     input.Attributes.Add("type", "text");
                     input.Attributes.Add("name", this.Name);
                     input.Attributes.Add("value", this.Value);
+                    if (this.DatePicker == true)
+                    {
+                        input.Attributes.Add("date-picker", "true");
+                        input.AddCssClass("date");
+                    }
                     div.InnerHtml.AppendHtml(input);
                 }
                 output.Content.AppendHtml(div);
