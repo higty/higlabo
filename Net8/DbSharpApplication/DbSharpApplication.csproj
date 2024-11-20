@@ -13,6 +13,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<ApplicationIcon>Icon\DbSharp.ico</ApplicationIcon>
 		<Title>DbSharpApplication</Title>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
 	<ItemGroup>
