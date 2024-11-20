@@ -14,7 +14,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Npgsql" Version="8.0.3" />
+		<PackageReference Include="Azure.Identity" Version="1.13.1" />
+		<PackageReference Include="Npgsql" Version="9.0.1" />
+		<PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.6.1" />
 	</ItemGroup>
 
 	<ItemGroup>

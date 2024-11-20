@@ -32,7 +32,7 @@ namespace HigLabo.DbSharp.MetaData
         }
         public override Database CreateDatabase()
         {
-            return new OracleDatabase(this.ConnectionString);
+            return new HigLabo.Data.OracleDatabase(this.ConnectionString);
         }
 
         public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)

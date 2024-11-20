@@ -14,6 +14,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.13.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
     <ProjectReference Include="..\HigLabo.DbSharp.Cache\HigLabo.DbSharp.Cache.csproj" />
   </ItemGroup>

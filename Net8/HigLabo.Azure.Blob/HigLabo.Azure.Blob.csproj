@@ -13,7 +13,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.23.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
