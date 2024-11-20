@@ -41,8 +41,9 @@ namespace HigLabo.Web.Htmx
         {
             response.Headers.TryAdd("HX-Trigger", value);
         }
-        public static void HX_Trigger(this HttpResponse response, string eventName, string target)
+        public static void HX_TriggerFromBody(this HttpResponse response, string eventName)
         {
+            var target = $"[hx-trigger*='{eventName}']";
             response.HX_Trigger("{\"" + eventName + "\":{\"target\" : \"" + target + "\"}}");
         }
         public static void HX_Trigger_After_Settle(this HttpResponse response, string value)

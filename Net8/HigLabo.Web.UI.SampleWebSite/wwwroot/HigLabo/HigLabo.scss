@@ -25,16 +25,20 @@ $width-checkbox-circle: 20px;
     --color-menu-link-hover: #fffaf8;
     --color-record-menu-link-bg: #f2f2f2;
     --color-record-menu-link-hover: #eeeeee;
+    /* tab */
     --color-tab-bg: #f0f0f0;
     --color-tab-hover: #e0e0e0;
     --color-tab-border: var(--color-set-glay-05);
+    /* panel */
     --color-panel-menu-bg: #e0e0e0;
     --color-panel-menu-hover: #d8d8d8;
     --color-panel-bg: #ffffff;
     --color-popup-panel-bg: #ffffff;
     --color-footer-bg: #eaeaea;
+    /* button */
     --color-button-bg: var(--color-set-primary-05);
     --color-button-text: var(--color-white);
+    /* form element */
     --color-form-element-bg: var(--color-set-glay-01);
     --color-form-element-text: var(--color-text);
     --color-form-element-border: var(--color-border);
@@ -42,13 +46,15 @@ $width-checkbox-circle: 20px;
     --color-table-header-bg: #37474f;
     --color-table-header-text: #ffffff;
     --color-block-information-panel-bg: var(--color-set-glay-01);
+    /* item, record */
     --color-item-text: #4d5156;
     --color-item-bg: #f4f4f4;
-    --color-item-bg0: #fbfbfb;
+    --color-item-bg0: #fcfcfc;
     --color-item-bg1: #fafafa;
-    --color-item-hover: #f8f8f8;
+    --color-item-hover: #f4f6f8;
     --color-item-focus: #f1f1f1;
     --color-item-current: #f0f0f0;
+    --color-data-record-panel: #ffffff;
     /* checkbox-panel */
     --color-checkbox-panel-checked: var(--color-set-primary-05);
     --color-checkbox-panel-focus: var(--color-set-primary-09);
@@ -176,6 +182,13 @@ a.button-radius-8 {
     word-break: break-all;
 }
 
+.object-fit-cover {
+    object-fit: cover;
+}
+.object-fit-contain {
+    object-fit: contain;
+}
+
 .line-clamp-1 {
     -webkit-line-clamp: 1;
     display: -webkit-box;
@@ -216,100 +229,12 @@ a.button-radius-8 {
     cursor: pointer;
 }
 
-.gap-4 {
-    gap: 4px;
+.height-100-percent {
+    height: 100%;
 }
 
-.gap-8 {
-    gap: 8px;
-}
-
-.gap-12 {
-    gap: 12px;
-}
-
-.gap-16 {
-    gap: 16px;
-}
-
-.padding-panel-4 {
-    padding: 4px;
-}
-
-.padding-panel-8 {
-    padding: 8px;
-}
-
-.padding-panel-12 {
-    padding: 12px;
-}
-
-.margin-left-4 {
-    margin-left: 4px;
-}
-
-.margin-left-8 {
-    margin-left: 8px;
-}
-
-.margin-left-12 {
-    margin-left: 12px;
-}
-
-.margin-right-4 {
-    margin-right: 4px;
-}
-
-.margin-right-8 {
-    margin-right: 8px;
-}
-
-.margin-right-12 {
-    margin-right: 12px;
-}
-
-.margin-top-4 {
-    margin-top: 4px;
-}
-
-.margin-top-8 {
-    margin-top: 8px;
-}
-
-.margin-top-12 {
-    margin-top: 12px;
-}
-
-.margin-top-16 {
-    margin-top: 16px;
-}
-
-.margin-top-20 {
-    margin-top: 20px;
-}
-
-.margin-bottom-4 {
-    margin-bottom: 4px;
-}
-
-.margin-bottom-8 {
-    margin-bottom: 8px;
-}
-
-.margin-bottom-12 {
-    margin-bottom: 12px;
-}
-
-.margin-bottom-16 {
-    margin-bottom: 16px;
-}
-
-.margin-bottom-20 {
-    margin-bottom: 20px;
-}
-
-.margin-center {
-    margin: 0 auto;
+.width-100-percent {
+    width: 100%;
 }
 
 .max-width-600 {
@@ -324,8 +249,16 @@ a.button-radius-8 {
     max-width: 960px;
 }
 
+.max-width-1080 {
+    max-width: 1080px;
+}
+
 .max-width-1280 {
     max-width: 1280px;
+}
+
+.max-width-1600 {
+    max-width: 1600px;
 }
 
 .min-height-120 {
@@ -362,6 +295,160 @@ a.button-radius-8 {
 
 .max-height-640 {
     max-height: 640px;
+}
+
+.gap-4 {
+    gap: 4px;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.gap-12 {
+    gap: 12px;
+}
+
+.gap-16 {
+    gap: 16px;
+}
+
+.padding-panel-4 {
+    padding: 4px;
+}
+
+.padding-panel-8 {
+    padding: 8px;
+}
+
+.padding-panel-12 {
+    padding: 12px;
+}
+.padding-panel-16 {
+    padding: 16px;
+}
+.padding-panel-20 {
+    padding: 20px;
+}
+.padding-panel-32 {
+    padding: 32px;
+}
+.padding-panel-40 {
+    padding: 40px;
+}
+
+.margin-4 {
+    margin: 4px;
+}
+.margin-8 {
+    margin: 8px;
+}
+.margin-12 {
+    margin: 12px;
+}
+.margin-16 {
+    margin: 16px;
+}
+.margin-20 {
+    margin: 20px;
+}
+
+.margin-left-4 {
+    margin-left: 4px;
+}
+
+.margin-left-8 {
+    margin-left: 8px;
+}
+
+.margin-left-12 {
+    margin-left: 12px;
+}
+
+.margin-left-16 {
+    margin-left: 16px;
+}
+.margin-left-20 {
+    margin-left: 20px;
+}
+
+.margin-right-4 {
+    margin-right: 4px;
+}
+
+.margin-right-8 {
+    margin-right: 8px;
+}
+
+.margin-right-12 {
+    margin-right: 12px;
+}
+
+.margin-right-16 {
+    margin-right: 16px;
+}
+.margin-right-20 {
+    margin-right: 20px;
+}
+
+.margin-top-4 {
+    margin-top: 4px;
+}
+
+.margin-top-8 {
+    margin-top: 8px;
+}
+
+.margin-top-12 {
+    margin-top: 12px;
+}
+
+.margin-top-16 {
+    margin-top: 16px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-top-32 {
+    margin-top: 32px;
+}
+
+.margin-top-40 {
+    margin-top: 40px;
+}
+
+.margin-bottom-4 {
+    margin-bottom: 4px;
+}
+
+.margin-bottom-8 {
+    margin-bottom: 8px;
+}
+
+.margin-bottom-12 {
+    margin-bottom: 12px;
+}
+
+.margin-bottom-16 {
+    margin-bottom: 16px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.margin-bottom-32 {
+    margin-bottom: 32px;
+}
+
+.margin-bottom-40 {
+    margin-bottom: 40px;
+}
+
+.margin-center {
+    margin: 0 auto;
 }
 
 .icon-panel {
@@ -430,6 +517,21 @@ a.button-radius-8 {
 .icon-96 {
     width: 96px;
     height: 96px;
+}
+
+.icon-128 {
+    width: 128px;
+    height: 128px;
+}
+
+.icon-192 {
+    width: 192px;
+    height: 192px;
+}
+
+.icon-256 {
+    width: 256px;
+    height: 256px;
 }
 
 .checkbox-panel {
@@ -739,7 +841,7 @@ dialog {
     &[selection-mode='Single'] {
         cursor: pointer;
         border-radius: 8px;
-        padding: 4px 12px;
+        padding: 4px;
 
         [delete-record] {
             display: none;
@@ -764,10 +866,13 @@ dialog {
 
 .data-record-panel {
     font-size: 16px;
-    padding: 4px;
     cursor: pointer;
 }
-
+.record-list-panel {
+    .data-record-panel {
+        padding: 4px;
+    }
+}
 .data-view {
     position: relative;
     height: 100%;
@@ -778,7 +883,7 @@ dialog {
 
     .view-panel {
         display: grid;
-        grid-template-rows: 40px 1fr 40px;
+        grid-template-rows: min-content 1fr 40px;
         height: 100%;
 
         > .panel-menu {
@@ -819,10 +924,6 @@ dialog {
             align-items: center;
             height: 40px;
         }
-
-        &.menu-row2 {
-            grid-template-rows: 80px 1fr 40px;
-        }
     }
 
     .detail-panel {
@@ -833,7 +934,7 @@ dialog {
 
         .edit-record-panel {
             width: calc(100% - 24px);
-            margin: 12px auto 500px auto;
+            margin: 12px auto;
         }
     }
 
@@ -854,7 +955,6 @@ dialog {
 
 
 
-
 body {
     background-color: var(--color-body-bg);
     color: var(--color-text);
@@ -872,6 +972,11 @@ textarea {
         border-color: var(--color-form-element-focus);
     }
 }
+
+input[type=text].date {
+    width: 100px;
+}
+
 
 .menu-button,
 a.menu-button,
@@ -896,7 +1001,9 @@ a.large-button {
 }
 
 .item {
-    background-color: var(--color-item-bg0);
+    &:nth-child(2n) {
+        background-color: var(--color-item-bg0);
+    }
 
     &:nth-child(2n+1) {
         background-color: var(--color-item-bg1);
@@ -904,8 +1011,8 @@ a.large-button {
 }
 
 .item,
-.data-record-panel {
-    background-color: var(--color-white);
+.record-list-panel .data-record-panel {
+    background-color: var(---color-data-record-panel);
 
     &:hover {
         background-color: var(--color-item-hover);
@@ -951,3 +1058,39 @@ a.large-button {
         }
     }
 }
+
+.flatpickr-current-month {
+    padding: 4px 0 4px 0;
+}
+
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    vertical-align: middle;
+    padding: 4px 10px 0 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .flatpickr-calendar {
+        width: 200px;
+    }
+
+    .flatpickr-weekdays {
+        width: 200px;
+    }
+
+    .flatpickr-days {
+        width: 200px;
+    }
+
+    .dayContainer {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .flatpickr-day {
+        flex-basis: 27px;
+        border: none 0;
+    }
+}
+

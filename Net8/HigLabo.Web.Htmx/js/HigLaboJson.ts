@@ -2,11 +2,14 @@ export class HigLaboJson {
     public static processParameter(parameter, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
-                const childElement = <Element>childNode;
+                const childElement = <HTMLElement>childNode;
                 const name = childElement.getAttribute("name");
 
                 if (parameter instanceof Array) {
-                    if (childElement.getAttribute("hig-property-type") == "Object") {
+                    if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                        return;
+                    }
+                    else if (childElement.getAttribute("hig-property-type") == "Object") {
                         let r = {};
                         parameter.push(r);
                         this.processParameter(r, childNode);
@@ -52,7 +55,7 @@ export class HigLaboJson {
                             }
                             else {
                                 let r = {};
-                                r[name] = childElement.textContent;
+                                r[name] = childElement.innerText;
                                 parameter.push(r);
                             }
                         }
@@ -60,7 +63,10 @@ export class HigLaboJson {
                 }
                 else {
                     if (name != null) {
-                        if (childElement.getAttribute("hig-property-type") == "Object") {
+                        if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                            return;
+                        }
+                        else if (childElement.getAttribute("hig-property-type") == "Object") {
                             let r = {};
                             parameter[name] = r;
                             this.processParameter(r, childNode);
@@ -83,7 +89,7 @@ export class HigLaboJson {
                                 }
                             }
                             else {
-                                parameter[name] = childElement.textContent;
+                                parameter[name] = childElement.innerText;
                             }
                         }
                     }
@@ -95,10 +101,13 @@ export class HigLaboJson {
     public static processArrayParameter(arrayParameter: Array<any>, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
-                const childElement = <Element>childNode;
+                const childElement = <HTMLElement>childNode;
                 const name = childElement.getAttribute("name");
                 if (name != null) {
-                    if (childElement.getAttribute("hig-property-type") == "Object") {
+                    if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                        return;
+                    }
+                    else if (childElement.getAttribute("hig-property-type") == "Object") {
                         let r = {};
                         arrayParameter.push(r);
                         this.processParameter(r, childNode);
@@ -121,13 +130,16 @@ export class HigLaboJson {
                             }
                         }
                         else {
-                            arrayParameter.push({ name: childElement.textContent });
+                            arrayParameter.push({ name: childElement.innerText });
                         }
                         this.processParameter(arrayParameter, childNode);
                     }
                 }
                 else {
-                    if (childElement.getAttribute("hig-property-type") == "Object") {
+                    if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                        return;
+                    }
+                    else if (childElement.getAttribute("hig-property-type") == "Object") {
                         let r = {};
                         arrayParameter.push(r);
                         this.processParameter(r, childNode);

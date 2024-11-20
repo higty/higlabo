@@ -1,4 +1,6 @@
-﻿namespace HigLabo.Core
+﻿using System.Globalization;
+
+namespace HigLabo.Core
 {
     public enum DateTimeFormat
     {
@@ -58,6 +60,10 @@
         }
         public static string ToString(this DateTimeOffset value, DateTimeFormat format, DateTimePart dateTimePart)
         {
+            return ToString(value, format, dateTimePart, CultureInfo.CurrentUICulture);
+        }
+        public static string ToString(this DateTimeOffset value, DateTimeFormat format, DateTimePart dateTimePart, CultureInfo cultureInfo)
+        {
             switch (dateTimePart)
             {
                 case DateTimePart.Date: return value.ToString(format.GetFormat());
@@ -66,12 +72,12 @@
                 case DateTimePart.DateHourMinuteSecond: return $"{value.ToString(format.GetFormat())} {value.ToString("HH:mm:ss")}";
                 case DateTimePart.MonthDayHourMinute: return $"{value.ToString(format.GetMonthDayFormat())} {value.ToString("HH:mm")}";
                 case DateTimePart.MonthDayHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())} {value.ToString("HH:mm:ss")}";
-                case DateTimePart.DateDayOfWeek: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd")})";
-                case DateTimePart.MonthDayDayOfWeek: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd")})";
-                case DateTimePart.DateDayOfWeekHourMinute: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd")}){value.ToString("HH:mm")}";
-                case DateTimePart.DateDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd")}){value.ToString("HH:mm:ss")}";
-                case DateTimePart.MonthDayDayOfWeekHourMinute: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd")}){value.ToString("HH:mm")}";
-                case DateTimePart.MonthDayDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd")}){value.ToString("HH:mm:ss")}";
+                case DateTimePart.DateDayOfWeek: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)})";
+                case DateTimePart.MonthDayDayOfWeek: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)})";
+                case DateTimePart.DateDayOfWeekHourMinute: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm")}";
+                case DateTimePart.DateDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm:ss")}";
+                case DateTimePart.MonthDayDayOfWeekHourMinute: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm")}";
+                case DateTimePart.MonthDayDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm:ss")}";
                 default: throw new InvalidOperationException();
             }
         }

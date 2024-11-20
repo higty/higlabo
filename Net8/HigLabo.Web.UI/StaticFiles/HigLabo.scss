@@ -233,6 +233,10 @@ a.button-radius-8 {
     height: 100%;
 }
 
+.width-fit-content {
+    width: fit-content;
+}
+
 .width-100-percent {
     width: 100%;
 }
@@ -648,10 +652,12 @@ dialog {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
             margin-top: 20px;
 
             button {
-                margin: auto 4px;
+                font-size: 18px;
+                padding: 4px 20px;
             }
         }
     }
@@ -1012,7 +1018,7 @@ a.large-button {
 
 .item,
 .record-list-panel .data-record-panel {
-    background-color: var(---color-data-record-panel);
+    background-color: var(--color-data-record-panel);
 
     &:hover {
         background-color: var(--color-item-hover);

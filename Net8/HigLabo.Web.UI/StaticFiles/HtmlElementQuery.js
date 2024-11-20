@@ -361,6 +361,123 @@ export class HtmlElementQuery {
             element.scrollTop = value;
         }
     }
+    getCaretPosition() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            if (element.tagName == "TEXTAREA") {
+                const tx = element;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.selectionEnd;
+                }
+                return tx.selectionStart;
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.selectionEnd;
+                }
+                return tx.selectionStart;
+            }
+            else {
+                let caretPos = 0;
+                let range;
+                let sel;
+                if (window.getSelection) {
+                    sel = window.getSelection();
+                    if (sel.rangeCount) {
+                        range = sel.getRangeAt(0);
+                        if (range.commonAncestorContainer.parentNode == element) {
+                            caretPos = range.endOffset;
+                        }
+                    }
+                }
+                return caretPos;
+            }
+        }
+        return null;
+    }
+    getSelectionText() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            if (element.tagName == "TEXTAREA") {
+                const tx = element;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.value.substring(tx.selectionStart, tx.selectionEnd);
+                }
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.value.substring(tx.selectionStart, tx.selectionEnd);
+                }
+            }
+            else {
+                var start = 0;
+                var end = 0;
+                var doc = element.ownerDocument;
+                var win = doc.defaultView;
+                var sel;
+                if (typeof win.getSelection != "undefined") {
+                    sel = win.getSelection();
+                    if (sel.rangeCount > 0) {
+                        var range = win.getSelection().getRangeAt(0);
+                        var preCaretRange = range.cloneRange();
+                        preCaretRange.selectNodeContents(element);
+                        preCaretRange.setEnd(range.startContainer, range.startOffset);
+                        start = preCaretRange.toString().length;
+                        preCaretRange.setEnd(range.endContainer, range.endOffset);
+                        end = preCaretRange.toString().length;
+                    }
+                }
+                element.innerHTML.substring(start, end);
+            }
+        }
+        return null;
+    }
+    getSelectionRange() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            if (element.tagName == "TEXTAREA") {
+                const tx = element;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return { start: tx.selectionStart, end: tx.selectionEnd };
+                }
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return { start: tx.selectionStart, end: tx.selectionEnd };
+                }
+            }
+            else {
+                var start = 0;
+                var end = 0;
+                var doc = element.ownerDocument;
+                var win = doc.defaultView;
+                var sel;
+                if (typeof win.getSelection != "undefined") {
+                    sel = win.getSelection();
+                    if (sel.rangeCount > 0) {
+                        var range = win.getSelection().getRangeAt(0);
+                        var preCaretRange = range.cloneRange();
+                        preCaretRange.selectNodeContents(element);
+                        preCaretRange.setEnd(range.startContainer, range.startOffset);
+                        start = preCaretRange.toString().length;
+                        preCaretRange.setEnd(range.endContainer, range.endOffset);
+                        end = preCaretRange.toString().length;
+                    }
+                }
+                return { start: start, end: end };
+            }
+        }
+        return null;
+    }
+    insertAdjacentHTML(position, text) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentHTML(position, text);
+        }
+        return this;
+    }
     getInnerText() {
         if (this._elementList.length > 0) {
             return this._elementList[0].textContent;
@@ -565,21 +682,21 @@ export class HtmlElementQuery {
     resize(callback) {
         this.addEventListenerToAllElement("resize", callback);
     }
-    keydown(callback, keyCode) {
+    keydown(callback, key) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keydown", function (e) {
-                if (keyCode == null || e.keyCode === keyCode) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });
         }
     }
-    keyup(callback, keyCode) {
+    keyup(callback, key) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e) {
-                if (e.keyCode === null || e.keyCode === keyCode) {
+                if (e.key === null || e.key === key) {
                     callback(e);
                 }
             });

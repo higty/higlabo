@@ -279,6 +279,9 @@ export class DataRecordPopupPanel {
         this.targetPanel = null;
     }
     body_Click(e) {
+        if (e.detail == 0) {
+            return;
+        }
         if ($(this.dataRecordPopupPanel).hasClass("display-none") == false &&
             $(this.dataRecordPopupPanel).hasAttribute("processing") == false) {
             const rect = this.dataRecordPopupPanel.getBoundingClientRect();
