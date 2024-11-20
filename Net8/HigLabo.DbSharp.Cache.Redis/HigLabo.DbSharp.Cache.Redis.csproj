@@ -15,7 +15,8 @@
 	
 	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.13.1" />
-		<PackageReference Include="StackExchange.Redis" Version="2.7.17" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+		<PackageReference Include="StackExchange.Redis" Version="2.8.16" />
 	</ItemGroup>
 
 	<ItemGroup>
