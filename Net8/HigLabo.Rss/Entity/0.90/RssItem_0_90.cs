@@ -1,22 +1,21 @@
 using System.Xml.Linq;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public class RssItem_0_90 : RssItem
 {
-    public class RssItem_0_90 : RssItem
+    public RssItem_0_90()
     {
-        public RssItem_0_90()
+    }
+    public RssItem_0_90(XElement element)
+        : base(element)
+    {
+        if (element != null)
         {
+            Parse(element);
         }
-        public RssItem_0_90(XElement element)
-            : base(element)
-        {
-            if (element != null)
-            {
-                Parse(element);
-            }
-        }
-        protected new void Parse(XElement element)
-        {
-        }
+    }
+    protected new void Parse(XElement element)
+    {
     }
 }

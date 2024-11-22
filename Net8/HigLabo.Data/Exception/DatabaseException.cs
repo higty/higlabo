@@ -4,52 +4,51 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 
-namespace HigLabo.Data
+namespace HigLabo.Data;
+
+[Serializable]
+public class DatabaseException : Exception
 {
-    [Serializable]
-    public class DatabaseException : Exception
+    private Dictionary<String, object> _Data = new Dictionary<string, object>();
+
+    public MethodName MethodName { get; set; }
+    public string ConnectionString { get; set; } = "";
+    public DbCommand? Command { get; set; }
+    public DbDataAdapter? DataAdapter { get; set; }
+
+    public override System.Collections.IDictionary Data
     {
-        private Dictionary<String, object> _Data = new Dictionary<string, object>();
+        get { return _Data; }
+    }
 
-        public MethodName MethodName { get; set; }
-        public string ConnectionString { get; set; } = "";
-        public DbCommand? Command { get; set; }
-        public DbDataAdapter? DataAdapter { get; set; }
+    public DatabaseException(Exception ex)
+        : this(ex, MethodName.Unknown, "")
+    {
+    }
+    public DatabaseException(Exception ex, MethodName methodName, String connectionString)
+        : base(ex.Message, ex)
+    {
+        this.MethodName = methodName;
+        this.ConnectionString = connectionString;
+    }
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
 
-        public override System.Collections.IDictionary Data
+        if (Command != null)
         {
-            get { return _Data; }
-        }
-
-        public DatabaseException(Exception ex)
-            : this(ex, MethodName.Unknown, "")
-        {
-        }
-        public DatabaseException(Exception ex, MethodName methodName, String connectionString)
-            : base(ex.Message, ex)
-        {
-            this.MethodName = methodName;
-            this.ConnectionString = connectionString;
-        }
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (Command != null)
+            sb.Append("SqlCommand.CommandText=");
+            sb.Append(Command.CommandText);
+            sb.AppendLine();
+            foreach (var parameter in Command.Parameters)
             {
-                sb.Append("SqlCommand.CommandText=");
-                sb.Append(Command.CommandText);
+                var p = parameter as IDbDataParameter;
+                if (p == null) { continue; }
+                sb.AppendFormat("{0}={1}", p.ParameterName, p.Value);
                 sb.AppendLine();
-                foreach (var parameter in Command.Parameters)
-                {
-                    var p = parameter as IDbDataParameter;
-                    if (p == null) { continue; }
-                    sb.AppendFormat("{0}={1}", p.ParameterName, p.Value);
-                    sb.AppendLine();
-                }
             }
-            sb.AppendLine(base.ToString());
-            return sb.ToString();
         }
+        sb.AppendLine(base.ToString());
+        return sb.ToString();
     }
 }

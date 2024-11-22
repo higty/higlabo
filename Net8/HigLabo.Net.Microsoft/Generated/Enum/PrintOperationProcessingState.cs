@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum PrintOperationProcessingState
 {
-    public enum PrintOperationProcessingState
-    {
-        NotStarted,
-        Running,
-        Succeeded,
-        Failed,
-    }
+    NotStarted,
+    Running,
+    Succeeded,
+    Failed,
 }

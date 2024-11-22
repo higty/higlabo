@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Anthropic
+﻿namespace HigLabo.Anthropic;
+
+public enum ChatMessageRole
 {
-    public enum ChatMessageRole
-    {
-        User,
-        Assistant,
-    }
+    User,
+    Assistant,
 }

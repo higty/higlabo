@@ -7,81 +7,80 @@ using System.Text;
 using System.Threading.Tasks;
 using HigLabo.DbSharp.MetaData;
 
-namespace HigLabo.DbSharp.CodeGenerator
+namespace HigLabo.DbSharp.CodeGenerator;
+
+public class UserDefinedTableTypeRecordClassFactory 
 {
-    public class UserDefinedTableTypeRecordClassFactory 
+    public UserDefinedTableType UserDefinedTableType { get; private set; }
+    public UserDefinedTableTypeRecordClassFactory(UserDefinedTableType userDefinedTableType)
     {
-        public UserDefinedTableType UserDefinedTableType { get; private set; }
-        public UserDefinedTableTypeRecordClassFactory(UserDefinedTableType userDefinedTableType)
+        this.UserDefinedTableType = userDefinedTableType;
+    }
+    public Class CreateClass()
+    {
+        Class c = new Class(AccessModifier.Public, "Record");
+
+        c.Modifier.Partial = true;
+        c.BaseClass = new TypeName("UserDefinedTableTypeRecord");
+
+        ClassSourceCodeFileFactory.AddPropertyAndField(c, this.UserDefinedTableType.Columns, null);
+
+        c.Constructors.Add(new Constructor(AccessModifier.Public, "Record"));
+        c.Methods.Add(this.CreateGetValuesMethod());
+
+        return c;
+    }
+    private Method CreateGetValuesMethod()
+    {
+        Method md = new Method(MethodAccessModifier.Public, "GetValues");
+
+        md.Modifier.Polymophism = MethodPolymophism.Override;
+        md.ReturnTypeName = new TypeName("Object?[]");
+        md.Body.AddRange(this.CreateGetValuesMethodBody());
+
+        return md;
+    }
+    private IEnumerable<CodeBlock> CreateGetValuesMethodBody()
+    {
+        var t = this.UserDefinedTableType;
+        yield return new CodeBlock(SourceCodeLanguage.CSharp, "Object?[] oo = new Object[{0}];", t.Columns.Count);
+        for (int i = 0; i < t.Columns.Count; i++)
         {
-            this.UserDefinedTableType = userDefinedTableType;
-        }
-        public Class CreateClass()
-        {
-            Class c = new Class(AccessModifier.Public, "Record");
-
-            c.Modifier.Partial = true;
-            c.BaseClass = new TypeName("UserDefinedTableTypeRecord");
-
-            ClassSourceCodeFileFactory.AddPropertyAndField(c, this.UserDefinedTableType.Columns, null);
-
-            c.Constructors.Add(new Constructor(AccessModifier.Public, "Record"));
-            c.Methods.Add(this.CreateGetValuesMethod());
-
-            return c;
-        }
-        private Method CreateGetValuesMethod()
-        {
-            Method md = new Method(MethodAccessModifier.Public, "GetValues");
-
-            md.Modifier.Polymophism = MethodPolymophism.Override;
-            md.ReturnTypeName = new TypeName("Object?[]");
-            md.Body.AddRange(this.CreateGetValuesMethodBody());
-
-            return md;
-        }
-        private IEnumerable<CodeBlock> CreateGetValuesMethodBody()
-        {
-            var t = this.UserDefinedTableType;
-            yield return new CodeBlock(SourceCodeLanguage.CSharp, "Object?[] oo = new Object[{0}];", t.Columns.Count);
-            for (int i = 0; i < t.Columns.Count; i++)
+            var column = t.Columns[i];
+            if (column.ConvertType == SqlParameterConvertType.Enum)
             {
-                var column = t.Columns[i];
-                if (column.ConvertType == SqlParameterConvertType.Enum)
+                if (column.AllowNull == true)
                 {
-                    if (column.AllowNull == true)
-                    {
-                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (this.{1} != null) oo[{0}] = this.{1}.ToString();", i, t.Columns[i].Name);
-                    }
-                    else
-                    {
-                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}.ToString();", i, t.Columns[i].Name);
-                    }
+                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (this.{1} != null) oo[{0}] = this.{1}.ToString();", i, t.Columns[i].Name);
                 }
                 else
                 {
-                    var questionMark = "";
-                    if (column.AllowNull)
-                    {
-                        questionMark = "?";
-                    }
-                    switch (column.GetClassNameType())
-                    {
-                        case ClassNameType.DateOnly:
-                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}{2}.ToDateTime(TimeOnly.MinValue);"
-                                , i, t.Columns[i].Name, questionMark);
-                            break;
-                        case ClassNameType.TimeOnly:
-                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}{2}.ToTimeSpan();"
-                                , i, t.Columns[i].Name, questionMark);
-                            break;
-                        default:
-                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1};", i, t.Columns[i].Name);
-                            break;
-                    }
+                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}.ToString();", i, t.Columns[i].Name);
                 }
             }
-            yield return new CodeBlock(SourceCodeLanguage.CSharp, "return oo;");
+            else
+            {
+                var questionMark = "";
+                if (column.AllowNull)
+                {
+                    questionMark = "?";
+                }
+                switch (column.GetClassNameType())
+                {
+                    case ClassNameType.DateOnly:
+                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}{2}.ToDateTime(TimeOnly.MinValue);"
+                            , i, t.Columns[i].Name, questionMark);
+                        break;
+                    case ClassNameType.TimeOnly:
+                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}{2}.ToTimeSpan();"
+                            , i, t.Columns[i].Name, questionMark);
+                        break;
+                    default:
+                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1};", i, t.Columns[i].Name);
+                        break;
+                }
+            }
         }
+        yield return new CodeBlock(SourceCodeLanguage.CSharp, "return oo;");
     }
 }

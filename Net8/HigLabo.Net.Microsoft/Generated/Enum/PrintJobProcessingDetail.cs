@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum PrintJobProcessingDetail
 {
-    public enum PrintJobProcessingDetail
-    {
-        UploadPending,
-        Transforming,
-        CompletedSuccessfully,
-        CompletedWithWarnings,
-        CompletedWithErrors,
-        ReleaseWait,
-        Interpreting,
-    }
+    UploadPending,
+    Transforming,
+    CompletedSuccessfully,
+    CompletedWithWarnings,
+    CompletedWithErrors,
+    ReleaseWait,
+    Interpreting,
 }

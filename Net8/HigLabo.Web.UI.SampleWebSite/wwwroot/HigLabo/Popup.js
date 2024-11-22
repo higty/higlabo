@@ -10,6 +10,15 @@ export class PopuPanel {
         if ($(e.target).getParent("dialog").getElementCount() > 0) {
             return;
         }
+        if (e.detail == 0) {
+            return;
+        }
+        if (document.activeElement.tagName == "INPUT") {
+            return;
+        }
+        if (document.activeElement.tagName == "TEXTAREA") {
+            return;
+        }
         const pp = $("[popup-panel]").getElementList();
         pp.forEach(popupPanel => {
             if ($(popupPanel).hasClass("display-none") == false &&

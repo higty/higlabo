@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public partial class ImagesGenerationsParameter
 {
-    public partial class ImagesGenerationsParameter
+    public void SetResponseFormat(ImageResponseFormat format)
     {
-        public void SetResponseFormat(ImageResponseFormat format)
-        {
-            this.Response_Format = format.ToStringFromEnum().ToLower();
-        }
-        public void SetStyle(ImageGenerationStyle style)
-        {
-            this.Style = style.ToString().ToLower();
-        }
+        this.Response_Format = format.ToStringFromEnum().ToLower();
+    }
+    public void SetStyle(ImageGenerationStyle style)
+    {
+        this.Style = style.ToString().ToLower();
     }
 }

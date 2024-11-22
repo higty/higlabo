@@ -1,12 +1,11 @@
-﻿namespace HigLabo.RestApi
-{
-    public class HttpRequestMessageEventArgs : EventArgs
-    {
-        public HttpRequestMessage RequestMessage { get; init; }
+﻿namespace HigLabo.RestApi;
 
-        public HttpRequestMessageEventArgs(HttpRequestMessage requestMessage)
-        {
-            this.RequestMessage = requestMessage;
-        }
+public class HttpRequestMessageEventArgs : EventArgs
+{
+    public HttpRequestMessage RequestMessage { get; init; }
+
+    public HttpRequestMessageEventArgs(HttpRequestMessage requestMessage)
+    {
+        this.RequestMessage = requestMessage;
     }
 }

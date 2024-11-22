@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public class ToolChoiceObject
 {
-    public class ToolChoiceObject
-    {
-        public string Type { get; set; } = "";
-        public object? Function { get; set; }
-    }
+    public string Type { get; set; } = "";
+    public object? Function { get; set; }
 }

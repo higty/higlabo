@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/chartaxistitleformat?view=graph-rest-1.0
+/// </summary>
+public partial class ChartAxisTitleFormat
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/chartaxistitleformat?view=graph-rest-1.0
-    /// </summary>
-    public partial class ChartAxisTitleFormat
-    {
-        public ChartFont? Font { get; set; }
-    }
+    public ChartFont? Font { get; set; }
 }

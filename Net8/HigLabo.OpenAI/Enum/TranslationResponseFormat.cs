@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public enum TranslationResponseFormat
 {
-    public enum TranslationResponseFormat
-    {
-        Json,
-        Text,
-        Srt,
-        Verbose_Json,
-        Vtt,
-    }
+    Json,
+    Text,
+    Srt,
+    Verbose_Json,
+    Vtt,
 }

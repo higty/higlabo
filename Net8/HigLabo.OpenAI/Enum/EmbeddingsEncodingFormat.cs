@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public enum EmbeddingsEncodingFormat
 {
-    public enum EmbeddingsEncodingFormat
-    {
-        Float,
-        Base64,
-    }
+    Float,
+    Base64,
 }

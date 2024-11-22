@@ -1,13 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/partners-billing-blob?view=graph-rest-1.0
+/// </summary>
+public partial class Blob
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/partners-billing-blob?view=graph-rest-1.0
-    /// </summary>
-    public partial class Blob
-    {
-        public string? Name { get; set; }
-        public string? PartitionValue { get; set; }
-    }
+    public string? Name { get; set; }
+    public string? PartitionValue { get; set; }
 }

@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Net.Ftp
+namespace HigLabo.Net.Ftp;
+
+/// <summary>
+/// 
+/// </summary>
+public enum FtpConnectionMode
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum FtpConnectionMode
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        Active,
-        /// <summary>
-        /// 
-        /// </summary>
-        Passive,
-    }
+    Active,
+    /// <summary>
+    /// 
+    /// </summary>
+    Passive,
 }

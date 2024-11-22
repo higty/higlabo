@@ -2,56 +2,55 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace HigLabo.Web.TagHelpers
+namespace HigLabo.Web.TagHelpers;
+
+[HtmlTargetElement("field-panel-textbox")]
+public class FieldPanelTextboxTagHelper : TagHelper
 {
-    [HtmlTargetElement("field-panel-textbox")]
-    public class FieldPanelTextboxTagHelper : TagHelper
+    public string Text { get; set; } = "";
+    public string Name { get; set; } = "";
+    public string Value { get; set; } = "";
+    public bool DatePicker { get; set; } = false;
+    public string MessageText { get; set; } = "";
+    public string InputErrorKey { get; set; } = "";
+
+    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
-        public string Text { get; set; } = "";
-        public string Name { get; set; } = "";
-        public string Value { get; set; } = "";
-        public bool DatePicker { get; set; } = false;
-        public string MessageText { get; set; } = "";
-        public string InputErrorKey { get; set; } = "";
-
-        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+        output.TagName = "div";
+        output.Attributes.Add("class", "field-panel");
         {
-            output.TagName = "div";
-            output.Attributes.Add("class", "field-panel");
-            {
-                var span = new TagBuilder("span");
-                span.Attributes.Add("class", "field-name");
-                span.InnerHtml.AppendHtml(this.Text);
-                output.Content.AppendHtml(span);
+            var span = new TagBuilder("span");
+            span.Attributes.Add("class", "field-name");
+            span.InnerHtml.AppendHtml(this.Text);
+            output.Content.AppendHtml(span);
 
-                var div = new TagBuilder("div");
+            var div = new TagBuilder("div");
+            {
+                var input = new TagBuilder("input");
+                input.Attributes.Add("type", "text");
+                input.Attributes.Add("name", this.Name);
+                input.Attributes.Add("value", this.Value);
+                if (this.DatePicker == true)
                 {
-                    var input = new TagBuilder("input");
-                    input.Attributes.Add("type", "text");
-                    input.Attributes.Add("name", this.Name);
-                    input.Attributes.Add("value", this.Value);
-                    if (this.DatePicker == true)
-                    {
-                        input.Attributes.Add("date-picker", "true");
-                        input.AddCssClass("date");
-                    }
-                    div.InnerHtml.AppendHtml(input);
+                    input.Attributes.Add("date-picker", "true");
+                    input.AddCssClass("date");
                 }
-                output.Content.AppendHtml(div);
+                div.InnerHtml.AppendHtml(input);
             }
-            {
-                var div = new TagBuilder("div");
-                div.Attributes.Add("class", "input-error");
-                div.Attributes.Add("input-error-key", this.InputErrorKey);
-                output.Content.AppendHtml(div);
-            }
-            {
-                var div = new TagBuilder("div");
-                div.Attributes.Add("class", "message-text");
-                div.InnerHtml.SetContent(this.MessageText);
-                output.Content.AppendHtml(div);
-            }
-            await base.ProcessAsync(context, output);
+            output.Content.AppendHtml(div);
         }
+        {
+            var div = new TagBuilder("div");
+            div.Attributes.Add("class", "input-error");
+            div.Attributes.Add("input-error-key", this.InputErrorKey);
+            output.Content.AppendHtml(div);
+        }
+        {
+            var div = new TagBuilder("div");
+            div.Attributes.Add("class", "message-text");
+            div.InnerHtml.SetContent(this.MessageText);
+            output.Content.AppendHtml(div);
+        }
+        await base.ProcessAsync(context, output);
     }
 }

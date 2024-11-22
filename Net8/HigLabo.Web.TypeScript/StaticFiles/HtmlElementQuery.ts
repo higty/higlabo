@@ -244,6 +244,12 @@ export class HtmlElementQuery {
         return null;
     }
 
+    public insertAdjacentHTML(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", text: string) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentHTML(position, text);
+        }
+        return this;
+    }
     public getInnerWidth(): number {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
@@ -566,21 +572,21 @@ export class HtmlElementQuery {
     public resize(callback: EventListenerOrEventListenerObject) {
         this.addEventListenerToAllElement("resize", callback);
     }
-    public keydown(callback: (e: KeyboardEvent) => {}, keyCode?: number) {
+    public keydown(callback: (e: KeyboardEvent) => {}, key?: string) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keydown", function (e: KeyboardEvent) {
-                if (keyCode == null || e.keyCode === keyCode) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });
         }
     }
-    public keyup(callback: (e: KeyboardEvent) => {}, keyCode?: number) {
+    public keyup(callback: (e: KeyboardEvent) => {}, key?: string) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e: KeyboardEvent) {
-                if (e.keyCode === null || e.keyCode === keyCode) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });

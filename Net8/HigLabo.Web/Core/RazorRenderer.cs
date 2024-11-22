@@ -13,26 +13,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Web
-{
+namespace HigLabo.Web;
+
 	public class RazorRenderer(IHttpContextAccessor contextAccessor, IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
-    {
+{
 		private IHttpContextAccessor _contextAccessor = contextAccessor;
 		private IRazorViewEngine _viewEngine = viewEngine;
 		private ITempDataProvider _tempDataProvider = tempDataProvider;
 		private IServiceProvider _serviceProvider = serviceProvider;
 
-        public async ValueTask<string> ToHtmlAsync(string viewName)
-        {
-            var d = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
-            return await ToHtmlAsync(viewName, d);
-        }
-        public async ValueTask<string> ToHtmlAsync<TModel>(string viewName, TModel model)
+    public async ValueTask<string> ToHtmlAsync(string viewName)
+    {
+        var d = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
+        return await ToHtmlAsync(viewName, d);
+    }
+    public async ValueTask<string> ToHtmlAsync<TModel>(string viewName, TModel model)
 		{
-            var d = new ViewDataDictionary<TModel>(new EmptyModelMetadataProvider(), new ModelStateDictionary());
-            d.Model = model;
+        var d = new ViewDataDictionary<TModel>(new EmptyModelMetadataProvider(), new ModelStateDictionary());
+        d.Model = model;
 			return await ToHtmlAsync(viewName, d as ViewDataDictionary);
-        }
+    }
 		public async ValueTask<string> ToHtmlAsync(string viewName, ViewDataDictionary viewData)
 		{
 			var context = _contextAccessor.HttpContext;
@@ -48,26 +48,26 @@ namespace HigLabo.Web
 				await partialView.RenderAsync(viewContext);
 				return output.ToString();
 			}
-        }
-        public async ValueTask WriteHtmlAsync(HttpContext context, string viewName)
-        {
-            await WriteHtmlAsync(context.Response, viewName);
-        }
-        public async ValueTask WriteHtmlAsync(HttpResponse response, string viewName)
-        {
-            var d = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
-            var html = await ToHtmlAsync(viewName, d);
-            await response.WriteAsync(html);
-        }
-        public async ValueTask WriteHtmlAsync<TModel>(HttpContext context, string viewName, TModel model)
-        {
-            await WriteHtmlAsync(context.Response, viewName, model);
+    }
+    public async ValueTask WriteHtmlAsync(HttpContext context, string viewName)
+    {
+        await WriteHtmlAsync(context.Response, viewName);
+    }
+    public async ValueTask WriteHtmlAsync(HttpResponse response, string viewName)
+    {
+        var d = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
+        var html = await ToHtmlAsync(viewName, d);
+        await response.WriteAsync(html);
+    }
+    public async ValueTask WriteHtmlAsync<TModel>(HttpContext context, string viewName, TModel model)
+    {
+        await WriteHtmlAsync(context.Response, viewName, model);
 		}
 		public async ValueTask WriteHtmlAsync<TModel>(HttpResponse response, string viewName, TModel model)
 		{
 			var html = await ToHtmlAsync(viewName, model);
 			await response.WriteAsync(html);
-        }
+    }
 		
 		private IView FindView(ActionContext actionContext, string viewName)
 		{
@@ -87,4 +87,3 @@ namespace HigLabo.Web
 			throw new InvalidOperationException(errorMessage);
 		}
 	}
-}

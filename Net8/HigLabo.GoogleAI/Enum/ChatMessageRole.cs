@@ -1,8 +1,7 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public enum ChatMessageRole
 {
-    public enum ChatMessageRole
-    {
-        User,
-        Model,
-    }
+    User,
+    Model,
 }

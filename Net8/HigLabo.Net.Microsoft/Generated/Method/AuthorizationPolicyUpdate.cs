@@ -1,95 +1,94 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+/// </summary>
+public partial class AuthorizationPolicyUpdateParameter : IRestApiParameter
+{
+    public class ApiPathSettings
+    {
+        public ApiPath ApiPath { get; set; }
+
+        public string GetApiPath()
+        {
+            switch (this.ApiPath)
+            {
+                case ApiPath.Policies_AuthorizationPolicy: return $"/policies/authorizationPolicy";
+                default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+            }
+        }
+    }
+
+    public enum AuthorizationPolicyUpdateParameterAllowInvitesFrom
+    {
+        None,
+        AdminsAndGuestInviters,
+        AdminsGuestInvitersAndAllMembers,
+        Everyone,
+    }
+    public enum ApiPath
+    {
+        Policies_AuthorizationPolicy,
+    }
+
+    public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
+    string IRestApiParameter.ApiPath
+    {
+        get
+        {
+            return this.ApiPathSetting.GetApiPath();
+        }
+    }
+    string IRestApiParameter.HttpMethod { get; } = "PATCH";
+    public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
+    public AuthorizationPolicyUpdateParameterAllowInvitesFrom AllowInvitesFrom { get; set; }
+    public bool? AllowUserConsentForRiskyApps { get; set; }
+    public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
+    public bool? AllowedToUseSSPR { get; set; }
+    public bool? BlockMsolPowerShell { get; set; }
+    public DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
+    public string? Description { get; set; }
+    public string? DisplayName { get; set; }
+    public Guid? GuestUserRoleId { get; set; }
+}
+public partial class AuthorizationPolicyUpdateResponse : RestApiResponse
+{
+}
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+/// </summary>
+public partial class MicrosoftClient
 {
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
     /// </summary>
-    public partial class AuthorizationPolicyUpdateParameter : IRestApiParameter
+    public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync()
     {
-        public class ApiPathSettings
-        {
-            public ApiPath ApiPath { get; set; }
-
-            public string GetApiPath()
-            {
-                switch (this.ApiPath)
-                {
-                    case ApiPath.Policies_AuthorizationPolicy: return $"/policies/authorizationPolicy";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
-                }
-            }
-        }
-
-        public enum AuthorizationPolicyUpdateParameterAllowInvitesFrom
-        {
-            None,
-            AdminsAndGuestInviters,
-            AdminsGuestInvitersAndAllMembers,
-            Everyone,
-        }
-        public enum ApiPath
-        {
-            Policies_AuthorizationPolicy,
-        }
-
-        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
-        string IRestApiParameter.ApiPath
-        {
-            get
-            {
-                return this.ApiPathSetting.GetApiPath();
-            }
-        }
-        string IRestApiParameter.HttpMethod { get; } = "PATCH";
-        public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
-        public AuthorizationPolicyUpdateParameterAllowInvitesFrom AllowInvitesFrom { get; set; }
-        public bool? AllowUserConsentForRiskyApps { get; set; }
-        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
-        public bool? AllowedToUseSSPR { get; set; }
-        public bool? BlockMsolPowerShell { get; set; }
-        public DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
-        public string? Description { get; set; }
-        public string? DisplayName { get; set; }
-        public Guid? GuestUserRoleId { get; set; }
-    }
-    public partial class AuthorizationPolicyUpdateResponse : RestApiResponse
-    {
+        var p = new AuthorizationPolicyUpdateParameter();
+        return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, CancellationToken.None);
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
     /// </summary>
-    public partial class MicrosoftClient
+    public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(CancellationToken cancellationToken)
     {
-        /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
-        /// </summary>
-        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync()
-        {
-            var p = new AuthorizationPolicyUpdateParameter();
-            return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
-        /// </summary>
-        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(CancellationToken cancellationToken)
-        {
-            var p = new AuthorizationPolicyUpdateParameter();
-            return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, cancellationToken);
-        }
-        /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
-        /// </summary>
-        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter)
-        {
-            return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
-        /// </summary>
-        public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, cancellationToken);
-        }
+        var p = new AuthorizationPolicyUpdateParameter();
+        return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, cancellationToken);
+    }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+    /// </summary>
+    public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter)
+    {
+        return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, CancellationToken.None);
+    }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+    /// </summary>
+    public async ValueTask<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, cancellationToken);
     }
 }

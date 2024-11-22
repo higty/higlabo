@@ -7,25 +7,24 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public static class DbParameterExtensions
 {
-    public static class DbParameterExtensions
+    public static void SetTypeName(this DbParameter parameter, String typeName)
     {
-        public static void SetTypeName(this DbParameter parameter, String typeName)
+        var p = parameter as SqlParameter;
+        if (p != null)
         {
-            var p = parameter as SqlParameter;
-            if (p != null)
-            {
-                p.TypeName = typeName;
-            }
+            p.TypeName = typeName;
         }
-        public static void SetUdtTypeName(this DbParameter parameter, String udtTypeName)
+    }
+    public static void SetUdtTypeName(this DbParameter parameter, String udtTypeName)
+    {
+        var p = parameter as SqlParameter;
+        if (p != null)
         {
-            var p = parameter as SqlParameter;
-            if (p != null)
-            {
-                p.UdtTypeName = udtTypeName;
-            }
+            p.UdtTypeName = udtTypeName;
         }
     }
 }

@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HigLabo.Net.Smtp
+namespace HigLabo.Net.Smtp;
+
+/// Specify the way to login mail server.
+/// <summary>
+/// Specify the way to login mail server.
+/// <remarks>
+///	<list type="bullet">
+/// <item>
+/// <term>Auto</term>
+/// <description>Select authenticate mode automatically.</description>
+/// <term>Plain</term>
+/// <description>Use plain authenticate mode.</description>
+/// <term>Login</term>
+/// <description>Use login authenticate mode.</description>
+/// <term>Cram_MD5</term>
+/// <description>Use CRAM-MD5 authenticate mode.</description>
+/// </item>
+/// </list>
+/// </remarks>
+/// </summary>
+public enum SmtpAuthenticateMode
 {
-    /// Specify the way to login mail server.
-    /// <summary>
-    /// Specify the way to login mail server.
-    /// <remarks>
-    ///	<list type="bullet">
-    /// <item>
-    /// <term>Auto</term>
-    /// <description>Select authenticate mode automatically.</description>
-    /// <term>Plain</term>
-    /// <description>Use plain authenticate mode.</description>
-    /// <term>Login</term>
-    /// <description>Use login authenticate mode.</description>
-    /// <term>Cram_MD5</term>
-    /// <description>Use CRAM-MD5 authenticate mode.</description>
-    /// </item>
-    /// </list>
-    /// </remarks>
-    /// </summary>
-    public enum SmtpAuthenticateMode
-    {
 		/// <summary>
 		/// 
 		/// </summary>
-        Auto, 
+    Auto, 
 		/// <summary>
 		/// 
 		/// </summary>
@@ -44,9 +44,8 @@ namespace HigLabo.Net.Smtp
 		/// 
 		/// </summary>
 		Cram_MD5,
-        /// <summary>
-        /// 
-        /// </summary>
-        PopBeforeSmtp,
-    }
+    /// <summary>
+    /// 
+    /// </summary>
+    PopBeforeSmtp,
 }

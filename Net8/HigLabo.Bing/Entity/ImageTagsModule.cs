@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public  class ImageTagsModule
 {
-    public  class ImageTagsModule
-    {
-        public Tag[] Value { get; set; } = Array.Empty<Tag>();
-    }
+    public Tag[] Value { get; set; } = Array.Empty<Tag>();
 }

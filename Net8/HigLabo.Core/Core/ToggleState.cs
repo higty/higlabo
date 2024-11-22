@@ -4,23 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public enum ToggleState
 {
-    public enum ToggleState
+    Visible,
+    Hidden,
+}
+public static class ToggleStateExtensions
+{
+    public static ToggleState GetOpositeToggleState(this ToggleState state)
     {
-        Visible,
-        Hidden,
-    }
-    public static class ToggleStateExtensions
-    {
-        public static ToggleState GetOpositeToggleState(this ToggleState state)
+        switch (state)
         {
-            switch (state)
-            {
-                case ToggleState.Visible: return ToggleState.Hidden;
-                case ToggleState.Hidden: return ToggleState.Visible;
-                default: throw SwitchStatementNotImplementException.Create(state);
-            }
+            case ToggleState.Visible: return ToggleState.Hidden;
+            case ToggleState.Hidden: return ToggleState.Visible;
+            default: throw SwitchStatementNotImplementException.Create(state);
         }
     }
 }

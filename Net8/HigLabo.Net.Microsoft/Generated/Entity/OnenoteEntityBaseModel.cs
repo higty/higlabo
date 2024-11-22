@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/onenotebasemodel?view=graph-rest-1.0
+/// </summary>
+public partial class OnenoteEntityBaseModel
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/onenotebasemodel?view=graph-rest-1.0
-    /// </summary>
-    public partial class OnenoteEntityBaseModel
-    {
-        public string? Self { get; set; }
-    }
+    public string? Self { get; set; }
 }

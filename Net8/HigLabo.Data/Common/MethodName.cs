@@ -1,15 +1,14 @@
-﻿namespace HigLabo.Data
+﻿namespace HigLabo.Data;
+
+public enum MethodName
 {
-    public enum MethodName
-    {
-        Unknown,
-        GetDataSet, 
-        GetDataTable, 
-        ExecuteCommand, 
-        ExecuteCommandList, 
-        ExecuteScalar, 
-        ExecuteReader, 
-        BulkCopy,
-        Save,
-    }
+    Unknown,
+    GetDataSet, 
+    GetDataTable, 
+    ExecuteCommand, 
+    ExecuteCommandList, 
+    ExecuteScalar, 
+    ExecuteReader, 
+    BulkCopy,
+    Save,
 }

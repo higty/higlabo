@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Data.Common;
 
-namespace HigLabo.Data
+namespace HigLabo.Data;
+
+public class CommandCreatedEventArgs : EventArgs
 {
-    public class CommandCreatedEventArgs : EventArgs
+    public DbCommand Command { get; set; }
+    public CommandCreatedEventArgs(DbCommand command)
     {
-        public DbCommand Command { get; set; }
-        public CommandCreatedEventArgs(DbCommand command)
-        {
-            this.Command = command;
-        }
+        this.Command = command;
     }
 }

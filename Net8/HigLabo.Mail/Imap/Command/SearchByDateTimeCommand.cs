@@ -5,27 +5,26 @@ using System.Text;
 using HigLabo.Core;
 using System.Globalization;
 
-namespace HigLabo.Net.Imap
+namespace HigLabo.Net.Imap;
+
+public class SearchByDateTimeCommand : SearchCommand
 {
-    public class SearchByDateTimeCommand : SearchCommand
+    internal override bool IsEncodeValue
     {
-        internal override bool IsEncodeValue
-        {
-            get { return false; }
-        }
-        public SearchByDateTimeCommandKey Key { get; set; }
-        public DateTime Value { get; set; }
+        get { return false; }
+    }
+    public SearchByDateTimeCommandKey Key { get; set; }
+    public DateTime Value { get; set; }
 
-        public SearchByDateTimeCommand()
-        {
-            this.Key = SearchByDateTimeCommandKey.On;
-        }
+    public SearchByDateTimeCommand()
+    {
+        this.Key = SearchByDateTimeCommandKey.On;
+    }
 
-        protected override String CreateCommandText()
-        {
-            return String.Format("{0} {1}"
-                , this.Key.ToStringFromEnum()
-                , this.Value.ToString("dd-MMM-yyyy", new CultureInfo("en-US")));
-        }
+    protected override String CreateCommandText()
+    {
+        return String.Format("{0} {1}"
+            , this.Key.ToStringFromEnum()
+            , this.Value.ToString("dd-MMM-yyyy", new CultureInfo("en-US")));
     }
 }

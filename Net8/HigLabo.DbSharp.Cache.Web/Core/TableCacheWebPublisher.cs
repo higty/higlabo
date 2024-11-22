@@ -12,35 +12,34 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public class TableCacheWebPublisher
 {
-    public class TableCacheWebPublisher
+    public HttpClient HttpClient { get; init; }
+    public List<string> UrlList { get; private set; } = new();
+
+    public TableCacheWebPublisher(HttpClient httpClient)
     {
-        public HttpClient HttpClient { get; init; }
-        public List<string> UrlList { get; private set; } = new();
+        this.HttpClient = httpClient;
+        this.HttpClient.DefaultRequestHeaders.CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue()
+        {
+            NoCache = true
+        };
+    }
 
-        public TableCacheWebPublisher(HttpClient httpClient)
+    public async ValueTask Publish(String tableName)
+    {
+        foreach (var url in this.UrlList)
         {
-            this.HttpClient = httpClient;
-            this.HttpClient.DefaultRequestHeaders.CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue()
-            {
-                NoCache = true
-            };
+            var response = await this.HttpClient.PostAsJsonAsync(url, new { TableName = tableName });
         }
-
-        public async ValueTask Publish(String tableName)
+    }
+    public async ValueTask Publish(String[] tableNameList)
+    {
+        foreach (var url in this.UrlList)
         {
-            foreach (var url in this.UrlList)
-            {
-                var response = await this.HttpClient.PostAsJsonAsync(url, new { TableName = tableName });
-            }
-        }
-        public async ValueTask Publish(String[] tableNameList)
-        {
-            foreach (var url in this.UrlList)
-            {
-                var response = await this.HttpClient.PostAsJsonAsync(url, new { TableNameList = tableNameList });
-            }
+            var response = await this.HttpClient.PostAsJsonAsync(url, new { TableNameList = tableNameList });
         }
     }
 }

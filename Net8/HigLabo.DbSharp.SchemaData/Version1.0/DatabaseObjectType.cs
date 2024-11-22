@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp.MetaData
+namespace HigLabo.DbSharp.MetaData;
+
+public enum DatabaseObjectType
 {
-    public enum DatabaseObjectType
-    {
-        Unknown,
-        Table,
-        View,
-        UserDefinedTableType,
-        StoredProcedure,
-        StoredFunction,
-    }
+    Unknown,
+    Table,
+    View,
+    UserDefinedTableType,
+    StoredProcedure,
+    StoredFunction,
 }

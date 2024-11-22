@@ -13,6 +13,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<ApplicationIcon>Icon\DbSharp.ico</ApplicationIcon>
 		<Title>DbSharpApplication</Title>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,7 +27,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	  <PackageReference Include="Azure.Identity" Version="1.13.1" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+	  <PackageReference Include="MySql.Data" Version="9.1.0" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 

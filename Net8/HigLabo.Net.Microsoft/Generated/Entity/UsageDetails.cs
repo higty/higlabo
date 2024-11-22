@@ -1,13 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/insights-usagedetails?view=graph-rest-1.0
+/// </summary>
+public partial class UsageDetails
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/insights-usagedetails?view=graph-rest-1.0
-    /// </summary>
-    public partial class UsageDetails
-    {
-        public DateTimeOffset? LastAccessedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
-    }
+    public DateTimeOffset? LastAccessedDateTime { get; set; }
+    public DateTimeOffset? LastModifiedDateTime { get; set; }
 }

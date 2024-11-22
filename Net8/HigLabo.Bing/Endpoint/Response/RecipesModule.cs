@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class RecipesModule : BingRestApiResponse
 {
-    public class RecipesModule : BingRestApiResponse
-    {
-        public Recipe[] Value { get; set; } = Array.Empty<Recipe>();
-    }
+    public Recipe[] Value { get; set; } = Array.Empty<Recipe>();
 }

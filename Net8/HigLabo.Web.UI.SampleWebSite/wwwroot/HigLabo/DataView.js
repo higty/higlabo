@@ -68,7 +68,7 @@ export class DataView {
     }
     afterRequest(e) {
         const dataViewPanel = $(e.target).getFirstParent("[data-view]").getFirstElement();
-        if ($(e.target).getAttribute("data-view-delete") == "true") {
+        if ($(e.target).getAttribute("data-view-save") == "true") {
             const statusCode = e.detail.xhr.status.toString();
             if (statusCode == 0 || statusCode.startsWith("2")) {
                 this.loadData(dataViewPanel);

@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum LobbyBypassScope
 {
-    public enum LobbyBypassScope
-    {
-        Organizer,
-        Organization,
-        OrganizationAndFederated,
-        Everyone,
-        Invited,
-        OrganizationExcludingGuests,
-    }
+    Organizer,
+    Organization,
+    OrganizationAndFederated,
+    Everyone,
+    Invited,
+    OrganizationExcludingGuests,
 }

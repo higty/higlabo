@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.GoogleAI
+namespace HigLabo.GoogleAI;
+
+public abstract class RestApiParameter
 {
-    public abstract class RestApiParameter
-    {
-        public static readonly object EmptyParameter = new object();
-        public abstract object GetRequestBody();
-    }
+    public static readonly object EmptyParameter = new object();
+    public abstract object GetRequestBody();
 }

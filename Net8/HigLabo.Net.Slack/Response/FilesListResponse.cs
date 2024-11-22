@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class FilesListResponse
 {
-    public partial class FilesListResponse
-    {
-        public File[]? Files { get; set; }
-        public Paging? Paging { get; set; }
-    }
+    public File[]? Files { get; set; }
+    public Paging? Paging { get; set; }
 }

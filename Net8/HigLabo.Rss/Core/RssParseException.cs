@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public class RssParseException : Exception
 {
-    public class RssParseException : Exception
+    public String Xml { get; private set; }
+    public RssParseException(String xml)
     {
-        public String Xml { get; private set; }
-        public RssParseException(String xml)
-        {
-            this.Xml = xml;
-        }
+        this.Xml = xml;
     }
 }

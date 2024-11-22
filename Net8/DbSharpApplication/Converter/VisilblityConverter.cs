@@ -6,40 +6,39 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Globalization;
 
-namespace HigLabo.Wpf.Converter
+namespace HigLabo.Wpf.Converter;
+
+public class BooleanVisibilityConverter : System.Windows.Data.IValueConverter
 {
-    public class BooleanVisibilityConverter : System.Windows.Data.IValueConverter
+    public Visibility FalseVisibility { get; set; }
+    public BooleanVisibilityConverter()
     {
-        public Visibility FalseVisibility { get; set; }
-        public BooleanVisibilityConverter()
+        this.FalseVisibility = Visibility.Collapsed;
+    }
+    public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value == null) { return null; }
+        Boolean bl = false;
+        if (Boolean.TryParse(value.ToString(), out bl) == true)
         {
-            this.FalseVisibility = Visibility.Collapsed;
-        }
-        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) { return null; }
-            Boolean bl = false;
-            if (Boolean.TryParse(value.ToString(), out bl) == true)
+            if (bl == true)
             {
-                if (bl == true)
-                {
-                    return Visibility.Visible.ToString();
-                }
-                else
-                {
-                    return this.FalseVisibility.ToString();
-                }
+                return Visibility.Visible.ToString();
             }
-            return this.FalseVisibility;
-        }
-        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is Visibility)
+            else
             {
-                var v = (Visibility)value;
-                return v == Visibility.Visible;
+                return this.FalseVisibility.ToString();
             }
-            return null;
         }
+        return this.FalseVisibility;
+    }
+    public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is Visibility)
+        {
+            var v = (Visibility)value;
+            return v == Visibility.Visible;
+        }
+        return null;
     }
 }

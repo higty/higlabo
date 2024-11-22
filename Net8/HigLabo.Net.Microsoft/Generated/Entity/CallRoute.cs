@@ -1,14 +1,13 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/callroute?view=graph-rest-1.0
+/// </summary>
+public partial class CallRoute
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/callroute?view=graph-rest-1.0
-    /// </summary>
-    public partial class CallRoute
-    {
-        public IdentitySet? Final { get; set; }
-        public IdentitySet? Original { get; set; }
-        public string? RoutingType { get; set; }
-    }
+    public IdentitySet? Final { get; set; }
+    public IdentitySet? Original { get; set; }
+    public string? RoutingType { get; set; }
 }

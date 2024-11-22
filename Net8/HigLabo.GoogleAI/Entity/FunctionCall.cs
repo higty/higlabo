@@ -1,13 +1,12 @@
-﻿namespace HigLabo.GoogleAI
-{
-    public class FunctionCall
-    {
-        public string Name { get; set; } = "";
-        public object Args { get; set; } = new();
+﻿namespace HigLabo.GoogleAI;
 
-        public override string ToString()
-        {
-            return $"{this.Name}({this.Args})";
-        }
+public class FunctionCall
+{
+    public string Name { get; set; } = "";
+    public object Args { get; set; } = new();
+
+    public override string ToString()
+    {
+        return $"{this.Name}({this.Args})";
     }
 }

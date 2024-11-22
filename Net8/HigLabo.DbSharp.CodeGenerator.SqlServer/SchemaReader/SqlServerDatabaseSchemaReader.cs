@@ -12,441 +12,441 @@ using System.Data.Common;
 using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 
-namespace HigLabo.DbSharp.MetaData
+namespace HigLabo.DbSharp.MetaData;
+
+public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
 {
-    public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
+    public override DatabaseSchemaQueryBuilder QueryBuilder => new SqlServerDatabaseSchemaQueryBuilder();
+    public override DatabaseServer DatabaseServer
     {
-        public override DatabaseSchemaQueryBuilder QueryBuilder => new SqlServerDatabaseSchemaQueryBuilder();
-        public override DatabaseServer DatabaseServer
-        {
-            get { return DatabaseServer.SqlServer; }
-        }
-        public override bool SupportUserDefinedTableType
-        {
-            get { return true; }
-        }
+        get { return DatabaseServer.SqlServer; }
+    }
+    public override bool SupportUserDefinedTableType
+    {
+        get { return true; }
+    }
 
-        public SqlServerDatabaseSchemaReader(String connectionString)
-        {
-            this.ConnectionString = connectionString;
-        }
-    
-        public override Database CreateDatabase()
-        {
-            return new SqlServerDatabase(this.ConnectionString);
-        }
+    public SqlServerDatabaseSchemaReader(String connectionString)
+    {
+        this.ConnectionString = connectionString;
+    }
 
-        public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
-        {
-            List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
-            List<DataTable> schemaDataTableList = new List<DataTable>();
-            var cm = CreateTestSqlCommand<SqlCommand>(sp, values);
+    public override Database CreateDatabase()
+    {
+        return new SqlServerDatabase(this.ConnectionString);
+    }
 
-            //UserDefinedTableType
-            foreach (var item in sp.Parameters.Where(el => el.DbType!.SqlServerDbType == SqlServer2022DbType.Structured))
+    public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
+    {
+        List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
+        List<DataTable> schemaDataTableList = new List<DataTable>();
+        var cm = CreateTestSqlCommand<SqlCommand>(sp, values);
+
+        //UserDefinedTableType
+        foreach (var item in sp.Parameters.Where(el => el.DbType!.SqlServerDbType == SqlServer2022DbType.Structured))
+        {
+            var dt = (DataTable)cm.Parameters[item.Name].Value;
+            var udt = await this.GetUserDefinedTableTypeAsync(item.UserTableTypeName);
+            foreach (var column in udt.Columns)
             {
-                var dt = (DataTable)cm.Parameters[item.Name].Value;
-                var udt = await this.GetUserDefinedTableTypeAsync(item.UserTableTypeName);
-                foreach (var column in udt.Columns)
-                {
-                    dt.Columns.Add(new DataColumn(column.Name, column.GetClassNameType().ToType()));
-                }
-                var oo = new Object?[udt.Columns.Count];
-                for (int i = 0; i < udt.Columns.Count; i++)
-                {
-                    var c = udt.Columns[i];
-                    oo[i] = this.GetParameterValue(c, c.DbType!.SqlServerDbType!.Value);
-                }
-                dt.Rows.Add(oo);
+                dt.Columns.Add(new DataColumn(column.Name, column.GetClassNameType().ToType()));
             }
-            //処理の実行によってデータの変更などの副作用が起きないようにRollBackする。
-            using (var db = this.CreateDatabase())
+            var oo = new Object?[udt.Columns.Count];
+            for (int i = 0; i < udt.Columns.Count; i++)
             {
-                try
-                {
-                    db.Open();
-                    db.BeginTransaction(IsolationLevel.ReadUncommitted);
+                var c = udt.Columns[i];
+                oo[i] = this.GetParameterValue(c, c.DbType!.SqlServerDbType!.Value);
+            }
+            dt.Rows.Add(oo);
+        }
+        //処理の実行によってデータの変更などの副作用が起きないようにRollBackする。
+        using (var db = this.CreateDatabase())
+        {
+            try
+            {
+                db.Open();
+                db.BeginTransaction(IsolationLevel.ReadUncommitted);
 
-                    using (IDataReader r = db.ExecuteReader(cm)!)
+                using (IDataReader r = db.ExecuteReader(cm)!)
+                {
+                    var schemaDataTable = r.GetSchemaTable();
+                    if (schemaDataTable == null) return;
+                    schemaDataTableList.Add(schemaDataTable);
+                    //TableNameSelectAllストアドの場合はスキップ
+                    if (String.IsNullOrEmpty(sp.TableName) == true ||
+                        sp.Name.EndsWith("SelectAll") == false)
                     {
-                        var schemaDataTable = r.GetSchemaTable();
-                        if (schemaDataTable == null) return;
-                        schemaDataTableList.Add(schemaDataTable);
-                        //TableNameSelectAllストアドの場合はスキップ
-                        if (String.IsNullOrEmpty(sp.TableName) == true ||
-                            sp.Name.EndsWith("SelectAll") == false)
+                        while (r.NextResult())
                         {
-                            while (r.NextResult())
-                            {
-                                schemaDataTableList.Add(r.GetSchemaTable()!);
-                            }
+                            schemaDataTableList.Add(r.GetSchemaTable()!);
                         }
                     }
-                    if (db.OnTransaction == true)
+                }
+                if (db.OnTransaction == true)
+                {
+                    db.RollBackTransaction();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                System.Diagnostics.Debugger.Break();
+                if (db.OnTransaction == true)
+                {
+                    db.RollBackTransaction();
+                }
+                throw;
+            }
+        }
+
+        if (schemaDataTableList.Count == 0) return;
+
+        Int32 index = 0;
+        foreach (var schemaDataTable in schemaDataTableList)
+        {
+            var resultSets = index switch
+            {
+                0 => new StoredProcedureResultSetColumn("ResultSet"),
+                _ => new StoredProcedureResultSetColumn("ResultSet" + index),
+            };
+            for (var i = 0; i < schemaDataTable.Rows.Count; i++)
+            {
+                var row = schemaDataTable.Rows[i];
+
+                var c = new DataType();
+                c.Name = row["ColumnName"].ToString()!;
+                c.Ordinal = resultSets.Columns.Count;
+                c.DbType = this.CreateDbType(row["ProviderType"]);
+                if (c.DbType.IsUdt() == true)
+                {
+                    var tp = row["DataType"] as TypeInfo;
+                    var typeName = "";
+                    if (tp == null)
                     {
-                        db.RollBackTransaction();
+                        typeName = row["UdtAssemblyQualifiedName"].ToString()!.ExtractString(null, ',');
+                    }
+                    else
+                    {
+                        typeName = tp.FullName;
                     }
                 }
-                catch (Exception ex)
+
+                if (c.DbType.IsStructured() == true)
                 {
-                    Debug.WriteLine(ex.ToString());
-                    System.Diagnostics.Debugger.Break();
-                    if (db.OnTransaction == true)
+                    throw new NotImplementedException();
+                }
+                c.Length = this.TypeConverter.ToInt32(row["ColumnSize"]) ?? c.Length;
+                c.Precision = this.TypeConverter.ToInt32(row["NumericPrecision"]) ?? c.Precision;
+                if (c.DbType.CanDeclarePrecisionScale() == true ||
+                    c.DbType.CanDeclareScale() == true)
+                {
+                    c.Scale = this.TypeConverter.ToInt32(row["NumericScale"]) ?? c.Scale;
+                    if (c.Scale.HasValue == false)
                     {
-                        db.RollBackTransaction();
+                        c.Scale = this.TypeConverter.ToInt32(row["DateTimeScale"]) ?? c.Scale;
                     }
-                    throw;
                 }
+                resultSets.Columns.Add(c);
             }
+            resultSetsList.Add(resultSets);
+            index += 1;
+        }
+        foreach (var item in resultSetsList)
+        {
+            sp.ResultSets.Add(item);
+        }
+    }
+    public override async ValueTask<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
+    {
+        var l = new List<DatabaseObject>();
 
-            if (schemaDataTableList.Count == 0) return;
+        using (Database db = this.CreateDatabase())
+        {
+            var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypes());
 
-            Int32 index = 0;
-            foreach (var schemaDataTable in schemaDataTableList)
+            while (await reader!.ReadAsync())
             {
-                var resultSets = index switch
-                {
-                    0 => new StoredProcedureResultSetColumn("ResultSet"),
-                    _ => new StoredProcedureResultSetColumn("ResultSet" + index),
-                };
-                for (var i = 0; i < schemaDataTable.Rows.Count; i++)
-                {
-                    var row = schemaDataTable.Rows[i];
-
-                    var c = new DataType();
-                    c.Name = row["ColumnName"].ToString()!;
-                    c.Ordinal = resultSets.Columns.Count;
-                    c.DbType = this.CreateDbType(row["ProviderType"]);
-                    if (c.DbType.IsUdt() == true)
-                    {
-                        var tp = row["DataType"] as TypeInfo;
-                        var typeName = "";
-                        if (tp == null)
-                        {
-                            typeName = row["UdtAssemblyQualifiedName"].ToString()!.ExtractString(null, ',');
-                        }
-                        else
-                        {
-                            typeName = tp.FullName;
-                        }
-                    }
-
-                    if (c.DbType.IsStructured() == true)
-                    {
-                        throw new NotImplementedException();
-                    }
-                    c.Length = this.TypeConverter.ToInt32(row["ColumnSize"]) ?? c.Length;
-                    c.Precision = this.TypeConverter.ToInt32(row["NumericPrecision"]) ?? c.Precision;
-                    if (c.DbType.CanDeclarePrecisionScale() == true ||
-                        c.DbType.CanDeclareScale() == true)
-                    {
-                        c.Scale = this.TypeConverter.ToInt32(row["NumericScale"]) ?? c.Scale;
-                        if (c.Scale.HasValue == false)
-                        {
-                            c.Scale = this.TypeConverter.ToInt32(row["DateTimeScale"]) ?? c.Scale;
-                        }
-                    }
-                    resultSets.Columns.Add(c);
-                }
-                resultSetsList.Add(resultSets);
-                index += 1;
-            }
-            foreach (var item in resultSetsList)
-            {
-                sp.ResultSets.Add(item);
+                var o = new DatabaseObject(DatabaseObjectType.UserDefinedTableType);
+                o.Name = reader.GetString(0);
+                o.CreateTime = DateTime.MinValue;
+                o.LastAlteredTime = DateTime.MinValue;
+                l.Add(o);
             }
         }
-        public override async ValueTask<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
+        return l;
+    }
+    public override async ValueTask<UserDefinedTableType> GetUserDefinedTableTypeAsync(String name)
+    {
+        UserDefinedTableType st = new UserDefinedTableType(name);
+        foreach (var column in await this.GetUserDefinedTableTypeColumnsAsync(name))
         {
-            var l = new List<DatabaseObject>();
-
-            using (Database db = this.CreateDatabase())
-            {
-                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypes());
-
-                while (await reader!.ReadAsync())
-                {
-                    var o = new DatabaseObject(DatabaseObjectType.UserDefinedTableType);
-                    o.Name = reader.GetString(0);
-                    o.CreateTime = DateTime.MinValue;
-                    o.LastAlteredTime = DateTime.MinValue;
-                    l.Add(o);
-                }
-            }
-            return l;
+            st.Columns.Add(column);
         }
-        public override async ValueTask<UserDefinedTableType> GetUserDefinedTableTypeAsync(String name)
+        return st;
+    }
+    public override async ValueTask<List<DataType>> GetUserDefinedTableTypeColumnsAsync(String name)
+    {
+        List<DataType> l = new List<DataType>();
+
+        using (Database db = this.CreateDatabase())
         {
-            UserDefinedTableType st = new UserDefinedTableType(name);
-            foreach (var column in await this.GetUserDefinedTableTypeColumnsAsync(name))
+            var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypeColumns(name));
+            while (await reader!.ReadAsync())
             {
-                st.Columns.Add(column);
-            }
-            return st;
-        }
-        public override async ValueTask<List<DataType>> GetUserDefinedTableTypeColumnsAsync(String name)
-        {
-            List<DataType> l = new List<DataType>();
+                var c = new DataType();
+                c.Name = reader.GetString(0);
+                c.Ordinal = l.Count;
+                c.DbType = this.CreateDbType(reader["ColumnType"]);
+                if (reader[2] != DBNull.Value) c.Length = reader.GetInt32(2);
+                if (reader[3] != DBNull.Value) c.Precision = reader.GetByte(3);
+                if (reader[4] != DBNull.Value) c.Scale = reader.GetByte(4);
+                c.AllowNull = reader.GetBoolean(5);
+                c.UdtTypeName = reader.GetString(6);//UdtTypeName
 
-            using (Database db = this.CreateDatabase())
-            {
-                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypeColumns(name));
-                while (await reader!.ReadAsync())
-                {
-                    var c = new DataType();
-                    c.Name = reader.GetString(0);
-                    c.Ordinal = l.Count;
-                    c.DbType = this.CreateDbType(reader["ColumnType"]);
-                    if (reader[2] != DBNull.Value) c.Length = reader.GetInt32(2);
-                    if (reader[3] != DBNull.Value) c.Precision = reader.GetByte(3);
-                    if (reader[4] != DBNull.Value) c.Scale = reader.GetByte(4);
-                    c.AllowNull = reader.GetBoolean(5);
-                    c.UdtTypeName = reader.GetString(6);//UdtTypeName
-
-                    l.Add(c);
-                }
-            }
-            return l;
-        }
-
-        protected override MetaData.DbType CreateDbType(Object value)
-        {
-            var tp = this.TypeConverter.ToEnum<SqlServer2022DbType>(value);
-            if (tp.HasValue == false) throw new InvalidCastException();
-            return new MetaData.DbType(tp.Value);
-        }
-        protected override IDbDataParameter CreateParameter(String name, DataType dataType)
-        {
-            var sqlDbType = dataType.DbType!.SqlServerDbType.ToString()!.ToEnum<SqlDbType>()!.Value;
-            var p = new Microsoft.Data.SqlClient.SqlParameter(name, sqlDbType);
-            if (dataType is SqlInputParameter dType)
-            {
-                p.Direction = dType.ParameterDirection;
-            }
-            if (p.Direction != ParameterDirection.Output)
-            {
-                if (dataType.DbType.SqlServerDbType == SqlServer2022DbType.Udt)
-                {
-                    p.SetUdtTypeName(dataType.UdtTypeName);
-                    p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType.Value);
-                }
-                else
-                {
-                    p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType!.Value);
-                }
-            }
-            return p;
-        }
-        protected override Object? GetParameterValue(DataType dataType, Object sqlDbType)
-        {
-            switch ((SqlServer2022DbType)sqlDbType)
-            {
-                case SqlServer2022DbType.BigInt:
-                    return 1;
-
-                case SqlServer2022DbType.Binary:
-                case SqlServer2022DbType.Image:
-                case SqlServer2022DbType.Timestamp:
-                case SqlServer2022DbType.VarBinary:
-                    return new Byte[0];
-
-                case SqlServer2022DbType.Bit:
-                    return true;
-
-                case SqlServer2022DbType.Char:
-                case SqlServer2022DbType.NChar:
-                case SqlServer2022DbType.NText:
-                case SqlServer2022DbType.NVarChar:
-                case SqlServer2022DbType.Text:
-                case SqlServer2022DbType.VarChar:
-                    return "a";
-                case SqlServer2022DbType.Xml:
-                    return "<xml></xml>";
-
-                case SqlServer2022DbType.DateTime:
-                case SqlServer2022DbType.SmallDateTime:
-                case SqlServer2022DbType.Date:
-                case SqlServer2022DbType.DateTime2:
-                    return new DateTime(2000, 1, 1);
-                case SqlServer2022DbType.Time:
-                    return new TimeSpan(2, 0, 0);
-
-                case SqlServer2022DbType.Decimal:
-                case SqlServer2022DbType.Money:
-                case SqlServer2022DbType.SmallMoney:
-                    return 1;
-
-                case SqlServer2022DbType.Float:
-                    return 1;
-
-                case SqlServer2022DbType.Int:
-                    return 1;
-
-                case SqlServer2022DbType.Real:
-                    return 1;
-
-                case SqlServer2022DbType.UniqueIdentifier:
-                    return Guid.NewGuid();
-
-                case SqlServer2022DbType.SmallInt:
-                    return 1;
-
-                case SqlServer2022DbType.TinyInt:
-                    return 1;
-
-                case SqlServer2022DbType.Variant:
-                    return DateTime.Now;
-                case SqlServer2022DbType.Udt:
-                    return new Object();
-
-                case SqlServer2022DbType.Structured:
-                    return new DataTable();
-
-                case SqlServer2022DbType.DateTimeOffset:
-                    return new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.FromHours(9));
-
-                default: throw new ArgumentException();
+                l.Add(c);
             }
         }
+        return l;
+    }
 
-        public override string GetDefinitionText(Table table)
+    protected override MetaData.DbType CreateDbType(Object value)
+    {
+        var tp = this.TypeConverter.ToEnum<SqlServer2022DbType>(value);
+        if (tp.HasValue == false) throw new InvalidCastException();
+        return new MetaData.DbType(tp.Value);
+    }
+    protected override IDbDataParameter CreateParameter(String name, DataType dataType)
+    {
+        var sqlDbType = dataType.DbType!.SqlServerDbType.ToString()!.ToEnum<SqlDbType>()!.Value;
+        var p = new Microsoft.Data.SqlClient.SqlParameter(name, sqlDbType);
+        if (dataType is SqlInputParameter dType)
         {
-            var t = table;
-            var sb = new StringBuilder();
-
-            sb.AppendFormat("CREATE TABLE {0}", t.Name).AppendLine();
-            for (int i = 0; i < t.Columns.Count; i++)
+            p.Direction = dType.ParameterDirection;
+        }
+        if (p.Direction != ParameterDirection.Output)
+        {
+            if (dataType.DbType.SqlServerDbType == SqlServer2022DbType.Udt)
             {
-                var c = t.Columns[i];
-                if (i == 0)
-                {
-                    sb.Append("(");
-                    sb.Append(c.GetDeclareParameterText());
-                }
-                else
-                {
-                    sb.Append(",");
-                    sb.Append(c.GetDeclareParameterText());
-                }
-                if (c.AllowNull == false)
-                {
-                    sb.Append(" NOT NULL");
-                }
-                if (c.DefaultCostraint != null)
-                {
-                    sb.AppendFormat(" CONSTRAINT {0} DEFAULT {1}"
-                        , c.DefaultCostraint.Name, c.DefaultCostraint.Definition);
-                }
-                sb.AppendLine();
+                p.SetUdtTypeName(dataType.UdtTypeName);
+                p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType.Value);
+            }
+            else
+            {
+                p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType!.Value);
+            }
+        }
+        return p;
+    }
+    protected override Object? GetParameterValue(DataType dataType, Object sqlDbType)
+    {
+        switch ((SqlServer2022DbType)sqlDbType)
+        {
+            case SqlServer2022DbType.BigInt:
+                return 1;
+
+            case SqlServer2022DbType.Binary:
+            case SqlServer2022DbType.Image:
+            case SqlServer2022DbType.Timestamp:
+            case SqlServer2022DbType.VarBinary:
+                return new Byte[0];
+
+            case SqlServer2022DbType.Bit:
+                return true;
+
+            case SqlServer2022DbType.Char:
+            case SqlServer2022DbType.NChar:
+            case SqlServer2022DbType.NText:
+            case SqlServer2022DbType.NVarChar:
+            case SqlServer2022DbType.Text:
+            case SqlServer2022DbType.VarChar:
+                return "a";
+            case SqlServer2022DbType.Xml:
+                return "<xml></xml>";
+
+            case SqlServer2022DbType.DateTime:
+            case SqlServer2022DbType.SmallDateTime:
+            case SqlServer2022DbType.Date:
+            case SqlServer2022DbType.DateTime2:
+                return new DateTime(2000, 1, 1);
+            case SqlServer2022DbType.Time:
+                return new TimeSpan(2, 0, 0);
+
+            case SqlServer2022DbType.Decimal:
+            case SqlServer2022DbType.Money:
+            case SqlServer2022DbType.SmallMoney:
+                return 1;
+
+            case SqlServer2022DbType.Float:
+                return 1;
+
+            case SqlServer2022DbType.Int:
+                return 1;
+
+            case SqlServer2022DbType.Real:
+                return 1;
+
+            case SqlServer2022DbType.UniqueIdentifier:
+                return Guid.NewGuid();
+
+            case SqlServer2022DbType.SmallInt:
+                return 1;
+
+            case SqlServer2022DbType.TinyInt:
+                return 1;
+
+            case SqlServer2022DbType.Variant:
+                return DateTime.Now;
+            case SqlServer2022DbType.Udt:
+                return new Object();
+
+            case SqlServer2022DbType.Structured:
+                return new DataTable();
+
+            case SqlServer2022DbType.DateTimeOffset:
+                return new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.FromHours(9));
+
+            default: throw new ArgumentException();
+        }
+    }
+
+    public override string GetDefinitionText(Table table)
+    {
+        var t = table;
+        var sb = new StringBuilder();
+
+        sb.AppendFormat("CREATE TABLE {0}", t.Name).AppendLine();
+        for (int i = 0; i < t.Columns.Count; i++)
+        {
+            var c = t.Columns[i];
+            if (i == 0)
+            {
+                sb.Append("(");
+                sb.Append(c.GetDeclareParameterText());
+            }
+            else
+            {
+                sb.Append(",");
+                sb.Append(c.GetDeclareParameterText());
+            }
+            if (c.AllowNull == false)
+            {
+                sb.Append(" NOT NULL");
+            }
+            if (c.DefaultCostraint != null)
+            {
+                sb.AppendFormat(" CONSTRAINT {0} DEFAULT {1}"
+                    , c.DefaultCostraint.Name, c.DefaultCostraint.Definition);
             }
             sb.AppendLine();
+        }
+        sb.AppendLine();
 
+        {
+            var cc = t.GetPrimaryKeyColumns().ToList();
+            if (cc.Count > 0)
             {
-                var cc = t.GetPrimaryKeyColumns().ToList();
-                if (cc.Count > 0)
+                sb.AppendFormat(",CONSTRAINT {0}_PrimaryKey PRIMARY KEY {1}(", t.Name, cc[0].Clustered);
+                for (int i = 0; i < cc.Count; i++)
                 {
-                    sb.AppendFormat(",CONSTRAINT {0}_PrimaryKey PRIMARY KEY {1}(", t.Name, cc[0].Clustered);
-                    for (int i = 0; i < cc.Count; i++)
+                    if (i > 0)
                     {
-                        if (i > 0)
-                        {
-                            sb.Append(",");
-                        }
-                        sb.Append(cc[i].Name);
+                        sb.Append(",");
                     }
-                    sb.AppendLine(")");
+                    sb.Append(cc[i].Name);
                 }
-            }
-            foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
-            {
-                sb.AppendFormat(",CONSTRAINT {0}_Fk_{1} FOREIGN KEY({1}) REFERENCES [{2}]({3}) ON UPDATE {4} ON DELETE {5}"
-                    , t.Name, c.Name, c.ForeignKey!.ParentTableName, c.ForeignKey.ParentColumnName
-                    , c.ForeignKey.OnUpdate.Replace("_", " ")
-                    , c.ForeignKey.OnDelete.Replace("_", " "));
-                sb.AppendLine();
-            }
-            foreach (var ix in t.IndexList)
-            {
-                //Pass PrimaryKey
-                if (ix.IsUnique == true) { continue; }
-                //Index only
-                if (String.Equals(ix.IndexType, "CLUSTERED", StringComparison.OrdinalIgnoreCase) == false &&
-                    String.Equals(ix.IndexType, "NONCLUSTERED", StringComparison.OrdinalIgnoreCase) == false) { continue; }
-
-                sb.AppendFormat(",INDEX {0} {1} ({2})"
-                    , ix.Name
-                    , ix.IndexType
-                    , String.Join(',', ix.Columns.Select(el => el.Name)));
-                sb.AppendLine();
-            }
-
-            sb.AppendLine(")");
-            sb.AppendLine("GO");
-            sb.AppendLine();
-
-            var checkDefinition = new StringBuilder(256);
-            foreach (var cc in t.CheckConstraintList)
-            {
-                sb.AppendLine($"ALTER TABLE {t.Name} DROP CONSTRAINT IF EXISTS {cc.Name}");
-                sb.AppendLine("GO");
-                sb.AppendLine($"ALTER TABLE {t.Name} ADD CONSTRAINT {cc.Name} CHECK(");
-                sb.AppendLine(FormatCheckDefinition(cc.Definition));
                 sb.AppendLine(")");
-                sb.AppendLine("GO").AppendLine();
             }
-
-            return sb.ToString();
         }
-        private string FormatCheckDefinition(string text)
+        foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
         {
-            var sb = new StringBuilder(256);
-            for (int i = 0; i < text.Length; i++)
+            sb.AppendFormat(",CONSTRAINT {0}_Fk_{1} FOREIGN KEY({1}) REFERENCES [{2}]({3}) ON UPDATE {4} ON DELETE {5}"
+                , t.Name, c.Name, c.ForeignKey!.ParentTableName, c.ForeignKey.ParentColumnName
+                , c.ForeignKey.OnUpdate.Replace("_", " ")
+                , c.ForeignKey.OnDelete.Replace("_", " "));
+            sb.AppendLine();
+        }
+        foreach (var ix in t.IndexList)
+        {
+            //Pass PrimaryKey
+            if (ix.IsUnique == true) { continue; }
+            //Index only
+            if (String.Equals(ix.IndexType, "CLUSTERED", StringComparison.OrdinalIgnoreCase) == false &&
+                String.Equals(ix.IndexType, "NONCLUSTERED", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+
+            sb.AppendFormat(",INDEX {0} {1} ({2})"
+                , ix.Name
+                , ix.IndexType
+                , String.Join(',', ix.Columns.Select(el => el.Name)));
+            sb.AppendLine();
+        }
+
+        sb.AppendLine(")");
+        sb.AppendLine("GO");
+        sb.AppendLine();
+
+        var checkDefinition = new StringBuilder(256);
+        foreach (var cc in t.CheckConstraintList)
+        {
+            sb.AppendLine($"ALTER TABLE {t.Name} DROP CONSTRAINT IF EXISTS {cc.Name}");
+            sb.AppendLine("GO");
+            sb.AppendLine($"ALTER TABLE {t.Name} ADD CONSTRAINT {cc.Name} CHECK(");
+            sb.AppendLine(FormatCheckDefinition(cc.Definition));
+            sb.AppendLine(")");
+            sb.AppendLine("GO").AppendLine();
+        }
+
+        return sb.ToString();
+    }
+    private string FormatCheckDefinition(string text)
+    {
+        var sb = new StringBuilder(256);
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (i == text.Length - 1 && text[i] == ')')
             {
-                if (i == text.Length - 1 && text[i] == ')')
-                {
-                    sb.AppendLine();
-                }
-                sb.Append(text[i]);
-                if (i == 0 && text[i] == '(')
-                {
-                    sb.AppendLine();
-                }
+                sb.AppendLine();
             }
-            return sb.ToString().Replace(" OR ", " OR " + Environment.NewLine);
-        }
-
-        private class SqlServerDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
-        {
-            public override String GetDatabases()
+            sb.Append(text[i]);
+            if (i == 0 && text[i] == '(')
             {
-                return
-    @"
+                sb.AppendLine();
+            }
+        }
+        return sb.ToString().Replace(" OR ", " OR " + Environment.NewLine);
+    }
+
+    private class SqlServerDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
+    {
+        public override String GetDatabases()
+        {
+            return
+@"
 SELECT name AS DATABASE_NAME
 FROM sys.databases with(nolock) 
 WHERE database_id > 4
 ORDER BY name ASC
 ";
-            }
-            public override String GetTables()
-            {
-                return @"
+        }
+        public override String GetTables()
+        {
+            return @"
 SELECT name,create_date,modify_date FROM sys.tables with(nolock) 
 where name != N'sysdiagrams'
 and name != N'sp_renamediagram'
 and name != N'sp_upgraddiagrams'
 ORDER BY name
 ";
-            }
-            public override String GetTable(String name)
-            {
-                var q = @"
+        }
+        public override String GetTable(String name)
+        {
+            var q = @"
 SELECT name,create_date,modify_date FROM sys.tables with(nolock) WHERE name = N'{0}'
 ";
-                return String.Format(q, name);
-            }
-            public override String GetColumns(String tableName)
-            {
-                var q = @"
+            return String.Format(q, name);
+        }
+        public override String GetColumns(String tableName)
+        {
+            var q = @"
 SELECT T1.TABLE_NAME AS TableName
 ,T1.COLUMN_NAME AS ColumnName
 ,CASE T6.is_table_type 
@@ -482,11 +482,11 @@ Inner Join sys.types as T6 with(nolock) ON T5.user_type_id = T6.user_type_id
 WHERE T1.TABLE_NAME = N'{0}'
 ORDER BY T1.ORDINAL_POSITION
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetPrimaryKey(String tableName)
-            {
-                var q = @"
+            return String.Format(q, tableName);
+        }
+        public override String GetPrimaryKey(String tableName)
+        {
+            var q = @"
 select T6.name as Name, T1.name as TableName, T2.name as ColumnName,T4.type_desc
 from sys.tables as T1 with(nolock)
 inner join sys.columns as T2 with(nolock) on T1.object_id = T2.object_id 
@@ -496,11 +496,11 @@ inner join INFORMATION_SCHEMA.KEY_COLUMN_USAGE as T5 with(nolock) on T1.name = T
 inner join sys.key_constraints as T6 with(nolock) on T5.constraint_name = T6.name and T6.type = N'PK'
 where T1.name = N'{0}'
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetIndex(String tableName)
-            {
-                var q = @"
+            return String.Format(q, tableName);
+        }
+        public override String GetIndex(String tableName)
+        {
+            var q = @"
 select T2.[name] as IndexName
 ,T1.[name] as TableName
 ,T4.[name] as ColumnName
@@ -526,11 +526,11 @@ and T2.index_id > 0
 and T1.[name] = N'{0}'
 order by T2.[name]
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetDefaultConstraints(String tableName)
-            {
-                var q = @"
+            return String.Format(q, tableName);
+        }
+        public override String GetDefaultConstraints(String tableName)
+        {
+            var q = @"
 SELECT T1.name
 ,T2.name as TableName
 ,T3.name as ColumnName
@@ -540,11 +540,11 @@ inner join sys.tables as T2 with(nolock) on T1.parent_object_id = T2.object_id
 inner join sys.columns as T3 with(nolock) on T2.object_id = T3.object_id and T1.parent_column_id = T3.column_id
 where T2.name = N'{0}'
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetForeignKeys(String tableName)
-            {
-                var q = @"
+            return String.Format(q, tableName);
+        }
+        public override String GetForeignKeys(String tableName)
+        {
+            var q = @"
 select T0.name,T2.name as TableName,T3.name as ColumnName,T4.name as ParentTableName,T5.name as ParentColumnName
 , update_referential_action_desc,delete_referential_action_desc
 from sys.foreign_keys as T0 with(nolock)
@@ -555,11 +555,11 @@ inner join sys.tables as T4 with(nolock) on T1.referenced_object_id = T4.object_
 inner join sys.columns as T5 with(nolock) on T1.referenced_object_id = T5.object_id and T1.referenced_column_id = T5.column_id
 where T2.name = N'{0}'
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetCheckConstraints(String tableName)
-            {
-                var q = @"
+            return String.Format(q, tableName);
+        }
+        public override String GetCheckConstraints(String tableName)
+        {
+            var q = @"
 SELECT constraint_name as Name
 ,table_name as TableName
 ,object_definition(OBJECT_ID(CONSTRAINT_NAME)) as Definition
@@ -567,21 +567,21 @@ FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS with(nolock)
 where table_name = N'{0}'
 and CONSTRAINT_TYPE = N'CHECK' 
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetViews()
-            {
-                return @"
+            return String.Format(q, tableName);
+        }
+        public override String GetViews()
+        {
+            return @"
 select name,create_date,modify_date,definition
 from sys.objects as T1 with(nolock)
 join sys.sql_modules T2 with(nolock) on T1.object_id = T2.object_id
 where T1.type = N'V' and is_ms_shipped = 0
 order by T1.name
 ";
-            }
-            public override String GetUserDefinedTypes()
-            {
-                var q = @"
+        }
+        public override String GetUserDefinedTypes()
+        {
+            var q = @"
 Select T02.name AS Name 
 From sys.columns AS T01 with(nolock)
 Inner Join sys.table_types AS T02 with(nolock) ON T01.object_id = T02.type_table_object_id
@@ -591,11 +591,11 @@ Where T03.name != N'sysname'
 group by T02.name
 order by T02.name
 ";
-                return String.Format(q);
-            }
-            public override String GetUserDefinedTypeColumns(String name)
-            {
-                var q = @"
+            return String.Format(q);
+        }
+        public override String GetUserDefinedTypeColumns(String name)
+        {
+            var q = @"
 Select T01.name AS ColumnName
 ,CASE T06.is_table_type 
 	When 1 Then N'structured' 
@@ -632,11 +632,11 @@ Where T02.name = N'{0}'
 And T03.name != N'sysname'
 order by column_id 
 ";
-                return String.Format(q, name);
-            }
-            public override String GetStoredProcedures()
-            {
-                return @"
+            return String.Format(q, name);
+        }
+        public override String GetStoredProcedures()
+        {
+            return @"
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES as T1 with(nolock)
 join sys.sql_modules AS T2 ON OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
@@ -644,10 +644,10 @@ WHERE ROUTINE_TYPE = N'PROCEDURE'
 AND NOT T2.definition IS NULL 
 ORDER BY SPECIFIC_NAME
 ";
-            }
-            public override String GetStoredProcedure(String name)
-            {
-                var q = @"
+        }
+        public override String GetStoredProcedure(String name)
+        {
+            var q = @"
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES as T1 with(nolock)
 JOIN sys.sql_modules AS T2 with(nolock) ON OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
@@ -655,11 +655,11 @@ WHERE ROUTINE_TYPE = N'PROCEDURE'
 AND SPECIFIC_NAME = N'{0}'
 ORDER BY SPECIFIC_NAME
 ";
-                return String.Format(q, name);
-            }
-            public override String GetParameters(String storedProcedureName)
-            {
-                var q = @"
+            return String.Format(q, name);
+        }
+        public override String GetParameters(String storedProcedureName)
+        {
+            var q = @"
 SELECT T01.SPECIFIC_NAME as StoredProcedureName
 ,T01.PARAMETER_NAME as ParameterName 
 ,CASE T04.is_table_type 
@@ -694,11 +694,11 @@ Inner Join sys.types as T04 with(nolock) ON T03.user_type_id = T04.user_type_id
 Where SPECIFIC_NAME = N'{0}'
 Order by Ordinal_Position
 ";
-                return String.Format(q, storedProcedureName);
-            }
-            public override String GetStoredFunctions()
-            {
-                return @"
+            return String.Format(q, storedProcedureName);
+        }
+        public override String GetStoredFunctions()
+        {
+            return @"
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES AS T1 with(nolock)
 inner join sys.sql_modules as T2 with(nolock) ON OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
@@ -706,7 +706,6 @@ WHERE ROUTINE_TYPE = N'FUNCTION'
 and SPECIFIC_NAME != N'fn_diagramobjects'
 ORDER BY SPECIFIC_NAME
 ";
-            }
         }
     }
 }

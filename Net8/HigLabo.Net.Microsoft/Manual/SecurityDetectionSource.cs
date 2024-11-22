@@ -4,27 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum SecurityDetectionSource
 {
-    public enum SecurityDetectionSource
-    {
-        Unknown,
-        MicrosoftDefenderForEndpoint,
-        Antivirus,
-        SmartScreen,
-        CustomTi,
-        MicrosoftDefenderForOffice365,
-        AutomatedInvestigation,
-        MicrosoftThreatExperts,
-        CustomDetection,
-        MicrosoftDefenderForIdentity,
-        CloudAppSecurity,
-        Microsoft365Defender,
-        AzureAdIdentityProtection,
-        Manual,
-        MicrosoftDataLossPrevention,
-        AppGovernancePolicy,
-        AppGovernanceDetection,
-        UnknownFutureValue,
-    }
+    Unknown,
+    MicrosoftDefenderForEndpoint,
+    Antivirus,
+    SmartScreen,
+    CustomTi,
+    MicrosoftDefenderForOffice365,
+    AutomatedInvestigation,
+    MicrosoftThreatExperts,
+    CustomDetection,
+    MicrosoftDefenderForIdentity,
+    CloudAppSecurity,
+    Microsoft365Defender,
+    AzureAdIdentityProtection,
+    Manual,
+    MicrosoftDataLossPrevention,
+    AppGovernancePolicy,
+    AppGovernanceDetection,
+    UnknownFutureValue,
 }

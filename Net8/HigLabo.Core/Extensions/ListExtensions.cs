@@ -3,123 +3,122 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+/// <summary>
+/// 
+/// </summary>
+public static class ListExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class ListExtensions
+    public static void Sort<T, TKey>(this List<T> list, params Func<T, TKey>[] keySelector)
     {
-        public static void Sort<T, TKey>(this List<T> list, params Func<T, TKey>[] keySelector)
-        {
-            List<Comparison<T>> l = new List<Comparison<T>>();
+        List<Comparison<T>> l = new List<Comparison<T>>();
 
-            foreach (var selector in keySelector)
-            {
-                l.Add((x, y) => Comparer<TKey>.Default.Compare(selector(x), selector(y)));
-            }
-            list.Sort<T>(l.ToArray());
-        }
-        public static void Sort<T>(this List<T> list, params Comparison<T>[] comparisonList)
+        foreach (var selector in keySelector)
         {
-            Comparison<T> md = (x, y) =>
-            {
-                foreach (Comparison<T> t in comparisonList)
-                {
-                    int z = t(x, y);
-                    if (z == 0)
-                    { continue; }
-                    return z;
-                }
-                return 0;
-            };
-            list.Sort(md);
+            l.Add((x, y) => Comparer<TKey>.Default.Compare(selector(x), selector(y)));
         }
-        public static void Sort<T, TValue>(this List<T> records, Func<T, TValue> keySelector, TValue[] valueList)
+        list.Sort<T>(l.ToArray());
+    }
+    public static void Sort<T>(this List<T> list, params Comparison<T>[] comparisonList)
+    {
+        Comparison<T> md = (x, y) =>
         {
-            var l = new List<T>();
-            foreach (var name in valueList)
+            foreach (Comparison<T> t in comparisonList)
             {
-                var rr = records.FindAll(el => Op.Eq(keySelector(el), name));
-                foreach (var r in rr)
-                {
-                    records.Remove(r);
-                    l.Add(r);
-                }
+                int z = t(x, y);
+                if (z == 0)
+                { continue; }
+                return z;
             }
-            foreach (var item in records)
+            return 0;
+        };
+        list.Sort(md);
+    }
+    public static void Sort<T, TValue>(this List<T> records, Func<T, TValue> keySelector, TValue[] valueList)
+    {
+        var l = new List<T>();
+        foreach (var name in valueList)
+        {
+            var rr = records.FindAll(el => Op.Eq(keySelector(el), name));
+            foreach (var r in rr)
             {
-                l.Add(item);
+                records.Remove(r);
+                l.Add(r);
             }
-            records.Clear();
-            records.AddRange(l);
         }
+        foreach (var item in records)
+        {
+            l.Add(item);
+        }
+        records.Clear();
+        records.AddRange(l);
+    }
 
-        public static void AddEnumList<T>(this List<T?> list)
-            where T : struct, Enum
+    public static void AddEnumList<T>(this List<T?> list)
+        where T : struct, Enum
+    {
+        list.Add(null);
+        foreach (var item in Enum.GetValues<T>())
         {
-            list.Add(null);
-            foreach (var item in Enum.GetValues<T>())
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
-        public static void AddEnumList<T>(this List<T> list)
-            where T : struct, Enum
+    }
+    public static void AddEnumList<T>(this List<T> list)
+        where T : struct, Enum
+    {
+        foreach (var item in Enum.GetValues<T>())
         {
-            foreach (var item in Enum.GetValues<T>())
-            {
-                list.Add(item);
-            }
+            list.Add(item);
         }
+    }
 
-        public static Boolean AddIfNotExist<T>(this List<T> list, T item)
+    public static Boolean AddIfNotExist<T>(this List<T> list, T item)
+    {
+        return AddIfNotExist(list, item, (x, y) => Object.Equals(x, y));
+    }
+    public static Boolean AddIfNotExist<T, TProperty>(this List<T> list, T item, Func<T, TProperty> selectorFunc)
+    {
+        if (list.Exists(el => Object.Equals(selectorFunc(item), selectorFunc(el))) == false)
         {
-            return AddIfNotExist(list, item, (x, y) => Object.Equals(x, y));
+            list.Add(item);
+            return true;
         }
-        public static Boolean AddIfNotExist<T, TProperty>(this List<T> list, T item, Func<T, TProperty> selectorFunc)
+        return false;
+    }
+    public static Boolean AddIfNotExist<T>(this List<T> list, T item, Func<T, T, Boolean> equalityFunc)
+    {
+        if (list.Exists(el => equalityFunc(item, el)) == false)
         {
-            if (list.Exists(el => Object.Equals(selectorFunc(item), selectorFunc(el))) == false)
-            {
-                list.Add(item);
-                return true;
-            }
-            return false;
+            list.Add(item);
+            return true;
         }
-        public static Boolean AddIfNotExist<T>(this List<T> list, T item, Func<T, T, Boolean> equalityFunc)
-        {
-            if (list.Exists(el => equalityFunc(item, el)) == false)
-            {
-                list.Add(item);
-                return true;
-            }
-            return false;
-        }
+        return false;
+    }
 
-        public static void MoveTo<T>(this List<T> list, Func<T, Boolean> selector, Int32 index)
+    public static void MoveTo<T>(this List<T> list, Func<T, Boolean> selector, Int32 index)
+    {
+        var r = list.FirstOrDefault(selector);
+        if (r != null)
         {
-            var r = list.FirstOrDefault(selector);
-            if (r != null)
-            {
-                list.Remove(r);
-                list.Insert(index, r);
-            }
+            list.Remove(r);
+            list.Insert(index, r);
         }
+    }
 
-        public static T Pop<T>(this List<T> source, Int32 index)
+    public static T Pop<T>(this List<T> source, Int32 index)
+    {
+        var o = source[index];
+        source.RemoveAt(index);
+        return o;
+    }
+    public static List<T> Pop<T>(this List<T> source, Func<T, Boolean> selector)
+    {
+        var l = source.Where(selector).ToList();
+        for (int i = 0; i < l.Count; i++)
         {
-            var o = source[index];
-            source.RemoveAt(index);
-            return o;
+            source.Remove(l[i]);
         }
-        public static List<T> Pop<T>(this List<T> source, Func<T, Boolean> selector)
-        {
-            var l = source.Where(selector).ToList();
-            for (int i = 0; i < l.Count; i++)
-            {
-                source.Remove(l[i]);
-            }
-            return l;
-        }
+        return l;
     }
 }

@@ -7,23 +7,22 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
-{
-    public abstract class DatabaseRecord
-    {
-        public event PropertyChangedEventHandler? PropertyChanged;
+namespace HigLabo.DbSharp;
 
-        protected PropertyChangedEventHandler? GetPropertyChangedEventHandler()
+public abstract class DatabaseRecord
+{
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected PropertyChangedEventHandler? GetPropertyChangedEventHandler()
+    {
+        return PropertyChanged;
+    }
+    protected void OnPropertyChanged([CallerMemberName] String propertyName = "")
+    {
+        var eh = PropertyChanged;
+        if (eh != null)
         {
-            return PropertyChanged;
-        }
-        protected void OnPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            var eh = PropertyChanged;
-            if (eh != null)
-            {
-                eh(this, new PropertyChangedEventArgs(propertyName));
-            }
+            eh(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

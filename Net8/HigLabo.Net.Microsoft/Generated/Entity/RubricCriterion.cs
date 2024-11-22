@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/rubriccriterion?view=graph-rest-1.0
+/// </summary>
+public partial class RubricCriterion
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/rubriccriterion?view=graph-rest-1.0
-    /// </summary>
-    public partial class RubricCriterion
-    {
-        public ItemBody? Description { get; set; }
-    }
+    public ItemBody? Description { get; set; }
 }

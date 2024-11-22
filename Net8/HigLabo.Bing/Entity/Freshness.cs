@@ -1,9 +1,8 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public enum Freshness
 {
-    public enum Freshness
-    {
-        Day,
-        Week,
-        Month,
-    }
+    Day,
+    Week,
+    Month,
 }

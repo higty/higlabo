@@ -5,8 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
-{
+namespace HigLabo.Core;
+
 	public interface INumberToDateTimeConverter
 	{
 		DateTime? Convert(string value, TimeOnly timeZone);
@@ -402,43 +402,42 @@ namespace HigLabo.Core
 			return null;
 		}
 	}
-    public class NumberToDateTimeConverter_yyyyMMdd : NumberToDateTimeConverter, INumberToDateTimeConverter
+public class NumberToDateTimeConverter_yyyyMMdd : NumberToDateTimeConverter, INumberToDateTimeConverter
+{
+    public static readonly Regex yyyy_MM_dd = new Regex("(?<Year>[\\d]{2,4})[-/年](?<Month>[\\d]{1,2})[-/月](?<Day>[\\d]{1,2})[日\\s]");
+
+    public DateTime? Convert(string value, TimeOnly timeZone)
     {
-        public static readonly Regex yyyy_MM_dd = new Regex("(?<Year>[\\d]{2,4})[-/年](?<Month>[\\d]{1,2})[-/月](?<Day>[\\d]{1,2})[日\\s]");
-
-        public DateTime? Convert(string value, TimeOnly timeZone)
+        var m = yyyy_MM_dd.Match(value);
+        if (m.Success)
         {
-            var m = yyyy_MM_dd.Match(value);
-            if (m.Success)
-            {
-                var year = m.Groups["Year"].Value.ToInt32();
-                var month = m.Groups["Month"].Value.ToInt32();
-                var day = m.Groups["Day"].Value.ToInt32();
+            var year = m.Groups["Year"].Value.ToInt32();
+            var month = m.Groups["Month"].Value.ToInt32();
+            var day = m.Groups["Day"].Value.ToInt32();
 
-                if (month.HasValue && day.HasValue)
-                {
-                    var date = String.Format("{0}/{1}/{2}", year, month.Value, day.Value).ToDateTime();
-                    if (date.HasValue)
-                    {
-						return date;
-                    }
-                }
-            }
-            if (value.Length == 8)
+            if (month.HasValue && day.HasValue)
             {
-                var year = value.Substring(0, 4).ToInt32();
-                var month = value.Substring(4, 2).ToInt32();
-                var day = value.Substring(6, 2).ToInt32();
-                if (year.HasValue && month >= 1 && month <= 12)
+                var date = String.Format("{0}/{1}/{2}", year, month.Value, day.Value).ToDateTime();
+                if (date.HasValue)
                 {
-                    var dtime = new DateTime(year.Value, month.Value, 1);
-                    if (day <= DateTime.DaysInMonth(year.Value, dtime.Month))
-                    {
-                        return new DateTime(year.Value, month.Value, day.Value);
-                    }
+						return date;
                 }
             }
-            return null;
         }
+        if (value.Length == 8)
+        {
+            var year = value.Substring(0, 4).ToInt32();
+            var month = value.Substring(4, 2).ToInt32();
+            var day = value.Substring(6, 2).ToInt32();
+            if (year.HasValue && month >= 1 && month <= 12)
+            {
+                var dtime = new DateTime(year.Value, month.Value, 1);
+                if (day <= DateTime.DaysInMonth(year.Value, dtime.Month))
+                {
+                    return new DateTime(year.Value, month.Value, day.Value);
+                }
+            }
+        }
+        return null;
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class RecognizedEntityGroup
 {
-    public class RecognizedEntityGroup
-    {
-        public string Name { get; set; } = "";
-        public RecognizedEntityRegion[]? RecognizedEntityRegions { get; set; } 
-    }
+    public string Name { get; set; } = "";
+    public RecognizedEntityRegion[]? RecognizedEntityRegions { get; set; } 
 }

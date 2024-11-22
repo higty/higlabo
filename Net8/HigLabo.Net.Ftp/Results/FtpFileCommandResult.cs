@@ -4,24 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace HigLabo.Net.Ftp
+namespace HigLabo.Net.Ftp;
+
+public class FtpFileCommandResult : FtpCommandResult
 {
-    public class FtpFileCommandResult : FtpCommandResult
+    private static readonly Regex _pathRegex = new Regex(@"\{.+\}");
+
+    public string NewFileName { get; protected set; } = "";
+
+    public FtpFileCommandResult(FtpCommandResult result)
     {
-        private static readonly Regex _pathRegex = new Regex(@"\{.+\}");
+        this.StatusCode = result.StatusCode;
+        this.Text = result.Text;
 
-        public string NewFileName { get; protected set; } = "";
-
-        public FtpFileCommandResult(FtpCommandResult result)
+        var match = _pathRegex.Match(result.Text);
+        if (!String.IsNullOrEmpty(match.Value))
         {
-            this.StatusCode = result.StatusCode;
-            this.Text = result.Text;
-
-            var match = _pathRegex.Match(result.Text);
-            if (!String.IsNullOrEmpty(match.Value))
-            {
-                this.NewFileName = match.Value + ".tmp";
-            }
+            this.NewFileName = match.Value + ".tmp";
         }
     }
 }

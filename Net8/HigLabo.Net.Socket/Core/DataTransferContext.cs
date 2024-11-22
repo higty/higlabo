@@ -2,18 +2,18 @@
 using System.Text;
 using System.IO;
 
-namespace HigLabo.Net.Internal
-{
+namespace HigLabo.Net.Internal;
+
 	/// <summary>
-    /// Represent context of request and response process and provide data about context.
-    /// </summary>
-    public class DataTransferContext : IDisposable
-    {
+/// Represent context of request and response process and provide data about context.
+/// </summary>
+public class DataTransferContext : IDisposable
+{
 		private static BufferManager _BufferManager = new BufferManager(256, 8192);
 		private DateTime _StartTime = DateTime.Now;
 		private Byte[]? _Buffer;
-        private Stream _Stream;
-        private Exception? _Exception;
+    private Stream _Stream;
+    private Exception? _Exception;
 		private Boolean _Timeout = false;
 		private Encoding _Encoding = Encoding.UTF8;
 		private Boolean _IsDisposed = false;
@@ -22,20 +22,20 @@ namespace HigLabo.Net.Internal
 		/// </summary>
 		public static BufferManager BufferManager
 		{
-            get { return _BufferManager; }
+        get { return _BufferManager; }
 			set { _BufferManager = value; }
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        internal protected Stream Stream
-        {
-            get { return _Stream; }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        internal protected DateTime StartTime
+    /// <summary>
+    /// 
+    /// </summary>
+    internal protected Stream Stream
+    {
+        get { return _Stream; }
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    internal protected DateTime StartTime
 		{
 			get { return _StartTime; }
 			set { _StartTime = value; }
@@ -48,28 +48,28 @@ namespace HigLabo.Net.Internal
 			get { return _Encoding; }
 			set { _Encoding = value; }
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        internal protected Byte[] Buffer
+    /// <summary>
+    /// 
+    /// </summary>
+    internal protected Byte[] Buffer
+    {
+        get
         {
-            get
-            {
-                this.ValidateDisposed();
-                return _Buffer!;
-            }
+            this.ValidateDisposed();
+            return _Buffer!;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Exception? Exception
-        {
-            get { return _Exception; }
-            set { _Exception = value; }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public Exception? Exception
+    {
+        get { return _Exception; }
+        set { _Exception = value; }
+    }
+    /// <summary>
+    /// 
+    /// </summary>
 		public Boolean Timeout
 		{
 			get { return _Timeout; }
@@ -78,34 +78,34 @@ namespace HigLabo.Net.Internal
 
 		internal DataTransferContext(Stream stream, Encoding encoding)
 		{
-            _Stream = stream;
-            _Encoding = encoding;
+        _Stream = stream;
+        _Encoding = encoding;
 			_Buffer = DataTransferContext.BufferManager.CheckOut();
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        internal protected Byte[] GetData()
-        {
-            _Stream.Position = 0;
-            var mm = new MemoryStream();
-            _Stream.CopyTo(mm);
-            return mm.ToArray();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        internal protected String GetText()
-        {
-            return this.Encoding.GetString(this.GetData());
-        }
-        private void ValidateDisposed()
-        {
-            if (this._IsDisposed == true) throw new ObjectDisposedException("DataTransferContext");
-        }
-        /// 終了処理を実行し、システムリソースを解放します。
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    internal protected Byte[] GetData()
+    {
+        _Stream.Position = 0;
+        var mm = new MemoryStream();
+        _Stream.CopyTo(mm);
+        return mm.ToArray();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    internal protected String GetText()
+    {
+        return this.Encoding.GetString(this.GetData());
+    }
+    private void ValidateDisposed()
+    {
+        if (this._IsDisposed == true) throw new ObjectDisposedException("DataTransferContext");
+    }
+    /// 終了処理を実行し、システムリソースを解放します。
 		/// <summary>
 		/// dipose and release system resoures.
 		/// 終了処理を実行し、システムリソースを解放します。
@@ -127,8 +127,8 @@ namespace HigLabo.Net.Internal
 					this._Buffer != null)
 				{
 					DataTransferContext.BufferManager.CheckIn(this._Buffer);
-                    _Buffer = null;
-                    this._IsDisposed = true;
+                _Buffer = null;
+                this._IsDisposed = true;
 				}
 			}
 		}
@@ -139,5 +139,4 @@ namespace HigLabo.Net.Internal
 		{
 			this.Dispose(false);
 		}
-    }
 }

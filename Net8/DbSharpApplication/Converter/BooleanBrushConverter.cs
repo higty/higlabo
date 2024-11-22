@@ -7,34 +7,33 @@ using System.Windows;
 using System.Globalization;
 using System.Windows.Media;
 
-namespace HigLabo.Wpf.Converter
+namespace HigLabo.Wpf.Converter;
+
+public class BooleanBrushConverter : System.Windows.Data.IValueConverter
 {
-    public class BooleanBrushConverter : System.Windows.Data.IValueConverter
+    public Brush? ValueWhenFalse { get; set; }
+    public Brush? ValueWhenTrue { get; set; }
+    public BooleanBrushConverter()
     {
-        public Brush? ValueWhenFalse { get; set; }
-        public Brush? ValueWhenTrue { get; set; }
-        public BooleanBrushConverter()
+    }
+    public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        Boolean bl = false;
+        if (Boolean.TryParse(value.ToString(), out bl) == true)
         {
-        }
-        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            Boolean bl = false;
-            if (Boolean.TryParse(value.ToString(), out bl) == true)
+            if (bl == true)
             {
-                if (bl == true)
-                {
-                    return this.ValueWhenTrue;
-                }
-                else
-                {
-                    return this.ValueWhenFalse;
-                }
+                return this.ValueWhenTrue;
             }
-            throw new InvalidOperationException();
+            else
+            {
+                return this.ValueWhenFalse;
+            }
         }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        throw new InvalidOperationException();
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
     }
 }

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Mapper.Test
+namespace HigLabo.Mapper.Test;
+
+public class TextParser
 {
-    public class TextParser
-    {
-        public Encoding Encoding { get; set; }
-    }
-    public class TextParser_StringProperty
-    {
-        public String Encoding { get; set; }
-    }
+    public Encoding Encoding { get; set; }
+}
+public class TextParser_StringProperty
+{
+    public String Encoding { get; set; }
 }

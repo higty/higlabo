@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public class CountryInformation
 {
-    public class CountryInformation
-    {
-        public int Population { get; set; }
-        public int Area { get; set; }
-        public string Currency { get; set; } = "";
-        public string Language { get; set; } = "";
-    }
+    public int Population { get; set; }
+    public int Area { get; set; }
+    public string Currency { get; set; } = "";
+    public string Language { get; set; } = "";
 }

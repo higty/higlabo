@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Mapper.Test
+namespace HigLabo.Mapper.Test;
+
+public class MapPoint
 {
-    public class MapPoint
-    {
-        public Decimal Longitude { get; set; }
-        public Decimal Latitude { get; set; }
-    }
+    public Decimal Longitude { get; set; }
+    public Decimal Latitude { get; set; }
 }

@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0
+/// </summary>
+public partial class ActionResultPart
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0
-    /// </summary>
-    public partial class ActionResultPart
-    {
-        public PublicError? Error { get; set; }
-    }
+    public PublicError? Error { get; set; }
 }

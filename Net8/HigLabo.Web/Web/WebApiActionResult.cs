@@ -7,8 +7,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Web
-{
+namespace HigLabo.Web;
+
 	public class WebApiActionResultDefaultSetting
 	{
 		public JsonSerializerSettings JsonSerializerSettings { get; set; } = new JsonSerializerSettings();
@@ -40,4 +40,3 @@ namespace HigLabo.Web
 			await cx.Response.Body.FlushAsync();
 		}
 	}
-}

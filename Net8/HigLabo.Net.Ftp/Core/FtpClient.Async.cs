@@ -9,48 +9,48 @@ using System.IO;
 using HigLabo.Net.Internal;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Ftp
-{
+namespace HigLabo.Net.Ftp;
+
 	public partial class FtpClient
 	{
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="func"></param>
-        /// <returns></returns>
-        protected static Task<T> CreateNewTask<T>(Func<T> func)
-        {
-            return Task.Factory.StartNew<T>(func);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="func"></param>
-        /// <returns></returns>
-        protected Task CreateNewTask(Action func)
-        {
-            return Task.Factory.StartNew(func);
-        }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="func"></param>
+    /// <returns></returns>
+    protected static Task<T> CreateNewTask<T>(Func<T> func)
+    {
+        return Task.Factory.StartNew<T>(func);
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="func"></param>
+    /// <returns></returns>
+    protected Task CreateNewTask(Action func)
+    {
+        return Task.Factory.StartNew(func);
+    }
 		/// サーバーへの接続を開きます。
 		/// <summary>
 		/// Open connection to a server.
 		/// サーバーへの接続を開きます。
 		/// </summary>
-        /// <returns></returns>
+    /// <returns></returns>
 		public Task<FtpConnectionState> OpenAsync()
 		{
-            return CreateNewTask<FtpConnectionState>(() => this.Open());
+        return CreateNewTask<FtpConnectionState>(() => this.Open());
 		}
 		/// サーバーへの接続が開かれていない場合、サーバーへの接続を開きます。
 		/// <summary>
 		/// Ensure connection is opened.
 		/// サーバーへの接続が開かれていない場合、サーバーへの接続を開きます。
 		/// </summary>
-        /// <returns></returns>
-        public Task<FtpConnectionState> EnsureOpenAsync()
+    /// <returns></returns>
+    public Task<FtpConnectionState> EnsureOpenAsync()
 		{
-            return CreateNewTask<FtpConnectionState>(() => this.EnsureOpen());
+        return CreateNewTask<FtpConnectionState>(() => this.EnsureOpen());
 		}
 		/// <summary>
 		/// 認証を行います。
@@ -58,95 +58,95 @@ namespace HigLabo.Net.Ftp
 		/// <returns></returns>
 		public Task<Boolean> AuthenticateAsync()
 		{
-            return CreateNewTask<Boolean>(() => this.Authenticate());
+        return CreateNewTask<Boolean>(() => this.Authenticate());
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="localFilePath"></param>
-        /// <param name="remoteFileName"></param>
-        /// <returns></returns>
-        public Task<Int64> UploadFileAsync(String localFilePath, String remoteFileName)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="localFilePath"></param>
+    /// <param name="remoteFileName"></param>
+    /// <returns></returns>
+    public Task<Int64> UploadFileAsync(String localFilePath, String remoteFileName)
 		{
-            return CreateNewTask<Int64>(() => this.UploadFile(localFilePath, remoteFileName));
+        return CreateNewTask<Int64>(() => this.UploadFile(localFilePath, remoteFileName));
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        public Task DownloadFileAsync(String fileName)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="fileName"></param>
+    public Task DownloadFileAsync(String fileName)
 		{
-            return CreateNewTask(() => this.DownloadFile(fileName));
+        return CreateNewTask(() => this.DownloadFile(fileName));
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="remoteFileName"></param>
-        /// <param name="localFilePath"></param>
-        /// <returns></returns>
-        public Task<Int64> DownloadFileAsync(String remoteFileName, String localFilePath)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="remoteFileName"></param>
+    /// <param name="localFilePath"></param>
+    /// <returns></returns>
+    public Task<Int64> DownloadFileAsync(String remoteFileName, String localFilePath)
 		{
-            return CreateNewTask<Int64>(() => this.DownloadFile(remoteFileName, localFilePath));
+        return CreateNewTask<Int64>(() => this.DownloadFile(remoteFileName, localFilePath));
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public Task<Int64> GetFileSizeAsync(String fileName)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
+    public Task<Int64> GetFileSizeAsync(String fileName)
 		{
-            return CreateNewTask<Int64>(() => this.GetFileSize(fileName));
+        return CreateNewTask<Int64>(() => this.GetFileSize(fileName));
 		}
-        /// FTPサーバーへCWDコマンドを送信します。
-        /// <summary>
-        /// Send cwd command to ftp server.
-        /// FTPサーバーへCWDコマンドを送信します。
-        /// </summary>
-        /// <param name="pathName">指定したディレクトリ名</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteCwdAsync(String pathName)
+    /// FTPサーバーへCWDコマンドを送信します。
+    /// <summary>
+    /// Send cwd command to ftp server.
+    /// FTPサーバーへCWDコマンドを送信します。
+    /// </summary>
+    /// <param name="pathName">指定したディレクトリ名</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteCwdAsync(String pathName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteCwd(pathName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteCwd(pathName));
 		}
-        /// FTPサーバーへCDUPコマンドを送信します。
-        /// <summary>
-        /// Send cdup command to ftp server.
-        /// FTPサーバーへCDUPコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteCdupAsync()
+    /// FTPサーバーへCDUPコマンドを送信します。
+    /// <summary>
+    /// Send cdup command to ftp server.
+    /// FTPサーバーへCDUPコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteCdupAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteCdup());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteCdup());
 		}
-        /// FTPサーバーへSMNTコマンドを送信します。
-        /// <summary>
-        /// Send smnt command to ftp server.
-        /// FTPサーバーへSMNTコマンドを送信します。
-        /// <param name="pathName">課金情報</param>
-        /// <returns></returns>
+    /// FTPサーバーへSMNTコマンドを送信します。
+    /// <summary>
+    /// Send smnt command to ftp server.
+    /// FTPサーバーへSMNTコマンドを送信します。
+    /// <param name="pathName">課金情報</param>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteSmntAsync(String pathName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteSmnt(pathName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteSmnt(pathName));
 		}
-        /// FTPサーバーへREINコマンドを送信します。
-        /// <summary>
-        /// Send rein command to ftp server.
-        /// FTPサーバーへREINコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへREINコマンドを送信します。
+    /// <summary>
+    /// Send rein command to ftp server.
+    /// FTPサーバーへREINコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteReinAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteRein());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteRein());
 		}
-        /// FTPサーバーへQUITコマンドを送信します。
-        /// <summary>
-        /// Send quit command to ftp server.
-        /// FTPサーバーへQUITコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへQUITコマンドを送信します。
+    /// <summary>
+    /// Send quit command to ftp server.
+    /// FTPサーバーへQUITコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteQuitAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteQuit());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteQuit());
 		}
 		/// <summary>
 		/// 
@@ -155,67 +155,67 @@ namespace HigLabo.Net.Ftp
 		/// <returns></returns>
 		public Task<FtpCommandResult> ExecutePortAsync(String port)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecutePort(port));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecutePort(port));
 		}
-        /// FTPサーバーへPASVコマンドを送信します。
-        /// <summary>
-        /// Send pasv command to ftp server.
-        /// FTPサーバーへPASVコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへPASVコマンドを送信します。
+    /// <summary>
+    /// Send pasv command to ftp server.
+    /// FTPサーバーへPASVコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public Task<FtpIPCommandResult> ExecutePasvAsync()
 		{
-            return CreateNewTask<FtpIPCommandResult>(() => this.ExecutePasv());
+        return CreateNewTask<FtpIPCommandResult>(() => this.ExecutePasv());
 		}
-        /// FTPサーバーへTYPEコマンドを送信します。
-        /// <summary>
-        /// Send type command to ftp server.
-        /// FTPサーバーへTYPEコマンドを送信します。
-        /// <param name="mode">形式オプション</param>
+    /// FTPサーバーへTYPEコマンドを送信します。
+    /// <summary>
+    /// Send type command to ftp server.
+    /// FTPサーバーへTYPEコマンドを送信します。
+    /// <param name="mode">形式オプション</param>
 		/// <returns></returns>
 		public Task<FtpCommandResult> ExecuteTypeAsync(FtpDataType type)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteType(type));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteType(type));
 		}
-        /// FTPサーバーへSTRUコマンドを送信します。
-        /// <summary>
-        /// Send stru command to ftp server.
-        /// FTPサーバーへSTRUコマンドを送信します。
-        /// <param name="dataStruct">ファイル構造オプション</param>
-        /// <returns></returns>
+    /// FTPサーバーへSTRUコマンドを送信します。
+    /// <summary>
+    /// Send stru command to ftp server.
+    /// FTPサーバーへSTRUコマンドを送信します。
+    /// <param name="dataStruct">ファイル構造オプション</param>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteStruAsync(FtpDataStructures dataStruct)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteStru(dataStruct));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteStru(dataStruct));
 		}
-        /// FTPサーバーへUSERコマンドを送信します。
-        /// <summary>
-        /// Send user command to ftp server.
-        /// FTPサーバーへUSERコマンドを送信します。
-        /// <param name="user">ユーザ</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteUserAsync(String user)
-        {
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteUser(user));
-        }
-        /// FTPサーバーへPASSコマンドを送信します。
-        /// <summary>
-        /// Send pass command to ftp server.
-        /// FTPサーバーへPASSコマンドを送信します。
-        /// <param name="password">パスワード</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecutePassAsync(String password)
-        {
-            return CreateNewTask<FtpCommandResult>(() => this.ExecutePass(password));
-        }
-        /// FTPサーバーへMODEコマンドを送信します。
-        /// <summary>
-        /// Send mode command to ftp server.
-        /// FTPサーバーへMODEコマンドを送信します。
-        /// <param name="mode">転送モード</param>
-        /// <returns></returns>
+    /// FTPサーバーへUSERコマンドを送信します。
+    /// <summary>
+    /// Send user command to ftp server.
+    /// FTPサーバーへUSERコマンドを送信します。
+    /// <param name="user">ユーザ</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteUserAsync(String user)
+    {
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteUser(user));
+    }
+    /// FTPサーバーへPASSコマンドを送信します。
+    /// <summary>
+    /// Send pass command to ftp server.
+    /// FTPサーバーへPASSコマンドを送信します。
+    /// <param name="password">パスワード</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecutePassAsync(String password)
+    {
+        return CreateNewTask<FtpCommandResult>(() => this.ExecutePass(password));
+    }
+    /// FTPサーバーへMODEコマンドを送信します。
+    /// <summary>
+    /// Send mode command to ftp server.
+    /// FTPサーバーへMODEコマンドを送信します。
+    /// <param name="mode">転送モード</param>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteModeAsync(FtpTransferMode mode)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteMode(mode));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteMode(mode));
 		}
 		/// <summary>
 		/// 
@@ -224,198 +224,198 @@ namespace HigLabo.Net.Ftp
 		/// <returns></returns>
 		public Task<FtpCommandResult> ExecuteRetrAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteRetr(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteRetr(fileName));
 		}
-        /// FTPサーバーへSIZEコマンドを送信します。
-        /// <summary>
-        /// Send size command to ftp server.
-        /// FTPサーバーへSIZEコマンドを送信します。
+    /// FTPサーバーへSIZEコマンドを送信します。
+    /// <summary>
+    /// Send size command to ftp server.
+    /// FTPサーバーへSIZEコマンドを送信します。
 		/// </summary>
 		/// <param name="fileName">ファイル名</param>
 		/// <returns></returns>
 		public Task<FtpCommandResult> ExecuteSizeAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteSize(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteSize(fileName));
 		}
-        /// FTPサーバーへSTORコマンドを送信します。
-        /// <summary>
-        /// Send stor command to ftp server.
-        /// FTPサーバーへSTORコマンドを送信します。
-        /// <param name="fileName">ファイル名(パスも含め)</param>
-        /// <returns></returns>
+    /// FTPサーバーへSTORコマンドを送信します。
+    /// <summary>
+    /// Send stor command to ftp server.
+    /// FTPサーバーへSTORコマンドを送信します。
+    /// <param name="fileName">ファイル名(パスも含め)</param>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteStorAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteStor(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteStor(fileName));
 		}
-        /// FTPサーバーへSTOUコマンドを送信します。
-        /// <summary>
-        /// Send stou command to ftp server.
-        /// FTPサーバーへSTOUコマンドを送信します。
-        /// <param name="fileName">ファイル名(パスも含め)</param>
-        /// <returns></returns>
-        public Task<FtpFileCommandResult> ExecuteStouAsync()
+    /// FTPサーバーへSTOUコマンドを送信します。
+    /// <summary>
+    /// Send stou command to ftp server.
+    /// FTPサーバーへSTOUコマンドを送信します。
+    /// <param name="fileName">ファイル名(パスも含め)</param>
+    /// <returns></returns>
+    public Task<FtpFileCommandResult> ExecuteStouAsync()
 		{
-            return CreateNewTask<FtpFileCommandResult>(() => this.ExecuteStou());
+        return CreateNewTask<FtpFileCommandResult>(() => this.ExecuteStou());
 		}
-        /// FTPサーバーへAPPEコマンドを送信します。
-        /// <summary>
-        /// Send appe command to ftp server.
-        /// FTPサーバーへAPPEコマンドを送信します。
-        /// <param name="fileName">ファイル名(パスも含め)</param>
-        /// <returns></returns>
+    /// FTPサーバーへAPPEコマンドを送信します。
+    /// <summary>
+    /// Send appe command to ftp server.
+    /// FTPサーバーへAPPEコマンドを送信します。
+    /// <param name="fileName">ファイル名(パスも含め)</param>
+    /// <returns></returns>
 		public Task<FtpCommandResult> ExecuteAppeAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteAppe(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteAppe(fileName));
 		}
-        /// FTPサーバーへALLOコマンドを送信します。
-        /// <summary>
-        /// Send allo command to ftp server.
-        /// FTPサーバーへALLOコマンドを送信します。
-        /// <param name="bytes">ファイルバイト数</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteAlloAsync(Int64 bytes)
+    /// FTPサーバーへALLOコマンドを送信します。
+    /// <summary>
+    /// Send allo command to ftp server.
+    /// FTPサーバーへALLOコマンドを送信します。
+    /// <param name="bytes">ファイルバイト数</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteAlloAsync(Int64 bytes)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteAllo(bytes));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteAllo(bytes));
 		}
-        /// FTPサーバーへRESTコマンドを送信します。
-        /// <summary>
-        /// Send rest command to ftp server.
-        /// FTPサーバーへRESTコマンドを送信します。
-        /// <param name="length">maker</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteRestAsync(Int64 length)
+    /// FTPサーバーへRESTコマンドを送信します。
+    /// <summary>
+    /// Send rest command to ftp server.
+    /// FTPサーバーへRESTコマンドを送信します。
+    /// <param name="length">maker</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteRestAsync(Int64 length)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteRest(length));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteRest(length));
 		}
-        /// FTPサーバーへRNFRコマンドを送信します。
-        /// <summary>
-        /// Send rnfr command to ftp server.
-        /// FTPサーバーへRNFRコマンドを送信します。
-        /// <param name="fileName">ファイル名</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteRnfrAsync(String fileName)
+    /// FTPサーバーへRNFRコマンドを送信します。
+    /// <summary>
+    /// Send rnfr command to ftp server.
+    /// FTPサーバーへRNFRコマンドを送信します。
+    /// <param name="fileName">ファイル名</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteRnfrAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteRnfr(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteRnfr(fileName));
 		}
-        /// FTPサーバーへRNTOコマンドを送信します。
-        /// <summary>
-        /// Send rnto command to ftp server.
-        /// FTPサーバーへRNTOコマンドを送信します。
-        /// <param name="fileName">ファイル名</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteRntoAsync(String fileName)
+    /// FTPサーバーへRNTOコマンドを送信します。
+    /// <summary>
+    /// Send rnto command to ftp server.
+    /// FTPサーバーへRNTOコマンドを送信します。
+    /// <param name="fileName">ファイル名</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteRntoAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteRnto(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteRnto(fileName));
 		}
-        /// FTPサーバーへABORコマンドを送信します。
-        /// <summary>
-        /// Send abor command to ftp server.
-        /// FTPサーバーへABORコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteAborAsync()
+    /// FTPサーバーへABORコマンドを送信します。
+    /// <summary>
+    /// Send abor command to ftp server.
+    /// FTPサーバーへABORコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteAborAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteAbor());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteAbor());
 		}
-        /// FTPサーバーへACCTコマンドを送信します。
-        /// <summary>
-        /// Send acct command to ftp server.
-        /// FTPサーバーへACCTコマンドを送信します。
-        /// </summary>
-        /// <param name="accountInfo"></param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteAcctAsync(String accountInfo)
-        {
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteAcct(accountInfo));
-        }
-        /// FTPサーバーへDELEコマンドを送信します。
-        /// <summary>
-        /// Send dele command to ftp server.
-        /// FTPサーバーへDELEコマンドを送信します。
-        /// </summary>
-        /// <param name="fileName">指定したファイル</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteDeleAsync(String fileName)
+    /// FTPサーバーへACCTコマンドを送信します。
+    /// <summary>
+    /// Send acct command to ftp server.
+    /// FTPサーバーへACCTコマンドを送信します。
+    /// </summary>
+    /// <param name="accountInfo"></param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteAcctAsync(String accountInfo)
+    {
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteAcct(accountInfo));
+    }
+    /// FTPサーバーへDELEコマンドを送信します。
+    /// <summary>
+    /// Send dele command to ftp server.
+    /// FTPサーバーへDELEコマンドを送信します。
+    /// </summary>
+    /// <param name="fileName">指定したファイル</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteDeleAsync(String fileName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteDele(fileName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteDele(fileName));
 		}
-        /// FTPサーバーへRMDコマンドを送信します。
-        /// <summary>
-        /// Send rmd command to ftp server.
-        /// FTPサーバーへRMDコマンドを送信します。
-        /// </summary>
-        /// <param name="directoryName">指定したディレクトリ名</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteRmdAsync(String directoryName)
+    /// FTPサーバーへRMDコマンドを送信します。
+    /// <summary>
+    /// Send rmd command to ftp server.
+    /// FTPサーバーへRMDコマンドを送信します。
+    /// </summary>
+    /// <param name="directoryName">指定したディレクトリ名</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteRmdAsync(String directoryName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteRmd(directoryName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteRmd(directoryName));
 		}
-        /// FTPサーバーへMKDコマンドを送信します。
-        /// <summary>
-        /// Send mkd command to ftp server.
-        /// FTPサーバーへMKDコマンドを送信します。
-        /// </summary>
-        /// <param name="directoryName">指定したディレクトリ名</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteMkdAsync(String directoryName)
+    /// FTPサーバーへMKDコマンドを送信します。
+    /// <summary>
+    /// Send mkd command to ftp server.
+    /// FTPサーバーへMKDコマンドを送信します。
+    /// </summary>
+    /// <param name="directoryName">指定したディレクトリ名</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteMkdAsync(String directoryName)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteMkd(directoryName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteMkd(directoryName));
 		}
-        /// FTPサーバーへPWDコマンドを送信します。
-        /// <summary>
-        /// Send pwd command to ftp server.
-        /// FTPサーバーへPWDコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
-        public Task<FtpDirectoryCommandResult> ExecutePwdAsync()
+    /// FTPサーバーへPWDコマンドを送信します。
+    /// <summary>
+    /// Send pwd command to ftp server.
+    /// FTPサーバーへPWDコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
+    public Task<FtpDirectoryCommandResult> ExecutePwdAsync()
 		{
-            return CreateNewTask<FtpDirectoryCommandResult>(() => this.ExecutePwd());
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
-        public Task<List<FtpDirectory>> ExecuteNlstAsync(FtpEntryType type)
-		{
-            return CreateNewTask<List<FtpDirectory>>(() => this.ExecuteNlst(type));
+        return CreateNewTask<FtpDirectoryCommandResult>(() => this.ExecutePwd());
 		}
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
-        public Task<List<FtpDirectory>> ExecuteListAsync(FtpEntryType type)
+    public Task<List<FtpDirectory>> ExecuteNlstAsync(FtpEntryType type)
 		{
-            return CreateNewTask<List<FtpDirectory>>(() => this.ExecuteList(type));
+        return CreateNewTask<List<FtpDirectory>>(() => this.ExecuteNlst(type));
 		}
-        /// FTPサーバーへSITEコマンドを送信します。
-        /// <summary>
-        /// Send site command to ftp server.
-        /// FTPサーバーへSITEコマンドを送信します。
-        /// <param name="cmdStr"></param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteSiteAsync(String cmdStr)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+    public Task<List<FtpDirectory>> ExecuteListAsync(FtpEntryType type)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteSite(cmdStr));
+        return CreateNewTask<List<FtpDirectory>>(() => this.ExecuteList(type));
 		}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteSystAsync()
+    /// FTPサーバーへSITEコマンドを送信します。
+    /// <summary>
+    /// Send site command to ftp server.
+    /// FTPサーバーへSITEコマンドを送信します。
+    /// <param name="cmdStr"></param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteSiteAsync(String cmdStr)
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteSyst());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteSite(cmdStr));
 		}
-        /// FTPサーバーへSTATコマンドを送信します。
-        /// <summary>
-        /// Send stat command to ftp server.
-        /// FTPサーバーへSTATコマンドを送信します。
-        /// <param name="pathName">ファイル／ディレクトリ名</param>
-        /// <returns></returns>
-        public Task<FtpCommandResult> ExecuteStatAsync(String pathName)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteSystAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteStat(pathName));
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteSyst());
+		}
+    /// FTPサーバーへSTATコマンドを送信します。
+    /// <summary>
+    /// Send stat command to ftp server.
+    /// FTPサーバーへSTATコマンドを送信します。
+    /// <param name="pathName">ファイル／ディレクトリ名</param>
+    /// <returns></returns>
+    public Task<FtpCommandResult> ExecuteStatAsync(String pathName)
+		{
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteStat(pathName));
 		}
 		/// FTPサーバーへHELPコマンドを送信します。
 		/// <summary>
@@ -423,9 +423,9 @@ namespace HigLabo.Net.Ftp
 		/// FTPサーバーへHELPコマンドを送信します。
 		/// </summary>
 		/// <returns></returns>
-        public Task<FtpCommandResult> ExecuteHelpAsync()
+    public Task<FtpCommandResult> ExecuteHelpAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteHelp());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteHelp());
 		}
 		/// FTPサーバーへNOOPコマンドを送信します。
 		/// <summary>
@@ -433,24 +433,23 @@ namespace HigLabo.Net.Ftp
 		/// FTPサーバーへNOOPコマンドを送信します。
 		/// </summary>
 		/// <returns></returns>
-        public Task<FtpCommandResult> ExecuteNoopAsync()
+    public Task<FtpCommandResult> ExecuteNoopAsync()
 		{
-            return CreateNewTask<FtpCommandResult>(() => this.ExecuteNoop());
+        return CreateNewTask<FtpCommandResult>(() => this.ExecuteNoop());
 		}
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="func"></param>
-        public Task SetCreateFtpDirectoryDelegateAsync(Func<String, FtpDirectory> func)
+    public Task SetCreateFtpDirectoryDelegateAsync(Func<String, FtpDirectory> func)
 		{
-            return CreateNewTask(() => this.SetCreateFtpDirectoryDelegate(func));
+        return CreateNewTask(() => this.SetCreateFtpDirectoryDelegate(func));
 		}
 		/// <summary>
 		/// FTPサーバから切断します。
 		/// </summary>
-        public Task DisconnectAsync()
+    public Task DisconnectAsync()
 		{
-            return CreateNewTask(() => this.Disconnect());
+        return CreateNewTask(() => this.Disconnect());
 		}
 	}
-}

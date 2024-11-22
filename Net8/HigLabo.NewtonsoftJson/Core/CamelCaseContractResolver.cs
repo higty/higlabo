@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json.Serialization;
 using HigLabo.Core;
 
-namespace HigLabo.Newtonsoft
+namespace HigLabo.Newtonsoft;
+
+public class CamelCaseContractResolver : DefaultContractResolver
 {
-    public class CamelCaseContractResolver : DefaultContractResolver
+    protected override string ResolvePropertyName(string propertyName)
     {
-        protected override string ResolvePropertyName(string propertyName)
-        {
-            return propertyName.ToCamelCase();
-        }
+        return propertyName.ToCamelCase();
     }
 }

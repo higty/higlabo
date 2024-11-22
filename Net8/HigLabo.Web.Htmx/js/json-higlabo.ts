@@ -8,8 +8,11 @@
         xhr.overrideMimeType("text/json");
 
         const ee = new Array<Node>();
-        let selector = element.getAttribute("hx-include");
-        if (selector != null) {
+        let hxInclude = element.getAttribute("hx-include");
+
+        const ss = hxInclude.split(",");
+        for (var i = 0; i < ss.length; i++) {
+            let selector = ss[i];
             if (selector.startsWith("closest ")) {
                 selector = selector.substring(8);
                 ee.push(element.closest(selector));
@@ -18,12 +21,9 @@
                 ee.push(element);
             }
             else {
-                const ss = selector.split(",");
-                for (var i = 0; i < ss.length; i++) {
-                    document.querySelectorAll(ss[i]).forEach((e) => {
-                        ee.push(e);
-                    });
-                }
+                document.querySelectorAll(selector).forEach((e) => {
+                    ee.push(e);
+                });
             }
         }
 
@@ -36,11 +36,14 @@
     processParameter: function (parameter, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
-                const childElement = <Element>childNode;
+                const childElement = <HTMLElement>childNode;
                 const name = childElement.getAttribute("name");
 
                 if (parameter instanceof Array) {
-                    if (childElement.getAttribute("hig-property-type") == "Object") {
+                    if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                        return;
+                    }
+                    else if (childElement.getAttribute("hig-property-type") == "Object") {
                         let r = {};
                         parameter.push(r);
                         this.processParameter(r, childNode);
@@ -86,7 +89,7 @@
                             }
                             else {
                                 let r = {};
-                                r[name] = childElement.textContent;
+                                r[name] = childElement.innerText;
                                 parameter.push(r);
                             }
                         }
@@ -94,7 +97,10 @@
                 }
                 else {
                     if (name != null) {
-                        if (childElement.getAttribute("hig-property-type") == "Object") {
+                        if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                            return;
+                        }
+                        else if (childElement.getAttribute("hig-property-type") == "Object") {
                             let r = {};
                             parameter[name] = r;
                             this.processParameter(r, childNode);
@@ -117,7 +123,7 @@
                                 }
                             }
                             else {
-                                parameter[name] = childElement.textContent;
+                                parameter[name] = childElement.innerText;
                             }
                         }
                     }
@@ -129,10 +135,13 @@
     processArrayParameter: function (arrayParameter: Array<any>, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
-                const childElement = <Element>childNode;
+                const childElement = <HTMLElement>childNode;
                 const name = childElement.getAttribute("name");
                 if (name != null) {
-                    if (childElement.getAttribute("hig-property-type") == "Object") {
+                    if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                        return;
+                    }
+                    else if (childElement.getAttribute("hig-property-type") == "Object") {
                         let r = {};
                         arrayParameter.push(r);
                         this.processParameter(r, childNode);
@@ -155,13 +164,16 @@
                             }
                         }
                         else {
-                            arrayParameter.push({ name: childElement.textContent });
+                            arrayParameter.push({ name: childElement.innerText });
                         }
                         this.processParameter(arrayParameter, childNode);
                     }
                 }
                 else {
-                    if (childElement.getAttribute("hig-property-type") == "Object") {
+                    if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                        return;
+                    }
+                    else if (childElement.getAttribute("hig-property-type") == "Object") {
                         let r = {};
                         arrayParameter.push(r);
                         this.processParameter(r, childNode);

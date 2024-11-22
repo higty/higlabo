@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class TrendingImages : BingRestApiResponse
 {
-    public class TrendingImages : BingRestApiResponse
-    {
-        public ImageCategory[] Categories { get; set; } = Array.Empty<ImageCategory>();
-    }
+    public ImageCategory[] Categories { get; set; } = Array.Empty<ImageCategory>();
 }

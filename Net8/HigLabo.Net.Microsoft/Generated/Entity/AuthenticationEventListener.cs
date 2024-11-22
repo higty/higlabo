@@ -1,14 +1,13 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/authenticationeventlistener?view=graph-rest-1.0
+/// </summary>
+public partial class AuthenticationEventListener
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/authenticationeventlistener?view=graph-rest-1.0
-    /// </summary>
-    public partial class AuthenticationEventListener
-    {
-        public AuthenticationConditions? Conditions { get; set; }
-        public string? Id { get; set; }
-        public string? AuthenticationEventsFlowId { get; set; }
-    }
+    public AuthenticationConditions? Conditions { get; set; }
+    public string? Id { get; set; }
+    public string? AuthenticationEventsFlowId { get; set; }
 }

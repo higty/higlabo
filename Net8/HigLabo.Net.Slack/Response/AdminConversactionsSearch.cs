@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class AdminConversactionsSearch 
 {
-    public partial class AdminConversactionsSearch 
-    {
-        public Conversation[]? Conversations { get; set; }
-    }
+    public Conversation[]? Conversations { get; set; }
 }

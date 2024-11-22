@@ -8,57 +8,56 @@ using System.ComponentModel;
 using Microsoft.Data.SqlClient.Server;
 using HigLabo.DbSharp;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public partial class Nvarchar256GuidTable : UserDefinedTableType<Nvarchar256GuidTable.Record>
 {
-    public partial class Nvarchar256GuidTable : UserDefinedTableType<Nvarchar256GuidTable.Record>
+    public partial class Record : UserDefinedTableTypeRecord
     {
-        public partial class Record : UserDefinedTableTypeRecord
+        private String _Value0 = "";
+        private Guid _Value1;
+
+        public String Value0
         {
-            private String _Value0 = "";
-            private Guid _Value1;
-
-            public String Value0
+            get
             {
-                get
-                {
-                    return _Value0;
-                }
-                set
-                {
-                    _Value0 = value ?? "";
-                }
+                return _Value0;
             }
-            public Guid Value1
+            set
             {
-                get
-                {
-                    return _Value1;
-                }
-                set
-                {
-                    _Value1 = value;
-                }
+                _Value0 = value ?? "";
             }
-
-            public Record()
+        }
+        public Guid Value1
+        {
+            get
             {
+                return _Value1;
             }
-
-            public override Object?[] GetValues()
+            set
             {
-                Object?[] oo = new Object[2];
-                oo[0] = this.Value0;
-                oo[1] = this.Value1;
-                return oo;
+                _Value1 = value;
             }
         }
 
-        public override SqlDataRecord CreateSqlDataRecord()
+        public Record()
         {
-            SqlMetaData[] metaData = new SqlMetaData[2];
-            metaData[0] = new SqlMetaData("Value0", SqlDbType.NVarChar, 256);
-            metaData[1] = new SqlMetaData("Value1", SqlDbType.UniqueIdentifier);
-            return new SqlDataRecord(metaData);
         }
+
+        public override Object?[] GetValues()
+        {
+            Object?[] oo = new Object[2];
+            oo[0] = this.Value0;
+            oo[1] = this.Value1;
+            return oo;
+        }
+    }
+
+    public override SqlDataRecord CreateSqlDataRecord()
+    {
+        SqlMetaData[] metaData = new SqlMetaData[2];
+        metaData[0] = new SqlMetaData("Value0", SqlDbType.NVarChar, 256);
+        metaData[1] = new SqlMetaData("Value1", SqlDbType.UniqueIdentifier);
+        return new SqlDataRecord(metaData);
     }
 }

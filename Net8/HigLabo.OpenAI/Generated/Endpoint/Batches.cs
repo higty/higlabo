@@ -4,58 +4,57 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+/// <summary>
+/// List your organization's batches.
+/// <seealso href="https://api.openai.com/v1/batches">https://api.openai.com/v1/batches</seealso>
+/// </summary>
+public partial class BatchesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
 {
-    /// <summary>
-    /// List your organization's batches.
-    /// <seealso href="https://api.openai.com/v1/batches">https://api.openai.com/v1/batches</seealso>
-    /// </summary>
-    public partial class BatchesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    internal static readonly BatchesParameter Empty = new BatchesParameter();
+
+    string IRestApiParameter.HttpMethod { get; } = "GET";
+    IQueryParameter IQueryParameterProperty.QueryParameter
     {
-        internal static readonly BatchesParameter Empty = new BatchesParameter();
-
-        string IRestApiParameter.HttpMethod { get; } = "GET";
-        IQueryParameter IQueryParameterProperty.QueryParameter
+        get
         {
-            get
-            {
-                return this.QueryParameter;
-            }
-        }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
-
-        string IRestApiParameter.GetApiPath()
-        {
-            return $"/batches";
-        }
-        public override object GetRequestBody()
-        {
-            return EmptyParameter;
+            return this.QueryParameter;
         }
     }
-    public partial class BatchesResponse : RestApiResponse
+    public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+
+    string IRestApiParameter.GetApiPath()
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
+        return $"/batches";
     }
-    public partial class OpenAIClient
+    public override object GetRequestBody()
     {
-        public async ValueTask<BatchesResponse> BatchesAsync()
-        {
-            return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(BatchesParameter.Empty, CancellationToken.None);
-        }
-        public async ValueTask<BatchesResponse> BatchesAsync(CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(BatchesParameter.Empty, cancellationToken);
-        }
-        public async ValueTask<BatchesResponse> BatchesAsync(BatchesParameter parameter)
-        {
-            return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(parameter, CancellationToken.None);
-        }
-        public async ValueTask<BatchesResponse> BatchesAsync(BatchesParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(parameter, cancellationToken);
-        }
+        return EmptyParameter;
+    }
+}
+public partial class BatchesResponse : RestApiResponse
+{
+    public string First_Id { get; set; } = "";
+    public string Last_Id { get; set; } = "";
+    public bool Has_More { get; set; }
+}
+public partial class OpenAIClient
+{
+    public async ValueTask<BatchesResponse> BatchesAsync()
+    {
+        return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(BatchesParameter.Empty, CancellationToken.None);
+    }
+    public async ValueTask<BatchesResponse> BatchesAsync(CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(BatchesParameter.Empty, cancellationToken);
+    }
+    public async ValueTask<BatchesResponse> BatchesAsync(BatchesParameter parameter)
+    {
+        return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(parameter, CancellationToken.None);
+    }
+    public async ValueTask<BatchesResponse> BatchesAsync(BatchesParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<BatchesParameter, BatchesResponse>(parameter, cancellationToken);
     }
 }

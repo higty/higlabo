@@ -1,13 +1,12 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public enum ImageType
 {
-    public enum ImageType
-    {
-        AnimatedGif,
-        AnimatedGifHttps,
-        Clipart,
-        Line,
-        Photo,
-        Shopping,
-        Transparent,
-    }
+    AnimatedGif,
+    AnimatedGifHttps,
+    Clipart,
+    Line,
+    Photo,
+    Shopping,
+    Transparent,
 }

@@ -11,16 +11,25 @@ export class FullWindowPopupPanel {
     }
     showModal() {
         const pl = document.getElementById("loading-panel-template");
-        $("#full-window-popup-panel-content-panel").setInnerHtml(pl.innerHTML);
+        if (pl != null) {
+            $("#full-window-popup-panel-content-panel").setInnerHtml(pl.innerHTML);
+        }
         this.dialog.showModal();
     }
     panel_Click(target, e) {
         const rect = this.dialog.getBoundingClientRect();
+        if (e.detail == 0) {
+            return;
+        }
         if (rect.left > e.clientX || rect.left + rect.width < e.clientX || rect.top > e.clientY || rect.top + rect.height < e.clientY) {
-            this.dialog.close();
+            this.close();
         }
     }
     closeButton_Click(target, e) {
+        this.close();
+    }
+    close() {
+        $("#full-window-popup-panel-content-panel").setInnerHtml("");
         this.dialog.close();
     }
 }

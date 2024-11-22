@@ -1,15 +1,14 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/tenantinformation?view=graph-rest-1.0
+/// </summary>
+public partial class TenantInformation
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/tenantinformation?view=graph-rest-1.0
-    /// </summary>
-    public partial class TenantInformation
-    {
-        public string? DefaultDomainName { get; set; }
-        public string? DisplayName { get; set; }
-        public string? FederationBrandName { get; set; }
-        public string? TenantId { get; set; }
-    }
+    public string? DefaultDomainName { get; set; }
+    public string? DisplayName { get; set; }
+    public string? FederationBrandName { get; set; }
+    public string? TenantId { get; set; }
 }

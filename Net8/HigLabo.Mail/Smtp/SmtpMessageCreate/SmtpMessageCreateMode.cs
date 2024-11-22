@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Net.Smtp
+namespace HigLabo.Net.Smtp;
+
+public enum SmtpMessageCreateMode
 {
-    public enum SmtpMessageCreateMode
-    {
-        Copy,
-        Reply,
-        ReplyAll,
-        Transfer,
-    }
+    Copy,
+    Reply,
+    ReplyAll,
+    Transfer,
 }

@@ -1,13 +1,12 @@
-﻿namespace HigLabo.Net.Microsoft
+﻿namespace HigLabo.Net.Microsoft;
+
+public enum CloudPcOnPremisesConnectionType
 {
-    public enum CloudPcOnPremisesConnectionType
-    {
-        Failed,
-        Informational,
-        Passed,
-        Pending,
-        Running,
-        UnknownFutureValue,
-        Warning,
-    }
+    Failed,
+    Informational,
+    Passed,
+    Pending,
+    Running,
+    UnknownFutureValue,
+    Warning,
 }

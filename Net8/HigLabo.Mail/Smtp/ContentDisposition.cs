@@ -3,48 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Net.Smtp
+namespace HigLabo.Net.Smtp;
+
+public class ContentDisposition
 {
-    public class ContentDisposition
+    public String Value { get; set; } = "";
+    public String FileName { get; set; } = "";
+
+    public Boolean IsAttachment
     {
-        public String Value { get; set; } = "";
-        public String FileName { get; set; } = "";
+        get { return String.Equals(this.Value, "attachment", StringComparison.OrdinalIgnoreCase); }
+    }
+    public List<SmtpMailHeaderParameter> Parameters { get; private set; }
 
-        public Boolean IsAttachment
-        {
-            get { return String.Equals(this.Value, "attachment", StringComparison.OrdinalIgnoreCase); }
-        }
-        public List<SmtpMailHeaderParameter> Parameters { get; private set; }
+    public ContentDisposition()
+    {
+        this.Parameters = new List<SmtpMailHeaderParameter>();
+    }
 
-        public ContentDisposition()
+    public void SetProperty(System.Net.Mime.ContentDisposition contentDisposition)
+    {
+        this.Value = contentDisposition.DispositionType;
+        this.FileName = contentDisposition.FileName ?? "";
+        foreach (String key in contentDisposition.Parameters.Keys)
         {
-            this.Parameters = new List<SmtpMailHeaderParameter>();
+            this.Parameters.Add(new SmtpMailHeaderParameter(key, contentDisposition.Parameters[key]?.ToString() ?? ""));
         }
-
-        public void SetProperty(System.Net.Mime.ContentDisposition contentDisposition)
+    }
+    public void SetProperty(Mime.ContentDisposition contentDisposition)
+    {
+        this.Value = contentDisposition.Value;
+        this.FileName = contentDisposition.FileName;
+        foreach (var p in contentDisposition.Parameters)
         {
-            this.Value = contentDisposition.DispositionType;
-            this.FileName = contentDisposition.FileName ?? "";
-            foreach (String key in contentDisposition.Parameters.Keys)
-            {
-                this.Parameters.Add(new SmtpMailHeaderParameter(key, contentDisposition.Parameters[key]?.ToString() ?? ""));
-            }
+            if (String.IsNullOrEmpty(p.Key) == true ||
+                String.Equals(p.Key, "filename", StringComparison.OrdinalIgnoreCase) == true)
+            { continue; }
+            this.Parameters.Add(new SmtpMailHeaderParameter(p.Key, p.Value));
         }
-        public void SetProperty(Mime.ContentDisposition contentDisposition)
-        {
-            this.Value = contentDisposition.Value;
-            this.FileName = contentDisposition.FileName;
-            foreach (var p in contentDisposition.Parameters)
-            {
-                if (String.IsNullOrEmpty(p.Key) == true ||
-                    String.Equals(p.Key, "filename", StringComparison.OrdinalIgnoreCase) == true)
-                { continue; }
-                this.Parameters.Add(new SmtpMailHeaderParameter(p.Key, p.Value));
-            }
-        }
-        public override string ToString()
-        {
-            return this.Value;
-        }
+    }
+    public override string ToString()
+    {
+        return this.Value;
     }
 }

@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum PrintOrientation
 {
-    public enum PrintOrientation
-    {
-        Portrait,
-        Landscape,
-        ReverseLandscape,
-        ReversePortrait,
-    }
+    Portrait,
+    Landscape,
+    ReverseLandscape,
+    ReversePortrait,
 }

@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HigLabo.Net.Smtp
+namespace HigLabo.Net.Smtp;
+
+/// Specify about connection state to server.
+/// <summary>
+/// Specify about connection state to server.
+/// <remarks>
+///	<list type="bullet">
+/// <item>
+/// <term>Disconnected</term>
+/// <description>Not connected to server</description>
+/// <term>Connected</term>
+/// <description>Connect to server with TCP/IP protocol</description>
+/// <term>Authenticated</term>
+/// <description>Success to authenticate to server</description>
+/// </item>
+/// </list>
+/// </remarks>
+/// </summary>
+public enum SmtpConnectionState
 {
-    /// Specify about connection state to server.
-    /// <summary>
-    /// Specify about connection state to server.
-    /// <remarks>
-    ///	<list type="bullet">
-    /// <item>
-    /// <term>Disconnected</term>
-    /// <description>Not connected to server</description>
-    /// <term>Connected</term>
-    /// <description>Connect to server with TCP/IP protocol</description>
-    /// <term>Authenticated</term>
-    /// <description>Success to authenticate to server</description>
-    /// </item>
-    /// </list>
-    /// </remarks>
-    /// </summary>
-    public enum SmtpConnectionState
-    {
 		/// <summary>
 		/// 
 		/// </summary>
-        Disconnected, 
+    Disconnected, 
 		/// <summary>
 		/// 
 		/// </summary>
@@ -37,7 +37,7 @@ namespace HigLabo.Net.Smtp
 		/// <summary>
 		/// 
 		/// </summary>
-        MailFromCommandExecuting, 
+    MailFromCommandExecuting, 
 		/// <summary>
 		/// 
 		/// </summary>
@@ -45,7 +45,7 @@ namespace HigLabo.Net.Smtp
 		/// <summary>
 		/// 
 		/// </summary>
-        RcptToCommandExecuting, 
+    RcptToCommandExecuting, 
 		/// <summary>
 		/// 
 		/// </summary>
@@ -53,10 +53,9 @@ namespace HigLabo.Net.Smtp
 		/// <summary>
 		/// 
 		/// </summary>
-        DataCommandExecuting, 
+    DataCommandExecuting, 
 		/// <summary>
 		/// 
 		/// </summary>
 		DataCommandExecuted
-    }
 }

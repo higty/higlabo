@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class VideosModule
 {
-    public class VideosModule
-    {
-        public Video[] Value { get; set; } = Array.Empty<Video>();
-    }
+    public Video[] Value { get; set; } = Array.Empty<Video>();
 }

@@ -361,6 +361,12 @@ export class HtmlElementQuery {
             element.scrollTop = value;
         }
     }
+    insertAdjacentHTML(position, text) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentHTML(position, text);
+        }
+        return this;
+    }
     getInnerText() {
         if (this._elementList.length > 0) {
             return this._elementList[0].textContent;
@@ -565,21 +571,21 @@ export class HtmlElementQuery {
     resize(callback) {
         this.addEventListenerToAllElement("resize", callback);
     }
-    keydown(callback, keyCode) {
+    keydown(callback, key) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keydown", function (e) {
-                if (keyCode == null || e.keyCode === keyCode) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });
         }
     }
-    keyup(callback, keyCode) {
+    keyup(callback, key) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e) {
-                if (e.keyCode === null || e.keyCode === keyCode) {
+                if (e.key === null || e.key === key) {
                     callback(e);
                 }
             });

@@ -8,13 +8,12 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public static class NpgsqlDbTypeExtensions
 {
-    public static class NpgsqlDbTypeExtensions
+    public static NpgsqlTypes.NpgsqlDbType GetNpgsqlDbType(this HigLabo.DbSharp.MetaData.NpgsqlDbType type)
     {
-        public static NpgsqlTypes.NpgsqlDbType GetNpgsqlDbType(this HigLabo.DbSharp.MetaData.NpgsqlDbType type)
-        {
-            return type.ToStringFromEnum().ToEnum<NpgsqlTypes.NpgsqlDbType>()!.Value;
-        }
+        return type.ToStringFromEnum().ToEnum<NpgsqlTypes.NpgsqlDbType>()!.Value;
     }
 }

@@ -4,58 +4,57 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+/// <summary>
+/// Returns a list of invites in the organization.
+/// <seealso href="https://api.openai.com/v1/organization/invites">https://api.openai.com/v1/organization/invites</seealso>
+/// </summary>
+public partial class OrganizationInvitesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
 {
-    /// <summary>
-    /// Returns a list of invites in the organization.
-    /// <seealso href="https://api.openai.com/v1/organization/invites">https://api.openai.com/v1/organization/invites</seealso>
-    /// </summary>
-    public partial class OrganizationInvitesParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    internal static readonly OrganizationInvitesParameter Empty = new OrganizationInvitesParameter();
+
+    string IRestApiParameter.HttpMethod { get; } = "GET";
+    IQueryParameter IQueryParameterProperty.QueryParameter
     {
-        internal static readonly OrganizationInvitesParameter Empty = new OrganizationInvitesParameter();
-
-        string IRestApiParameter.HttpMethod { get; } = "GET";
-        IQueryParameter IQueryParameterProperty.QueryParameter
+        get
         {
-            get
-            {
-                return this.QueryParameter;
-            }
-        }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
-
-        string IRestApiParameter.GetApiPath()
-        {
-            return $"/organization/invites";
-        }
-        public override object GetRequestBody()
-        {
-            return EmptyParameter;
+            return this.QueryParameter;
         }
     }
-    public partial class OrganizationInvitesResponse : RestApiDataResponse<List<InviteObject>>
+    public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+
+    string IRestApiParameter.GetApiPath()
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
+        return $"/organization/invites";
     }
-    public partial class OpenAIClient
+    public override object GetRequestBody()
     {
-        public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync()
-        {
-            return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(OrganizationInvitesParameter.Empty, CancellationToken.None);
-        }
-        public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync(CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(OrganizationInvitesParameter.Empty, cancellationToken);
-        }
-        public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync(OrganizationInvitesParameter parameter)
-        {
-            return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(parameter, CancellationToken.None);
-        }
-        public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync(OrganizationInvitesParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(parameter, cancellationToken);
-        }
+        return EmptyParameter;
+    }
+}
+public partial class OrganizationInvitesResponse : RestApiDataResponse<List<InviteObject>>
+{
+    public string First_Id { get; set; } = "";
+    public string Last_Id { get; set; } = "";
+    public bool Has_More { get; set; }
+}
+public partial class OpenAIClient
+{
+    public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync()
+    {
+        return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(OrganizationInvitesParameter.Empty, CancellationToken.None);
+    }
+    public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync(CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(OrganizationInvitesParameter.Empty, cancellationToken);
+    }
+    public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync(OrganizationInvitesParameter parameter)
+    {
+        return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(parameter, CancellationToken.None);
+    }
+    public async ValueTask<OrganizationInvitesResponse> OrganizationInvitesAsync(OrganizationInvitesParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<OrganizationInvitesParameter, OrganizationInvitesResponse>(parameter, cancellationToken);
     }
 }

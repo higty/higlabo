@@ -1,7 +1,6 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public class ContentEmbedding
 {
-    public class ContentEmbedding
-    {
-        public double[] Values { get; set; } = Array.Empty<double>();
-    }
+    public double[] Values { get; set; } = Array.Empty<double>();
 }

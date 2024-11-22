@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class ImageCategory
 {
-    public class ImageCategory
-    {
-        public string Title { get; set; } = "";
-        public ImageTile[] Tiles { get; set; } = Array.Empty<ImageTile>();
-    }
+    public string Title { get; set; } = "";
+    public ImageTile[] Tiles { get; set; } = Array.Empty<ImageTile>();
 }

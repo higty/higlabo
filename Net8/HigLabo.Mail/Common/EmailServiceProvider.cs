@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Net.Mail
+namespace HigLabo.Net.Mail;
+
+public enum EmailServiceProvider
 {
-    public enum EmailServiceProvider
-    {
-        Gmail,
-        Outlook,
-        YahooMail,
-        AolMail,
-        ZohoMail,
-        Yandex,
-    }
+    Gmail,
+    Outlook,
+    YahooMail,
+    AolMail,
+    ZohoMail,
+    Yandex,
 }

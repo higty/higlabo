@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class AuthTeamsListResponse
 {
-    public partial class AuthTeamsListResponse
-    {
-        public Team[]? Teams { get; set; }
-    }
+    public Team[]? Teams { get; set; }
 }

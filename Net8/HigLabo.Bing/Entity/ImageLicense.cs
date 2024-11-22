@@ -1,13 +1,12 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public enum ImageLicense
 {
-    public enum ImageLicense
-    {
-        Any,
-        Public,
-        Share,
-        ShareCommercially,
-        Modify,
-        ModifyCommercially,
-        All,
-    }
+    Any,
+    Public,
+    Share,
+    ShareCommercially,
+    Modify,
+    ModifyCommercially,
+    All,
 }

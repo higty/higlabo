@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public enum ClassPropertyCreateMode
 {
-    public enum ClassPropertyCreateMode
-    {
-        None,
-        NewObject,
-        Assign,
-    }
+    None,
+    NewObject,
+    Assign,
 }

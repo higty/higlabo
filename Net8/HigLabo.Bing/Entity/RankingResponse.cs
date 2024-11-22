@@ -1,9 +1,8 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class RankingResponse
 {
-    public class RankingResponse
-    {
-        public RankingGroup? Mainline { get; set; } 
-        public RankingGroup? Pole { get; set; } 
-        public RankingGroup? Sidebar { get; set; }
-    }
+    public RankingGroup? Mainline { get; set; } 
+    public RankingGroup? Pole { get; set; } 
+    public RankingGroup? Sidebar { get; set; }
 }

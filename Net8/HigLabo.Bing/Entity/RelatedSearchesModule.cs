@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class RelatedSearchesModule
 {
-    public class RelatedSearchesModule
-    {
-        public Query[] Value { get; set; } = Array.Empty<Query>();
-    }
+    public Query[] Value { get; set; } = Array.Empty<Query>();
 }

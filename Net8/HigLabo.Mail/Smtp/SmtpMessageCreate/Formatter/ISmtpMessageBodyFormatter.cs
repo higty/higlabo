@@ -5,15 +5,14 @@ using System.Text;
 using System.Collections.Specialized;
 using HigLabo.Mime;
 
-namespace HigLabo.Net.Smtp
+namespace HigLabo.Net.Smtp;
+
+public interface ISmtpMessageBodyFormatter
 {
-    public interface ISmtpMessageBodyFormatter
-    {
-        Boolean IsHtml { get; }
+    Boolean IsHtml { get; }
 
 #if !NETFX_CORE
-        String CreateBodyText(System.Net.Mail.MailMessage message);
+    String CreateBodyText(System.Net.Mail.MailMessage message);
 #endif
-        String CreateBodyText(MailMessage message);
-    }
+    String CreateBodyText(MailMessage message);
 }

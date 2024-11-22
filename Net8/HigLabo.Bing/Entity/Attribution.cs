@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class Attribution
 {
-    public class Attribution
-    {
-        public string ProviderDisplayName { get; set; } = "";
-        public string SeeMoreUrl { get; set; } = "";
-    }
+    public string ProviderDisplayName { get; set; } = "";
+    public string SeeMoreUrl { get; set; } = "";
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class SearchFilesResponse
 {
-    public partial class SearchFilesResponse
-    {
-        public SearchFiles? Files { get; set; }
-        public string? Query { get; set; }
-    }
+    public SearchFiles? Files { get; set; }
+    public string? Query { get; set; }
 }

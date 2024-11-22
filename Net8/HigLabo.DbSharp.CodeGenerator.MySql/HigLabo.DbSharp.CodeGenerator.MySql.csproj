@@ -20,7 +20,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MySql.Data" Version="8.3.0" />
+		<PackageReference Include="Azure.Identity" Version="1.13.1" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+		<PackageReference Include="MySql.Data" Version="9.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
-{
+namespace HigLabo.Core;
+
 	public class NumberToDateTimeProcessor
 	{
 		public TimeOnly TimeZone { get; set; } = new TimeOnly(9, 0);
@@ -44,4 +44,3 @@ namespace HigLabo.Core
 			return null;
 		}
 	}
-}

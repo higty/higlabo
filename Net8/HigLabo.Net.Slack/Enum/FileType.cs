@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public enum FileType
 {
-    public enum FileType
-    {
-        All,
-        Spaces,
-        Snippets,
-        Images,
-        Gdocs,
-        Zips,
-        Pdfs,
-    }
+    All,
+    Spaces,
+    Snippets,
+    Images,
+    Gdocs,
+    Zips,
+    Pdfs,
 }

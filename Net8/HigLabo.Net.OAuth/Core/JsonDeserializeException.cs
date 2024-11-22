@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public class JsonDeserializeException : Exception
 {
-    public class JsonDeserializeException : Exception
+    public string Json { get; set; }
+    public JsonDeserializeException(string json, Exception exception)
+        : base(json + Environment.NewLine + Environment.NewLine + exception.Message, exception)
     {
-        public string Json { get; set; }
-        public JsonDeserializeException(string json, Exception exception)
-            : base(json + Environment.NewLine + Environment.NewLine + exception.Message, exception)
-        {
-            this.Json = json;
-        }
+        this.Json = json;
     }
 }

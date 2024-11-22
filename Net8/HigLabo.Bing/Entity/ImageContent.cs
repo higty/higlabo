@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public enum ImageContent
 {
-    public enum ImageContent
-    {
-        Face,
-        Portrait,
-    }
+    Face,
+    Portrait,
 }

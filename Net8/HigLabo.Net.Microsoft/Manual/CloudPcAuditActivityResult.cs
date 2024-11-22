@@ -1,10 +1,9 @@
-﻿namespace HigLabo.Net.Microsoft
+﻿namespace HigLabo.Net.Microsoft;
+
+public enum CloudPcAuditActivityResult
 {
-    public enum CloudPcAuditActivityResult
-    {
-        Success,
-        ClientError,
-        Failure,
-        Timeout,
-    }
+    Success,
+    ClientError,
+    Failure,
+    Timeout,
 }

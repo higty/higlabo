@@ -1,21 +1,20 @@
 using System.Xml.Linq;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public class RssImage_0_92 : RssImage
 {
-    public class RssImage_0_92 : RssImage
+    public RssImage_0_92() {}
+    public RssImage_0_92(XElement element)
+        : base(element)
     {
-        public RssImage_0_92() {}
-        public RssImage_0_92(XElement element)
-            : base(element)
+        if (element != null)
         {
-            if (element != null)
-            {
-                Parse(element);
-            }
+            Parse(element);
         }
-        protected new void Parse(XElement element)
-        {
-            
-        }
+    }
+    protected new void Parse(XElement element)
+    {
+        
     }
 }

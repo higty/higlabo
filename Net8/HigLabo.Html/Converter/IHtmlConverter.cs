@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Html
+namespace HigLabo.Html;
+
+public interface IHtmlConverter
 {
-    public interface IHtmlConverter
-    {
-        ValueTask<String> ConvertAsync(String html);
-    }
+    ValueTask<String> ConvertAsync(String html);
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public class MeetingInfo
 {
-    public class MeetingInfo
-    {
-        public IdentitySet? Organizer { get; set; }
-        public string? Token { get; set; }
-    }
+    public IdentitySet? Organizer { get; set; }
+    public string? Token { get; set; }
 }

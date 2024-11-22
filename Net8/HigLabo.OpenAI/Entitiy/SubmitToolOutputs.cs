@@ -1,7 +1,6 @@
-﻿namespace HigLabo.OpenAI
+﻿namespace HigLabo.OpenAI;
+
+public class SubmitToolOutputs
 {
-    public class SubmitToolOutputs
-    {
-        public List<ToolCall> Tool_Calls = new List<ToolCall>();
-    }
+    public List<ToolCall> Tool_Calls = new List<ToolCall>();
 }

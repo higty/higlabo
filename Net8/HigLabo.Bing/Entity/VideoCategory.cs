@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class VideoCategory
 {
-    public class VideoCategory
-    {
-        public string Title { get; set; } = "";
-        public VideoTile[] SubCategories { get; set; } = Array.Empty<VideoTile>();
-    }
+    public string Title { get; set; } = "";
+    public VideoTile[] SubCategories { get; set; } = Array.Empty<VideoTile>();
 }

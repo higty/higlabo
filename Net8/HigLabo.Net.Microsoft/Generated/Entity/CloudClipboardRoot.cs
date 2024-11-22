@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/cloudclipboardroot?view=graph-rest-1.0
+/// </summary>
+public partial class CloudClipboardRoot
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/cloudclipboardroot?view=graph-rest-1.0
-    /// </summary>
-    public partial class CloudClipboardRoot
-    {
-        public CloudClipboardItem[]? Items { get; set; }
-    }
+    public CloudClipboardItem[]? Items { get; set; }
 }

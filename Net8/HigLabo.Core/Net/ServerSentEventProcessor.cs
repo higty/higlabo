@@ -9,54 +9,53 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public class ServerSentEventProcessor
 {
-    public class ServerSentEventProcessor
+    public Stream Stream { get; set; }
+
+    public ServerSentEventProcessor(Stream stream)
     {
-        public Stream Stream { get; set; }
+        this.Stream = stream;
+    }
 
-        public ServerSentEventProcessor(Stream stream)
+    public async IAsyncEnumerable<ServerSentEventLine> Process([EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        var sseResponse = new ServerSentEventResponse();
+        var previousLineList = new List<ServerSentEventLine>();
+
+        var loopIndex = 0;
+        while (true)
         {
-            this.Stream = stream;
-        }
+            sseResponse.Clear();
+            var readCount = await this.Stream.ReadAsync(sseResponse.Buffer, cancellationToken);
+            sseResponse.BufferLength = readCount;
 
-        public async IAsyncEnumerable<ServerSentEventLine> Process([EnumeratorCancellation] CancellationToken cancellationToken)
-        {
-            var sseResponse = new ServerSentEventResponse();
-            var previousLineList = new List<ServerSentEventLine>();
+            Debug.WriteLine($"■Read={readCount}");
+            Debug.WriteLine($"{Encoding.UTF8.GetString(sseResponse.Buffer)}");
 
-            var loopIndex = 0;
-            while (true)
+            if (readCount == 0) { break; }
+
+            foreach (var line in sseResponse.GetLines(previousLineList))
             {
-                sseResponse.Clear();
-                var readCount = await this.Stream.ReadAsync(sseResponse.Buffer, cancellationToken);
-                sseResponse.BufferLength = readCount;
+                if (cancellationToken.IsCancellationRequested) { break; }
 
-                Debug.WriteLine($"■Read={readCount}");
-                Debug.WriteLine($"{Encoding.UTF8.GetString(sseResponse.Buffer)}");
-
-                if (readCount == 0) { break; }
-
-                foreach (var line in sseResponse.GetLines(previousLineList))
+                if (line.Complete == false)
                 {
-                    if (cancellationToken.IsCancellationRequested) { break; }
-
-                    if (line.Complete == false)
-                    {
-                        previousLineList.Add(line);
-                        continue;
-                    }
-                    if (line.IsEmpty()) { continue; }
-                    if (line.IsDone())
-                    {
-                        yield return line;
-                        yield break;
-                    }
-                    yield return line;
+                    previousLineList.Add(line);
+                    continue;
                 }
-                loopIndex++;
+                if (line.IsEmpty()) { continue; }
+                if (line.IsDone())
+                {
+                    yield return line;
+                    yield break;
+                }
+                yield return line;
             }
-
+            loopIndex++;
         }
+
     }
 }

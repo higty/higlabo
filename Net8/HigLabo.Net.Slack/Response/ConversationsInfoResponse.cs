@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class ConversationsInfoResponse : RestApiResponse
 {
-    public partial class ConversationsInfoResponse : RestApiResponse
-    {
-        public Conversation? Channel { get; set; }
-    }
+    public Conversation? Channel { get; set; }
 }

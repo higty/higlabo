@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.CodeGenerator
+namespace HigLabo.CodeGenerator;
+
+public enum MethodPolymophism
 {
-    public enum MethodPolymophism
-    {
-        None,
-        Abstract, 
-        Virtual,
-        Override,
-        New,
-    }
+    None,
+    Abstract, 
+    Virtual,
+    Override,
+    New,
 }

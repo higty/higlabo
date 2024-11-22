@@ -5,91 +5,90 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.OAuth
+namespace HigLabo.Net.OAuth;
+
+public interface IRestApiResponse
 {
-    public interface IRestApiResponse
+    object? Parameter { get; }
+    HttpRequestMessage Request { get; }
+    string RequestBodyText { get; }
+    HttpStatusCode StatusCode { get; }
+    Dictionary<String, String> Headers { get; } 
+    string ResponseBodyText { get; }
+    bool IsThrowException();
+}
+
+public class RestApiResponse : IRestApiResponse
+{
+    private Object? _Parameter = null; 
+    private HttpRequestMessage? _Request = null;
+    private string _RequestBodyText = "";
+    private HttpStatusCode _StatusCode = HttpStatusCode.OK;
+    private Dictionary<String, String> _Headers = new Dictionary<string, string>();
+    private string _ResponseBodyText = "";
+
+    object? IRestApiResponse.Parameter
     {
-        object? Parameter { get; }
-        HttpRequestMessage Request { get; }
-        string RequestBodyText { get; }
-        HttpStatusCode StatusCode { get; }
-        Dictionary<String, String> Headers { get; } 
-        string ResponseBodyText { get; }
-        bool IsThrowException();
+        get { return _Parameter; }
+    }
+    HttpRequestMessage IRestApiResponse.Request
+    {
+        get { return _Request!; }
+    }
+    string IRestApiResponse.RequestBodyText
+    {
+        get { return _RequestBodyText; }
+    }
+    HttpStatusCode IRestApiResponse.StatusCode
+    {
+        get { return _StatusCode; }
+    }
+    Dictionary<String, String> IRestApiResponse.Headers
+    {
+        get { return _Headers; }
+    }
+    string IRestApiResponse.ResponseBodyText
+    {
+        get { return _ResponseBodyText; }
     }
 
-    public class RestApiResponse : IRestApiResponse
+    public void SetProperty(object? parameter, string requestBodyText, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
     {
-        private Object? _Parameter = null; 
-        private HttpRequestMessage? _Request = null;
-        private string _RequestBodyText = "";
-        private HttpStatusCode _StatusCode = HttpStatusCode.OK;
-        private Dictionary<String, String> _Headers = new Dictionary<string, string>();
-        private string _ResponseBodyText = "";
-
-        object? IRestApiResponse.Parameter
+        var res = response;
+        _Parameter = parameter;
+        _Request = request;
+        _RequestBodyText = requestBodyText;
+        _StatusCode = res.StatusCode;
+        foreach (var header in res.Headers)
         {
-            get { return _Parameter; }
+            _Headers[header.Key] = String.Join(' ', header.Value);
         }
-        HttpRequestMessage IRestApiResponse.Request
+        _ResponseBodyText = bodyText;
+    }
+    public string GetHeaderText()
+    {
+        var sb = new StringBuilder();
+        foreach (var key in this._Headers.Keys)
         {
-            get { return _Request!; }
+            sb.Append(key).Append(": ").AppendLine(_Headers[key]);
         }
-        string IRestApiResponse.RequestBodyText
+        return sb.ToString();
+    }
+    public string GetResponseBodyText()
+    {
+        return _ResponseBodyText;
+    }
+    public virtual string GetNextPageToken()
+    {
+        return "";
+    }
+    public virtual bool IsThrowException()
+    {
+        var statusCode = (int)this._StatusCode;
+        if (statusCode >= 200 && statusCode < 300)
         {
-            get { return _RequestBodyText; }
+            return false;
         }
-        HttpStatusCode IRestApiResponse.StatusCode
-        {
-            get { return _StatusCode; }
-        }
-        Dictionary<String, String> IRestApiResponse.Headers
-        {
-            get { return _Headers; }
-        }
-        string IRestApiResponse.ResponseBodyText
-        {
-            get { return _ResponseBodyText; }
-        }
-
-        public void SetProperty(object? parameter, string requestBodyText, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
-        {
-            var res = response;
-            _Parameter = parameter;
-            _Request = request;
-            _RequestBodyText = requestBodyText;
-            _StatusCode = res.StatusCode;
-            foreach (var header in res.Headers)
-            {
-                _Headers[header.Key] = String.Join(' ', header.Value);
-            }
-            _ResponseBodyText = bodyText;
-        }
-        public string GetHeaderText()
-        {
-            var sb = new StringBuilder();
-            foreach (var key in this._Headers.Keys)
-            {
-                sb.Append(key).Append(": ").AppendLine(_Headers[key]);
-            }
-            return sb.ToString();
-        }
-        public string GetResponseBodyText()
-        {
-            return _ResponseBodyText;
-        }
-        public virtual string GetNextPageToken()
-        {
-            return "";
-        }
-        public virtual bool IsThrowException()
-        {
-            var statusCode = (int)this._StatusCode;
-            if (statusCode >= 200 && statusCode < 300)
-            {
-                return false;
-            }
-            return true;
-        }
+        return true;
     }
 }
