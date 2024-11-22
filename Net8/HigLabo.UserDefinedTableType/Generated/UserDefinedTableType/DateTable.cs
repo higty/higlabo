@@ -8,43 +8,42 @@ using System.ComponentModel;
 using Microsoft.Data.SqlClient.Server;
 using HigLabo.DbSharp;
 
-namespace HigLabo.Data
+namespace HigLabo.Data;
+
+public partial class DateTable : UserDefinedTableType<DateTable.Record>
 {
-    public partial class DateTable : UserDefinedTableType<DateTable.Record>
+    public partial class Record : UserDefinedTableTypeRecord
     {
-        public partial class Record : UserDefinedTableTypeRecord
+        private DateOnly _Value;
+
+        public DateOnly Value
         {
-            private DateOnly _Value;
-
-            public DateOnly Value
+            get
             {
-                get
-                {
-                    return _Value;
-                }
-                set
-                {
-                    _Value = value;
-                }
+                return _Value;
             }
-
-            public Record()
+            set
             {
-            }
-
-            public override Object?[] GetValues()
-            {
-                Object?[] oo = new Object[1];
-                oo[0] = this.Value.ToDateTime(TimeOnly.MinValue);
-                return oo;
+                _Value = value;
             }
         }
 
-        public override SqlDataRecord CreateSqlDataRecord()
+        public Record()
         {
-            SqlMetaData[] metaData = new SqlMetaData[1];
-            metaData[0] = new SqlMetaData("Value", SqlDbType.Date);
-            return new SqlDataRecord(metaData);
         }
+
+        public override Object?[] GetValues()
+        {
+            Object?[] oo = new Object[1];
+            oo[0] = this.Value.ToDateTime(TimeOnly.MinValue);
+            return oo;
+        }
+    }
+
+    public override SqlDataRecord CreateSqlDataRecord()
+    {
+        SqlMetaData[] metaData = new SqlMetaData[1];
+        metaData[0] = new SqlMetaData("Value", SqlDbType.Date);
+        return new SqlDataRecord(metaData);
     }
 }

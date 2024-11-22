@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum PrintDuplexMode
 {
-    public enum PrintDuplexMode
-    {
-        FlipOnLongEdge,
-        FlipOnShortEdge,
-        OneSided,
-    }
+    FlipOnLongEdge,
+    FlipOnShortEdge,
+    OneSided,
 }

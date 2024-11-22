@@ -2,37 +2,36 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient.Server;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public abstract class UserDefinedTableType<T> 
+    where T : UserDefinedTableTypeRecord
 {
-    public abstract class UserDefinedTableType<T> 
-        where T : UserDefinedTableTypeRecord
+    private List<T> _Records = new List<T>();
+    public List<T> Records
     {
-        private List<T> _Records = new List<T>();
-        public List<T> Records
-        {
-            get { return _Records; }
-        }
+        get { return _Records; }
+    }
 
-        public abstract SqlDataRecord CreateSqlDataRecord();
-        public List<SqlDataRecord> CreateSqlDataRecords(IEnumerable<T> records)
+    public abstract SqlDataRecord CreateSqlDataRecord();
+    public List<SqlDataRecord> CreateSqlDataRecords(IEnumerable<T> records)
+    {
+        var l = new List<SqlDataRecord>();
+        foreach (var item in records)
         {
-            var l = new List<SqlDataRecord>();
-            foreach (var item in records)
-            {
-                var r = CreateSqlDataRecord();
-                r.SetValues(item.GetValues());
-                l.Add(r);
-            }
-            return l;
+            var r = CreateSqlDataRecord();
+            r.SetValues(item.GetValues());
+            l.Add(r);
         }
+        return l;
+    }
 
-        public void AddRecord(T record)
-        {
-            this.Records.Add(record);
-        }
-        public void AddRecords(IEnumerable<T> records)
-        {
-            this.Records.AddRange(records);
-        }
+    public void AddRecord(T record)
+    {
+        this.Records.Add(record);
+    }
+    public void AddRecords(IEnumerable<T> records)
+    {
+        this.Records.AddRange(records);
     }
 }

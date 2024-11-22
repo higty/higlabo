@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public enum ImageResponseFormat
 {
-    public enum ImageResponseFormat
-    {
-        Url,
-        B64_Json,
-    }
+    Url,
+    B64_Json,
 }

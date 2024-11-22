@@ -5,21 +5,20 @@ using System.Text;
 using System.Xml.Linq;
 using HigLabo.Rss.Internal;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public class RssTextInput_Atom : RssTextInput
 {
-    public class RssTextInput_Atom : RssTextInput
+    public RssTextInput_Atom() {}
+    public RssTextInput_Atom(XElement element)
+        : base(element)
     {
-        public RssTextInput_Atom() {}
-        public RssTextInput_Atom(XElement element)
-            : base(element)
+        if (element != null)
         {
-            if (element != null)
-            {
-                Parse(element);
-            }
+            Parse(element);
         }
-        protected new void Parse(XElement element)
-        {
-        }
+    }
+    protected new void Parse(XElement element)
+    {
     }
 }

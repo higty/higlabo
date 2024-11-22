@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class ImagesModule : BingRestApiResponse
 {
-    public class ImagesModule : BingRestApiResponse
-    {
-        public Image[] Value { get; set; }  = Array.Empty<Image>();
-    }
+    public Image[] Value { get; set; }  = Array.Empty<Image>();
 }

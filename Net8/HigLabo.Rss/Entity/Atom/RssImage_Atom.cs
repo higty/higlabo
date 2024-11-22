@@ -5,21 +5,20 @@ using System.Text;
 using System.Xml.Linq;
 using HigLabo.Rss.Internal;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public class RssImage_Atom : RssImage
 {
-    public class RssImage_Atom : RssImage
+    public RssImage_Atom() {}
+    public RssImage_Atom(XElement element)
+        : base(element)
     {
-        public RssImage_Atom() {}
-        public RssImage_Atom(XElement element)
-            : base(element)
+        if (element != null)
         {
-            if (element != null)
-            {
-                Parse(element);
-            }
+            Parse(element);
         }
-        protected new void Parse(XElement element)
-        {
-        }
+    }
+    protected new void Parse(XElement element)
+    {
     }
 }

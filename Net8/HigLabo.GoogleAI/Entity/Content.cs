@@ -1,35 +1,34 @@
 ﻿using HigLabo.Core;
 using System.Text;
 
-namespace HigLabo.GoogleAI
+namespace HigLabo.GoogleAI;
+
+public class Content
 {
-    public class Content
+    public ChatMessageRole Role { get; set; }
+    public List<ContentPart> Parts { get; init; } = new();
+
+    public Content() { }
+    public Content(ChatMessageRole role, string text)
     {
-        public ChatMessageRole Role { get; set; }
-        public List<ContentPart> Parts { get; init; } = new();
+        this.Role = role;
+        this.Parts.Add(new ContentPart(text));
+    }
 
-        public Content() { }
-        public Content(ChatMessageRole role, string text)
-        {
-            this.Role = role;
-            this.Parts.Add(new ContentPart(text));
-        }
+    public void AddMessage(string text)
+    {
+        this.Parts.Add(new ContentPart(text));
+    }
 
-        public void AddMessage(string text)
+    public override string ToString()
+    {
+        if (this.Parts.Count == 0) { return ""; }
+        if (this.Parts.Count == 1) { return this.Parts[0].Text ?? ""; }
+        var sb = new StringBuilder(256);
+        foreach (var part in this.Parts)
         {
-            this.Parts.Add(new ContentPart(text));
+            sb.Append(part.Text);
         }
-
-        public override string ToString()
-        {
-            if (this.Parts.Count == 0) { return ""; }
-            if (this.Parts.Count == 1) { return this.Parts[0].Text ?? ""; }
-            var sb = new StringBuilder(256);
-            foreach (var part in this.Parts)
-            {
-                sb.Append(part.Text);
-            }
-            return sb.ToString();
-        }
+        return sb.ToString();
     }
 }

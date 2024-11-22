@@ -1,13 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/bookingworkhours?view=graph-rest-1.0
+/// </summary>
+public partial class BookingWorkHours
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/bookingworkhours?view=graph-rest-1.0
-    /// </summary>
-    public partial class BookingWorkHours
-    {
-        public string? Day { get; set; }
-        public BookingWorkTimeSlot[]? TimeSlots { get; set; }
-    }
+    public string? Day { get; set; }
+    public BookingWorkTimeSlot[]? TimeSlots { get; set; }
 }

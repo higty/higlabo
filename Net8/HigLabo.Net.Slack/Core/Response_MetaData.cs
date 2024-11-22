@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public class ResponseMetadata
 {
-    public class ResponseMetadata
-    {
-        public String Next_Cursor { get; set; } = "";
-    }
+    public String Next_Cursor { get; set; } = "";
 }

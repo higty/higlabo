@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/printershareviewpoint?view=graph-rest-1.0
+/// </summary>
+public partial class PrinterShareViewpoint
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/printershareviewpoint?view=graph-rest-1.0
-    /// </summary>
-    public partial class PrinterShareViewpoint
-    {
-        public DateTimeOffset? LastUsedDateTime { get; set; }
-    }
+    public DateTimeOffset? LastUsedDateTime { get; set; }
 }

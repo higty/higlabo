@@ -16,104 +16,103 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlobToEnumApplication
+namespace BlobToEnumApplication;
+
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    public MainWindowViewModel ViewModel { get; set; }
+
+    public MainWindow()
     {
-        public MainWindowViewModel ViewModel { get; set; }
+        InitializeComponent();
 
-        public MainWindow()
+        ConfigData.Current = ConfigData.Load();
+
+        this.ViewModel = new MainWindowViewModel();
+        this.DataContext = this.ViewModel;
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
+
+        this.BlobContainerListView.ItemsSource = ConfigData.Current.ContainerList;
+        this.BlobContainerListView.MouseDoubleClick += BlobContainerListView_MouseDoubleClick;
+
+        this.GenerateLogListView.ItemsSource = this.ViewModel.GenerateLogList;
+
+        this.Closing += MainWindow_Closing;
+    }
+
+    private void AddButton_Click(object sender, RoutedEventArgs e)
+    {
+        var setting = new BlobContainerSetting();
+        ConfigData.Current.ContainerList.Add(setting);
+        this.BlobContainerListView.SelectedItem = setting;
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Edit);
+    }
+    private void BlobContainerListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        var setting = this.BlobContainerListView.SelectedItem as BlobContainerSetting;
+        if (setting == null)
         {
-            InitializeComponent();
+            return;
+        }
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Edit);
+    }
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (MessageBox.Show(T.Text.ConfirmDelete, "", MessageBoxButton.YesNo) != MessageBoxResult.Yes) { return; }
 
-            ConfigData.Current = ConfigData.Load();
+        ConfigData.Current.ContainerList.Remove((BlobContainerSetting)this.BlobContainerListView.SelectedItem);
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
+    }
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
+    }
 
-            this.ViewModel = new MainWindowViewModel();
-            this.DataContext = this.ViewModel;
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
-
-            this.BlobContainerListView.ItemsSource = ConfigData.Current.ContainerList;
-            this.BlobContainerListView.MouseDoubleClick += BlobContainerListView_MouseDoubleClick;
-
-            this.GenerateLogListView.ItemsSource = this.ViewModel.GenerateLogList;
-
-            this.Closing += MainWindow_Closing;
+    private void GenerateButton_Click(object sender, RoutedEventArgs e)
+    {
+        var setting = this.BlobContainerListView.SelectedItem as BlobContainerSetting;
+        if (setting == null)
+        {
+            MessageBox.Show(T.Text.PleaseSelect);
+            return;
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            var setting = new BlobContainerSetting();
-            ConfigData.Current.ContainerList.Add(setting);
-            this.BlobContainerListView.SelectedItem = setting;
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Edit);
-        }
-        private void BlobContainerListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var setting = this.BlobContainerListView.SelectedItem as BlobContainerSetting;
-            if (setting == null)
-            {
-                return;
-            }
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Edit);
-        }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show(T.Text.ConfirmDelete, "", MessageBoxButton.YesNo) != MessageBoxResult.Yes) { return; }
+        this.ViewModel.ProgressPercentage = 0;
+        this.ViewModel.ProgressPercentageText = "0%";
+        this.ViewModel.GenerateLogList.Clear();
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Generating);
 
-            ConfigData.Current.ContainerList.Remove((BlobContainerSetting)this.BlobContainerListView.SelectedItem);
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
-        }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        var cm = new ClassGenerateCommand(setting);
+        cm.PercentageProgressed += ClassGenerateCommand_PercentageProgressed;
+        cm.Executed += ClassGenerateCommand_Executed;
+        App.BackgroundService.AddCommand(cm);
+    }
+
+    private void ClassGenerateCommand_PercentageProgressed(object? sender, ClassGenerateCommand.PercentageProgressEventArgs e)
+    {
+        this.Dispatcher.BeginInvoke(new Action(() =>
         {
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
-        }
+            this.ViewModel.ProgressPercentage = e.Percentage * 100;
+            this.ViewModel.ProgressPercentageText = (e.Percentage * 100).ToString("##0") + "%";
+        }));
+    }
 
-        private void GenerateButton_Click(object sender, RoutedEventArgs e)
+    private void ClassGenerateCommand_Executed(object? sender, ClassGenerateCommand.ExecutedEventArgs e)
+    {
+        this.Dispatcher.BeginInvoke(new Action(() =>
         {
-            var setting = this.BlobContainerListView.SelectedItem as BlobContainerSetting;
-            if (setting == null)
-            {
-                MessageBox.Show(T.Text.PleaseSelect);
-                return;
-            }
+            this.ViewModel.GenerateLogList.Add(e);
+            this.GenerateLogListView.ScrollIntoView(e);
+        }));
+    }
 
-            this.ViewModel.ProgressPercentage = 0;
-            this.ViewModel.ProgressPercentageText = "0%";
-            this.ViewModel.GenerateLogList.Clear();
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Generating);
+    private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        ConfigData.Current.Save();
+    }
 
-            var cm = new ClassGenerateCommand(setting);
-            cm.PercentageProgressed += ClassGenerateCommand_PercentageProgressed;
-            cm.Executed += ClassGenerateCommand_Executed;
-            App.BackgroundService.AddCommand(cm);
-        }
-
-        private void ClassGenerateCommand_PercentageProgressed(object? sender, ClassGenerateCommand.PercentageProgressEventArgs e)
-        {
-            this.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                this.ViewModel.ProgressPercentage = e.Percentage * 100;
-                this.ViewModel.ProgressPercentageText = (e.Percentage * 100).ToString("##0") + "%";
-            }));
-        }
-
-        private void ClassGenerateCommand_Executed(object? sender, ClassGenerateCommand.ExecutedEventArgs e)
-        {
-            this.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                this.ViewModel.GenerateLogList.Add(e);
-                this.GenerateLogListView.ScrollIntoView(e);
-            }));
-        }
-
-        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
-        {
-            ConfigData.Current.Save();
-        }
-
-        private void GenerateCloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
-        }
+    private void GenerateCloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.ViewModel.SetDisplayMode(MainWindowDisplayMode.List);
     }
 }

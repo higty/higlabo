@@ -4,58 +4,57 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+/// <summary>
+/// List user actions and configuration changes within this organization.
+/// <seealso href="https://api.openai.com/v1/organization/audit_logs">https://api.openai.com/v1/organization/audit_logs</seealso>
+/// </summary>
+public partial class OrganizationAudit_logsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
 {
-    /// <summary>
-    /// List user actions and configuration changes within this organization.
-    /// <seealso href="https://api.openai.com/v1/organization/audit_logs">https://api.openai.com/v1/organization/audit_logs</seealso>
-    /// </summary>
-    public partial class OrganizationAudit_logsParameter : RestApiParameter, IRestApiParameter, IQueryParameterProperty
+    internal static readonly OrganizationAudit_logsParameter Empty = new OrganizationAudit_logsParameter();
+
+    string IRestApiParameter.HttpMethod { get; } = "GET";
+    IQueryParameter IQueryParameterProperty.QueryParameter
     {
-        internal static readonly OrganizationAudit_logsParameter Empty = new OrganizationAudit_logsParameter();
-
-        string IRestApiParameter.HttpMethod { get; } = "GET";
-        IQueryParameter IQueryParameterProperty.QueryParameter
+        get
         {
-            get
-            {
-                return this.QueryParameter;
-            }
-        }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
-
-        string IRestApiParameter.GetApiPath()
-        {
-            return $"/organization/audit_logs";
-        }
-        public override object GetRequestBody()
-        {
-            return EmptyParameter;
+            return this.QueryParameter;
         }
     }
-    public partial class OrganizationAudit_logsResponse : RestApiResponse
+    public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+
+    string IRestApiParameter.GetApiPath()
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
+        return $"/organization/audit_logs";
     }
-    public partial class OpenAIClient
+    public override object GetRequestBody()
     {
-        public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync()
-        {
-            return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(OrganizationAudit_logsParameter.Empty, CancellationToken.None);
-        }
-        public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync(CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(OrganizationAudit_logsParameter.Empty, cancellationToken);
-        }
-        public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync(OrganizationAudit_logsParameter parameter)
-        {
-            return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(parameter, CancellationToken.None);
-        }
-        public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync(OrganizationAudit_logsParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(parameter, cancellationToken);
-        }
+        return EmptyParameter;
+    }
+}
+public partial class OrganizationAudit_logsResponse : RestApiResponse
+{
+    public string First_Id { get; set; } = "";
+    public string Last_Id { get; set; } = "";
+    public bool Has_More { get; set; }
+}
+public partial class OpenAIClient
+{
+    public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync()
+    {
+        return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(OrganizationAudit_logsParameter.Empty, CancellationToken.None);
+    }
+    public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync(CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(OrganizationAudit_logsParameter.Empty, cancellationToken);
+    }
+    public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync(OrganizationAudit_logsParameter parameter)
+    {
+        return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(parameter, CancellationToken.None);
+    }
+    public async ValueTask<OrganizationAudit_logsResponse> OrganizationAudit_logsAsync(OrganizationAudit_logsParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<OrganizationAudit_logsParameter, OrganizationAudit_logsResponse>(parameter, cancellationToken);
     }
 }

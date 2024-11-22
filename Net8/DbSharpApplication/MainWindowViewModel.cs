@@ -8,33 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DbSharpApplication
+namespace DbSharpApplication;
+
+
+public partial class MainWindowViewModel : ObservableObject
 {
-
-    public partial class MainWindowViewModel : ObservableObject
+    public class LanguageSetting
     {
-        public class LanguageSetting
+        public String Name { get; set; } 
+        public LanguageSetting(String name)
         {
-            public String Name { get; set; } 
-            public LanguageSetting(String name)
-            {
-                Name = name;
-            }
+            Name = name;
         }
-        public ObservableCollection<LanguageSetting> LanguageList { get; init; } = new();
-        public ObservableCollection<DatabaseServer> DatabaseServerList { get; init; } = new();
-        public ObservableCollection<DatabaseObject> DatabaseObjectList { get; init; } = new();
+    }
+    public ObservableCollection<LanguageSetting> LanguageList { get; init; } = new();
+    public ObservableCollection<DatabaseServer> DatabaseServerList { get; init; } = new();
+    public ObservableCollection<DatabaseObject> DatabaseObjectList { get; init; } = new();
 
-        [ObservableProperty]
-        public Visibility generatePanelVisible = Visibility.Hidden;
+    [ObservableProperty]
+    public Visibility generatePanelVisible = Visibility.Hidden;
 
-        public MainWindowViewModel()
-        {
-            this.LanguageList.Add(new LanguageSetting("en-US"));
-            this.LanguageList.Add(new LanguageSetting("ja-JP"));
+    public MainWindowViewModel()
+    {
+        this.LanguageList.Add(new LanguageSetting("en-US"));
+        this.LanguageList.Add(new LanguageSetting("ja-JP"));
 
-            this.DatabaseServerList.Add(DatabaseServer.SqlServer);
-            this.DatabaseServerList.Add(DatabaseServer.MySql);
-        }
+        this.DatabaseServerList.Add(DatabaseServer.SqlServer);
+        this.DatabaseServerList.Add(DatabaseServer.MySql);
     }
 }

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Mapper.Test
-{
-    public class TreeNode
-    {
-        public List<TreeNode> Nodes { get; set; }
+namespace HigLabo.Mapper.Test;
 
-        public TreeNode()
-        {
-        }
+public class TreeNode
+{
+    public List<TreeNode> Nodes { get; set; }
+
+    public TreeNode()
+    {
     }
 }

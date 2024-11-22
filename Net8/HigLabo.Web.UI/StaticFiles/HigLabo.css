@@ -944,7 +944,6 @@ dialog {
   padding: 0;
   width: 100dvw;
   height: 100dvh;
-  grid-template-rows: calc(100% - 60px) 60px;
 }
 .full-window-popup-panel > .content-panel {
   height: calc(100% - 60px);

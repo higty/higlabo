@@ -1,8 +1,7 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public class GroundingPassage
 {
-    public class GroundingPassage
-    {
-        public string? Id { get; set; } 
-        public Content? Content { get; set; }
-    }
+    public string? Id { get; set; } 
+    public Content? Content { get; set; }
 }

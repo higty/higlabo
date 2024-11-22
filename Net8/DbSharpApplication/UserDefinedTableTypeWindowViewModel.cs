@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbSharpApplication
-{
-    public class UserDefinedTableTypeWindowViewModel
-    {
-        public GenerateSetting GenerateSetting { get; init; }
-        public UserDefinedTableType UserDefinedTableType { get; set; }
+namespace DbSharpApplication;
 
-        public UserDefinedTableTypeWindowViewModel(GenerateSetting generateSetting, UserDefinedTableType userDefinedTableType)
-        {
-            this.GenerateSetting = generateSetting;
-            this.UserDefinedTableType = userDefinedTableType;
-        }
+public class UserDefinedTableTypeWindowViewModel
+{
+    public GenerateSetting GenerateSetting { get; init; }
+    public UserDefinedTableType UserDefinedTableType { get; set; }
+
+    public UserDefinedTableTypeWindowViewModel(GenerateSetting generateSetting, UserDefinedTableType userDefinedTableType)
+    {
+        this.GenerateSetting = generateSetting;
+        this.UserDefinedTableType = userDefinedTableType;
     }
 }

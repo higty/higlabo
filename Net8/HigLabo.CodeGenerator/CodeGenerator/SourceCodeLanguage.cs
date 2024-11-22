@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.CodeGenerator
+namespace HigLabo.CodeGenerator;
+
+public enum SourceCodeLanguage
 {
-    public enum SourceCodeLanguage
-    {
-        CSharp,
-        VB,
-    }
+    CSharp,
+    VB,
 }

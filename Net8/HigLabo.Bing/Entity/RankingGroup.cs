@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class RankingGroup
 {
-    public class RankingGroup
-    {
-        public RankingItem[] Items { get; set; } = Array.Empty<RankingItem>();
-    }
+    public RankingItem[] Items { get; set; } = Array.Empty<RankingItem>();
 }

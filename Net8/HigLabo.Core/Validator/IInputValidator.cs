@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public interface IInputValidator
 {
-    public interface IInputValidator
-    {
-        string Message { get; }
-        InputValidateResult Validate(string? value);
-    }
+    string Message { get; }
+    InputValidateResult Validate(string? value);
 }

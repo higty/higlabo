@@ -1,55 +1,54 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class CallsUpdateParameter : IRestApiParameter
 {
-    public partial class CallsUpdateParameter : IRestApiParameter
+    string IRestApiParameter.ApiPath { get; } = "calls.update";
+    string IRestApiParameter.HttpMethod { get; } = "POST";
+    public string? Id { get; set; }
+    public string? Desktop_App_Join_Url { get; set; }
+    public string? Join_Url { get; set; }
+    public string? Title { get; set; }
+}
+public partial class CallsUpdateResponse : RestApiResponse
+{
+}
+/// <summary>
+/// https://api.slack.com/methods/calls.update
+/// </summary>
+public partial class SlackClient
+{
+    /// <summary>
+    /// https://api.slack.com/methods/calls.update
+    /// </summary>
+    public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(string? id)
     {
-        string IRestApiParameter.ApiPath { get; } = "calls.update";
-        string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public string? Desktop_App_Join_Url { get; set; }
-        public string? Join_Url { get; set; }
-        public string? Title { get; set; }
-    }
-    public partial class CallsUpdateResponse : RestApiResponse
-    {
+        var p = new CallsUpdateParameter();
+        p.Id = id;
+        return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(p, CancellationToken.None);
     }
     /// <summary>
     /// https://api.slack.com/methods/calls.update
     /// </summary>
-    public partial class SlackClient
+    public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(string? id, CancellationToken cancellationToken)
     {
-        /// <summary>
-        /// https://api.slack.com/methods/calls.update
-        /// </summary>
-        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(string? id)
-        {
-            var p = new CallsUpdateParameter();
-            p.Id = id;
-            return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(p, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/calls.update
-        /// </summary>
-        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(string? id, CancellationToken cancellationToken)
-        {
-            var p = new CallsUpdateParameter();
-            p.Id = id;
-            return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(p, cancellationToken);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/calls.update
-        /// </summary>
-        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter)
-        {
-            return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(parameter, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/calls.update
-        /// </summary>
-        public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(parameter, cancellationToken);
-        }
+        var p = new CallsUpdateParameter();
+        p.Id = id;
+        return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(p, cancellationToken);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/calls.update
+    /// </summary>
+    public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter)
+    {
+        return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(parameter, CancellationToken.None);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/calls.update
+    /// </summary>
+    public async ValueTask<CallsUpdateResponse> CallsUpdateAsync(CallsUpdateParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendAsync<CallsUpdateParameter, CallsUpdateResponse>(parameter, cancellationToken);
     }
 }

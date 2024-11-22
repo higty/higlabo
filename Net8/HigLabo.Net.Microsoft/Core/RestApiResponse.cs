@@ -6,15 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public class RestApiResponse : OAuth.RestApiResponse
 {
-    public class RestApiResponse : OAuth.RestApiResponse
-    {
-        public string ODataContext { get; set; } = "";
-        public string ODataNextLink { get; set; } = "";
-    }
-    public class RestApiResponse<T> : RestApiResponse
-    {
-        public T[]? Value { get; set; }
-    }
+    public string ODataContext { get; set; } = "";
+    public string ODataNextLink { get; set; } = "";
+}
+public class RestApiResponse<T> : RestApiResponse
+{
+    public T[]? Value { get; set; }
 }

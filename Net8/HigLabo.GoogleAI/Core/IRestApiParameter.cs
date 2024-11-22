@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.GoogleAI
+namespace HigLabo.GoogleAI;
+
+public interface IRestApiParameter
 {
-    public interface IRestApiParameter
-    {
-        string GetApiPath();
-        string HttpMethod { get; }
-    }
+    string GetApiPath();
+    string HttpMethod { get; }
 }

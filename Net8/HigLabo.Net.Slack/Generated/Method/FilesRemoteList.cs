@@ -1,95 +1,94 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class FilesRemoteListParameter : IRestApiParameter, IRestApiPagingParameter
 {
-    public partial class FilesRemoteListParameter : IRestApiParameter, IRestApiPagingParameter
+    string IRestApiParameter.ApiPath { get; } = "files.remote.list";
+    string IRestApiParameter.HttpMethod { get; } = "GET";
+    public string? Channel { get; set; }
+    public string? Cursor { get; set; }
+    string? IRestApiPagingParameter.NextPageToken
     {
-        string IRestApiParameter.ApiPath { get; } = "files.remote.list";
-        string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string? Channel { get; set; }
-        public string? Cursor { get; set; }
-        string? IRestApiPagingParameter.NextPageToken
+        get
         {
-            get
-            {
-                return this.Cursor;
-            }
-            set
-            {
-                this.Cursor = value;
-            }
+            return this.Cursor;
         }
-        public int? Limit { get; set; }
-        public string? Ts_From { get; set; }
-        public string? Ts_To { get; set; }
+        set
+        {
+            this.Cursor = value;
+        }
     }
-    public partial class FilesRemoteListResponse : RestApiResponse
+    public int? Limit { get; set; }
+    public string? Ts_From { get; set; }
+    public string? Ts_To { get; set; }
+}
+public partial class FilesRemoteListResponse : RestApiResponse
+{
+}
+/// <summary>
+/// https://api.slack.com/methods/files.remote.list
+/// </summary>
+public partial class SlackClient
+{
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync()
     {
+        var p = new FilesRemoteListParameter();
+        return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(p, CancellationToken.None);
     }
     /// <summary>
     /// https://api.slack.com/methods/files.remote.list
     /// </summary>
-    public partial class SlackClient
+    public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(CancellationToken cancellationToken)
     {
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync()
-        {
-            var p = new FilesRemoteListParameter();
-            return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(p, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(CancellationToken cancellationToken)
-        {
-            var p = new FilesRemoteListParameter();
-            return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(p, cancellationToken);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter)
-        {
-            return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(parameter, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(parameter, cancellationToken);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(PagingContext<FilesRemoteListResponse> context)
-        {
-            var p = new FilesRemoteListParameter();
-            return await this.SendBatchAsync(p, context, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(CancellationToken cancellationToken, PagingContext<FilesRemoteListResponse> context)
-        {
-            var p = new FilesRemoteListParameter();
-            return await this.SendBatchAsync(p, context, cancellationToken);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context)
-        {
-            return await this.SendBatchAsync(parameter, context, CancellationToken.None);
-        }
-        /// <summary>
-        /// https://api.slack.com/methods/files.remote.list
-        /// </summary>
-        public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context, CancellationToken cancellationToken)
-        {
-            return await this.SendBatchAsync(parameter, context, cancellationToken);
-        }
+        var p = new FilesRemoteListParameter();
+        return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(p, cancellationToken);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter)
+    {
+        return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(parameter, CancellationToken.None);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<FilesRemoteListResponse> FilesRemoteListAsync(FilesRemoteListParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendAsync<FilesRemoteListParameter, FilesRemoteListResponse>(parameter, cancellationToken);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(PagingContext<FilesRemoteListResponse> context)
+    {
+        var p = new FilesRemoteListParameter();
+        return await this.SendBatchAsync(p, context, CancellationToken.None);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(CancellationToken cancellationToken, PagingContext<FilesRemoteListResponse> context)
+    {
+        var p = new FilesRemoteListParameter();
+        return await this.SendBatchAsync(p, context, cancellationToken);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context)
+    {
+        return await this.SendBatchAsync(parameter, context, CancellationToken.None);
+    }
+    /// <summary>
+    /// https://api.slack.com/methods/files.remote.list
+    /// </summary>
+    public async ValueTask<List<FilesRemoteListResponse>> FilesRemoteListAsync(FilesRemoteListParameter parameter, PagingContext<FilesRemoteListResponse> context, CancellationToken cancellationToken)
+    {
+        return await this.SendBatchAsync(parameter, context, cancellationToken);
     }
 }

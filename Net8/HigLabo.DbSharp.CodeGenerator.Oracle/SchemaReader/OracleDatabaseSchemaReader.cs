@@ -12,246 +12,246 @@ using HigLabo.Core;
 using Oracle.ManagedDataAccess.Types;
 using Oracle.ManagedDataAccess.Client;
 
-namespace HigLabo.DbSharp.MetaData
+namespace HigLabo.DbSharp.MetaData;
+
+public class OracleDatabaseSchemaReader : DatabaseSchemaReader
 {
-    public class OracleDatabaseSchemaReader : DatabaseSchemaReader
+    public override DatabaseSchemaQueryBuilder QueryBuilder => new OracleDatabaseSchemaQueryBuilder();
+    public override DatabaseServer DatabaseServer
     {
-        public override DatabaseSchemaQueryBuilder QueryBuilder => new OracleDatabaseSchemaQueryBuilder();
-        public override DatabaseServer DatabaseServer
-        {
-            get { return DatabaseServer.Oracle; }
-        }
-        public override bool SupportUserDefinedTableType
-        {
-            get { return false; }
-        }
-   
-        public OracleDatabaseSchemaReader(String connectionString)
-        {
-            this.ConnectionString = connectionString;
-        }
-        public override Database CreateDatabase()
-        {
-            return new HigLabo.Data.OracleDatabase(this.ConnectionString);
-        }
+        get { return DatabaseServer.Oracle; }
+    }
+    public override bool SupportUserDefinedTableType
+    {
+        get { return false; }
+    }
 
-        public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
-        {
-            List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
-            List<DataTable> schemaDataTableList = new List<DataTable>();
-            var cm = CreateTestSqlCommand<OracleCommand>(sp, values);
+    public OracleDatabaseSchemaReader(String connectionString)
+    {
+        this.ConnectionString = connectionString;
+    }
+    public override Database CreateDatabase()
+    {
+        return new HigLabo.Data.OracleDatabase(this.ConnectionString);
+    }
 
-            //処理の実行によってデータの変更などの副作用が起きないようにRollBackする。
-            using (var db = this.CreateDatabase())
+    public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
+    {
+        List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
+        List<DataTable> schemaDataTableList = new List<DataTable>();
+        var cm = CreateTestSqlCommand<OracleCommand>(sp, values);
+
+        //処理の実行によってデータの変更などの副作用が起きないようにRollBackする。
+        using (var db = this.CreateDatabase())
+        {
+            try
             {
-                try
-                {
-                    db.Open();
-                    db.BeginTransaction(IsolationLevel.ReadCommitted);
+                db.Open();
+                db.BeginTransaction(IsolationLevel.ReadCommitted);
 
-                    using (var r = await db.ExecuteReaderAsync(cm))
+                using (var r = await db.ExecuteReaderAsync(cm))
+                {
+                    var schemaDataTable = r!.GetSchemaTable();
+                    if (schemaDataTable == null) return;
+                    schemaDataTableList.Add(schemaDataTable);
+                    //TableNameSelectAllストアドの場合はスキップ
+                    if (String.IsNullOrEmpty(sp.TableName) == true ||
+                        sp.Name.EndsWith("SelectAll") == false)
                     {
-                        var schemaDataTable = r!.GetSchemaTable();
-                        if (schemaDataTable == null) return;
-                        schemaDataTableList.Add(schemaDataTable);
-                        //TableNameSelectAllストアドの場合はスキップ
-                        if (String.IsNullOrEmpty(sp.TableName) == true ||
-                            sp.Name.EndsWith("SelectAll") == false)
+                        while (r.NextResult())
                         {
-                            while (r.NextResult())
-                            {
-                                schemaDataTableList.Add(r.GetSchemaTable()!);
-                            }
+                            schemaDataTableList.Add(r.GetSchemaTable()!);
                         }
                     }
-                    if (db.OnTransaction == true)
-                    {
-                        db.RollBackTransaction();
-                    }
                 }
-                catch
+                if (db.OnTransaction == true)
                 {
-                    if (db.OnTransaction == true)
-                    {
-                        db.RollBackTransaction();
-                    }
-                    throw;
+                    db.RollBackTransaction();
                 }
             }
-
-            if (schemaDataTableList.Count == 0) return;
-
-            Int32 index = 0;
-            foreach (var schemaDataTable in schemaDataTableList)
+            catch
             {
-                var resultSets = index switch
+                if (db.OnTransaction == true)
                 {
-                    0 => new StoredProcedureResultSetColumn("ResultSet"),
-                    _ => new StoredProcedureResultSetColumn("ResultSet" + index),
-                };
-                for (var i = 0; i < schemaDataTable.Rows.Count; i++)
-                {
-                    var row = schemaDataTable.Rows[i];
-
-                    var c = new DataType();
-                    c.Name = row["ColumnName"].ToString()!;
-                    c.Ordinal = resultSets.Columns.Count;
-                    c.DbType = this.CreateDbType(row["ProviderType"]);
-                    if (c.DbType.IsUdt() == true)
-                    {
-                        throw new InvalidOperationException();
-                    }
-
-                    if (c.DbType.IsStructured() == true)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                    c.Length = this.TypeConverter.ToInt32(row["ColumnSize"]) ?? c.Length;
-                    c.Precision = this.TypeConverter.ToInt32(row["NumericPrecision"]) ?? c.Precision;
-                    if (c.DbType.CanDeclarePrecisionScale() == true ||
-                        c.DbType.CanDeclareScale() == true)
-                    {
-                        c.Scale = this.TypeConverter.ToInt32(row["NumericScale"]) ?? c.Scale;
-                        if (c.Scale.HasValue == false)
-                        {
-                            c.Scale = this.TypeConverter.ToInt32(row["DateTimeScale"]) ?? c.Scale;
-                        }
-                    }
-                    resultSets.Columns.Add(c);
+                    db.RollBackTransaction();
                 }
-                resultSetsList.Add(resultSets);
-                index += 1;
-            }
-            foreach (var item in resultSetsList)
-            {
-                sp.ResultSets.Add(item);
-            }
-        }
-        private DbCommand GetTestExecutingSqlCommand(String storedProcedureName, IEnumerable<SqlInputParameter> parameters)
-        {
-            var cm = new OracleCommand(storedProcedureName) { CommandType = CommandType.StoredProcedure };
-            foreach (var p in parameters)
-            {
-                cm.Parameters.Add(this.CreateParameter(p.Name, p));
-            }
-            return cm;
-        }
-
-        protected override MetaData.DbType CreateDbType(Object value)
-        {
-            var tp = this.TypeConverter.ToEnum<OracleDbType>(value);
-            if (tp.HasValue == false) throw new InvalidCastException();
-            return new MetaData.DbType(tp.Value);
-        }
-        protected override IDbDataParameter CreateParameter(String name, DataType dataType)
-        {
-            var p = new Oracle.ManagedDataAccess.Client.OracleParameter(name, dataType.DbType!.OracleServerDbType!.Value);
-            if (dataType is SqlInputParameter dType)
-            {
-                p.Direction = dType.ParameterDirection;
-            }
-            if (p.Direction != ParameterDirection.Output)
-            {
-                p.Value = this.GetParameterValue(dataType, dataType.DbType.OracleServerDbType.Value);
-            }
-            return p;
-        }
-        protected override Object? GetParameterValue(DataType dataType, Object sqlDbType)
-        {
-            switch ((OracleDbType)sqlDbType)
-            {
-                case OracleDbType.BFile:
-                case OracleDbType.Blob:
-                    return new Byte[0];
-                case OracleDbType.Byte:
-                    return 1;
-                case OracleDbType.Char:
-                    return "a";
-                case OracleDbType.Clob:
-                    return 1;
-                case OracleDbType.Date:
-                    return new DateTime(2000, 1, 1);
-                case OracleDbType.Decimal:
-                    return 1.0m;
-                case OracleDbType.Double:
-                    return 1;
-                case OracleDbType.Long:
-                    return 1;
-                case OracleDbType.LongRaw:
-                    return new Byte[0];
-                case OracleDbType.Int16:
-                case OracleDbType.Int32:
-                case OracleDbType.Int64:
-                    return 1;
-                case OracleDbType.IntervalDS:
-                    return TimeSpan.FromHours(1);
-                case OracleDbType.IntervalYM:
-                    return 1;
-                case OracleDbType.NClob:
-                    return 1;
-                case OracleDbType.NChar:
-                case OracleDbType.NVarchar2:
-                    return "a";
-                case OracleDbType.Raw:
-                    return new Byte[0];
-                case OracleDbType.RefCursor:
-                    throw new NotSupportedException();
-                case OracleDbType.Single:
-                    return 1;
-                case OracleDbType.TimeStamp:
-                case OracleDbType.TimeStampLTZ:
-                case OracleDbType.TimeStampTZ:
-                    return new DateTime(2000, 1, 1);
-                case OracleDbType.Varchar2:
-                    return "a";
-                case OracleDbType.XmlType:
-                    return "<xml></xml>";
-                case OracleDbType.BinaryDouble:
-                case OracleDbType.BinaryFloat:
-                    return 1;
-                case OracleDbType.Boolean:
-                    return true;
-                default: throw new InvalidOperationException();
+                throw;
             }
         }
 
-        public override string GetDefinitionText(Table table)
-        {
-            throw new NotImplementedException();
-        }
+        if (schemaDataTableList.Count == 0) return;
 
-        private class OracleDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
+        Int32 index = 0;
+        foreach (var schemaDataTable in schemaDataTableList)
         {
-            public override String GetDatabases()
+            var resultSets = index switch
             {
-                return
-    @"
+                0 => new StoredProcedureResultSetColumn("ResultSet"),
+                _ => new StoredProcedureResultSetColumn("ResultSet" + index),
+            };
+            for (var i = 0; i < schemaDataTable.Rows.Count; i++)
+            {
+                var row = schemaDataTable.Rows[i];
+
+                var c = new DataType();
+                c.Name = row["ColumnName"].ToString()!;
+                c.Ordinal = resultSets.Columns.Count;
+                c.DbType = this.CreateDbType(row["ProviderType"]);
+                if (c.DbType.IsUdt() == true)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                if (c.DbType.IsStructured() == true)
+                {
+                    throw new InvalidOperationException();
+                }
+                c.Length = this.TypeConverter.ToInt32(row["ColumnSize"]) ?? c.Length;
+                c.Precision = this.TypeConverter.ToInt32(row["NumericPrecision"]) ?? c.Precision;
+                if (c.DbType.CanDeclarePrecisionScale() == true ||
+                    c.DbType.CanDeclareScale() == true)
+                {
+                    c.Scale = this.TypeConverter.ToInt32(row["NumericScale"]) ?? c.Scale;
+                    if (c.Scale.HasValue == false)
+                    {
+                        c.Scale = this.TypeConverter.ToInt32(row["DateTimeScale"]) ?? c.Scale;
+                    }
+                }
+                resultSets.Columns.Add(c);
+            }
+            resultSetsList.Add(resultSets);
+            index += 1;
+        }
+        foreach (var item in resultSetsList)
+        {
+            sp.ResultSets.Add(item);
+        }
+    }
+    private DbCommand GetTestExecutingSqlCommand(String storedProcedureName, IEnumerable<SqlInputParameter> parameters)
+    {
+        var cm = new OracleCommand(storedProcedureName) { CommandType = CommandType.StoredProcedure };
+        foreach (var p in parameters)
+        {
+            cm.Parameters.Add(this.CreateParameter(p.Name, p));
+        }
+        return cm;
+    }
+
+    protected override MetaData.DbType CreateDbType(Object value)
+    {
+        var tp = this.TypeConverter.ToEnum<OracleDbType>(value);
+        if (tp.HasValue == false) throw new InvalidCastException();
+        return new MetaData.DbType(tp.Value);
+    }
+    protected override IDbDataParameter CreateParameter(String name, DataType dataType)
+    {
+        var p = new Oracle.ManagedDataAccess.Client.OracleParameter(name, dataType.DbType!.OracleServerDbType!.Value);
+        if (dataType is SqlInputParameter dType)
+        {
+            p.Direction = dType.ParameterDirection;
+        }
+        if (p.Direction != ParameterDirection.Output)
+        {
+            p.Value = this.GetParameterValue(dataType, dataType.DbType.OracleServerDbType.Value);
+        }
+        return p;
+    }
+    protected override Object? GetParameterValue(DataType dataType, Object sqlDbType)
+    {
+        switch ((OracleDbType)sqlDbType)
+        {
+            case OracleDbType.BFile:
+            case OracleDbType.Blob:
+                return new Byte[0];
+            case OracleDbType.Byte:
+                return 1;
+            case OracleDbType.Char:
+                return "a";
+            case OracleDbType.Clob:
+                return 1;
+            case OracleDbType.Date:
+                return new DateTime(2000, 1, 1);
+            case OracleDbType.Decimal:
+                return 1.0m;
+            case OracleDbType.Double:
+                return 1;
+            case OracleDbType.Long:
+                return 1;
+            case OracleDbType.LongRaw:
+                return new Byte[0];
+            case OracleDbType.Int16:
+            case OracleDbType.Int32:
+            case OracleDbType.Int64:
+                return 1;
+            case OracleDbType.IntervalDS:
+                return TimeSpan.FromHours(1);
+            case OracleDbType.IntervalYM:
+                return 1;
+            case OracleDbType.NClob:
+                return 1;
+            case OracleDbType.NChar:
+            case OracleDbType.NVarchar2:
+                return "a";
+            case OracleDbType.Raw:
+                return new Byte[0];
+            case OracleDbType.RefCursor:
+                throw new NotSupportedException();
+            case OracleDbType.Single:
+                return 1;
+            case OracleDbType.TimeStamp:
+            case OracleDbType.TimeStampLTZ:
+            case OracleDbType.TimeStampTZ:
+                return new DateTime(2000, 1, 1);
+            case OracleDbType.Varchar2:
+                return "a";
+            case OracleDbType.XmlType:
+                return "<xml></xml>";
+            case OracleDbType.BinaryDouble:
+            case OracleDbType.BinaryFloat:
+                return 1;
+            case OracleDbType.Boolean:
+                return true;
+            default: throw new InvalidOperationException();
+        }
+    }
+
+    public override string GetDefinitionText(Table table)
+    {
+        throw new NotImplementedException();
+    }
+
+    private class OracleDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
+    {
+        public override String GetDatabases()
+        {
+            return
+@"
 SELECT Schema_Name
 FROM INFORMATION_SCHEMA.SCHEMATA
 ";
-            }
-            public override String GetTables()
-            {
-                return @"
+        }
+        public override String GetTables()
+        {
+            return @"
 select Table_Name,Create_Time,IfNull(Update_Time,Create_Time) 
 from information_schema.tables as T01
 where table_schema = (SELECT DATABASE() FROM DUAL)
 ";
-            }
-            public override String GetTable(String name)
-            {
-                var q = @"
+        }
+        public override String GetTable(String name)
+        {
+            var q = @"
 select Table_Name,Create_Time,IfNull(Update_Time,Create_Time)  
 from information_schema.tables as T01
 where table_schema = (SELECT DATABASE() FROM DUAL)
 And Table_Name = '{0}'
 ORDER BY TABLE_NAME ASC
                     ";
-                return String.Format(q, name);
-            }
-            public override String GetColumns(String tableName)
-            {
-                var q = @"
+            return String.Format(q, name);
+        }
+        public override String GetColumns(String tableName)
+        {
+            var q = @"
 SELECT T01.TABLE_NAME AS TableName
 , T01.COLUMN_NAME AS ColumnName
 , Case T01.COLUMN_KEY 
@@ -283,58 +283,58 @@ from information_schema.columns as T01
 where Table_Schema = (SELECT DATABASE() FROM DUAL) 
 And TABLE_NAME = '{0}'
 ";
-                return String.Format(q, tableName);
-            }
-            public override String GetPrimaryKey(String tableName)
-            {
-                throw new NotImplementedException();
-            }
-            public override String GetIndex(String tableName)
-            {
-                throw new NotImplementedException();
-            }
-            public override String GetForeignKeys(String tableName)
-            {
-                throw new NotImplementedException();
-            }
-            public override String GetDefaultConstraints(String tableName)
-            {
-                throw new NotImplementedException();
-            }
-            public override String GetCheckConstraints(String tableName)
-            {
-                throw new NotImplementedException();
-            }
-            public override String GetViews()
-            {
-                return @"
+            return String.Format(q, tableName);
+        }
+        public override String GetPrimaryKey(String tableName)
+        {
+            throw new NotImplementedException();
+        }
+        public override String GetIndex(String tableName)
+        {
+            throw new NotImplementedException();
+        }
+        public override String GetForeignKeys(String tableName)
+        {
+            throw new NotImplementedException();
+        }
+        public override String GetDefaultConstraints(String tableName)
+        {
+            throw new NotImplementedException();
+        }
+        public override String GetCheckConstraints(String tableName)
+        {
+            throw new NotImplementedException();
+        }
+        public override String GetViews()
+        {
+            return @"
 SELECT TABLE_NAME AS VIEW_NAME,Create_Time,IfNull(Update_Time,Create_Time),''
 FROM INFORMATION_SCHEMA.VIEWS
 where table_schema = (SELECT DATABASE() FROM DUAL)
 ORDER BY VIEW_NAME ASC
 ";
-            }
-            public override String GetUserDefinedTypes()
-            {
-                throw new NotSupportedException();
-            }
-            public override String GetUserDefinedTypeColumns(String name)
-            {
-                throw new NotSupportedException();
-            }
-            public override String GetStoredProcedures()
-            {
-                return @"
+        }
+        public override String GetUserDefinedTypes()
+        {
+            throw new NotSupportedException();
+        }
+        public override String GetUserDefinedTypeColumns(String name)
+        {
+            throw new NotSupportedException();
+        }
+        public override String GetStoredProcedures()
+        {
+            return @"
 SELECT SPECIFIC_NAME,ROUTINE_DEFINITION,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES
 WHERE Routine_Schema = (SELECT DATABASE() FROM DUAL) 
 And ROUTINE_TYPE = 'PROCEDURE'
 ORDER BY SPECIFIC_NAME
 ";
-            }
-            public override String GetStoredProcedure(String name)
-            {
-                var q = @"
+        }
+        public override String GetStoredProcedure(String name)
+        {
+            var q = @"
 SELECT SPECIFIC_NAME,ROUTINE_DEFINITION,Created,Last_Altered
 FROM INFORMATION_SCHEMA.ROUTINES
 WHERE Routine_Schema = (SELECT DATABASE() FROM DUAL)
@@ -342,11 +342,11 @@ And Routine_Type = 'PROCEDURE'
 AND Specific_Name = '{0}'
 ORDER BY Specific_Name
 ";
-                return String.Format(q, name);
-            }
-            public override String GetParameters(String storedProcedureName)
-            {
-                var q = @"
+            return String.Format(q, name);
+        }
+        public override String GetParameters(String storedProcedureName)
+        {
+            var q = @"
 SELECT T01.SPECIFIC_NAME as StoredProcedureName
 ,T01.PARAMETER_NAME as ParameterName 
 ,Case T01.DATA_TYPE 
@@ -373,12 +373,11 @@ Where Specific_Schema = (SELECT DATABASE() FROM DUAL)
 And SPECIFIC_NAME = '{0}'
 Order by Ordinal_Position
 ";
-                return String.Format(q, storedProcedureName);
-            }
-            public override String GetStoredFunctions()
-            {
-                throw new NotImplementedException();
-            }
+            return String.Format(q, storedProcedureName);
+        }
+        public override String GetStoredFunctions()
+        {
+            throw new NotImplementedException();
         }
     }
 }

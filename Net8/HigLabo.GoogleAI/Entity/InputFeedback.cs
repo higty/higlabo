@@ -1,8 +1,7 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public class InputFeedback
 {
-    public class InputFeedback
-    {
-        public List<SafetyRating> SafetyRatings { get; init; } = new();
-        public BlockReason BlockReason { get; set; }
-    }
+    public List<SafetyRating> SafetyRatings { get; init; } = new();
+    public BlockReason BlockReason { get; set; }
 }

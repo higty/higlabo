@@ -8,16 +8,16 @@ using System.Net.Sockets;
 using System.IO;
 using HigLabo.Net.Internal;
 
-namespace HigLabo.Net.Ftp
-{
+namespace HigLabo.Net.Ftp;
+
 	public partial class FtpClient : SocketClient
 	{
 		private class RegexList
 		{
-            public static readonly Regex IpAddress = new Regex("[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}", RegexOptions.IgnoreCase);
-            public static readonly Regex FileSize = new Regex("((?<Size>[0-9]*) bytes)", RegexOptions.IgnoreCase);
+        public static readonly Regex IpAddress = new Regex("[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}", RegexOptions.IgnoreCase);
+        public static readonly Regex FileSize = new Regex("((?<Size>[0-9]*) bytes)", RegexOptions.IgnoreCase);
 		}
-        public new static readonly FtpClientDefaultSettings Default = new FtpClientDefaultSettings();
+    public new static readonly FtpClientDefaultSettings Default = new FtpClientDefaultSettings();
 
 		private SocketClient? _DataSocket = null;
 		private Socket? _ListenSocket = null;
@@ -35,11 +35,11 @@ namespace HigLabo.Net.Ftp
 		public FtpClient(String serverName, Int32 port, String userName, String password)
 			: base(serverName, port)
 		{
-            this.SetDefault(Default);
-            this.CreateFtpDirectory = Default.CreateFtpDirectory;
-            
-            this.ServerName = serverName;
-            this.Port = port;
+        this.SetDefault(Default);
+        this.CreateFtpDirectory = Default.CreateFtpDirectory;
+        
+        this.ServerName = serverName;
+        this.Port = port;
 			this.UserName = userName;
 			this.Password = password;
 			this.ConnectionMode = FtpConnectionMode.Passive;
@@ -183,17 +183,17 @@ namespace HigLabo.Net.Ftp
 		}
 		private void OpenActiveConnection()
 		{
-            if (this.Socket == null || this.Socket.LocalEndPoint == null)
-            {
-                throw new InvalidOperationException("Connection closed.");
-            }
-            this._ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            if (this._ListenSocket.LocalEndPoint == null)
-            {
-                throw new InvalidOperationException("Connection is not opened.");
-            }
+        if (this.Socket == null || this.Socket.LocalEndPoint == null)
+        {
+            throw new InvalidOperationException("Connection closed.");
+        }
+        this._ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        if (this._ListenSocket.LocalEndPoint == null)
+        {
+            throw new InvalidOperationException("Connection is not opened.");
+        }
 
-            String ad = this.Socket.LocalEndPoint.ToString()!;
+        String ad = this.Socket.LocalEndPoint.ToString()!;
 			Int32 ix = ad.IndexOf(':');
 			if (ix < 0)
 			{
@@ -225,8 +225,8 @@ namespace HigLabo.Net.Ftp
 
 			try
 			{
-                //OpenDataSocket must be called before ConnectDataSocket executing.
-                this._DataSocket = new SocketClient(this._ListenSocket!.Accept());
+            //OpenDataSocket must be called before ConnectDataSocket executing.
+            this._DataSocket = new SocketClient(this._ListenSocket!.Accept());
 				this._DataSocket.Connect();
 				this._DataSocket.SetProperty(this);
 				
@@ -260,45 +260,45 @@ namespace HigLabo.Net.Ftp
 			var rs = this.ExecuteType(this.DataType);
 			this.OpenDataSocket();
 
-            using (var stm = new FileStream(localFilePath, FileMode.Open))
-            {
-                fileSize = stm.Length;
-
-                if (this.Resume == true)
-                {
-                    Int64 size = this.GetFileSize(remoteFileName);
-                    rs = this.ExecuteRest(size);
-
-                    if (rs.StatusCode == FtpCommandResultCode.RequestedFileActionPendingFurtherInformation)
-                    {
-                        stm.Seek(size, SeekOrigin.Begin);
-                    }
-                }
-                rs = this.ExecuteStor(remoteFileName);
-
-                switch (rs.StatusCode)
-                {
-                    case FtpCommandResultCode.DataConnectionAlreadyOpenTransferStarting:
-                    case FtpCommandResultCode.FileStatusOkayAboutToOpenDataConnection:
-                        break;
-                    default:
-                        {
-                            stm.Close();
-                            throw new FtpClientException(rs);
-                        }
-                }
-                ConnectDataSocket();
-                this._DataSocket!.Send(stm);
-
-                this.Disconnect();
-            }            
-            return fileSize;
-		}
-        public void DownloadFile(String fileName)
+        using (var stm = new FileStream(localFilePath, FileMode.Open))
         {
-            this.DownloadFile(fileName, fileName);
-        }
-        public Int64 DownloadFile(String remoteFileName, String localFilePath)
+            fileSize = stm.Length;
+
+            if (this.Resume == true)
+            {
+                Int64 size = this.GetFileSize(remoteFileName);
+                rs = this.ExecuteRest(size);
+
+                if (rs.StatusCode == FtpCommandResultCode.RequestedFileActionPendingFurtherInformation)
+                {
+                    stm.Seek(size, SeekOrigin.Begin);
+                }
+            }
+            rs = this.ExecuteStor(remoteFileName);
+
+            switch (rs.StatusCode)
+            {
+                case FtpCommandResultCode.DataConnectionAlreadyOpenTransferStarting:
+                case FtpCommandResultCode.FileStatusOkayAboutToOpenDataConnection:
+                    break;
+                default:
+                    {
+                        stm.Close();
+                        throw new FtpClientException(rs);
+                    }
+            }
+            ConnectDataSocket();
+            this._DataSocket!.Send(stm);
+
+            this.Disconnect();
+        }            
+        return fileSize;
+		}
+    public void DownloadFile(String fileName)
+    {
+        this.DownloadFile(fileName, fileName);
+    }
+    public Int64 DownloadFile(String remoteFileName, String localFilePath)
 		{
 			Int64 size = 0;
 
@@ -319,14 +319,14 @@ namespace HigLabo.Net.Ftp
 				case FtpCommandResultCode.FileStatusOkayAboutToOpenDataConnection: break;
 				default: throw new FtpClientException(rs);
 			}
-            var fileSize = this.GetFileSize(rs);
+        var fileSize = this.GetFileSize(rs);
 
 			ConnectDataSocket();
 
-            FileStream? stm = null;
-            try
-            {
-                if (this.Resume == true && File.Exists(localFilePath) == true)
+        FileStream? stm = null;
+        try
+        {
+            if (this.Resume == true && File.Exists(localFilePath) == true)
 				{
 					stm = new FileStream(localFilePath, FileMode.Open);
 
@@ -341,14 +341,14 @@ namespace HigLabo.Net.Ftp
 				{
 					stm = new FileStream(localFilePath, FileMode.Create);
 				}
-                if (fileSize.HasValue)
-                {
-                    this.GetResponseStream(new FtpDataDownloadContext(stm, this.ResponseEncoding, fileSize.Value));
-                }
-                else
-                {
-                    this._DataSocket!.GetResponseStream(stm);
-                }
+            if (fileSize.HasValue)
+            {
+                this.GetResponseStream(new FtpDataDownloadContext(stm, this.ResponseEncoding, fileSize.Value));
+            }
+            else
+            {
+                this._DataSocket!.GetResponseStream(stm);
+            }
 				size = stm.Length;
 				stm.Flush();
 			}
@@ -363,18 +363,18 @@ namespace HigLabo.Net.Ftp
 
 			return size;
 		}
-        private Int32? GetFileSize(FtpCommandResult result)
+    private Int32? GetFileSize(FtpCommandResult result)
+    {
+        var rx = RegexList.FileSize;
+        var m = rx.Match(result.Text);
+        if (m.Success == false) { return null; }
+        Int32 size = 0;
+        if (Int32.TryParse(m.Groups["Size"].Value, out size) == true)
         {
-            var rx = RegexList.FileSize;
-            var m = rx.Match(result.Text);
-            if (m.Success == false) { return null; }
-            Int32 size = 0;
-            if (Int32.TryParse(m.Groups["Size"].Value, out size) == true)
-            {
-                return size;
-            }
-            return null;
+            return size;
         }
+        return null;
+    }
 		public Int64 GetFileSize(String fileName)
 		{
 			this.EnsureOpen();
@@ -384,70 +384,70 @@ namespace HigLabo.Net.Ftp
 			return Int64.Parse(rs.Text.Substring(4));
 		}
 
-        /// <summary>
-        /// Change remote directory.
-        /// </summary>
-        /// <param name="directoryName"></param>
-        /// <returns></returns>
-        public FtpCommandResult ChangeDirectory(String directoryName)
-        {
-            return this.ExecuteCwd(directoryName);
-        }
-        /// FTPサーバーへCWDコマンドを送信します。
-        /// <summary>
-        /// Send cwd command to ftp server.
-        /// FTPサーバーへCWDコマンドを送信します。
-        /// </summary>
-        /// <param name="pathName">指定したディレクトリ名</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteCwd(String directoryName)
+    /// <summary>
+    /// Change remote directory.
+    /// </summary>
+    /// <param name="directoryName"></param>
+    /// <returns></returns>
+    public FtpCommandResult ChangeDirectory(String directoryName)
+    {
+        return this.ExecuteCwd(directoryName);
+    }
+    /// FTPサーバーへCWDコマンドを送信します。
+    /// <summary>
+    /// Send cwd command to ftp server.
+    /// FTPサーバーへCWDコマンドを送信します。
+    /// </summary>
+    /// <param name="pathName">指定したディレクトリ名</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteCwd(String directoryName)
 		{
-            this.EnsureOpen();
-            var rs = this.Execute("Cwd " + directoryName);
+        this.EnsureOpen();
+        var rs = this.Execute("Cwd " + directoryName);
 			return rs;
 		}
-        /// FTPサーバーへCDUPコマンドを送信します。
-        /// <summary>
-        /// Send cdup command to ftp server.
-        /// FTPサーバーへCDUPコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteCdup()
+    /// FTPサーバーへCDUPコマンドを送信します。
+    /// <summary>
+    /// Send cdup command to ftp server.
+    /// FTPサーバーへCDUPコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteCdup()
 		{
-            this.EnsureOpen();
+        this.EnsureOpen();
 			var rs = this.Execute("Cdup");
 			return rs;
 		}
-        /// FTPサーバーへSMNTコマンドを送信します。
-        /// <summary>
-        /// Send smnt command to ftp server.
-        /// FTPサーバーへSMNTコマンドを送信します。
-        /// <param name="pathName">課金情報</param>
-        /// <returns></returns>
+    /// FTPサーバーへSMNTコマンドを送信します。
+    /// <summary>
+    /// Send smnt command to ftp server.
+    /// FTPサーバーへSMNTコマンドを送信します。
+    /// <param name="pathName">課金情報</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteSmnt(String pathName)
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Smnt " + pathName);
 			return rs;
 		}
-        /// FTPサーバーへREINコマンドを送信します。
-        /// <summary>
-        /// Send rein command to ftp server.
-        /// FTPサーバーへREINコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへREINコマンドを送信します。
+    /// <summary>
+    /// Send rein command to ftp server.
+    /// FTPサーバーへREINコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteRein()
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Rein");
 			return rs;
 		}
-        /// FTPサーバーへQUITコマンドを送信します。
-        /// <summary>
-        /// Send quit command to ftp server.
-        /// FTPサーバーへQUITコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへQUITコマンドを送信します。
+    /// <summary>
+    /// Send quit command to ftp server.
+    /// FTPサーバーへQUITコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteQuit()
 		{
 			this.EnsureOpen();
@@ -465,90 +465,90 @@ namespace HigLabo.Net.Ftp
 			var rs = this.Execute("Port " + port);
 			return rs;
 		}
-        /// FTPサーバーへPASVコマンドを送信します。
-        /// <summary>
-        /// Send pasv command to ftp server.
-        /// FTPサーバーへPASVコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへPASVコマンドを送信します。
+    /// <summary>
+    /// Send pasv command to ftp server.
+    /// FTPサーバーへPASVコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public FtpIPCommandResult ExecutePasv()
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Pasv");
 			return new FtpIPCommandResult(rs);
 		}
-        /// FTPサーバーへTYPEコマンドを送信します。
-        /// <summary>
-        /// Send type command to ftp server.
-        /// FTPサーバーへTYPEコマンドを送信します。
-        /// <param name="mode">形式オプション</param>
+    /// FTPサーバーへTYPEコマンドを送信します。
+    /// <summary>
+    /// Send type command to ftp server.
+    /// FTPサーバーへTYPEコマンドを送信します。
+    /// <param name="mode">形式オプション</param>
 		/// <returns></returns>
 		public FtpCommandResult ExecuteType(FtpDataType type)
 		{
-            switch (type)
+        switch (type)
 			{
-                case FtpDataType.Image: return this.Execute("Type I");
-                case FtpDataType.Ebcdic: throw new NotImplementedException();
-                case FtpDataType.Ascii: return this.Execute("Type A"); 
+            case FtpDataType.Image: return this.Execute("Type I");
+            case FtpDataType.Ebcdic: throw new NotImplementedException();
+            case FtpDataType.Ascii: return this.Execute("Type A"); 
 				default: throw new FtpClientException();
 			}
 		}
-        /// FTPサーバーへSTRUコマンドを送信します。
-        /// <summary>
-        /// Send stru command to ftp server.
-        /// FTPサーバーへSTRUコマンドを送信します。
-        /// <param name="dataStruct">ファイル構造オプション</param>
-        /// <returns></returns>
+    /// FTPサーバーへSTRUコマンドを送信します。
+    /// <summary>
+    /// Send stru command to ftp server.
+    /// FTPサーバーへSTRUコマンドを送信します。
+    /// <param name="dataStruct">ファイル構造オプション</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteStru(FtpDataStructures dataStruct)
 		{
-            switch (dataStruct)
-            {
-                case FtpDataStructures.FileStructure: return this.Execute("Stru F");
-                case FtpDataStructures.RecordStructure: return this.Execute("Stru R");
-                case FtpDataStructures.PageStructure: return this.Execute("Stru P");
-                default: throw new FtpClientException();
-            }
+        switch (dataStruct)
+        {
+            case FtpDataStructures.FileStructure: return this.Execute("Stru F");
+            case FtpDataStructures.RecordStructure: return this.Execute("Stru R");
+            case FtpDataStructures.PageStructure: return this.Execute("Stru P");
+            default: throw new FtpClientException();
+        }
 		}
-        /// FTPサーバーへUSERコマンドを送信します。
-        /// <summary>
-        /// Send user command to ftp server.
-        /// FTPサーバーへUSERコマンドを送信します。
-        /// <param name="user">ユーザ</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteUser(String user)
-        {
-            this.EnsureOpen();
-            var rs = this.Execute("User " + user);
-            return rs;
-        }
-        /// FTPサーバーへPASSコマンドを送信します。
-        /// <summary>
-        /// Send pass command to ftp server.
-        /// FTPサーバーへPASSコマンドを送信します。
-        /// <param name="password">パスワード</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecutePass(String password)
-        {
-            this.EnsureOpen();
-            var rs = this.Execute("Pass " + password);
-            return rs;
-        }
-        /// FTPサーバーへMODEコマンドを送信します。
-        /// <summary>
-        /// Send mode command to ftp server.
-        /// FTPサーバーへMODEコマンドを送信します。
-        /// </summary>
-        /// <param name="mode">転送モード</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteMode(FtpTransferMode mode)
+    /// FTPサーバーへUSERコマンドを送信します。
+    /// <summary>
+    /// Send user command to ftp server.
+    /// FTPサーバーへUSERコマンドを送信します。
+    /// <param name="user">ユーザ</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteUser(String user)
+    {
+        this.EnsureOpen();
+        var rs = this.Execute("User " + user);
+        return rs;
+    }
+    /// FTPサーバーへPASSコマンドを送信します。
+    /// <summary>
+    /// Send pass command to ftp server.
+    /// FTPサーバーへPASSコマンドを送信します。
+    /// <param name="password">パスワード</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecutePass(String password)
+    {
+        this.EnsureOpen();
+        var rs = this.Execute("Pass " + password);
+        return rs;
+    }
+    /// FTPサーバーへMODEコマンドを送信します。
+    /// <summary>
+    /// Send mode command to ftp server.
+    /// FTPサーバーへMODEコマンドを送信します。
+    /// </summary>
+    /// <param name="mode">転送モード</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteMode(FtpTransferMode mode)
 		{
-            switch (mode)
-            {
-                case FtpTransferMode.Stream: return this.Execute("Mode S");
-                case FtpTransferMode.Block: return this.Execute("Mode B");
-                case FtpTransferMode.Compression: return this.Execute("Mode C");
-                default: throw new FtpClientException();
-            }
+        switch (mode)
+        {
+            case FtpTransferMode.Stream: return this.Execute("Mode S");
+            case FtpTransferMode.Block: return this.Execute("Mode B");
+            case FtpTransferMode.Compression: return this.Execute("Mode C");
+            default: throw new FtpClientException();
+        }
 		}
 		/// <summary>
 		/// 
@@ -561,10 +561,10 @@ namespace HigLabo.Net.Ftp
 			var rs = this.Execute("Retr " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへSIZEコマンドを送信します。
-        /// <summary>
-        /// Send size command to ftp server.
-        /// FTPサーバーへSIZEコマンドを送信します。
+    /// FTPサーバーへSIZEコマンドを送信します。
+    /// <summary>
+    /// Send size command to ftp server.
+    /// FTPサーバーへSIZEコマンドを送信します。
 		/// </summary>
 		/// <param name="fileName">ファイル名</param>
 		/// <returns></returns>
@@ -574,158 +574,158 @@ namespace HigLabo.Net.Ftp
 			var rs = this.Execute("Size " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへSTORコマンドを送信します。
-        /// <summary>
-        /// Send stor command to ftp server.
-        /// FTPサーバーへSTORコマンドを送信します。
-        /// <param name="fileName">ファイル名(パスも含め)</param>
-        /// <returns></returns>
+    /// FTPサーバーへSTORコマンドを送信します。
+    /// <summary>
+    /// Send stor command to ftp server.
+    /// FTPサーバーへSTORコマンドを送信します。
+    /// <param name="fileName">ファイル名(パスも含め)</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteStor(String fileName)
 		{
 			var rs = this.Execute("Stor " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへSTOUコマンドを送信します。
-        /// <summary>
-        /// Send stou command to ftp server.
-        /// FTPサーバーへSTOUコマンドを送信します。
-        /// <param name="fileName">ファイル名(パスも含め)</param>
-        /// <returns></returns>
-        public FtpFileCommandResult ExecuteStou()
+    /// FTPサーバーへSTOUコマンドを送信します。
+    /// <summary>
+    /// Send stou command to ftp server.
+    /// FTPサーバーへSTOUコマンドを送信します。
+    /// <param name="fileName">ファイル名(パスも含め)</param>
+    /// <returns></returns>
+    public FtpFileCommandResult ExecuteStou()
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Stou");
+        var rs = this.Execute("Stou");
 			return new FtpFileCommandResult(rs);
 		}
-        /// FTPサーバーへAPPEコマンドを送信します。
-        /// <summary>
-        /// Send appe command to ftp server.
-        /// FTPサーバーへAPPEコマンドを送信します。
-        /// <param name="fileName">ファイル名(パスも含め)</param>
-        /// <returns></returns>
+    /// FTPサーバーへAPPEコマンドを送信します。
+    /// <summary>
+    /// Send appe command to ftp server.
+    /// FTPサーバーへAPPEコマンドを送信します。
+    /// <param name="fileName">ファイル名(パスも含め)</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteAppe(String fileName)
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Appe " + fileName);
+        var rs = this.Execute("Appe " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへALLOコマンドを送信します。
-        /// <summary>
-        /// Send allo command to ftp server.
-        /// FTPサーバーへALLOコマンドを送信します。
-        /// <param name="bytes">ファイルバイト数</param>
-        /// <returns></returns>
+    /// FTPサーバーへALLOコマンドを送信します。
+    /// <summary>
+    /// Send allo command to ftp server.
+    /// FTPサーバーへALLOコマンドを送信します。
+    /// <param name="bytes">ファイルバイト数</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteAllo(Int64 bytes)
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Allo " + bytes);
 			return rs;
 		}
-        /// FTPサーバーへRESTコマンドを送信します。
-        /// <summary>
-        /// Send rest command to ftp server.
-        /// FTPサーバーへRESTコマンドを送信します。
-        /// <param name="length">maker</param>
-        /// <returns></returns>
+    /// FTPサーバーへRESTコマンドを送信します。
+    /// <summary>
+    /// Send rest command to ftp server.
+    /// FTPサーバーへRESTコマンドを送信します。
+    /// <param name="length">maker</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteRest(Int64 length)
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Rest " + length);
 			return rs;
 		}
-        /// FTPサーバーへRNFRコマンドを送信します。
-        /// <summary>
-        /// Send rnfr command to ftp server.
-        /// FTPサーバーへRNFRコマンドを送信します。
-        /// <param name="fileName">ファイル名</param>
-        /// <returns></returns>
+    /// FTPサーバーへRNFRコマンドを送信します。
+    /// <summary>
+    /// Send rnfr command to ftp server.
+    /// FTPサーバーへRNFRコマンドを送信します。
+    /// <param name="fileName">ファイル名</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteRnfr(String fileName)
 		{
 			this.EnsureOpen();
 			var rs = this.Execute("Rnfr " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへRNTOコマンドを送信します。
-        /// <summary>
-        /// Send rnto command to ftp server.
-        /// FTPサーバーへRNTOコマンドを送信します。
-        /// <param name="fileName">ファイル名</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteRnto(String fileName)
+    /// FTPサーバーへRNTOコマンドを送信します。
+    /// <summary>
+    /// Send rnto command to ftp server.
+    /// FTPサーバーへRNTOコマンドを送信します。
+    /// <param name="fileName">ファイル名</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteRnto(String fileName)
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Rnto " + fileName);
+        var rs = this.Execute("Rnto " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへABORコマンドを送信します。
-        /// <summary>
-        /// Send abor command to ftp server.
-        /// FTPサーバーへABORコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへABORコマンドを送信します。
+    /// <summary>
+    /// Send abor command to ftp server.
+    /// FTPサーバーへABORコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteAbor()
 		{
 			var rs = this.Execute("Abor");
 			return rs;
 		}
-        /// FTPサーバーへACCTコマンドを送信します。
-        /// <summary>
-        /// Send acct command to ftp server.
-        /// FTPサーバーへACCTコマンドを送信します。
-        /// </summary>
-        /// <param name="accountInfo"></param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteAcct(String accountInfo)
-        {
-            this.EnsureOpen();
-            var rs = this.Execute("Acct " + accountInfo);
-            return rs;
-        }
-        /// FTPサーバーへDELEコマンドを送信します。
-        /// <summary>
-        /// Send dele command to ftp server.
-        /// FTPサーバーへDELEコマンドを送信します。
-        /// </summary>
-        /// <param name="fileName">指定したファイル</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteDele(String fileName)
+    /// FTPサーバーへACCTコマンドを送信します。
+    /// <summary>
+    /// Send acct command to ftp server.
+    /// FTPサーバーへACCTコマンドを送信します。
+    /// </summary>
+    /// <param name="accountInfo"></param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteAcct(String accountInfo)
+    {
+        this.EnsureOpen();
+        var rs = this.Execute("Acct " + accountInfo);
+        return rs;
+    }
+    /// FTPサーバーへDELEコマンドを送信します。
+    /// <summary>
+    /// Send dele command to ftp server.
+    /// FTPサーバーへDELEコマンドを送信します。
+    /// </summary>
+    /// <param name="fileName">指定したファイル</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteDele(String fileName)
 		{
-            this.EnsureOpen();
-            var rs = this.Execute("Dele " + fileName);
+        this.EnsureOpen();
+        var rs = this.Execute("Dele " + fileName);
 			return rs;
 		}
-        /// FTPサーバーへRMDコマンドを送信します。
-        /// <summary>
-        /// Send rmd command to ftp server.
-        /// FTPサーバーへRMDコマンドを送信します。
-        /// </summary>
-        /// <param name="directoryName">指定したディレクトリ名</param>
-        /// <returns></returns>
+    /// FTPサーバーへRMDコマンドを送信します。
+    /// <summary>
+    /// Send rmd command to ftp server.
+    /// FTPサーバーへRMDコマンドを送信します。
+    /// </summary>
+    /// <param name="directoryName">指定したディレクトリ名</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteRmd(String directoryName)
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Rmd " + directoryName);
+        var rs = this.Execute("Rmd " + directoryName);
 			return rs;
 		}
-        /// FTPサーバーへMKDコマンドを送信します。
-        /// <summary>
-        /// Send mkd command to ftp server.
-        /// FTPサーバーへMKDコマンドを送信します。
-        /// </summary>
-        /// <param name="directoryName">指定したディレクトリ名</param>
-        /// <returns></returns>
-        public FtpCommandResult ExecuteMkd(String directoryName)
+    /// FTPサーバーへMKDコマンドを送信します。
+    /// <summary>
+    /// Send mkd command to ftp server.
+    /// FTPサーバーへMKDコマンドを送信します。
+    /// </summary>
+    /// <param name="directoryName">指定したディレクトリ名</param>
+    /// <returns></returns>
+    public FtpCommandResult ExecuteMkd(String directoryName)
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Mkd " + directoryName);
+        var rs = this.Execute("Mkd " + directoryName);
 			return rs;
 		}
-        /// FTPサーバーへPWDコマンドを送信します。
-        /// <summary>
-        /// Send pwd command to ftp server.
-        /// FTPサーバーへPWDコマンドを送信します。
-        /// </summary>
-        /// <returns></returns>
+    /// FTPサーバーへPWDコマンドを送信します。
+    /// <summary>
+    /// Send pwd command to ftp server.
+    /// FTPサーバーへPWDコマンドを送信します。
+    /// </summary>
+    /// <returns></returns>
 		public FtpDirectoryCommandResult ExecutePwd()
 		{
 			this.EnsureOpen();
@@ -759,7 +759,7 @@ namespace HigLabo.Net.Ftp
 			}
 			this.ConnectDataSocket();
 			String text = this._DataSocket!.GetResponseText();
-            text = this.GetResponseText();
+        text = this.GetResponseText();
 			this.CloseDataSocket();
 
 			rs = this.GetResponse();
@@ -817,16 +817,16 @@ namespace HigLabo.Net.Ftp
 			}
 			return l;
 		}
-        /// FTPサーバーへSITEコマンドを送信します。
-        /// <summary>
-        /// Send site command to ftp server.
-        /// FTPサーバーへSITEコマンドを送信します。
-        /// <param name="cmdStr"></param>
-        /// <returns></returns>
+    /// FTPサーバーへSITEコマンドを送信します。
+    /// <summary>
+    /// Send site command to ftp server.
+    /// FTPサーバーへSITEコマンドを送信します。
+    /// <param name="cmdStr"></param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteSite(String cmdStr)
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Site " + cmdStr);
+        var rs = this.Execute("Site " + cmdStr);
 			return rs;
 		}
 		public FtpCommandResult ExecuteSyst()
@@ -835,16 +835,16 @@ namespace HigLabo.Net.Ftp
 			var rs = this.Execute("Syst");
 			return rs;
 		}
-        /// FTPサーバーへSTATコマンドを送信します。
-        /// <summary>
-        /// Send stat command to ftp server.
-        /// FTPサーバーへSTATコマンドを送信します。
-        /// <param name="pathName">ファイル／ディレクトリ名</param>
-        /// <returns></returns>
+    /// FTPサーバーへSTATコマンドを送信します。
+    /// <summary>
+    /// Send stat command to ftp server.
+    /// FTPサーバーへSTATコマンドを送信します。
+    /// <param name="pathName">ファイル／ディレクトリ名</param>
+    /// <returns></returns>
 		public FtpCommandResult ExecuteStat(String pathName)
 		{
 			this.EnsureOpen();
-            var rs = this.Execute("Stat " + pathName);
+        var rs = this.Execute("Stat " + pathName);
 			return rs;
 		}
 		/// FTPサーバーへHELPコマンドを送信します。
@@ -892,4 +892,3 @@ namespace HigLabo.Net.Ftp
 			this.DisposeSocket();
 		}
 	}
-}

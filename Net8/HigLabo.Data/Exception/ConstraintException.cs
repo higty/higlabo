@@ -2,18 +2,17 @@
 using System.Data;
 using System.Data.Common;
 
-namespace HigLabo.Data
+namespace HigLabo.Data;
+
+[Serializable]
+public class ConstraintException : DatabaseException
 {
-    [Serializable]
-    public class ConstraintException : DatabaseException
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ex"></param>
+    public ConstraintException(Exception ex)
+        : base(ex)
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ex"></param>
-        public ConstraintException(Exception ex)
-            : base(ex)
-        {
-        }
     }
 }

@@ -1,17 +1,16 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/sharepointidentityset?view=graph-rest-1.0
+/// </summary>
+public partial class SharePointIdentitySet
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/sharepointidentityset?view=graph-rest-1.0
-    /// </summary>
-    public partial class SharePointIdentitySet
-    {
-        public Identity? Application { get; set; }
-        public Identity? Device { get; set; }
-        public Identity? Group { get; set; }
-        public Identity? User { get; set; }
-        public SharePointIdentity? SiteGroup { get; set; }
-        public SharePointIdentity? SiteUser { get; set; }
-    }
+    public Identity? Application { get; set; }
+    public Identity? Device { get; set; }
+    public Identity? Group { get; set; }
+    public Identity? User { get; set; }
+    public SharePointIdentity? SiteGroup { get; set; }
+    public SharePointIdentity? SiteUser { get; set; }
 }

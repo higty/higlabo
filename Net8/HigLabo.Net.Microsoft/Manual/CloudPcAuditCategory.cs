@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Net.Microsoft
+﻿namespace HigLabo.Net.Microsoft;
+
+public enum CloudPcAuditCategory
 {
-    public enum CloudPcAuditCategory
-    {
-        CloudPC,
-    }
+    CloudPC,
 }

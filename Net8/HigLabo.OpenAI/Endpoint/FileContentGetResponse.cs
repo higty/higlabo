@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
-{
+namespace HigLabo.OpenAI;
+
 	public partial class FileContentGetResponse
 	{
 		public Stream? Stream
@@ -13,4 +13,3 @@ namespace HigLabo.OpenAI
 			get { return ((IRestApiResponse)this).Stream; }
 		}
 	}
-}

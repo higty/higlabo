@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class AdminUsersListResponse 
 {
-    public partial class AdminUsersListResponse 
-    {
-        public User[]? Users { get; set; }
-    }
+    public User[]? Users { get; set; }
 }

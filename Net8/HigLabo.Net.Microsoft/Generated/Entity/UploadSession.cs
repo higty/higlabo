@@ -1,14 +1,13 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/uploadsession?view=graph-rest-1.0
+/// </summary>
+public partial class UploadSession
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/uploadsession?view=graph-rest-1.0
-    /// </summary>
-    public partial class UploadSession
-    {
-        public DateTimeOffset? ExpirationDateTime { get; set; }
-        public String[]? NextExpectedRanges { get; set; }
-        public string? UploadUrl { get; set; }
-    }
+    public DateTimeOffset? ExpirationDateTime { get; set; }
+    public String[]? NextExpectedRanges { get; set; }
+    public string? UploadUrl { get; set; }
 }

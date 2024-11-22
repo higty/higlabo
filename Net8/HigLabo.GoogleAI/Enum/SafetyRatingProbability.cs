@@ -1,11 +1,10 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public enum SafetyRatingProbability
 {
-    public enum SafetyRatingProbability
-    {
-        Harm_Probability_Unspecified,
-        Negligible,
-        Low,
-        Medium,
-        High,
-    }
+    Harm_Probability_Unspecified,
+    Negligible,
+    Low,
+    Medium,
+    High,
 }

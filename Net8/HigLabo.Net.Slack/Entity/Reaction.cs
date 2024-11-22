@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public class Reaction
 {
-    public class Reaction
-    {
-        public Int32 Count { get; set; }
-        public string? Name { get; set; }
-        public string[]? Users { get; set; }
-    }
+    public Int32 Count { get; set; }
+    public string? Name { get; set; }
+    public string[]? Users { get; set; }
 }

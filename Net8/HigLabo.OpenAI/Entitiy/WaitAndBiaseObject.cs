@@ -1,10 +1,9 @@
-﻿namespace HigLabo.OpenAI
+﻿namespace HigLabo.OpenAI;
+
+public class WaitAndBiaseObject
 {
-    public class WaitAndBiaseObject
-    {
-        public string Project { get; set; } = "";
-        public string? Name { get; set; }
-        public string? Entity { get; set; }
-        public List<string>? Tags { get; set; }
-    }
+    public string Project { get; set; } = "";
+    public string? Name { get; set; }
+    public string? Entity { get; set; }
+    public List<string>? Tags { get; set; }
 }

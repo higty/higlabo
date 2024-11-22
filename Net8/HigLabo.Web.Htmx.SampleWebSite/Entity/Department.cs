@@ -1,13 +1,12 @@
-﻿namespace HigLabo.Web.Htmx.SampleWebSite.Entity
-{
-    public class Department
-    {
-        public string Name { get; set; } = "";
-        public List<Department>? Departments { get; set; }
+﻿namespace HigLabo.Web.Htmx.SampleWebSite.Entity;
 
-        public override string ToString()
-        {
-            return this.Name;
-        }
+public class Department
+{
+    public string Name { get; set; } = "";
+    public List<Department>? Departments { get; set; }
+
+    public override string ToString()
+    {
+        return this.Name;
     }
 }

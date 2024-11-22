@@ -1,11 +1,10 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public enum ImageSize
 {
-    public enum ImageSize
-    {
-        Small,
-        Medium,
-        Large,
-        Wallpaper,
-        All,
-    }
+    Small,
+    Medium,
+    Large,
+    Wallpaper,
+    All,
 }

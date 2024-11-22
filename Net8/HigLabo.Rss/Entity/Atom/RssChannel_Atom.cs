@@ -6,30 +6,29 @@ using System.Xml.Linq;
 using HigLabo.Core;
 using HigLabo.Rss.Internal;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public class RssChannel_Atom : RssChannel
 {
-    public class RssChannel_Atom : RssChannel
+    public RssChannel_Atom() {}
+    public RssChannel_Atom(XElement element)
+        : base(element)
     {
-        public RssChannel_Atom() {}
-        public RssChannel_Atom(XElement element)
-            : base(element)
+        if (element != null)
         {
-            if (element != null)
+            Parse(element);
+        }
+    }
+    protected new void Parse(XElement element)
+    {
+        foreach (var link in element.ElementsByNamespace("link"))
+        {
+            var type = link.CastAttributeToString("type");
+            if (type != null && type.Contains("text/html") == true)
             {
-                Parse(element);
+                this.Link = link.CastAttributeToString("href") ?? "";
             }
         }
-        protected new void Parse(XElement element)
-        {
-            foreach (var link in element.ElementsByNamespace("link"))
-            {
-                var type = link.CastAttributeToString("type");
-                if (type != null && type.Contains("text/html") == true)
-                {
-                    this.Link = link.CastAttributeToString("href") ?? "";
-                }
-            }
-            this.Description = "";
-        }
+        this.Description = "";
     }
 }

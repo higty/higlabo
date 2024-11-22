@@ -5,13 +5,12 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public enum ChatMessageRole
 {
-    public enum ChatMessageRole
-    {
-        Assistant,
-        System,
-        User,
-        Function,
-    }
+    Assistant,
+    System,
+    User,
+    Function,
 }

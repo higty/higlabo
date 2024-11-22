@@ -1,7 +1,6 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class RelatedCollectionsModule
 {
-    public class RelatedCollectionsModule
-    {
-        public ImageGallery[] Value { get; set; } = Array.Empty<ImageGallery>();
-    }
+    public ImageGallery[] Value { get; set; } = Array.Empty<ImageGallery>();
 }

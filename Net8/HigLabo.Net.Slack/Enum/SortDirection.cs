@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public enum SortDirection
 {
-    public enum SortDirection
-    {
-        Asc,
-        Desc,
-    }
+    Asc,
+    Desc,
 }

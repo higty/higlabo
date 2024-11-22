@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Rss
+namespace HigLabo.Rss;
+
+public interface IRssParser
 {
-    public interface IRssParser
-    {
-        RssFeed Parse(String xml);
-    }
+    RssFeed Parse(String xml);
 }

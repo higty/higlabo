@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Html
+namespace HigLabo.Html;
+
+public class NewLineHtmlConverter : IHtmlConverter
 {
-    public class NewLineHtmlConverter : IHtmlConverter
+    public async ValueTask<String> ConvertAsync(String html)
     {
-        public async ValueTask<String> ConvertAsync(String html)
-        {
-            return await ValueTask.FromResult(html.Replace("\r",""));
-        }
+        return await ValueTask.FromResult(html.Replace("\r",""));
     }
 }

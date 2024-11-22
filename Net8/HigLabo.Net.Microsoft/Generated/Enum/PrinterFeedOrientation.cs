@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum PrinterFeedOrientation
 {
-    public enum PrinterFeedOrientation
-    {
-        LongEdgeFirst,
-        ShortEdgeFirst,
-        UnknownFutureValue,
-    }
+    LongEdgeFirst,
+    ShortEdgeFirst,
+    UnknownFutureValue,
 }

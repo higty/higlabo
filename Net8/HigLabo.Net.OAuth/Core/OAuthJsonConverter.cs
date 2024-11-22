@@ -11,38 +11,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.OAuth
-{
-    public class OAuthJsonConverter : IJsonConverter
-    {
-        public JsonSerializerSettings Setting = new JsonSerializerSettings();
+namespace HigLabo.Net.OAuth;
 
-        public OAuthJsonConverter()
+public class OAuthJsonConverter : IJsonConverter
+{
+    public JsonSerializerSettings Setting = new JsonSerializerSettings();
+
+    public OAuthJsonConverter()
+    {
+        this.Setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        this.Setting.NullValueHandling = NullValueHandling.Ignore;
+        this.Setting.Converters.Add(new EnumToLowerStringConverter());
+    }
+    public string SerializeObject(object obj)
+    {
+        return JsonConvert.SerializeObject(obj, Setting);
+    }
+    public T DeserializeObject<T>(string json)
+    {
+        try
         {
-            this.Setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            this.Setting.NullValueHandling = NullValueHandling.Ignore;
-            this.Setting.Converters.Add(new EnumToLowerStringConverter());
+            return JsonConvert.DeserializeObject<T>(json, Setting)!;
         }
-        public string SerializeObject(object obj)
+        catch (Exception ex) 
         {
-            return JsonConvert.SerializeObject(obj, Setting);
-        }
-        public T DeserializeObject<T>(string json)
-        {
-            try
-            {
-                return JsonConvert.DeserializeObject<T>(json, Setting)!;
-            }
-            catch (Exception ex) 
-            {
 #if DEBUG
-                Debugger.Break();
-                Debug.Write(ex.ToString());
+            Debugger.Break();
+            Debug.Write(ex.ToString());
 #else
-                throw;
+            throw;
 #endif
-            }
-            return default(T)!;
         }
+        return default(T)!;
     }
 }

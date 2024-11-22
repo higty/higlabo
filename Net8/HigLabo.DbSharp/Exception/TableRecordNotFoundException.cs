@@ -4,39 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
-{
-    public class TableRecordNotFoundException : Exception
-    {
-        public String TableName { get; private set; } = "";
-        public Object[]? Values { get; private set; }
+namespace HigLabo.DbSharp;
 
-        public TableRecordNotFoundException(String tableName)
-            : base("TableName=" + tableName)
+public class TableRecordNotFoundException : Exception
+{
+    public String TableName { get; private set; } = "";
+    public Object[]? Values { get; private set; }
+
+    public TableRecordNotFoundException(String tableName)
+        : base("TableName=" + tableName)
+    {
+        this.TableName = tableName;
+    }
+    public TableRecordNotFoundException(String tableName, params Object[] values)
+        : base($"TableName={tableName} values=" + string.Join(',', values))
+    {
+        this.TableName = tableName;
+        this.Values = values;
+    }
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        if (this.Values != null && this.Values.Length > 0)
         {
-            this.TableName = tableName;
+            var values = String.Join(",", this.Values);
+            sb.AppendFormat("{0} ({1})", this.TableName, values);
+            sb.AppendLine();
         }
-        public TableRecordNotFoundException(String tableName, params Object[] values)
-            : base($"TableName={tableName} values=" + string.Join(',', values))
+        else
         {
-            this.TableName = tableName;
-            this.Values = values;
+            sb.AppendLine(this.TableName);
         }
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            if (this.Values != null && this.Values.Length > 0)
-            {
-                var values = String.Join(",", this.Values);
-                sb.AppendFormat("{0} ({1})", this.TableName, values);
-                sb.AppendLine();
-            }
-            else
-            {
-                sb.AppendLine(this.TableName);
-            }
-            sb.AppendLine(this.StackTrace);
-            return sb.ToString();
-        }
+        sb.AppendLine(this.StackTrace);
+        return sb.ToString();
     }
 }

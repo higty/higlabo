@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
-{
+namespace HigLabo.DbSharp;
+
 	public enum TableCacheUpdateWaitResult
-    {
+{
 		Success,
 		Timeout,
 	}
-}

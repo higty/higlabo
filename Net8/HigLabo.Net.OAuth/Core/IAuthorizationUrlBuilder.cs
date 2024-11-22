@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.OAuth
+namespace HigLabo.Net.OAuth;
+
+public interface IAuthorizationUrlBuilder
 {
-    public interface IAuthorizationUrlBuilder
-    {
-        string CreateUrl();
-    }
+    string CreateUrl();
 }

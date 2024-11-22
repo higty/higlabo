@@ -8,13 +8,12 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public static class OracleDbTypeExtensions
 {
-    public static class OracleDbTypeExtensions
+    public static Oracle.ManagedDataAccess.Client.OracleDbType GetOracleDbType(this HigLabo.DbSharp.MetaData.OracleDbType type)
     {
-        public static Oracle.ManagedDataAccess.Client.OracleDbType GetOracleDbType(this HigLabo.DbSharp.MetaData.OracleDbType type)
-        {
-            return type.ToStringFromEnum().ToEnum<Oracle.ManagedDataAccess.Client.OracleDbType>()!.Value;
-        }
+        return type.ToStringFromEnum().ToEnum<Oracle.ManagedDataAccess.Client.OracleDbType>()!.Value;
     }
 }

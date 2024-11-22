@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
-{
+namespace HigLabo.DbSharp;
+
 	public class TableCacheUpdateSubscribeTimeoutEventArgs : EventArgs
 	{
 		public String TableName { get; set; }
@@ -15,4 +15,3 @@ namespace HigLabo.DbSharp
 			this.TableName = tableName;
 		}
 	}
-}

@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class EntityAnswer : BingRestApiResponse
 {
-    public class EntityAnswer : BingRestApiResponse
-    {
-        public string QueryScenario { get; set; } = "";
-        public Entity[] Value { get; set; } = Array.Empty<Entity>();
-    }
+    public string QueryScenario { get; set; } = "";
+    public Entity[] Value { get; set; } = Array.Empty<Entity>();
 }

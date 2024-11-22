@@ -1,9 +1,8 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public enum BlockReason
 {
-    public enum BlockReason
-    {
-        Block_Reason_Unspecified,
-        Safety,
-        Other,
-    }
+    Block_Reason_Unspecified,
+    Safety,
+    Other,
 }

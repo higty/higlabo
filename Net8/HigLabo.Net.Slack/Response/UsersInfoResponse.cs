@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class UsersInfoResponse
 {
-    public partial class UsersInfoResponse
-    {
-        public User? User { get; set; }
-    }
+    public User? User { get; set; }
 }

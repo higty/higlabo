@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum PrintColorMode
 {
-    public enum PrintColorMode
-    {
-        BlackAndWhite,
-        Grayscale,
-        Color,
-        Auto
-    }
+    BlackAndWhite,
+    Grayscale,
+    Color,
+    Auto
 }

@@ -5,19 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbSharpApplication
-{
-    public class StoredProcedureWindowViewModel
-    {
-        public string ConnectionString { get; init; }
-        public GenerateSetting GenerateSetting { get; init; }
-        public StoredProcedure StoredProcedure { get; init; }
+namespace DbSharpApplication;
 
-        public StoredProcedureWindowViewModel(string connectionString, GenerateSetting generateSetting, StoredProcedure storedProcedure)
-        {
-            this.ConnectionString = connectionString;
-            this.GenerateSetting = generateSetting;
-            this.StoredProcedure = storedProcedure;
-        }
+public class StoredProcedureWindowViewModel
+{
+    public string ConnectionString { get; init; }
+    public GenerateSetting GenerateSetting { get; init; }
+    public StoredProcedure StoredProcedure { get; init; }
+
+    public StoredProcedureWindowViewModel(string connectionString, GenerateSetting generateSetting, StoredProcedure storedProcedure)
+    {
+        this.ConnectionString = connectionString;
+        this.GenerateSetting = generateSetting;
+        this.StoredProcedure = storedProcedure;
     }
 }

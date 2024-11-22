@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public abstract class InputValidator : IInputValidator
 {
-    public abstract class InputValidator : IInputValidator
-    {
-        public string Message { get; set; } = "";
-        public abstract InputValidateResult Validate(string? value);
-    }
+    public string Message { get; set; } = "";
+    public abstract InputValidateResult Validate(string? value);
 }

@@ -5,20 +5,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace HigLabo.Html
+namespace HigLabo.Html;
+
+public abstract class RegexHtmlConverter : IHtmlConverter
 {
-    public abstract class RegexHtmlConverter : IHtmlConverter
+    public async ValueTask<String> ConvertAsync(String html)
     {
-        public async ValueTask<String> ConvertAsync(String html)
+        var convertedHtml = html;
+        foreach (var match in GetRegexList())
         {
-            var convertedHtml = html;
-            foreach (var match in GetRegexList())
-            {
-                convertedHtml = match.Replace(convertedHtml, m => Convert(m));
-            }
-            return await ValueTask.FromResult(convertedHtml);
+            convertedHtml = match.Replace(convertedHtml, m => Convert(m));
         }
-        protected abstract IEnumerable<Regex> GetRegexList();
-        protected abstract String Convert(Match match);
+        return await ValueTask.FromResult(convertedHtml);
     }
+    protected abstract IEnumerable<Regex> GetRegexList();
+    protected abstract String Convert(Match match);
 }

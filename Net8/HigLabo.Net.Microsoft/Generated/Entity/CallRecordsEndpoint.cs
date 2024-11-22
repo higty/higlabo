@@ -1,12 +1,11 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/callrecords-endpoint?view=graph-rest-1.0
+/// </summary>
+public partial class CallrecordsEndpoint
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/callrecords-endpoint?view=graph-rest-1.0
-    /// </summary>
-    public partial class CallrecordsEndpoint
-    {
-        public CallrecordsUseragent? UserAgent { get; set; }
-    }
+    public CallrecordsUseragent? UserAgent { get; set; }
 }

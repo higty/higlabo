@@ -4,58 +4,57 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+/// <summary>
+/// Returns a list of assistants.
+/// <seealso href="https://api.openai.com/v1/assistants">https://api.openai.com/v1/assistants</seealso>
+/// </summary>
+public partial class AssistantsParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter, IQueryParameterProperty
 {
-    /// <summary>
-    /// Returns a list of assistants.
-    /// <seealso href="https://api.openai.com/v1/assistants">https://api.openai.com/v1/assistants</seealso>
-    /// </summary>
-    public partial class AssistantsParameter : RestApiParameter, IRestApiParameter, IAssistantApiParameter, IQueryParameterProperty
+    internal static readonly AssistantsParameter Empty = new AssistantsParameter();
+
+    string IRestApiParameter.HttpMethod { get; } = "GET";
+    IQueryParameter IQueryParameterProperty.QueryParameter
     {
-        internal static readonly AssistantsParameter Empty = new AssistantsParameter();
-
-        string IRestApiParameter.HttpMethod { get; } = "GET";
-        IQueryParameter IQueryParameterProperty.QueryParameter
+        get
         {
-            get
-            {
-                return this.QueryParameter;
-            }
-        }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
-
-        string IRestApiParameter.GetApiPath()
-        {
-            return $"/assistants";
-        }
-        public override object GetRequestBody()
-        {
-            return EmptyParameter;
+            return this.QueryParameter;
         }
     }
-    public partial class AssistantsResponse : RestApiDataResponse<List<AssistantObject>>
+    public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+
+    string IRestApiParameter.GetApiPath()
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
+        return $"/assistants";
     }
-    public partial class OpenAIClient
+    public override object GetRequestBody()
     {
-        public async ValueTask<AssistantsResponse> AssistantsAsync()
-        {
-            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(AssistantsParameter.Empty, CancellationToken.None);
-        }
-        public async ValueTask<AssistantsResponse> AssistantsAsync(CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(AssistantsParameter.Empty, cancellationToken);
-        }
-        public async ValueTask<AssistantsResponse> AssistantsAsync(AssistantsParameter parameter)
-        {
-            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(parameter, CancellationToken.None);
-        }
-        public async ValueTask<AssistantsResponse> AssistantsAsync(AssistantsParameter parameter, CancellationToken cancellationToken)
-        {
-            return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(parameter, cancellationToken);
-        }
+        return EmptyParameter;
+    }
+}
+public partial class AssistantsResponse : RestApiDataResponse<List<AssistantObject>>
+{
+    public string First_Id { get; set; } = "";
+    public string Last_Id { get; set; } = "";
+    public bool Has_More { get; set; }
+}
+public partial class OpenAIClient
+{
+    public async ValueTask<AssistantsResponse> AssistantsAsync()
+    {
+        return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(AssistantsParameter.Empty, CancellationToken.None);
+    }
+    public async ValueTask<AssistantsResponse> AssistantsAsync(CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(AssistantsParameter.Empty, cancellationToken);
+    }
+    public async ValueTask<AssistantsResponse> AssistantsAsync(AssistantsParameter parameter)
+    {
+        return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(parameter, CancellationToken.None);
+    }
+    public async ValueTask<AssistantsResponse> AssistantsAsync(AssistantsParameter parameter, CancellationToken cancellationToken)
+    {
+        return await this.SendJsonAsync<AssistantsParameter, AssistantsResponse>(parameter, cancellationToken);
     }
 }

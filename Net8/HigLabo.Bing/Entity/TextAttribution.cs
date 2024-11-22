@@ -1,8 +1,7 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class TextAttribution
 {
-    public class TextAttribution
-    {
-        public string _Type { get; set; } = "";
-        public string Text { get; set; } = "";
-    }
+    public string _Type { get; set; } = "";
+    public string Text { get; set; } = "";
 }

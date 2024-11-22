@@ -1,13 +1,12 @@
 ﻿using HigLabo.Net.OAuth;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+/// <summary>
+/// https://learn.microsoft.com/en-us/graph/api/resources/security-securitygroupevidence?view=graph-rest-1.0
+/// </summary>
+public partial class SecurityGroupEvidence
 {
-    /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/security-securitygroupevidence?view=graph-rest-1.0
-    /// </summary>
-    public partial class SecurityGroupEvidence
-    {
-        public string? DisplayName { get; set; }
-        public string? SecurityGroupId { get; set; }
-    }
+    public string? DisplayName { get; set; }
+    public string? SecurityGroupId { get; set; }
 }

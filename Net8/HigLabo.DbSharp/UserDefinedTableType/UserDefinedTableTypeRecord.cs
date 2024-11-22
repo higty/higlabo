@@ -5,10 +5,9 @@ using System.Text;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public abstract class UserDefinedTableTypeRecord : DatabaseRecord
 {
-    public abstract class UserDefinedTableTypeRecord : DatabaseRecord
-    {
-        public abstract Object?[] GetValues();
-    }
+    public abstract Object?[] GetValues();
 }

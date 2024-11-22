@@ -8,43 +8,42 @@ using System.ComponentModel;
 using Microsoft.Data.SqlClient.Server;
 using HigLabo.DbSharp;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public partial class Nvarchar32Table : UserDefinedTableType<Nvarchar32Table.Record>
 {
-    public partial class Nvarchar32Table : UserDefinedTableType<Nvarchar32Table.Record>
+    public partial class Record : UserDefinedTableTypeRecord
     {
-        public partial class Record : UserDefinedTableTypeRecord
+        private String? _Value;
+
+        public String? Value
         {
-            private String? _Value;
-
-            public String? Value
+            get
             {
-                get
-                {
-                    return _Value;
-                }
-                set
-                {
-                    _Value = value;
-                }
+                return _Value;
             }
-
-            public Record()
+            set
             {
-            }
-
-            public override Object?[] GetValues()
-            {
-                Object?[] oo = new Object[1];
-                oo[0] = this.Value;
-                return oo;
+                _Value = value;
             }
         }
 
-        public override SqlDataRecord CreateSqlDataRecord()
+        public Record()
         {
-            SqlMetaData[] metaData = new SqlMetaData[1];
-            metaData[0] = new SqlMetaData("Value", SqlDbType.NVarChar, 32);
-            return new SqlDataRecord(metaData);
         }
+
+        public override Object?[] GetValues()
+        {
+            Object?[] oo = new Object[1];
+            oo[0] = this.Value;
+            return oo;
+        }
+    }
+
+    public override SqlDataRecord CreateSqlDataRecord()
+    {
+        SqlMetaData[] metaData = new SqlMetaData[1];
+        metaData[0] = new SqlMetaData("Value", SqlDbType.NVarChar, 32);
+        return new SqlDataRecord(metaData);
     }
 }

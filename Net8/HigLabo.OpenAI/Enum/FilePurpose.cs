@@ -5,28 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
-{
-    public enum FilePurpose
-    {
-        Finetune,
-        FinetuneResults,
-        Assistants,
-        AssistantsOutput,
-    }
+namespace HigLabo.OpenAI;
 
-    public static class FilePurposeExtensions
+public enum FilePurpose
+{
+    Finetune,
+    FinetuneResults,
+    Assistants,
+    AssistantsOutput,
+}
+
+public static class FilePurposeExtensions
+{
+    public static string GetValue(this FilePurpose purpose)
     {
-        public static string GetValue(this FilePurpose purpose)
+        switch (purpose)
         {
-            switch (purpose)
-            {
-                case FilePurpose.Finetune: return "fine-tune"; 
-                case FilePurpose.FinetuneResults: return "fine-tune-results"; 
-                case FilePurpose.Assistants: return "assistants"; 
-                case FilePurpose.AssistantsOutput: return "assistants_output"; 
-                default: throw SwitchStatementNotImplementException.Create(purpose);
-            }
+            case FilePurpose.Finetune: return "fine-tune"; 
+            case FilePurpose.FinetuneResults: return "fine-tune-results"; 
+            case FilePurpose.Assistants: return "assistants"; 
+            case FilePurpose.AssistantsOutput: return "assistants_output"; 
+            default: throw SwitchStatementNotImplementException.Create(purpose);
         }
     }
 }

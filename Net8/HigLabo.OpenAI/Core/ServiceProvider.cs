@@ -1,9 +1,8 @@
-﻿namespace HigLabo.OpenAI
+﻿namespace HigLabo.OpenAI;
+
+public enum ServiceProvider
 {
-    public enum ServiceProvider
-    {
-        OpenAI,
-        Azure,
-        Groq,
-    }
+    OpenAI,
+    Azure,
+    Groq,
 }

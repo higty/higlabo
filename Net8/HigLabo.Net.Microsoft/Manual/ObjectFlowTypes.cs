@@ -1,9 +1,8 @@
-﻿namespace HigLabo.Net.Microsoft
+﻿namespace HigLabo.Net.Microsoft;
+
+public enum ObjectFlowTypes
 {
-    public enum ObjectFlowTypes
-    {
-        Add,
-        Update,
-        Delete,
-    }
+    Add,
+    Update,
+    Delete,
 }

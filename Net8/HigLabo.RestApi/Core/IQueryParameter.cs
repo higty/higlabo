@@ -1,7 +1,6 @@
-﻿namespace HigLabo.RestApi
+﻿namespace HigLabo.RestApi;
+
+public interface IQueryParameter
 {
-    public interface IQueryParameter
-    {
-        string GetQueryString();
-    }
+    string GetQueryString();
 }

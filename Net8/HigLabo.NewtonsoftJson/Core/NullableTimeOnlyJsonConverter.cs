@@ -4,28 +4,27 @@ using System.Collections.Generic;
 using System.Globalization;
 using HigLabo.Core;
 
-namespace HigLabo.Newtonsoft
+namespace HigLabo.Newtonsoft;
+
+public class NullableTimeOnlyJsonConverter : JsonConverter<Nullable<TimeOnly>>
 {
-    public class NullableTimeOnlyJsonConverter : JsonConverter<Nullable<TimeOnly>>
+    public String TimeFormat { get; set; } = "HH:mm:ss.FFFFFFF";
+
+    public override TimeOnly? ReadJson(JsonReader reader, Type objectType, TimeOnly? existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        public String TimeFormat { get; set; } = "HH:mm:ss.FFFFFFF";
-
-        public override TimeOnly? ReadJson(JsonReader reader, Type objectType, TimeOnly? existingValue, bool hasExistingValue, JsonSerializer serializer)
+        if (reader.Value == null) { return null; }
+        if (TimeOnly.TryParse((string)reader.Value, out var t) == true)
         {
-            if (reader.Value == null) { return null; }
-            if (TimeOnly.TryParse((string)reader.Value, out var t) == true)
-            {
-                return t;
-            }
-            return null;
+            return t;
         }
+        return null;
+    }
 
-        public override void WriteJson(JsonWriter writer, TimeOnly? value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, TimeOnly? value, JsonSerializer serializer)
+    {
+        if (value.HasValue)
         {
-            if (value.HasValue)
-            {
-                writer.WriteValue(value.Value.ToString(TimeFormat, CultureInfo.InvariantCulture));
-            }
+            writer.WriteValue(value.Value.ToString(TimeFormat, CultureInfo.InvariantCulture));
         }
     }
 }

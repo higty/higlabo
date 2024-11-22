@@ -1,9 +1,8 @@
-﻿namespace HigLabo.Bing
+﻿namespace HigLabo.Bing;
+
+public class EntityPresentationInfo
 {
-    public class EntityPresentationInfo
-    {
-        public string EntityScenario { get; set; } = "";
-        public string EntityTypeDisplayHint { get; set; } = "";
-        public string EntityTypeHint { get; set; } = "";
-    }
+    public string EntityScenario { get; set; } = "";
+    public string EntityTypeDisplayHint { get; set; } = "";
+    public string EntityTypeHint { get; set; } = "";
 }

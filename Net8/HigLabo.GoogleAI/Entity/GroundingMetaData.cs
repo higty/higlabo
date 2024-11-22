@@ -1,7 +1,6 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public class GroundingMetaData
 {
-    public class GroundingMetaData
-    {
-        public List<string>? WebSearchQueries { get; set; }
-    }
+    public List<string>? WebSearchQueries { get; set; }
 }

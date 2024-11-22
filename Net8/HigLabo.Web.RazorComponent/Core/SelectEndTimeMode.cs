@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Web
+namespace HigLabo.Web;
+
+public enum SelectEndTimeMode
 {
-    public enum SelectEndTimeMode
-    {
-        StartTime,
-        EndTime,
-        Duration,
-    }
+    StartTime,
+    EndTime,
+    Duration,
 }

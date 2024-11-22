@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Core
+namespace HigLabo.Core;
+
+public static class DictionaryExtensions
 {
-    public static class DictionaryExtensions
+    public static string GetValueOrDefault(this Dictionary<string, string> dictionary, string key)
     {
-        public static string GetValueOrDefault(this Dictionary<string, string> dictionary, string key)
+        if (dictionary.TryGetValue(key, out var value))
         {
-            if (dictionary.TryGetValue(key, out var value))
-            {
-                return value;
-            }
-            return "";
+            return value;
         }
-        public static TValue? GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue?> dictionary, TKey key)
-            where TKey : notnull
+        return "";
+    }
+    public static TValue? GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue?> dictionary, TKey key)
+        where TKey : notnull
+    {
+        return GetValueOrDefault(dictionary, key, default(TValue?));
+    }
+    public static TValue? GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue?> dictionary, TKey key, TValue defaultValue)
+        where TKey : notnull
+    {
+        if (dictionary.TryGetValue(key, out var value))
         {
-            return GetValueOrDefault(dictionary, key, default(TValue?));
+            return value;
         }
-        public static TValue? GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue?> dictionary, TKey key, TValue defaultValue)
-            where TKey : notnull
-        {
-            if (dictionary.TryGetValue(key, out var value))
-            {
-                return value;
-            }
-            return defaultValue;
-        }
+        return defaultValue;
     }
 }

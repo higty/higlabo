@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public interface IDatabaseKey
 {
-    public interface IDatabaseKey
-    {
-        String DatabaseKey { get; set; }
-    }
+    String DatabaseKey { get; set; }
 }

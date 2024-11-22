@@ -6,24 +6,23 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Net.Smtp
-{
-    public class SmtpMessageDefaultSettings
-    {
-        public Encoding ContentTypeCharsetEncoding { get; set; }
-        public TransferEncoding ContentTransferEncoding { get; set; }
+namespace HigLabo.Net.Smtp;
 
-        public SmtpMessageDefaultSettings()
+public class SmtpMessageDefaultSettings
+{
+    public Encoding ContentTypeCharsetEncoding { get; set; }
+    public TransferEncoding ContentTransferEncoding { get; set; }
+
+    public SmtpMessageDefaultSettings()
+    {
+        if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja")
         {
-            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja")
-            {
-                this.ContentTypeCharsetEncoding = Encoding.GetEncoding("iso-2022-jp");
-            }
-            else
-            {
-                this.ContentTypeCharsetEncoding = Encoding.UTF8;
-            }
-            this.ContentTransferEncoding = TransferEncoding.Base64;
+            this.ContentTypeCharsetEncoding = Encoding.GetEncoding("iso-2022-jp");
         }
+        else
+        {
+            this.ContentTypeCharsetEncoding = Encoding.UTF8;
+        }
+        this.ContentTransferEncoding = TransferEncoding.Base64;
     }
 }

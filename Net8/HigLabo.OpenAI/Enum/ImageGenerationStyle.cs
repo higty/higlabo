@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI
+namespace HigLabo.OpenAI;
+
+public enum ImageGenerationStyle
 {
-    public enum ImageGenerationStyle
-    {
-        Vivid,
-        Natural,
-    }
+    Vivid,
+    Natural,
 }

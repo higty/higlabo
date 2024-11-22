@@ -1,8 +1,7 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public class MetadataFilter
 {
-    public class MetadataFilter
-    {
-        public string Key { get; set; } = "";
-        public List<Condition> Conditions { get; init; } = new();
-    }
+    public string Key { get; set; } = "";
+    public List<Condition> Conditions { get; init; } = new();
 }

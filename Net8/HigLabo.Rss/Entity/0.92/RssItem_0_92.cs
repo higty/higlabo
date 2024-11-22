@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using HigLabo.Core;
 
-namespace HigLabo.Rss
-{
+namespace HigLabo.Rss;
+
 	public class RssItem_0_92 : RssItem_0_91
 	{
 		public RssEnclosure Enclosure { get; set; } = new();
 		public List<RssCategory> CategoryList { get; set; } = new();
-        public RssSource Source { get; set; } = new();
+    public RssSource Source { get; set; } = new();
 
-        public RssItem_0_92()
+    public RssItem_0_92()
 		{
 			
 		}
@@ -42,9 +42,8 @@ namespace HigLabo.Rss
 				this.CategoryList.Add(r);
 			}
 		}
-        public override string ToString()
-        {
-            return $"{base.ToString()}\r\nEnclosure: {Enclosure}\r\nSource: {Source}";
-        }
+    public override string ToString()
+    {
+        return $"{base.ToString()}\r\nEnclosure: {Enclosure}\r\nSource: {Source}";
+    }
 	}
-}

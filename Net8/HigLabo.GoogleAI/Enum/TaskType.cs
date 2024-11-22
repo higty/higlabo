@@ -1,7 +1,6 @@
-﻿namespace HigLabo.GoogleAI
-{
-    public enum TaskType
-    {
+﻿namespace HigLabo.GoogleAI;
 
-    }
+public enum TaskType
+{
+
 }

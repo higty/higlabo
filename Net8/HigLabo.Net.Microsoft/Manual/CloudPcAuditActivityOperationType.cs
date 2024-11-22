@@ -1,9 +1,8 @@
-﻿namespace HigLabo.Net.Microsoft
+﻿namespace HigLabo.Net.Microsoft;
+
+public enum CloudPcAuditActivityOperationType
 {
-    public enum CloudPcAuditActivityOperationType
-    {
-        Create,
-        Delete,
-        Patch,
-    }
+    Create,
+    Delete,
+    Patch,
 }

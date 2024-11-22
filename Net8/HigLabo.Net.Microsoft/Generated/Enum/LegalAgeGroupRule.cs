@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Microsoft
+namespace HigLabo.Net.Microsoft;
+
+public enum LegalAgeGroupRule
 {
-    public enum LegalAgeGroupRule
-    {
-        Allow,
-        RequireConsentForPrivacyServices,
-        RequireConsentForMinors,
-        RequireConsentForKids,
-        BlockMinors,
-    }
+    Allow,
+    RequireConsentForPrivacyServices,
+    RequireConsentForMinors,
+    RequireConsentForKids,
+    BlockMinors,
 }

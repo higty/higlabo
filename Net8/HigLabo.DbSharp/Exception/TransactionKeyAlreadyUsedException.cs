@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp
+namespace HigLabo.DbSharp;
+
+public class TransactionKeyAlreadyUsedException : Exception
 {
-    public class TransactionKeyAlreadyUsedException : Exception
-    {
-    }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Anthropic
+namespace HigLabo.Anthropic;
+
+public abstract class RestApiParameter
 {
-    public abstract class RestApiParameter
-    {
-        public static readonly object EmptyParameter = new object();
-        public abstract object GetRequestBody();
-    }
+    public static readonly object EmptyParameter = new object();
+    public abstract object GetRequestBody();
 }

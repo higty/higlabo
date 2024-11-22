@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.Slack
+namespace HigLabo.Net.Slack;
+
+public partial class FilesInfoResponse
 {
-    public partial class FilesInfoResponse
-    {
-        public File? File { get; set; }
-        public object[]? Comments { get; set; }
-    }
+    public File? File { get; set; }
+    public object[]? Comments { get; set; }
 }

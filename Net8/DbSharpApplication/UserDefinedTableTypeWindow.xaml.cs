@@ -17,104 +17,103 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace DbSharpApplication
+namespace DbSharpApplication;
+
+public partial class UserDefinedTableTypeWindow : Window
 {
-    public partial class UserDefinedTableTypeWindow : Window
+    public UserDefinedTableTypeWindowViewModel ViewModel { get; set; }
+    public GenerateSetting GenerateSetting
     {
-        public UserDefinedTableTypeWindowViewModel ViewModel { get; set; }
-        public GenerateSetting GenerateSetting
-        {
-            get { return this.ViewModel.GenerateSetting; }
-        }
-        public UserDefinedTableType UserDefinedTableType
-        {
-            get { return this.ViewModel.UserDefinedTableType; }
-        }
+        get { return this.ViewModel.GenerateSetting; }
+    }
+    public UserDefinedTableType UserDefinedTableType
+    {
+        get { return this.ViewModel.UserDefinedTableType; }
+    }
 
-        public UserDefinedTableTypeWindow(UserDefinedTableTypeWindowViewModel viewModel)
-        {
-            InitializeComponent();
+    public UserDefinedTableTypeWindow(UserDefinedTableTypeWindowViewModel viewModel)
+    {
+        InitializeComponent();
 
-            this.SetText();
-            this.ViewModel = viewModel;
-            this.DataContext = viewModel;
+        this.SetText();
+        this.ViewModel = viewModel;
+        this.DataContext = viewModel;
 
-            this.SetParameterProperty();
-        }
-        private void SetText()
+        this.SetParameterProperty();
+    }
+    private void SetText()
+    {
+        this.OutputFolderPathLabel.Content = T.Text.OutputFolder;
+        this.NamespaceNameLabel.Content = T.Text.Namespace;
+        this.DatabaseKeyLabel.Content = T.Text.DatabaseKey;
+        this.GenerateButton.Content = T.Text.Generate + "(_G)";
+        this.CloseButton.Content = T.Text.Close + "(_C)";
+    }
+    private void SetParameterProperty()
+    {
+        var u = this.ViewModel.GenerateSetting.UserDefinedTableType.FirstOrDefault(el => el.Name == this.UserDefinedTableType.Name);
+        if (u != null)
         {
-            this.OutputFolderPathLabel.Content = T.Text.OutputFolder;
-            this.NamespaceNameLabel.Content = T.Text.Namespace;
-            this.DatabaseKeyLabel.Content = T.Text.DatabaseKey;
-            this.GenerateButton.Content = T.Text.Generate + "(_G)";
-            this.CloseButton.Content = T.Text.Close + "(_C)";
-        }
-        private void SetParameterProperty()
-        {
-            var u = this.ViewModel.GenerateSetting.UserDefinedTableType.FirstOrDefault(el => el.Name == this.UserDefinedTableType.Name);
-            if (u != null)
+            foreach (var item in u.Columns)
             {
-                foreach (var item in u.Columns)
+                var c = this.UserDefinedTableType.Columns.Find(el => el.Name == item.Name);
+                if (c != null)
                 {
-                    var c = this.UserDefinedTableType.Columns.Find(el => el.Name == item.Name);
-                    if (c != null)
-                    {
-                        c.EnumName = item.EnumName;
-                    }
+                    c.EnumName = item.EnumName;
                 }
             }
         }
+    }
 
-        private void GenerateButton_Click(object sender, RoutedEventArgs e)
+    private void GenerateButton_Click(object sender, RoutedEventArgs e)
+    {
+        var setting = this.ViewModel.GenerateSetting;
+        var u = this.UserDefinedTableType;
+
+        if (setting.OutputFolderPath.IsNullOrEmpty())
         {
-            var setting = this.ViewModel.GenerateSetting;
-            var u = this.UserDefinedTableType;
-
-            if (setting.OutputFolderPath.IsNullOrEmpty())
-            {
-                MessageBox.Show("Please input output folder path.");
-                return;
-            }
-            if (setting.NamespaceName.IsNullOrEmpty())
-            {
-                MessageBox.Show("Please input NamespaceName.");
-                return;
-            }
-            if (setting.DatabaseKey.IsNullOrEmpty())
-            {
-                MessageBox.Show("Please input DatabaseKey.");
-                return;
-            }
-
-            var folderPath = System.IO.Path.Combine(setting.OutputFolderPath, "UserDefinedTableType");
-            try
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-            catch
-            {
-                MessageBox.Show($"Failed to create folder to {setting.OutputFolderPath}.");
-                return;
-            }
-            var f = new UserDefinedTableTypeSourceCodeFileClassFactory(u);
-            var sc = f.Create(folderPath, setting.NamespaceName);
-            var filePath = System.IO.Path.Combine(folderPath, $"{u.Name}.cs");
-            using (var stm = new StreamWriter(filePath, false, Encoding.UTF8))
-            {
-                stm.WriteLine("//Generated by DbSharpApplication.");
-                stm.WriteLine("//https://github.com/higty/higlabo/tree/master/Net7");
-                var cs = new CSharpSourceCodeGenerator(stm);
-                cs.Write(sc.SourceCode);
-            }
-            setting.UserDefinedTableType.RemoveAll(el => el.Name == u.Name);
-            setting.UserDefinedTableType.Add(u);
-            ConfigData.Current.Save();
-
-            this.Close();
+            MessageBox.Show("Please input output folder path.");
+            return;
         }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        if (setting.NamespaceName.IsNullOrEmpty())
         {
-            this.Close();
+            MessageBox.Show("Please input NamespaceName.");
+            return;
         }
+        if (setting.DatabaseKey.IsNullOrEmpty())
+        {
+            MessageBox.Show("Please input DatabaseKey.");
+            return;
+        }
+
+        var folderPath = System.IO.Path.Combine(setting.OutputFolderPath, "UserDefinedTableType");
+        try
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        catch
+        {
+            MessageBox.Show($"Failed to create folder to {setting.OutputFolderPath}.");
+            return;
+        }
+        var f = new UserDefinedTableTypeSourceCodeFileClassFactory(u);
+        var sc = f.Create(folderPath, setting.NamespaceName);
+        var filePath = System.IO.Path.Combine(folderPath, $"{u.Name}.cs");
+        using (var stm = new StreamWriter(filePath, false, Encoding.UTF8))
+        {
+            stm.WriteLine("//Generated by DbSharpApplication.");
+            stm.WriteLine("//https://github.com/higty/higlabo/tree/master/Net7");
+            var cs = new CSharpSourceCodeGenerator(stm);
+            cs.Write(sc.SourceCode);
+        }
+        setting.UserDefinedTableType.RemoveAll(el => el.Name == u.Name);
+        setting.UserDefinedTableType.Add(u);
+        ConfigData.Current.Save();
+
+        this.Close();
+    }
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
     }
 }

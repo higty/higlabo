@@ -4,37 +4,37 @@ using System.Text;
 using HigLabo.Net.Mail;
 using System.IO;
 
-namespace HigLabo.Net.Internal
+namespace HigLabo.Net.Internal;
+
+/// <summary>
+/// Represent context of request and response process and provide data about context.
+/// </summary>
+internal class Pop3DataReceiveContext : DataReceiveContext
 {
-    /// <summary>
-    /// Represent context of request and response process and provide data about context.
-    /// </summary>
-    internal class Pop3DataReceiveContext : DataReceiveContext
+    private enum ParseState
     {
-        private enum ParseState
-        {
-            StartCharOfLine, Message, CarriageReturn, LineFeed, Period, LastLineCarriageReturn,
-        }
-        private ParseState _State = ParseState.StartCharOfLine;
-        private Boolean _IsMultiLine = false;
-        internal Pop3DataReceiveContext(Encoding encoding, Boolean isMultiLine) :
-            base(encoding)
-        {
-            _IsMultiLine = isMultiLine;
-        }
-        internal Pop3DataReceiveContext(Stream stream, Encoding encoding, Boolean isMultiLine) :
-            base(stream, encoding)
-        {
-            _IsMultiLine = isMultiLine;
-        }
-        internal Pop3DataReceiveContext(Encoding encoding, Boolean isMultiLine, Action<String> callbackFunction) :
-            base(encoding)
-        {
-        }
-        internal Pop3DataReceiveContext(Stream stream, Encoding encoding, Boolean isMultiLine, Action<String> callbackFunction) :
-            base(stream, encoding)
-        {
-            _IsMultiLine = isMultiLine;
+        StartCharOfLine, Message, CarriageReturn, LineFeed, Period, LastLineCarriageReturn,
+    }
+    private ParseState _State = ParseState.StartCharOfLine;
+    private Boolean _IsMultiLine = false;
+    internal Pop3DataReceiveContext(Encoding encoding, Boolean isMultiLine) :
+        base(encoding)
+    {
+        _IsMultiLine = isMultiLine;
+    }
+    internal Pop3DataReceiveContext(Stream stream, Encoding encoding, Boolean isMultiLine) :
+        base(stream, encoding)
+    {
+        _IsMultiLine = isMultiLine;
+    }
+    internal Pop3DataReceiveContext(Encoding encoding, Boolean isMultiLine, Action<String> callbackFunction) :
+        base(encoding)
+    {
+    }
+    internal Pop3DataReceiveContext(Stream stream, Encoding encoding, Boolean isMultiLine, Action<String> callbackFunction) :
+        base(stream, encoding)
+    {
+        _IsMultiLine = isMultiLine;
 			this.EndGetResponse = callbackFunction;
 		}
 		/// <summary>
@@ -50,73 +50,72 @@ namespace HigLabo.Net.Internal
 			for (int i = 0; i < size; i++)
 			{
 				this.Stream.WriteByte(bb[i]);
-                if (_State == ParseState.StartCharOfLine)
+            if (_State == ParseState.StartCharOfLine)
+            {
+                if (_IsMultiLine == true)
                 {
-                    if (_IsMultiLine == true)
+                    if (bb[i] == AsciiCharCode.Period.GetNumber())
                     {
-                        if (bb[i] == AsciiCharCode.Period.GetNumber())
-                        {
-                            _State = ParseState.Period;
-                        }
-                        else if (bb[i] == AsciiCharCode.CarriageReturn.GetNumber())
-                        {
-                            _State = ParseState.CarriageReturn;
-                        }
-                        else
-                        {
-                            _State = ParseState.Message;
-                        }
+                        _State = ParseState.Period;
+                    }
+                    else if (bb[i] == AsciiCharCode.CarriageReturn.GetNumber())
+                    {
+                        _State = ParseState.CarriageReturn;
                     }
                     else
                     {
                         _State = ParseState.Message;
                     }
                 }
-                else if (_State == ParseState.Message)
+                else
                 {
-                    if (bb[i] == AsciiCharCode.CarriageReturn.GetNumber())
-                    {
-                        _State = ParseState.CarriageReturn;
-                    }
+                    _State = ParseState.Message;
                 }
-                else if (_State == ParseState.CarriageReturn)
+            }
+            else if (_State == ParseState.Message)
+            {
+                if (bb[i] == AsciiCharCode.CarriageReturn.GetNumber())
                 {
-                    if (bb[i] == AsciiCharCode.LineFeed.GetNumber())
-                    {
-                        if (_IsMultiLine == true)
-                        {
-                            _State = ParseState.StartCharOfLine;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else { throw new DataTransferContextException(this); }
+                    _State = ParseState.CarriageReturn;
                 }
-                else if (_State == ParseState.Period)
+            }
+            else if (_State == ParseState.CarriageReturn)
+            {
+                if (bb[i] == AsciiCharCode.LineFeed.GetNumber())
                 {
-                    if (bb[i] == AsciiCharCode.CarriageReturn.GetNumber())
+                    if (_IsMultiLine == true)
                     {
-                        _State = ParseState.LastLineCarriageReturn;
+                        _State = ParseState.StartCharOfLine;
                     }
-                    else if (bb[i] == AsciiCharCode.Period.GetNumber())
-                    {
-                        _State = ParseState.Message;
-                    }
-                    else { throw new DataTransferContextException(this); }
-                }
-                else if (_State == ParseState.LastLineCarriageReturn)
-                {
-                    if (bb[i] == AsciiCharCode.LineFeed.GetNumber())
+                    else
                     {
                         return false;
                     }
-                    else { throw new DataTransferContextException(this); }
                 }
-                bb[i] = 0;
+                else { throw new DataTransferContextException(this); }
+            }
+            else if (_State == ParseState.Period)
+            {
+                if (bb[i] == AsciiCharCode.CarriageReturn.GetNumber())
+                {
+                    _State = ParseState.LastLineCarriageReturn;
+                }
+                else if (bb[i] == AsciiCharCode.Period.GetNumber())
+                {
+                    _State = ParseState.Message;
+                }
+                else { throw new DataTransferContextException(this); }
+            }
+            else if (_State == ParseState.LastLineCarriageReturn)
+            {
+                if (bb[i] == AsciiCharCode.LineFeed.GetNumber())
+                {
+                    return false;
+                }
+                else { throw new DataTransferContextException(this); }
+            }
+            bb[i] = 0;
 			}
-            return true;
+        return true;
 		}
 	}
-}

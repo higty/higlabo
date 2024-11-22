@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.DbSharp.MetaData
+namespace HigLabo.DbSharp.MetaData;
+
+public enum SqlParameterConvertType
 {
-    public enum SqlParameterConvertType
-    {
-        Default,
-        Enum,
-    }
+    Default,
+    Enum,
 }

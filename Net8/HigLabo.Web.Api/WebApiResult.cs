@@ -1,21 +1,19 @@
 ﻿using System.Net;
 using System.Text;
 
-namespace HigLabo.Web
+namespace HigLabo.Web;
+
+public class WebApiResult<T>
 {
-    public class WebApiResult<T>
+    public int HttpStatusCode
     {
-        public int HttpStatusCode
-        {
-            get { return (int)this.HttpStatus; }
-        }
-        public HttpStatusCode HttpStatus { get; set; }
-        public string DataType { get; set; } = "";
-        public T? Data { get; set; }
-
+        get { return (int)this.HttpStatus; }
     }
-    public class WebApiResult : WebApiResult<object>
-    {
-    }
+    public HttpStatusCode HttpStatus { get; set; }
+    public string DataType { get; set; } = "";
+    public T? Data { get; set; }
 
+}
+public class WebApiResult : WebApiResult<object>
+{
 }

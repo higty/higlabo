@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.RestApi
+namespace HigLabo.RestApi;
+
+public interface IRestApiParameter
 {
-    public interface IRestApiParameter
-    {
-        string HttpMethod { get; }
-        string GetApiPath();
-        object? GetRequestBody();
-    }
+    string HttpMethod { get; }
+    string GetApiPath();
+    object? GetRequestBody();
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Anthropic
+namespace HigLabo.Anthropic;
+
+public interface IRestApiParameter
 {
-    public interface IRestApiParameter
-    {
-        string GetApiPath();
-        string HttpMethod { get; }
-    }
+    string GetApiPath();
+    string HttpMethod { get; }
 }

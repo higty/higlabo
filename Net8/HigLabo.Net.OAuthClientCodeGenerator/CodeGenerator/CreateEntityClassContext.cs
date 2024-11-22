@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Net.CodeGenerator
+namespace HigLabo.Net.CodeGenerator;
+
+public class CreateEntityClassContext
 {
-    public class CreateEntityClassContext
-    {
-        public List<string> UrlList { get; init; } = new();
-    }
+    public List<string> UrlList { get; init; } = new();
 }

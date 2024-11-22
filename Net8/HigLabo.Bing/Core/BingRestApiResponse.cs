@@ -1,9 +1,8 @@
 ﻿using HigLabo.RestApi;
 
-namespace HigLabo.Bing
+namespace HigLabo.Bing;
+
+public class BingRestApiResponse : RestApiResponse
 {
-    public class BingRestApiResponse : RestApiResponse
-    {
-        public string _Type { get; set; } = "";
-    }
+    public string _Type { get; set; } = "";
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.CodeGenerator
+namespace HigLabo.CodeGenerator;
+
+public enum PropertyBodyType
 {
-    public enum PropertyBodyType
-    {
-        Get,
-        Set,
-    }
+    Get,
+    Set,
 }

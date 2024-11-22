@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Net.Ftp
+namespace HigLabo.Net.Ftp;
+
+public enum FtpConnectionState
 {
-    public enum FtpConnectionState
-    {
 		/// <summary>
 		/// 
 		/// </summary>
-        Disconnected, 
+    Disconnected, 
 		/// <summary>
 		/// 
 		/// </summary>
@@ -19,5 +19,4 @@ namespace HigLabo.Net.Ftp
 		/// 
 		/// </summary>
 		Authenticated
-    }
 }

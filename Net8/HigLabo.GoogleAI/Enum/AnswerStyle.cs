@@ -1,10 +1,9 @@
-﻿namespace HigLabo.GoogleAI
+﻿namespace HigLabo.GoogleAI;
+
+public enum AnswerStyle
 {
-    public enum AnswerStyle
-    {
-        Answer_Style_Unspecified,
-        Abstractive,
-        ExtractiveE,
-        Verbose,
-    }
+    Answer_Style_Unspecified,
+    Abstractive,
+    ExtractiveE,
+    Verbose,
 }

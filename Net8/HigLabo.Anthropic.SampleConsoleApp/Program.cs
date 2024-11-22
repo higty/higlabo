@@ -1,13 +1,12 @@
-﻿namespace HigLabo.Anthropic.SampleConsoleApp
-{
-    internal class Program
-    {
+﻿namespace HigLabo.Anthropic.SampleConsoleApp;
 
-        static async Task Main(string[] args)
-        {
-            var sample = new AnthropicClientPlayground();
-            await sample.ExecuteAsync();
-            Console.ReadLine();
-        }
+internal class Program
+{
+
+    static async Task Main(string[] args)
+    {
+        var sample = new AnthropicClientPlayground();
+        await sample.ExecuteAsync();
+        Console.ReadLine();
     }
 }
