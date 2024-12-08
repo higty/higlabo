@@ -195,6 +195,77 @@ public class ErrorLogTable : BigQueryTable
     {
         return await this.List_Data_Get(date.ToString("yyyyMMdd"), userId, startTime, endTime, exceptionType, errorLevel, startIndex, recordCount, whereConditionList, cancellationToken);
     }
+    public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly startDate, DateOnly endDate, Guid? userId, DateTime startTime, DateTime endTime
+        , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, CancellationToken cancellationToken)
+    {
+        return await this.List_Data_Get(startDate, endDate, userId, startTime, endTime, exceptionType, errorLevel, startIndex, recordCount, Array.Empty<string>(), cancellationToken);
+    }
+    public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly startDate, DateOnly endDate, Guid? userId, DateTime startTime, DateTime endTime
+    , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
+    {
+        if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
+        if (recordCount < 0) { throw new ArgumentOutOfRangeException("recordCount must be larger than zero."); }
+
+        var l = new List<Record>();
+
+        var sv = this.BigqueryService;
+        var req = this.CreateQueryRequest();
+
+        var where = new StringBuilder();
+        where.Append($"WHERE _TABLE_SUFFIX BETWEEN '{startDate.ToString("yyyyMMdd")}' AND '{endDate.ToString("yyyyMMdd")}'");
+        where.AppendFormat("AND (ExecuteTime >= '{0}' and ExecuteTime < '{1}')"
+            , startTime.ToString("yyyy-MM-dd HH:mm:ss"), endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+        where.AppendLine();
+        if (userId.HasValue)
+        {
+            where.AppendFormat("and UserId = '{0}' ", userId).AppendLine();
+        }
+        if (errorLevel.HasValue)
+        {
+            where.AppendFormat("and ErrorLevel >= {0} ", errorLevel).AppendLine();
+        }
+        if (exceptionType.IsNullOrEmpty() == false &&
+            RegexList.Alphabet.IsMatch(exceptionType))
+        {
+            where.AppendFormat("and ExceptionType = '{0}' ", exceptionType).AppendLine();
+        }
+        foreach (var item in whereConditionList)
+        {
+            where.AppendLine(item);
+        }
+
+        var sb = new StringBuilder();
+        sb.AppendLine(CreateSelectFromClause("*"));
+        sb.AppendLine(where.ToString());
+        sb.AppendLine("order by ExecuteTime desc");
+        sb.AppendFormat("limit {0} offset {1}", recordCount, startIndex).AppendLine();
+        req.Query = sb.ToString();
+        {
+            var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync(cancellationToken);
+            foreach (var d in res.CreateRecords())
+            {
+                var r = d.Map(new Record());
+                l.Add(r);
+            }
+        }
+
+        sb.Clear();
+        sb.Append("select COUNT(*) as RecordCount ");
+        sb.AppendLine(CreateFromClause("*"));
+        sb.AppendLine(where.ToString());
+        req.Query = sb.ToString();
+        {
+            var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync(cancellationToken);
+            var rr = res.CreateRecords();
+            if (rr.Count == 0)
+            {
+                return (l, req.Query, 0);
+            }
+            var d = rr[0];
+            var totalRecordCount = d["RecordCount"]?.ToString()?.ToUInt64() ?? 0;
+            return (l, req.Query, totalRecordCount);
+        }
+    }
     public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(string dateSuffix, Guid? userId, DateTime startTime, DateTime endTime
         , String exceptionType, Int32? errorLevel, Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
     {
@@ -260,6 +331,7 @@ public class ErrorLogTable : BigQueryTable
             return (l, req.Query, totalRecordCount);
         }
     }
+
     public async ValueTask<Record?> Data_Get(DateOnly date, Guid logId)
     {
         return await this.Data_Get(date.ToString("yyyyMMdd"), logId);

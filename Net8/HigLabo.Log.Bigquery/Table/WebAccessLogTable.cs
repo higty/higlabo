@@ -234,6 +234,70 @@ public class WebAccessLogTable : BigQueryTable
             return (l, req.Query, totalRecordCount);
         }
     }
+    public async Task<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly startDate, DateOnly endDate, Guid? userId, DateTime startTime, DateTime endTime
+        , Int32 startIndex, Int32 recordCount, CancellationToken cancellationToken)
+    {
+        return await this.List_Data_Get(startDate, endDate, userId, startTime, endTime, startIndex, recordCount, Array.Empty<string>(), cancellationToken);
+    }
+    public async Task<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly startDate, DateOnly endDate, Guid? userId, DateTime startTime, DateTime endTime
+        , Int32 startIndex, Int32 recordCount, IEnumerable<String> whereConditionList, CancellationToken cancellationToken)
+    {
+        if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
+        if (recordCount < 0) { throw new ArgumentOutOfRangeException("recordCount must be larger than zero."); }
+
+        var l = new List<Record>();
+
+        var sv = this.BigqueryService;
+        var req = this.CreateQueryRequest();
+
+        var where = new StringBuilder();
+        where.Append($"WHERE _TABLE_SUFFIX BETWEEN '{startDate.ToString("yyyyMMdd")}' AND '{endDate.ToString("yyyyMMdd")}'");
+        where.AppendFormat("AND (BeginRequestTime >= '{0}' and BeginRequestTime < '{1}')"
+            , startTime.ToString("yyyy-MM-dd HH:mm:ss")
+            , endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+        where.AppendLine();
+        if (userId.HasValue)
+        {
+            where.AppendFormat("and UserId = '{0}' ", userId).AppendLine();
+        }
+        foreach (var item in whereConditionList)
+        {
+            where.AppendLine(item);
+        }
+
+        var sb = new StringBuilder();
+        sb.AppendLine(CreateSelectFromClause("*"));
+        sb.AppendLine(where.ToString());
+        sb.AppendLine("order by BeginRequestTime desc");
+        sb.AppendFormat("limit {0} offset {1}", recordCount, startIndex).AppendLine();
+        req.Query = sb.ToString();
+        {
+            var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync(cancellationToken);
+            foreach (var d in res.CreateRecords())
+            {
+                var r = d.Map(new Record());
+                l.Add(r);
+            }
+        }
+
+        sb.Clear();
+        sb.Append("select COUNT(*) as RecordCount ");
+        sb.AppendLine(CreateFromClause("*"));
+        sb.AppendLine(where.ToString());
+        req.Query = sb.ToString();
+        {
+            var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync(cancellationToken);
+            var dd = res.CreateRecords();
+            UInt64 totalRecordCount = 0;
+            if (dd.Count > 0)
+            {
+                var d = dd[0];
+                totalRecordCount = d["RecordCount"]?.ToString()?.ToUInt64() ?? 0;
+            }
+            return (l, req.Query, totalRecordCount);
+        }
+    }
+
     public async Task<(List<Record> records, UInt64 totalRecordCount)> Search_RequestBody_Get(DateOnly date, String searchText, Int32 startIndex, Int32 recordCount)
     {
         await this.EnsureTable(date);
@@ -270,6 +334,52 @@ public class WebAccessLogTable : BigQueryTable
         sb.Clear();
         sb.Append("select COUNT(*) as RecordCount ");
         sb.AppendLine(CreateFromClause(dateSuffix));
+        sb.AppendLine(where.ToString());
+        req.Query = sb.ToString();
+        {
+            var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync();
+            UInt64 totalRecordCount = 0;
+            var dd = res.CreateRecords();
+            if (dd.Count > 0)
+            {
+                var d = dd[0];
+                totalRecordCount = d["RecordCount"]?.ToString()?.ToUInt64() ?? 0;
+            }
+            return (l, totalRecordCount);
+        }
+    }
+    public async Task<(List<Record> records, UInt64 totalRecordCount)> Search_RequestBody_Get(DateOnly startDate, DateOnly endDate, String searchText, Int32 startIndex, Int32 recordCount)
+    {
+        if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex must be larger than zero."); }
+        if (recordCount < 0) { throw new ArgumentOutOfRangeException("recordCount must be larger than zero."); }
+
+        var l = new List<Record>();
+
+        var sv = this.BigqueryService;
+        var req = this.CreateQueryRequest();
+
+        var where = new StringBuilder();
+        where.Append($"WHERE _TABLE_SUFFIX BETWEEN '{startDate.ToString("yyyyMMdd")}' AND '{endDate.ToString("yyyyMMdd")}'");
+        where.AppendFormat("AND RequestBodyData like '{0}'", searchText);
+
+        var sb = new StringBuilder();
+        sb.AppendLine(CreateSelectFromClause("*"));
+        sb.AppendLine(where.ToString());
+        sb.AppendLine("order by BeginRequestTime desc");
+        sb.AppendFormat("limit {0} offset {1}", recordCount, startIndex).AppendLine();
+        req.Query = sb.ToString();
+        {
+            var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync();
+            foreach (var d in res.CreateRecords())
+            {
+                var r = d.Map(new Record());
+                l.Add(r);
+            }
+        }
+
+        sb.Clear();
+        sb.Append("select COUNT(*) as RecordCount ");
+        sb.AppendLine(CreateFromClause("*"));
         sb.AppendLine(where.ToString());
         req.Query = sb.ToString();
         {

@@ -43,7 +43,7 @@ public class TableHtmlConverter : IHtmlConverter
                     }
                     else
                     {
-                        sb.Append(line).Append("\r");
+                        sb.Append(line).Append("\n");
                     }
                 }
                 else
@@ -55,6 +55,7 @@ public class TableHtmlConverter : IHtmlConverter
                     else
                     {
                         sb.Append(CreateTable(context));
+                        sb.Append(line).Append("\n");
                         context.State = ParseContextState.Ready;
                     }
                 }

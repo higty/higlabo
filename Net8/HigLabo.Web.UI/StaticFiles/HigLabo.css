@@ -320,11 +320,14 @@ button {
   /* button */
   --color-button-bg: var(--color-set-primary-05);
   --color-button-text: var(--color-white);
+  --color-button-hover: var(--color-set-primary-07);
+  --color-button-focus: var(--color-set-primary-07);
   /* form element */
   --color-form-element-bg: var(--color-set-glay-01);
   --color-form-element-text: var(--color-text);
   --color-form-element-border: var(--color-border);
   --color-form-element-focus: var(--color-set-primary-03);
+  --color-form-element-hover: var(--color-set-glay-03);
   --color-table-header-bg: #37474f;
   --color-table-header-text: #ffffff;
   --color-block-information-panel-bg: var(--color-set-glay-01);
@@ -432,6 +435,10 @@ a.button-radius-8 {
 .grid-place-item-center {
   display: grid;
   place-items: center;
+}
+
+.container-type-inline-size {
+  container-type: inline-size;
 }
 
 .display-flex {
@@ -1047,6 +1054,7 @@ dialog {
   place-items: center;
   height: 40px;
   width: 40px;
+  cursor: pointer;
 }
 .paging-panel .page-number-panel {
   display: flex;
@@ -1055,12 +1063,10 @@ dialog {
 }
 .paging-panel .page-number-panel .page-number {
   margin: 0 4px;
-}
-.paging-panel .icon-panel {
-  cursor: pointer;
-}
-.paging-panel .icon-panel:hover {
-  background-color: var(--color-set-glay-03);
+  width: 40px;
+  text-align: right;
+  background-color: transparent;
+  border: none 0 transparent;
 }
 
 .input-record {
@@ -1195,6 +1201,12 @@ input[type=password]:focus,
 textarea:focus {
   border-color: var(--color-form-element-focus);
 }
+input[type=text]:hover,
+input[type=password]:hover,
+.input-record:hover,
+textarea:hover {
+  background-color: var(--color-form-element-hover);
+}
 
 input[type=text].date {
   width: 100px;
@@ -1213,18 +1225,6 @@ a.large-button {
   background-color: var(--color-button-bg);
   color: var(--color-button-text);
 }
-.menu-button:hover,
-a.menu-button:hover,
-.button:hover,
-a.button:hover,
-.button-radius-4:hover,
-a.button-radius-4:hover,
-.button-radius-8:hover,
-a.button-radius-8:hover,
-.large-button:hover,
-a.large-button:hover {
-  background-color: var(--color-set-primary-04);
-}
 .menu-button:focus,
 a.menu-button:focus,
 .button:focus,
@@ -1235,7 +1235,19 @@ a.button-radius-4:focus,
 a.button-radius-8:focus,
 .large-button:focus,
 a.large-button:focus {
-  background-color: var(--color-set-primary-07);
+  background-color: var(--color-button-focus);
+}
+.menu-button:hover,
+a.menu-button:hover,
+.button:hover,
+a.button:hover,
+.button-radius-4:hover,
+a.button-radius-4:hover,
+.button-radius-8:hover,
+a.button-radius-8:hover,
+.large-button:hover,
+a.large-button:hover {
+  background-color: var(--color-button-hover);
 }
 
 .item:nth-child(2n) {
@@ -1266,6 +1278,16 @@ a.large-button:focus {
   background-color: var(--color-item-current);
 }
 
+.input-record > .data-record-panel {
+  background-color: transparent;
+}
+.input-record > .data-record-panel:hover {
+  background-color: transparent;
+}
+.input-record > .data-record-panel:focus {
+  background-color: transparent;
+}
+
 .data-view .view-panel .panel-menu-row {
   background-color: var(--color-panel-menu-bg);
 }
@@ -1275,6 +1297,13 @@ a.large-button:focus {
 .data-view .right-panel {
   background-color: var(--color-panel-bg);
   border: solid 1px var(--color-border);
+}
+
+.paging-panel .page-number-panel .page-number:hover {
+  background-color: var(--color-panel-menu-hover);
+}
+.paging-panel .icon-panel:hover {
+  background-color: var(--color-panel-menu-hover);
 }
 
 .record-list-table thead tr th, .record-list-table thead tr td {

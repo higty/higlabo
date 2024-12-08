@@ -7,9 +7,12 @@
     encodeParameters: function (xhr, parameters, element: Element) {
         xhr.overrideMimeType("text/json");
 
-        const ee = new Array<Node>();
+        const ee = new Array<Element>();
         let hxInclude = element.getAttribute("hx-include");
 
+        if (hxInclude == null) {
+            hxInclude = "this";
+        }
         const ss = hxInclude.split(",");
         for (var i = 0; i < ss.length; i++) {
             let selector = ss[i];
@@ -27,9 +30,19 @@
             }
         }
 
-        let p = {};
+        let p: any = {};
         for (var eIndex = 0; eIndex < ee.length; eIndex++) {
-            this.processParameter(p, ee[eIndex]);
+            const el = ee[eIndex]
+            const name = el.getAttribute("name");
+
+            if (name != "" && el.getAttribute("hig-property-type") == "Array") {
+                let rr = [];
+                p[name] = rr;
+                this.processArrayParameter(rr, ee[eIndex]);
+            }
+            else {
+                this.processParameter(p, ee[eIndex]);
+            }
         }
         return JSON.stringify(p);
     },
