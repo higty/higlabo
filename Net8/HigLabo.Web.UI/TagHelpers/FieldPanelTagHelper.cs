@@ -27,10 +27,9 @@ public class FieldPanelTagHelper : TagHelper
             output.Content.AppendHtml(div);
         }
         {
-            var div = new TagBuilder("div");
-            div.Attributes.Add("class", "input-error");
-            div.Attributes.Add("input-error-key", this.InputErrorKey);
-            output.Content.AppendHtml(div);
+            var div = new InputErrorPanelTagHelper();
+            div.InputErrorKey = this.InputErrorKey;
+            output.Content.AppendHtml(await div.WriteHtmlAsync());
         }
         await base.ProcessAsync(context, output);
     }

@@ -74,10 +74,10 @@ public static class DateTimeFormatExtensions
             case DateTimePart.MonthDayHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())} {value.ToString("HH:mm:ss")}";
             case DateTimePart.DateDayOfWeek: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)})";
             case DateTimePart.MonthDayDayOfWeek: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)})";
-            case DateTimePart.DateDayOfWeekHourMinute: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm")}";
-            case DateTimePart.DateDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm:ss")}";
-            case DateTimePart.MonthDayDayOfWeekHourMinute: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm")}";
-            case DateTimePart.MonthDayDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)}){value.ToString("HH:mm:ss")}";
+            case DateTimePart.DateDayOfWeekHourMinute: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)}) {value.ToString("HH:mm")}";
+            case DateTimePart.DateDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetFormat())}({value.ToString("ddd", cultureInfo)}) {value.ToString("HH:mm:ss")}";
+            case DateTimePart.MonthDayDayOfWeekHourMinute: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)}) {value.ToString("HH:mm")}";
+            case DateTimePart.MonthDayDayOfWeekHourMinuteSecond: return $"{value.ToString(format.GetMonthDayFormat())}({value.ToString("ddd", cultureInfo)}) {value.ToString("HH:mm:ss")}";
             default: throw new InvalidOperationException();
         }
     }

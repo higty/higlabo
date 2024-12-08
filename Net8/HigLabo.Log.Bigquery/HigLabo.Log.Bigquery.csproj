@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>8.1.0.3</Version>
+		<Version>8.1.0.4</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
 		<Authors>Higty</Authors>

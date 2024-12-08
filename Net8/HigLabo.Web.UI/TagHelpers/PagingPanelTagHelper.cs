@@ -38,11 +38,12 @@ public class PagingPanelTagHelper : TagHelper
             var span = new TagBuilder("span");
             span.Attributes.Add("class", "page-number-panel");
             {
-                var span1 = new TagBuilder("span");
-                span1.Attributes.Add("class", "page-number");
-                span1.Attributes.Add("name", "PageNumber");
-                span1.InnerHtml.SetContent("1");
-                span.InnerHtml.AppendHtml(span1);
+                var tx = new TagBuilder("input");
+                tx.Attributes.Add("type", "text");
+                tx.Attributes.Add("class", "page-number");
+                tx.Attributes.Add("name", "PageNumber");
+                tx.Attributes.Add("value", "1");
+                span.InnerHtml.AppendHtml(tx);
 
                 var span2 = new TagBuilder("span");
                 span2.InnerHtml.SetContent(T.Text.Page);

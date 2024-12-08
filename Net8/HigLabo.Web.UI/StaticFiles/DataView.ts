@@ -4,6 +4,7 @@ export class DataView {
     public initialize() {
         $("body").on("click", "[data-view-load]", this.load_Click.bind(this));
         $("body").on("click", "[data-view] [page-number-increment]", this.pageNumberIncrement_Click.bind(this));
+        $("body").on("focusout", "[data-view] [name='PageNumber']", this.pageNumber_Blur.bind(this));
 
         $("body").on("click", "[show-data-view-view-panel]", this.showViewPanel_Click.bind(this));
         $("body").on("click", "[show-data-view-detail-panel]", this.showDetailPanel_Click.bind(this));
@@ -54,15 +55,22 @@ export class DataView {
         const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
         this.loadData(dataViewPanel);
     }
+    private pageNumber_Blur(target: Element, e: Event) {
+        const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
+        this.loadData(dataViewPanel);
+    }
     private pageNumberIncrement_Click(target: Element, e: Event) {
         const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
         const pageNumberPanel = $(dataViewPanel).find("[name='PageNumber']");
         const increment = parseInt($(target).getAttribute("page-number-increment"));
-        let newPageNumber = parseInt($(pageNumberPanel).getInnerText()) + increment;
+        let newPageNumber = parseInt($(pageNumberPanel).getValue()) + increment;
         if (newPageNumber < 1) {
             newPageNumber = 1;
         }
-        $(pageNumberPanel).setInnerText(newPageNumber.toString());
+        if (isNaN(newPageNumber)) {
+            newPageNumber = 1;
+        }
+        $(pageNumberPanel).setValue(newPageNumber.toString());
 
         this.loadData(dataViewPanel);
     }

@@ -48,7 +48,12 @@ export class DataRecordPopupPanel {
         if (element.getAttribute("prevent-default") == "true") {
             e.preventDefault();
         }
-        this.show(element);
+        if ($(window).getInnerWidth() < 600) {
+            this.show(element, false);
+        }
+        else {
+            this.show(element, true);
+        }
         e.stopPropagation();
     }
     panel_Keydown(element, e) {
@@ -56,10 +61,10 @@ export class DataRecordPopupPanel {
             if (element.getAttribute("prevent-default") == "true") {
                 e.preventDefault();
             }
-            this.show(element);
+            this.show(element, true);
         }
     }
-    show(element) {
+    show(element, isSetFocusToTextbox) {
         const dpl = this.getDataRecordPopupPanel();
         if ($(element).getAttribute("target-panel-type") == "input-record-list-panel") {
             this.currentPanel = $(element.parentElement).getFirstElement();
@@ -119,8 +124,10 @@ export class DataRecordPopupPanel {
         setTimeout(function () {
             $(dpl).removeAttribute("processing");
             const tx = $(dpl).find("[search-textbox]").getFirstElement();
-            if (allowSearch == true || tx != null) {
-                $(tx).setFocus();
+            if (isSetFocusToTextbox == true) {
+                if (allowSearch == true || tx != null) {
+                    $(tx).setFocus();
+                }
             }
             else {
                 $(dpl).find("[tabindex]").setFocus();
