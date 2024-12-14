@@ -11,6 +11,7 @@ public class RestApiException : Exception
     public RestApiResponse Response { get; init; }
 
     public RestApiException(RestApiResponse response)
+        : base(response.GetResponseBodyText())
     {
         this.Response = response;
     }

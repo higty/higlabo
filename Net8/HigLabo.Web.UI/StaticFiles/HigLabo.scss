@@ -782,6 +782,24 @@ dialog {
     }
 }
 
+.accordion-panel {
+    &[toggle-state='Visible'] {
+        [toggle-state='Hidden'] {
+            display: none;
+        }
+    }
+
+    &[toggle-state='Hidden'] {
+        [toggle-state='Visible'] {
+            display: none;
+        }
+
+        > .content-panel {
+            display: none;
+        }
+    }
+}
+
 .record-list-table {
     width: 100%;
 
@@ -916,7 +934,7 @@ dialog {
                     }
                 }
 
-                input[type='text'] {
+                input[name='SearchText'] {
                     width: 200px;
                 }
             }

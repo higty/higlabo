@@ -4,8 +4,8 @@ using System.Globalization;
 
 namespace HigLabo.Web.TagHelpers;
 
-[HtmlTargetElement("text")]
-[RestrictChildren("language")]
+[HtmlTargetElement("language-text")]
+[RestrictChildren("text")]
 public class LanguageTextTagHelper : TagHelper
 {
     internal class ChildDataContext
@@ -36,7 +36,7 @@ public class LanguageTextTagHelper : TagHelper
         await base.ProcessAsync(context, output);
     }
 }
-[HtmlTargetElement("language", ParentTag="text")]
+[HtmlTargetElement("text", ParentTag= "language-text")]
 public class LanguageCultureTagHelper : TagHelper
 {
     public String TagName { get; set; } = "span";

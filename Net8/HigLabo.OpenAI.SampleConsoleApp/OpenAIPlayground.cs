@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ChatCompletionStreamWithFunctionCalling();
+        await ChatCompletionVision();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -410,32 +410,32 @@ public class OpenAIPlayground
         var res = await cl.FileUploadAsync(p);
         Console.WriteLine(res);
     }
-		private async ValueTask ImageFileDownload()
-		{
-			var cl = OpenAIClient;
+	private async ValueTask ImageFileDownload()
+	{
+		var cl = OpenAIClient;
 
-			var fileResponse = await cl.FileContentGetAsync("file-ShIMh9E6jz4PNdLjWk5VJHQA");
-        File.WriteAllBytes("C:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
-		}
-		private async ValueTask FileUpload_Finetune()
+		var fileResponse = await cl.FileContentGetAsync("file-ShIMh9E6jz4PNdLjWk5VJHQA");
+    File.WriteAllBytes("C:\\Data\\Dev\\Hig_Download.png", fileResponse.Stream!.ToByteArray());
+	}
+	private async ValueTask FileUpload_Finetune()
+{
+    var cl = OpenAIClient;
+
+    var p = new FileUploadParameter();
+    p.File.SetFile($"FinetuneSample{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt", File.ReadAllBytes("C:\\Data\\Dev\\FinetuneSample.txt"));
+    p.Purpose = "fine-tune";
+    var res = await cl.FileUploadAsync(p);
+
+    var res1 = await cl.FilesAsync();
+    foreach (var item in res1.Data)
     {
-        var cl = OpenAIClient;
+        Console.WriteLine(item.Id + " " + item.FileName);
+        if (item.Purpose == "assistants") { continue; }
 
-        var p = new FileUploadParameter();
-        p.File.SetFile($"FinetuneSample{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt", File.ReadAllBytes("C:\\Data\\Dev\\FinetuneSample.txt"));
-        p.Purpose = "fine-tune";
-        var res = await cl.FileUploadAsync(p);
-
-        var res1 = await cl.FilesAsync();
-        foreach (var item in res1.Data)
-        {
-            Console.WriteLine(item.Id + " " + item.FileName);
-            if (item.Purpose == "assistants") { continue; }
-
-            var res3 = await cl.FileContentGetAsync(item.Id);
-            Console.WriteLine(res3.GetResponseBodyText());
-        }
+        var res3 = await cl.FileContentGetAsync(item.Id);
+        Console.WriteLine(res3.GetResponseBodyText());
     }
+}
     private async ValueTask ImageGeneration()
     {
         var cl = OpenAIClient;

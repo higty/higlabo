@@ -1035,6 +1035,16 @@ dialog {
   display: none;
 }
 
+.accordion-panel[toggle-state=Visible] [toggle-state=Hidden] {
+  display: none;
+}
+.accordion-panel[toggle-state=Hidden] [toggle-state=Visible] {
+  display: none;
+}
+.accordion-panel[toggle-state=Hidden] > .content-panel {
+  display: none;
+}
+
 .record-list-table {
   width: 100%;
 }
@@ -1144,7 +1154,7 @@ dialog {
 .data-view .view-panel > .panel-menu > .panel-menu-row .panel-menu-item:hover {
   background-color: var(--color-menu-link-hover);
 }
-.data-view .view-panel > .panel-menu > .panel-menu-row input[type=text] {
+.data-view .view-panel > .panel-menu > .panel-menu-row input[name=SearchText] {
   width: 200px;
 }
 .data-view .view-panel > .record-list-panel {

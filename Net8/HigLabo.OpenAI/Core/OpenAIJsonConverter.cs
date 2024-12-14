@@ -19,7 +19,8 @@ public class OpenAIJsonConverter : IJsonConverter
 
     public OpenAIJsonConverter()
     {
-        this.SerializeSetting.ContractResolver = new CamelCaseContractResolver();
+        //Propertyは小文字、JsonSchemeは？
+        this.SerializeSetting.ContractResolver = new LowercaseContractResolver();
         this.SerializeSetting.NullValueHandling = NullValueHandling.Ignore;
         this.SerializeSetting.Converters.Add(new EnumToLowerStringConverter());
 

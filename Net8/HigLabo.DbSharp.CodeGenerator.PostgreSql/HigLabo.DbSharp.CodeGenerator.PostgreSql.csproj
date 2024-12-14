@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>8.0.0.1</Version>
+		<Version>8.0.0.2</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
 		<Authors>Higty</Authors>
@@ -16,7 +16,7 @@
 	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.13.1" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
-		<PackageReference Include="Npgsql" Version="9.0.1" />
+		<PackageReference Include="Npgsql" Version="9.0.2" />
 		<PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.6.1" />
 	</ItemGroup>
 
