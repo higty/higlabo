@@ -109,7 +109,7 @@ public class ChatImageMessage : IChatMessage
     }
     public void AddImageFile(string filePath)
     {
-        var content = new ImageContent(filePath);
+        var content = new ImageContent();
         content.LoadImageFromFile(filePath);
         this.Content.Add(content);
     }
