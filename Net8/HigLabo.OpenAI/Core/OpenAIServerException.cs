@@ -29,7 +29,7 @@ public class OpenAIServerException : Exception
 
     public OpenAIServerException(object parameter, HttpRequestMessage request, string requestBodyText
         , HttpResponseMessage response, string responseBodyText, OpenAIServerError error)
-        : base($"{error.Message}\n{requestBodyText}\n{responseBodyText}")
+        : base($"{error.Message}\n{responseBodyText}")
     {
         this.Parameter = parameter;
         this.Request = request;
