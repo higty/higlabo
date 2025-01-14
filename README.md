@@ -119,6 +119,7 @@ services.AddScoped<RazorRenderer>();
 
 var app = builder.Build();
 app.MapGet("/portal", (RazorRenderer renderer) => await context.WriteHtmlAsync("/Pages/Portal.cshtml"));
+app.MapGet("/task/list", (RazorRenderer renderer) => await context.WriteHtmlAsync("/Pages/Portal.cshtml", new TaskListModel()));
 ```
 
 ## HigLabo.Mime
