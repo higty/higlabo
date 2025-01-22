@@ -107,6 +107,21 @@ A code generator to call stored procedure on database(SQL server, MySQL)
 
 https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
 
+## HigLabo.Web
+RazorRenderer class get html from .cshtml file.
+
+You can use it by 
+```Program.cs
+var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+services.AddHttpContextAccessor();
+services.AddScoped<RazorRenderer>();
+
+var app = builder.Build();
+app.MapGet("/portal", (RazorRenderer renderer) => await context.WriteHtmlAsync("/Pages/Portal.cshtml"));
+app.MapGet("/task/list", (RazorRenderer renderer) => await context.WriteHtmlAsync("/Pages/TaskList.cshtml", new TaskListModel()));
+```
+
 ## HigLabo.Mime
 A library of Mime parser. Fastest parser in the world for MIME format. It is used for HigLabo.Mail.
 
