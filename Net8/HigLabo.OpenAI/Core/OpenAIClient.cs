@@ -137,7 +137,14 @@ public partial class OpenAIClient
             }
             else
             {
-                requestUrl = $"{this.ApiUrl}/deployments/{this.AzureSettings.DeploymentId}{apiPath}";
+                if (this.AzureSettings.DeploymentInQueryString == true)
+                {
+                    requestUrl = $"{this.ApiUrl}{apiPath}&deployment=" + this.AzureSettings.DeploymentId;
+                }
+                else
+                {
+                    requestUrl = $"{this.ApiUrl}/deployments/{this.AzureSettings.DeploymentId}{apiPath}";
+                }
             }
         }
         var req = new HttpRequestMessage(httpMethod, requestUrl);

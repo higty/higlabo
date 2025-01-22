@@ -165,24 +165,43 @@ public class ErrorLogTable : BigQueryTable
             }
             catch
             {
-                await this.EnsureTable(date);
-                var res = await base.InsertAsync(CreateTableName(date)
-                    , records.Select(el => el.Map(new Dictionary<string, object>())));
-                l.Add(res);
+                var loopCount = 0;
+                while (true)
+                {
+                    try
+                    {
+                        var bl = await this.EnsureTable(date);
+                        if (bl == true)
+                        {
+                            Thread.Sleep(1000);
+                            var res = await base.InsertAsync(CreateTableName(date), records.Select(el => el.Map(new Dictionary<string, object>())));
+                            l.Add(res);
+                            break;
+                        }
+                    }
+                    catch { }
+                    loopCount++;
+                    if (loopCount > 2) { break; }
+                }
             }
         }
         return l;
     }
-    public async ValueTask EnsureTable(DateOnly date)
+    public async ValueTask<bool> EnsureTable(DateOnly date)
     {
         if (await this.ExistsAsync(date) == false)
         {
             try
             {
                 await this.CreateAsync(date);
+                return true;
             }
-            catch { }
+            catch
+            {
+                return false;
+            }
         }
+        return true;
     }
 
     public async ValueTask<(List<Record> Records, string Query, UInt64 TotalRecordCount)> List_Data_Get(DateOnly date, Guid? userId, DateTime startTime, DateTime endTime

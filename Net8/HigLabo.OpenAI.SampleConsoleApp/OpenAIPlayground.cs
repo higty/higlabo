@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ChatCompletionVision();
+        await RealtimeSession();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -217,7 +217,7 @@ public class OpenAIPlayground
         vMessage.AddImageFile(Path.Combine(Environment.CurrentDirectory, "Image", "Pond.jpg"));
         p.Messages.Add(vMessage);
         p.Model = "gpt-4o";
-        p.Max_Tokens = 300;
+        p.Max_Completion_Tokens = 300;
         p.Stream = true;
 
         var result = new ChatCompletionStreamResult();
@@ -382,7 +382,7 @@ public class OpenAIPlayground
         var o = new JsonSchema();
         o.Properties.Add("locationList", new JsonSchemaProperty("array", "Location list that you want to know.")
         {
-            Items = new JsonSchema("string"),
+            Items = new JsonSchema("object") { },
         });
         tool.Function.Parameters = o;
         return tool;
@@ -916,6 +916,14 @@ public class OpenAIPlayground
                 }
             }
         }
+    }
+
+    private async ValueTask RealtimeSession()
+    {
+        var cl = OpenAIClient;
+        var res = await cl.RealtimeSessionsAsync("gpt-4o", CancellationToken.None);
+        Console.WriteLine("key: " + res.Client_Secret.Value);
+        Console.WriteLine("expire at:" + res.Client_Secret.ExpireTime);
     }
 
     private async ValueTask ProcessVectorStore()

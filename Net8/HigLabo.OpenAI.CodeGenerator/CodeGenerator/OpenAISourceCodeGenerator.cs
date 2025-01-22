@@ -596,6 +596,11 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Cancel vector store file batchBeta") { return "VectorStoreFileBatchCancel"; }
         if (endpointAnchor == "List vector store files in a batchBeta") { return "VectorStoreFileBatches"; }
 
+        if (endpointAnchor == "List admin API keys") { return "OrganizationAdminApiKeys"; }
+        if (endpointAnchor == "Create admin API key") { return "OrganizationAdminApiKeyCreate"; }
+        if (endpointAnchor == "Retrieve admin API key") { return "OrganizationAdminApiKeyRetrieve"; }
+        if (endpointAnchor == "Delete admin API key") { return "OrganizationAdminApiKeyDelete"; }
+
         if (endpointAnchor == "Create invite") { return "OrganizationInviteCreate"; }
         if (endpointAnchor == "Retrieve invite") { return "OrganizationInviteRetrieve"; }
         if (endpointAnchor == "Delete invite") { return "OrganizationInviteDelete"; }
@@ -625,6 +630,15 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Retrieve project API key") { return "OrganizationProjectApiKeyRetrieve"; }
         if (endpointAnchor == "Delete project API key") { return "OrganizationProjectApiKeyDelete"; }
 
+        if (endpointAnchor == "List project rate limits") { return "OrganizationProjectRateLimits"; }
+        if (endpointAnchor == "Modify project rate limit") { return "OrganizationProjectRateLimitModify"; }
+        if (endpointAnchor == "List audit logs") { return "OrganizationAuditLog"; }
+
+        if (endpointAnchor == "Audio speeches") { return "OrganizationUsageAudioSpeeches"; }
+        if (endpointAnchor == "Audio transcriptions") { return "OrganizationUsageAudioTranscriptions"; }
+        if (endpointAnchor == "Vector stores") { return "OrganizationUsageVectorStores"; }
+        if (endpointAnchor == "Code interpreter sessions") { return "OrganizationUsageCodeInterpreterSessions"; }
+
         return cName;
     }
     private string GetTypeName(string typeName, string className, string propertyName, bool required)
@@ -637,6 +651,7 @@ public class OpenAISourceCodeGenerator
         if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
         if (className == "SubmitToolOutputs" && propertyName == "Tool_Outputs") { return "List<ToolOutput>?"; }
 
+        if (propertyName == "Modalities") { return "object?"; }
         if (propertyName == "Chunking_Strategy") { return "ChunkingStrategy?"; }
         if (propertyName == "Tools") { return "List<ToolObject>"; }
         if (propertyName == "Tool_choice") { return "object?"; }
@@ -661,6 +676,8 @@ public class OpenAISourceCodeGenerator
         if (typeName == "array or null") { return "List<string>"; }
         if (typeName == "map") { return "object?"; }
         if (typeName == "object or null") { return "object?"; }
+        if (typeName == "\"auto\" or object") { return "object?"; }
+        if (typeName == "integer or \"inf\"") { return "object?"; }
         if (typeName == "object")
         {
             if (required) { return "object"; }
@@ -864,6 +881,19 @@ public class OpenAISourceCodeGenerator
         {
             return "VectorStoreFileBatchObjectResponse";
         }
+        else if (cName == "OrganizationAdminApiKeys")
+        {
+            return "RestApiDataResponse<List<AdminApiKeyObject>>";
+        }
+        else if (cName == "OrganizationAdminApiKeyCreate" ||
+            cName == "OrganizationAdminApiKeyRetrieve")
+        {
+            return "AdminApiKeyObjectResponse";
+        }
+        else if (cName == "OrganizationAdminApiKeyDelete")
+        {
+            return "DeleteObjectResponse";
+        }
         else if (cName == "OrganizationInvites")
         {
             return "RestApiDataResponse<List<InviteObject>>";
@@ -935,6 +965,46 @@ public class OpenAISourceCodeGenerator
         else if (cName == "OrganizationProjectApiKeyRetrieve")
         {
             return "ProjectApiKeyObjectResponse";
+        }
+        else if (cName == "OrganizationAuditLog")
+        {
+            return "RestApiDataResponse<List<AuditLogObject>>";
+        }
+        else if (cName == "OrganizationUsageAudioSpeeches")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageAudioSpeechObject>>";
+        }
+        else if (cName == "OrganizationUsageAudioTranscriptions")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageAudioTranscriptionObject>>";
+        }
+        else if (cName == "OrganizationUsageCodeInterpreterSessions")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageCodeInterpreterSessionObject>>";
+        }
+        else if (cName == "OrganizationUsageCompletions")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageCompletionObject>>";
+        }
+        else if (cName == "OrganizationUsageEmbeddings")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageEmbeddingObject>>";
+        }
+        else if (cName == "OrganizationUsageImages")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageImageObject>>";
+        }
+        else if (cName == "OrganizationUsageModerations")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageModerationObject>>";
+        }
+        else if (cName == "OrganizationUsageVectorStores")
+        {
+            return "RestApiDataResponse<List<OrganizationUsageVectorStoreObject>>";
+        }
+        else if (cName == "RealtimeSessions")
+        {
+            return "RealtimeSessionObjectResponse";
         }
         else
         {

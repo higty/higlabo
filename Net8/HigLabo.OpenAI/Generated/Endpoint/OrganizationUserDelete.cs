@@ -4,52 +4,53 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI;
-
-/// <summary>
-/// Deletes a user from the organization.
-/// <seealso href="https://api.openai.com/v1/organization/users/{user_id}">https://api.openai.com/v1/organization/users/{user_id}</seealso>
-/// </summary>
-public partial class OrganizationUserDeleteParameter : RestApiParameter, IRestApiParameter
+namespace HigLabo.OpenAI
 {
-    string IRestApiParameter.HttpMethod { get; } = "DELETE";
     /// <summary>
-    /// The ID of the user.
+    /// Deletes a user from the organization.
+    /// <seealso href="https://api.openai.com/v1/organization/users/{user_id}">https://api.openai.com/v1/organization/users/{user_id}</seealso>
     /// </summary>
-    public string User_Id { get; set; } = "";
+    public partial class OrganizationUserDeleteParameter : RestApiParameter, IRestApiParameter
+    {
+        string IRestApiParameter.HttpMethod { get; } = "DELETE";
+        /// <summary>
+        /// The ID of the user.
+        /// </summary>
+        public string User_Id { get; set; } = "";
 
-    string IRestApiParameter.GetApiPath()
-    {
-        return $"/organization/users/{User_Id}";
+        string IRestApiParameter.GetApiPath()
+        {
+            return $"/organization/users/{User_Id}";
+        }
+        public override object GetRequestBody()
+        {
+            return EmptyParameter;
+        }
     }
-    public override object GetRequestBody()
+    public partial class OrganizationUserDeleteResponse : DeleteObjectResponse
     {
-        return EmptyParameter;
     }
-}
-public partial class OrganizationUserDeleteResponse : DeleteObjectResponse
-{
-}
-public partial class OpenAIClient
-{
-    public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(string user_Id)
+    public partial class OpenAIClient
     {
-        var p = new OrganizationUserDeleteParameter();
-        p.User_Id = user_Id;
-        return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(p, CancellationToken.None);
-    }
-    public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(string user_Id, CancellationToken cancellationToken)
-    {
-        var p = new OrganizationUserDeleteParameter();
-        p.User_Id = user_Id;
-        return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(p, cancellationToken);
-    }
-    public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(OrganizationUserDeleteParameter parameter)
-    {
-        return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(parameter, CancellationToken.None);
-    }
-    public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(OrganizationUserDeleteParameter parameter, CancellationToken cancellationToken)
-    {
-        return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(parameter, cancellationToken);
+        public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(string user_Id)
+        {
+            var p = new OrganizationUserDeleteParameter();
+            p.User_Id = user_Id;
+            return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(p, CancellationToken.None);
+        }
+        public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(string user_Id, CancellationToken cancellationToken)
+        {
+            var p = new OrganizationUserDeleteParameter();
+            p.User_Id = user_Id;
+            return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(p, cancellationToken);
+        }
+        public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(OrganizationUserDeleteParameter parameter)
+        {
+            return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(parameter, CancellationToken.None);
+        }
+        public async ValueTask<OrganizationUserDeleteResponse> OrganizationUserDeleteAsync(OrganizationUserDeleteParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendJsonAsync<OrganizationUserDeleteParameter, OrganizationUserDeleteResponse>(parameter, cancellationToken);
+        }
     }
 }

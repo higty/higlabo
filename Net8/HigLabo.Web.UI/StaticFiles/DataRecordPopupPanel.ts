@@ -200,6 +200,7 @@ export class DataRecordPopupPanel {
         const div = document.createElement("div");
         div.innerHTML = html;
         rpl.insertAdjacentElement("beforeend", div.children[0]);
+        rpl.children[rpl.children.length - 1].scrollIntoView();
     }
 
     private searchButton_Click(element: Element, e: Event) {
