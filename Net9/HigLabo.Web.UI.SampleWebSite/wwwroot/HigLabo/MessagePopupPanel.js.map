@@ -1,0 +1,1 @@
+{"version":3,"file":"MessagePopupPanel.js","sourceRoot":"","sources":["MessagePopupPanel.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,uBAAuB,CAAC;AAE1C,MAAM,OAAO,iBAAiB;IACnB,IAAI,CAAC,IAAY;QACpB,CAAC,CAAC,sBAAsB,CAAC,CAAC,WAAW,CAAC,cAAc,CAAC,CAAC,YAAY,CAAC,IAAI,CAAC,CAAC;IAC7E,CAAC;CACJ"}

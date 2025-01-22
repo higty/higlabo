@@ -1,0 +1,41 @@
+﻿@{ 
+    var text = HigLabo.Core.LanguageText<HigLabo.Core.HigLaboText>.Text;
+}
+
+<div id="message-popup-panel" class="message-popup-panel display-none" popup-panel="true"></div>
+<dialog id="dialog-popup-panel" class="dialog-popup-panel">
+    <div class="content-panel">
+        <div class="text" text="true"></div>
+        <div class="button-panel">
+            <button class="button" confirm-yes="true">@text.Confirm_Yes</button>
+            <button class="button" confirm-no="true">@text.Confirm_No</button>
+        </div>
+    </div>
+</dialog>
+<dialog id="full-window-popup-panel" class="full-window-popup-panel">
+    <div id="full-window-popup-panel-content-panel" class="content-panel"></div>
+    <div class="footer-panel">
+        <button class="large-button" close="true">@text.Close</button>
+    </div>
+</dialog>
+<div id="data-record-popup-panel" class="data-record-popup-panel display-none"
+     hx-trigger="search from:body" hx-include="#data-record-popup-panel [parameter-panel]"
+     hx-post="" hx-ext="json-higlabo"
+     hx-target="#data-record-popup-panel [record-list-panel]" hx-swap="innerHTML">
+    <div class="header-panel" parameter-panel="true">
+        <div class="display-flex align-items-center padding-panel-4" search-panel="true">
+            <input type="text" name="SearchText" class="search-textbox" search-textbox="true" />
+            <div class="flex-right-panel margin-left-4">
+                <button class="button-radius-4 margin-right-4" search-button="true">@text.Search</button>
+                <button class="button-radius-4" close-button="true">@text.Close</button>
+            </div>
+        </div>
+    </div>
+    <div class="content-panel">
+        <div class="record-list-panel" record-list-panel="true"></div>
+    </div>
+    <div class="footer-panel" footer-panel="true">
+        <button class="button-radius-4" close-button="true">@text.Close</button>
+    </div>
+</div>
+

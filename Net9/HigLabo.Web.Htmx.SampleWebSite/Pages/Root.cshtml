@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        .multiline {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .message-text {
+            background-color: #fafafa;
+            padding: 8px;
+        }
+        .department {
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-text">
+        If the checkbox only has value attribute inside hig-property-type='Array', only checked element will be send as value array.<br />
+        &lt;div name="Permissions" hig-property-type="Array"><br />
+        &lt;input ype="checkbox" value="Permission_0" /><br />
+        &lt;input ype="checkbox" value="Permission_1" /><br />
+        &lt;input ype="checkbox" value="Permission_2" /><br />
+        &lt;/div><br />
+        will be<br />
+        ["Permission_0", "Permission_1", ..."Permission_4"]
+    </div>
+
+    <div id="PermissionValueListPanel">
+        <div name="Permissions" hig-property-type="Array">
+            @for (int i = 0; i < 5; i++)
+            {
+                <div>
+                    <input id="Permission_@i" type="checkbox" value="Permission_@i" />
+                    <label for="Permission_@i">@string.Format("Permission_{0}", i)</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <button id="ParsePermissionListButton" hx-trigger="click" hx-include="#PermissionValueListPanel"
+                hx-post="/post-data" hx-ext="json-higlabo" hx-target="#PermissionValueListPanelJson" hx-swap="innerHTML">
+            Send checked value list
+        </button>
+    </div>
+    <div id="PermissionValueListPanelJson" class="multiline"></div>
+
+    <hr />
+
+    <div class="message-text">
+        If the checkbox has name attribute, it will be object array that has name, value, checked property.<br />
+        ex) &lt;input ype="checkbox" name="Permission_1" value="PermissionValue_1" /><br />
+        will be<br />
+        [{name: "Permission_1", value: "PermissionValue_1", checked: true },{name: "Permission_2", value: "PermissionValue_2", checked: false }, ...]
+    </div>
+
+    <div id="PermissionObjectListPanel">
+        <div name="PermissionObjects" hig-property-type="Array">
+            @for (int i = 0; i < 5; i++)
+            {
+                <div>
+                    <input id="PermissionObject_@i" type="checkbox" name="Permission_@i" value="PermissionValue_@i" />
+                    <label for="PermissionObject_@i">@string.Format("Permission_{0}", i)</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <button id="ParsePermissionListButton" hx-trigger="click" hx-include="#PermissionObjectListPanel"
+                hx-post="/post-data" hx-ext="json-higlabo" hx-target="#PermissionObjectListPanelJson" hx-swap="innerHTML">
+            Send checked data as object list
+        </button>
+    </div>
+    <div id="PermissionObjectListPanelJson" class="multiline"></div>
+
+    <hr />
+
+    <div class="message-text">
+        Use hig-property-type='Object' inside hig-property-type='Array', you can create object list.
+    </div>
+
+    <div id="PersonListPanel">
+        <div name="Persons" hig-property-type="Array">
+            @for (int i = 0; i < 5; i++)
+            {
+                <div hig-property-type="Object">
+                    <input type="text" name="Name" value="Name_@i" />
+                    <input type="text" name="Age" value="@(20 + i)" />
+                    <input type="checkbox" name="IsAdmin" checked="@(i == 0)" />
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <button id="ParsePermissionListButton" hx-trigger="click" hx-include="#PersonListPanel"
+                hx-post="/post-data" hx-ext="json-higlabo" hx-target="#PersonListPanelJson" hx-swap="innerHTML">
+            Send object list as json array property
+        </button>
+    </div>
+    <div id="PersonListPanelJson" class="multiline"></div>
+
+    <hr />
+
+    <div class="message-text">
+        Recursive object
+    </div>
+
+    <div id="RecursivePanel">
+        <input type="text" name="Name" value="Tech Company, Inc." />
+        <div name="Departments" hig-property-type="Array">
+            <div hig-property-type="Object" class="department">
+                <input type="text" name="Name" value="Software Development" />
+                <div name="Departments" hig-property-type="Array">
+                    <div hig-property-type="Object" class="department">
+                        <input type="text" name="Name" value="Frontend" />
+                        <div name="Departments" hig-property-type="Array">
+                            <div hig-property-type="Object" class="department">
+                                <input type="text" name="Name" value="React" />
+                            </div>
+                            <div hig-property-type="Object" class="department">
+                                <input type="text" name="Name" value="HTMX" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div hig-property-type="Object" class="department">
+                        <input type="text" name="Name" value="Backend" />
+                        <div name="Departments" hig-property-type="Array">
+                            <div hig-property-type="Object" class="department">
+                                <input type="text" name="Name" value="SQL Server" />
+                            </div>
+                            <div hig-property-type="Object" class="department">
+                                <input type="text" name="Name" value="MySQL" />
+                            </div>
+                            <div hig-property-type="Object" class="department">
+                                <input type="text" name="Name" value="Cosmos DB" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button id="ParsePermissionListButton" hx-trigger="click" hx-include="#RecursivePanel"
+                hx-post="/post-department-data" hx-ext="json-higlabo" hx-target="#RecursivePanelJson" hx-swap="innerHTML">
+            Send department as json
+        </button>
+    </div>
+    <div id="RecursivePanelJson" class="multiline"></div>
+
+    <hr />
+
+    <div style="height: 50vh;"></div>
+
+    <script src="/js/htmx.min.js"></script>
+    <script src="/js/json-higlabo.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Version>9.0.0.0</Version>
+		<Authors>Higty</Authors>
+		<Company>HigLabo</Company>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>
+			How to use? See article.
+			https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API
+		</Description>
+		<PackageTags>OpenAI;ChatGPT;</PackageTags>
+		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Document\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+
+</Project>

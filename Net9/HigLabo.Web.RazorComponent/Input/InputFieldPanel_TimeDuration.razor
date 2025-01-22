@@ -1,0 +1,26 @@
+@{
+    var startValue = this.TimeFormat(this.StartTime);
+    var endValue = this.TimeFormat(this.EndTime);
+}
+<InputFieldPanel Layout="@Layout" PanelType="time-duration" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+    <input type="text" class="textbox time" value="@startValue"
+           @onchange="e => this.OnStartTimeChanged(e.Value?.ToString()?.ToTimeSpan())"
+           @onclick="e => this.SelectTimePanelVisible = true"
+           @oninput="e => this.StartTime_Input(e)"
+           @onblur="async e => await this.StartTime_Blur(e)" />
+    <span class="separator">-</span>
+    <input type="text" class="textbox time" value="@endValue"
+           @onchange="e => this.OnEndTimeChanged(e.Value?.ToString()?.ToTimeSpan())"
+           @onclick="e => this.SelectTimePanelVisible = true"
+           @oninput="e => this.EndTime_Input(e)"
+           @onblur="async e => await this.EndTime_Blur(e)" />
+    <div class="select-container-panel">
+        @if (SelectTimePanelVisible)
+        {
+            <SelectTimePanel SelectEndTimeMode="@this.SelectEndTimeMode" StartTime="this.StartTime"
+                StartTimeSelected="async time => await this.StartTimeSelected_Callback(time)"
+                EndTimeSelected="async time => await this.EndTimeSelected_Callback(time)"
+                OnClosed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
+        }
+    </div>
+</InputFieldPanel>

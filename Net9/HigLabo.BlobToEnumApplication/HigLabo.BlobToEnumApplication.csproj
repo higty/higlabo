@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>BlobToEnumApplication</RootNamespace>
+	  <Version>9.0.0.0</Version>
+	  <Authors>Higty</Authors>
+	  <Company>HigLabo</Company>
+	  <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+	  <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Azure.Blob\HigLabo.Azure.Blob.csproj" />
+    <ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+    <ProjectReference Include="..\HigLabo.ObjectModel\HigLabo.ObjectModel.csproj" />
+    <ProjectReference Include="..\HigLabo.Service\HigLabo.Service.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.23.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+</Project>

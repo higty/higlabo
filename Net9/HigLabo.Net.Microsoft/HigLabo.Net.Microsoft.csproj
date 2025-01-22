@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>9.0.0.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Company>HigLabo</Company>
+		<Authors>Higty</Authors>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Generated\Method\AccesspackageDeleteIncompatibleAccesspackage.cs" />
+	  <Compile Remove="Generated\Method\MailfolderListMessagerules.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="ResouceUrlMapping.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Generated\ResouceUrlMapping.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+		<ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
+		<ProjectReference Include="..\HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj" />
+		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
+	</ItemGroup>
+</Project>

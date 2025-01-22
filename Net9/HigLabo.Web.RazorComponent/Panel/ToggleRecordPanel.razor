@@ -1,0 +1,46 @@
+<div class="toggle-record-panel" @attributes="this.GetAttributes()" @ondragstart="e => Drag_Start(e)" @ondrop="async e => await Drag_End(e)" @ondragenter="Drag_Enter" @ondragleave="Drag_Leave">
+    <div class="header-panel">
+        @if (this.AllowSort)
+        {
+            <div class="drag-bar-panel">
+                <span class="icon-panel">
+                    <img class="icon" src="@UrlInfo.GetIconUrl(Higlabo__icon.DragBarPanel__svg)" />
+                </span>
+            </div>
+        }
+
+        @if (this.HeaderPanel == null)
+        {
+            @if (this.AllowHeaderEdit == true)
+            {
+                <input type="text" class="header-textbox" placeholder="@this.HeaderTextboxPlaceHolder"
+                       @oninput="async e => await HeaderTextbox_Input.InvokeAsync(e)" value="@this.HeaderText" />
+            }
+            else
+            {
+                <div class="header-text" tabindex="0"
+                      @onclick="async e => await HeaderPanel_Click()"
+                      @onkeydown="async e => await HeaderPanel_Keydown(e)">@this.HeaderText</div>
+            }
+        }
+        else
+        {
+            <div class="header-text">@this.HeaderPanel</div>
+        }
+        @if (this.AllowDelete)
+        {
+            <div class="delete-icon-panel" tabindex="0"
+            @onclick="async e => await DeleteIcon_Click()" @onclick:stopPropagation="true"
+            @onkeydown="async e => await DeleteIcon_Keydown(e)">
+                <img src="@UrlInfo.GetIconUrl(Higlabo__icon.Delete__svg)" class="delete-icon" />
+            </div>
+        }
+    </div>
+    <div class="content-panel" toggle-state="@this.ToggleState.ToStringFromEnum()">@ContentPanel</div>
+</div>
+@if (this.AllowSort)
+{
+    <div class="@this.DropPanelClassName"></div>
+}
+
+

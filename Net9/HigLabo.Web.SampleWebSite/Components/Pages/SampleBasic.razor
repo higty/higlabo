@@ -1,0 +1,80 @@
+﻿@rendermode InteractiveServer
+
+<FileUploadPanel></FileUploadPanel>
+
+<InputFieldPanel_SelectButton Text="file mode" RecordList="SelectButtonRecord.CreateRecordList<FileAccess>()"
+                              Value="@this.FileAccess" ValueChanged="v => this.FileAccess = (FileAccess)v"></InputFieldPanel_SelectButton>
+
+<span>@this.FileAccess.ToStringFromEnum()</span>
+
+<InputFieldPanel_Select RecordList="this.CategoryList" Text="Category">
+    <ItemTemplate>
+        <span>@context.Name</span>
+    </ItemTemplate>
+</InputFieldPanel_Select>
+
+<CheckboxPanel @bind-Value="@Selected"></CheckboxPanel>
+<span>@this.Selected</span>
+
+<InputFieldPanel Text="Field1">
+    <InputText @bind-Value="@Value1" class="textbox"></InputText>
+</InputFieldPanel>
+
+<InputFieldPanel Text="Field1">
+    <InputTextArea @bind-Value="@Value2" class="textarea"></InputTextArea>
+</InputFieldPanel>
+
+<InputFieldPanel_Color Text="Back color" @bind-Value="@this.Color"></InputFieldPanel_Color>
+<InputFieldPanel_Color Layout="InputFieldPanelLayout.Flex" Text="Fore color" @bind-Value="@this.Color"></InputFieldPanel_Color>
+<span>@this.Color</span>
+<ActionConfirmPanel ButtonText="Clear color" Message="Is Clear?" OnExecute="e => this.Color = string.Empty"></ActionConfirmPanel>
+<div style="width: 100px; margin-left: auto;">
+    <ActionConfirmPanel ButtonText="Clear color" Message="Is Clear?" OnExecute="e => this.Color = string.Empty" PopupPanelPosition="ActionConfirmPopupPanelPosition.Right"></ActionConfirmPanel>
+</div>
+<ActionConfirmPanel Message="Is clear color?" OnExecute="e => this.Color = string.Empty">
+    <img class="delete-icon" src="@HigLabo.Web.Internal.UrlInfo.GetIconUrl(Higlabo__icon.Delete__svg)" />
+</ActionConfirmPanel>
+
+<hr />
+
+<Button Text="Save"></Button>
+<Button Text="Save" ClassName="button large-button"></Button>
+<Button Text="Save" ClassName="button radius-button large-button"></Button>
+<LoadingPanel></LoadingPanel>
+
+
+
+@code {
+    public class CategoryRecord(string name)
+    {
+        public string Name { get; set; } = name; 
+    }
+    [Parameter]
+    public bool Selected { get; set; } = false;
+    public List<CategoryRecord> CategoryList { get; init; } = new();
+
+    [Parameter]
+    public string Value1 { get; set; } = "";
+    [Parameter]
+    public string Value2 { get; set; } = "";
+
+    [Parameter]
+    public string Color { get; set; } = "";
+
+    [Parameter]
+    public FileAccess FileAccess { get; set; } = FileAccess.Read;
+    [Parameter]
+    public bool SelectDateCalendarPanelVisible { get; set; } = false;
+    [Parameter]
+    public bool SelectDateDurationCalendarPanelVisible { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        for (int i = 0; i < 10; i++)
+        {
+            this.CategoryList.Add(new CategoryRecord("Category" + i));
+        }
+    }
+}
