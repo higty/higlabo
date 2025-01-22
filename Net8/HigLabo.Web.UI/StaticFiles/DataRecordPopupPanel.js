@@ -182,6 +182,7 @@ export class DataRecordPopupPanel {
         const div = document.createElement("div");
         div.innerHTML = html;
         rpl.insertAdjacentElement("beforeend", div.children[0]);
+        rpl.children[rpl.children.length - 1].scrollIntoView();
     }
     searchButton_Click(element, e) {
         this.htmx.trigger("#data-record-popup-panel", "search");

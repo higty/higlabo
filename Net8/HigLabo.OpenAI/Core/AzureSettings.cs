@@ -14,7 +14,8 @@ public class AzureSettings
     /// </summary>
     public string EndpointUrl { get; set; } = "";
     public string DeploymentId { get; set; } = "";
-    public string ApiVersion { get; set; } = "2024-02-15-preview";
+    public string ApiVersion { get; set; } = "2024-10-01-preview";
+    public bool DeploymentInQueryString { get; set; } = false;
 
     public AzureSettings()
     {

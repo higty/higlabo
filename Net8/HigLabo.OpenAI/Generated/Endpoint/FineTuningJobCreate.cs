@@ -4,101 +4,102 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI;
+namespace HigLabo.OpenAI
+{
+    /// <summary>
+    /// Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
+    /// Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
+    /// Learn more about fine-tuning
+    /// <seealso href="https://api.openai.com/v1/fine_tuning/jobs">https://api.openai.com/v1/fine_tuning/jobs</seealso>
+    /// </summary>
+    public partial class FineTuningJobCreateParameter : RestApiParameter, IRestApiParameter
+    {
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        /// <summary>
+        /// The name of the model to fine-tune. You can select one of the
+        /// supported models.
+        /// </summary>
+        public string Model { get; set; } = "";
+        /// <summary>
+        /// The ID of an uploaded file that contains training data.
+        /// See upload file for how to upload a file.
+        /// Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose fine-tune.
+        /// The contents of the file should differ depending on if the model uses the chat, completions format, or if the fine-tuning method uses the preference format.
+        /// See the fine-tuning guide for more details.
+        /// </summary>
+        public string Training_File { get; set; } = "";
+        /// <summary>
+        /// A string of up to 64 characters that will be added to your fine-tuned model name.
+        /// For example, a suffix of "custom-model-name" would produce a model name like ft:gpt-4o-mini:openai:custom-model-name:7p4lURel.
+        /// </summary>
+        public string? Suffix { get; set; }
+        /// <summary>
+        /// The ID of an uploaded file that contains validation data.
+        /// If you provide this file, the data is used to generate validation
+        /// metrics periodically during fine-tuning. These metrics can be viewed in
+        /// the fine-tuning results file.
+        /// The same data should not be present in both train and validation files.
+        /// Your dataset must be formatted as a JSONL file. You must upload your file with the purpose fine-tune.
+        /// See the fine-tuning guide for more details.
+        /// </summary>
+        public string? Validation_File { get; set; }
+        /// <summary>
+        /// A list of integrations to enable for your fine-tuning job.
+        /// </summary>
+        public List<FineTuningIntegrationObject>? Integrations { get; set; }
+        /// <summary>
+        /// The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.
+        /// If a seed is not specified, one will be generated for you.
+        /// </summary>
+        public int? Seed { get; set; }
+        /// <summary>
+        /// The method used for fine-tuning.
+        /// </summary>
+        public object? Method { get; set; }
 
-/// <summary>
-/// Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
-/// Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
-/// Learn more about fine-tuning
-/// <seealso href="https://api.openai.com/v1/fine_tuning/jobs">https://api.openai.com/v1/fine_tuning/jobs</seealso>
-/// </summary>
-public partial class FineTuningJobCreateParameter : RestApiParameter, IRestApiParameter
-{
-    string IRestApiParameter.HttpMethod { get; } = "POST";
-    /// <summary>
-    /// The name of the model to fine-tune. You can select one of the
-    /// supported models.
-    /// </summary>
-    public string Model { get; set; } = "";
-    /// <summary>
-    /// The ID of an uploaded file that contains training data.
-    /// See upload file for how to upload a file.
-    /// Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose fine-tune.
-    /// The contents of the file should differ depending on if the model uses the chat or completions format.
-    /// See the fine-tuning guide for more details.
-    /// </summary>
-    public string Training_File { get; set; } = "";
-    /// <summary>
-    /// The hyperparameters used for the fine-tuning job.
-    /// </summary>
-    public object? Hyperparameters { get; set; }
-    /// <summary>
-    /// A string of up to 64 characters that will be added to your fine-tuned model name.
-    /// For example, a suffix of "custom-model-name" would produce a model name like ft:gpt-4o-mini:openai:custom-model-name:7p4lURel.
-    /// </summary>
-    public string? Suffix { get; set; }
-    /// <summary>
-    /// The ID of an uploaded file that contains validation data.
-    /// If you provide this file, the data is used to generate validation
-    /// metrics periodically during fine-tuning. These metrics can be viewed in
-    /// the fine-tuning results file.
-    /// The same data should not be present in both train and validation files.
-    /// Your dataset must be formatted as a JSONL file. You must upload your file with the purpose fine-tune.
-    /// See the fine-tuning guide for more details.
-    /// </summary>
-    public string? Validation_File { get; set; }
-    /// <summary>
-    /// A list of integrations to enable for your fine-tuning job.
-    /// </summary>
-    public List<FineTuningIntegrationObject>? Integrations { get; set; }
-    /// <summary>
-    /// The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.
-    /// If a seed is not specified, one will be generated for you.
-    /// </summary>
-    public int? Seed { get; set; }
-
-    string IRestApiParameter.GetApiPath()
-    {
-        return $"/fine_tuning/jobs";
+        string IRestApiParameter.GetApiPath()
+        {
+            return $"/fine_tuning/jobs";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	model = this.Model,
+            	training_file = this.Training_File,
+            	suffix = this.Suffix,
+            	validation_file = this.Validation_File,
+            	integrations = this.Integrations,
+            	seed = this.Seed,
+            	method = this.Method,
+            };
+        }
     }
-    public override object GetRequestBody()
+    public partial class FineTuningJobCreateResponse : FineTuningJobResponse
     {
-        return new {
-        	model = this.Model,
-        	training_file = this.Training_File,
-        	hyperparameters = this.Hyperparameters,
-        	suffix = this.Suffix,
-        	validation_file = this.Validation_File,
-        	integrations = this.Integrations,
-        	seed = this.Seed,
-        };
     }
-}
-public partial class FineTuningJobCreateResponse : FineTuningJobResponse
-{
-}
-public partial class OpenAIClient
-{
-    public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(string model, string training_File)
+    public partial class OpenAIClient
     {
-        var p = new FineTuningJobCreateParameter();
-        p.Model = model;
-        p.Training_File = training_File;
-        return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(p, CancellationToken.None);
-    }
-    public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(string model, string training_File, CancellationToken cancellationToken)
-    {
-        var p = new FineTuningJobCreateParameter();
-        p.Model = model;
-        p.Training_File = training_File;
-        return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(p, cancellationToken);
-    }
-    public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(FineTuningJobCreateParameter parameter)
-    {
-        return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(parameter, CancellationToken.None);
-    }
-    public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(FineTuningJobCreateParameter parameter, CancellationToken cancellationToken)
-    {
-        return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(parameter, cancellationToken);
+        public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(string model, string training_File)
+        {
+            var p = new FineTuningJobCreateParameter();
+            p.Model = model;
+            p.Training_File = training_File;
+            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(p, CancellationToken.None);
+        }
+        public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(string model, string training_File, CancellationToken cancellationToken)
+        {
+            var p = new FineTuningJobCreateParameter();
+            p.Model = model;
+            p.Training_File = training_File;
+            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(p, cancellationToken);
+        }
+        public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(FineTuningJobCreateParameter parameter)
+        {
+            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(parameter, CancellationToken.None);
+        }
+        public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(FineTuningJobCreateParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(parameter, cancellationToken);
+        }
     }
 }

@@ -4,60 +4,64 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HigLabo.OpenAI;
-
-/// <summary>
-/// Classifies if text is potentially harmful.
-/// <seealso href="https://api.openai.com/v1/moderations">https://api.openai.com/v1/moderations</seealso>
-/// </summary>
-public partial class ModerationCreateParameter : RestApiParameter, IRestApiParameter
+namespace HigLabo.OpenAI
 {
-    string IRestApiParameter.HttpMethod { get; } = "POST";
     /// <summary>
-    /// The input text to classify
+    /// Classifies if text and/or image inputs are potentially harmful. Learn
+    /// more in the moderation guide.
+    /// <seealso href="https://api.openai.com/v1/moderations">https://api.openai.com/v1/moderations</seealso>
     /// </summary>
-    public string Input { get; set; } = "";
-    /// <summary>
-    /// Two content moderations models are available: text-moderation-stable and text-moderation-latest.
-    /// The default is text-moderation-latest which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use text-moderation-stable, we will provide advanced notice before updating the model. Accuracy of text-moderation-stable may be slightly lower than for text-moderation-latest.
-    /// </summary>
-    public string? Model { get; set; }
+    public partial class ModerationCreateParameter : RestApiParameter, IRestApiParameter
+    {
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        /// <summary>
+        /// Input (or inputs) to classify. Can be a single string, an array of strings, or
+        /// an array of multi-modal input objects similar to other models.
+        /// </summary>
+        public string Input { get; set; } = "";
+        /// <summary>
+        /// The content moderation model you would like to use. Learn more in
+        /// the moderation guide, and learn about
+        /// available models here.
+        /// </summary>
+        public string? Model { get; set; }
 
-    string IRestApiParameter.GetApiPath()
-    {
-        return $"/moderations";
+        string IRestApiParameter.GetApiPath()
+        {
+            return $"/moderations";
+        }
+        public override object GetRequestBody()
+        {
+            return new {
+            	input = this.Input,
+            	model = this.Model,
+            };
+        }
     }
-    public override object GetRequestBody()
+    public partial class ModerationCreateResponse : ModerationObjectResponse
     {
-        return new {
-        	input = this.Input,
-        	model = this.Model,
-        };
     }
-}
-public partial class ModerationCreateResponse : ModerationObjectResponse
-{
-}
-public partial class OpenAIClient
-{
-    public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(string input)
+    public partial class OpenAIClient
     {
-        var p = new ModerationCreateParameter();
-        p.Input = input;
-        return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(p, CancellationToken.None);
-    }
-    public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(string input, CancellationToken cancellationToken)
-    {
-        var p = new ModerationCreateParameter();
-        p.Input = input;
-        return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(p, cancellationToken);
-    }
-    public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(ModerationCreateParameter parameter)
-    {
-        return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(parameter, CancellationToken.None);
-    }
-    public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(ModerationCreateParameter parameter, CancellationToken cancellationToken)
-    {
-        return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(parameter, cancellationToken);
+        public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(string input)
+        {
+            var p = new ModerationCreateParameter();
+            p.Input = input;
+            return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(p, CancellationToken.None);
+        }
+        public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(string input, CancellationToken cancellationToken)
+        {
+            var p = new ModerationCreateParameter();
+            p.Input = input;
+            return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(p, cancellationToken);
+        }
+        public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(ModerationCreateParameter parameter)
+        {
+            return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(parameter, CancellationToken.None);
+        }
+        public async ValueTask<ModerationCreateResponse> ModerationCreateAsync(ModerationCreateParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendJsonAsync<ModerationCreateParameter, ModerationCreateResponse>(parameter, cancellationToken);
+        }
     }
 }

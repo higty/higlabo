@@ -1211,9 +1211,9 @@ input[type=password]:focus,
 textarea:focus {
   border-color: var(--color-form-element-focus);
 }
+
 input[type=text]:hover,
 input[type=password]:hover,
-.input-record:hover,
 textarea:hover {
   background-color: var(--color-form-element-hover);
 }

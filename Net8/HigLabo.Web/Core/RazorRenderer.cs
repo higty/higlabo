@@ -7,15 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HigLabo.Web;
 
-	public class RazorRenderer(IHttpContextAccessor contextAccessor, IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
+public class RazorRenderer(IHttpContextAccessor contextAccessor, IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
 {
 		private IHttpContextAccessor _contextAccessor = contextAccessor;
 		private IRazorViewEngine _viewEngine = viewEngine;

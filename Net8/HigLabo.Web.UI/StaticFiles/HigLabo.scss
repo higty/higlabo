@@ -998,7 +998,11 @@ textarea {
     &:focus {
         border-color: var(--color-form-element-focus);
     }
+}
 
+input[type=text],
+input[type=password],
+textarea {
     &:hover {
         background-color: var(--color-form-element-hover);
     }
