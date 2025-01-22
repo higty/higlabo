@@ -1,0 +1,39 @@
+﻿Delivered-To: higlabo@gmail.com
+Sender: feedback@slack.com
+X-Mailgun-Sending-Ip: 184.173.105.190
+X-Mailgun-Sid: WyIzNDJhYSIsICJoaWd1Y2hpLnNob3V0YXJvQHRpbnliZXR0ZXIuY29tIiwgIjhlMDYiXQ==
+To: higlabo@gmail.com
+Subject: Hideyuki Shintani has invited you to join a Slack team
+Reply-To: no-reply@slack.com
+From: "Slack" <feedback@slack.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="__slack_681132649__"
+Message-Id: <20170904043542.BC39546E@slack-www-hhvm-0d07580943d44.tiny.com>
+Date: Sun,  3 Sep 2017 21:35:42 -0700 (PDT)
+
+
+--__slack_681132649__
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+Join Terminal Team on Slack
+
+
+Hide (​hide@gmail.com) has invited you
+to join the Slack team Terminal Team, on a guest account.
+Join now to start collaborating!
+
+Join Now:
+https://join.slack.com/t/apple-team/invite/MjM1ODAzMTM3MDc2LTE1MDQ0OTk3NDItODMzYmU4MWEwOQ?x=x-39652798756-235803137
+
+
+Slack connects you with the people and apps you work with every day.
+Message with your team, share files, and get updates from other tools,
+all within Slack.
+See Slack in action: https://slack.com/is
+
+Team Name: Apple Team
+Team URL: apple.slack.com
+
+--__slack_681132649__--

@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Version>9.0.0.0</Version>
+		<Authors>Higty</Authors>
+		<Company>HigLabo</Company>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>
+			How to use? See sample code
+			https://github.com/higty/higlabo/blob/master/Net9/HigLabo.Anthropic.SampleConsoleApp/AnthropicClientPlayground.cs
+		</Description>
+		<PackageTags>Gemini;</PackageTags>
+		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Document\README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>true</Pack>
+		</None>
+		<None Update="Image\Castle.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Image\Jougakura_Bridge.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Image\Kamui_Cape.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Image\Kuttara_Lake.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Image\Yoshino.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Image\Yugama.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+
+</Project>

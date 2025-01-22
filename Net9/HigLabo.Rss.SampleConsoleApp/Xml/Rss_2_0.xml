@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" >
+	<channel>
+		<title>NASA</title>
+		<atom:link href="https://www.nasa.gov/news-release/feed/" rel="self" type="application/rss+xml" />
+		<link>https://www.nasa.gov</link>
+		<description>Official National Aeronautics and Space Administration Website</description>
+		<lastBuildDate>Thu, 09 May 2024 12:24:58 +0000</lastBuildDate>
+		<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<generator>https://wordpress.org/?v=6.4.4</generator>
+		<item>
+			<title>NASA Licenses 3D-Printable Superalloy to Benefit US Economy</title>
+			<link>https://www.nasa.gov/centers-and-facilities/glenn/nasa-licenses-3d-printable-superalloy-to-benefit-us-economy/</link>
+			<dc:creator>
+				<![CDATA[Kelly M. Matter]]>
+			</dc:creator>
+			<pubDate>Thu, 09 May 2024 12:14:04 +0000</pubDate>
+			<category>
+				<![CDATA[Glenn Research Center]]>
+			</category>
+			<category>
+				<![CDATA[Aeronautics]]>
+			</category>
+			<category>
+				<![CDATA[General]]>
+			</category>
+			<guid isPermaLink="false">https://www.nasa.gov/?p=658597</guid>
+			<description>
+				<![CDATA[NASA's investment in a breakthrough superalloy developed for the extreme temperatures and harsh conditions of air and spaceflight is on the threshold of paying commercial dividends. The agency is licensing its invention, dubbed "GRX-810," to four American companies, a practice that benefits the United States economy as a return on investment of taxpayer dollars. GRX-810 [&#8230;]]]>
+			</description>
+		</item>
+		<item>
+			<title>NASA's Webb Hints at Possible Atmosphere Surrounding Rocky Exoplanet</title>
+			<link>https://science.nasa.gov/universe/exoplanets/exoplanet-atmosphere/nasas-webb-hints-at-possible-atmosphere-surrounding-rocky-exoplanet-2/</link>
+			<dc:creator>
+				<![CDATA[]]>
+			</dc:creator>
+			<pubDate>Wed, 08 May 2024 23:22:45 +0000</pubDate>
+			<category>
+				<![CDATA[55 Cancri e]]>
+			</category>
+			<category>
+				<![CDATA[Exoplanet Atmosphere]]>
+			</category>
+			<category>
+				<![CDATA[Exoplanets]]>
+			</category>
+			<category>
+				<![CDATA[James Webb Space Telescope (JWST)]]>
+			</category>
+			<category>
+				<![CDATA[Super-Earth Exoplanets]]>
+			</category>
+			<guid isPermaLink="false">https://science.nasa.gov/universe/exoplanets/exoplanet-atmosphere/nasas-webb-hints-at-possible-atmosphere-surrounding-rocky-exoplanet-2/</guid>
+			<description>
+				<![CDATA[While the planet is too hot to be habitable, detecting its atmosphere could provide insights into the early conditions of Earth, Venus, and Mars. Researchers using NASA's James Webb Space Telescope may have detected atmospheric gases surrounding 55 Cancri e, a hot rocky exoplanet 41 light-years from Earth. This is the best evidence to date […]]]>
+			</description>
+		</item>
+	</channel>
+</rss>

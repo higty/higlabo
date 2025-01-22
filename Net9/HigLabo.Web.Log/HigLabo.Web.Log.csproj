@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>9.0.0.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Company>HigLabo</Company>
+		<Authors>Higty</Authors>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+    <ProjectReference Include="..\HigLabo.Log.Bigquery\HigLabo.Log.Bigquery.csproj" />
+    <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
+    <ProjectReference Include="..\HigLabo.Service\HigLabo.Service.csproj" />
+    <ProjectReference Include="..\HigLabo.Web\HigLabo.Web.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SchemeData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileName />
+  <GenerateSettingList>
+    <GenerateSetting>
+      <name>UserDefinedTableType_Local</name>
+      <outputFolderPath>C:\GitHub\higty\HigLabo\Net7\HigLabo.UserDefinedTableType\Generated</outputFolderPath>
+      <connectionStringName />
+      <databaseServer>SqlServer</databaseServer>
+      <namespaceName>HigLabo.DbSharp</namespaceName>
+      <databaseKey>HigLabo</databaseKey>
+      <StoredProcedureList />
+      <UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>GuidGuidTable</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:12:43.6760483+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:12:43.6760536+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>GuidTable</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:36.7141599+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:36.7141634+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>IntGuidGuidTable</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:40.7956578+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:40.7956598+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Int</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>4</Length>
+              <Precision>10</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value2</Name>
+              <Ordinal>2</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>IntGuidTable</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:43.9639007+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:43.9639033+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Int</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>4</Length>
+              <Precision>10</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>IntTable</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:46.9215251+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:46.9215269+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Int</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>4</Length>
+              <Precision>10</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar128Table</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:49.3586153+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:49.3586169+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>128</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256Table</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:51.9692818+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:51.9692831+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar32Table</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:54.6965198+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:54.6965209+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>32</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar400Table</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:14:58.2798713+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:14:58.2798728+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>400</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar64Table</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:15:00.8922309+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:15:00.8922328+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>64</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>NvarcharMaxTable</Name>
+          <Body />
+          <CreateTime>2023-06-02T08:15:03.3226852+09:00</CreateTime>
+          <LastAlteredTime>2023-06-02T08:15:03.3226863+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>-1</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256BitTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:03:57.055069+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:03:57.0550723+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Bit</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>1</Length>
+              <Precision>1</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256DateTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:01.1168482+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:01.1168512+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Date</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>3</Length>
+              <Precision>10</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256DateTimeOffsetTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:04.1451933+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:04.1451993+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>DateTimeOffset</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>10</Length>
+              <Precision>34</Precision>
+              <Scale>7</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256FloatTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:05.6801993+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:05.6802012+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Float</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>8</Length>
+              <Precision>53</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256GuidTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:07.1139052+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:07.1139066+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>UniqueIdentifier</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>16</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256IntTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:08.4750192+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:08.4750208+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Int</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>4</Length>
+              <Precision>10</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256Nvarchar256Table</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:09.6792643+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:09.6792657+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+        <UserDefinedTableType>
+          <ObjectType>UserDefinedTableType</ObjectType>
+          <Name>Nvarchar256TimeTable</Name>
+          <Body />
+          <CreateTime>2023-07-02T04:04:12.1743883+09:00</CreateTime>
+          <LastAlteredTime>2023-07-02T04:04:12.1743901+09:00</LastAlteredTime>
+          <Columns>
+            <DataType>
+              <Name>Value0</Name>
+              <Ordinal>0</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>NVarChar</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>256</Length>
+              <Precision>0</Precision>
+              <Scale>0</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+            <DataType>
+              <Name>Value1</Name>
+              <Ordinal>1</Ordinal>
+              <DbType>
+                <DatabaseServer>SqlServer</DatabaseServer>
+                <SqlServerDbType>Time</SqlServerDbType>
+                <OracleServerDbType xsi:nil="true" />
+                <PostgreSqlServerDbType xsi:nil="true" />
+                <MySqlServerDbType xsi:nil="true" />
+              </DbType>
+              <Length>5</Length>
+              <Precision>16</Precision>
+              <Scale>7</Scale>
+              <AllowNull>false</AllowNull>
+              <UdtTypeName />
+              <EnumName />
+              <EnumValues />
+            </DataType>
+          </Columns>
+        </UserDefinedTableType>
+      </UserDefinedTableType>
+      <Name>UserDefinedTableType_Local</Name>
+      <OutputFolderPath>C:\GitHub\higty\HigLabo\Net7\HigLabo.UserDefinedTableType\Generated</OutputFolderPath>
+      <ConnectionStringName />
+      <DatabaseServer>SqlServer</DatabaseServer>
+      <NamespaceName>HigLabo.DbSharp</NamespaceName>
+      <DatabaseKey>HigLabo</DatabaseKey>
+    </GenerateSetting>
+  </GenerateSettingList>
+</SchemeData>

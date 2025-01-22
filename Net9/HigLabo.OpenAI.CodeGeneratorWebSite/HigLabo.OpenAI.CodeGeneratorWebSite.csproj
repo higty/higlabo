@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Version>9.0.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Pages\Index.cshtml~RF189d06.TMP" />
+	</ItemGroup>
+
+</Project>

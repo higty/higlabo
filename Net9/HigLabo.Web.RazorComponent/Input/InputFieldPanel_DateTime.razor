@@ -1,0 +1,28 @@
+@{
+    var dateValue = this.Date?.ToString(this.DateTimeFormat) ?? "";
+    var timeValue = this.TimeFormat(this.Time);
+}
+<InputFieldPanel Layout="@Layout" PanelType="date" Name="@Name" Text="@Text" FieldNameVisible="@FieldNameVisible" ValidateResult="@ValidateResult">
+    <input type="text" class="textbox date" value="@dateValue" @ref="@this.Textbox"
+           @onchange="e => this.OnDateChanged(e.Value?.ToString()?.ToDateOnly())"
+           @onclick="e => this.SelectDateCalendarPanelVisible = true"
+           @oninput="e => this.InputText_Input(e)"
+           @onblur="async e => await this.Textbox_Blur(e)" />
+    <input type="text" class="textbox time" value="@timeValue"
+           @onchange="e => this.OnTimeChanged(e.Value?.ToString()?.ToTimeSpan())"
+           @onclick="e => this.SelectTimePanelVisible = true"
+           @oninput="e => this.InputText_Input(e)"
+           @onblur="async e => await this.Textbox_Blur(e)" />
+    <div class="select-container-panel">
+        @if (SelectDateCalendarPanelVisible)
+        {
+            <SelectDateCalendarPanel DateSelected="async date => await this.DateSelected_Callback(date)" OnClosed="() => this.SelectDateCalendarPanelVisible = false"></SelectDateCalendarPanel>
+        }
+        @if (SelectTimePanelVisible)
+        {
+            <SelectTimePanel SelectEndTimeMode="SelectEndTimeMode.StartTime"
+                             StartTimeSelected="async time => await this.TimeSelected_Callback(time)"
+                             OnClosed="() => this.SelectTimePanelVisible = false"></SelectTimePanel>
+        }
+    </div>
+</InputFieldPanel>

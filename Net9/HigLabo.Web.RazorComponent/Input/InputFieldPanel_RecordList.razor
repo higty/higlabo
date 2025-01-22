@@ -1,0 +1,39 @@
+@typeparam TItem
+@typeparam TFilterItem
+
+<div @attributes="this.GetAttributes()">
+    <div class="field-name-panel">
+        @if (this.FieldNameVisible)
+        {
+            <div class="field-name">
+                <span class="text">@this.Text</span>
+            </div>
+        }
+        <div class="icon-panel" tabindex="0" @ref="this.AddIconElementReference"
+             @onclick="async e => await this.AddIcon_Click()" @onclick:stopPropagation="true"
+             @onkeydown="async e => await this.AddIcon_Keydown(e)">
+            <img src="@UrlInfo.GetIconUrl(Higlabo__icon.Add__svg)" class="icon" />
+        </div>
+    </div>
+    <div class="child-content-panel">
+        @if (this.ChildContent != null)
+        {
+            <div class="record-list-panel sort-panel" sort-panel="true">@ChildContent</div>
+        }
+        <div class="select-container-panel">
+            @if (this.SelectRecordPanelVisible)
+            {
+                <SelectRecordPanel State="this.State" FilterItemTemplate="this.FilterItemTemplate"
+                                   TItem="TItem" TFilterItem="TFilterItem" ItemTemplate="this.SelectItemTemplate"
+                                   OnAllRecordSelected="e =>  this.SelectRecordPanelVisible = false"
+                                   OnRecordSelected="async r => await this.Record_Selected(r)"
+                                   OnClosed="async e => await this.OnClosed()"></SelectRecordPanel>
+            }
+        </div>
+    </div>
+    @if (this.ValidateResult == false)
+    {
+        <div class="field-error-panel">@this.ValidateResult.Message</div>
+    }
+</div>
+

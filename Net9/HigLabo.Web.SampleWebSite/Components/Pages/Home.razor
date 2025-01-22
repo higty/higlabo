@@ -1,0 +1,69 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@{
+    var l = new List<string>();
+    l.Add("glay");
+    l.Add("light-glay");
+    l.Add("gold");
+    l.Add("caramel");
+    l.Add("sand");
+    l.Add("coffee");
+    l.Add("brown");
+    l.Add("red-brown");
+    l.Add("orange");
+    l.Add("yellow-green");
+    l.Add("green");
+    l.Add("mint");
+    l.Add("emerald");
+    l.Add("emerald-indigo");
+    l.Add("indigo");
+    l.Add("aqua");
+    l.Add("alice-blue");
+    l.Add("lavender");
+    l.Add("rose");
+    l.Add("violet");
+}
+
+<style type="text/css">
+    .scheme-panel {
+        display: inline-block;
+        margin: 4px;
+        cursor: pointer;
+        border: solid 1px #aaaaaa;
+        padding: 4px;
+    }
+
+    .scheme-panel:hover {
+        background-color: #eeeeee;
+    }
+</style>
+
+<div>
+    @foreach (var item in l)
+    {
+        <span class="scheme-panel" onclick="document.documentElement.setAttribute('color-scheme','@item')">@item</span>
+    }
+</div>
+<div>
+    @for (int i = 1; i <= 10; i++)
+    {
+        var number = i.ToString("00");
+        <span style="display: inline-block; width: 60px; height: 60px;background-color: var(--color-scheme-@number);"></span>
+    }
+</div>
+
+<hr />
+
+
+<h2>Basic input</h2>
+<SampleBasic></SampleBasic>
+<hr />
+<h2>Date and Time input</h2>
+<SampleDateTime></SampleDateTime>
+<hr />
+<h2>Record input</h2>
+<SampleRecord></SampleRecord>
+
+<div style="height: 600px;"></div>
+
+

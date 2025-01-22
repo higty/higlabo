@@ -1,0 +1,27 @@
+<div class="select-color-panel">
+    <div class="scroll-container-panel">
+        <table>
+            <tbody>
+                @{
+                    var colorRowList = this.GetColorRowList();
+                    for (int i = 0; i < colorRowList.Length; i++)
+                    {
+                        <tr>
+                            @foreach (var color in colorRowList[i])
+                            {
+                                <td class="color" color="true" @onclick="async e => await Color_Click(color)" style="background-color: @color"></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="footer-panel">
+        <button class="button radius-button" @onclick="async e => await CloseButton_Click()">@T.Text.Close</button>
+    </div>
+</div>
+
+
+
+

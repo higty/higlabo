@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>9.0.0.0</Version>
+		<Authors>Higty</Authors>
+		<Company>HigLabo</Company>
+		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+  <ItemGroup>
+	  <PackageReference Include="AngleSharp" Version="1.1.2" />
+	  <PackageReference Include="Selenium.Support" Version="4.27.0" />
+	  <PackageReference Include="Selenium.WebDriver" Version="4.27.0" />
+	  <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="131.0.6778.10800" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+  </ItemGroup>
+
+</Project>
