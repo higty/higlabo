@@ -43,6 +43,7 @@ public partial class OpenAIClient
                 case ServiceProvider.OpenAI: return "https://api.openai.com/v1";
                 case ServiceProvider.Azure: return $"{this.AzureSettings!.EndpointUrl}/openai";
                 case ServiceProvider.Groq: return "https://api.groq.com/openai/v1";
+                case ServiceProvider.DeepSeek: return "https://api.deepseek.com/v1";
                 default: throw SwitchStatementNotImplementException.Create(this.ServiceProvider);
             }
         }
@@ -53,6 +54,7 @@ public partial class OpenAIClient
     public OpenAISettings OpenAISettings { get; init; } = new();
     public AzureSettings AzureSettings { get; init; } = new();
     public GroqSettings GroqSettings { get; init; } = new();
+    public DeepSeekSettings DeepSeekSettings { get; init; } = new();
 
     public OpenAIClient()
     {
@@ -91,6 +93,12 @@ public partial class OpenAIClient
     {
         this.ServiceProvider = ServiceProvider.Groq;
         this.GroqSettings = settings;
+        this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
+    }
+    public OpenAIClient(DeepSeekSettings settings)
+    {
+        this.ServiceProvider = ServiceProvider.DeepSeek;
+        this.DeepSeekSettings = settings;
         this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
     }
 
@@ -158,6 +166,9 @@ public partial class OpenAIClient
                 break;
             case ServiceProvider.Groq:
                 req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.GroqSettings.ApiKey);
+                break;
+            case ServiceProvider.DeepSeek:
+                req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.DeepSeekSettings.ApiKey);
                 break;
             default:
                 break;

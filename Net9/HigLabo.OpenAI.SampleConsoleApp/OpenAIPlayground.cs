@@ -19,8 +19,8 @@ public class OpenAIPlayground
 
     public async ValueTask ExecuteAsync()
     {
-        SetOpenAISetting();
-        await RealtimeSession();
+        SetDeepSeekSetting();
+        await ChatCompletionStream();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -37,6 +37,11 @@ public class OpenAIPlayground
     {
         var apiKey = File.ReadAllText("C:\\Dev\\GroqApiKey.txt");
         OpenAIClient = new OpenAIClient(new GroqSettings(apiKey));
+    }
+    private void SetDeepSeekSetting()
+    {
+        var apiKey = File.ReadAllText("C:\\Dev\\DeepSeekApiKey.txt");
+        OpenAIClient = new OpenAIClient(new DeepSeekSettings(apiKey));
     }
 
     private async ValueTask AudioFileDownload()
@@ -129,6 +134,7 @@ public class OpenAIPlayground
         var model = cl.ServiceProvider switch
         {
             ServiceProvider.Groq => "llama3-70b-8192",
+            ServiceProvider.DeepSeek => "deepseek-chat",
             _ => "gpt-4o",
         };
         var result = new ChatCompletionStreamResult();
