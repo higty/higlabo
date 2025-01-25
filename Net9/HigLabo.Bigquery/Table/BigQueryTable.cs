@@ -1,11 +1,5 @@
 ﻿using Google.Apis.Bigquery.v2;
 using Google.Apis.Bigquery.v2.Data;
-using HigLabo.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HigLabo.Core;
 
@@ -55,7 +49,7 @@ public abstract class BigQueryTable
         var sv = this.BigqueryService;
         var req = this.CreateQueryRequest();
         req.UseQueryCache = false;
-        req.Query = String.Format("SELECT size_bytes FROM {0}.__TABLES__ WHERE table_id='{1}'", this.DatasetId, tableName);
+        req.Query = $"SELECT size_bytes FROM {this.DatasetId}.__TABLES__ WHERE table_id='{tableName}'";
 
         var res = await sv.Jobs.Query(req, this.ProjectId).ExecuteAsync();
         var rr = res.CreateRecords();

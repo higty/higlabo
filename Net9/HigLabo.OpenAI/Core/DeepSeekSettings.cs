@@ -1,11 +1,10 @@
 ﻿namespace HigLabo.OpenAI;
-
-public class GroqSettings
+public class DeepSeekSettings
 {
     public string ApiKey { get; set; } = "";
 
-    public GroqSettings() { }
-    public GroqSettings(string apiKey)
+    public DeepSeekSettings() { }
+    public DeepSeekSettings(string apiKey)
     {
         this.ApiKey = apiKey;
     }

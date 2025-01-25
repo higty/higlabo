@@ -15,41 +15,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="StaticFiles\reset.css" />
-	  <None Remove="StaticFiles\reset.min.css" />
-	  <None Remove="StaticFiles\reset.scss" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="StaticFiles\reset.css">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
-	  <Content Include="StaticFiles\reset.min.css">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
-	  <Content Include="StaticFiles\reset.scss">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
-	</ItemGroup>
-
-	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.7.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="compilerconfig.json" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -16,10 +16,10 @@
 	<ItemGroup>
 		<PackageReference Include="Google.Cloud.BigQuery.V2" Version="3.10.0" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 		<ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
 	</ItemGroup>
+
 
 </Project>
