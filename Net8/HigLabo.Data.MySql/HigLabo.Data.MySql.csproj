@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>8.0.0.0</Version>
+		<Version>8.0.0.1</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
 		<Authors>Higty</Authors>
@@ -14,7 +14,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MySql.Data" Version="9.1.0" />
+		<PackageReference Include="MySql.Data" Version="9.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>

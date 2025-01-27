@@ -298,15 +298,6 @@ button {
   /* Primary */
   --color-link: #0022cc;
   --color-link-visited: #2200cc;
-  --color-page-header-bg: #1b0000;
-  --color-page-header-text: #ffffff;
-  --color-nav-service-list-panel-bg: #3e2723;
-  --color-nav-service-list-panel-hover: #604040;
-  --color-nav-panel-bg: #eeeae4;
-  --color-nav-panel-current: #f8f8f8;
-  --color-menu-link-hover: #fffaf8;
-  --color-record-menu-link-bg: #f2f2f2;
-  --color-record-menu-link-hover: #eeeeee;
   /* tab */
   --color-tab-bg: #f0f0f0;
   --color-tab-hover: #e0e0e0;
