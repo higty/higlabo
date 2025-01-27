@@ -18,6 +18,7 @@ public class ChatCompletionObjectResponse : RestApiResponse
     public class Message
     {
         public string? Content { get; set; }
+        public string? Reasoning_Content { get; set; }
         public FunctionCall? Function_Call { get; set; }
         public List<ToolCall> Tool_Calls { get; set; } = new();
         public string Role { get; set; } = "";

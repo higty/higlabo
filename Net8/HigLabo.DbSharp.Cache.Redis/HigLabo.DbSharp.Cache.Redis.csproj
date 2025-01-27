@@ -4,7 +4,7 @@
 	  <TargetFramework>net8.0</TargetFramework>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <Nullable>enable</Nullable>
-	  <Version>8.0.0.1</Version>
+	  <Version>8.0.0.2</Version>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Company>HigLabo</Company>
 	  <Authors>Higty</Authors>
@@ -14,9 +14,8 @@
   </PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Azure.Identity" Version="1.13.1" />
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
-		<PackageReference Include="StackExchange.Redis" Version="2.8.22" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
+		<PackageReference Include="StackExchange.Redis" Version="2.8.24" />
 	</ItemGroup>
 
 	<ItemGroup>
