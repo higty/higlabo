@@ -108,6 +108,7 @@ public class OpenAIPlayground
         p.Model = cl.ServiceProvider switch
         {
             ServiceProvider.Groq => "llama3-70b-8192",
+            ServiceProvider.DeepSeek => "deepseek-chat",
             _ => "gpt-4o",
         };
         var res = await cl.ChatCompletionsAsync(p);
@@ -116,6 +117,13 @@ public class OpenAIPlayground
             Console.Write(choice.Message.Content);
         }
 
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("■Reasoning content");
+        Console.WriteLine();
+        foreach (var choice in res.Choices)
+        {
+            Console.Write(choice.Message.Reasoning_Content);
+        }
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("----------------------------------------");
@@ -144,6 +152,11 @@ public class OpenAIPlayground
         }
         Console.WriteLine();
         Console.WriteLine("***********************");
+
+        Console.WriteLine(result.GetReasoningContent());
+        Console.WriteLine();
+        Console.WriteLine("***********************");
+
         Console.WriteLine("Finish reason: " + result.GetFinishReason());
         Console.WriteLine("■DONE");
     }

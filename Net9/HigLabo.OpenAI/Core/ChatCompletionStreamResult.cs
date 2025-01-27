@@ -32,6 +32,22 @@ public class ChatCompletionStreamResult
         }
         return sb.ToString();
     }
+    public string GetReasoningContent()
+    {
+        var sb = new StringBuilder(this.ChunkList.Count * 32);
+        for (int i = 0; i < this.ChunkList.Count; i++)
+        {
+            for (int cIndex = 0; cIndex < this.ChunkList[i].Choices.Count; cIndex++)
+            {
+                var delta = this.ChunkList[i].Choices[cIndex].Delta;
+                if (delta != null)
+                {
+                    sb.Append(delta.Reasoning_Content);
+                }
+            }
+        }
+        return sb.ToString();
+    }
     public FunctionCallResult? GetFunctionCall()
     {
         return this.GetFunctionCallList().FirstOrDefault();
