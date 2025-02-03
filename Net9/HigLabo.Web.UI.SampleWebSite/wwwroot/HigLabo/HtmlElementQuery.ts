@@ -357,6 +357,121 @@ export class HtmlElementQuery {
             element.scrollTop = value;
         }
     }
+    public getCaretPosition() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+
+            if (element.tagName == "TEXTAREA") {
+                const tx = element as HTMLTextAreaElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.selectionEnd;
+                }
+                return tx.selectionStart;
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element as HTMLInputElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.selectionEnd;
+                }
+                return tx.selectionStart;
+            }
+            else {
+                let caretPos = 0;
+                let range;
+                let sel;
+
+                if (window.getSelection) {
+                    sel = window.getSelection();
+                    if (sel.rangeCount) {
+                        range = sel.getRangeAt(0);
+                        if (range.commonAncestorContainer.parentNode == element) {
+                            caretPos = range.endOffset;
+                        }
+                    }
+                }
+                return caretPos;
+            }
+        }
+        return null;
+    }
+    public getSelectionText() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+
+            if (element.tagName == "TEXTAREA") {
+                const tx = element as HTMLTextAreaElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.value.substring(tx.selectionStart, tx.selectionEnd);
+                }
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element as HTMLInputElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.value.substring(tx.selectionStart, tx.selectionEnd);
+                }
+            }
+            else {
+                var start = 0;
+                var end = 0;
+                var doc = element.ownerDocument;
+                var win = doc.defaultView;
+                var sel;
+                if (typeof win.getSelection != "undefined") {
+                    sel = win.getSelection();
+                    if (sel.rangeCount > 0) {
+                        var range = win.getSelection().getRangeAt(0);
+                        var preCaretRange = range.cloneRange();
+                        preCaretRange.selectNodeContents(element);
+                        preCaretRange.setEnd(range.startContainer, range.startOffset);
+                        start = preCaretRange.toString().length;
+                        preCaretRange.setEnd(range.endContainer, range.endOffset);
+                        end = preCaretRange.toString().length;
+                    }
+                }
+                element.innerHTML.substring(start, end);
+            }
+        }
+        return null;
+    }
+    public getSelectionRange() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+
+            if (element.tagName == "TEXTAREA") {
+                const tx = element as HTMLTextAreaElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return { start: tx.selectionStart, end: tx.selectionEnd };
+                }
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element as HTMLInputElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return { start: tx.selectionStart, end: tx.selectionEnd };
+                }
+            }
+            else {
+                var start = 0;
+                var end = 0;
+                var doc = element.ownerDocument;
+                var win = doc.defaultView;
+                var sel;
+                if (typeof win.getSelection != "undefined") {
+                    sel = win.getSelection();
+                    if (sel.rangeCount > 0) {
+                        var range = win.getSelection().getRangeAt(0);
+                        var preCaretRange = range.cloneRange();
+                        preCaretRange.selectNodeContents(element);
+                        preCaretRange.setEnd(range.startContainer, range.startOffset);
+                        start = preCaretRange.toString().length;
+                        preCaretRange.setEnd(range.endContainer, range.endOffset);
+                        end = preCaretRange.toString().length;
+                    }
+                }
+                return { start: start, end: end };
+            }
+        }
+        return null;
+    }
 
     public insertAdjacentHTML(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", text: string) {
         for (var i = 0; i < this._elementList.length; i++) {

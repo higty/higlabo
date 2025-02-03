@@ -19,8 +19,8 @@ public class OpenAIPlayground
 
     public async ValueTask ExecuteAsync()
     {
-        SetDeepSeekSetting();
-        await ChatCompletionStream();
+        SetOpenAISetting();
+        await ChatCompletionWithReasoning();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -319,6 +319,45 @@ public class OpenAIPlayground
             var r = JsonConvert.DeserializeObject<CountryInformation>(choice.Message.Content!);
         }
         Console.WriteLine();
+    }
+    private async ValueTask ChatCompletionWithReasoning()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ChatCompletionsParameter();
+        var theme = "How to enjoy coffee";
+        p.Messages.Add(new ChatMessage(ChatMessageRole.User
+            , $"Can you provide me with some ideas for blog posts about {theme}?"));
+        p.Model = cl.ServiceProvider switch
+        {
+            ServiceProvider.Groq => "llama3-70b-8192",
+            ServiceProvider.DeepSeek => "deepseek-chat",
+            _ => "o3-mini",
+        };
+        p.Reasoning_Effort = "medium";
+        var res = await cl.ChatCompletionsAsync(p);
+        foreach (var choice in res.Choices)
+        {
+            Console.Write(choice.Message.Content);
+        }
+
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("■Reasoning content");
+        Console.WriteLine();
+        foreach (var choice in res.Choices)
+        {
+            Console.Write(choice.Message.Reasoning_Content);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Total tokens: " + res.Usage.Total_Tokens);
+
+        //And you can get actual request body and response body by these property.
+        var iRes = res as IRestApiResponse;
+        Console.WriteLine(iRes.RequestBodyText);
+        Console.WriteLine();
+        Console.WriteLine(iRes.ResponseBodyText);
     }
 
     private ToolObject CreateGetWheatherTool()
