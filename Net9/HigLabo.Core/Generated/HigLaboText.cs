@@ -1,3936 +1,4164 @@
 using System;
 using HigLabo.Core;
 
-namespace HigLabo.Core;
-
-public partial class HigLaboText : LanguageText
+namespace HigLabo.Core
 {
-    protected override string[] LanguageList
+    public partial class HigLaboText : LanguageText
     {
-        get
+        protected override string[] LanguageList
         {
-            return new string[] { "ja-JP","en-US" };
+            get
+            {
+                return new string[] { "ja-JP","en-US" };
+            }
         }
-    }
-    public string Add
-    {
-        get
+        public string Add
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "追加";
-                case "en-US": return "Add";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "追加";
+                    case "en-US": return "Add";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AddCategory
-    {
-        get
+        public string AddCategory
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "カテゴリの追加";
-                case "en-US": return "Add category";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "カテゴリの追加";
+                    case "en-US": return "Add category";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AddComment
-    {
-        get
+        public string AddComment
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "コメントの追加";
-                case "en-US": return "Add comment";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "コメントの追加";
+                    case "en-US": return "Add comment";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AddImage
-    {
-        get
+        public string AddImage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "画像の追加";
-                case "en-US": return "Add image";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "画像の追加";
+                    case "en-US": return "Add image";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AddProject
-    {
-        get
+        public string AddProject
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "プロジェクトの追加";
-                case "en-US": return "Add project";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "プロジェクトの追加";
+                    case "en-US": return "Add project";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Address
-    {
-        get
+        public string Address
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "住所";
-                case "en-US": return "Address";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "住所";
+                    case "en-US": return "Address";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AddTask
-    {
-        get
+        public string AddTask
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "タスクの追加";
-                case "en-US": return "Add task";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "タスクの追加";
+                    case "en-US": return "Add task";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AddUser
-    {
-        get
+        public string AddUser
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザーの追加";
-                case "en-US": return "Add user";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザーの追加";
+                    case "en-US": return "Add user";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Affiliation
-    {
-        get
+        public string Affiliation
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "所属";
-                case "en-US": return "Affilication";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "所属";
+                    case "en-US": return "Affilication";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AffiliationName
-    {
-        get
+        public string AffiliationName
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "所属名";
-                case "en-US": return "Affilication name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "所属名";
+                    case "en-US": return "Affilication name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AgeSuffix
-    {
-        get
+        public string AgeSuffix
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "歳";
-                case "en-US": return "year of age";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "歳";
+                    case "en-US": return "year of age";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string All
-    {
-        get
+        public string All
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "全て";
-                case "en-US": return "All";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "全て";
+                    case "en-US": return "All";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AnnualPayment
-    {
-        get
+        public string AnnualPayment
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "年払い";
-                case "en-US": return "Annual payment";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "年払い";
+                    case "en-US": return "Annual payment";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ApiNotFound
-    {
-        get
+        public string ApiNotFound
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "APIが見つかりませんでした。";
-                case "en-US": return "API not found";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "APIが見つかりませんでした。";
+                    case "en-US": return "API not found";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Archive
-    {
-        get
+        public string Archive
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "アーカイブ";
-                case "en-US": return "Archive";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "アーカイブ";
+                    case "en-US": return "Archive";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AuthenticateExpired
-    {
-        get
+        public string AuthenticateExpired
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "認証情報の有効期限が切れました。再度ログインをしてください。";
-                case "en-US": return "Authenticate token expired.Please retry to login.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "認証情報の有効期限が切れました。再度ログインをしてください。";
+                    case "en-US": return "Authenticate token expired.Please retry to login.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AuthenticateRequired
-    {
-        get
+        public string AuthenticateRequired
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "認証が必要です。";
-                case "en-US": return "Authenticate required.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "認証が必要です。";
+                    case "en-US": return "Authenticate required.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AuthenticationFailure
-    {
-        get
+        public string AuthenticationFailure
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "認証に失敗しました。";
-                case "en-US": return "Authenticate failure.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "認証に失敗しました。";
+                    case "en-US": return "Authenticate failure.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Authority
-    {
-        get
+        public string Authority
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "権限";
-                case "en-US": return "Authority";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "権限";
+                    case "en-US": return "Authority";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string AuthoritySetting
-    {
-        get
+        public string AuthoritySetting
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "権限の設定";
-                case "en-US": return "AuthoritySetting";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "権限の設定";
+                    case "en-US": return "AuthoritySetting";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Billing
-    {
-        get
+        public string Available
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "請求";
-                case "en-US": return "Billing";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "利用可能";
+                    case "en-US": return "Available";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Birthday
-    {
-        get
+        public string Billing
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "誕生日";
-                case "en-US": return "Birthday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "請求";
+                    case "en-US": return "Billing";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Birthplace
-    {
-        get
+        public string Birthday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "出身地";
-                case "en-US": return "Birth place";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "誕生日";
+                    case "en-US": return "Birthday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Blog
-    {
-        get
+        public string Birthplace
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ブログ";
-                case "en-US": return "Blog";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "出身地";
+                    case "en-US": return "Birth place";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string BloodType
-    {
-        get
+        public string Blog
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "血液型";
-                case "en-US": return "Blood type";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ブログ";
+                    case "en-US": return "Blog";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string BodyHeight
-    {
-        get
+        public string BloodType
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "身長";
-                case "en-US": return "Body height";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "血液型";
+                    case "en-US": return "Blood type";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Bookmark
-    {
-        get
+        public string BodyHeight
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ブックマーク";
-                case "en-US": return "Bookmark";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "身長";
+                    case "en-US": return "Body height";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Buy
-    {
-        get
+        public string Bookmark
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "購入";
-                case "en-US": return "Buy";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ブックマーク";
+                    case "en-US": return "Bookmark";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Calendar
-    {
-        get
+        public string Buy
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "カレンダー";
-                case "en-US": return "Calendar";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "購入";
+                    case "en-US": return "Buy";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Cancel
-    {
-        get
+        public string Calendar
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "キャンセル";
-                case "en-US": return "Cancel";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "カレンダー";
+                    case "en-US": return "Calendar";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Category
-    {
-        get
+        public string Cancel
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "カテゴリ";
-                case "en-US": return "Category";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "キャンセル";
+                    case "en-US": return "Cancel";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Change
-    {
-        get
+        public string Category
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "変更";
-                case "en-US": return "Change";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "カテゴリ";
+                    case "en-US": return "Category";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ChangeProfileImage
-    {
-        get
+        public string Change
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "プロフィール画像の変更";
-                case "en-US": return "Change profile image";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "変更";
+                    case "en-US": return "Change";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Chat
-    {
-        get
+        public string ChangeProfileImage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "チャット";
-                case "en-US": return "Chat";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "プロフィール画像の変更";
+                    case "en-US": return "Change profile image";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Clear
-    {
-        get
+        public string Chat
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "クリア";
-                case "en-US": return "Clear";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "チャット";
+                    case "en-US": return "Chat";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Close
-    {
-        get
+        public string Clear
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "閉じる";
-                case "en-US": return "Close";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "クリア";
+                    case "en-US": return "Clear";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Command
-    {
-        get
+        public string Close
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "コマンド";
-                case "en-US": return "Command";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "閉じる";
+                    case "en-US": return "Close";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Comment
-    {
-        get
+        public string Command
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "コメント";
-                case "en-US": return "Comment";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "コマンド";
+                    case "en-US": return "Command";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CommentList
-    {
-        get
+        public string Comment
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "コメント一覧";
-                case "en-US": return "Comment list";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "コメント";
+                    case "en-US": return "Comment";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CompanyName
-    {
-        get
+        public string CommentList
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "会社名";
-                case "en-US": return "Company name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "コメント一覧";
+                    case "en-US": return "Comment list";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Complete
-    {
-        get
+        public string CompanyName
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "完了";
-                case "en-US": return "Complete";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "会社名";
+                    case "en-US": return "Company name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Composition
-    {
-        get
+        public string Complete
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "構成";
-                case "en-US": return "Composition";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "完了";
+                    case "en-US": return "Complete";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Confirm
-    {
-        get
+        public string Completed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "確認";
-                case "en-US": return "Confirm";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "完了";
+                    case "en-US": return "Completed";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Confirm_DeleteThisData
-    {
-        get
+        public string Composition
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このデータを削除します。よろしいですか？";
-                case "en-US": return "Delete this data?";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "構成";
+                    case "en-US": return "Composition";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Confirm_No
-    {
-        get
+        public string Confirm
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "いいえ";
-                case "en-US": return "No";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "確認";
+                    case "en-US": return "Confirm";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Confirm_Yes
-    {
-        get
+        public string Confirm_DeleteThisData
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "はい";
-                case "en-US": return "Yes";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このデータを削除します。よろしいですか？";
+                    case "en-US": return "Delete this data?";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ConfirmDelete
-    {
-        get
+        public string Confirm_No
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "削除します。よろしいですか？";
-                case "en-US": return "Delete?";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "いいえ";
+                    case "en-US": return "No";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Confirmed
-    {
-        get
+        public string Confirm_Yes
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "確認済";
-                case "en-US": return "Confirmed";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "はい";
+                    case "en-US": return "Yes";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ConfirmationRequired
-    {
-        get
+        public string ConfirmDelete
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "確認が必要です。";
-                case "en-US": return "Confirmation required";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "削除します。よろしいですか？";
+                    case "en-US": return "Delete?";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Content
-    {
-        get
+        public string Confirmed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "コンテント";
-                case "en-US": return "Content";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "確認済";
+                    case "en-US": return "Confirmed";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ContextMenu
-    {
-        get
+        public string ConfirmationRequired
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "コンテキストメニュー";
-                case "en-US": return "Context menu";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "確認が必要です。";
+                    case "en-US": return "Confirmation required";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Create
-    {
-        get
+        public string Content
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "作成";
-                case "en-US": return "Create";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "コンテント";
+                    case "en-US": return "Content";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CreateNew
-    {
-        get
+        public string ContextMenu
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "新規作成";
-                case "en-US": return "Create new";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "コンテキストメニュー";
+                    case "en-US": return "Context menu";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CreateNewAccount
-    {
-        get
+        public string Create
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "アカウントを作成";
-                case "en-US": return "Create account";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "作成";
+                    case "en-US": return "Create";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CreateTime
-    {
-        get
+        public string CreateNew
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "作成時刻";
-                case "en-US": return "CreateTime";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "新規作成";
+                    case "en-US": return "Create new";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CsvExport
-    {
-        get
+        public string CreateNewAccount
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "CSVエキスポート";
-                case "en-US": return "CSV export";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "アカウントを作成";
+                    case "en-US": return "Create account";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string CsvImport
-    {
-        get
+        public string CreateTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "CSVインポート";
-                case "en-US": return "CSV import";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "作成時刻";
+                    case "en-US": return "CreateTime";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Customer
-    {
-        get
+        public string CsvExport
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "顧客";
-                case "en-US": return "Customer";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "CSVエキスポート";
+                    case "en-US": return "CSV export";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DashBoard
-    {
-        get
+        public string CsvImport
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ダッシュボード";
-                case "en-US": return "Dash board";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "CSVインポート";
+                    case "en-US": return "CSV import";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DataAddedSuccessfully
-    {
-        get
+        public string Customer
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "データが正常に追加されました。";
-                case "en-US": return "Data added successfully.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "顧客";
+                    case "en-US": return "Customer";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DataDeletedSuccessfully
-    {
-        get
+        public string DashBoard
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "データが正常に削除されました。";
-                case "en-US": return "Data deleted successfully.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ダッシュボード";
+                    case "en-US": return "Dash board";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DataUpdatedSuccessfully
-    {
-        get
+        public string DataAddedSuccessfully
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "データが正常に更新されました。";
-                case "en-US": return "Data updated successfully.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "データが正常に追加されました。";
+                    case "en-US": return "Data added successfully.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DataProcessedFailedDueToTransaction
-    {
-        get
+        public string DataDeletedSuccessfully
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "データの処理がDBのトランザクションにより失敗しました。";
-                case "en-US": return "Data processed failed due to transaction.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "データが正常に削除されました。";
+                    case "en-US": return "Data deleted successfully.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DataProcessedSuccessfully
-    {
-        get
+        public string DataUpdatedSuccessfully
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "データが正常に処理されました。";
-                case "en-US": return "Data processed successfully.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "データが正常に更新されました。";
+                    case "en-US": return "Data updated successfully.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DataSaved
-    {
-        get
+        public string DataProcessedFailedDueToTransaction
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "保存しました。";
-                case "en-US": return "Saved";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "データの処理がDBのトランザクションにより失敗しました。";
+                    case "en-US": return "Data processed failed due to transaction.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Date
-    {
-        get
+        public string DataProcessedSuccessfully
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "日付";
-                case "en-US": return "Date";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "データが正常に処理されました。";
+                    case "en-US": return "Data processed successfully.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Monday
-    {
-        get
+        public string DataSaved
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "月曜日";
-                case "en-US": return "Monday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "保存しました。";
+                    case "en-US": return "Saved";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Tuesday
-    {
-        get
+        public string Date
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "火曜日";
-                case "en-US": return "Tuesday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "日付";
+                    case "en-US": return "Date";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Wednesday
-    {
-        get
+        public string DayOfWeek_Monday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "水曜日";
-                case "en-US": return "Wednesday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "月曜日";
+                    case "en-US": return "Monday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Thursday
-    {
-        get
+        public string DayOfWeek_Tuesday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "木曜日";
-                case "en-US": return "Thursday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "火曜日";
+                    case "en-US": return "Tuesday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Friday
-    {
-        get
+        public string DayOfWeek_Wednesday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "金曜日";
-                case "en-US": return "Friday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "水曜日";
+                    case "en-US": return "Wednesday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Saturday
-    {
-        get
+        public string DayOfWeek_Thursday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "土曜日";
-                case "en-US": return "Saturday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "木曜日";
+                    case "en-US": return "Thursday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DayOfWeek_Sunday
-    {
-        get
+        public string DayOfWeek_Friday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "日曜日";
-                case "en-US": return "Sunday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "金曜日";
+                    case "en-US": return "Friday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Decide
-    {
-        get
+        public string DayOfWeek_Saturday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "決定";
-                case "en-US": return "Decide";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "土曜日";
+                    case "en-US": return "Saturday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Delete
-    {
-        get
+        public string DayOfWeek_Sunday
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "削除";
-                case "en-US": return "Delete";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "日曜日";
+                    case "en-US": return "Sunday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Description
-    {
-        get
+        public string Decide
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "詳細";
-                case "en-US": return "Description";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "決定";
+                    case "en-US": return "Decide";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DirectoryNotFound
-    {
-        get
+        public string Delete
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ディレクトリが見つかりません。";
-                case "en-US": return "Directory not found.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "削除";
+                    case "en-US": return "Delete";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Display
-    {
-        get
+        public string Description
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "表示";
-                case "en-US": return "Display";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "詳細";
+                    case "en-US": return "Description";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DisplayAll
-    {
-        get
+        public string DirectoryNotFound
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "全て表示";
-                case "en-US": return "Display all";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ディレクトリが見つかりません。";
+                    case "en-US": return "Directory not found.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DisplayName
-    {
-        get
+        public string Disable
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "表示名";
-                case "en-US": return "Display name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "無効";
+                    case "en-US": return "Disable";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Document
-    {
-        get
+        public string Display
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ドキュメント";
-                case "en-US": return "Document";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "表示";
+                    case "en-US": return "Display";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Download
-    {
-        get
+        public string DisplayAll
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ダウンロード";
-                case "en-US": return "Download";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "全て表示";
+                    case "en-US": return "Display all";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DownloadByBrowser
-    {
-        get
+        public string DisplayName
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ブラウザでダウンロード";
-                case "en-US": return "Download by browser";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "表示名";
+                    case "en-US": return "Display name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Draft
-    {
-        get
+        public string Document
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "下書き";
-                case "en-US": return "Draft";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ドキュメント";
+                    case "en-US": return "Document";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string DueDate
-    {
-        get
+        public string Download
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "締切日";
-                case "en-US": return "Due date";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ダウンロード";
+                    case "en-US": return "Download";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Duplicate
-    {
-        get
+        public string DownloadByBrowser
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "複製";
-                case "en-US": return "Duplicate";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ブラウザでダウンロード";
+                    case "en-US": return "Download by browser";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Duration
-    {
-        get
+        public string Draft
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "期間";
-                case "en-US": return "Duration";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "下書き";
+                    case "en-US": return "Draft";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Edit
-    {
-        get
+        public string DueDate
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "編集";
-                case "en-US": return "Edit";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "締切日";
+                    case "en-US": return "Due date";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Encoding
-    {
-        get
+        public string Duplicate
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "エンコーディング";
-                case "en-US": return "Encoding";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "複製";
+                    case "en-US": return "Duplicate";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string EndDate
-    {
-        get
+        public string Duration
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "終了日";
-                case "en-US": return "End date";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "期間";
+                    case "en-US": return "Duration";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string EndTime
-    {
-        get
+        public string Edit
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "終了時刻";
-                case "en-US": return "End time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "編集";
+                    case "en-US": return "Edit";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Execute
-    {
-        get
+        public string ElementarySchool
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "実行";
-                case "en-US": return "Execute";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "小学校";
+                    case "en-US": return "Elementary school";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Executing___
-    {
-        get
+        public string Enable
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "実行中...";
-                case "en-US": return "Executing...";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "有効";
+                    case "en-US": return "Enable";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Export
-    {
-        get
+        public string Encoding
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "出力";
-                case "en-US": return "Export";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "エンコーディング";
+                    case "en-US": return "Encoding";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Feed
-    {
-        get
+        public string EndDate
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "フィード";
-                case "en-US": return "Feed";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "終了日";
+                    case "en-US": return "End date";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string File
-    {
-        get
+        public string EndTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ファイル";
-                case "en-US": return "File";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "終了時刻";
+                    case "en-US": return "End time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string FileName
-    {
-        get
+        public string Execute
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ファイル名";
-                case "en-US": return "File name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "実行";
+                    case "en-US": return "Execute";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string FileNotFound
-    {
-        get
+        public string Executing___
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ファイルが見つかりません。";
-                case "en-US": return "File not found.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "実行中...";
+                    case "en-US": return "Executing...";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string FileSize
-    {
-        get
+        public string Export
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ファイルサイズ";
-                case "en-US": return "File size";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "出力";
+                    case "en-US": return "Export";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string FileSizeMustBeSmallerThan_
-    {
-        get
+        public string Feed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ファイルが大きすぎます。{0}バイト以下である必要があります。";
-                case "en-US": return "File size must be smaller than {0} byte.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "フィード";
+                    case "en-US": return "Feed";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Filter
-    {
-        get
+        public string File
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "フィルタ";
-                case "en-US": return "Filter";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ファイル";
+                    case "en-US": return "File";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string FilterCondition
-    {
-        get
+        public string FileName
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "フィルタ条件";
-                case "en-US": return "Filter condition";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ファイル名";
+                    case "en-US": return "File name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string FolderNotFound
-    {
-        get
+        public string FileNotFound
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "フォルダが見つかりません。";
-                case "en-US": return "Folder not found.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ファイルが見つかりません。";
+                    case "en-US": return "File not found.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string TextColor
-    {
-        get
+        public string FileSize
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "文字色";
-                case "en-US": return "Text color";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ファイルサイズ";
+                    case "en-US": return "File size";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ForgetPassword
-    {
-        get
+        public string FileSizeMustBeSmallerThan_
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワードを忘れた？";
-                case "en-US": return "Forget password？";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ファイルが大きすぎます。{0}バイト以下である必要があります。";
+                    case "en-US": return "File size must be smaller than {0} byte.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Gender
-    {
-        get
+        public string Filter
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "性別";
-                case "en-US": return "Gender";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "フィルタ";
+                    case "en-US": return "Filter";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Gender_Unknown
-    {
-        get
+        public string FilterCondition
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "不明";
-                case "en-US": return "Unknown";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "フィルタ条件";
+                    case "en-US": return "Filter condition";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Gender_Man
-    {
-        get
+        public string FolderNotFound
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "男性";
-                case "en-US": return "Man";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "フォルダが見つかりません。";
+                    case "en-US": return "Folder not found.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Gender_Woman
-    {
-        get
+        public string TextColor
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "女性";
-                case "en-US": return "Woman";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "文字色";
+                    case "en-US": return "Text color";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Generate
-    {
-        get
+        public string ForgetPassword
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "生成";
-                case "en-US": return "Generate";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワードを忘れた？";
+                    case "en-US": return "Forget password？";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string GoOut
-    {
-        get
+        public string Gender
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "外出";
-                case "en-US": return "Go out";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "性別";
+                    case "en-US": return "Gender";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string HashTag
-    {
-        get
+        public string Gender_Unknown
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ハッシュタグ";
-                case "en-US": return "Hash tag";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "不明";
+                    case "en-US": return "Unknown";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Home
-    {
-        get
+        public string Gender_Man
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ホーム";
-                case "en-US": return "Home";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "男性";
+                    case "en-US": return "Man";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Hour
-    {
-        get
+        public string Gender_Woman
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "時間";
-                case "en-US": return "Hour";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "女性";
+                    case "en-US": return "Woman";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string IAgreeTermsOfUse
-    {
-        get
+        public string Generate
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "利用規約に同意する";
-                case "en-US": return "I agree terms of use.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "生成";
+                    case "en-US": return "Generate";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string IAgreeTermsOfUseAndPrivacyPolicy
-    {
-        get
+        public string GoOut
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "利用規約とプライバシーポリシーに同意する";
-                case "en-US": return "I agree terms of use and privacy policy.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "外出";
+                    case "en-US": return "Go out";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ImageUrl
-    {
-        get
+        public string GraduateSchool
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "画像URL";
-                case "en-US": return "Image url";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "大学院";
+                    case "en-US": return "Graduate school";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Import
-    {
-        get
+        public string HashTag
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "インポート";
-                case "en-US": return "Import";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ハッシュタグ";
+                    case "en-US": return "Hash tag";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string InComplete
-    {
-        get
+        public string HighSchool
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "未完了";
-                case "en-US": return "Incomplete";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "高校";
+                    case "en-US": return "High school";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string InputForm
-    {
-        get
+        public string Home
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "入力フォーム";
-                case "en-US": return "Input form";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ホーム";
+                    case "en-US": return "Home";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string InputSample
-    {
-        get
+        public string Hour
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "入力例";
-                case "en-US": return "Input sample";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "時間";
+                    case "en-US": return "Hour";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string InputValue
-    {
-        get
+        public string IAgreeTermsOfUse
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "入力値";
-                case "en-US": return "Input value";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "利用規約に同意する";
+                    case "en-US": return "I agree terms of use.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Inquiry
-    {
-        get
+        public string IAgreeTermsOfUseAndPrivacyPolicy
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "問い合わせ";
-                case "en-US": return "Inquiry";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "利用規約とプライバシーポリシーに同意する";
+                    case "en-US": return "I agree terms of use and privacy policy.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Install
-    {
-        get
+        public string ImageUrl
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "インストール";
-                case "en-US": return "Install";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "画像URL";
+                    case "en-US": return "Image url";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string InvalidPassword
-    {
-        get
+        public string Import
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワードが違います。";
-                case "en-US": return "Invalid password";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "インポート";
+                    case "en-US": return "Import";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Kana
-    {
-        get
+        public string InComplete
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "カナ";
-                case "en-US": return "Kana";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "未完了";
+                    case "en-US": return "Incomplete";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Language
-    {
-        get
+        public string InputForm
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "言語";
-                case "en-US": return "Language";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "入力フォーム";
+                    case "en-US": return "Input form";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string LastAccessTime
-    {
-        get
+        public string InputSample
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "最終アクセス時刻";
-                case "en-US": return "Last access time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "入力例";
+                    case "en-US": return "Input sample";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string LastModifiedTime
-    {
-        get
+        public string InputValue
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "最終更新時刻";
-                case "en-US": return "Last modified time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "入力値";
+                    case "en-US": return "Input value";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string LastDayOfMonth
-    {
-        get
+        public string Inquiry
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "月末";
-                case "en-US": return "Last day of month";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "問い合わせ";
+                    case "en-US": return "Inquiry";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Later
-    {
-        get
+        public string Install
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "後で";
-                case "en-US": return "Later";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "インストール";
+                    case "en-US": return "Install";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string License
-    {
-        get
+        public string InvalidPassword
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ライセンス";
-                case "en-US": return "License";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワードが違います。";
+                    case "en-US": return "Invalid password";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Link
-    {
-        get
+        public string JuniorCollege
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "リンク";
-                case "en-US": return "Link";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "短期大学";
+                    case "en-US": return "Junior college";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string List
-    {
-        get
+        public string JuniorHighSchool
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "一覧";
-                case "en-US": return "List";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "中学校";
+                    case "en-US": return "Junior high school";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Load
-    {
-        get
+        public string Kana
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ロード";
-                case "en-US": return "Load";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "カナ";
+                    case "en-US": return "Kana";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Location
-    {
-        get
+        public string Language
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "場所";
-                case "en-US": return "Location";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "言語";
+                    case "en-US": return "Language";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Login
-    {
-        get
+        public string LastAccessTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ログイン";
-                case "en-US": return "Login";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "最終アクセス時刻";
+                    case "en-US": return "Last access time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Logout
-    {
-        get
+        public string LastModifiedTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ログアウト";
-                case "en-US": return "Logout";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "最終更新時刻";
+                    case "en-US": return "Last modified time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string MailAddress
-    {
-        get
+        public string LastDayOfMonth
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メールアドレス";
-                case "en-US": return "MailAddress";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "月末";
+                    case "en-US": return "Last day of month";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string MailSent
-    {
-        get
+        public string Later
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メールが送信されました。";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "後で";
+                    case "en-US": return "Later";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string MainImage
-    {
-        get
+        public string License
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メイン画像";
-                case "en-US": return "Main image";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ライセンス";
+                    case "en-US": return "License";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Man
-    {
-        get
+        public string Link
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "男性";
-                case "en-US": return "Man";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "リンク";
+                    case "en-US": return "Link";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Manage
-    {
-        get
+        public string List
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "管理";
-                case "en-US": return "Manage";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "一覧";
+                    case "en-US": return "List";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ManageClient
-    {
-        get
+        public string Load
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "クライアントの管理";
-                case "en-US": return "Manage client";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ロード";
+                    case "en-US": return "Load";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ManageCustomer
-    {
-        get
+        public string Location
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "顧客の管理";
-                case "en-US": return "Manage customer";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "場所";
+                    case "en-US": return "Location";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ManageUser
-    {
-        get
+        public string Login
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザーの管理";
-                case "en-US": return "Manage user";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ログイン";
+                    case "en-US": return "Login";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Maximize
-    {
-        get
+        public string Logout
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "最大化";
-                case "en-US": return "Maximize";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ログアウト";
+                    case "en-US": return "Logout";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Minimize
-    {
-        get
+        public string MailAddress
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "最小化";
-                case "en-US": return "Minimize";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メールアドレス";
+                    case "en-US": return "MailAddress";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Member
-    {
-        get
+        public string MailSent
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メンバー";
-                case "en-US": return "Member";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メールが送信されました。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Mention
-    {
-        get
+        public string MainImage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メンション";
-                case "en-US": return "Mention";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メイン画像";
+                    case "en-US": return "Main image";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Menu
-    {
-        get
+        public string Man
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メニュー";
-                case "en-US": return "Menu";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "男性";
+                    case "en-US": return "Man";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Message
-    {
-        get
+        public string Manage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メッセージ";
-                case "en-US": return "Message";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "管理";
+                    case "en-US": return "Manage";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string MonthlyPayment
-    {
-        get
+        public string ManageClient
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "月払い";
-                case "en-US": return "Monthly payment";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "クライアントの管理";
+                    case "en-US": return "Manage client";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Minute
-    {
-        get
+        public string ManageCustomer
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "分";
-                case "en-US": return "Minute";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "顧客の管理";
+                    case "en-US": return "Manage customer";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Name
-    {
-        get
+        public string ManageUser
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "名前";
-                case "en-US": return "Name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザーの管理";
+                    case "en-US": return "Manage user";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NewPassword
-    {
-        get
+        public string Maximize
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "新しいパスワード";
-                case "en-US": return "New password";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "最大化";
+                    case "en-US": return "Maximize";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string News
-    {
-        get
+        public string Minimize
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ニュース";
-                case "en-US": return "News";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "最小化";
+                    case "en-US": return "Minimize";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NextPage
-    {
-        get
+        public string Member
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "次へ";
-                case "en-US": return "Next page";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メンバー";
+                    case "en-US": return "Member";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NextWeek
-    {
-        get
+        public string Mention
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "翌週";
-                case "en-US": return "Next week";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メンション";
+                    case "en-US": return "Mention";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NextMonth
-    {
-        get
+        public string Menu
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "翌月";
-                case "en-US": return "Next month";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メニュー";
+                    case "en-US": return "Menu";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Notification
-    {
-        get
+        public string Message
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "通知";
-                case "en-US": return "Notification";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メッセージ";
+                    case "en-US": return "Message";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NotificationSettings
-    {
-        get
+        public string MonthlyPayment
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "通知の設定";
-                case "en-US": return "Notification settings";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "月払い";
+                    case "en-US": return "Monthly payment";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NotConfirmed
-    {
-        get
+        public string MoreInfo
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "未確認";
-                case "en-US": return "Not confirmed";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "詳細情報";
+                    case "en-US": return "More info";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string NowRedirecting
-    {
-        get
+        public string Minute
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "リダイレクト中です。";
-                case "en-US": return "Now redirecting...";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "分";
+                    case "en-US": return "Minute";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Office
-    {
-        get
+        public string Name
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "オフィス";
-                case "en-US": return "Office";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "名前";
+                    case "en-US": return "Name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Open
-    {
-        get
+        public string NewPassword
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "開く";
-                case "en-US": return "Open";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "新しいパスワード";
+                    case "en-US": return "New password";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string OpenFullWindow
-    {
-        get
+        public string News
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "全画面表示";
-                case "en-US": return "Open full window";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ニュース";
+                    case "en-US": return "News";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Other
-    {
-        get
+        public string NextPage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "その他";
-                case "en-US": return "Other";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "次へ";
+                    case "en-US": return "Next page";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Page
-    {
-        get
+        public string NextWeek
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ページ";
-                case "en-US": return "Page";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "翌週";
+                    case "en-US": return "Next week";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PageNotFound
-    {
-        get
+        public string NextMonth
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ページが見つかりません。";
-                case "en-US": return "Page not found.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "翌月";
+                    case "en-US": return "Next month";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Password
-    {
-        get
+        public string Notification
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワード";
-                case "en-US": return "Password";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "通知";
+                    case "en-US": return "Notification";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PasswordSettings
-    {
-        get
+        public string NotificationSettings
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワードの設定";
-                case "en-US": return "Password settings";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "通知の設定";
+                    case "en-US": return "Notification settings";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PhoneNumber
-    {
-        get
+        public string NotConfirmed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "電話番号";
-                case "en-US": return "Phone number";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "未確認";
+                    case "en-US": return "Not confirmed";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PleaseConfirmInputValue
-    {
-        get
+        public string NowRedirecting
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "入力した値を確認してください。";
-                case "en-US": return "Please confirm the value you entered.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "リダイレクト中です。";
+                    case "en-US": return "Now redirecting...";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PleaseInputPositiveNumber
-    {
-        get
+        public string Office
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "正の数値を入力してください。";
-                case "en-US": return "Please input a positive number.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "オフィス";
+                    case "en-US": return "Office";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PleaseSelect
-    {
-        get
+        public string Open
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "選択してください。";
-                case "en-US": return "Please select";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "開く";
+                    case "en-US": return "Open";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Portal
-    {
-        get
+        public string OpenFullWindow
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ポータル";
-                case "en-US": return "Portal";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "全画面表示";
+                    case "en-US": return "Open full window";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PositionName
-    {
-        get
+        public string Other
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "役職名";
-                case "en-US": return "Position name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "その他";
+                    case "en-US": return "Other";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PostalCode
-    {
-        get
+        public string Page
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "郵便番号";
-                case "en-US": return "Zip";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ページ";
+                    case "en-US": return "Page";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PreviousPage
-    {
-        get
+        public string PageNotFound
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "前へ";
-                case "en-US": return "Previous page";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ページが見つかりません。";
+                    case "en-US": return "Page not found.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PreviousWeek
-    {
-        get
+        public string Password
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "先週";
-                case "en-US": return "Previous week";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワード";
+                    case "en-US": return "Password";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PreviousMonth
-    {
-        get
+        public string PasswordSettings
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "先月";
-                case "en-US": return "Previous month";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワードの設定";
+                    case "en-US": return "Password settings";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Processing_
-    {
-        get
+        public string PhoneNumber
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "実行中...";
-                case "en-US": return "Processing...";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "電話番号";
+                    case "en-US": return "Phone number";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Price
-    {
-        get
+        public string PleaseConfirmInputValue
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "価格";
-                case "en-US": return "Price";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "入力した値を確認してください。";
+                    case "en-US": return "Please confirm the value you entered.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PricePlan
-    {
-        get
+        public string PleaseInputPositiveNumber
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "価格プラン";
-                case "en-US": return "Price plan";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "正の数値を入力してください。";
+                    case "en-US": return "Please input a positive number.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Priority
-    {
-        get
+        public string PleaseSelect
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "優先順位";
-                case "en-US": return "Priority";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "選択してください。";
+                    case "en-US": return "Please select";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Profile
-    {
-        get
+        public string Portal
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "プロフィール";
-                case "en-US": return "Profile";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ポータル";
+                    case "en-US": return "Portal";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ProfileImage
-    {
-        get
+        public string PositionName
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "プロフィール画像";
-                case "en-US": return "Profile image";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "役職名";
+                    case "en-US": return "Position name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Project
-    {
-        get
+        public string PostalCode
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "プロジェクト";
-                case "en-US": return "Project";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "郵便番号";
+                    case "en-US": return "Zip";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Publish
-    {
-        get
+        public string PreviousPage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "公開";
-                case "en-US": return "Publish";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "前へ";
+                    case "en-US": return "Previous page";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PublishDate
-    {
-        get
+        public string PreviousWeek
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "公開日";
-                case "en-US": return "Publish date";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "先週";
+                    case "en-US": return "Previous week";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string PublishTime
-    {
-        get
+        public string PreviousMonth
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "公開時刻";
-                case "en-US": return "Publish time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "先月";
+                    case "en-US": return "Previous month";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ReadTime
-    {
-        get
+        public string Processing_
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "閲覧時刻";
-                case "en-US": return "Read time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "実行中...";
+                    case "en-US": return "Processing...";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Receive
-    {
-        get
+        public string Price
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "受信";
-                case "en-US": return "Receive";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "価格";
+                    case "en-US": return "Price";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string RecordNotFound
-    {
-        get
+        public string PricePlan
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "レコードが見つかりません。";
-                case "en-US": return "Record not found.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "価格プラン";
+                    case "en-US": return "Price plan";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Reload
-    {
-        get
+        public string Priority
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "更新";
-                case "en-US": return "Reload";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "優先順位";
+                    case "en-US": return "Priority";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Remarks
-    {
-        get
+        public string PrivacyPolicy
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "備考";
-                case "en-US": return "Remarks";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "プライバシーポリシー";
+                    case "en-US": return "Privacy policy";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ResetPassword
-    {
-        get
+        public string Profile
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワードのリセット";
-                case "en-US": return "Reset password";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "プロフィール";
+                    case "en-US": return "Profile";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Resolved
-    {
-        get
+        public string ProfileImage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "解決済";
-                case "en-US": return "Resolved";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "プロフィール画像";
+                    case "en-US": return "Profile image";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Result
-    {
-        get
+        public string Project
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "結果";
-                case "en-US": return "Result";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "プロジェクト";
+                    case "en-US": return "Project";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Results
-    {
-        get
+        public string Publish
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "件";
-                case "en-US": return "Results";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "公開";
+                    case "en-US": return "Publish";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Save
-    {
-        get
+        public string PublishDate
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "保存";
-                case "en-US": return "Save";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "公開日";
+                    case "en-US": return "Publish date";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Search
-    {
-        get
+        public string PublishTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "検索";
-                case "en-US": return "Search";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "公開時刻";
+                    case "en-US": return "Publish time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SearchResult
-    {
-        get
+        public string ReadTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "検索結果";
-                case "en-US": return "Search result";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "閲覧時刻";
+                    case "en-US": return "Read time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Select
-    {
-        get
+        public string Receive
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "選択";
-                case "en-US": return "Select";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "受信";
+                    case "en-US": return "Receive";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SelectAll
-    {
-        get
+        public string RecordNotFound
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "全て選択";
-                case "en-US": return "Select All";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "レコードが見つかりません。";
+                    case "en-US": return "Record not found.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SelectRecordByClick
-    {
-        get
+        public string Reload
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "クリックしてレコードを選択";
-                case "en-US": return "Select record by click";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "更新";
+                    case "en-US": return "Reload";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SelectUserByClick
-    {
-        get
+        public string Remarks
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "クリックしてユーザーを選択";
-                case "en-US": return "Select User by click";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "備考";
+                    case "en-US": return "Remarks";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Send
-    {
-        get
+        public string Reply
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "送信";
-                case "en-US": return "Send";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "返信";
+                    case "en-US": return "Reply";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SendTime
-    {
-        get
+        public string ReplyAll
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "送信時刻";
-                case "en-US": return "SendTime";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "全員に返信";
+                    case "en-US": return "Reply all";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SendMail
-    {
-        get
+        public string ResetPassword
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メールを送信";
-                case "en-US": return "Send mail";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワードのリセット";
+                    case "en-US": return "Reset password";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SendMailFailed
-    {
-        get
+        public string Resolved
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "メールの送信に失敗しました。";
-                case "en-US": return "Send mail failed.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "解決済";
+                    case "en-US": return "Resolved";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SendResetPasswordMail
-    {
-        get
+        public string Result
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワードのリセットメールを送る";
-                case "en-US": return "Send reset password mail.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "結果";
+                    case "en-US": return "Result";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SendResetPasswordMailFailed
-    {
-        get
+        public string Results
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "パスワードリセットメールの送信に失敗しました";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "件";
+                    case "en-US": return "Results";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Service
-    {
-        get
+        public string Review
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "サービス";
-                case "en-US": return "Service";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "レビュー";
+                    case "en-US": return "Review";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ServiceList
-    {
-        get
+        public string Save
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "サービス一覧";
-                case "en-US": return "Service list";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "保存";
+                    case "en-US": return "Save";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SetByEndTime
-    {
-        get
+        public string Search
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "時刻で指定";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "検索";
+                    case "en-US": return "Search";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SettingChanged
-    {
-        get
+        public string SearchResult
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "設定が変更されました。";
-                case "en-US": return "Settings changed.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "検索結果";
+                    case "en-US": return "Search result";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Settings
-    {
-        get
+        public string Select
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "設定";
-                case "en-US": return "Settings";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "選択";
+                    case "en-US": return "Select";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Signup
-    {
-        get
+        public string SelectAll
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "サインアップ";
-                case "en-US": return "Signup";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "全て選択";
+                    case "en-US": return "Select All";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SignupMailSendFailure
-    {
-        get
+        public string SelectRecordByClick
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "サインアップ完了のメール送信に失敗しました。メールアドレスを確認してみてください。";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "クリックしてレコードを選択";
+                    case "en-US": return "Select record by click";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SortBy
-    {
-        get
+        public string SelectUserByClick
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "並べ替え";
-                case "en-US": return "Sort by";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "クリックしてユーザーを選択";
+                    case "en-US": return "Select User by click";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string SorryInconvenience
-    {
-        get
+        public string Send
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "エラーが発生しました。ご迷惑をおかけして申し訳ありません。エラーの内容は管理者に通知され数日中に修正されます。";
-                case "en-US": return "An error has occurred. We apologize for the inconvenience. The error has been notified to the administrator and will be corrected in the next few days.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "送信";
+                    case "en-US": return "Send";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Start
-    {
-        get
+        public string SendTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "開始";
-                case "en-US": return "Start";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "送信時刻";
+                    case "en-US": return "SendTime";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Stop
-    {
-        get
+        public string SendMail
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "停止";
-                case "en-US": return "Stop";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メールを送信";
+                    case "en-US": return "Send mail";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string StartDate
-    {
-        get
+        public string SendMailFailed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "開始日";
-                case "en-US": return "Start date";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メールの送信に失敗しました。";
+                    case "en-US": return "Send mail failed.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string StartTime
-    {
-        get
+        public string SendResetPasswordMail
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "開始時刻";
-                case "en-US": return "Start time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワードのリセットメールを送る";
+                    case "en-US": return "Send reset password mail.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string State
-    {
-        get
+        public string SendResetPasswordMailFailed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "状態";
-                case "en-US": return "State";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "パスワードリセットメールの送信に失敗しました";
+                    case "en-US": return "Send reset password mail failed.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Subscription
-    {
-        get
+        public string Service
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "サブスクリプション";
-                case "en-US": return "Subscription";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サービス";
+                    case "en-US": return "Service";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Summary
-    {
-        get
+        public string ServiceList
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "サマリー";
-                case "en-US": return "Summary";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サービス一覧";
+                    case "en-US": return "Service list";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string System
-    {
-        get
+        public string SetByEndTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "システム";
-                case "en-US": return "System";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "時刻で指定";
+                    case "en-US": return "Set by endtime";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Tablet
-    {
-        get
+        public string SettingChanged
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "タブレット";
-                case "en-US": return "Tablet";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "設定が変更されました。";
+                    case "en-US": return "Settings changed.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Tag
-    {
-        get
+        public string Settings
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "タグ";
-                case "en-US": return "Tag";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "設定";
+                    case "en-US": return "Settings";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Task
-    {
-        get
+        public string Signup
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "タスク";
-                case "en-US": return "Task";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サインアップ";
+                    case "en-US": return "Signup";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Text
-    {
-        get
+        public string SignupMailSendFailure
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "テキスト";
-                case "en-US": return "Text";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サインアップ完了のメール送信に失敗しました。メールアドレスを確認してみてください。";
+                    case "en-US": return "Failed to send sign-up completion email. Please check your e-mail address.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string TextCopied
-    {
-        get
+        public string SortBy
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "テキストをコピーしました。";
-                case "en-US": return "Text copied";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "並べ替え";
+                    case "en-US": return "Sort by";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Theme
-    {
-        get
+        public string SorryInconvenience
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "テーマ";
-                case "en-US": return "Theme";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "エラーが発生しました。ご迷惑をおかけして申し訳ありません。エラーの内容は管理者に通知され数日中に修正されます。";
+                    case "en-US": return "An error has occurred. We apologize for the inconvenience. The error has been notified to the administrator and will be corrected in the next few days.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisDataMayBeDeleted
-    {
-        get
+        public string Start
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このデータは削除されたようです。";
-                case "en-US": return "This data may be deleted.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "開始";
+                    case "en-US": return "Start";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisFieldIsRequired
-    {
-        get
+        public string Stop
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "この項目は入力必須です。";
-                case "en-US": return "This field is required.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "停止";
+                    case "en-US": return "Stop";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisFieldIsRequiredAndMaxLength_
-    {
-        get
+        public string StartDate
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "この項目は入力必須です。{0}文字までです。";
-                case "en-US": return "This field is required.Max length is {0} char.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "開始日";
+                    case "en-US": return "Start date";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisFileFormatIsNotSupported
-    {
-        get
+        public string StartTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このファイルフォーマットはサポートされていません。";
-                case "en-US": return "This file formatis not supported.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "開始時刻";
+                    case "en-US": return "Start time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisUserIdAlreadyUsed
-    {
-        get
+        public string State
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このユーザーIDは既に使用されています。";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "状態";
+                    case "en-US": return "State";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisMailAddressAlreadyUsed
-    {
-        get
+        public string Subscription
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このメールアドレスは既に使用されています。";
-                case "en-US": return "This mail address already used";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サブスクリプション";
+                    case "en-US": return "Subscription";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ThisMailAddressNotExists
-    {
-        get
+        public string Summary
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このメールアドレスは存在しません。";
-                case "en-US": return "This mail address not exists.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サマリー";
+                    case "en-US": return "Summary";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string TimeZone
-    {
-        get
+        public string System
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "タイムゾーン";
-                case "en-US": return "Timezone";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "システム";
+                    case "en-US": return "System";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Title
-    {
-        get
+        public string Tablet
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "タイトル";
-                case "en-US": return "Title";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "タブレット";
+                    case "en-US": return "Tablet";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Today
-    {
-        get
+        public string Tag
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "今日";
-                case "en-US": return "Today";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "タグ";
+                    case "en-US": return "Tag";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string TokenExpired
-    {
-        get
+        public string Task
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "トークンの有効期限が切れています。";
-                case "en-US": return "Token expired.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "タスク";
+                    case "en-US": return "Task";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Tomorrow
-    {
-        get
+        public string TechnicalCollege
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "明日";
-                case "en-US": return "Tomorrow";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "高等専門学校";
+                    case "en-US": return "Technical college";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string TopPixel
-    {
-        get
+        public string TermsOfUse
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "トップからの位置";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "利用規約";
+                    case "en-US": return "Terms of use";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UnDecided
-    {
-        get
+        public string Text
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "未定";
-                case "en-US": return "UnDecided";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "テキスト";
+                    case "en-US": return "Text";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Uninstall
-    {
-        get
+        public string TextCopied
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "アンインストール";
-                case "en-US": return "Uninstall";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "テキストをコピーしました。";
+                    case "en-US": return "Text copied";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string University
-    {
-        get
+        public string Theme
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "大学";
-                case "en-US": return "University";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "テーマ";
+                    case "en-US": return "Theme";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Unknown
-    {
-        get
+        public string ThisDataMayBeDeleted
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "不明";
-                case "en-US": return "Unknown";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このデータは削除されたようです。";
+                    case "en-US": return "This data may be deleted.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UnRead
-    {
-        get
+        public string ThisFieldIsRequired
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "未読";
-                case "en-US": return "UnRead";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "この項目は入力必須です。";
+                    case "en-US": return "This field is required.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UnSpecified
-    {
-        get
+        public string ThisFieldIsRequiredAndMaxLength_
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "未指定";
-                case "en-US": return "Unspecified";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "この項目は入力必須です。{0}文字までです。";
+                    case "en-US": return "This field is required.Max length is {0} char.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Unsubscribe
-    {
-        get
+        public string ThisFileFormatIsNotSupported
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "解約する";
-                case "en-US": return "Unsubscribe";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このファイルフォーマットはサポートされていません。";
+                    case "en-US": return "This file formatis not supported.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Unsubscription
-    {
-        get
+        public string ThisUserIdAlreadyUsed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "解約";
-                case "en-US": return "Unsubscription";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このユーザーIDは既に使用されています。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Update
-    {
-        get
+        public string ThisMailAddressAlreadyUsed
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "更新";
-                case "en-US": return "Update";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このメールアドレスは既に使用されています。";
+                    case "en-US": return "This mail address already used";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UpdateTime
-    {
-        get
+        public string ThisMailAddressNotExists
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "更新時刻";
-                case "en-US": return "Update time";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このメールアドレスは存在しません。";
+                    case "en-US": return "This mail address not exists.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Upgrade
-    {
-        get
+        public string TimeZone
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "アップグレード";
-                case "en-US": return "Upgrade";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "タイムゾーン";
+                    case "en-US": return "Timezone";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Upload
-    {
-        get
+        public string Title
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "アップロード";
-                case "en-US": return "Upload";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "タイトル";
+                    case "en-US": return "Title";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UploadImage
-    {
-        get
+        public string Today
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "画像のアップロード";
-                case "en-US": return "Upload image";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "今日";
+                    case "en-US": return "Today";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Url
-    {
-        get
+        public string TokenExpired
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "URL";
-                case "en-US": return "URL";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "トークンの有効期限が切れています。";
+                    case "en-US": return "Token expired.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string User
-    {
-        get
+        public string Tomorrow
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザー";
-                case "en-US": return "User";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "明日";
+                    case "en-US": return "Tomorrow";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UserId
-    {
-        get
+        public string TopPixel
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザーID";
-                case "en-US": return "UserId";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "トップからの位置";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UserList
-    {
-        get
+        public string UnDecided
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザー一覧";
-                case "en-US": return "User list";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "未定";
+                    case "en-US": return "UnDecided";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UserName
-    {
-        get
+        public string Uninstall
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザー名";
-                case "en-US": return "User name";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "アンインストール";
+                    case "en-US": return "Uninstall";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string UserSettings
-    {
-        get
+        public string University
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "ユーザー設定";
-                case "en-US": return "User settings";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "大学";
+                    case "en-US": return "University";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string View
-    {
-        get
+        public string Unknown
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "表示";
-                case "en-US": return "View";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "不明";
+                    case "en-US": return "Unknown";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string ViewPermission
-    {
-        get
+        public string UnRead
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "閲覧権限";
-                case "en-US": return "View permission";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "未読";
+                    case "en-US": return "UnRead";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Visibility
-    {
-        get
+        public string UnSpecified
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "公開範囲";
-                case "en-US": return "Visibility";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "未指定";
+                    case "en-US": return "Unspecified";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Woman
-    {
-        get
+        public string Unsubscribe
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "女性";
-                case "en-US": return "Woman";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "解約する";
+                    case "en-US": return "Unsubscribe";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Yesterday
-    {
-        get
+        public string Unsubscription
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "昨日";
-                case "en-US": return "Yesterday";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "解約";
+                    case "en-US": return "Unsubscription";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string YouDontHavePermission
-    {
-        get
+        public string Update
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "権限がありません。";
-                case "en-US": return "You don't have permission";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "更新";
+                    case "en-US": return "Update";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string YouMustAgreeToTermsOfUse
-    {
-        get
+        public string UpdateTime
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "利用規約への同意が必要です。";
-                case "en-US": return "You must agree to the Terms of Use.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "更新時刻";
+                    case "en-US": return "Update time";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Format_MaxLength
-    {
-        get
+        public string Upgrade
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "最大{0}文字まで入力できます。";
-                case "en-US": return "Maximum length is {0} characters.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "アップグレード";
+                    case "en-US": return "Upgrade";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Format_Minutes
-    {
-        get
+        public string Upload
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "{0}分";
-                case "en-US": return "{0}m";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "アップロード";
+                    case "en-US": return "Upload";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string Format_ThisFieldIsRequiredAndMaxLength
-    {
-        get
+        public string UploadImage
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "ja-JP": return "このフィールドは必須です。最大{0}文字まで入力できます。";
-                case "en-US": return "This field is required and maximum length is {0} characters.";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "画像のアップロード";
+                    case "en-US": return "Upload image";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
-    public string MailIsSent
-    {
-        get
+        public string Url
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "URL";
+                    case "en-US": return "URL";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string User
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザー";
+                    case "en-US": return "User";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string UserId
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザーID";
+                    case "en-US": return "UserId";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string UserList
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザー一覧";
+                    case "en-US": return "User list";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string UserName
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザー名";
+                    case "en-US": return "User name";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string UserSettings
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ユーザー設定";
+                    case "en-US": return "User settings";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string View
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "表示";
+                    case "en-US": return "View";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ViewPermission
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "閲覧権限";
+                    case "en-US": return "View permission";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Visibility
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "公開範囲";
+                    case "en-US": return "Visibility";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Woman
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "女性";
+                    case "en-US": return "Woman";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Yesterday
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "昨日";
+                    case "en-US": return "Yesterday";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string YouDontHavePermission
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "権限がありません。";
+                    case "en-US": return "You don't have permission";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string YouMustAgreeToTermsOfUse
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "利用規約への同意が必要です。";
+                    case "en-US": return "You must agree to the Terms of Use.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Format_MaxLength
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "最大{0}文字まで入力できます。";
+                    case "en-US": return "Maximum length is {0} characters.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Format_Minutes
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "{0}分";
+                    case "en-US": return "{0}m";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Format_ThisFieldIsRequiredAndMaxLength
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このフィールドは必須です。最大{0}文字まで入力できます。";
+                    case "en-US": return "This field is required and maximum length is {0} characters.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string MailIsSent
         {
-            var language = this.GetLanguage();
-            switch (language)
+            get
             {
-                case "en-US": return "Mail is sent";
-                default:throw SwitchStatementNotImplementException.Create(language);
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Mail is sent";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
             }
         }
-    }
 
-    protected override string GetText(string key)
-    {
-        switch (key)
+        protected override string GetText(string key)
         {
-            case "Add": return this.Add;
-            case "AddCategory": return this.AddCategory;
-            case "AddComment": return this.AddComment;
-            case "AddImage": return this.AddImage;
-            case "AddProject": return this.AddProject;
-            case "Address": return this.Address;
-            case "AddTask": return this.AddTask;
-            case "AddUser": return this.AddUser;
-            case "Affiliation": return this.Affiliation;
-            case "AffiliationName": return this.AffiliationName;
-            case "AgeSuffix": return this.AgeSuffix;
-            case "All": return this.All;
-            case "AnnualPayment": return this.AnnualPayment;
-            case "ApiNotFound": return this.ApiNotFound;
-            case "Archive": return this.Archive;
-            case "AuthenticateExpired": return this.AuthenticateExpired;
-            case "AuthenticateRequired": return this.AuthenticateRequired;
-            case "AuthenticationFailure": return this.AuthenticationFailure;
-            case "Authority": return this.Authority;
-            case "AuthoritySetting": return this.AuthoritySetting;
-            case "Billing": return this.Billing;
-            case "Birthday": return this.Birthday;
-            case "Birthplace": return this.Birthplace;
-            case "Blog": return this.Blog;
-            case "BloodType": return this.BloodType;
-            case "BodyHeight": return this.BodyHeight;
-            case "Bookmark": return this.Bookmark;
-            case "Buy": return this.Buy;
-            case "Calendar": return this.Calendar;
-            case "Cancel": return this.Cancel;
-            case "Category": return this.Category;
-            case "Change": return this.Change;
-            case "ChangeProfileImage": return this.ChangeProfileImage;
-            case "Chat": return this.Chat;
-            case "Clear": return this.Clear;
-            case "Close": return this.Close;
-            case "Command": return this.Command;
-            case "Comment": return this.Comment;
-            case "CommentList": return this.CommentList;
-            case "CompanyName": return this.CompanyName;
-            case "Complete": return this.Complete;
-            case "Composition": return this.Composition;
-            case "Confirm": return this.Confirm;
-            case "Confirm_DeleteThisData": return this.Confirm_DeleteThisData;
-            case "Confirm_No": return this.Confirm_No;
-            case "Confirm_Yes": return this.Confirm_Yes;
-            case "ConfirmDelete": return this.ConfirmDelete;
-            case "Confirmed": return this.Confirmed;
-            case "ConfirmationRequired": return this.ConfirmationRequired;
-            case "Content": return this.Content;
-            case "ContextMenu": return this.ContextMenu;
-            case "Create": return this.Create;
-            case "CreateNew": return this.CreateNew;
-            case "CreateNewAccount": return this.CreateNewAccount;
-            case "CreateTime": return this.CreateTime;
-            case "CsvExport": return this.CsvExport;
-            case "CsvImport": return this.CsvImport;
-            case "Customer": return this.Customer;
-            case "DashBoard": return this.DashBoard;
-            case "DataAddedSuccessfully": return this.DataAddedSuccessfully;
-            case "DataDeletedSuccessfully": return this.DataDeletedSuccessfully;
-            case "DataUpdatedSuccessfully": return this.DataUpdatedSuccessfully;
-            case "DataProcessedFailedDueToTransaction": return this.DataProcessedFailedDueToTransaction;
-            case "DataProcessedSuccessfully": return this.DataProcessedSuccessfully;
-            case "DataSaved": return this.DataSaved;
-            case "Date": return this.Date;
-            case "DayOfWeek_Monday": return this.DayOfWeek_Monday;
-            case "DayOfWeek_Tuesday": return this.DayOfWeek_Tuesday;
-            case "DayOfWeek_Wednesday": return this.DayOfWeek_Wednesday;
-            case "DayOfWeek_Thursday": return this.DayOfWeek_Thursday;
-            case "DayOfWeek_Friday": return this.DayOfWeek_Friday;
-            case "DayOfWeek_Saturday": return this.DayOfWeek_Saturday;
-            case "DayOfWeek_Sunday": return this.DayOfWeek_Sunday;
-            case "Decide": return this.Decide;
-            case "Delete": return this.Delete;
-            case "Description": return this.Description;
-            case "DirectoryNotFound": return this.DirectoryNotFound;
-            case "Display": return this.Display;
-            case "DisplayAll": return this.DisplayAll;
-            case "DisplayName": return this.DisplayName;
-            case "Document": return this.Document;
-            case "Download": return this.Download;
-            case "DownloadByBrowser": return this.DownloadByBrowser;
-            case "Draft": return this.Draft;
-            case "DueDate": return this.DueDate;
-            case "Duplicate": return this.Duplicate;
-            case "Duration": return this.Duration;
-            case "Edit": return this.Edit;
-            case "Encoding": return this.Encoding;
-            case "EndDate": return this.EndDate;
-            case "EndTime": return this.EndTime;
-            case "Execute": return this.Execute;
-            case "Executing___": return this.Executing___;
-            case "Export": return this.Export;
-            case "Feed": return this.Feed;
-            case "File": return this.File;
-            case "FileName": return this.FileName;
-            case "FileNotFound": return this.FileNotFound;
-            case "FileSize": return this.FileSize;
-            case "FileSizeMustBeSmallerThan_": return this.FileSizeMustBeSmallerThan_;
-            case "Filter": return this.Filter;
-            case "FilterCondition": return this.FilterCondition;
-            case "FolderNotFound": return this.FolderNotFound;
-            case "TextColor": return this.TextColor;
-            case "ForgetPassword": return this.ForgetPassword;
-            case "Gender": return this.Gender;
-            case "Gender_Unknown": return this.Gender_Unknown;
-            case "Gender_Man": return this.Gender_Man;
-            case "Gender_Woman": return this.Gender_Woman;
-            case "Generate": return this.Generate;
-            case "GoOut": return this.GoOut;
-            case "HashTag": return this.HashTag;
-            case "Home": return this.Home;
-            case "Hour": return this.Hour;
-            case "IAgreeTermsOfUse": return this.IAgreeTermsOfUse;
-            case "IAgreeTermsOfUseAndPrivacyPolicy": return this.IAgreeTermsOfUseAndPrivacyPolicy;
-            case "ImageUrl": return this.ImageUrl;
-            case "Import": return this.Import;
-            case "InComplete": return this.InComplete;
-            case "InputForm": return this.InputForm;
-            case "InputSample": return this.InputSample;
-            case "InputValue": return this.InputValue;
-            case "Inquiry": return this.Inquiry;
-            case "Install": return this.Install;
-            case "InvalidPassword": return this.InvalidPassword;
-            case "Kana": return this.Kana;
-            case "Language": return this.Language;
-            case "LastAccessTime": return this.LastAccessTime;
-            case "LastModifiedTime": return this.LastModifiedTime;
-            case "LastDayOfMonth": return this.LastDayOfMonth;
-            case "Later": return this.Later;
-            case "License": return this.License;
-            case "Link": return this.Link;
-            case "List": return this.List;
-            case "Load": return this.Load;
-            case "Location": return this.Location;
-            case "Login": return this.Login;
-            case "Logout": return this.Logout;
-            case "MailAddress": return this.MailAddress;
-            case "MailSent": return this.MailSent;
-            case "MainImage": return this.MainImage;
-            case "Man": return this.Man;
-            case "Manage": return this.Manage;
-            case "ManageClient": return this.ManageClient;
-            case "ManageCustomer": return this.ManageCustomer;
-            case "ManageUser": return this.ManageUser;
-            case "Maximize": return this.Maximize;
-            case "Minimize": return this.Minimize;
-            case "Member": return this.Member;
-            case "Mention": return this.Mention;
-            case "Menu": return this.Menu;
-            case "Message": return this.Message;
-            case "MonthlyPayment": return this.MonthlyPayment;
-            case "Minute": return this.Minute;
-            case "Name": return this.Name;
-            case "NewPassword": return this.NewPassword;
-            case "News": return this.News;
-            case "NextPage": return this.NextPage;
-            case "NextWeek": return this.NextWeek;
-            case "NextMonth": return this.NextMonth;
-            case "Notification": return this.Notification;
-            case "NotificationSettings": return this.NotificationSettings;
-            case "NotConfirmed": return this.NotConfirmed;
-            case "NowRedirecting": return this.NowRedirecting;
-            case "Office": return this.Office;
-            case "Open": return this.Open;
-            case "OpenFullWindow": return this.OpenFullWindow;
-            case "Other": return this.Other;
-            case "Page": return this.Page;
-            case "PageNotFound": return this.PageNotFound;
-            case "Password": return this.Password;
-            case "PasswordSettings": return this.PasswordSettings;
-            case "PhoneNumber": return this.PhoneNumber;
-            case "PleaseConfirmInputValue": return this.PleaseConfirmInputValue;
-            case "PleaseInputPositiveNumber": return this.PleaseInputPositiveNumber;
-            case "PleaseSelect": return this.PleaseSelect;
-            case "Portal": return this.Portal;
-            case "PositionName": return this.PositionName;
-            case "PostalCode": return this.PostalCode;
-            case "PreviousPage": return this.PreviousPage;
-            case "PreviousWeek": return this.PreviousWeek;
-            case "PreviousMonth": return this.PreviousMonth;
-            case "Processing_": return this.Processing_;
-            case "Price": return this.Price;
-            case "PricePlan": return this.PricePlan;
-            case "Priority": return this.Priority;
-            case "Profile": return this.Profile;
-            case "ProfileImage": return this.ProfileImage;
-            case "Project": return this.Project;
-            case "Publish": return this.Publish;
-            case "PublishDate": return this.PublishDate;
-            case "PublishTime": return this.PublishTime;
-            case "ReadTime": return this.ReadTime;
-            case "Receive": return this.Receive;
-            case "RecordNotFound": return this.RecordNotFound;
-            case "Reload": return this.Reload;
-            case "Remarks": return this.Remarks;
-            case "ResetPassword": return this.ResetPassword;
-            case "Resolved": return this.Resolved;
-            case "Result": return this.Result;
-            case "Results": return this.Results;
-            case "Save": return this.Save;
-            case "Search": return this.Search;
-            case "SearchResult": return this.SearchResult;
-            case "Select": return this.Select;
-            case "SelectAll": return this.SelectAll;
-            case "SelectRecordByClick": return this.SelectRecordByClick;
-            case "SelectUserByClick": return this.SelectUserByClick;
-            case "Send": return this.Send;
-            case "SendTime": return this.SendTime;
-            case "SendMail": return this.SendMail;
-            case "SendMailFailed": return this.SendMailFailed;
-            case "SendResetPasswordMail": return this.SendResetPasswordMail;
-            case "SendResetPasswordMailFailed": return this.SendResetPasswordMailFailed;
-            case "Service": return this.Service;
-            case "ServiceList": return this.ServiceList;
-            case "SetByEndTime": return this.SetByEndTime;
-            case "SettingChanged": return this.SettingChanged;
-            case "Settings": return this.Settings;
-            case "Signup": return this.Signup;
-            case "SignupMailSendFailure": return this.SignupMailSendFailure;
-            case "SortBy": return this.SortBy;
-            case "SorryInconvenience": return this.SorryInconvenience;
-            case "Start": return this.Start;
-            case "Stop": return this.Stop;
-            case "StartDate": return this.StartDate;
-            case "StartTime": return this.StartTime;
-            case "State": return this.State;
-            case "Subscription": return this.Subscription;
-            case "Summary": return this.Summary;
-            case "System": return this.System;
-            case "Tablet": return this.Tablet;
-            case "Tag": return this.Tag;
-            case "Task": return this.Task;
-            case "Text": return this.Text;
-            case "TextCopied": return this.TextCopied;
-            case "Theme": return this.Theme;
-            case "ThisDataMayBeDeleted": return this.ThisDataMayBeDeleted;
-            case "ThisFieldIsRequired": return this.ThisFieldIsRequired;
-            case "ThisFieldIsRequiredAndMaxLength_": return this.ThisFieldIsRequiredAndMaxLength_;
-            case "ThisFileFormatIsNotSupported": return this.ThisFileFormatIsNotSupported;
-            case "ThisUserIdAlreadyUsed": return this.ThisUserIdAlreadyUsed;
-            case "ThisMailAddressAlreadyUsed": return this.ThisMailAddressAlreadyUsed;
-            case "ThisMailAddressNotExists": return this.ThisMailAddressNotExists;
-            case "TimeZone": return this.TimeZone;
-            case "Title": return this.Title;
-            case "Today": return this.Today;
-            case "TokenExpired": return this.TokenExpired;
-            case "Tomorrow": return this.Tomorrow;
-            case "TopPixel": return this.TopPixel;
-            case "UnDecided": return this.UnDecided;
-            case "Uninstall": return this.Uninstall;
-            case "University": return this.University;
-            case "Unknown": return this.Unknown;
-            case "UnRead": return this.UnRead;
-            case "UnSpecified": return this.UnSpecified;
-            case "Unsubscribe": return this.Unsubscribe;
-            case "Unsubscription": return this.Unsubscription;
-            case "Update": return this.Update;
-            case "UpdateTime": return this.UpdateTime;
-            case "Upgrade": return this.Upgrade;
-            case "Upload": return this.Upload;
-            case "UploadImage": return this.UploadImage;
-            case "Url": return this.Url;
-            case "User": return this.User;
-            case "UserId": return this.UserId;
-            case "UserList": return this.UserList;
-            case "UserName": return this.UserName;
-            case "UserSettings": return this.UserSettings;
-            case "View": return this.View;
-            case "ViewPermission": return this.ViewPermission;
-            case "Visibility": return this.Visibility;
-            case "Woman": return this.Woman;
-            case "Yesterday": return this.Yesterday;
-            case "YouDontHavePermission": return this.YouDontHavePermission;
-            case "YouMustAgreeToTermsOfUse": return this.YouMustAgreeToTermsOfUse;
-            case "Format_MaxLength": return this.Format_MaxLength;
-            case "Format_Minutes": return this.Format_Minutes;
-            case "Format_ThisFieldIsRequiredAndMaxLength": return this.Format_ThisFieldIsRequiredAndMaxLength;
-            case "MailIsSent": return this.MailIsSent;
-            default: return "";
+            switch (key)
+            {
+                case "Add": return this.Add;
+                case "AddCategory": return this.AddCategory;
+                case "AddComment": return this.AddComment;
+                case "AddImage": return this.AddImage;
+                case "AddProject": return this.AddProject;
+                case "Address": return this.Address;
+                case "AddTask": return this.AddTask;
+                case "AddUser": return this.AddUser;
+                case "Affiliation": return this.Affiliation;
+                case "AffiliationName": return this.AffiliationName;
+                case "AgeSuffix": return this.AgeSuffix;
+                case "All": return this.All;
+                case "AnnualPayment": return this.AnnualPayment;
+                case "ApiNotFound": return this.ApiNotFound;
+                case "Archive": return this.Archive;
+                case "AuthenticateExpired": return this.AuthenticateExpired;
+                case "AuthenticateRequired": return this.AuthenticateRequired;
+                case "AuthenticationFailure": return this.AuthenticationFailure;
+                case "Authority": return this.Authority;
+                case "AuthoritySetting": return this.AuthoritySetting;
+                case "Available": return this.Available;
+                case "Billing": return this.Billing;
+                case "Birthday": return this.Birthday;
+                case "Birthplace": return this.Birthplace;
+                case "Blog": return this.Blog;
+                case "BloodType": return this.BloodType;
+                case "BodyHeight": return this.BodyHeight;
+                case "Bookmark": return this.Bookmark;
+                case "Buy": return this.Buy;
+                case "Calendar": return this.Calendar;
+                case "Cancel": return this.Cancel;
+                case "Category": return this.Category;
+                case "Change": return this.Change;
+                case "ChangeProfileImage": return this.ChangeProfileImage;
+                case "Chat": return this.Chat;
+                case "Clear": return this.Clear;
+                case "Close": return this.Close;
+                case "Command": return this.Command;
+                case "Comment": return this.Comment;
+                case "CommentList": return this.CommentList;
+                case "CompanyName": return this.CompanyName;
+                case "Complete": return this.Complete;
+                case "Completed": return this.Completed;
+                case "Composition": return this.Composition;
+                case "Confirm": return this.Confirm;
+                case "Confirm_DeleteThisData": return this.Confirm_DeleteThisData;
+                case "Confirm_No": return this.Confirm_No;
+                case "Confirm_Yes": return this.Confirm_Yes;
+                case "ConfirmDelete": return this.ConfirmDelete;
+                case "Confirmed": return this.Confirmed;
+                case "ConfirmationRequired": return this.ConfirmationRequired;
+                case "Content": return this.Content;
+                case "ContextMenu": return this.ContextMenu;
+                case "Create": return this.Create;
+                case "CreateNew": return this.CreateNew;
+                case "CreateNewAccount": return this.CreateNewAccount;
+                case "CreateTime": return this.CreateTime;
+                case "CsvExport": return this.CsvExport;
+                case "CsvImport": return this.CsvImport;
+                case "Customer": return this.Customer;
+                case "DashBoard": return this.DashBoard;
+                case "DataAddedSuccessfully": return this.DataAddedSuccessfully;
+                case "DataDeletedSuccessfully": return this.DataDeletedSuccessfully;
+                case "DataUpdatedSuccessfully": return this.DataUpdatedSuccessfully;
+                case "DataProcessedFailedDueToTransaction": return this.DataProcessedFailedDueToTransaction;
+                case "DataProcessedSuccessfully": return this.DataProcessedSuccessfully;
+                case "DataSaved": return this.DataSaved;
+                case "Date": return this.Date;
+                case "DayOfWeek_Monday": return this.DayOfWeek_Monday;
+                case "DayOfWeek_Tuesday": return this.DayOfWeek_Tuesday;
+                case "DayOfWeek_Wednesday": return this.DayOfWeek_Wednesday;
+                case "DayOfWeek_Thursday": return this.DayOfWeek_Thursday;
+                case "DayOfWeek_Friday": return this.DayOfWeek_Friday;
+                case "DayOfWeek_Saturday": return this.DayOfWeek_Saturday;
+                case "DayOfWeek_Sunday": return this.DayOfWeek_Sunday;
+                case "Decide": return this.Decide;
+                case "Delete": return this.Delete;
+                case "Description": return this.Description;
+                case "DirectoryNotFound": return this.DirectoryNotFound;
+                case "Disable": return this.Disable;
+                case "Display": return this.Display;
+                case "DisplayAll": return this.DisplayAll;
+                case "DisplayName": return this.DisplayName;
+                case "Document": return this.Document;
+                case "Download": return this.Download;
+                case "DownloadByBrowser": return this.DownloadByBrowser;
+                case "Draft": return this.Draft;
+                case "DueDate": return this.DueDate;
+                case "Duplicate": return this.Duplicate;
+                case "Duration": return this.Duration;
+                case "Edit": return this.Edit;
+                case "ElementarySchool": return this.ElementarySchool;
+                case "Enable": return this.Enable;
+                case "Encoding": return this.Encoding;
+                case "EndDate": return this.EndDate;
+                case "EndTime": return this.EndTime;
+                case "Execute": return this.Execute;
+                case "Executing___": return this.Executing___;
+                case "Export": return this.Export;
+                case "Feed": return this.Feed;
+                case "File": return this.File;
+                case "FileName": return this.FileName;
+                case "FileNotFound": return this.FileNotFound;
+                case "FileSize": return this.FileSize;
+                case "FileSizeMustBeSmallerThan_": return this.FileSizeMustBeSmallerThan_;
+                case "Filter": return this.Filter;
+                case "FilterCondition": return this.FilterCondition;
+                case "FolderNotFound": return this.FolderNotFound;
+                case "TextColor": return this.TextColor;
+                case "ForgetPassword": return this.ForgetPassword;
+                case "Gender": return this.Gender;
+                case "Gender_Unknown": return this.Gender_Unknown;
+                case "Gender_Man": return this.Gender_Man;
+                case "Gender_Woman": return this.Gender_Woman;
+                case "Generate": return this.Generate;
+                case "GoOut": return this.GoOut;
+                case "GraduateSchool": return this.GraduateSchool;
+                case "HashTag": return this.HashTag;
+                case "HighSchool": return this.HighSchool;
+                case "Home": return this.Home;
+                case "Hour": return this.Hour;
+                case "IAgreeTermsOfUse": return this.IAgreeTermsOfUse;
+                case "IAgreeTermsOfUseAndPrivacyPolicy": return this.IAgreeTermsOfUseAndPrivacyPolicy;
+                case "ImageUrl": return this.ImageUrl;
+                case "Import": return this.Import;
+                case "InComplete": return this.InComplete;
+                case "InputForm": return this.InputForm;
+                case "InputSample": return this.InputSample;
+                case "InputValue": return this.InputValue;
+                case "Inquiry": return this.Inquiry;
+                case "Install": return this.Install;
+                case "InvalidPassword": return this.InvalidPassword;
+                case "JuniorCollege": return this.JuniorCollege;
+                case "JuniorHighSchool": return this.JuniorHighSchool;
+                case "Kana": return this.Kana;
+                case "Language": return this.Language;
+                case "LastAccessTime": return this.LastAccessTime;
+                case "LastModifiedTime": return this.LastModifiedTime;
+                case "LastDayOfMonth": return this.LastDayOfMonth;
+                case "Later": return this.Later;
+                case "License": return this.License;
+                case "Link": return this.Link;
+                case "List": return this.List;
+                case "Load": return this.Load;
+                case "Location": return this.Location;
+                case "Login": return this.Login;
+                case "Logout": return this.Logout;
+                case "MailAddress": return this.MailAddress;
+                case "MailSent": return this.MailSent;
+                case "MainImage": return this.MainImage;
+                case "Man": return this.Man;
+                case "Manage": return this.Manage;
+                case "ManageClient": return this.ManageClient;
+                case "ManageCustomer": return this.ManageCustomer;
+                case "ManageUser": return this.ManageUser;
+                case "Maximize": return this.Maximize;
+                case "Minimize": return this.Minimize;
+                case "Member": return this.Member;
+                case "Mention": return this.Mention;
+                case "Menu": return this.Menu;
+                case "Message": return this.Message;
+                case "MonthlyPayment": return this.MonthlyPayment;
+                case "MoreInfo": return this.MoreInfo;
+                case "Minute": return this.Minute;
+                case "Name": return this.Name;
+                case "NewPassword": return this.NewPassword;
+                case "News": return this.News;
+                case "NextPage": return this.NextPage;
+                case "NextWeek": return this.NextWeek;
+                case "NextMonth": return this.NextMonth;
+                case "Notification": return this.Notification;
+                case "NotificationSettings": return this.NotificationSettings;
+                case "NotConfirmed": return this.NotConfirmed;
+                case "NowRedirecting": return this.NowRedirecting;
+                case "Office": return this.Office;
+                case "Open": return this.Open;
+                case "OpenFullWindow": return this.OpenFullWindow;
+                case "Other": return this.Other;
+                case "Page": return this.Page;
+                case "PageNotFound": return this.PageNotFound;
+                case "Password": return this.Password;
+                case "PasswordSettings": return this.PasswordSettings;
+                case "PhoneNumber": return this.PhoneNumber;
+                case "PleaseConfirmInputValue": return this.PleaseConfirmInputValue;
+                case "PleaseInputPositiveNumber": return this.PleaseInputPositiveNumber;
+                case "PleaseSelect": return this.PleaseSelect;
+                case "Portal": return this.Portal;
+                case "PositionName": return this.PositionName;
+                case "PostalCode": return this.PostalCode;
+                case "PreviousPage": return this.PreviousPage;
+                case "PreviousWeek": return this.PreviousWeek;
+                case "PreviousMonth": return this.PreviousMonth;
+                case "Processing_": return this.Processing_;
+                case "Price": return this.Price;
+                case "PricePlan": return this.PricePlan;
+                case "Priority": return this.Priority;
+                case "PrivacyPolicy": return this.PrivacyPolicy;
+                case "Profile": return this.Profile;
+                case "ProfileImage": return this.ProfileImage;
+                case "Project": return this.Project;
+                case "Publish": return this.Publish;
+                case "PublishDate": return this.PublishDate;
+                case "PublishTime": return this.PublishTime;
+                case "ReadTime": return this.ReadTime;
+                case "Receive": return this.Receive;
+                case "RecordNotFound": return this.RecordNotFound;
+                case "Reload": return this.Reload;
+                case "Remarks": return this.Remarks;
+                case "Reply": return this.Reply;
+                case "ReplyAll": return this.ReplyAll;
+                case "ResetPassword": return this.ResetPassword;
+                case "Resolved": return this.Resolved;
+                case "Result": return this.Result;
+                case "Results": return this.Results;
+                case "Review": return this.Review;
+                case "Save": return this.Save;
+                case "Search": return this.Search;
+                case "SearchResult": return this.SearchResult;
+                case "Select": return this.Select;
+                case "SelectAll": return this.SelectAll;
+                case "SelectRecordByClick": return this.SelectRecordByClick;
+                case "SelectUserByClick": return this.SelectUserByClick;
+                case "Send": return this.Send;
+                case "SendTime": return this.SendTime;
+                case "SendMail": return this.SendMail;
+                case "SendMailFailed": return this.SendMailFailed;
+                case "SendResetPasswordMail": return this.SendResetPasswordMail;
+                case "SendResetPasswordMailFailed": return this.SendResetPasswordMailFailed;
+                case "Service": return this.Service;
+                case "ServiceList": return this.ServiceList;
+                case "SetByEndTime": return this.SetByEndTime;
+                case "SettingChanged": return this.SettingChanged;
+                case "Settings": return this.Settings;
+                case "Signup": return this.Signup;
+                case "SignupMailSendFailure": return this.SignupMailSendFailure;
+                case "SortBy": return this.SortBy;
+                case "SorryInconvenience": return this.SorryInconvenience;
+                case "Start": return this.Start;
+                case "Stop": return this.Stop;
+                case "StartDate": return this.StartDate;
+                case "StartTime": return this.StartTime;
+                case "State": return this.State;
+                case "Subscription": return this.Subscription;
+                case "Summary": return this.Summary;
+                case "System": return this.System;
+                case "Tablet": return this.Tablet;
+                case "Tag": return this.Tag;
+                case "Task": return this.Task;
+                case "TechnicalCollege": return this.TechnicalCollege;
+                case "TermsOfUse": return this.TermsOfUse;
+                case "Text": return this.Text;
+                case "TextCopied": return this.TextCopied;
+                case "Theme": return this.Theme;
+                case "ThisDataMayBeDeleted": return this.ThisDataMayBeDeleted;
+                case "ThisFieldIsRequired": return this.ThisFieldIsRequired;
+                case "ThisFieldIsRequiredAndMaxLength_": return this.ThisFieldIsRequiredAndMaxLength_;
+                case "ThisFileFormatIsNotSupported": return this.ThisFileFormatIsNotSupported;
+                case "ThisUserIdAlreadyUsed": return this.ThisUserIdAlreadyUsed;
+                case "ThisMailAddressAlreadyUsed": return this.ThisMailAddressAlreadyUsed;
+                case "ThisMailAddressNotExists": return this.ThisMailAddressNotExists;
+                case "TimeZone": return this.TimeZone;
+                case "Title": return this.Title;
+                case "Today": return this.Today;
+                case "TokenExpired": return this.TokenExpired;
+                case "Tomorrow": return this.Tomorrow;
+                case "TopPixel": return this.TopPixel;
+                case "UnDecided": return this.UnDecided;
+                case "Uninstall": return this.Uninstall;
+                case "University": return this.University;
+                case "Unknown": return this.Unknown;
+                case "UnRead": return this.UnRead;
+                case "UnSpecified": return this.UnSpecified;
+                case "Unsubscribe": return this.Unsubscribe;
+                case "Unsubscription": return this.Unsubscription;
+                case "Update": return this.Update;
+                case "UpdateTime": return this.UpdateTime;
+                case "Upgrade": return this.Upgrade;
+                case "Upload": return this.Upload;
+                case "UploadImage": return this.UploadImage;
+                case "Url": return this.Url;
+                case "User": return this.User;
+                case "UserId": return this.UserId;
+                case "UserList": return this.UserList;
+                case "UserName": return this.UserName;
+                case "UserSettings": return this.UserSettings;
+                case "View": return this.View;
+                case "ViewPermission": return this.ViewPermission;
+                case "Visibility": return this.Visibility;
+                case "Woman": return this.Woman;
+                case "Yesterday": return this.Yesterday;
+                case "YouDontHavePermission": return this.YouDontHavePermission;
+                case "YouMustAgreeToTermsOfUse": return this.YouMustAgreeToTermsOfUse;
+                case "Format_MaxLength": return this.Format_MaxLength;
+                case "Format_Minutes": return this.Format_Minutes;
+                case "Format_ThisFieldIsRequiredAndMaxLength": return this.Format_ThisFieldIsRequiredAndMaxLength;
+                case "MailIsSent": return this.MailIsSent;
+                default: return "";
+            }
         }
     }
 }

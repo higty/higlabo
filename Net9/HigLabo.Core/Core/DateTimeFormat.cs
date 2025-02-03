@@ -54,15 +54,31 @@ public static class DateTimeFormatExtensions
     {
         return value.ToString(format.GetFormat());
     }
+    public static string ToString(this DateOnly value, DateTimeFormat format, string separator)
+    {
+        return value.ToString(format.GetFormat(separator));
+    }
     public static string ToString(this DateTime value, DateTimeFormat format)
     {
         return value.ToString(format.GetFormat());
     }
+    public static string ToString(this DateTime value, DateTimeFormat format, string separator)
+    {
+        return value.ToString(format.GetFormat(separator));
+    }
     public static string ToString(this DateTimeOffset value, DateTimeFormat format, DateTimePart dateTimePart)
     {
-        return ToString(value, format, dateTimePart, CultureInfo.CurrentUICulture);
+        return ToString(value, format, dateTimePart, "/", CultureInfo.CurrentUICulture);
+    }
+    public static string ToString(this DateTimeOffset value, DateTimeFormat format, DateTimePart dateTimePart, string separator)
+    {
+        return ToString(value, format, dateTimePart, separator, CultureInfo.CurrentUICulture);
     }
     public static string ToString(this DateTimeOffset value, DateTimeFormat format, DateTimePart dateTimePart, CultureInfo cultureInfo)
+    {
+        return ToString(value, format, dateTimePart, "/", cultureInfo);
+    }
+    public static string ToString(this DateTimeOffset value, DateTimeFormat format, DateTimePart dateTimePart, string separator, CultureInfo cultureInfo)
     {
         switch (dateTimePart)
         {
