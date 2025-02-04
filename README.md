@@ -10,6 +10,10 @@ I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 ## HigLabo.OpenAI
+2025-02-04 Refine DbSharpApplication.
+
+2025-01-22 updated. Support .NET9.
+
 2024-08-23 updated. Support administration api endpoint.
 
 2024-06-05 updated. Support vector store chunking strategy.
