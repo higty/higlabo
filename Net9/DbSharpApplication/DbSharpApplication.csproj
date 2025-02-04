@@ -5,7 +5,7 @@
 		<TargetFramework>net9.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
-		<Version>9.0.0.0</Version>
+		<Version>9.1.0.0</Version>
 		<Authors>Higty</Authors>
 		<Company>HigLabo</Company>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>

@@ -1,4 +1,5 @@
-﻿using HigLabo.Core;
+﻿using DbSharpApplication.Core;
+using HigLabo.Core;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ public class ConfigData
     }
     public static LanguageText<HigLaboText> Text { get; set; } = new();
     public static ConfigData Current = new ConfigData();
+    public static readonly String DialogFilter = "XMLファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*";
 
     public static String SettingFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\HigLabo\\DbSharpApplication";
     public static String SettingFilePath
@@ -31,6 +33,10 @@ public class ConfigData
     public string SchemeFilePath { get; set; } = "";
     public List<string> SchemeFilePathList { get; init; } = new();
     public List<ConnectionStringSetting> ConnectionStringList { get; init; } = new();
+    public WindowStateInfo MainWindow { get; set; } = new() {  Width = 1280 , Height = 900 };
+    public WindowStateInfo StoredProcedureWindow { get; set; } = new();
+    public WindowStateInfo UserDefinedTableTypeWindow { get; set; } = new();
+    public WindowStateInfo DatabaseDefinitionWindow { get; set; } = new();
 
     public void EnsureFileExists()
     {

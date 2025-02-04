@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
@@ -12,20 +13,21 @@ public class DataViewTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
+        output.AddClass("data-view", HtmlEncoder.Default);
         output.Attributes.Add("id", this.Id);
-        output.Attributes.Add("class", "data-view");
         output.Attributes.Add("data-view", "true");
 
         output.Content.AppendHtml(await output.GetChildContentAsync());
         {
             var div = new TagBuilder("div");
-            div.Attributes.Add("class", "detail-panel display-none");
+            div.AddCssClass("detail-panel display-none");
             div.Attributes.Add("data-view-detail-panel", "true");
             output.Content.AppendHtml(div);
         }
         {
             var div = new TagBuilder("div");
-            div.Attributes.Add("class", "right-panel display-none");
+            div.AddCssClass("right-panel");
+            div.AddCssClass("display-none");
             div.Attributes.Add("data-view-right-panel", "true");
             output.Content.AppendHtml(div);
         }
@@ -38,7 +40,7 @@ public class RecordListComponentViewPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "view-panel");
+        output.AddClass("view-panel", HtmlEncoder.Default);
         output.Attributes.Add("data-view-view-panel", "true");
         await base.ProcessAsync(context, output);
     }
@@ -52,7 +54,7 @@ public class RecordListComponentRecordListPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "record-list-panel");
+        output.AddClass("record-list-panel", HtmlEncoder.Default);
         output.Attributes.Add("data-view-record-list-panel", "true");
         output.Attributes.Add("hx-trigger", "load once,load-record-list");
         output.Attributes.Add("hx-include", this.HxInclude);
@@ -71,7 +73,7 @@ public class RecordListComponentFooterPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "footer-panel");
+        output.AddClass("footer-panel", HtmlEncoder.Default);
         await base.ProcessAsync(context, output);
     }
 }

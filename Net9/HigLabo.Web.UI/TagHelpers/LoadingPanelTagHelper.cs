@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 
@@ -12,15 +13,15 @@ public class LoadingPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "loading-panel");
+        output.AddClass("loading-panel", HtmlEncoder.Default);
         {
             var span = new TagBuilder("span");
-            span.Attributes.Add("class", "loading-image");
+            span.AddCssClass("loading-image");
             output.Content.AppendHtml(span);
         }
         {
             var span = new TagBuilder("span");
-            span.Attributes.Add("class", "text");
+            span.AddCssClass("text");
             span.InnerHtml.AppendHtml(Text);
             output.Content.AppendHtml(span);
         }

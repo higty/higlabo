@@ -34,6 +34,7 @@ public partial class DatabaseDefinitionWindow : Window
         _WorkerThreadService.Completed += WorkerThreadService_Completed;
 
         this.ConnectionString = connectionString;
+        ConfigData.Current.DatabaseDefinitionWindow.Initialize(this);
     }
     private void SetText()
     {

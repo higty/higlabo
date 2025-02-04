@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
@@ -17,7 +18,7 @@ public class InputRecordPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "input-record");
+        output.AddClass("input-record", HtmlEncoder.Default);
         output.Attributes.Add("tabindex", this.TabIndex);
         output.Attributes.Add("show-data-record-popup-panel", "true");
 
