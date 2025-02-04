@@ -10,6 +10,10 @@ I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 ## HigLabo.OpenAI
+2025-02-04 Refine DbSharpApplication.
+
+2025-01-22 updated. Support .NET9.
+
 2024-08-23 updated. Support administration api endpoint.
 
 2024-06-05 updated. Support vector store chunking strategy.
@@ -105,7 +109,12 @@ HigLabo.Mapper (version3.0.0 or later) is used expression tree. It generate il c
 ## DbSharp
 A code generator to call stored procedure on database(SQL server, MySQL)
 
+Article
 https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
+
+Download link for DbSharpApplication (version: 9.1.0.0)
+https://static.tinybetter.com/higlabo/DbSharpApplication/DbSharpApplication_9_1_0_0.zip
+
 
 ## HigLabo.Web
 RazorRenderer class get html from .cshtml file.
