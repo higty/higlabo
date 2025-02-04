@@ -105,11 +105,12 @@ HigLabo.Mapper (version3.0.0 or later) is used expression tree. It generate il c
 ## DbSharp
 A code generator to call stored procedure on database(SQL server, MySQL)
 
-DbSharpApplication(9.1.0.0)
-Download zip
+Article
+https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
+
+Download link for DbSharpApplication (version: 9.1.0.0)
 https://static.tinybetter.com/higlabo/DbSharpApplication/DbSharpApplication_9_1_0_0.zip
 
-https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
 
 ## HigLabo.Web
 RazorRenderer class get html from .cshtml file.
