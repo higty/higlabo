@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbSharpApplication"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         Title="User defined table type"
-        Height="800" Width="1000">
+        Height="800" Width="1000"
+        MinWidth="800" MinHeight="500"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>

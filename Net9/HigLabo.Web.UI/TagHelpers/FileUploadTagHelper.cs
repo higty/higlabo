@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
@@ -12,7 +13,7 @@ public class FileUploadTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
-        output.Attributes.Add("class", "file-upload");
+        output.AddClass("file-upload", HtmlEncoder.Default);
         output.Attributes.Add("file-upload", "true");
         output.Attributes.Add("api-path", this.ApiPath);
 

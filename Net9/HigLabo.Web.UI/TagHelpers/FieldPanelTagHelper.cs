@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
@@ -12,12 +13,12 @@ public class FieldPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "field-panel");
+        output.AddClass("field-panel", HtmlEncoder.Default);
         {
             if (this.Text.HasValue())
             {
                 var span = new TagBuilder("span");
-                span.Attributes.Add("class", "field-name");
+                span.AddCssClass("field-name");
                 span.InnerHtml.AppendHtml(this.Text);
                 output.Content.AppendHtml(span);
             }

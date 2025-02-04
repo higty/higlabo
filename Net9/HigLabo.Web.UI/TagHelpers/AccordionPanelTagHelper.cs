@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
@@ -11,8 +12,8 @@ public class AccordionPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
+        output.AddClass("accordion-panel", HtmlEncoder.Default);
         output.Attributes.Add("accordion-panel", "true");
-        output.Attributes.Add("class", "accordion-panel");
         output.Attributes.Add("toggle-state", this.ToggleState.ToStringFromEnum());
 
         await base.ProcessAsync(context, output);
@@ -24,7 +25,7 @@ public class AccordionPanelHeaderTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "header-panel");
+        output.AddClass("header-panel", HtmlEncoder.Default);
         await base.ProcessAsync(context, output);
     }
 }
@@ -34,7 +35,7 @@ public class AccordionPanelContentTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "content-panel");
+        output.AddClass("content-panel", HtmlEncoder.Default);
         await base.ProcessAsync(context, output);
     }
 }

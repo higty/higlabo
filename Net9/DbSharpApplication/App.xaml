@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:DbSharpApplication"
              xmlns:hig="clr-namespace:HigLabo.Wpf.Converter"
              xmlns:dbs="clr-namespace:HigLabo.DbSharpApplication"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow2025.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <hig:DateConverter x:Key="DateConverter" Format="yyyy/MM/dd" />

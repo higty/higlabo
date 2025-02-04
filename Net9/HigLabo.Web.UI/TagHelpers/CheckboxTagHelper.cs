@@ -1,5 +1,6 @@
 ﻿using HigLabo.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
@@ -14,12 +15,12 @@ public class CheckboxTagHelper : TagHelper
     public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "checkbox-panel");
+        output.AddClass("checkbox-panel", HtmlEncoder.Default);
         {
             var label = new TagBuilder("label");
             {
                 var span = new TagBuilder("span");
-                span.Attributes.Add("class", "checkbox");
+                span.AddCssClass("checkbox");
                 {
                     var input = new TagBuilder("input");
                     input.Attributes.Add("type", "checkbox");
@@ -39,7 +40,7 @@ public class CheckboxTagHelper : TagHelper
             }
             {
                 var span = new TagBuilder("span");
-                span.Attributes.Add("class", "text-panel");
+                span.AddCssClass("text-panel");
                 span.InnerHtml.AppendHtml(await output.GetChildContentAsync());
                 label.InnerHtml.AppendHtml(span);
             }

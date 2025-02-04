@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.TagHelpers;
 
@@ -9,7 +10,7 @@ public class DataRecordPanelTagHelper : TagHelper
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
-        output.Attributes.Add("class", "data-record-panel");
+        output.AddClass("data-record-panel", HtmlEncoder.Default);
         output.Attributes.Add("tabindex", this.TabIndex);
         output.Attributes.Add("data-record-panel", "true");
         await base.ProcessAsync(context, output);
