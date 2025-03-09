@@ -56,7 +56,7 @@ public class SlackEmojiHtmlConverter : RegexHtmlConverter
     {
         yield return RegexList.Emoji;
     }
-    protected override String Convert(Match match)
+    protected override ValueTask<String> ReplaceAsync(Match match)
     {
         var m = match;
         var name = m.Groups["Name"].Value;
@@ -64,11 +64,11 @@ public class SlackEmojiHtmlConverter : RegexHtmlConverter
 
         if (rEmoji == null)
         {
-            return m.Value;
+            return ValueTask.FromResult(m.Value);
         }
         else
         {
-            return $"<div class=\"slack-emoji\">{rEmoji.Text}</div>";
+            return ValueTask.FromResult($"<div class=\"slack-emoji\">{rEmoji.Text}</div>");
         }
     }
 

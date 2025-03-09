@@ -24,13 +24,13 @@ public class SlackUserNameHtmlConverter : RegexHtmlConverter
     {
         yield return RegexList.UserName;
     }
-    protected override String Convert(Match match)
+    protected override ValueTask<String> ReplaceAsync(Match match)
     {
         var m = match;
         var userID = m.Groups["UserID"].Value;
         var userName = this.SlackUserList.Find(el => el.ID == userID)?.Name ?? userID;
 
-        return $"<span class=\"slack-user-name\">@{userName}</span>";
+        return ValueTask.FromResult($"<span class=\"slack-user-name\">@{userName}</span>");
     }
 
 }

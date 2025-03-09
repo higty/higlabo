@@ -22,6 +22,11 @@ public class ChatMessage : IChatMessage
         this.Role = role;
         this.Content = content;
     }
+
+    public override string ToString()
+    {
+        return $"{this.Role.ToStringFromEnum()} {this.Content}";
+    }
 }
 public class ChatImageMessage : IChatMessage
 {

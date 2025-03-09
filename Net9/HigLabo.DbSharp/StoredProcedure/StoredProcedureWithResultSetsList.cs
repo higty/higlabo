@@ -41,6 +41,7 @@ public abstract class StoredProcedureWithResultSetsList<T, TResultSetList> : Sto
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             dr = database.ExecuteReader(cm, commandBehavior);
             Int32 index = 0;
             while (true)

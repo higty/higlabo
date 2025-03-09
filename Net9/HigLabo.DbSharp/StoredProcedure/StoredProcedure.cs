@@ -18,6 +18,8 @@ public abstract class StoredProcedure : IDatabaseKey
 {
     public static DatabaseFactory DatabaseFactory { get; private set; } = new DatabaseFactory();
     public static HigLabo.Core.TypeConverter TypeConverter { get; set; } = new HigLabo.Core.TypeConverter();
+
+    public event EventHandler<StoredProcedureEventArgs>? Executing;
     String IDatabaseKey.DatabaseKey { get; set; } = "";
 
     protected StoredProcedure()
@@ -44,6 +46,7 @@ public abstract class StoredProcedure : IDatabaseKey
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             affectedRecordCount = await database.ExecuteCommandAsync(cm, cancellationToken).ConfigureAwait(false);
             this.SetOutputParameterValue(cm);
         }
@@ -67,6 +70,7 @@ public abstract class StoredProcedure : IDatabaseKey
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             affectedRecordCount = database.ExecuteCommand(cm);
             this.SetOutputParameterValue(cm);
         }
@@ -135,7 +139,10 @@ public abstract class StoredProcedure : IDatabaseKey
         var results = await Task.WhenAll(tt).ConfigureAwait(false);
         return results;
     }
-
+    protected void OnExecuting(StoredProcedureEventArgs e)
+    {
+        this.Executing?.Invoke(this, e);
+    }
     protected abstract void SetOutputParameterValue(DbCommand command);
     protected static object ToDBValue(object value)
     {

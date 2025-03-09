@@ -10,6 +10,7 @@ public class HtmlProcessResult
 {
     public String SourceHtml { get; init; }
     public String Html { get; set; } = "";
+    public List<string> UrlList { get; init; } = new();
 
     public HtmlProcessResult(String sourceHtml)
     {

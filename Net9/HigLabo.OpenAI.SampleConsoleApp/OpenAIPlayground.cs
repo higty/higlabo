@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ChatCompletionWithReasoning();
+        await ChatCompletionStreamWithFunctionCalling();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -440,7 +440,7 @@ public class OpenAIPlayground
         var o = new JsonSchema();
         o.Properties.Add("locationList", new JsonSchemaProperty("array", "Location list that you want to know.")
         {
-            Items = new JsonSchema("object") { },
+            Items = new JsonSchema("string") { },
         });
         tool.Function.Parameters = o;
         return tool;

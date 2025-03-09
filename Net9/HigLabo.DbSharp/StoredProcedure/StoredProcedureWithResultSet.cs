@@ -101,6 +101,7 @@ public abstract class StoredProcedureWithResultSet : StoredProcedure
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             dr = await database.ExecuteReaderAsync(cm, commandBehavior, cancellationToken);
             while (dr!.Read())
             {
@@ -164,6 +165,7 @@ public abstract class StoredProcedureWithResultSet : StoredProcedure
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             dr = database.ExecuteReader(cm, commandBehavior);
             while (dr!.Read())
             {
@@ -204,6 +206,7 @@ public abstract class StoredProcedureWithResultSet : StoredProcedure
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             dr = await database.ExecuteReaderAsync(cm, commandBehavior, cancellationToken);
             while (await dr!.ReadAsync())
             {
@@ -232,6 +235,7 @@ public abstract class StoredProcedureWithResultSet : StoredProcedure
         try
         {
             var cm = CreateCommand(database);
+            this.OnExecuting(new StoredProcedureEventArgs(database, cm));
             var dt = database.GetDataTable(cm);
             return dt;
         }

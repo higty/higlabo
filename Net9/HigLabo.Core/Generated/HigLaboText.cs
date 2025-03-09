@@ -3170,6 +3170,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string SubTitle
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "サブタイトル";
+                    case "en-US": return "Sub title";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Summary
         {
             get
@@ -3360,6 +3373,7 @@ namespace HigLabo.Core
                 switch (language)
                 {
                     case "ja-JP": return "このユーザーIDは既に使用されています。";
+                    case "en-US": return "This userID already used.";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -3386,6 +3400,32 @@ namespace HigLabo.Core
                 {
                     case "ja-JP": return "このメールアドレスは存在しません。";
                     case "en-US": return "This mail address not exists.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ThisPageIsPrivate
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このページは非公開です。";
+                    case "en-US": return "This page is private.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ThisUserAlreadyExists
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このユーザーは既に存在します。";
+                    case "en-US": return "This user already exists.";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -3463,6 +3503,7 @@ namespace HigLabo.Core
                 switch (language)
                 {
                     case "ja-JP": return "トップからの位置";
+                    case "en-US": return "Position from top";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -3710,6 +3751,19 @@ namespace HigLabo.Core
                 {
                     case "ja-JP": return "ユーザー設定";
                     case "en-US": return "User settings";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Vector
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ベクトル";
+                    case "en-US": return "Vector";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -4104,6 +4158,7 @@ namespace HigLabo.Core
                 case "StartTime": return this.StartTime;
                 case "State": return this.State;
                 case "Subscription": return this.Subscription;
+                case "SubTitle": return this.SubTitle;
                 case "Summary": return this.Summary;
                 case "System": return this.System;
                 case "Tablet": return this.Tablet;
@@ -4121,6 +4176,8 @@ namespace HigLabo.Core
                 case "ThisUserIdAlreadyUsed": return this.ThisUserIdAlreadyUsed;
                 case "ThisMailAddressAlreadyUsed": return this.ThisMailAddressAlreadyUsed;
                 case "ThisMailAddressNotExists": return this.ThisMailAddressNotExists;
+                case "ThisPageIsPrivate": return this.ThisPageIsPrivate;
+                case "ThisUserAlreadyExists": return this.ThisUserAlreadyExists;
                 case "TimeZone": return this.TimeZone;
                 case "Title": return this.Title;
                 case "Today": return this.Today;
@@ -4146,6 +4203,7 @@ namespace HigLabo.Core
                 case "UserList": return this.UserList;
                 case "UserName": return this.UserName;
                 case "UserSettings": return this.UserSettings;
+                case "Vector": return this.Vector;
                 case "View": return this.View;
                 case "ViewPermission": return this.ViewPermission;
                 case "Visibility": return this.Visibility;
