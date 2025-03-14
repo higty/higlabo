@@ -49,7 +49,7 @@ namespace HigLabo.OpenAI
             var p = new OrganizationInviteCreateParameter();
             p.Email = email;
             p.Role = role;
-            return await this.SendJsonAsync<OrganizationInviteCreateParameter, OrganizationInviteCreateResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationInviteCreateParameter, OrganizationInviteCreateResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationInviteCreateResponse> OrganizationInviteCreateAsync(string email, string role, CancellationToken cancellationToken)
         {
@@ -60,7 +60,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationInviteCreateResponse> OrganizationInviteCreateAsync(OrganizationInviteCreateParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationInviteCreateParameter, OrganizationInviteCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationInviteCreateParameter, OrganizationInviteCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationInviteCreateResponse> OrganizationInviteCreateAsync(OrganizationInviteCreateParameter parameter, CancellationToken cancellationToken)
         {

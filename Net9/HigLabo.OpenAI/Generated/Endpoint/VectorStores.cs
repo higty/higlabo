@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<VectorStoresResponse> VectorStoresAsync()
         {
-            return await this.SendJsonAsync<VectorStoresParameter, VectorStoresResponse>(VectorStoresParameter.Empty, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoresParameter, VectorStoresResponse>(VectorStoresParameter.Empty, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoresResponse> VectorStoresAsync(CancellationToken cancellationToken)
         {
@@ -51,7 +51,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<VectorStoresResponse> VectorStoresAsync(VectorStoresParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoresParameter, VectorStoresResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoresParameter, VectorStoresResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoresResponse> VectorStoresAsync(VectorStoresParameter parameter, CancellationToken cancellationToken)
         {

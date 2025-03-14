@@ -17,18 +17,18 @@ public class SlackLinkHtmlConverter : RegexHtmlConverter
     {
         yield return RegexList.Http_url;
     }
-    protected override String Convert(Match match)
+    protected override ValueTask<String> ReplaceAsync(Match match)
     {
         var m = match;
         var urlList = "http" + m.Groups["Url"].Value;
 
         foreach (var url in urlList.Split('|'))
         {
-            return $"<a href=\"{url}\" target=\"_blank\">{url}</a>";
+            return ValueTask.FromResult($"<a href=\"{url}\" target=\"_blank\">{url}</a>");
         }
         {
             var url = urlList;
-            return $"<a href=\"{url}\" target=\"_blank\">{url}</a>";
+            return ValueTask.FromResult($"<a href=\"{url}\" target=\"_blank\">{url}</a>");
         }
     }
 

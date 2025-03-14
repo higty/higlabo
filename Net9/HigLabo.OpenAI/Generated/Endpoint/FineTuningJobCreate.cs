@@ -16,8 +16,7 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// The name of the model to fine-tune. You can select one of the
-        /// supported models.
+        /// The name of the model to fine-tune. You can select one of the supported models.
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
@@ -29,33 +28,34 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Training_File { get; set; } = "";
         /// <summary>
+        /// A list of integrations to enable for your fine-tuning job.
+        /// </summary>
+        public List<FineTuningIntegrationObject>? Integrations { get; set; }
+        /// <summary>
+        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.
+        /// Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
+        /// </summary>
+        public object? Metadata { get; set; }
+        /// <summary>
+        /// The method used for fine-tuning.
+        /// </summary>
+        public object? Method { get; set; }
+        /// <summary>
+        /// The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you.
+        /// </summary>
+        public int? Seed { get; set; }
+        /// <summary>
         /// A string of up to 64 characters that will be added to your fine-tuned model name.
         /// For example, a suffix of "custom-model-name" would produce a model name like ft:gpt-4o-mini:openai:custom-model-name:7p4lURel.
         /// </summary>
         public string? Suffix { get; set; }
         /// <summary>
         /// The ID of an uploaded file that contains validation data.
-        /// If you provide this file, the data is used to generate validation
-        /// metrics periodically during fine-tuning. These metrics can be viewed in
-        /// the fine-tuning results file.
-        /// The same data should not be present in both train and validation files.
+        /// If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.
         /// Your dataset must be formatted as a JSONL file. You must upload your file with the purpose fine-tune.
         /// See the fine-tuning guide for more details.
         /// </summary>
         public string? Validation_File { get; set; }
-        /// <summary>
-        /// A list of integrations to enable for your fine-tuning job.
-        /// </summary>
-        public List<FineTuningIntegrationObject>? Integrations { get; set; }
-        /// <summary>
-        /// The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.
-        /// If a seed is not specified, one will be generated for you.
-        /// </summary>
-        public int? Seed { get; set; }
-        /// <summary>
-        /// The method used for fine-tuning.
-        /// </summary>
-        public object? Method { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -66,11 +66,12 @@ namespace HigLabo.OpenAI
             return new {
             	model = this.Model,
             	training_file = this.Training_File,
+            	integrations = this.Integrations,
+            	metadata = this.Metadata,
+            	method = this.Method,
+            	seed = this.Seed,
             	suffix = this.Suffix,
             	validation_file = this.Validation_File,
-            	integrations = this.Integrations,
-            	seed = this.Seed,
-            	method = this.Method,
             };
         }
     }
@@ -84,7 +85,7 @@ namespace HigLabo.OpenAI
             var p = new FineTuningJobCreateParameter();
             p.Model = model;
             p.Training_File = training_File;
-            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(string model, string training_File, CancellationToken cancellationToken)
         {
@@ -95,7 +96,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(FineTuningJobCreateParameter parameter)
         {
-            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobCreateParameter, FineTuningJobCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobCreateResponse> FineTuningJobCreateAsync(FineTuningJobCreateParameter parameter, CancellationToken cancellationToken)
         {

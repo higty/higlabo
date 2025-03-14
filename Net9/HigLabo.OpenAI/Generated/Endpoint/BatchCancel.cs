@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new BatchCancelParameter();
             p.Batch_Id = batch_Id;
-            return await this.SendJsonAsync<BatchCancelParameter, BatchCancelResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<BatchCancelParameter, BatchCancelResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<BatchCancelResponse> BatchCancelAsync(string batch_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<BatchCancelResponse> BatchCancelAsync(BatchCancelParameter parameter)
         {
-            return await this.SendJsonAsync<BatchCancelParameter, BatchCancelResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<BatchCancelParameter, BatchCancelResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<BatchCancelResponse> BatchCancelAsync(BatchCancelParameter parameter, CancellationToken cancellationToken)
         {

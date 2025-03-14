@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new UploadCancelParameter();
             p.Upload_Id = upload_Id;
-            return await this.SendJsonAsync<UploadCancelParameter, UploadCancelResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<UploadCancelParameter, UploadCancelResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<UploadCancelResponse> UploadCancelAsync(string upload_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<UploadCancelResponse> UploadCancelAsync(UploadCancelParameter parameter)
         {
-            return await this.SendJsonAsync<UploadCancelParameter, UploadCancelResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<UploadCancelParameter, UploadCancelResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<UploadCancelResponse> UploadCancelAsync(UploadCancelParameter parameter, CancellationToken cancellationToken)
         {

@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
             var p = new OrganizationUserCreateParameter();
             p.User_Id = user_Id;
             p.Role = role;
-            return await this.SendJsonAsync<OrganizationUserCreateParameter, OrganizationUserCreateResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationUserCreateParameter, OrganizationUserCreateResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationUserCreateResponse> OrganizationUserCreateAsync(string user_Id, string role, CancellationToken cancellationToken)
         {
@@ -54,7 +54,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationUserCreateResponse> OrganizationUserCreateAsync(OrganizationUserCreateParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationUserCreateParameter, OrganizationUserCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationUserCreateParameter, OrganizationUserCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationUserCreateResponse> OrganizationUserCreateAsync(OrganizationUserCreateParameter parameter, CancellationToken cancellationToken)
         {

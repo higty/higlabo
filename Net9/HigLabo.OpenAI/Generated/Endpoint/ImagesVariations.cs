@@ -77,7 +77,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ImagesVariationsParameter();
             p.Image.SetFile(imageFileName, imageStream);
-            return await this.SendFormDataAsync<ImagesVariationsParameter, ImagesVariationsResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<ImagesVariationsParameter, ImagesVariationsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(string imageFileName, Stream imageStream, CancellationToken cancellationToken)
         {
@@ -87,7 +87,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(ImagesVariationsParameter parameter)
         {
-            return await this.SendFormDataAsync<ImagesVariationsParameter, ImagesVariationsResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<ImagesVariationsParameter, ImagesVariationsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ImagesVariationsResponse> ImagesVariationsAsync(ImagesVariationsParameter parameter, CancellationToken cancellationToken)
         {

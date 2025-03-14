@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new OrganizationInviteDeleteParameter();
             p.Invite_Id = invite_Id;
-            return await this.SendJsonAsync<OrganizationInviteDeleteParameter, OrganizationInviteDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationInviteDeleteParameter, OrganizationInviteDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationInviteDeleteResponse> OrganizationInviteDeleteAsync(string invite_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationInviteDeleteResponse> OrganizationInviteDeleteAsync(OrganizationInviteDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationInviteDeleteParameter, OrganizationInviteDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationInviteDeleteParameter, OrganizationInviteDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationInviteDeleteResponse> OrganizationInviteDeleteAsync(OrganizationInviteDeleteParameter parameter, CancellationToken cancellationToken)
         {

@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         {
             var p = new VectorStoreFilesParameter();
             p.Vector_Store_Id = vector_Store_Id;
-            return await this.SendJsonAsync<VectorStoreFilesParameter, VectorStoreFilesResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFilesParameter, VectorStoreFilesResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFilesResponse> VectorStoreFilesAsync(string vector_Store_Id, CancellationToken cancellationToken)
         {
@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<VectorStoreFilesResponse> VectorStoreFilesAsync(VectorStoreFilesParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreFilesParameter, VectorStoreFilesResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFilesParameter, VectorStoreFilesResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFilesResponse> VectorStoreFilesAsync(VectorStoreFilesParameter parameter, CancellationToken cancellationToken)
         {

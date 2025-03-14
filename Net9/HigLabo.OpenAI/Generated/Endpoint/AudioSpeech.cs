@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// One of the available TTS models: tts-1 or tts-1-hd
-        /// </summary>
-        public string Model { get; set; } = "";
-        /// <summary>
         /// The text to generate audio for. The maximum length is 4096 characters.
         /// </summary>
         public string Input { get; set; } = "";
+        /// <summary>
+        /// One of the available TTS models: tts-1 or tts-1-hd
+        /// </summary>
+        public string Model { get; set; } = "";
         /// <summary>
         /// The voice to use when generating the audio. Supported voices are alloy, ash, coral, echo, fable, onyx, nova, sage and shimmer. Previews of the voices are available in the Text to speech guide.
         /// </summary>
@@ -41,8 +41,8 @@ namespace HigLabo.OpenAI
         public override object GetRequestBody()
         {
             return new {
-            	model = this.Model,
             	input = this.Input,
+            	model = this.Model,
             	voice = this.Voice,
             	response_format = this.Response_Format,
             	speed = this.Speed,
@@ -54,25 +54,25 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(string model, string input, string voice)
+        public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(string input, string model, string voice)
         {
             var p = new AudioSpeechParameter();
-            p.Model = model;
             p.Input = input;
+            p.Model = model;
             p.Voice = voice;
-            return await this.SendJsonAsync<AudioSpeechParameter, AudioSpeechResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<AudioSpeechParameter, AudioSpeechResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(string model, string input, string voice, CancellationToken cancellationToken)
+        public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(string input, string model, string voice, CancellationToken cancellationToken)
         {
             var p = new AudioSpeechParameter();
-            p.Model = model;
             p.Input = input;
+            p.Model = model;
             p.Voice = voice;
             return await this.SendJsonAsync<AudioSpeechParameter, AudioSpeechResponse>(p, cancellationToken);
         }
         public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(AudioSpeechParameter parameter)
         {
-            return await this.SendJsonAsync<AudioSpeechParameter, AudioSpeechResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<AudioSpeechParameter, AudioSpeechResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AudioSpeechResponse> AudioSpeechAsync(AudioSpeechParameter parameter, CancellationToken cancellationToken)
         {

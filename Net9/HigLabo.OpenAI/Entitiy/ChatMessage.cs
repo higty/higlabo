@@ -22,6 +22,11 @@ public class ChatMessage : IChatMessage
         this.Role = role;
         this.Content = content;
     }
+
+    public override string ToString()
+    {
+        return $"{this.Role.ToStringFromEnum()} {this.Content}";
+    }
 }
 public class ChatImageMessage : IChatMessage
 {
@@ -81,7 +86,11 @@ public class ChatImageMessage : IChatMessage
         public void LoadImageFromFile(string filePath)
         {
             var extension = Path.GetExtension(filePath);
-            this.LoadImage($"image/{extension.Replace(".", "").ToLower()}", File.ReadAllBytes(filePath));
+            this.LoadImageFromFile(filePath, extension.Replace(".", "").ToLower());
+        }
+        public void LoadImageFromFile(string filePath, string dataType)
+        {
+            this.LoadImage($"image/{dataType}", File.ReadAllBytes(filePath));
         }
         public void LoadImage(string dataType, Stream stream)
         {

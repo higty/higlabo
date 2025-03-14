@@ -22,7 +22,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
-        /// The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.
+        /// The language of the input audio. Supplying the input language in ISO-639-1 (e.g. en) format will improve accuracy and latency.
         /// </summary>
         public string? Language { get; set; }
         /// <summary>
@@ -84,7 +84,7 @@ namespace HigLabo.OpenAI
             var p = new AudioTranscriptionsParameter();
             p.File.SetFile(fileFileName, fileStream);
             p.Model = model;
-            return await this.SendFormDataAsync<AudioTranscriptionsParameter, AudioTranscriptionsResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<AudioTranscriptionsParameter, AudioTranscriptionsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(string fileFileName, Stream fileStream, string model, CancellationToken cancellationToken)
         {
@@ -95,7 +95,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(AudioTranscriptionsParameter parameter)
         {
-            return await this.SendFormDataAsync<AudioTranscriptionsParameter, AudioTranscriptionsResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<AudioTranscriptionsParameter, AudioTranscriptionsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AudioTranscriptionsResponse> AudioTranscriptionsAsync(AudioTranscriptionsParameter parameter, CancellationToken cancellationToken)
         {

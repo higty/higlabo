@@ -18,17 +18,18 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Vector_Store_Id { get; set; } = "";
         /// <summary>
-        /// The name of the vector store.
-        /// </summary>
-        public string? Name { get; set; }
-        /// <summary>
         /// The expiration policy for a vector store.
         /// </summary>
         public object? Expires_After { get; set; }
         /// <summary>
-        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.
+        /// Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
         /// </summary>
         public object? Metadata { get; set; }
+        /// <summary>
+        /// The name of the vector store.
+        /// </summary>
+        public string? Name { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -37,9 +38,9 @@ namespace HigLabo.OpenAI
         public override object GetRequestBody()
         {
             return new {
-            	name = this.Name,
             	expires_after = this.Expires_After,
             	metadata = this.Metadata,
+            	name = this.Name,
             };
         }
     }
@@ -52,7 +53,7 @@ namespace HigLabo.OpenAI
         {
             var p = new VectorStoreModifyParameter();
             p.Vector_Store_Id = vector_Store_Id;
-            return await this.SendJsonAsync<VectorStoreModifyParameter, VectorStoreModifyResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreModifyParameter, VectorStoreModifyResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreModifyResponse> VectorStoreModifyAsync(string vector_Store_Id, CancellationToken cancellationToken)
         {
@@ -62,7 +63,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<VectorStoreModifyResponse> VectorStoreModifyAsync(VectorStoreModifyParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreModifyParameter, VectorStoreModifyResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreModifyParameter, VectorStoreModifyResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreModifyResponse> VectorStoreModifyAsync(VectorStoreModifyParameter parameter, CancellationToken cancellationToken)
         {

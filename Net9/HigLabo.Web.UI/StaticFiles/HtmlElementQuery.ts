@@ -244,6 +244,24 @@ export class HtmlElementQuery {
         return null;
     }
 
+    public insertAdjacentHTML(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", text: string) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentHTML(position, text);
+        }
+        return this;
+    }
+    public insertAdjacentElement(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", element: Element) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentElement(position, element);
+        }
+        return this;
+    }
+    public insertAdjacentText(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", data: string) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentText(position, data);
+        }
+        return this;
+    }
     public getInnerWidth(): number {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
@@ -473,12 +491,6 @@ export class HtmlElementQuery {
         return null;
     }
 
-    public insertAdjacentHTML(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", text: string) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this._elementList[i].insertAdjacentHTML(position, text);
-        }
-        return this;
-    }
     public getInnerText(): string {
         if (this._elementList.length > 0) {
             return this._elementList[0].textContent;
@@ -701,7 +713,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e: KeyboardEvent) {
-                if (e.key === null || e.key === key) {
+                if (key === null || e.key === key) {
                     callback(e);
                 }
             });

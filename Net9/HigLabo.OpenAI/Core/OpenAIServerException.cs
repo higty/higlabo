@@ -18,6 +18,15 @@ public class OpenAIServerErrorResponse
 {
     public OpenAIServerError Error { get; set; } = new();
 }
+public class OpenAIServerSentEventException : Exception
+{
+    public OpenAIServerError Error { get; set; }
+
+    public OpenAIServerSentEventException(OpenAIServerError error)
+    {
+        Error = error;
+    }
+}
 public class OpenAIServerException : Exception
 {
     public object Parameter { get; set; }

@@ -34,13 +34,13 @@ namespace HigLabo.OpenAI
         /// </summary>
         public int? N { get; set; }
         /// <summary>
-        /// The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.
-        /// </summary>
-        public string? Size { get; set; }
-        /// <summary>
         /// The format in which the generated images are returned. Must be one of url or b64_json. URLs are only valid for 60 minutes after the image has been generated.
         /// </summary>
         public string? Response_Format { get; set; }
+        /// <summary>
+        /// The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.
+        /// </summary>
+        public string? Size { get; set; }
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
         /// </summary>
@@ -58,8 +58,8 @@ namespace HigLabo.OpenAI
             	mask = this.Mask,
             	model = this.Model,
             	n = this.N,
-            	size = this.Size,
             	response_format = this.Response_Format,
+            	size = this.Size,
             	user = this.User,
             };
         }
@@ -74,8 +74,8 @@ namespace HigLabo.OpenAI
             d["prompt"] = this.Prompt;
             if (this.Model != null) d["model"] = this.Model;
             if (this.N != null) d["n"] = this.N.Value.ToString();
-            if (this.Size != null) d["size"] = this.Size;
             if (this.Response_Format != null) d["response_format"] = this.Response_Format;
+            if (this.Size != null) d["size"] = this.Size;
             if (this.User != null) d["user"] = this.User;
             return d;
         }
@@ -90,7 +90,7 @@ namespace HigLabo.OpenAI
             var p = new ImagesEditsParameter();
             p.Image.SetFile(imageFileName, imageStream);
             p.Prompt = prompt;
-            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string imageFileName, Stream imageStream, string prompt, CancellationToken cancellationToken)
         {
@@ -101,7 +101,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(ImagesEditsParameter parameter)
         {
-            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(ImagesEditsParameter parameter, CancellationToken cancellationToken)
         {

@@ -28,6 +28,9 @@
 		<ProjectReference Include="..\HigLabo.OpenAI\HigLabo.OpenAI.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Update="File\AI_Forecast.pdf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Image\Pond.jpg">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>

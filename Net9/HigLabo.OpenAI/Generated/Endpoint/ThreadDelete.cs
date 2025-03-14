@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ThreadDeleteParameter();
             p.Thread_Id = thread_Id;
-            return await this.SendJsonAsync<ThreadDeleteParameter, ThreadDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ThreadDeleteParameter, ThreadDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ThreadDeleteResponse> ThreadDeleteAsync(string thread_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ThreadDeleteResponse> ThreadDeleteAsync(ThreadDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<ThreadDeleteParameter, ThreadDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<ThreadDeleteParameter, ThreadDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ThreadDeleteResponse> ThreadDeleteAsync(ThreadDeleteParameter parameter, CancellationToken cancellationToken)
         {

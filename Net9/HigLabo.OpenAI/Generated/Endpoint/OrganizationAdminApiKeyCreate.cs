@@ -35,7 +35,7 @@ namespace HigLabo.OpenAI
         {
             var p = new OrganizationAdminApiKeyCreateParameter();
             p.Name = name;
-            return await this.SendJsonAsync<OrganizationAdminApiKeyCreateParameter, OrganizationAdminApiKeyCreateResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationAdminApiKeyCreateParameter, OrganizationAdminApiKeyCreateResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationAdminApiKeyCreateResponse> OrganizationAdminApiKeyCreateAsync(string name, CancellationToken cancellationToken)
         {
@@ -45,7 +45,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationAdminApiKeyCreateResponse> OrganizationAdminApiKeyCreateAsync(OrganizationAdminApiKeyCreateParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationAdminApiKeyCreateParameter, OrganizationAdminApiKeyCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationAdminApiKeyCreateParameter, OrganizationAdminApiKeyCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationAdminApiKeyCreateResponse> OrganizationAdminApiKeyCreateAsync(OrganizationAdminApiKeyCreateParameter parameter, CancellationToken cancellationToken)
         {

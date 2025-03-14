@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new FileDeleteParameter();
             p.File_Id = file_Id;
-            return await this.SendJsonAsync<FileDeleteParameter, FileDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FileDeleteParameter, FileDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FileDeleteResponse> FileDeleteAsync(string file_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FileDeleteResponse> FileDeleteAsync(FileDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<FileDeleteParameter, FileDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<FileDeleteParameter, FileDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FileDeleteResponse> FileDeleteAsync(FileDeleteParameter parameter, CancellationToken cancellationToken)
         {

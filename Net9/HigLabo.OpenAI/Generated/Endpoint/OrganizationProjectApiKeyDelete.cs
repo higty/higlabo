@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
-        /// The ID of the project.
-        /// </summary>
-        public string Project_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the API key.
         /// </summary>
         public string Key_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the project.
+        /// </summary>
+        public string Project_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<OrganizationProjectApiKeyDeleteResponse> OrganizationProjectApiKeyDeleteAsync(string project_Id, string key_Id)
+        public async ValueTask<OrganizationProjectApiKeyDeleteResponse> OrganizationProjectApiKeyDeleteAsync(string key_Id, string project_Id)
         {
             var p = new OrganizationProjectApiKeyDeleteParameter();
-            p.Project_Id = project_Id;
             p.Key_Id = key_Id;
-            return await this.SendJsonAsync<OrganizationProjectApiKeyDeleteParameter, OrganizationProjectApiKeyDeleteResponse>(p, CancellationToken.None);
+            p.Project_Id = project_Id;
+            return await this.SendJsonAsync<OrganizationProjectApiKeyDeleteParameter, OrganizationProjectApiKeyDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<OrganizationProjectApiKeyDeleteResponse> OrganizationProjectApiKeyDeleteAsync(string project_Id, string key_Id, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationProjectApiKeyDeleteResponse> OrganizationProjectApiKeyDeleteAsync(string key_Id, string project_Id, CancellationToken cancellationToken)
         {
             var p = new OrganizationProjectApiKeyDeleteParameter();
-            p.Project_Id = project_Id;
             p.Key_Id = key_Id;
+            p.Project_Id = project_Id;
             return await this.SendJsonAsync<OrganizationProjectApiKeyDeleteParameter, OrganizationProjectApiKeyDeleteResponse>(p, cancellationToken);
         }
         public async ValueTask<OrganizationProjectApiKeyDeleteResponse> OrganizationProjectApiKeyDeleteAsync(OrganizationProjectApiKeyDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectApiKeyDeleteParameter, OrganizationProjectApiKeyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectApiKeyDeleteParameter, OrganizationProjectApiKeyDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectApiKeyDeleteResponse> OrganizationProjectApiKeyDeleteAsync(OrganizationProjectApiKeyDeleteParameter parameter, CancellationToken cancellationToken)
         {

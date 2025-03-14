@@ -22,6 +22,22 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Rate_Limit_Id { get; set; } = "";
         /// <summary>
+        /// The maximum batch input tokens per day. Only relevant for certain models.
+        /// </summary>
+        public int? Batch_1_Day_Max_Input_Tokens { get; set; }
+        /// <summary>
+        /// The maximum audio megabytes per minute. Only relevant for certain models.
+        /// </summary>
+        public int? Max_Audio_Megabytes_Per_1_Minute { get; set; }
+        /// <summary>
+        /// The maximum images per minute. Only relevant for certain models.
+        /// </summary>
+        public int? Max_Images_Per_1_Minute { get; set; }
+        /// <summary>
+        /// The maximum requests per day. Only relevant for certain models.
+        /// </summary>
+        public int? Max_Requests_Per_1_Day { get; set; }
+        /// <summary>
         /// The maximum requests per minute.
         /// </summary>
         public int? Max_Requests_Per_1_Minute { get; set; }
@@ -29,22 +45,6 @@ namespace HigLabo.OpenAI
         /// The maximum tokens per minute.
         /// </summary>
         public int? Max_Tokens_Per_1_Minute { get; set; }
-        /// <summary>
-        /// The maximum images per minute. Only relevant for certain models.
-        /// </summary>
-        public int? Max_Images_Per_1_Minute { get; set; }
-        /// <summary>
-        /// The maximum audio megabytes per minute. Only relevant for certain models.
-        /// </summary>
-        public int? Max_Audio_Megabytes_Per_1_Minute { get; set; }
-        /// <summary>
-        /// The maximum requests per day. Only relevant for certain models.
-        /// </summary>
-        public int? Max_Requests_Per_1_Day { get; set; }
-        /// <summary>
-        /// The maximum batch input tokens per day. Only relevant for certain models.
-        /// </summary>
-        public int? Batch_1_Day_Max_Input_Tokens { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -53,12 +53,12 @@ namespace HigLabo.OpenAI
         public override object GetRequestBody()
         {
             return new {
+            	batch_1_day_max_input_tokens = this.Batch_1_Day_Max_Input_Tokens,
+            	max_audio_megabytes_per_1_minute = this.Max_Audio_Megabytes_Per_1_Minute,
+            	max_images_per_1_minute = this.Max_Images_Per_1_Minute,
+            	max_requests_per_1_day = this.Max_Requests_Per_1_Day,
             	max_requests_per_1_minute = this.Max_Requests_Per_1_Minute,
             	max_tokens_per_1_minute = this.Max_Tokens_Per_1_Minute,
-            	max_images_per_1_minute = this.Max_Images_Per_1_Minute,
-            	max_audio_megabytes_per_1_minute = this.Max_Audio_Megabytes_Per_1_Minute,
-            	max_requests_per_1_day = this.Max_Requests_Per_1_Day,
-            	batch_1_day_max_input_tokens = this.Batch_1_Day_Max_Input_Tokens,
             };
         }
     }
@@ -72,7 +72,7 @@ namespace HigLabo.OpenAI
             var p = new OrganizationProjectRateLimitModifyParameter();
             p.Project_Id = project_Id;
             p.Rate_Limit_Id = rate_Limit_Id;
-            return await this.SendJsonAsync<OrganizationProjectRateLimitModifyParameter, OrganizationProjectRateLimitModifyResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectRateLimitModifyParameter, OrganizationProjectRateLimitModifyResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectRateLimitModifyResponse> OrganizationProjectRateLimitModifyAsync(string project_Id, string rate_Limit_Id, CancellationToken cancellationToken)
         {
@@ -83,7 +83,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationProjectRateLimitModifyResponse> OrganizationProjectRateLimitModifyAsync(OrganizationProjectRateLimitModifyParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectRateLimitModifyParameter, OrganizationProjectRateLimitModifyResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectRateLimitModifyParameter, OrganizationProjectRateLimitModifyResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectRateLimitModifyResponse> OrganizationProjectRateLimitModifyAsync(OrganizationProjectRateLimitModifyParameter parameter, CancellationToken cancellationToken)
         {

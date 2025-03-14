@@ -41,7 +41,7 @@ namespace HigLabo.OpenAI
             var p = new OrganizationProjectUserRetrieveParameter();
             p.Project_Id = project_Id;
             p.User_Id = user_Id;
-            return await this.SendJsonAsync<OrganizationProjectUserRetrieveParameter, OrganizationProjectUserRetrieveResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectUserRetrieveParameter, OrganizationProjectUserRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectUserRetrieveResponse> OrganizationProjectUserRetrieveAsync(string project_Id, string user_Id, CancellationToken cancellationToken)
         {
@@ -52,7 +52,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationProjectUserRetrieveResponse> OrganizationProjectUserRetrieveAsync(OrganizationProjectUserRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectUserRetrieveParameter, OrganizationProjectUserRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectUserRetrieveParameter, OrganizationProjectUserRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectUserRetrieveResponse> OrganizationProjectUserRetrieveAsync(OrganizationProjectUserRetrieveParameter parameter, CancellationToken cancellationToken)
         {

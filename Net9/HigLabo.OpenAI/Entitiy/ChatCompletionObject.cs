@@ -14,6 +14,11 @@ public class ChatCompletionObjectResponse : RestApiResponse
         public int Index { get; set; }
         public string? Finish_Reason { get; set; }
         public Message Message { get; set; } = new();
+
+        public override string ToString()
+        {
+            return $"{this.Message.ToString()}";
+        }
     }
     public class Message
     {
@@ -22,11 +27,21 @@ public class ChatCompletionObjectResponse : RestApiResponse
         public FunctionCall? Function_Call { get; set; }
         public List<ToolCall> Tool_Calls { get; set; } = new();
         public string Role { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Role} {this.Content}";
+        }
     }
     public class FunctionCall
     {
         public string Name { get; set; } = "";
         public string Arguments { get; set; } = "";
+
+        public override string ToString()
+        {
+            return $"{this.Name} {this.Arguments}";
+        }
     }
     public class ToolCall
     {
@@ -34,6 +49,18 @@ public class ChatCompletionObjectResponse : RestApiResponse
         public string Id { get; set; } = "";
         public string Type { get; set; } = "";
         public FunctionCall? Function { get; set; }
+
+        public override string ToString()
+        {
+            if (this.Function == null)
+            {
+                return $"{this.Type}";
+            }
+            else
+            {
+                return $"{this.Type} {this.Function.ToString()}";
+            }
+        }
     }
     public string Id { get; set; } = "";
     public List<Choice> Choices { get; set; } = new();

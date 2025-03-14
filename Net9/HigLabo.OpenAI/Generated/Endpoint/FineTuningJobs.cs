@@ -41,7 +41,7 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync()
         {
-            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(FineTuningJobsParameter.Empty, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(FineTuningJobsParameter.Empty, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync(CancellationToken cancellationToken)
         {
@@ -49,7 +49,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync(FineTuningJobsParameter parameter)
         {
-            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobsParameter, FineTuningJobsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobsResponse> FineTuningJobsAsync(FineTuningJobsParameter parameter, CancellationToken cancellationToken)
         {

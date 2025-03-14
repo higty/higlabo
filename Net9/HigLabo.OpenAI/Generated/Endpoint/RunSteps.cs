@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
-        /// The ID of the thread the run and run steps belong to.
-        /// </summary>
-        public string Thread_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the run the run steps belong to.
         /// </summary>
         public string Run_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the thread the run and run steps belong to.
+        /// </summary>
+        public string Thread_Id { get; set; } = "";
         IQueryParameter IQueryParameterProperty.QueryParameter
         {
             get
@@ -47,23 +47,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<RunStepsResponse> RunStepsAsync(string thread_Id, string run_Id)
+        public async ValueTask<RunStepsResponse> RunStepsAsync(string run_Id, string thread_Id)
         {
             var p = new RunStepsParameter();
-            p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
-            return await this.SendJsonAsync<RunStepsParameter, RunStepsResponse>(p, CancellationToken.None);
+            p.Thread_Id = thread_Id;
+            return await this.SendJsonAsync<RunStepsParameter, RunStepsResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<RunStepsResponse> RunStepsAsync(string thread_Id, string run_Id, CancellationToken cancellationToken)
+        public async ValueTask<RunStepsResponse> RunStepsAsync(string run_Id, string thread_Id, CancellationToken cancellationToken)
         {
             var p = new RunStepsParameter();
-            p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
+            p.Thread_Id = thread_Id;
             return await this.SendJsonAsync<RunStepsParameter, RunStepsResponse>(p, cancellationToken);
         }
         public async ValueTask<RunStepsResponse> RunStepsAsync(RunStepsParameter parameter)
         {
-            return await this.SendJsonAsync<RunStepsParameter, RunStepsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<RunStepsParameter, RunStepsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<RunStepsResponse> RunStepsAsync(RunStepsParameter parameter, CancellationToken cancellationToken)
         {

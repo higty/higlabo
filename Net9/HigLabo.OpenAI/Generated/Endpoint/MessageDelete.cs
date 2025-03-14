@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
-        /// The ID of the thread to which this message belongs.
-        /// </summary>
-        public string Thread_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the message to delete.
         /// </summary>
         public string Message_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the thread to which this message belongs.
+        /// </summary>
+        public string Thread_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(string thread_Id, string message_Id)
+        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(string message_Id, string thread_Id)
         {
             var p = new MessageDeleteParameter();
-            p.Thread_Id = thread_Id;
             p.Message_Id = message_Id;
-            return await this.SendJsonAsync<MessageDeleteParameter, MessageDeleteResponse>(p, CancellationToken.None);
+            p.Thread_Id = thread_Id;
+            return await this.SendJsonAsync<MessageDeleteParameter, MessageDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(string thread_Id, string message_Id, CancellationToken cancellationToken)
+        public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(string message_Id, string thread_Id, CancellationToken cancellationToken)
         {
             var p = new MessageDeleteParameter();
-            p.Thread_Id = thread_Id;
             p.Message_Id = message_Id;
+            p.Thread_Id = thread_Id;
             return await this.SendJsonAsync<MessageDeleteParameter, MessageDeleteResponse>(p, cancellationToken);
         }
         public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<MessageDeleteParameter, MessageDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<MessageDeleteParameter, MessageDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter, CancellationToken cancellationToken)
         {

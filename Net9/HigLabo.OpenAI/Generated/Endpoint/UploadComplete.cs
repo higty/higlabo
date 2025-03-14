@@ -51,7 +51,7 @@ namespace HigLabo.OpenAI
             var p = new UploadCompleteParameter();
             p.Upload_Id = upload_Id;
             p.Part_Ids = part_Ids;
-            return await this.SendJsonAsync<UploadCompleteParameter, UploadCompleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<UploadCompleteParameter, UploadCompleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<UploadCompleteResponse> UploadCompleteAsync(string upload_Id, List<string>? part_Ids, CancellationToken cancellationToken)
         {
@@ -62,7 +62,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<UploadCompleteResponse> UploadCompleteAsync(UploadCompleteParameter parameter)
         {
-            return await this.SendJsonAsync<UploadCompleteParameter, UploadCompleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<UploadCompleteParameter, UploadCompleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<UploadCompleteResponse> UploadCompleteAsync(UploadCompleteParameter parameter, CancellationToken cancellationToken)
         {

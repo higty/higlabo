@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<OrganizationCostsResponse> OrganizationCostsAsync()
         {
-            return await this.SendJsonAsync<OrganizationCostsParameter, OrganizationCostsResponse>(OrganizationCostsParameter.Empty, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationCostsParameter, OrganizationCostsResponse>(OrganizationCostsParameter.Empty, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationCostsResponse> OrganizationCostsAsync(CancellationToken cancellationToken)
         {
@@ -51,7 +51,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationCostsResponse> OrganizationCostsAsync(OrganizationCostsParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationCostsParameter, OrganizationCostsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationCostsParameter, OrganizationCostsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationCostsResponse> OrganizationCostsAsync(OrganizationCostsParameter parameter, CancellationToken cancellationToken)
         {

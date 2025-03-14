@@ -72,7 +72,7 @@ namespace HigLabo.OpenAI
             var p = new AudioTranslationsParameter();
             p.File.SetFile(fileFileName, fileStream);
             p.Model = model;
-            return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(string fileFileName, Stream fileStream, string model, CancellationToken cancellationToken)
         {
@@ -83,7 +83,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(AudioTranslationsParameter parameter)
         {
-            return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<AudioTranslationsParameter, AudioTranslationsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AudioTranslationsResponse> AudioTranslationsAsync(AudioTranslationsParameter parameter, CancellationToken cancellationToken)
         {

@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         {
             var p = new OrganizationProjectRateLimitsParameter();
             p.Project_Id = project_Id;
-            return await this.SendJsonAsync<OrganizationProjectRateLimitsParameter, OrganizationProjectRateLimitsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectRateLimitsParameter, OrganizationProjectRateLimitsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectRateLimitsResponse> OrganizationProjectRateLimitsAsync(string project_Id, CancellationToken cancellationToken)
         {
@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationProjectRateLimitsResponse> OrganizationProjectRateLimitsAsync(OrganizationProjectRateLimitsParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectRateLimitsParameter, OrganizationProjectRateLimitsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectRateLimitsParameter, OrganizationProjectRateLimitsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectRateLimitsResponse> OrganizationProjectRateLimitsAsync(OrganizationProjectRateLimitsParameter parameter, CancellationToken cancellationToken)
         {

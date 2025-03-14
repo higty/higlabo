@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using HigLabo.Html.Converter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Html;
 
-public class YoutubeEmbedHtmlConverter : RegexHtmlConverter
+public class YoutubeEmbedHtmlConverter : RegexHtmlConverter, IUrlConverter
 {
     public static class RegexList
     {
@@ -16,19 +17,22 @@ public class YoutubeEmbedHtmlConverter : RegexHtmlConverter
         public static Regex P_https_youtu_be = new Regex("<p>(?<Url>https://youtu.be/[^<]*)</p>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
     }
 
+    public List<string> UrlList { get; init; } = new List<string>();
+
     protected override IEnumerable<Regex> GetRegexList()
     {
         yield return RegexList.P_https_www_youtube_com;
         yield return RegexList.P_https_youtu_be;
     }
-    protected override String Convert(Match match)
+    protected override ValueTask<String> ReplaceAsync(Match match)
     {
         var m = match;
         var url = m.Groups["Url"].Value;
+        this.UrlList.Add(url);
 
         var videoID = GetVideoID(url);
         var html = CreateEmbedHtml(videoID);
-        return html;
+        return ValueTask.FromResult(html);
     }
     public static String GetVideoID(String url)
     {
