@@ -14,9 +14,7 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 ## HigLabo.OpenAI
 2025-03-14 Support Responses API endpoint, and web search, file search and more. 
 
-※Breaking change
-The endpoint of ChatCompletions are all changed to ChatCompletionCreate.
-Please see latest sample code.
+※Breaking change. The endpoint of ChatCompletions are all changed to ChatCompletionCreate. Please see latest sample code.
 https://github.com/higty/higlabo/blob/master/Net9/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
 
 2025-01-22 updated. Support .NET9.
@@ -44,11 +42,33 @@ I test against latest version of these three packages.
 
 How to use? It is easy to use!
 ```
+var cl = new OpenAIClient("API Key");
+var p = new ResponseCreateParameter();
+p.Model = "gpt-4o";
+p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
+p.Tools = [];
+p.Tools.Add(new ToolObject("web_search_preview"));
+var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+foreach (var output in res.Output)
+{
+    foreach (var content in output.Content)
+    {
+        Console.WriteLine(content.Type);
+        switch (content.Type)
+        {
+            case "output_text": Console.WriteLine(content.Text); break;
+            default: break;
+        }
+    }
+}
+```
+
+```
 var cl = new OpenAIClient("API Key"); // OpenAI
 --var cl = new OpenAIClient(new AzureSettings("API KEY", "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
 --var cl = new OpenAIClient(new GroqSettings("API Key")); // Groq, llama, mixtral, gemma
 var result = new ChatCompletionStreamResult();
-await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
+await foreach (string text in cl.ChatCompletionCreateStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
 {
     Console.Write(text);
 }
