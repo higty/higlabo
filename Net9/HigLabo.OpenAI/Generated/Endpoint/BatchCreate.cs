@@ -14,21 +14,22 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
+        /// The time frame within which the batch should be processed. Currently only 24h is supported.
+        /// </summary>
+        public string Completion_Window { get; set; } = "";
+        /// <summary>
+        /// The endpoint to be used for all requests in the batch. Currently /v1/chat/completions, /v1/embeddings, and /v1/completions are supported. Note that /v1/embeddings batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
+        /// </summary>
+        public string Endpoint { get; set; } = "";
+        /// <summary>
         /// The ID of an uploaded file that contains requests for the new batch.
         /// See upload file for how to upload a file.
         /// Your input file must be formatted as a JSONL file, and must be uploaded with the purpose batch. The file can contain up to 50,000 requests, and can be up to 200 MB in size.
         /// </summary>
         public string Input_File_Id { get; set; } = "";
         /// <summary>
-        /// The endpoint to be used for all requests in the batch. Currently /v1/chat/completions, /v1/embeddings, and /v1/completions are supported. Note that /v1/embeddings batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
-        /// </summary>
-        public string Endpoint { get; set; } = "";
-        /// <summary>
-        /// The time frame within which the batch should be processed. Currently only 24h is supported.
-        /// </summary>
-        public string Completion_Window { get; set; } = "";
-        /// <summary>
-        /// Optional custom metadata for the batch.
+        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.
+        /// Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
         /// </summary>
         public object? Metadata { get; set; }
 
@@ -39,9 +40,9 @@ namespace HigLabo.OpenAI
         public override object GetRequestBody()
         {
             return new {
-            	input_file_id = this.Input_File_Id,
-            	endpoint = this.Endpoint,
             	completion_window = this.Completion_Window,
+            	endpoint = this.Endpoint,
+            	input_file_id = this.Input_File_Id,
             	metadata = this.Metadata,
             };
         }
@@ -51,25 +52,25 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<BatchCreateResponse> BatchCreateAsync(string input_File_Id, string endpoint, string completion_Window)
+        public async ValueTask<BatchCreateResponse> BatchCreateAsync(string completion_Window, string endpoint, string input_File_Id)
         {
             var p = new BatchCreateParameter();
-            p.Input_File_Id = input_File_Id;
-            p.Endpoint = endpoint;
             p.Completion_Window = completion_Window;
-            return await this.SendJsonAsync<BatchCreateParameter, BatchCreateResponse>(p, CancellationToken.None);
+            p.Endpoint = endpoint;
+            p.Input_File_Id = input_File_Id;
+            return await this.SendJsonAsync<BatchCreateParameter, BatchCreateResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<BatchCreateResponse> BatchCreateAsync(string input_File_Id, string endpoint, string completion_Window, CancellationToken cancellationToken)
+        public async ValueTask<BatchCreateResponse> BatchCreateAsync(string completion_Window, string endpoint, string input_File_Id, CancellationToken cancellationToken)
         {
             var p = new BatchCreateParameter();
-            p.Input_File_Id = input_File_Id;
-            p.Endpoint = endpoint;
             p.Completion_Window = completion_Window;
+            p.Endpoint = endpoint;
+            p.Input_File_Id = input_File_Id;
             return await this.SendJsonAsync<BatchCreateParameter, BatchCreateResponse>(p, cancellationToken);
         }
         public async ValueTask<BatchCreateResponse> BatchCreateAsync(BatchCreateParameter parameter)
         {
-            return await this.SendJsonAsync<BatchCreateParameter, BatchCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<BatchCreateParameter, BatchCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<BatchCreateResponse> BatchCreateAsync(BatchCreateParameter parameter, CancellationToken cancellationToken)
         {

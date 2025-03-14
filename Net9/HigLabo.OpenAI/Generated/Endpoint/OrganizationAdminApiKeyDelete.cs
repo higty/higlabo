@@ -33,7 +33,7 @@ namespace HigLabo.OpenAI
         {
             var p = new OrganizationAdminApiKeyDeleteParameter();
             p.Key_Id = key_Id;
-            return await this.SendJsonAsync<OrganizationAdminApiKeyDeleteParameter, OrganizationAdminApiKeyDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationAdminApiKeyDeleteParameter, OrganizationAdminApiKeyDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationAdminApiKeyDeleteResponse> OrganizationAdminApiKeyDeleteAsync(string key_Id, CancellationToken cancellationToken)
         {
@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationAdminApiKeyDeleteResponse> OrganizationAdminApiKeyDeleteAsync(OrganizationAdminApiKeyDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationAdminApiKeyDeleteParameter, OrganizationAdminApiKeyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationAdminApiKeyDeleteParameter, OrganizationAdminApiKeyDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationAdminApiKeyDeleteResponse> OrganizationAdminApiKeyDeleteAsync(OrganizationAdminApiKeyDeleteParameter parameter, CancellationToken cancellationToken)
         {

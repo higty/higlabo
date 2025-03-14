@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new VectorStoreRetrieveParameter();
             p.Vector_Store_Id = vector_Store_Id;
-            return await this.SendJsonAsync<VectorStoreRetrieveParameter, VectorStoreRetrieveResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreRetrieveParameter, VectorStoreRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreRetrieveResponse> VectorStoreRetrieveAsync(string vector_Store_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<VectorStoreRetrieveResponse> VectorStoreRetrieveAsync(VectorStoreRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreRetrieveParameter, VectorStoreRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreRetrieveParameter, VectorStoreRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreRetrieveResponse> VectorStoreRetrieveAsync(VectorStoreRetrieveParameter parameter, CancellationToken cancellationToken)
         {

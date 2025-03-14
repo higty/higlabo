@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         {
             var p = new FineTuningJobEventsParameter();
             p.Fine_Tuning_Job_Id = fine_Tuning_Job_Id;
-            return await this.SendJsonAsync<FineTuningJobEventsParameter, FineTuningJobEventsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobEventsParameter, FineTuningJobEventsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobEventsResponse> FineTuningJobEventsAsync(string fine_Tuning_Job_Id, CancellationToken cancellationToken)
         {
@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FineTuningJobEventsResponse> FineTuningJobEventsAsync(FineTuningJobEventsParameter parameter)
         {
-            return await this.SendJsonAsync<FineTuningJobEventsParameter, FineTuningJobEventsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobEventsParameter, FineTuningJobEventsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobEventsResponse> FineTuningJobEventsAsync(FineTuningJobEventsParameter parameter, CancellationToken cancellationToken)
         {

@@ -22,8 +22,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
-        /// The intended purpose of the uploaded file.
-        /// Use "assistants" for Assistants and Message files, "vision" for Assistants image file inputs, "batch" for Batch API, and "fine-tune" for Fine-tuning.
+        /// The intended purpose of the uploaded file. One of: - assistants: Used in the Assistants API - batch: Used in the Batch API - fine-tune: Used for fine-tuning - vision: Images used for vision fine-tuning - user_data: Flexible file type for any purpose - evals: Used for eval data sets
         /// </summary>
         public string Purpose { get; set; } = "";
 
@@ -59,7 +58,7 @@ namespace HigLabo.OpenAI
             var p = new FileUploadParameter();
             p.File.SetFile(fileFileName, fileStream);
             p.Purpose = purpose;
-            return await this.SendFormDataAsync<FileUploadParameter, FileUploadResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<FileUploadParameter, FileUploadResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FileUploadResponse> FileUploadAsync(string fileFileName, Stream fileStream, string purpose, CancellationToken cancellationToken)
         {
@@ -70,7 +69,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FileUploadResponse> FileUploadAsync(FileUploadParameter parameter)
         {
-            return await this.SendFormDataAsync<FileUploadParameter, FileUploadResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<FileUploadParameter, FileUploadResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FileUploadResponse> FileUploadAsync(FileUploadParameter parameter, CancellationToken cancellationToken)
         {

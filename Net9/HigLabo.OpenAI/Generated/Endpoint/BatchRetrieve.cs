@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new BatchRetrieveParameter();
             p.Batch_Id = batch_Id;
-            return await this.SendJsonAsync<BatchRetrieveParameter, BatchRetrieveResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<BatchRetrieveParameter, BatchRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<BatchRetrieveResponse> BatchRetrieveAsync(string batch_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<BatchRetrieveResponse> BatchRetrieveAsync(BatchRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<BatchRetrieveParameter, BatchRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<BatchRetrieveParameter, BatchRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<BatchRetrieveResponse> BatchRetrieveAsync(BatchRetrieveParameter parameter, CancellationToken cancellationToken)
         {

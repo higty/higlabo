@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new AssistantDeleteParameter();
             p.Assistant_Id = assistant_Id;
-            return await this.SendJsonAsync<AssistantDeleteParameter, AssistantDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<AssistantDeleteParameter, AssistantDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AssistantDeleteResponse> AssistantDeleteAsync(string assistant_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<AssistantDeleteResponse> AssistantDeleteAsync(AssistantDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<AssistantDeleteParameter, AssistantDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<AssistantDeleteParameter, AssistantDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AssistantDeleteResponse> AssistantDeleteAsync(AssistantDeleteParameter parameter, CancellationToken cancellationToken)
         {

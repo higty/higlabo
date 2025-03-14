@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new VectorStoreDeleteParameter();
             p.Vector_Store_Id = vector_Store_Id;
-            return await this.SendJsonAsync<VectorStoreDeleteParameter, VectorStoreDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreDeleteParameter, VectorStoreDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreDeleteResponse> VectorStoreDeleteAsync(string vector_Store_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<VectorStoreDeleteResponse> VectorStoreDeleteAsync(VectorStoreDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreDeleteParameter, VectorStoreDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreDeleteParameter, VectorStoreDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreDeleteResponse> VectorStoreDeleteAsync(VectorStoreDeleteParameter parameter, CancellationToken cancellationToken)
         {

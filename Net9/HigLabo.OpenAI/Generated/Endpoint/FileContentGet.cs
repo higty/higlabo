@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new FileContentGetParameter();
             p.File_Id = file_Id;
-            return await this.SendJsonAsync<FileContentGetParameter, FileContentGetResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FileContentGetParameter, FileContentGetResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FileContentGetResponse> FileContentGetAsync(string file_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FileContentGetResponse> FileContentGetAsync(FileContentGetParameter parameter)
         {
-            return await this.SendJsonAsync<FileContentGetParameter, FileContentGetResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<FileContentGetParameter, FileContentGetResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FileContentGetResponse> FileContentGetAsync(FileContentGetParameter parameter, CancellationToken cancellationToken)
         {

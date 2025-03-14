@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new AssistantRetrieveParameter();
             p.Assistant_Id = assistant_Id;
-            return await this.SendJsonAsync<AssistantRetrieveParameter, AssistantRetrieveResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<AssistantRetrieveParameter, AssistantRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AssistantRetrieveResponse> AssistantRetrieveAsync(string assistant_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<AssistantRetrieveResponse> AssistantRetrieveAsync(AssistantRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<AssistantRetrieveParameter, AssistantRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<AssistantRetrieveParameter, AssistantRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<AssistantRetrieveResponse> AssistantRetrieveAsync(AssistantRetrieveParameter parameter, CancellationToken cancellationToken)
         {

@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<OrganizationUsageCodeInterpreterSessionsResponse> OrganizationUsageCodeInterpreterSessionsAsync()
         {
-            return await this.SendJsonAsync<OrganizationUsageCodeInterpreterSessionsParameter, OrganizationUsageCodeInterpreterSessionsResponse>(OrganizationUsageCodeInterpreterSessionsParameter.Empty, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationUsageCodeInterpreterSessionsParameter, OrganizationUsageCodeInterpreterSessionsResponse>(OrganizationUsageCodeInterpreterSessionsParameter.Empty, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationUsageCodeInterpreterSessionsResponse> OrganizationUsageCodeInterpreterSessionsAsync(CancellationToken cancellationToken)
         {
@@ -51,7 +51,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationUsageCodeInterpreterSessionsResponse> OrganizationUsageCodeInterpreterSessionsAsync(OrganizationUsageCodeInterpreterSessionsParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationUsageCodeInterpreterSessionsParameter, OrganizationUsageCodeInterpreterSessionsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationUsageCodeInterpreterSessionsParameter, OrganizationUsageCodeInterpreterSessionsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationUsageCodeInterpreterSessionsResponse> OrganizationUsageCodeInterpreterSessionsAsync(OrganizationUsageCodeInterpreterSessionsParameter parameter, CancellationToken cancellationToken)
         {

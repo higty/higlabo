@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
-        /// The ID of the project.
-        /// </summary>
-        public string Project_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the API key.
         /// </summary>
         public string Key_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the project.
+        /// </summary>
+        public string Project_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<OrganizationProjectApiKeyRetrieveResponse> OrganizationProjectApiKeyRetrieveAsync(string project_Id, string key_Id)
+        public async ValueTask<OrganizationProjectApiKeyRetrieveResponse> OrganizationProjectApiKeyRetrieveAsync(string key_Id, string project_Id)
         {
             var p = new OrganizationProjectApiKeyRetrieveParameter();
-            p.Project_Id = project_Id;
             p.Key_Id = key_Id;
-            return await this.SendJsonAsync<OrganizationProjectApiKeyRetrieveParameter, OrganizationProjectApiKeyRetrieveResponse>(p, CancellationToken.None);
+            p.Project_Id = project_Id;
+            return await this.SendJsonAsync<OrganizationProjectApiKeyRetrieveParameter, OrganizationProjectApiKeyRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<OrganizationProjectApiKeyRetrieveResponse> OrganizationProjectApiKeyRetrieveAsync(string project_Id, string key_Id, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationProjectApiKeyRetrieveResponse> OrganizationProjectApiKeyRetrieveAsync(string key_Id, string project_Id, CancellationToken cancellationToken)
         {
             var p = new OrganizationProjectApiKeyRetrieveParameter();
-            p.Project_Id = project_Id;
             p.Key_Id = key_Id;
+            p.Project_Id = project_Id;
             return await this.SendJsonAsync<OrganizationProjectApiKeyRetrieveParameter, OrganizationProjectApiKeyRetrieveResponse>(p, cancellationToken);
         }
         public async ValueTask<OrganizationProjectApiKeyRetrieveResponse> OrganizationProjectApiKeyRetrieveAsync(OrganizationProjectApiKeyRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectApiKeyRetrieveParameter, OrganizationProjectApiKeyRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectApiKeyRetrieveParameter, OrganizationProjectApiKeyRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectApiKeyRetrieveResponse> OrganizationProjectApiKeyRetrieveAsync(OrganizationProjectApiKeyRetrieveParameter parameter, CancellationToken cancellationToken)
         {

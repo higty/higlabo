@@ -18,13 +18,13 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Project_Id { get; set; } = "";
         /// <summary>
-        /// The ID of the user.
-        /// </summary>
-        public string User_Id { get; set; } = "";
-        /// <summary>
         /// owner or member
         /// </summary>
         public string Role { get; set; } = "";
+        /// <summary>
+        /// The ID of the user.
+        /// </summary>
+        public string User_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -33,8 +33,8 @@ namespace HigLabo.OpenAI
         public override object GetRequestBody()
         {
             return new {
-            	user_id = this.User_Id,
             	role = this.Role,
+            	user_id = this.User_Id,
             };
         }
     }
@@ -43,25 +43,25 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<OrganizationProjectUserCreateResponse> OrganizationProjectUserCreateAsync(string project_Id, string user_Id, string role)
+        public async ValueTask<OrganizationProjectUserCreateResponse> OrganizationProjectUserCreateAsync(string project_Id, string role, string user_Id)
         {
             var p = new OrganizationProjectUserCreateParameter();
             p.Project_Id = project_Id;
-            p.User_Id = user_Id;
             p.Role = role;
-            return await this.SendJsonAsync<OrganizationProjectUserCreateParameter, OrganizationProjectUserCreateResponse>(p, CancellationToken.None);
+            p.User_Id = user_Id;
+            return await this.SendJsonAsync<OrganizationProjectUserCreateParameter, OrganizationProjectUserCreateResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<OrganizationProjectUserCreateResponse> OrganizationProjectUserCreateAsync(string project_Id, string user_Id, string role, CancellationToken cancellationToken)
+        public async ValueTask<OrganizationProjectUserCreateResponse> OrganizationProjectUserCreateAsync(string project_Id, string role, string user_Id, CancellationToken cancellationToken)
         {
             var p = new OrganizationProjectUserCreateParameter();
             p.Project_Id = project_Id;
-            p.User_Id = user_Id;
             p.Role = role;
+            p.User_Id = user_Id;
             return await this.SendJsonAsync<OrganizationProjectUserCreateParameter, OrganizationProjectUserCreateResponse>(p, cancellationToken);
         }
         public async ValueTask<OrganizationProjectUserCreateResponse> OrganizationProjectUserCreateAsync(OrganizationProjectUserCreateParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectUserCreateParameter, OrganizationProjectUserCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectUserCreateParameter, OrganizationProjectUserCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectUserCreateResponse> OrganizationProjectUserCreateAsync(OrganizationProjectUserCreateParameter parameter, CancellationToken cancellationToken)
         {

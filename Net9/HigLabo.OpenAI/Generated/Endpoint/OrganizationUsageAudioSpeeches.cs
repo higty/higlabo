@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<OrganizationUsageAudioSpeechesResponse> OrganizationUsageAudioSpeechesAsync()
         {
-            return await this.SendJsonAsync<OrganizationUsageAudioSpeechesParameter, OrganizationUsageAudioSpeechesResponse>(OrganizationUsageAudioSpeechesParameter.Empty, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationUsageAudioSpeechesParameter, OrganizationUsageAudioSpeechesResponse>(OrganizationUsageAudioSpeechesParameter.Empty, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationUsageAudioSpeechesResponse> OrganizationUsageAudioSpeechesAsync(CancellationToken cancellationToken)
         {
@@ -51,7 +51,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationUsageAudioSpeechesResponse> OrganizationUsageAudioSpeechesAsync(OrganizationUsageAudioSpeechesParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationUsageAudioSpeechesParameter, OrganizationUsageAudioSpeechesResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationUsageAudioSpeechesParameter, OrganizationUsageAudioSpeechesResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationUsageAudioSpeechesResponse> OrganizationUsageAudioSpeechesAsync(OrganizationUsageAudioSpeechesParameter parameter, CancellationToken cancellationToken)
         {

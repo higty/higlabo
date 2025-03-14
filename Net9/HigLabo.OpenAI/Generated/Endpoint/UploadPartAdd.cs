@@ -55,7 +55,7 @@ namespace HigLabo.OpenAI
             var p = new UploadPartAddParameter();
             p.Upload_Id = upload_Id;
             p.Data.SetFile(dataFileName, dataStream);
-            return await this.SendFormDataAsync<UploadPartAddParameter, UploadPartAddResponse>(p, CancellationToken.None);
+            return await this.SendFormDataAsync<UploadPartAddParameter, UploadPartAddResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<UploadPartAddResponse> UploadPartAddAsync(string upload_Id, string dataFileName, Stream dataStream, CancellationToken cancellationToken)
         {
@@ -66,7 +66,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<UploadPartAddResponse> UploadPartAddAsync(UploadPartAddParameter parameter)
         {
-            return await this.SendFormDataAsync<UploadPartAddParameter, UploadPartAddResponse>(parameter, CancellationToken.None);
+            return await this.SendFormDataAsync<UploadPartAddParameter, UploadPartAddResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<UploadPartAddResponse> UploadPartAddAsync(UploadPartAddParameter parameter, CancellationToken cancellationToken)
         {

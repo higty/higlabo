@@ -43,7 +43,7 @@ namespace HigLabo.OpenAI
     {
         public async ValueTask<OrganizationAuditLogResponse> OrganizationAuditLogAsync()
         {
-            return await this.SendJsonAsync<OrganizationAuditLogParameter, OrganizationAuditLogResponse>(OrganizationAuditLogParameter.Empty, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationAuditLogParameter, OrganizationAuditLogResponse>(OrganizationAuditLogParameter.Empty, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationAuditLogResponse> OrganizationAuditLogAsync(CancellationToken cancellationToken)
         {
@@ -51,7 +51,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationAuditLogResponse> OrganizationAuditLogAsync(OrganizationAuditLogParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationAuditLogParameter, OrganizationAuditLogResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationAuditLogParameter, OrganizationAuditLogResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationAuditLogResponse> OrganizationAuditLogAsync(OrganizationAuditLogParameter parameter, CancellationToken cancellationToken)
         {

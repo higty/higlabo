@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         {
             var p = new MessagesParameter();
             p.Thread_Id = thread_Id;
-            return await this.SendJsonAsync<MessagesParameter, MessagesResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<MessagesParameter, MessagesResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<MessagesResponse> MessagesAsync(string thread_Id, CancellationToken cancellationToken)
         {
@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<MessagesResponse> MessagesAsync(MessagesParameter parameter)
         {
-            return await this.SendJsonAsync<MessagesParameter, MessagesResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<MessagesParameter, MessagesResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<MessagesResponse> MessagesAsync(MessagesParameter parameter, CancellationToken cancellationToken)
         {

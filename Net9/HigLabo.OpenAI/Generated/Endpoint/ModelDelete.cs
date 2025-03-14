@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ModelDeleteParameter();
             p.Model = model;
-            return await this.SendJsonAsync<ModelDeleteParameter, ModelDeleteResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ModelDeleteParameter, ModelDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ModelDeleteResponse> ModelDeleteAsync(string model, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ModelDeleteResponse> ModelDeleteAsync(ModelDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<ModelDeleteParameter, ModelDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<ModelDeleteParameter, ModelDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ModelDeleteResponse> ModelDeleteAsync(ModelDeleteParameter parameter, CancellationToken cancellationToken)
         {

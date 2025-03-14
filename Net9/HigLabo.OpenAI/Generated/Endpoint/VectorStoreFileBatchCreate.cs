@@ -22,6 +22,10 @@ namespace HigLabo.OpenAI
         /// </summary>
         public List<string>? File_Ids { get; set; }
         /// <summary>
+        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers.
+        /// </summary>
+        public object? Attributes { get; set; }
+        /// <summary>
         /// The chunking strategy used to chunk the file(s). If not set, will use the auto strategy.
         /// </summary>
         public ChunkingStrategy? Chunking_Strategy { get; set; }
@@ -34,6 +38,7 @@ namespace HigLabo.OpenAI
         {
             return new {
             	file_ids = this.File_Ids,
+            	attributes = this.Attributes,
             	chunking_strategy = this.Chunking_Strategy,
             };
         }
@@ -48,7 +53,7 @@ namespace HigLabo.OpenAI
             var p = new VectorStoreFileBatchCreateParameter();
             p.Vector_Store_Id = vector_Store_Id;
             p.File_Ids = file_Ids;
-            return await this.SendJsonAsync<VectorStoreFileBatchCreateParameter, VectorStoreFileBatchCreateResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFileBatchCreateParameter, VectorStoreFileBatchCreateResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFileBatchCreateResponse> VectorStoreFileBatchCreateAsync(string vector_Store_Id, List<string>? file_Ids, CancellationToken cancellationToken)
         {
@@ -59,7 +64,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<VectorStoreFileBatchCreateResponse> VectorStoreFileBatchCreateAsync(VectorStoreFileBatchCreateParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreFileBatchCreateParameter, VectorStoreFileBatchCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFileBatchCreateParameter, VectorStoreFileBatchCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFileBatchCreateResponse> VectorStoreFileBatchCreateAsync(VectorStoreFileBatchCreateParameter parameter, CancellationToken cancellationToken)
         {

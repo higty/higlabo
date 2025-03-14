@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// The ID of the thread to which this run belongs.
-        /// </summary>
-        public string Thread_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the run to cancel.
         /// </summary>
         public string Run_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the thread to which this run belongs.
+        /// </summary>
+        public string Thread_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<RunCancelResponse> RunCancelAsync(string thread_Id, string run_Id)
+        public async ValueTask<RunCancelResponse> RunCancelAsync(string run_Id, string thread_Id)
         {
             var p = new RunCancelParameter();
-            p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
-            return await this.SendJsonAsync<RunCancelParameter, RunCancelResponse>(p, CancellationToken.None);
+            p.Thread_Id = thread_Id;
+            return await this.SendJsonAsync<RunCancelParameter, RunCancelResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<RunCancelResponse> RunCancelAsync(string thread_Id, string run_Id, CancellationToken cancellationToken)
+        public async ValueTask<RunCancelResponse> RunCancelAsync(string run_Id, string thread_Id, CancellationToken cancellationToken)
         {
             var p = new RunCancelParameter();
-            p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
+            p.Thread_Id = thread_Id;
             return await this.SendJsonAsync<RunCancelParameter, RunCancelResponse>(p, cancellationToken);
         }
         public async ValueTask<RunCancelResponse> RunCancelAsync(RunCancelParameter parameter)
         {
-            return await this.SendJsonAsync<RunCancelParameter, RunCancelResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<RunCancelParameter, RunCancelResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<RunCancelResponse> RunCancelAsync(RunCancelParameter parameter, CancellationToken cancellationToken)
         {

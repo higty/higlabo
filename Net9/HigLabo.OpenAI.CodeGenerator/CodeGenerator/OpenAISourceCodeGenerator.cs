@@ -26,7 +26,7 @@ public class OpenAISourceCodeGenerator
         driver.Navigate().GoToUrl("https://localhost:7054/");
         Thread.Sleep(10000);
 
-        var ee = driver.FindElements(By.CssSelector("#root div[class='section']"));
+        var ee = driver.FindElements(By.CssSelector("div[class='section']"));
         //CreateSourceCode(ee[71]);
         //return;
 
@@ -38,7 +38,7 @@ public class OpenAISourceCodeGenerator
     }
     public void CreateSourceCode(IWebElement endpointPanel)
     {
-        var endpointAnchor = endpointPanel.FindElement(By.CssSelector("h2[class='anchor-heading']")).GetDomAttribute("textContent");
+        var endpointAnchor = endpointPanel.FindElement(By.CssSelector("h2.anchor-heading")).Text;
         if (endpointAnchor.Contains("Deprecated") ||
             endpointAnchor.Contains("Legacy")) { return; }
         //Audit will be support when I have a time...
@@ -52,21 +52,21 @@ public class OpenAISourceCodeGenerator
         sc.UsingNamespaces.Add("System.Threading.Tasks");
         sc.Namespaces.Add(new Namespace($"HigLabo.OpenAI"));
 
-        var endpointUrl = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-path']")).FirstOrDefault()?.GetDomAttribute("innerHTML") ?? "";
+        var endpointUrl = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-path']")).FirstOrDefault()?.Text ?? "";
         if (endpointUrl.IsNullOrEmpty()) { return; }
 
-        var httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-post']")).FirstOrDefault()?.GetDomAttribute("innerHTML") ?? "";
+        var httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-post']")).FirstOrDefault()?.Text ?? "";
         if (httpMethod.IsNullOrEmpty())
         {
-            httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-delete']")).FirstOrDefault()?.GetDomAttribute("innerHTML") ?? "";
+            httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-delete']")).FirstOrDefault()?.Text ?? "";
         }
         if (httpMethod.IsNullOrEmpty())
         {
-            httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-get']")).First().GetDomAttribute("innerHTML") ?? "";
+            httpMethod = endpointPanel.FindElements(By.CssSelector("span[class='endpoint-method endpoint-method-get']")).First().Text ?? "";
         }
         var endpointPath = endpointUrl.Replace("https://api.openai.com/v1/", "");
 
-        var cName = this.GetClassName(endpointAnchor);
+        var cName = this.GetClassName(endpointAnchor.Replace("\r\nBeta", ""));
         if (cName.IsNullOrEmpty())
         {
             var beforeIsSlash = false;
@@ -101,9 +101,13 @@ public class OpenAISourceCodeGenerator
         Console.WriteLine($"{endpointPath} {cName}");
 
         var streamResult = "";
-        if (endpointUrl == "https://api.openai.com/v1/chat/completions")
+        if (cName == "ChatCompletionCreate")
         {
             streamResult = "ChatCompletionStreamResult";
+        }
+        if (cName == "ResponseCreate")
+        {
+            streamResult = "ResponseStreamResult";
         }
         var hasAssistantStreamMethod = false;
         if (cName == "ThreadRun" ||
@@ -115,7 +119,7 @@ public class OpenAISourceCodeGenerator
 
         var cParameter = new Class(AccessModifier.Public, cName + "Parameter");
         sc.Namespaces[0].Classes.Add(cParameter);
-        cParameter.Comment = endpointPanel.FindElement(By.CssSelector("[class='endpoint-summary']")).GetDomAttribute("textContent") + Environment.NewLine
+        cParameter.Comment = endpointPanel.FindElement(By.CssSelector("[class='endpoint-summary']")).Text + Environment.NewLine
             + $"<seealso href=\"{endpointUrl}\">{endpointUrl}</seealso>";
         cParameter.Modifier.Partial = true;
         cParameter.BaseClass = new TypeName("RestApiParameter");
@@ -155,7 +159,7 @@ public class OpenAISourceCodeGenerator
         var propertyList = new List<Property>();
         foreach (var paramSection in endpointPanel.FindElements(By.CssSelector("div[class='param-section']")))
         {
-            var h3 = paramSection.FindElement(By.CssSelector("h3")).GetDomAttribute("innerHTML");
+            var h3 = paramSection.FindElement(By.CssSelector("h3")).Text;
             if (h3 == "Query parameters")
             {
                 cParameter.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
@@ -194,19 +198,19 @@ public class OpenAISourceCodeGenerator
             if (h3 == "Request body" || h3 == "Path parameters")
             {
                 var isPathParameter = h3 == "Path parameters";
-
-                foreach (var paramRow in paramSection.FindElements(By.CssSelector("div[class='param-row']")))
+                var paramTableId = paramSection.FindElement(By.CssSelector(".param-table")).GetDomAttribute("id");
+                foreach (var paramRow in paramSection.FindElements(By.CssSelector($"#{paramTableId} > div.param-row")))
                 {
-                    if (paramRow.FindElements(By.CssSelector("[class='param-depr']")).FirstOrDefault()?.GetDomAttribute("textContent") == "Deprecated") { continue; }
+                    if (paramRow.FindElements(By.CssSelector("[class='param-depr']")).FirstOrDefault()?.Text == "Deprecated") { continue; }
 
-                    var pRawName = paramRow.FindElement(By.CssSelector("[class='param-name']")).GetDomAttribute("innerHTML");
+                    var pRawName = paramRow.FindElement(By.CssSelector("[class='param-name']")).Text;
                     var pName = pRawName.ToPascalCase();
                     if (pName == "Timestamp_Granularities[]")
                     {
                         pName = "Timestamp_Granularities";
                     }
-                    var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.GetDomAttribute("innerHTML") == "Required";
-                    var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).GetDomAttribute("textContent"), cName, pName, pRequired);
+                    var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.Text == "Required";
+                    var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).Text, cName, pName, pRequired);
                     if (pType == "string")
                     {
                         if (pRequired == false)
@@ -239,9 +243,13 @@ public class OpenAISourceCodeGenerator
                     {
                         p.TypeName.Name += "?";
                     }
-                    if (cName == "ChatCompletions" && p.Name == "Messages")
+                    if (cName == "ChatCompletionCreate" && p.Name == "Messages")
                     {
                         p.TypeName.Name = "List<IChatMessage>";
+                        p.Initializer = "new ()";
+                    }
+                    if (cName == "ResponseCreate" && p.Name == "Input")
+                    {
                         p.Initializer = "new ()";
                     }
                     if (cName == "ThreadCreate" && p.Name == "Messages")
@@ -263,7 +271,7 @@ public class OpenAISourceCodeGenerator
                         p.Set!.Modifier = AccessModifier.Private;
                         p.Initializer = $"new FileParameter(\"{p.Name.ToLower()}\")";
                     }
-                    p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.GetDomAttribute("textContent") ?? "";
+                    p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.Text ?? "";
                     cParameter.Properties.Add(p);
                     propertyList.Add(p);
 
@@ -385,11 +393,11 @@ public class OpenAISourceCodeGenerator
             if (propertyList.Count == 0)
             {
                 mdAsync0.Body.Clear();
-                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>({cName}Parameter.Empty, CancellationToken.None);");
+                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>({cName}Parameter.Empty, System.Threading.CancellationToken.None);");
             }
             else
             {
-                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, CancellationToken.None);");
+                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, System.Threading.CancellationToken.None);");
             }
             cClient.Methods.Add(mdAsync0);
         }
@@ -428,7 +436,7 @@ public class OpenAISourceCodeGenerator
             var md1 = md2.Copy();
             md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
             md1.Body.Clear();
-            md1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(parameter, CancellationToken.None);");
+            md1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(parameter, System.Threading.CancellationToken.None);");
      
             cClient.Methods.Add(md1);
             cClient.Methods.Add(md2);
@@ -439,7 +447,7 @@ public class OpenAISourceCodeGenerator
             {
                 var mdStreamAsync0 = mdStreamAsync.Copy();
                 mdStreamAsync0.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = true;");
-                var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, null, CancellationToken.None))");
+                var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(p, null, System.Threading.CancellationToken.None))");
                 cb1.CurlyBracket = true;
                 {
                     cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -479,7 +487,7 @@ public class OpenAISourceCodeGenerator
                 md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
                 md1.Body.Clear();
                 md1.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
-                var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, result, CancellationToken.None))");
+                var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, result, System.Threading.CancellationToken.None))");
                 cb1.CurlyBracket = true;
                 {
                     cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -490,7 +498,7 @@ public class OpenAISourceCodeGenerator
                 md0.Parameters.RemoveAt(md0.Parameters.Count - 1);
                 md0.Body.Clear();
                 md0.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = true;");
-                var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))");
+                var cb0 = new CodeBlock(SourceCodeLanguage.CSharp, $"await foreach (var item in this.GetStreamAsync(parameter, null, System.Threading.CancellationToken.None))");
                 cb0.CurlyBracket = true;
                 {
                     cb0.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
@@ -515,6 +523,14 @@ public class OpenAISourceCodeGenerator
     private string GetClassName(string endpointAnchor)
     {
         var cName = "";
+
+        if (endpointAnchor == "Create chat completion") { return "ChatCompletionCreate"; }
+        if (endpointAnchor == "Get chat completion") { return "ChatCompletionRetrieve"; }
+        if (endpointAnchor == "Get chat messages") { return "ChatCompletionMessageRetrieve"; }
+        if (endpointAnchor == "List Chat Completions") { return "ChatCompletions"; }
+        if (endpointAnchor == "Update chat completion") { return "ChatCompletionUpdate"; }
+        if (endpointAnchor == "Delete chat completion") { return "ChatCompletionDelete"; }
+
         if (endpointAnchor == "Create fine-tuning job") { return "FineTuningJobCreate"; }
         if (endpointAnchor == "List fine-tuning jobs") { return "FineTuningJobs"; }
         if (endpointAnchor == "Retrieve fine-tuning job") { return "FineTuningJobRetrieve"; }
@@ -539,54 +555,62 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Complete upload") { return "UploadComplete"; }
         if (endpointAnchor == "Cancel upload") { return "UploadCancel"; }
 
-        if (endpointAnchor == "Create assistantBeta") { return "AssistantCreate"; }
-        if (endpointAnchor == "Retrieve assistantBeta") { return "AssistantRetrieve"; }
-        if (endpointAnchor == "Modify assistantBeta") { return "AssistantModify"; }
-        if (endpointAnchor == "Delete assistantBeta") { return "AssistantDelete"; }
-        if (endpointAnchor == "Create assistant fileBeta") { return "AssistantFileCreate"; }
-        if (endpointAnchor == "Retrieve assistant fileBeta") { return "AssistantFileRetrieve"; }
-        if (endpointAnchor == "Delete assistant fileBeta") { return "AssistantFileDelete"; }
-        if (endpointAnchor == "List assistant filesBeta") { return "AssistantFiles"; }
+        if (endpointAnchor == "Create assistant") { return "AssistantCreate"; }
+        if (endpointAnchor == "Retrieve assistant") { return "AssistantRetrieve"; }
+        if (endpointAnchor == "Modify assistant") { return "AssistantModify"; }
+        if (endpointAnchor == "Delete assistant") { return "AssistantDelete"; }
+        if (endpointAnchor == "Create assistant file") { return "AssistantFileCreate"; }
+        if (endpointAnchor == "Retrieve assistant file") { return "AssistantFileRetrieve"; }
+        if (endpointAnchor == "Delete assistant file") { return "AssistantFileDelete"; }
+        if (endpointAnchor == "List assistant files") { return "AssistantFiles"; }
     
-        if (endpointAnchor == "Create threadBeta") { return "ThreadCreate"; }
-        if (endpointAnchor == "Retrieve threadBeta") { return "ThreadRetrieve"; }
-        if (endpointAnchor == "Modify threadBeta") { return "ThreadModify"; }
-        if (endpointAnchor == "Delete threadBeta") { return "ThreadDelete"; }
-        if (endpointAnchor == "Create messageBeta") { return "MessageCreate"; }
-        if (endpointAnchor == "Retrieve messageBeta") { return "MessageRetrieve"; }
-        if (endpointAnchor == "Modify messageBeta") { return "MessageModify"; }
-        if (endpointAnchor == "List messagesBeta") { return "Messages"; }
-        if (endpointAnchor == "Delete messageBeta") { return "MessageDelete"; }
+        if (endpointAnchor == "Create thread") { return "ThreadCreate"; }
+        if (endpointAnchor == "Retrieve thread") { return "ThreadRetrieve"; }
+        if (endpointAnchor == "Modify thread") { return "ThreadModify"; }
+        if (endpointAnchor == "Delete thread") { return "ThreadDelete"; }
+        if (endpointAnchor == "Create message") { return "MessageCreate"; }
+        if (endpointAnchor == "Retrieve message") { return "MessageRetrieve"; }
+        if (endpointAnchor == "Modify message") { return "MessageModify"; }
+        if (endpointAnchor == "List messages") { return "Messages"; }
+        if (endpointAnchor == "Delete message") { return "MessageDelete"; }
 
-        if (endpointAnchor == "Create runBeta") { return "RunCreate"; }
-        if (endpointAnchor == "Retrieve runBeta") { return "RunRetrieve"; }
-        if (endpointAnchor == "Modify runBeta") { return "RunModify"; }
-        if (endpointAnchor == "List runsBeta") { return "Runs"; }
+        if (endpointAnchor == "Create run") { return "RunCreate"; }
+        if (endpointAnchor == "Retrieve run") { return "RunRetrieve"; }
+        if (endpointAnchor == "Modify run") { return "RunModify"; }
+        if (endpointAnchor == "List runs") { return "Runs"; }
 
-        if (endpointAnchor == "Retrieve message fileBeta") { return "MessageFileRetrieve"; }
-        if (endpointAnchor == "List message filesBeta") { return "MessageFiles"; }
+        if (endpointAnchor == "Retrieve message file") { return "MessageFileRetrieve"; }
+        if (endpointAnchor == "List message files") { return "MessageFiles"; }
 
-        if (endpointAnchor == "Submit tool outputs to runBeta") { return "SubmitToolOutputs"; }
-        if (endpointAnchor == "Cancel a runBeta") { return "RunCancel"; }
-        if (endpointAnchor == "Create thread and runBeta") { return "ThreadRun"; }
-        if (endpointAnchor == "Retrieve run stepBeta") { return "RunStepRetrieve"; }
-        if (endpointAnchor == "List run stepsBeta") { return "RunSteps"; }
+        if (endpointAnchor == "Submit tool outputs to run") { return "SubmitToolOutputs"; }
+        if (endpointAnchor == "Cancel a run") { return "RunCancel"; }
+        if (endpointAnchor == "Create thread and run") { return "ThreadRun"; }
+        if (endpointAnchor == "Retrieve run step") { return "RunStepRetrieve"; }
+        if (endpointAnchor == "List run steps") { return "RunSteps"; }
 
-        if (endpointAnchor == "Create vector storeBeta") { return "VectorStoreCreate"; }
-        if (endpointAnchor == "List vector storesBeta") { return "VectorStores"; }
-        if (endpointAnchor == "Retrieve vector storeBeta") { return "VectorStoreRetrieve"; }
-        if (endpointAnchor == "Modify vector storeBeta") { return "VectorStoreModify"; }
-        if (endpointAnchor == "Delete vector storeBeta") { return "VectorStoreDelete"; }
+        if (endpointAnchor == "Create a model response") { return "ResponseCreate"; }
+        if (endpointAnchor == "Get a model response") { return "ResponseRetrieve"; }
+        if (endpointAnchor == "Delete a model response") { return "ResponseDelete"; }
+        if (endpointAnchor == "List input items") { return "ResponseInputItemRetrieve"; }
 
-        if (endpointAnchor == "Create vector store fileBeta") { return "VectorStoreFileCreate"; }
-        if (endpointAnchor == "List vector store filesBeta") { return "VectorStoreFiles"; }
-        if (endpointAnchor == "Retrieve vector store fileBeta") { return "VectorStoreFileRetrieve"; }
-        if (endpointAnchor == "Delete vector store fileBeta") { return "VectorStoreFileDelete"; }
+        if (endpointAnchor == "Create vector store") { return "VectorStoreCreate"; }
+        if (endpointAnchor == "List vector stores") { return "VectorStores"; }
+        if (endpointAnchor == "Retrieve vector store") { return "VectorStoreRetrieve"; }
+        if (endpointAnchor == "Modify vector store") { return "VectorStoreModify"; }
+        if (endpointAnchor == "Delete vector store") { return "VectorStoreDelete"; }
+        if (endpointAnchor == "Search vector store") { return "VectorStoreSearch"; }
 
-        if (endpointAnchor == "Create vector store file batchBeta") { return "VectorStoreFileBatchCreate"; }
-        if (endpointAnchor == "Retrieve vector store file batchBeta") { return "VectorStoreFileBatchRetrieve"; }
-        if (endpointAnchor == "Cancel vector store file batchBeta") { return "VectorStoreFileBatchCancel"; }
-        if (endpointAnchor == "List vector store files in a batchBeta") { return "VectorStoreFileBatches"; }
+        if (endpointAnchor == "Create vector store file") { return "VectorStoreFileCreate"; }
+        if (endpointAnchor == "List vector store files") { return "VectorStoreFiles"; }
+        if (endpointAnchor == "Retrieve vector store file") { return "VectorStoreFileRetrieve"; }
+        if (endpointAnchor == "Retrieve vector store file content") { return "VectorStoreFileContentRetrieve"; }
+        if (endpointAnchor == "Update vector store file attributes") { return "VectorStoreFileAttributeUpdate"; }
+        if (endpointAnchor == "Delete vector store file") { return "VectorStoreFileDelete"; }
+
+        if (endpointAnchor == "Create vector store file batch") { return "VectorStoreFileBatchCreate"; }
+        if (endpointAnchor == "Retrieve vector store file batch") { return "VectorStoreFileBatchRetrieve"; }
+        if (endpointAnchor == "Cancel vector store file batch") { return "VectorStoreFileBatchCancel"; }
+        if (endpointAnchor == "List vector store files in a batch") { return "VectorStoreFileBatches"; }
 
         if (endpointAnchor == "List admin API keys") { return "OrganizationAdminApiKeys"; }
         if (endpointAnchor == "Create admin API key") { return "OrganizationAdminApiKeyCreate"; }
@@ -635,13 +659,17 @@ public class OpenAISourceCodeGenerator
     }
     private string GetTypeName(string typeName, string className, string propertyName, bool required)
     {
-        if (className == "ChatCompletions" && propertyName == "Messages") { return "List<IChatMessage>"; }
+        if (className == "ChatCompletionCreate" && propertyName == "Messages") { return "List<IChatMessage>"; }
         if (className == "Embeddings" && typeName == "string or array") { return "string"; }
         if (className == "FileUpload" && propertyName == "File") { return "FileParameter"; }
         if (className == "ImagesVariations" && propertyName == "Image") { return "FileParameter"; }
         if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
         if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
         if (className == "SubmitToolOutputs" && propertyName == "Tool_Outputs") { return "List<ToolOutput>?"; }
+        if (className == "SubmitToolOutputs" && propertyName == "Reasoning") { return "Reasoning?"; }
+        if (className == "ResponseCreate" && propertyName == "Input") { return "ResponseInput"; }
+        if (className == "ResponseCreate" && propertyName == "Reasoning") { return "Reasoning"; }
+        if (className == "Responses" && propertyName == "Reasoning") { return "Reasoning"; }
 
         if (propertyName == "Modalities") { return "object?"; }
         if (propertyName == "Chunking_Strategy") { return "ChunkingStrategy?"; }
@@ -650,11 +678,14 @@ public class OpenAISourceCodeGenerator
         if (propertyName == "Timestamp_Granularities") { return "double[]"; }
         if (propertyName == "Additional_Messages") { return "List<ThreadAdditionalMessageObject>?"; }
         if (propertyName == "Integrations") { return "List<FineTuningIntegrationObject>?"; }
+        if (propertyName == "Web_Search_Options") { return "WebSearchOption?"; }
 
         if (typeName == "string") { return "string"; }
         if (typeName == "string or null") { return "string?"; }
         if (typeName == "string or object") { return "string?"; }
         if (typeName == "string or array") { return "string"; }
+        if (typeName == "string or \"whisper-1\"") { return "string"; }
+        if (typeName == "string or \"dall-e-2\"") { return "string"; }
         if (typeName == "boolean") { return "bool"; }
         if (typeName == "boolean or null") { return "bool?"; }
         if (typeName == "integer") { return "int"; }
@@ -681,7 +712,7 @@ public class OpenAISourceCodeGenerator
     private string GetResponseClassName(string className)
     {
         var cName = className;
-        if (cName == "ChatCompletions")
+        if (cName == "ChatCompletionCreate")
         {
             return "ChatCompletionObjectResponse";
         }
@@ -997,6 +1028,11 @@ public class OpenAISourceCodeGenerator
         else if (cName == "RealtimeSessions")
         {
             return "RealtimeSessionObjectResponse";
+        }
+        else if (cName == "ResponseCreate" ||
+            cName == "ResponseRetrieve")
+        {
+            return "ResponseObjectResponse";
         }
         else
         {

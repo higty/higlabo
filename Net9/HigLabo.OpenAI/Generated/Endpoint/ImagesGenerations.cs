@@ -73,7 +73,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ImagesGenerationsParameter();
             p.Prompt = prompt;
-            return await this.SendJsonAsync<ImagesGenerationsParameter, ImagesGenerationsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ImagesGenerationsParameter, ImagesGenerationsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ImagesGenerationsResponse> ImagesGenerationsAsync(string prompt, CancellationToken cancellationToken)
         {
@@ -83,7 +83,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ImagesGenerationsResponse> ImagesGenerationsAsync(ImagesGenerationsParameter parameter)
         {
-            return await this.SendJsonAsync<ImagesGenerationsParameter, ImagesGenerationsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<ImagesGenerationsParameter, ImagesGenerationsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ImagesGenerationsResponse> ImagesGenerationsAsync(ImagesGenerationsParameter parameter, CancellationToken cancellationToken)
         {

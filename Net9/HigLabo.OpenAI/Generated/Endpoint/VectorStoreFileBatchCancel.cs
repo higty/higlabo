@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// The ID of the vector store that the file batch belongs to.
-        /// </summary>
-        public string Vector_Store_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the file batch to cancel.
         /// </summary>
         public string Batch_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the vector store that the file batch belongs to.
+        /// </summary>
+        public string Vector_Store_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<VectorStoreFileBatchCancelResponse> VectorStoreFileBatchCancelAsync(string vector_Store_Id, string batch_Id)
+        public async ValueTask<VectorStoreFileBatchCancelResponse> VectorStoreFileBatchCancelAsync(string batch_Id, string vector_Store_Id)
         {
             var p = new VectorStoreFileBatchCancelParameter();
-            p.Vector_Store_Id = vector_Store_Id;
             p.Batch_Id = batch_Id;
-            return await this.SendJsonAsync<VectorStoreFileBatchCancelParameter, VectorStoreFileBatchCancelResponse>(p, CancellationToken.None);
+            p.Vector_Store_Id = vector_Store_Id;
+            return await this.SendJsonAsync<VectorStoreFileBatchCancelParameter, VectorStoreFileBatchCancelResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<VectorStoreFileBatchCancelResponse> VectorStoreFileBatchCancelAsync(string vector_Store_Id, string batch_Id, CancellationToken cancellationToken)
+        public async ValueTask<VectorStoreFileBatchCancelResponse> VectorStoreFileBatchCancelAsync(string batch_Id, string vector_Store_Id, CancellationToken cancellationToken)
         {
             var p = new VectorStoreFileBatchCancelParameter();
-            p.Vector_Store_Id = vector_Store_Id;
             p.Batch_Id = batch_Id;
+            p.Vector_Store_Id = vector_Store_Id;
             return await this.SendJsonAsync<VectorStoreFileBatchCancelParameter, VectorStoreFileBatchCancelResponse>(p, cancellationToken);
         }
         public async ValueTask<VectorStoreFileBatchCancelResponse> VectorStoreFileBatchCancelAsync(VectorStoreFileBatchCancelParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreFileBatchCancelParameter, VectorStoreFileBatchCancelResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFileBatchCancelParameter, VectorStoreFileBatchCancelResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFileBatchCancelResponse> VectorStoreFileBatchCancelAsync(VectorStoreFileBatchCancelParameter parameter, CancellationToken cancellationToken)
         {

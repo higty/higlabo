@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         {
             var p = new OrganizationProjectServiceAccountsParameter();
             p.Project_Id = project_Id;
-            return await this.SendJsonAsync<OrganizationProjectServiceAccountsParameter, OrganizationProjectServiceAccountsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectServiceAccountsParameter, OrganizationProjectServiceAccountsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectServiceAccountsResponse> OrganizationProjectServiceAccountsAsync(string project_Id, CancellationToken cancellationToken)
         {
@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationProjectServiceAccountsResponse> OrganizationProjectServiceAccountsAsync(OrganizationProjectServiceAccountsParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectServiceAccountsParameter, OrganizationProjectServiceAccountsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectServiceAccountsParameter, OrganizationProjectServiceAccountsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectServiceAccountsResponse> OrganizationProjectServiceAccountsAsync(OrganizationProjectServiceAccountsParameter parameter, CancellationToken cancellationToken)
         {

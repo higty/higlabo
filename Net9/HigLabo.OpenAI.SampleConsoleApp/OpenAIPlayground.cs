@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ChatCompletionStreamWithFunctionCalling();
+        await ResponseCreateWebSearchStream();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -101,7 +101,7 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var p = new ChatCompletionsParameter();
+        var p = new ChatCompletionCreateParameter();
         var theme = "How to enjoy coffee";
         p.Messages.Add(new ChatMessage(ChatMessageRole.User
             , $"Can you provide me with some ideas for blog posts about {theme}?"));
@@ -111,7 +111,7 @@ public class OpenAIPlayground
             ServiceProvider.DeepSeek => "deepseek-chat",
             _ => "gpt-4o",
         };
-        var res = await cl.ChatCompletionsAsync(p);
+        var res = await cl.ChatCompletionCreateAsync(p);
         foreach (var choice in res.Choices)
         {
             Console.Write(choice.Message.Content);
@@ -146,7 +146,7 @@ public class OpenAIPlayground
             _ => "gpt-4o",
         };
         var result = new ChatCompletionStreamResult();
-        await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", model, result, CancellationToken.None))
+        await foreach (string text in cl.ChatCompletionCreateStreamAsync("How to enjoy coffee?", model, result, CancellationToken.None))
         {
             Console.Write(text);
         }
@@ -164,7 +164,7 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var p = new ChatCompletionsParameter();
+        var p = new ChatCompletionCreateParameter();
         p.AddUserMessage($"How to enjoy coffee");
         p.Model = "gpt-4o";
         if (cl.ServiceProvider == ServiceProvider.OpenAI)
@@ -175,7 +175,7 @@ public class OpenAIPlayground
             };
         }
         var result = new ChatCompletionStreamResult();
-        await foreach (string text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+        await foreach (string text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
         {
             Console.Write(text);
         }
@@ -196,7 +196,7 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var p = new ChatCompletionsParameter();
+        var p = new ChatCompletionCreateParameter();
         //ChatGPT can correct Newyork,Sanflansisco to New york and San Flancisco.
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of Tokyo."));
         p.Model = cl.ServiceProvider switch
@@ -210,7 +210,7 @@ public class OpenAIPlayground
         p.Tools.Add(this.CreateGetLatLongTool());
 
         var result = new ChatCompletionStreamResult();
-        await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+        await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
         {
             Console.Write(text);
         }
@@ -229,7 +229,7 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var p = new ChatCompletionsParameter();
+        var p = new ChatCompletionCreateParameter();
 
         var vMessage = new ChatImageMessage(ChatMessageRole.User);
         vMessage.AddTextContent("Please describe this image.");
@@ -240,7 +240,7 @@ public class OpenAIPlayground
         p.Stream = true;
 
         var result = new ChatCompletionStreamResult();
-        await foreach (var text in cl.ChatCompletionsStreamAsync(p, result, CancellationToken.None))
+        await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
         {
             Console.Write(text);
         }
@@ -251,7 +251,7 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var p = new ChatCompletionsParameter();
+        var p = new ChatCompletionCreateParameter();
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know Japan information."));
         p.Model = cl.ServiceProvider switch
         {
@@ -312,7 +312,7 @@ public class OpenAIPlayground
 
         p.Response_Format = responseSchema;
 
-        var res = await cl.ChatCompletionsAsync(p);
+        var res = await cl.ChatCompletionCreateAsync(p);
         foreach (var choice in res.Choices)
         {
             Console.Write(choice.Message.Content);
@@ -324,7 +324,7 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var p = new ChatCompletionsParameter();
+        var p = new ChatCompletionCreateParameter();
         var theme = "How to enjoy coffee";
         p.Messages.Add(new ChatMessage(ChatMessageRole.User
             , $"Can you provide me with some ideas for blog posts about {theme}?"));
@@ -335,7 +335,7 @@ public class OpenAIPlayground
             _ => "o3-mini",
         };
         p.Reasoning_Effort = "medium";
-        var res = await cl.ChatCompletionsAsync(p);
+        var res = await cl.ChatCompletionCreateAsync(p);
         foreach (var choice in res.Choices)
         {
             Console.Write(choice.Message.Content);
@@ -359,6 +359,196 @@ public class OpenAIPlayground
         Console.WriteLine();
         Console.WriteLine(iRes.ResponseBodyText);
     }
+
+    private async ValueTask ResponseCreate()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage("How to enjoy coffee?");
+        var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+        foreach (var output in res.Output)
+        {
+            foreach (var content in output.Content)
+            {
+                Console.WriteLine(content.Type);
+                switch (content.Type)
+                {
+                    case "output_text": Console.WriteLine(content.Text); break;
+                    default: break;
+                }
+            }
+        }
+
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateWebSearch()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
+        p.Tools = [];
+        p.Tools.Add(new ToolObject("web_search_preview"));
+        var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+        foreach (var output in res.Output)
+        {
+            foreach (var content in output.Content)
+            {
+                Console.WriteLine(content.Type);
+                switch (content.Type)
+                {
+                    case "output_text": Console.WriteLine(content.Text); break;
+                    default: break;
+                }
+            }
+        }
+
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateWebSearchStream()
+    {
+        var cl = OpenAIClient;
+        var location = "Newyork";
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
+        p.Tools = [];
+        p.Tools.Add(new ToolObject("web_search_preview"));
+        var result = new ResponseStreamResult();
+        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        foreach (var item in result.ContentList)
+        {
+            if (item.Annotations != null)
+            {
+                foreach (var annotation in item.Annotations)
+                {
+                    Console.WriteLine(annotation.Title);
+                    Console.WriteLine(annotation.Url);
+                }
+            }
+        }
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateFileSearchStream()
+    {
+        var cl = OpenAIClient;
+
+        var storeId = await GetVectorStoreId();
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage("I want to know about 1-bit transformers.");
+        p.Tools = [];
+        p.Tools.Add(new ToolObject("file_search")
+        {
+            Vector_Store_Ids = [storeId],
+            Max_Num_Results = 20,
+        });
+        var result = new ResponseStreamResult();
+        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        foreach (var item in result.ContentList)
+        {
+            if (item.Annotations != null)
+            {
+                foreach (var annotation in item.Annotations)
+                {
+                    Console.WriteLine(annotation.Title);
+                    Console.WriteLine(annotation.Url);
+                }
+            }
+        }
+
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateFileStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage("Please explain about this pdf file.");
+        p.Input[0].AddFile("Pond.jpg", File.OpenRead(Path.Combine(Environment.CurrentDirectory, "File", "AI_Forecast.pdf")));
+
+        var result = new ResponseStreamResult();
+        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        foreach (var item in result.ContentList)
+        {
+            if (item.Annotations != null)
+            {
+                foreach (var annotation in item.Annotations)
+                {
+                    Console.WriteLine(annotation.Title);
+                    Console.WriteLine(annotation.Url);
+                }
+            }
+        }
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateFileIdStream()
+    {
+        var cl = OpenAIClient;
+
+        var fileId = "";
+        {
+            var p = new FilesParameter();
+            p.QueryParameter.Purpose = "user_data";
+            var res = await cl.FilesAsync(p);
+            foreach (var item in res.Data)
+            {
+                fileId = item.Id;
+            }
+        }
+        {
+            var p = new ResponseCreateParameter();
+            p.Model = "gpt-4o";
+            p.Input.AddUserMessage("Please explain about this pdf file.");
+            p.Input[0].AddFile(fileId);
+
+            var result = new ResponseStreamResult();
+            await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(text);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+
+            foreach (var item in result.ContentList)
+            {
+                if (item.Annotations != null)
+                {
+                    foreach (var annotation in item.Annotations)
+                    {
+                        Console.WriteLine(annotation.Title);
+                        Console.WriteLine(annotation.Url);
+                    }
+                }
+            }
+        }
+        Console.WriteLine("■DONE");
+    }
+
 
     private ToolObject CreateGetWheatherTool()
     {
@@ -468,7 +658,18 @@ public class OpenAIPlayground
         var res = await cl.FileUploadAsync(p);
         Console.WriteLine(res);
     }
-	private async ValueTask ImageFileDownload()
+    private async ValueTask FileUpload_UserData()
+    {
+        var cl = OpenAIClient;
+
+        var p = new FileUploadParameter();
+        var filePath = File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "File", "AI_Forecast.pdf"));
+        p.File.SetFile("AI_Forecast.pdf", filePath);
+        p.SetPurpose(FilePurpose.UserData);
+        var res = await cl.FileUploadAsync(p);
+        Console.WriteLine(res);
+    }
+    private async ValueTask ImageFileDownload()
 	{
 		var cl = OpenAIClient;
 
@@ -979,15 +1180,16 @@ public class OpenAIPlayground
     private async ValueTask RealtimeSession()
     {
         var cl = OpenAIClient;
-        var res = await cl.RealtimeSessionsAsync("gpt-4o", CancellationToken.None);
+        var p = new RealtimeSessionsParameter();
+        p.Model = "gpt-4o";
+        var res = await cl.RealtimeSessionsAsync(p, CancellationToken.None);
         Console.WriteLine("key: " + res.Client_Secret.Value);
         Console.WriteLine("expire at:" + res.Client_Secret.ExpireTime);
     }
 
-    private async ValueTask ProcessVectorStore()
+    private async ValueTask<string> GetVectorStoreId()
     {
         var cl = OpenAIClient;
-
         var assistantId = "";
         var assistantName = "HigLabo vector store Assistant";
         var assistantsResponse = await cl.AssistantsAsync();
@@ -1024,6 +1226,31 @@ public class OpenAIPlayground
                 }
             }
         }
+        return storeId;
+    }
+    private async ValueTask ProcessVectorStore()
+    {
+        var cl = OpenAIClient;
+
+        var assistantId = "";
+        var assistantName = "HigLabo vector store Assistant";
+        var assistantsResponse = await cl.AssistantsAsync();
+        foreach (var item in assistantsResponse.Data)
+        {
+            if (item.Name == assistantName)
+            {
+                assistantId += item.Id;
+                break;
+            }
+        }
+        if (assistantId.IsNullOrEmpty())
+        {
+            var res = await AssistantCreate(assistantName);
+            assistantId = res.Id;
+        }
+
+        var vectorStoreName = "HigLabo vector store";
+        var storeId = await GetVectorStoreId();
         if (storeId.IsNullOrEmpty())
         {
             var p = new VectorStoreCreateParameter();
@@ -1059,7 +1286,7 @@ public class OpenAIPlayground
         if (file_id.IsNullOrEmpty())
         {
             var p = new FileUploadParameter();
-            p.File.SetFile("1bit_transformers.pdf", File.ReadAllBytes("C:\\Data\\Dev\\1bit_transformers.pdf"));
+            p.File.SetFile("1bit_transformers.pdf", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "File", "1bit_transformers.pdf")));
             p.SetPurpose(FilePurpose.Assistants);
             var res = await cl.FileUploadAsync(p);
             Console.WriteLine(res);

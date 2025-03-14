@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
-        /// The ID of the thread that was run.
-        /// </summary>
-        public string Thread_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the run to retrieve.
         /// </summary>
         public string Run_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the thread that was run.
+        /// </summary>
+        public string Thread_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<RunRetrieveResponse> RunRetrieveAsync(string thread_Id, string run_Id)
+        public async ValueTask<RunRetrieveResponse> RunRetrieveAsync(string run_Id, string thread_Id)
         {
             var p = new RunRetrieveParameter();
-            p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
-            return await this.SendJsonAsync<RunRetrieveParameter, RunRetrieveResponse>(p, CancellationToken.None);
+            p.Thread_Id = thread_Id;
+            return await this.SendJsonAsync<RunRetrieveParameter, RunRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<RunRetrieveResponse> RunRetrieveAsync(string thread_Id, string run_Id, CancellationToken cancellationToken)
+        public async ValueTask<RunRetrieveResponse> RunRetrieveAsync(string run_Id, string thread_Id, CancellationToken cancellationToken)
         {
             var p = new RunRetrieveParameter();
-            p.Thread_Id = thread_Id;
             p.Run_Id = run_Id;
+            p.Thread_Id = thread_Id;
             return await this.SendJsonAsync<RunRetrieveParameter, RunRetrieveResponse>(p, cancellationToken);
         }
         public async ValueTask<RunRetrieveResponse> RunRetrieveAsync(RunRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<RunRetrieveParameter, RunRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<RunRetrieveParameter, RunRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<RunRetrieveResponse> RunRetrieveAsync(RunRetrieveParameter parameter, CancellationToken cancellationToken)
         {

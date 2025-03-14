@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ModelRetrieveParameter();
             p.Model = model;
-            return await this.SendJsonAsync<ModelRetrieveParameter, ModelRetrieveResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ModelRetrieveParameter, ModelRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ModelRetrieveResponse> ModelRetrieveAsync(string model, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ModelRetrieveResponse> ModelRetrieveAsync(ModelRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<ModelRetrieveParameter, ModelRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<ModelRetrieveParameter, ModelRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ModelRetrieveResponse> ModelRetrieveAsync(ModelRetrieveParameter parameter, CancellationToken cancellationToken)
         {

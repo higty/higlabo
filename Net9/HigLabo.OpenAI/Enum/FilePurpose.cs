@@ -11,8 +11,12 @@ public enum FilePurpose
 {
     Finetune,
     FinetuneResults,
+    Vision,
+    Batch,
     Assistants,
     AssistantsOutput,
+    UserData,
+    Evals,
 }
 
 public static class FilePurposeExtensions
@@ -22,9 +26,13 @@ public static class FilePurposeExtensions
         switch (purpose)
         {
             case FilePurpose.Finetune: return "fine-tune"; 
-            case FilePurpose.FinetuneResults: return "fine-tune-results"; 
+            case FilePurpose.FinetuneResults: return "fine-tune-results";
+            case FilePurpose.Vision: return "vision";
+            case FilePurpose.Batch: return "batch";
             case FilePurpose.Assistants: return "assistants"; 
-            case FilePurpose.AssistantsOutput: return "assistants_output"; 
+            case FilePurpose.AssistantsOutput: return "assistants_output";
+            case FilePurpose.UserData: return "user_data";
+            case FilePurpose.Evals: return "evals";
             default: throw SwitchStatementNotImplementException.Create(purpose);
         }
     }

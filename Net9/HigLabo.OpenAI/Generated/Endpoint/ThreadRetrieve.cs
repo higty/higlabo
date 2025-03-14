@@ -36,7 +36,7 @@ namespace HigLabo.OpenAI
         {
             var p = new ThreadRetrieveParameter();
             p.Thread_Id = thread_Id;
-            return await this.SendJsonAsync<ThreadRetrieveParameter, ThreadRetrieveResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<ThreadRetrieveParameter, ThreadRetrieveResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ThreadRetrieveResponse> ThreadRetrieveAsync(string thread_Id, CancellationToken cancellationToken)
         {
@@ -46,7 +46,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ThreadRetrieveResponse> ThreadRetrieveAsync(ThreadRetrieveParameter parameter)
         {
-            return await this.SendJsonAsync<ThreadRetrieveParameter, ThreadRetrieveResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<ThreadRetrieveParameter, ThreadRetrieveResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ThreadRetrieveResponse> ThreadRetrieveAsync(ThreadRetrieveParameter parameter, CancellationToken cancellationToken)
         {

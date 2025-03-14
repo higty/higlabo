@@ -48,7 +48,7 @@ namespace HigLabo.OpenAI
             p.Project_Id = project_Id;
             p.User_Id = user_Id;
             p.Role = role;
-            return await this.SendJsonAsync<OrganizationProjectUserModifyParameter, OrganizationProjectUserModifyResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectUserModifyParameter, OrganizationProjectUserModifyResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectUserModifyResponse> OrganizationProjectUserModifyAsync(string project_Id, string user_Id, string role, CancellationToken cancellationToken)
         {
@@ -60,7 +60,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<OrganizationProjectUserModifyResponse> OrganizationProjectUserModifyAsync(OrganizationProjectUserModifyParameter parameter)
         {
-            return await this.SendJsonAsync<OrganizationProjectUserModifyParameter, OrganizationProjectUserModifyResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<OrganizationProjectUserModifyParameter, OrganizationProjectUserModifyResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<OrganizationProjectUserModifyResponse> OrganizationProjectUserModifyAsync(OrganizationProjectUserModifyParameter parameter, CancellationToken cancellationToken)
         {

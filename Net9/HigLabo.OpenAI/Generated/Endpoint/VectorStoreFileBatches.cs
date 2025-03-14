@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "GET";
         /// <summary>
-        /// The ID of the vector store that the files belong to.
-        /// </summary>
-        public string Vector_Store_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the file batch that the files belong to.
         /// </summary>
         public string Batch_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the vector store that the files belong to.
+        /// </summary>
+        public string Vector_Store_Id { get; set; } = "";
         IQueryParameter IQueryParameterProperty.QueryParameter
         {
             get
@@ -47,23 +47,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<VectorStoreFileBatchesResponse> VectorStoreFileBatchesAsync(string vector_Store_Id, string batch_Id)
+        public async ValueTask<VectorStoreFileBatchesResponse> VectorStoreFileBatchesAsync(string batch_Id, string vector_Store_Id)
         {
             var p = new VectorStoreFileBatchesParameter();
-            p.Vector_Store_Id = vector_Store_Id;
             p.Batch_Id = batch_Id;
-            return await this.SendJsonAsync<VectorStoreFileBatchesParameter, VectorStoreFileBatchesResponse>(p, CancellationToken.None);
+            p.Vector_Store_Id = vector_Store_Id;
+            return await this.SendJsonAsync<VectorStoreFileBatchesParameter, VectorStoreFileBatchesResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<VectorStoreFileBatchesResponse> VectorStoreFileBatchesAsync(string vector_Store_Id, string batch_Id, CancellationToken cancellationToken)
+        public async ValueTask<VectorStoreFileBatchesResponse> VectorStoreFileBatchesAsync(string batch_Id, string vector_Store_Id, CancellationToken cancellationToken)
         {
             var p = new VectorStoreFileBatchesParameter();
-            p.Vector_Store_Id = vector_Store_Id;
             p.Batch_Id = batch_Id;
+            p.Vector_Store_Id = vector_Store_Id;
             return await this.SendJsonAsync<VectorStoreFileBatchesParameter, VectorStoreFileBatchesResponse>(p, cancellationToken);
         }
         public async ValueTask<VectorStoreFileBatchesResponse> VectorStoreFileBatchesAsync(VectorStoreFileBatchesParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreFileBatchesParameter, VectorStoreFileBatchesResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFileBatchesParameter, VectorStoreFileBatchesResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFileBatchesResponse> VectorStoreFileBatchesAsync(VectorStoreFileBatchesParameter parameter, CancellationToken cancellationToken)
         {

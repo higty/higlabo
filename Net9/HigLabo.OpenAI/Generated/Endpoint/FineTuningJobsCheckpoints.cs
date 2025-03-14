@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         {
             var p = new FineTuningJobsCheckpointsParameter();
             p.Fine_Tuning_Job_Id = fine_Tuning_Job_Id;
-            return await this.SendJsonAsync<FineTuningJobsCheckpointsParameter, FineTuningJobsCheckpointsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobsCheckpointsParameter, FineTuningJobsCheckpointsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobsCheckpointsResponse> FineTuningJobsCheckpointsAsync(string fine_Tuning_Job_Id, CancellationToken cancellationToken)
         {
@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<FineTuningJobsCheckpointsResponse> FineTuningJobsCheckpointsAsync(FineTuningJobsCheckpointsParameter parameter)
         {
-            return await this.SendJsonAsync<FineTuningJobsCheckpointsParameter, FineTuningJobsCheckpointsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<FineTuningJobsCheckpointsParameter, FineTuningJobsCheckpointsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<FineTuningJobsCheckpointsResponse> FineTuningJobsCheckpointsAsync(FineTuningJobsCheckpointsParameter parameter, CancellationToken cancellationToken)
         {

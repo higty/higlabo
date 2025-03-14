@@ -22,13 +22,13 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
-        /// The format to return the embeddings in. Can be either float or base64.
-        /// </summary>
-        public string? Encoding_Format { get; set; }
-        /// <summary>
         /// The number of dimensions the resulting output embeddings should have. Only supported in text-embedding-3 and later models.
         /// </summary>
         public int? Dimensions { get; set; }
+        /// <summary>
+        /// The format to return the embeddings in. Can be either float or base64.
+        /// </summary>
+        public string? Encoding_Format { get; set; }
         /// <summary>
         /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
         /// </summary>
@@ -43,8 +43,8 @@ namespace HigLabo.OpenAI
             return new {
             	input = this.Input,
             	model = this.Model,
-            	encoding_format = this.Encoding_Format,
             	dimensions = this.Dimensions,
+            	encoding_format = this.Encoding_Format,
             	user = this.User,
             };
         }
@@ -59,7 +59,7 @@ namespace HigLabo.OpenAI
             var p = new EmbeddingsParameter();
             p.Input = input;
             p.Model = model;
-            return await this.SendJsonAsync<EmbeddingsParameter, EmbeddingsResponse>(p, CancellationToken.None);
+            return await this.SendJsonAsync<EmbeddingsParameter, EmbeddingsResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<EmbeddingsResponse> EmbeddingsAsync(string input, string model, CancellationToken cancellationToken)
         {
@@ -70,7 +70,7 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<EmbeddingsResponse> EmbeddingsAsync(EmbeddingsParameter parameter)
         {
-            return await this.SendJsonAsync<EmbeddingsParameter, EmbeddingsResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<EmbeddingsParameter, EmbeddingsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<EmbeddingsResponse> EmbeddingsAsync(EmbeddingsParameter parameter, CancellationToken cancellationToken)
         {

@@ -14,13 +14,13 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
         /// <summary>
-        /// The ID of the vector store that the file belongs to.
-        /// </summary>
-        public string Vector_Store_Id { get; set; } = "";
-        /// <summary>
         /// The ID of the file to delete.
         /// </summary>
         public string File_Id { get; set; } = "";
+        /// <summary>
+        /// The ID of the vector store that the file belongs to.
+        /// </summary>
+        public string Vector_Store_Id { get; set; } = "";
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,23 +36,23 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<VectorStoreFileDeleteResponse> VectorStoreFileDeleteAsync(string vector_Store_Id, string file_Id)
+        public async ValueTask<VectorStoreFileDeleteResponse> VectorStoreFileDeleteAsync(string file_Id, string vector_Store_Id)
         {
             var p = new VectorStoreFileDeleteParameter();
-            p.Vector_Store_Id = vector_Store_Id;
             p.File_Id = file_Id;
-            return await this.SendJsonAsync<VectorStoreFileDeleteParameter, VectorStoreFileDeleteResponse>(p, CancellationToken.None);
+            p.Vector_Store_Id = vector_Store_Id;
+            return await this.SendJsonAsync<VectorStoreFileDeleteParameter, VectorStoreFileDeleteResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<VectorStoreFileDeleteResponse> VectorStoreFileDeleteAsync(string vector_Store_Id, string file_Id, CancellationToken cancellationToken)
+        public async ValueTask<VectorStoreFileDeleteResponse> VectorStoreFileDeleteAsync(string file_Id, string vector_Store_Id, CancellationToken cancellationToken)
         {
             var p = new VectorStoreFileDeleteParameter();
-            p.Vector_Store_Id = vector_Store_Id;
             p.File_Id = file_Id;
+            p.Vector_Store_Id = vector_Store_Id;
             return await this.SendJsonAsync<VectorStoreFileDeleteParameter, VectorStoreFileDeleteResponse>(p, cancellationToken);
         }
         public async ValueTask<VectorStoreFileDeleteResponse> VectorStoreFileDeleteAsync(VectorStoreFileDeleteParameter parameter)
         {
-            return await this.SendJsonAsync<VectorStoreFileDeleteParameter, VectorStoreFileDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendJsonAsync<VectorStoreFileDeleteParameter, VectorStoreFileDeleteResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<VectorStoreFileDeleteResponse> VectorStoreFileDeleteAsync(VectorStoreFileDeleteParameter parameter, CancellationToken cancellationToken)
         {
