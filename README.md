@@ -9,8 +9,10 @@ HigLabo library provide features
 I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
+
+
 ## HigLabo.OpenAI
-2025-02-04 Refine DbSharpApplication.
+2025-03-14 Support Responses API endpoint, and web search, file search and more.
 
 2025-01-22 updated. Support .NET9.
 
@@ -107,6 +109,8 @@ HigLabo.Mapper (version3.0.0 or later) is used expression tree. It generate il c
 
 
 ## DbSharp
+2025-02-04 Refine DbSharpApplication.
+
 A code generator to call stored procedure on database(SQL server, MySQL)
 
 Article
