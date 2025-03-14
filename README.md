@@ -13,6 +13,7 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 ## HigLabo.OpenAI
 2025-03-14 Support Responses API endpoint, and web search, file search and more. 
+
 ※Breaking change
 The endpoint of ChatCompletions are all changed to ChatCompletionCreate.
 Please see latest sample code.
