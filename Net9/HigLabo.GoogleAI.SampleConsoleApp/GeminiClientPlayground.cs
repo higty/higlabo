@@ -26,10 +26,10 @@ public class GoogleAIClientPlayground
         //await GenerateContentAsStream();
         //await GenerateContentAsStream1();
         //await GenerateContentThinkingAsStream1();
-        //await GenerateContentGroundingAsStream();
+        await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
 
-        await GenerateSensitiveImage();
+        //await GenerateSensitiveImage();
         //await SendImage();
         //await GenerateImage();
         //await RefineImage();
@@ -167,10 +167,10 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_1_5_Pro_Latest;
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
         p.AddMessage(ChatMessageRole.User, "Please tell me how to go to Aomori from Tokyo.");
         p.Tools = new();
-        var tool = new GoogleSearchRetrievalTool();
+        var tool = new GoogleSearchTool();
         p.Tools.Add(tool);
 
         var result = new GenerateContentStreamResult();
@@ -178,7 +178,24 @@ public class GoogleAIClientPlayground
         {
             Console.Write(item);
         }
-        Console.WriteLine("***********************");
+        foreach (var candidate in result.Candidates)
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.Text != null)
+                {
+                    Console.WriteLine(part.Text);
+                }
+            }
+            if (candidate.GroundingMetaData != null)
+            {
+                foreach (var chunk in candidate.GroundingMetaData.GroundingChunks)
+                {
+                    Console.WriteLine(chunk.Web.Title);
+                    Console.WriteLine(chunk.Web.Uri);
+                }
+            }
+        }
     }
     private async ValueTask GenerateContentFunctionCallingAsStream()
     {
