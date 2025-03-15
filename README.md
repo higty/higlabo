@@ -95,6 +95,47 @@ Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 
 ```
 
+## HigLabo.GoogleAI
+2025-03-15 Support Gemini2.0 Flash experimental model. You can generate image from code.
+
+2025-01-22 updated. Support .NET9.
+
+```
+var cl = new GoogleAIClient("API KEY");
+var p = new ModelsGenerateContentParameter();
+p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+p.AddUserMessage("Hi, can you create a 3d rendered image of a cat with wings and a top hat flying over a happy futuristic scificity with lots of greenery?");
+p.GenerationConfig = new();
+p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+p.Stream = false;
+
+var res = await cl.GenerateContentAsync(p);
+
+foreach (var candidate in res.Candidates)
+{
+    foreach (var part in candidate.Content.Parts)
+    {
+        if (part.Text != null)
+        {
+            Console.WriteLine(part.Text);
+        }
+        if (part.InlineData != null)
+        {
+            using (var stream = part.InlineData.GetStream())
+            {
+                using (var bitmap = new Bitmap(stream))
+                {
+                    string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                    bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
+        }
+    }
+}
+
+```
+
+
 ## HigLabo.Anthropic
 HigLabo.Anthropic is a C# library of Anthropic Claude AI.
 2014-04-07 updated. It support tool feature.
