@@ -8,6 +8,7 @@ public class WindowStateInfo
     public double Top { get; set; } = 100;
     public double Width { get; set; } = 1200;
     public double Height { get; set; } = 900;
+    public string SelectedTab { get; set; } = "";
 
     public void Initialize(Window window)
     {

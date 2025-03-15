@@ -16,7 +16,6 @@ public partial class ModelsGenerateContentParameter : RestApiParameter, IRestApi
     public List<SafetyCategory>? SafetySettings { get; set; }
     public Content? SystemInstruction { get; set; }
     public GenerationConfiguration? GenerationConfig { get; set; }
-
     public bool Stream { get; set; } = true;
 
     string IRestApiParameter.GetApiPath()

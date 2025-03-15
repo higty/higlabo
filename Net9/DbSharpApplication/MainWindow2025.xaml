@@ -31,7 +31,7 @@
             </MenuItem>
         </Menu>
         
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Name="SettingTab" Header="Setting">
                 <StackPanel Orientation="Vertical" Margin="4">
                     <Label>Information</Label>

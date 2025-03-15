@@ -35,4 +35,12 @@ public static class IContentsPropertyExtensions
         content.Parts.Add(part);
         obj.Contents.Add(content);
     }
+    public static void AddImage(this IContentsProperty obj, string mimeType, byte[] data)
+    {
+        var content = new Content();
+        var part = new ContentPart();
+        part.InlineData = new InlineData(mimeType, Convert.ToBase64String(data));
+        content.Parts.Add(part);
+        obj.Contents.Add(content);
+    }
 }

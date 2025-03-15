@@ -15,6 +15,10 @@ public class ContentPart
     {
         Text = text;
     }
+    public ContentPart(InlineData inlineData)
+    {
+        InlineData = inlineData;
+    }
 
     public override string ToString()
     {

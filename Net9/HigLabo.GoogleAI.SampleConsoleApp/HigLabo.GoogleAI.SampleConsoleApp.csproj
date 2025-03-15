@@ -5,7 +5,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>9.0.0.0</Version>
+		<Version>9.1.0.0</Version>
 		<Authors>Higty</Authors>
 		<Company>HigLabo</Company>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
@@ -13,9 +13,43 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="System.Drawing.Common" Version="9.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 		<ProjectReference Include="..\HigLabo.GoogleAI\HigLabo.GoogleAI.csproj" />
 		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Image\Castle.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\CircleAndTriangle.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Factorization.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Jougakura_Bridge.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\KamuiCape.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Plant.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Table.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Yoshino.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Yugama.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
