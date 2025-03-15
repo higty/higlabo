@@ -25,9 +25,11 @@ public class GoogleAIClientPlayground
         //await GenerateContent();
         //await GenerateContentAsStream();
         //await GenerateContentAsStream1();
-        await GenerateContentThinkingAsStream1();
+        //await GenerateContentThinkingAsStream1();
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
+
+        await GenerateSensitiveImage();
         //await SendImage();
         //await GenerateImage();
         //await RefineImage();
@@ -314,6 +316,54 @@ public class GoogleAIClientPlayground
 
                     }
                 }
+            }
+        }
+    }
+    private async ValueTask GenerateSensitiveImage()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.AddUserMessage("A beautiful young woman with large, expressive brown eyes and long, dark hair with blue highlights, wearing ornate jewelry and a colorful dress with floral patterns, soft lighting, vibrant colors, detailed illustration.");
+        p.SafetySettings = new();
+        p.SafetySettings.Add(new SafetySetting(SafetyCategory.Harm_Category_Sexually_Explicit, Threshold.Block_None));
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GenerateContentStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(item);
+        }
+
+        foreach (var candidate in result.Candidates)
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.Text != null)
+                {
+                    Console.WriteLine(part.Text);
+                }
+                if (part.InlineData != null)
+                {
+                    Console.WriteLine(part.InlineData.MimeType);
+                    using (var stream = part.InlineData.GetStream())
+                    {
+                        using (var bitmap = new Bitmap(stream))
+                        {
+                            // 画像を表示または保存する
+                            string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"SensitiveImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            Console.WriteLine($"Image is saved at {outputPath}");
+                        }
+
+                    }
+                }
+            }
+            if (candidate.FinishReason != null)
+            {
+                Console.WriteLine("Finish reason: " + candidate.FinishReason.ToStringFromEnum());
             }
         }
     }
