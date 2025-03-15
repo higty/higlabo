@@ -23,9 +23,9 @@ public class ContentPart
     public override string ToString()
     {
         if (this.Text != null) { return this.Text; }
+        if (this.FunctionCall != null) { return this.FunctionCall.ToString()!; }
         if (this.InlineData != null) { return this.InlineData.ToString()!; }
         if (this.FileData != null) { return this.FileData.ToString()!; }
-        if (this.FunctionCall != null) { return this.FunctionCall.ToString()!; }
         return "";
     }
 }

@@ -26,13 +26,14 @@ public class GoogleAIClientPlayground
         //await GenerateContentAsStream();
         //await GenerateContentAsStream1();
         //await GenerateContentThinkingAsStream1();
-        await GenerateContentGroundingAsStream();
+        //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
 
         //await GenerateSensitiveImage();
         //await SendImage();
         //await GenerateImage();
-        //await RefineImage();
+        //await GenerateImageAndText();
+        await RefineImage();
         //await MergeImage();
         //await GenerateMindMap();
         Console.WriteLine("■Completed");
@@ -325,13 +326,51 @@ public class GoogleAIClientPlayground
                     {
                         using (var bitmap = new Bitmap(stream))
                         {
-                            // 画像を表示または保存する
                             string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
                             bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             Console.WriteLine($"Image is saved at {outputPath}");
                         }
 
                     }
+                }
+            }
+        }
+    }
+    private async ValueTask GenerateImageAndText()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.AddUserMessage("人参パンの作り方の各ステップを画像とテキストで教えてください。");
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+
+        var res = new GenerateContentStreamResult();
+        await foreach (var candidate in cl.GetCandidateStreamAsync(p, res, CancellationToken.None))
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.InlineData != null)
+                {
+                    Console.WriteLine(part.InlineData.MimeType);
+                    using (var stream = part.InlineData.GetStream())
+                    {
+                        //If web app, you may save this stream to azure blob and get url. Add img tag with this url.
+
+                        //Or desktop app, you may save this stream to local folder and display it.
+                        using (var bitmap = new Bitmap(stream))
+                        {
+                            string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"RecipeStepImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            Console.WriteLine($"Image is saved at {outputPath}");
+                        }
+
+                    }
+                }
+                else
+                {
+                    Console.Write(part.Text);
                 }
             }
         }
@@ -370,7 +409,6 @@ public class GoogleAIClientPlayground
                     {
                         using (var bitmap = new Bitmap(stream))
                         {
-                            // 画像を表示または保存する
                             string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"SensitiveImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
                             bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             Console.WriteLine($"Image is saved at {outputPath}");
@@ -396,20 +434,15 @@ public class GoogleAIClientPlayground
         p.AddMessage("Remove plant behind the table and remove coffee cup on table.", "image/jpeg", File.ReadAllBytes(path));
         p.GenerationConfig = new();
         p.GenerationConfig.ResponseModalities = ["Text", "Image"];
-        p.Stream = false;
 
         Console.WriteLine(path);
         Console.WriteLine("Refine image started...");
-        var res = await cl.GenerateContentAsync(p);
 
-        foreach (var candidate in res.Candidates)
+        var res = new GenerateContentStreamResult();
+        await foreach (var candidate in cl.GetCandidateStreamAsync(p, res, CancellationToken.None))
         {
             foreach (var part in candidate.Content.Parts)
             {
-                if (part.Text != null)
-                {
-                    Console.WriteLine(part.Text);
-                }
                 if (part.InlineData != null)
                 {
                     Console.WriteLine(part.InlineData.MimeType);
@@ -417,7 +450,6 @@ public class GoogleAIClientPlayground
                     {
                         using (var bitmap = new Bitmap(stream))
                         {
-                            // 画像を表示または保存する
                             string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"Table_Refined_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
                             bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             Console.WriteLine($"Image is saved at {outputPath}");
@@ -425,8 +457,12 @@ public class GoogleAIClientPlayground
 
                     }
                 }
+                else
+                {
+                    Console.Write(part.Text);
+                }
             }
-        }
+        }        
     }
     private async ValueTask MergeImage()
     {
@@ -466,7 +502,6 @@ public class GoogleAIClientPlayground
                     {
                         using (var bitmap = new Bitmap(stream))
                         {
-                            // 画像を表示または保存する
                             string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"Table_Refined_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
                             bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             Console.WriteLine($"Image is saved at {outputPath}");
@@ -514,7 +549,6 @@ public class GoogleAIClientPlayground
                     {
                         using (var bitmap = new Bitmap(stream))
                         {
-                            // 画像を表示または保存する
                             string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"MindMap_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.png");
                             bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Png);
                             Console.WriteLine($"Image is saved at {outputPath}");
