@@ -1,4 +1,6 @@
-﻿namespace HigLabo.GoogleAI;
+﻿using Newtonsoft.Json;
+
+namespace HigLabo.GoogleAI;
 
 public class GenerationConfiguration
 {
@@ -9,5 +11,5 @@ public class GenerationConfiguration
     public int? CandidateCount { get; set; }
     public List<string>? StopSequences { get; set; }
     public string? ResponseMimeType { get; set; }
-
+    public List<string>? ResponseModalities { get; set; }
 }

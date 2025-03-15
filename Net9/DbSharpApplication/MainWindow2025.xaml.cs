@@ -44,6 +44,13 @@ public partial class MainWindow2025 : Window
         this.SetText();
 
         ConfigData.Current.MainWindow.Initialize(this);
+        switch (ConfigData.Current.MainWindow.SelectedTab)
+        {
+            case "SettingTab": this.SettingTab.IsSelected = true; break;
+            case "ConnectionStringTab": this.ConnectionStringTab.IsSelected = true; break;
+            case "PlaygroundTab": this.PlaygroundTab.IsSelected = true; break;
+            default: break;
+        }
         this.Closing += MainWindow_Closing;
     }
     private void SetBinding()
@@ -431,4 +438,15 @@ public partial class MainWindow2025 : Window
         ConfigData.Current.Save();
     }
 
+    private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.Source is TabControl tabControl)
+        {
+            var tabItem = tabControl.SelectedItem as TabItem;
+            if (tabItem != null)
+            {
+                ConfigData.Current.MainWindow.SelectedTab = tabItem.Name ?? "";
+            }
+        }
+    }
 }

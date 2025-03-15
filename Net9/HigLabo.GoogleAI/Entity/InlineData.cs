@@ -10,6 +10,14 @@ public class InlineData
         this.MimeType = mimeType;
         this.Data = Data;
     }
+    public Byte[] GetBytes()
+    {
+        return Convert.FromBase64String(this.Data);
+    }
+    public Stream GetStream()
+    {
+        return new MemoryStream(Convert.FromBase64String(this.Data));
+    }
 
     public override string ToString()
     {

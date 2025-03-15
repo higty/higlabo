@@ -2,11 +2,14 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HigLabo.GoogleAI.SampleConsoleApp;
 
@@ -20,11 +23,16 @@ public class GoogleAIClientPlayground
         //await ModelsList();
         //await Embedding();
         //await GenerateContent();
-        await GenerateContentAsStream();
+        //await GenerateContentAsStream();
         //await GenerateContentAsStream1();
+        await GenerateContentThinkingAsStream1();
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
         //await SendImage();
+        //await GenerateImage();
+        //await RefineImage();
+        //await MergeImage();
+        //await GenerateMindMap();
         Console.WriteLine("■Completed");
 
     }
@@ -94,11 +102,7 @@ public class GoogleAIClientPlayground
     private async ValueTask GenerateContentAsStream()
     {
         var cl = GoogleAIClient;
-
-        var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_1_5_Pro_Latest;
-
-        await foreach (var item in cl.GenerateContentStreamAsync("How to enjoy Japan?", ModelNames.Gemini_1_5_Pro_Latest))
+        await foreach (var item in cl.GenerateContentStreamAsync("How to enjoy Japan?", ModelNames.Gemini_2_0_Flash_Exp))
         {
             Console.Write(item);
         }
@@ -111,6 +115,43 @@ public class GoogleAIClientPlayground
         var p = new ModelsGenerateContentParameter();
         p.Model = ModelNames.Gemini_1_5_Pro_Latest;
         p.AddMessage(ChatMessageRole.User, "How to enjoy Japan?");
+        p.GenerationConfig = new();
+        p.GenerationConfig.Temperature = 0.8;
+
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GenerateContentStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(item);
+        }
+        Console.WriteLine("***********************");
+    }
+    private async ValueTask GenerateContentThinkingAsStream()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Thinking_Exp_01_21;
+        var path = Path.Combine(Environment.CurrentDirectory, "Image", "CircleAndTriangle.png");
+        p.AddMessage("What’s the area of the overlapping region?", "image/png", File.ReadAllBytes(path));
+
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GenerateContentStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(item);
+        }
+        Console.WriteLine("***********************");
+    }
+    private async ValueTask GenerateContentThinkingAsStream1()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Thinking_Exp_01_21;
+        //https://happylilac.net/jhs-math3_01-02-01.pdf
+        //より引用
+        var language = "Japanese";
+        var path = Path.Combine(Environment.CurrentDirectory, "Image", "Factorization.png");
+        p.AddMessage($"Solve these question and list up answers. Explain the step after list up answer. Please answer by {language}.", "image/png", File.ReadAllBytes(path));
 
         var result = new GenerateContentStreamResult();
         await foreach (var item in cl.GenerateContentStreamAsync(p, result, CancellationToken.None))
@@ -219,8 +260,8 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_Pro_Vision;
-        var path = Path.Combine(Environment.CurrentDirectory, "Image", "Jougakura_Bridge.jpg");
+        p.Model = ModelNames.Gemini_2_0_Pro_Exp_02_05;
+        var path = Path.Combine(Environment.CurrentDirectory, "Image", "KamuiCape.jpg");
         p.AddMessage("What is this picture?", "image/jpeg", File.ReadAllBytes(path));
         p.Stream = false;
 
@@ -236,5 +277,186 @@ public class GoogleAIClientPlayground
         var iRes = res as IRestApiResponse;
         Console.WriteLine();
         Console.WriteLine(iRes.ResponseBodyText);
+    }
+    private async ValueTask GenerateImage()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.AddUserMessage("Hi, can you create a 3d rendered image of a cat with wings and a top hat flying over a happy futuristic scificity with lots of greenery?");
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+        p.Stream = false;
+
+        var res = await cl.GenerateContentAsync(p);
+
+        foreach (var candidate in res.Candidates)
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.Text != null)
+                {
+                    Console.WriteLine(part.Text);
+                }
+                if (part.InlineData != null)
+                {
+                    Console.WriteLine(part.InlineData.MimeType);
+                    using (var stream = part.InlineData.GetStream())
+                    {
+                        using (var bitmap = new Bitmap(stream))
+                        {
+                            // 画像を表示または保存する
+                            string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            Console.WriteLine($"Image is saved at {outputPath}");
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    private async ValueTask RefineImage()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        var path = Path.Combine(Environment.CurrentDirectory, "Image", "Table.jpg");
+        p.AddMessage("Remove plant behind the table and remove coffee cup on table.", "image/jpeg", File.ReadAllBytes(path));
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+        p.Stream = false;
+
+        Console.WriteLine(path);
+        Console.WriteLine("Refine image started...");
+        var res = await cl.GenerateContentAsync(p);
+
+        foreach (var candidate in res.Candidates)
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.Text != null)
+                {
+                    Console.WriteLine(part.Text);
+                }
+                if (part.InlineData != null)
+                {
+                    Console.WriteLine(part.InlineData.MimeType);
+                    using (var stream = part.InlineData.GetStream())
+                    {
+                        using (var bitmap = new Bitmap(stream))
+                        {
+                            // 画像を表示または保存する
+                            string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"Table_Refined_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            Console.WriteLine($"Image is saved at {outputPath}");
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    private async ValueTask MergeImage()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        var content = new Content();
+        var prompt = "Remove plant behind table in first image. After that, put second image's plant on the table.";
+        content.Parts.Add(new ContentPart(prompt));
+        {
+            var part = new ContentPart(new InlineData("image/jpeg", Convert.ToBase64String(File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Table.jpg")))));
+            content.Parts.Add(part);
+        }
+        {
+            var part = new ContentPart(new InlineData("image/jpeg", Convert.ToBase64String(File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Plant.jpg")))));
+            content.Parts.Add(part);
+        }
+        p.Contents.Add(content);
+
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+        p.Stream = false;
+
+        Console.WriteLine(prompt);
+        Console.WriteLine("Merge images started...sometimes success, sometimes goes wrong...");
+        var res = await cl.GenerateContentAsync(p);
+
+        foreach (var candidate in res.Candidates)
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.InlineData != null)
+                {
+                    Console.WriteLine(part.InlineData.MimeType);
+                    using (var stream = part.InlineData.GetStream())
+                    {
+                        using (var bitmap = new Bitmap(stream))
+                        {
+                            // 画像を表示または保存する
+                            string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"Table_Refined_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            Console.WriteLine($"Image is saved at {outputPath}");
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    private async ValueTask GenerateMindMap()
+    {
+        Console.WriteLine("GenerateMindMap started...");
+
+        var cl = GoogleAIClient;
+        var sb = new StringBuilder();
+        await foreach (var item in cl.GenerateContentStreamAsync("Generate 5 branch mind map of saas service for PR strategy. Please output mind map data only.", ModelNames.Gemini_2_0_Flash_Exp))
+        {
+            Console.Write(item);
+            sb.Append(item);
+        }
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.AddUserMessage("Generate mind map image from below text in English.\n\n" + sb.ToString());
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+        p.Stream = false;
+
+        var res = await cl.GenerateContentAsync(p);
+
+        foreach (var candidate in res.Candidates)
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                if (part.Text != null)
+                {
+                    Console.WriteLine(part.Text);
+                }
+                if (part.InlineData != null)
+                {
+                    Console.WriteLine(part.InlineData.MimeType);
+                    using (var stream = part.InlineData.GetStream())
+                    {
+                        using (var bitmap = new Bitmap(stream))
+                        {
+                            // 画像を表示または保存する
+                            string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"MindMap_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Png);
+                            Console.WriteLine($"Image is saved at {outputPath}");
+                        }
+
+                    }
+                }
+            }
+        }
+        //This does not work as we expected. Wrong mind map generated. But it may help to improve your imagination.
+
     }
 }
