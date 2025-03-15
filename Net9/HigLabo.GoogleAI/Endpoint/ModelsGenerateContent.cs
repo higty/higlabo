@@ -160,6 +160,16 @@ public partial class GoogleAIClient
     }
     public async IAsyncEnumerable<string> GetStreamAsync(ModelsGenerateContentParameter parameter, GenerateContentStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
+        await foreach (var candidate in this.GetCandidateStreamAsync(parameter, result, cancellationToken))
+        {
+            foreach (var part in candidate.Content.Parts)
+            {
+                yield return part.ToString();
+            }
+        }
+    }
+    public async IAsyncEnumerable<Candidate> GetCandidateStreamAsync(ModelsGenerateContentParameter parameter, GenerateContentStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
         var eventName = "";
         await foreach (var line in this.GetStreamAsync(parameter, cancellationToken))
         {
@@ -177,14 +187,11 @@ public partial class GoogleAIClient
                 {
                     foreach (var candidate in o.Candidates)
                     {
-                        foreach (var part in candidate.Content.Parts)
-                        {
-                            yield return part.ToString();
-                        }
                         if (result != null)
                         {
                             result.Process(candidate);
                         }
+                        yield return candidate;
                     }
                 }
             }
