@@ -9,8 +9,13 @@ HigLabo library provide features
 I added .NET Standard version at 2020/07/03.
 It was moved from https://github.com/higty/higlabo.netstandard repository.
 
+
+
 ## HigLabo.OpenAI
-2025-02-04 Refine DbSharpApplication.
+2025-03-14 Support Responses API endpoint, and web search, file search and more. 
+
+※Breaking change. The endpoint of ChatCompletions are all changed to ChatCompletionCreate. Please see latest sample code.
+https://github.com/higty/higlabo/blob/master/Net9/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
 
 2025-01-22 updated. Support .NET9.
 
@@ -37,11 +42,33 @@ I test against latest version of these three packages.
 
 How to use? It is easy to use!
 ```
+var cl = new OpenAIClient("API Key");
+var p = new ResponseCreateParameter();
+p.Model = "gpt-4o";
+p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
+p.Tools = [];
+p.Tools.Add(new ToolObject("web_search_preview"));
+var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+foreach (var output in res.Output)
+{
+    foreach (var content in output.Content)
+    {
+        Console.WriteLine(content.Type);
+        switch (content.Type)
+        {
+            case "output_text": Console.WriteLine(content.Text); break;
+            default: break;
+        }
+    }
+}
+```
+
+```
 var cl = new OpenAIClient("API Key"); // OpenAI
 --var cl = new OpenAIClient(new AzureSettings("API KEY", "https://tinybetter-work-for-our-future.openai.azure.com/", "MyDeploymentName"));
 --var cl = new OpenAIClient(new GroqSettings("API Key")); // Groq, llama, mixtral, gemma
 var result = new ChatCompletionStreamResult();
-await foreach (string text in cl.ChatCompletionsStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
+await foreach (string text in cl.ChatCompletionCreateStreamAsync("How to enjoy coffee?", "gpt-4", result, CancellationToken.None))
 {
     Console.Write(text);
 }
@@ -67,6 +94,47 @@ Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
 Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 
 ```
+
+## HigLabo.GoogleAI
+2025-03-15 Support Gemini2.0 Flash experimental model. You can generate image from code.
+
+2025-01-22 updated. Support .NET9.
+
+```
+var cl = new GoogleAIClient("API KEY");
+var p = new ModelsGenerateContentParameter();
+p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+p.AddUserMessage("Hi, can you create a 3d rendered image of a cat with wings and a top hat flying over a happy futuristic scificity with lots of greenery?");
+p.GenerationConfig = new();
+p.GenerationConfig.ResponseModalities = ["Text", "Image"];
+p.Stream = false;
+
+var res = await cl.GenerateContentAsync(p);
+
+foreach (var candidate in res.Candidates)
+{
+    foreach (var part in candidate.Content.Parts)
+    {
+        if (part.Text != null)
+        {
+            Console.WriteLine(part.Text);
+        }
+        if (part.InlineData != null)
+        {
+            using (var stream = part.InlineData.GetStream())
+            {
+                using (var bitmap = new Bitmap(stream))
+                {
+                    string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss")}.jpg");
+                    bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
+        }
+    }
+}
+
+```
+
 
 ## HigLabo.Anthropic
 HigLabo.Anthropic is a C# library of Anthropic Claude AI.
@@ -107,6 +175,8 @@ HigLabo.Mapper (version3.0.0 or later) is used expression tree. It generate il c
 
 
 ## DbSharp
+2025-02-04 Refine DbSharpApplication.
+
 A code generator to call stored procedure on database(SQL server, MySQL)
 
 Article
