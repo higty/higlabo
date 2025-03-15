@@ -327,6 +327,7 @@ public class GoogleAIClientPlayground
         p.Model = ModelNames.Gemini_2_0_Flash_Exp;
         p.AddUserMessage("A beautiful young woman with large, expressive brown eyes and long, dark hair with blue highlights, wearing ornate jewelry and a colorful dress with floral patterns, soft lighting, vibrant colors, detailed illustration.");
         p.SafetySettings = new();
+        //If comment out this line, you sometimes fail to generate image due to image safety.
         p.SafetySettings.Add(new SafetySetting(SafetyCategory.Harm_Category_Sexually_Explicit, Threshold.Block_None));
         p.GenerationConfig = new();
         p.GenerationConfig.ResponseModalities = ["Text", "Image"];
