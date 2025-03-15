@@ -13,7 +13,7 @@ public partial class ModelsGenerateContentParameter : RestApiParameter, IRestApi
     public string Model { get; set; } = "";
     public List<Content> Contents { get; init; } = new();
     public List<Tool>? Tools { get; set; } 
-    public List<SafetyCategory>? SafetySettings { get; set; }
+    public List<SafetySetting>? SafetySettings { get; set; }
     public Content? SystemInstruction { get; set; }
     public GenerationConfiguration? GenerationConfig { get; set; }
     public bool Stream { get; set; } = true;

@@ -14,4 +14,5 @@ public enum FinishReason
     Safety,
     Recitation,
     Other,
+    IMAGE_SAFETY,
 }
