@@ -3,6 +3,10 @@
 public abstract class Tool
 {
 }
+public class GoogleSearchTool : Tool
+{
+    public object GoogleSearch { get; set; } = new();
+}
 public class GoogleSearchRetrievalTool : Tool
 {
     public object GoogleSearchRetrieval { get; set; } = new();
