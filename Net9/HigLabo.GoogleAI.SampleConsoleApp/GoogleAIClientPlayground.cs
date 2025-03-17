@@ -29,11 +29,12 @@ public class GoogleAIClientPlayground
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
 
+        await GenerateImage();
         //await GenerateSensitiveImage();
-        //await SendImage();
-        //await GenerateImage();
+        //await ExplainImage();
+        //await GenerateImageByGeminiFlash();
         //await GenerateImageAndText();
-        await RefineImage();
+        //await RefineImage();
         //await MergeImage();
         //await GenerateMindMap();
         Console.WriteLine("■Completed");
@@ -275,7 +276,32 @@ public class GoogleAIClientPlayground
         Console.WriteLine(iRes.ResponseBodyText);
     }
 
-    private async ValueTask SendImage()
+    private async ValueTask GenerateImage()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsPredictParameter();
+        p.Model = ModelNames.ImaGen_3_0_Generate_002;
+        p.Instances.Add(new PredictInstance() { Prompt = "Create Focaccia on the table.　ふわふわの湯気が出てるフォカッチャで" });
+        p.Parameters = new();
+        p.Parameters.SampleCount = 1;
+
+        var res = await cl.PredictAsync(p);
+        foreach (var image in res.Predictions)
+        {
+            using (var stream = image.GetStream())
+            {
+                using (var bitmap = new Bitmap(stream))
+                {
+                    string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss_fff")}.jpg");
+                    bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    Console.WriteLine($"Image is saved at {outputPath}");
+                }
+            }
+        }
+    }
+
+    private async ValueTask ExplainImage()
     {
         var cl = GoogleAIClient;
 
@@ -298,7 +324,7 @@ public class GoogleAIClientPlayground
         Console.WriteLine();
         Console.WriteLine(iRes.ResponseBodyText);
     }
-    private async ValueTask GenerateImage()
+    private async ValueTask GenerateImageByGeminiFlash()
     {
         var cl = GoogleAIClient;
 
