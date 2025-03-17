@@ -96,6 +96,8 @@ Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 ```
 
 ## HigLabo.GoogleAI
+2025-03-17 Support Imagen model image generation. You can generate image by imagen model.
+
 2025-03-15 Support Gemini2.0 Flash experimental model. You can generate image from code.
 
 2025-01-22 updated. Support .NET9.
