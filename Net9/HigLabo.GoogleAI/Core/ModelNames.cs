@@ -10,6 +10,7 @@ public static class ModelNames
 {
     public const string Gemini_1_5_Pro_Latest = "gemini-1.5-pro-latest";
     public const string Gemini_2_0_Flash_Exp = "gemini-2.0-flash-exp";
+    public const string ImaGen_3_0_Generate_002 = "imagen-3.0-generate-002";
     public const string TextEmbedding_Geko = "textembedding-gecko";
     public const string TextEmbedding_004 = "text-embedding-004";
     public const string Gemini_Embedding_Exp_03_07 = "gemini-embedding-exp-03-07";
