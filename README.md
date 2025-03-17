@@ -45,22 +45,26 @@ How to use? It is easy to use!
 var cl = new OpenAIClient("API Key");
 var p = new ResponseCreateParameter();
 p.Model = "gpt-4o";
-p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
+p.Input.AddUserMessage($"How to enjoy coffee near by Shibuya? Please search shop list from web.");
 p.Tools = [];
 p.Tools.Add(new ToolObject("web_search_preview"));
-var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
-foreach (var output in res.Output)
+var result = new ResponseStreamResult();
+await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
 {
-    foreach (var content in output.Content)
+    Console.Write(text);
+}
+foreach (var item in result.ContentList)
+{
+    if (item.Annotations != null)
     {
-        Console.WriteLine(content.Type);
-        switch (content.Type)
+        foreach (var annotation in item.Annotations)
         {
-            case "output_text": Console.WriteLine(content.Text); break;
-            default: break;
+            Console.WriteLine(annotation.Title);
+            Console.WriteLine(annotation.Url);
         }
     }
 }
+
 ```
 
 ```
