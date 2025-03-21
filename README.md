@@ -187,6 +187,7 @@ A code generator to call stored procedure on database(SQL server, MySQL)
 
 Article
 https://www.higlabo.ai/blog/higty-tech/dbsharpapplication-japanese-tutorial
+
 https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
 
 Download link for DbSharpApplication (version: 9.1.0.1)
