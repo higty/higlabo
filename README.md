@@ -186,10 +186,11 @@ HigLabo.Mapper (version3.0.0 or later) is used expression tree. It generate il c
 A code generator to call stored procedure on database(SQL server, MySQL)
 
 Article
+https://www.higlabo.ai/blog/higty-tech/dbsharpapplication-japanese-tutorial
 https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
 
-Download link for DbSharpApplication (version: 9.1.0.0)
-https://static.tinybetter.com/higlabo/DbSharpApplication/DbSharpApplication_9_1_0_0.zip
+Download link for DbSharpApplication (version: 9.1.0.1)
+https://static.tinybetter.com/higlabo/DbSharpApplication/DbSharpApplication_9_1_0_1.zip
 
 
 ## HigLabo.Web
