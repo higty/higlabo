@@ -64,7 +64,7 @@ public partial class CalendarGroupPostCalendarsParameter : IRestApiParameter
         }
     }
     string IRestApiParameter.HttpMethod { get; } = "POST";
-    public CalendarOnlineMeetingProviderType AllowedOnlineMeetingProviders { get; set; }
+    public CalendarOnlineMeetingProviderType[]? AllowedOnlineMeetingProviders { get; set; }
     public bool? CanEdit { get; set; }
     public bool? CanShare { get; set; }
     public bool? CanViewPrivateItems { get; set; }
@@ -108,7 +108,7 @@ public partial class CalendarGroupPostCalendarsResponse : RestApiResponse
         MaxColor,
     }
 
-    public CalendarOnlineMeetingProviderType AllowedOnlineMeetingProviders { get; set; }
+    public CalendarOnlineMeetingProviderType[]? AllowedOnlineMeetingProviders { get; set; }
     public bool? CanEdit { get; set; }
     public bool? CanShare { get; set; }
     public bool? CanViewPrivateItems { get; set; }

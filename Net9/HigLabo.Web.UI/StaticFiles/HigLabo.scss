@@ -189,35 +189,35 @@ a.button-radius-8 {
 
 .line-clamp-1 {
     -webkit-line-clamp: 1;
-    display: -webkit-box;
+    display: -webkit-box !important;
     overflow-y: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
 }
 .line-clamp-2 {
     -webkit-line-clamp: 2;
-    display: -webkit-box;
+    display: -webkit-box !important;
     overflow-y: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
 }
 .line-clamp-3 {
     -webkit-line-clamp: 3;
-    display: -webkit-box;
+    display: -webkit-box !important;
     overflow-y: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
 }
 .line-clamp-4 {
     -webkit-line-clamp: 4;
-    display: -webkit-box;
+    display: -webkit-box !important;
     overflow-y: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
 }
 .line-clamp-5 {
     -webkit-line-clamp: 5;
-    display: -webkit-box;
+    display: -webkit-box !important;
     overflow-y: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
@@ -620,6 +620,33 @@ a.button-radius-8 {
         margin-left: 8px;
     }
 }
+.loading-image {
+    /* Spinner size and color */
+    width: 24px;
+    height: 24px;
+    border-top-color: var(--color-text);
+    border-left-color: var(--color-text);
+    /* Additional spinner styles */
+    animation: spinner 400ms linear infinite;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+
+    &.large {
+        width: 64px;
+        height: 64px;
+        border-width: 6px;
+    }
+
+    &.slow {
+        animation: spinner 1s linear infinite;
+    }
+}
 
 .file-upload {
     input[type='file'] {
@@ -856,6 +883,12 @@ dialog {
         background-color: transparent;
     }
 
+    &:not([hig-property-type='Array']) {
+        &:hover {
+            background-color: var(--color-form-element-hover);
+        }
+    }
+
     &[selection-mode='Single'] {
         cursor: pointer;
         border-radius: 8px;
@@ -884,7 +917,10 @@ dialog {
 
 .data-record-panel {
     font-size: 16px;
-    cursor: pointer;
+
+    &[tabindex] {
+        cursor: pointer;
+    }
 }
 .record-list-panel {
     .data-record-panel {
@@ -1040,7 +1076,7 @@ a.large-button {
 .record-list-panel .data-record-panel {
     background-color: var(--color-data-record-panel);
 
-    &:hover {
+    &:hover:not([hig-property-type='Object']) {
         background-color: var(--color-item-hover);
     }
 
@@ -1059,6 +1095,10 @@ a.large-button {
 .input-record {
     > .data-record-panel {
         background-color: transparent;
+
+        &:hover:not([hig-property-type='Object']) {
+            background-color: transparent;
+        }
 
         &:hover {
             background-color: transparent;

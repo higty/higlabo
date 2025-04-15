@@ -19,7 +19,9 @@ public partial class MessagesParameter : RestApiParameter, IRestApiParameter
     public double? Temperature { get; set; }
     public double? Top_P { get; set; }
     public int? Top_K { get; set; }
-    public List<ToolObject>? Tools { get; set; } 
+    public List<ToolObject>? Tools { get; set; }
+    public object? Tool_Choice { get; set; }
+    public object? Thinking { get; set; }
 
     string IRestApiParameter.GetApiPath()
     {

@@ -800,6 +800,7 @@ public class MicrosoftSourceCodeGenerator : OAuthClientCodeGenerator
     {
         var type = parameter.TypeName;
 
+        if (parameter.Name == "AllowedOnlineMeetingProviders") { type = "CalendarOnlineMeetingProviderType[]"; }
         if (type == "string collection" || type == "collection(string)" || type.ToLower() == "collection of string") { type = "string[]"; }
         else if (type.Equals("GUID collection", StringComparison.OrdinalIgnoreCase)) { type = "Guid[]"; }
         else if (type.ToLower() == "string (url)" || type == "string (readonly)") { type = "string"; }
