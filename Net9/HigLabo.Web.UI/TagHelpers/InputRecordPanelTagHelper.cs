@@ -34,7 +34,6 @@ public class InputRecordPanelTagHelper : TagHelper
 
         if (this.TemplateId.HasValue())
         {
-            output.Attributes.Add("add-template", "true");
             output.Attributes.Add("template-id", this.TemplateId);
         }
 

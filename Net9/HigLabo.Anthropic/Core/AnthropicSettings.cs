@@ -10,7 +10,7 @@ public class AnthropicSettings
 {
     public string ApiKey { get; set; } = "";
     public string Version { get; set; } = "2023-06-01";
-    public bool UseBeta { get; set; } = true;
+    public string BetaVersion { get; set; } = "tools-2024-04-04";
 
     public AnthropicSettings() { }
     public AnthropicSettings(string apiKey)

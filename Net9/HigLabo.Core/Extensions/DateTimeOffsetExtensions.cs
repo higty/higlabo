@@ -7,6 +7,10 @@ namespace HigLabo.Core;
 
 public static class DateTimeOffsetExtensions
 {
+    public static string ToIso8601String(this DateTimeOffset value)
+    {
+        return value.ToString("yyyy-MM-ddTHH:mm:sszzz");
+    }
     public static DateTimeOffset GetPreviouseDate(this DateTimeOffset value, DayOfWeek dayOfWeek)
     {
         for (int i = 0; i < 7; i++)
@@ -51,8 +55,8 @@ public static class DateTimeOffsetExtensions
         var dtime = new DateTimeOffset((value + ts).Ticks, timeZone);
         return dtime;
     }
-		public static DateTimeOffset TrimSeconds(this DateTimeOffset value)
-		{
-			return new DateTimeOffset(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0, value.Offset);
-		}
-	}
+    public static DateTimeOffset TrimSeconds(this DateTimeOffset value)
+    {
+        return new DateTimeOffset(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0, value.Offset);
+    }
+}

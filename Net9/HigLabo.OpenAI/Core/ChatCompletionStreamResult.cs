@@ -68,19 +68,18 @@ public class ChatCompletionStreamResult
                     {
                         if (toolCall.Function.Name.HasValue())
                         {
-                            f = l.Find(el => el.Name == toolCall.Function.Name);
-                            if (f == null)
-                            {
-                                f = new FunctionCallResult();
-                                f.Name = toolCall.Function.Name;
-                                l.Add(f);
-                            }
+                            f = new FunctionCallResult();
+                            f.Name = toolCall.Function.Name;
+                            l.Add(f);
                         }
-                        if (f != null)
+                        else
                         {
                             if (toolCall.Function.Arguments.HasValue())
                             {
-                                f.Arguments += toolCall.Function.Arguments;
+                                if (f != null)
+                                {
+                                    f.Arguments += toolCall.Function.Arguments;
+                                }
                             }
                         }
                     }

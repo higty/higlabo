@@ -88,7 +88,7 @@ public partial class CalendarGetResponse : RestApiResponse
         MaxColor,
     }
 
-    public CalendarOnlineMeetingProviderType AllowedOnlineMeetingProviders { get; set; }
+    public CalendarOnlineMeetingProviderType[]? AllowedOnlineMeetingProviders { get; set; }
     public bool? CanEdit { get; set; }
     public bool? CanShare { get; set; }
     public bool? CanViewPrivateItems { get; set; }

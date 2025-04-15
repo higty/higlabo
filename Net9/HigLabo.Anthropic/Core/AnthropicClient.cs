@@ -9,6 +9,7 @@ using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HigLabo.Anthropic;
 
@@ -62,9 +63,9 @@ public partial class AnthropicClient
         var req = new HttpRequestMessage(httpMethod, this.ApiUrl + apiPath);
         req.Headers.TryAddWithoutValidation("x-api-key", this.Settings.ApiKey);
         req.Headers.TryAddWithoutValidation("anthropic-version", this.Settings.Version);
-        if (this.Settings.UseBeta)
+        if (this.Settings.BetaVersion.HasValue())
         {
-            req.Headers.TryAddWithoutValidation("anthropic-beta", "tools-2024-04-04");
+            req.Headers.TryAddWithoutValidation("anthropic-beta", this.Settings.BetaVersion);
         }
         return req;
     }
@@ -242,7 +243,18 @@ public partial class AnthropicClient
                     {
                         result.DeltaList.Add(delta);
                     }
-                    yield return delta.Delta.Text;
+                    if (string.Equals(delta.Delta.Type, "text_delta", StringComparison.OrdinalIgnoreCase))
+                    {
+                        yield return delta.Delta.Text;
+                    }
+                    else if (string.Equals(delta.Delta.Type, "input_json_delta", StringComparison.OrdinalIgnoreCase))
+                    {
+                        yield return delta.Delta.Partial_Json;
+                    }
+                    else if (string.Equals(delta.Delta.Type, "thinking_delta", StringComparison.OrdinalIgnoreCase))
+                    {
+                        yield return delta.Delta.Thinking;
+                    }
                 }
                 else
                 {

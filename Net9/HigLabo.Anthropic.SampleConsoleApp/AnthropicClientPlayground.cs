@@ -15,7 +15,7 @@ public class AnthropicClientPlayground
     public async ValueTask ExecuteAsync()
     {
         SetSetting();
-        await SendMessageWithTool();
+        await SendMessageStreamWithTool();
         Console.WriteLine("■Completed");
 
     }
@@ -132,6 +132,47 @@ public class AnthropicClientPlayground
         Console.WriteLine("■Response");
         Console.WriteLine(iRes.ResponseBodyText);
     }
+    private async ValueTask SendMessageStreamWithTool()
+    {
+        var cl = AnthropicClient;
+
+        var p = new MessagesParameter();
+        p.AddUserMessage("What is the weather like in Tokyo?");
+        p.Model = ModelNames.Claude3Opus;
+        p.Max_Tokens = 1024;
+        p.Tools = new();
+        var tool = new ToolObject();
+        tool.Name = "get_weather";
+        tool.Description = "Get the current weather in a given location.";
+        tool.Input_Schema = new
+        {
+            type = "object",
+            properties = new
+            {
+                location = new
+                {
+                    type = "string",
+                    description = "The city and state, e.g. San Francisco, CA.",
+                },
+                unit = new
+                {
+                    type = "string",
+                    @enum = new string[] { "celsius", "fahrenheit" },
+                    description = "The unit of temperature, either \"celsius\" or \"fahrenheit\""
+                }
+            }
+        };
+        p.Tools.Add(tool);
+
+        var result = new MessagesStreamResult();
+        await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(item);
+        }
+        var json = result.GetInputJson();
+        Console.WriteLine(result.GetInputJson());
+
+    }
     private async ValueTask CallTool()
     {
         var cl = AnthropicClient;
@@ -188,7 +229,11 @@ Here are the tools available:
         var p = new MessagesParameter();
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"What is the current stock price of Microsoft?"));
         p.SetTools(tools);
-        p.Model = ModelNames.Claude3Opus;
+        p.Tool_Choice = new 
+        {
+            type = "any",
+        };
+        p.Model = ModelNames.Claude3_7Sonnet;
         p.Max_Tokens = 1024;
         p.Stream = true;
 
@@ -197,6 +242,9 @@ Here are the tools available:
         {
             Console.Write(item);
         }
+
+        var json = result.GetInputJson();
+        Console.WriteLine(result.GetInputJson());
 
         var calls = await AnthropicFunctionCalls.ParseAsync(result.GetText());
         if (calls.InvokeList.Count > 0)

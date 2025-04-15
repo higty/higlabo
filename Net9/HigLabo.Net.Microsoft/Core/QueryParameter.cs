@@ -14,6 +14,18 @@ public interface IQueryParameterProperty
 }
 public interface IQueryParameter
 {
+    public string? Value { get; }
+    public bool? Count { get; }
+    public string? Expand { get; }
+    public string? Filter { get; }
+    public string? Format { get; }
+    public string? OrderBy { get; }
+    public string? Search { get; }
+    public string? Select { get; }
+    public int? Skip { get; }
+    public int? Top { get; }
+    public string? SkipToken { get; }
+    string ConsistencyLevel { get; }
     string GetQueryString();
 }
 public class QueryParameter<TField> : IQueryParameter
@@ -31,6 +43,7 @@ public class QueryParameter<TField> : IQueryParameter
     public int? Skip { get; set; }
     public int? Top { get; set; }
     public string? SkipToken { get; set; }
+    public string ConsistencyLevel { get; set; } = "";
 
     public string GetQueryString()
     {

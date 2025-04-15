@@ -134,7 +134,10 @@ public partial class OpenAIClient
             {
                 apiPath += "?";
             }
-            apiPath += $"api-version={this.AzureSettings.ApiVersion}";
+            if (this.AzureSettings.ApiVersion.HasValue())
+            {
+                apiPath += $"api-version={this.AzureSettings.ApiVersion}";
+            }
         }
 
         var requestUrl = this.ApiUrl + apiPath;

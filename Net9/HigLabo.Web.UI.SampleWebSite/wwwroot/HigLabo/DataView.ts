@@ -79,7 +79,7 @@ export class DataView {
         if (htmx != null) {
             const rpl = $(dataViewPanel).find("[data-view-record-list-panel]").getFirstElement();
             $(rpl).setInnerHtml($("#loading-panel-template").getInnerHtml()).setScrollTop(0);
-            htmx.trigger(rpl, "load-record-list");
+            htmx.trigger(rpl, "data-view-load");
         }
     }
 

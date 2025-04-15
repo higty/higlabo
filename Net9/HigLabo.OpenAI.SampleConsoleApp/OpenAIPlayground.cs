@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateWebSearchStream();
+        await ChatCompletionVisionWithFunctionCalling();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -359,6 +359,39 @@ public class OpenAIPlayground
         Console.WriteLine();
         Console.WriteLine(iRes.ResponseBodyText);
     }
+    private async ValueTask ChatCompletionVisionWithFunctionCalling()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ChatCompletionCreateParameter();
+
+        var vMessage = new ChatImageMessage(ChatMessageRole.User);
+        vMessage.AddTextContent("Please extract item data from this image as function calling invoking.");
+        vMessage.AddImageContent("https://higlaboappdev.blob.core.windows.net/document/document-folder/52739777-2497-d0ad-642e-3a1941cb9b80/5fc46043-bc0b-07d4-f20d-3a1946ae9bc3.jpg?sv=2025-01-05&se=2025-04-14T13%3A45%3A05Z&sr=b&sp=rcw&sig=8HNOmlg%2BhP1qogZxX%2BwsLQBCQ15W8akHJGBFhU%2BpMoY%3D");
+        //vMessage.AddImageFile("C:\\Data\\Image\\BusinessCard2.jpg");
+        p.Messages.Add(vMessage);
+        p.Model = "gpt-4o";
+        p.Stream = true;
+        p.Stream_Options = new
+        {
+            include_usage = true
+        };
+        p.Tools = [CreateDocumentFileColumnExtractTool()];
+
+        var result = new ChatCompletionStreamResult();
+        await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine("");
+        Console.WriteLine("***********************");
+        foreach (var f in result.GetFunctionCallList())
+        {
+            Console.WriteLine(f.Arguments);
+        }
+        Console.WriteLine("");
+        Console.WriteLine("■DONE");
+    }
 
     private async ValueTask ResponseCreate()
     {
@@ -635,6 +668,20 @@ public class OpenAIPlayground
         tool.Function.Parameters = o;
         return tool;
     }
+    private ToolObject CreateDocumentFileColumnExtractTool()
+    {
+        var tool = new ToolObject("function");
+        tool.Function = new FunctionObject();
+        tool.Function.Name = "DataExtract";
+        tool.Function.Description = "Extract item data from file.";
+        var o = new JsonSchema();
+        o.Properties.Add("PersonName", new JsonSchemaProperty("string", "Person name."));
+        o.Properties.Add("CompanyName", new JsonSchemaProperty("string", "Company name."));
+        o.Properties.Add("Address", new JsonSchemaProperty("string", "Address.."));
+        o.Properties.Add("MailAddress", new JsonSchemaProperty("string", "Email address."));
+        tool.Function.Parameters = o;
+        return tool;
+    }
 
     private async ValueTask FileList()
     {
@@ -702,6 +749,20 @@ public class OpenAIPlayground
         var p = new ImagesGenerationsParameter();
         p.Prompt = "A photorealistic image of a beautiful landscape under a blue sky. The scene features a wide, lush green field, with the sun shining brightly and casting soft shadows. The sky is a clear, deep blue with a few fluffy white clouds scattered around. The field is vibrant and green, giving a sense of calm and tranquility. The image should have a high-resolution, 4K-like quality, capturing the details of the grass, the texture of the clouds, and the vividness of the blue sky.";
         p.Model = "dall-e-3";
+        p.Quality = "hd";
+        var res = await cl.ImagesGenerationsAsync(p);
+        foreach (var item in res.Data)
+        {
+            Console.WriteLine(item.Url);
+        }
+    }
+    private async ValueTask ImageGenerationByGpt4o()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ImagesGenerationsParameter();
+        p.Prompt = "A photorealistic image of a beautiful landscape under a blue sky. The scene features a wide, lush green field, with the sun shining brightly and casting soft shadows. The sky is a clear, deep blue with a few fluffy white clouds scattered around. The field is vibrant and green, giving a sense of calm and tranquility. The image should have a high-resolution, 4K-like quality, capturing the details of the grass, the texture of the clouds, and the vividness of the blue sky.";
+        p.Model = "gpt-4o";
         p.Quality = "hd";
         var res = await cl.ImagesGenerationsAsync(p);
         foreach (var item in res.Data)
