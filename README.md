@@ -45,22 +45,26 @@ How to use? It is easy to use!
 var cl = new OpenAIClient("API Key");
 var p = new ResponseCreateParameter();
 p.Model = "gpt-4o";
-p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
+p.Input.AddUserMessage($"How to enjoy coffee near by Shibuya? Please search shop list from web.");
 p.Tools = [];
 p.Tools.Add(new ToolObject("web_search_preview"));
-var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
-foreach (var output in res.Output)
+var result = new ResponseStreamResult();
+await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
 {
-    foreach (var content in output.Content)
+    Console.Write(text);
+}
+foreach (var item in result.ContentList)
+{
+    if (item.Annotations != null)
     {
-        Console.WriteLine(content.Type);
-        switch (content.Type)
+        foreach (var annotation in item.Annotations)
         {
-            case "output_text": Console.WriteLine(content.Text); break;
-            default: break;
+            Console.WriteLine(annotation.Title);
+            Console.WriteLine(annotation.Url);
         }
     }
 }
+
 ```
 
 ```
@@ -96,6 +100,8 @@ Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 ```
 
 ## HigLabo.GoogleAI
+2025-03-17 Support Imagen model image generation. You can generate image by imagen model.
+
 2025-03-15 Support Gemini2.0 Flash experimental model. You can generate image from code.
 
 2025-01-22 updated. Support .NET9.
@@ -180,10 +186,12 @@ HigLabo.Mapper (version3.0.0 or later) is used expression tree. It generate il c
 A code generator to call stored procedure on database(SQL server, MySQL)
 
 Article
+https://www.higlabo.ai/blog/higty-tech/dbsharpapplication-japanese-tutorial
+
 https://www.codeproject.com/Articles/776811/DbSharp-DAL-Generator-Tool-on-NET-Core
 
-Download link for DbSharpApplication (version: 9.1.0.0)
-https://static.tinybetter.com/higlabo/DbSharpApplication/DbSharpApplication_9_1_0_0.zip
+Download link for DbSharpApplication (version: 9.1.0.1)
+https://static.tinybetter.com/higlabo/DbSharpApplication/DbSharpApplication_9_1_0_1.zip
 
 
 ## HigLabo.Web
