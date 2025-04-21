@@ -367,8 +367,9 @@ public class OpenAIPlayground
 
         var vMessage = new ChatImageMessage(ChatMessageRole.User);
         vMessage.AddTextContent("Please extract item data from this image as function calling invoking.");
-        vMessage.AddImageContent("https://higlaboappdev.blob.core.windows.net/document/document-folder/52739777-2497-d0ad-642e-3a1941cb9b80/5fc46043-bc0b-07d4-f20d-3a1946ae9bc3.jpg?sv=2025-01-05&se=2025-04-14T13%3A45%3A05Z&sr=b&sp=rcw&sig=8HNOmlg%2BhP1qogZxX%2BwsLQBCQ15W8akHJGBFhU%2BpMoY%3D");
-        //vMessage.AddImageFile("C:\\Data\\Image\\BusinessCard2.jpg");
+        //URL of business card.
+        //vMessage.AddImageContent("https://yourdomain.com/my-business-card.jpg");
+        vMessage.AddImageFile("C:\\Data\\Image\\BusinessCard2.jpg");
         p.Messages.Add(vMessage);
         p.Model = "gpt-4o";
         p.Stream = true;
