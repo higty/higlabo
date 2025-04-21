@@ -25,13 +25,13 @@ export class HigLaboJson {
                         if (name == null) {
                             if (childElement.tagName == "INPUT") {
                                 let inputElement = childElement as HTMLInputElement;
-                                if (childElement.getAttribute("type").toLowerCase() == "checkbox") {
+                                if (childElement.getAttribute("type") == "checkbox") {
                                     if (inputElement.checked == true) {
                                         //Push value to array
                                         parameter.push(inputElement.value);
                                     }
                                 }
-                                else if (childElement.getAttribute("type").toLowerCase() == "radio") {
+                                else if (childElement.getAttribute("type") == "radio") {
                                     if (inputElement.checked == true) {
                                         parameter.push(inputElement.value);
                                     }
@@ -45,14 +45,14 @@ export class HigLaboJson {
                             if (childElement.tagName == "INPUT" || childElement.tagName == "TEXTAREA") {
                                 let inputElement = childElement as HTMLInputElement;
                                 //Push object to array
-                                if (childElement.getAttribute("type").toLowerCase() == "checkbox") {
+                                if (childElement.getAttribute("type") == "checkbox") {
                                     parameter.push({
                                         name: name,
                                         value: inputElement.value,
                                         checked: inputElement.checked
                                     });
                                 }
-                                else if (childElement.getAttribute("type").toLowerCase() == "radio") {
+                                else if (childElement.getAttribute("type") == "radio") {
                                     if (inputElement.checked == true) {
                                         let r = {};
                                         r[name] = inputElement.value;
@@ -95,10 +95,10 @@ export class HigLaboJson {
                         else {
                             if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
                                 let inputElement = childElement as HTMLInputElement;
-                                if (childElement.getAttribute("type").toLowerCase() == "checkbox") {
+                                if (childElement.getAttribute("type") == "checkbox") {
                                     parameter[name] = inputElement.checked;
                                 }
-                                else if (childElement.getAttribute("type").toLowerCase() == "radio") {
+                                else if (childElement.getAttribute("type") == "radio") {
                                     if (inputElement.checked == true) {
                                         parameter[name] = inputElement.value;
                                     }
@@ -145,12 +145,12 @@ export class HigLaboJson {
                     else {
                         if (childElement.tagName == "INPUT") {
                             let inputElement = childElement as HTMLInputElement;
-                            if (childElement.getAttribute("type").toLowerCase() == "checkbox") {
+                            if (childElement.getAttribute("type") == "checkbox") {
                                 if (inputElement.checked == true) {
                                     arrayParameter.push({ name: inputElement.value });
                                 }
                             }
-                            else if (childElement.getAttribute("type").toLowerCase() == "radio") {
+                            else if (childElement.getAttribute("type") == "radio") {
                                 if (inputElement.checked == true) {
                                     arrayParameter.push({ name: inputElement.value });
                                 }
