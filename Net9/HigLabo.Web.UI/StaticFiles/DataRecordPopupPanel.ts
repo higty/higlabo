@@ -12,7 +12,7 @@ export class DataRecordPopupPanel {
         $("body").on("click", "[show-data-record-popup-panel]", this.panel_Click.bind(this));
         $("body").on("keydown", "[show-data-record-popup-panel]", this.panel_Keydown.bind(this));
 
-        $("body").on("click", "[selection-mode='Template'] [add-template]", this.addTemplate_Click.bind(this));
+        $("body").on("click", "[selection-mode='Template'] > [add-template]", this.addTemplate_Click.bind(this));
 
         $("body").on("click", "#data-record-popup-panel [search-button]", this.searchButton_Click.bind(this));
         $("body").on("keydown", "#data-record-popup-panel [search-textbox]", this.searchTextbox_Keydown.bind(this));
