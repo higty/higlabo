@@ -1,0 +1,68 @@
+@import "color.scss";
+
+:root {
+    /* form element */
+    --color-form-element-bg: var(--color-set-glay-01);
+    --color-form-element-text: var(--color-text);
+    --color-form-element-border: var(--color-border);
+    --color-form-element-focus: var(--color-set-primary-03);
+    --color-form-element-hover: var(--color-set-glay-03);
+    --color-table-header-bg: #37474f;
+    --color-table-header-text: #ffffff;
+    --color-block-information-panel-bg: var(--color-set-glay-01);
+}
+
+input[type=text],
+input[type=password],
+.input-record,
+textarea {
+    background-color: var(--color-form-element-bg);
+    color: var(--color-form-element-text);
+    border: solid 1px var(--color-form-element-border);
+
+    &:focus {
+        border-color: var(--color-form-element-focus);
+    }
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    &:hover {
+        background-color: var(--color-form-element-hover);
+    }
+}
+
+input[type=text].date {
+    width: 100px;
+}
+
+
+
+
+
+
+input[type=text],
+input[type=password],
+.input-record,
+textarea {
+    background-color: var(--color-form-element-bg);
+    color: var(--color-form-element-text);
+    border: solid 1px var(--color-form-element-border);
+
+    &:focus {
+        border-color: var(--color-form-element-focus);
+    }
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    &:hover {
+        background-color: var(--color-form-element-hover);
+    }
+}
+
+input[type=text].date {
+    width: 100px;
+}

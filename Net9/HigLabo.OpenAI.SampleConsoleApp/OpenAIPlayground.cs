@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ChatCompletionVisionWithFunctionCalling();
+        await ImageGeneration();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -743,18 +743,25 @@ public class OpenAIPlayground
         Console.WriteLine(res3.GetResponseBodyText());
     }
 }
+  
     private async ValueTask ImageGeneration()
     {
         var cl = OpenAIClient;
 
         var p = new ImagesGenerationsParameter();
         p.Prompt = "A photorealistic image of a beautiful landscape under a blue sky. The scene features a wide, lush green field, with the sun shining brightly and casting soft shadows. The sky is a clear, deep blue with a few fluffy white clouds scattered around. The field is vibrant and green, giving a sense of calm and tranquility. The image should have a high-resolution, 4K-like quality, capturing the details of the grass, the texture of the clouds, and the vividness of the blue sky.";
-        p.Model = "dall-e-3";
-        p.Quality = "hd";
+        //p.Model = "dall-e-3";
+        p.Model = "gpt-image-1";
+        p.Quality = "medium";
+
+        Console.WriteLine("Image generate start");
         var res = await cl.ImagesGenerationsAsync(p);
         foreach (var item in res.Data)
         {
-            Console.WriteLine(item.Url);
+            var bb = item.GetBytes();
+            var filePath = Path.Combine(Environment.CurrentDirectory, $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+            File.WriteAllBytes(filePath, bb);
+            Console.WriteLine("File is created to " + filePath);
         }
     }
     private async ValueTask ImageGenerationByGpt4o()
@@ -765,6 +772,8 @@ public class OpenAIPlayground
         p.Prompt = "A photorealistic image of a beautiful landscape under a blue sky. The scene features a wide, lush green field, with the sun shining brightly and casting soft shadows. The sky is a clear, deep blue with a few fluffy white clouds scattered around. The field is vibrant and green, giving a sense of calm and tranquility. The image should have a high-resolution, 4K-like quality, capturing the details of the grass, the texture of the clouds, and the vividness of the blue sky.";
         p.Model = "gpt-4o";
         p.Quality = "hd";
+
+        Console.WriteLine("Image generate start");
         var res = await cl.ImagesGenerationsAsync(p);
         foreach (var item in res.Data)
         {
@@ -775,12 +784,14 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
+        Console.WriteLine("Image variation start");
         var res = await cl.ImagesVariationsAsync("Sea.png", new MemoryStream(File.ReadAllBytes("C:\\Data\\Dev\\Sea.png")));
         foreach (var item in res.Data)
         {
             Console.WriteLine(item.Url);
         }
     }
+  
     private async ValueTask Model()
     {
         var cl = OpenAIClient;

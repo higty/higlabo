@@ -2,5 +2,21 @@
   {
     "outputFile": "StaticFiles/HigLabo.css",
     "inputFile": "StaticFiles/HigLabo.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-Button.css",
+    "inputFile": "StaticFiles/HigLabo-Button.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-Common.css",
+    "inputFile": "StaticFiles/HigLabo-Common.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-InputElement.css",
+    "inputFile": "StaticFiles/HigLabo-InputElement.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-Item.css",
+    "inputFile": "StaticFiles/HigLabo-Item.scss"
   }
 ]

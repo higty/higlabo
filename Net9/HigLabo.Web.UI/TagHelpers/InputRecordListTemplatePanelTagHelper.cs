@@ -33,6 +33,7 @@ public class InputRecordListTemplatePanelTagHelper : TagHelper
             div.AddCssClass("add-panel");
             div.Attributes.Add("add-template", "true");
             div.Attributes.Add("template-id", this.TemplateId);
+            div.Attributes.Add("tabindex", "0");
             div.Attributes.Add("prevent-default", this.PreventDefault.ToString().ToLower());
             div.InnerHtml.SetContent(this.AddRecordText);
             output.Content.AppendHtml(div);

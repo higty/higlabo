@@ -877,6 +877,10 @@ dialog {
             background-color: var(--color-record-menu-link-hover);
             text-decoration: underline;
         }
+
+        &:focus {
+            text-decoration: underline;
+        }
     }
 
     &[hig-property-type='Array'] {
