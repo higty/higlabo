@@ -44,6 +44,7 @@ public class InputRecordListPanelTagHelper : TagHelper
             var div = new TagBuilder("div");
             div.AddCssClass("add-panel");
             div.Attributes.Add("add-panel", "true");
+            div.Attributes.Add("tabindex", "0");
             div.Attributes.Add("prevent-default", this.PreventDefault.ToString().ToLower());
             div.Attributes.Add("show-data-record-popup-panel", "true");
             div.Attributes.Add("target-panel-type", "input-record-list-panel");

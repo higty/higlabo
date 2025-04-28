@@ -12,7 +12,8 @@ export class DataRecordPopupPanel {
         $("body").on("click", "[show-data-record-popup-panel]", this.panel_Click.bind(this));
         $("body").on("keydown", "[show-data-record-popup-panel]", this.panel_Keydown.bind(this));
 
-        $("body").on("click", "[selection-mode='Template'] [add-template]", this.addTemplate_Click.bind(this));
+        $("body").on("click", "[selection-mode='Template'] > [add-template]", this.addTemplate_Click.bind(this));
+        $("body").on("keydown", "[selection-mode='Template'] > [add-template]", this.addTemplate_Keydown.bind(this));
 
         $("body").on("click", "#data-record-popup-panel [search-button]", this.searchButton_Click.bind(this));
         $("body").on("keydown", "#data-record-popup-panel [search-textbox]", this.searchTextbox_Keydown.bind(this));
@@ -196,6 +197,17 @@ export class DataRecordPopupPanel {
     private addTemplate_Click(target: Element, e: Event) {
         const rpl = $(target).getFirstParent("[selection-mode='Template']").find("[record-list-panel]").getFirstElement();
         const templateId = "#" + $(target).getAttribute("template-id");
+        this.addTemplate(rpl, templateId);
+    }
+    private addTemplate_Keydown(target: Element, e: KeyboardEvent) {
+        if (e.key == "Enter") {
+            const rpl = $(target).getFirstParent("[selection-mode='Template']").find("[record-list-panel]").getFirstElement();
+            const templateId = "#" + $(target).getAttribute("template-id");
+            this.addTemplate(rpl, templateId);
+        }
+    }
+    private addTemplate(recordListPanel: Element, templateId: string) {
+        const rpl = recordListPanel;
         const html = $(templateId).getInnerHtml();
         const div = document.createElement("div");
         div.innerHTML = html;
