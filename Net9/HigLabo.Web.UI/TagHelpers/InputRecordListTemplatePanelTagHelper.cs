@@ -8,7 +8,6 @@ namespace HigLabo.Web.TagHelpers;
 [HtmlTargetElement("input-record-list-template-panel")]
 public class InputRecordListTemplatePanelTagHelper : TagHelper
 {
-    public int TabIndex { get; set; } = 0;
     public bool PreventDefault { get; set; } = false;
     public string AddRecordText { get; set; } = T.Text.Add;
     public string TemplateId { get; set; } = "";
@@ -17,7 +16,6 @@ public class InputRecordListTemplatePanelTagHelper : TagHelper
     {
         output.TagName = "div";
         output.AddClass("input-record", HtmlEncoder.Default);
-        output.Attributes.Add("tabindex", this.TabIndex);
 
         output.Attributes.Add("selection-mode", "Template");
 

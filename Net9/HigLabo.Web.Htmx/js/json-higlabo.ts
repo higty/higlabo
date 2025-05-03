@@ -82,13 +82,17 @@
                                     if (inputElement.checked == true) {
                                         parameter.push(inputElement.value);
                                     }
-                }
+                                }
                                 else {
                                     parameter.push(inputElement.value);
                                 }
                             }
                         }
                         else {
+                            if (childElement.tagName.toLowerCase() == "select") {
+                                let selectElement = childElement as HTMLSelectElement;
+                                parameter[name] = selectElement.value;
+                            }
                             if (childElement.tagName == "INPUT" || childElement.tagName == "TEXTAREA") {
                                 let inputElement = childElement as HTMLInputElement;
                                 //Push object to array
@@ -140,7 +144,11 @@
                             return;
                         }
                         else {
-                            if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
+                            if (childElement.tagName.toLowerCase() == "select") {
+                                let selectElement = childElement as HTMLSelectElement;
+                                parameter[name] = selectElement.value;
+                            }
+                            else if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
                                 let inputElement = childElement as HTMLInputElement;
                                 if (childElement.getAttribute("type") == "checkbox") {
                                     parameter[name] = inputElement.checked;
@@ -190,7 +198,11 @@
                         this.processArrayParameter(rr, childNode);
                     }
                     else {
-                        if (childElement.tagName == "INPUT") {
+                        if (childElement.tagName.toLowerCase() == "select") {
+                            let selectElement = childElement as HTMLSelectElement;
+                            arrayParameter.push({ name: selectElement.value });
+                        }
+                        else if (childElement.tagName == "INPUT") {
                             let inputElement = childElement as HTMLInputElement;
                             if (childElement.getAttribute("type") == "checkbox") {
                                 if (inputElement.checked == true) {
