@@ -191,10 +191,12 @@ export class DataRecordPopupPanel {
     addTemplate(recordListPanel, templateId) {
         const rpl = recordListPanel;
         const html = $(templateId).getInnerHtml();
-        const div = document.createElement("div");
-        div.innerHTML = html;
-        rpl.insertAdjacentElement("beforeend", div.children[0]);
-        rpl.children[rpl.children.length - 1].scrollIntoView();
+        const templatePanel = document.createElement("div");
+        templatePanel.innerHTML = html;
+        rpl.insertAdjacentElement("beforeend", templatePanel.children[0]);
+        const div = rpl.children[rpl.children.length - 1];
+        div.scrollIntoView();
+        $(div).find("input[type='text']").setFocus();
     }
     searchButton_Click(element, e) {
         this.htmx.trigger("#data-record-popup-panel", "search");

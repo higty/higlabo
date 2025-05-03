@@ -1057,6 +1057,9 @@ dialog {
   max-height: 60dvh;
   overflow-y: auto;
 }
+.data-record-popup-panel > .content-panel .record-list-panel .data-record-panel {
+  padding: 4px;
+}
 .data-record-popup-panel > .footer-panel {
   display: grid;
   place-items: center;
@@ -1072,10 +1075,10 @@ dialog {
   display: none;
 }
 
-.accordion-panel[toggle-state=Visible] [toggle-state=Hidden] {
+.accordion-panel[toggle-state=Visible] > .header-panel [toggle-state=Hidden] {
   display: none;
 }
-.accordion-panel[toggle-state=Hidden] [toggle-state=Visible] {
+.accordion-panel[toggle-state=Hidden] > .header-panel [toggle-state=Visible] {
   display: none;
 }
 .accordion-panel[toggle-state=Hidden] > .content-panel {
@@ -1163,10 +1166,6 @@ dialog {
 }
 .data-record-panel[tabindex] {
   cursor: pointer;
-}
-
-.record-list-panel .data-record-panel {
-  padding: 4px;
 }
 
 .data-view {

@@ -770,6 +770,10 @@ dialog {
         .record-list-panel {
             max-height: 60dvh;
             overflow-y: auto;
+
+            .data-record-panel {
+                padding: 4px;
+            }
         }
     }
 
@@ -802,14 +806,18 @@ dialog {
 
 .accordion-panel {
     &[toggle-state='Visible'] {
-        [toggle-state='Hidden'] {
-            display: none;
+        > .header-panel {
+            [toggle-state='Hidden'] {
+                display: none;
+            }
         }
     }
 
     &[toggle-state='Hidden'] {
-        [toggle-state='Visible'] {
-            display: none;
+        > .header-panel {
+            [toggle-state='Visible'] {
+                display: none;
+            }
         }
 
         > .content-panel {
@@ -924,11 +932,6 @@ dialog {
 
     &[tabindex] {
         cursor: pointer;
-    }
-}
-.record-list-panel {
-    .data-record-panel {
-        padding: 4px;
     }
 }
 .data-view {

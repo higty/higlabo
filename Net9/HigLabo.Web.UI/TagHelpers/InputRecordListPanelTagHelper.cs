@@ -28,7 +28,10 @@ public class InputRecordListPanelTagHelper : TagHelper
         output.Attributes.Add("search-default-list", this.SearchDefaultList.ToString().ToLower());
 
         output.Attributes.Add("hx-trigger", "click,keyup[keyCode==13]");
-        output.Attributes.Add("hx-post", this.HxPost);
+        if (this.HxPost.HasValue())
+        {
+            output.Attributes.Add("hx-post", this.HxPost);
+        }
         output.Attributes.Add("hx-target", "#data-record-popup-panel [record-list-panel]");
         output.Attributes.Add("hx-swap", "innerHTML");
         output.Attributes.Add("selection-mode", "Multiple");

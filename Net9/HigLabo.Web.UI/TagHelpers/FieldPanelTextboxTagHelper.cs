@@ -14,6 +14,8 @@ public class FieldPanelTextboxTagHelper : TagHelper
     public bool DatePicker { get; set; } = false;
     public string MessageText { get; set; } = "";
     public string InputErrorKey { get; set; } = "";
+    public string Placeholder { get; set; } = "";
+    public string AutoComplete { get; set; } = "off";
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -35,6 +37,14 @@ public class FieldPanelTextboxTagHelper : TagHelper
                 {
                     input.Attributes.Add("date-picker", "true");
                     input.AddCssClass("date");
+                }
+                if (this.Placeholder.HasValue())
+                {
+                    input.Attributes.Add("placeholder", this.Placeholder);
+                }
+                if (this.AutoComplete.HasValue())
+                {
+                    input.Attributes.Add("autocomplete", this.AutoComplete);
                 }
                 div.InnerHtml.AppendHtml(input);
             }
