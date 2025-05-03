@@ -180,6 +180,10 @@ $width-checkbox-circle: 20px;
         .record-list-panel {
             max-height: 60dvh;
             overflow-y: auto;
+
+            .data-record-panel {
+                padding: 4px;
+            }
         }
     }
 
@@ -212,14 +216,18 @@ $width-checkbox-circle: 20px;
 
 .accordion-panel {
     &[toggle-state='Visible'] {
-        [toggle-state='Hidden'] {
-            display: none;
+        > .header-panel {
+            [toggle-state='Hidden'] {
+                display: none;
+            }
         }
     }
 
     &[toggle-state='Hidden'] {
-        [toggle-state='Visible'] {
-            display: none;
+        > .header-panel {
+            [toggle-state='Visible'] {
+                display: none;
+            }
         }
 
         > .content-panel {
