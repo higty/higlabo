@@ -91,7 +91,9 @@
                         else {
                             if (childElement.tagName.toLowerCase() == "select") {
                                 let selectElement = childElement as HTMLSelectElement;
-                                parameter[name] = selectElement.value;
+                                if (selectElement.selectedIndex > -1) {
+                                    parameter[name] = selectElement.options[selectElement.selectedIndex].value;
+                                }
                             }
                             if (childElement.tagName == "INPUT" || childElement.tagName == "TEXTAREA") {
                                 let inputElement = childElement as HTMLInputElement;
@@ -146,7 +148,9 @@
                         else {
                             if (childElement.tagName.toLowerCase() == "select") {
                                 let selectElement = childElement as HTMLSelectElement;
-                                parameter[name] = selectElement.value;
+                                if (selectElement.selectedIndex > -1) {
+                                    parameter[name] = selectElement.options[selectElement.selectedIndex].value;
+                                }
                             }
                             else if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
                                 let inputElement = childElement as HTMLInputElement;
@@ -200,7 +204,9 @@
                     else {
                         if (childElement.tagName.toLowerCase() == "select") {
                             let selectElement = childElement as HTMLSelectElement;
-                            arrayParameter.push({ name: selectElement.value });
+                            if (selectElement.selectedIndex > -1) {
+                                arrayParameter.push({ name: selectElement.options[selectElement.selectedIndex].value });
+                            }
                         }
                         else if (childElement.tagName == "INPUT") {
                             let inputElement = childElement as HTMLInputElement;

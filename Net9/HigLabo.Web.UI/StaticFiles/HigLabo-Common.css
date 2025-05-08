@@ -53,6 +53,10 @@
   margin-left: auto;
 }
 
+.margin-right-auto {
+  margin-right: auto;
+}
+
 .font-weight {
   font-weight: bold;
 }
@@ -339,6 +343,10 @@
 
 .margin-bottom-40 {
   margin-bottom: 40px;
+}
+
+.margin-center {
+  margin: 0 auto;
 }
 
 .multiline {

@@ -18,5 +18,17 @@
   {
     "outputFile": "StaticFiles/HigLabo-Item.css",
     "inputFile": "StaticFiles/HigLabo-Item.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-TagHelper.css",
+    "inputFile": "StaticFiles/HigLabo-TagHelper.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-Flatpickr.css",
+    "inputFile": "StaticFiles/HigLabo-Flatpickr.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-Icon.css",
+    "inputFile": "StaticFiles/HigLabo-Icon.scss"
   }
 ]
