@@ -10,14 +10,23 @@ $width-checkbox-circle: 20px;
     --color-popup-panel-bg: #ffffff;
     --color-footer-bg: #eaeaea;
     /* form element */
+    --color-form-element-primary: var(--color-set-primary-03);
     --color-form-element-bg: var(--color-set-glay-01);
     --color-form-element-text: var(--color-text);
     --color-form-element-border: var(--color-border);
-    --color-form-element-focus: var(--color-set-primary-03);
+    --color-form-element-focus: var(--color-form-element-primary);
     --color-form-element-hover: var(--color-set-glay-03);
-    --color-table-header-bg: #37474f;
-    --color-table-header-text: #ffffff;
-    --color-block-information-panel-bg: var(--color-set-glay-01);
+    /* input-text */
+    --input-text-text-color: var(--color-text);
+    --input-text-back-color: var(--color-form-element-bg);
+    --input-text-back-color-focus: var(--color-form-element-primary);
+    --input-text-border-color: var(--color-set-glay-03);
+    --input-text-border-color-focus: var(--color-form-element-primary);
+    --input-text-border-radius: 8px;
+    --input-text-height: 40px;
+    --input-text-padding: 8px;
+    /* input-checkbox */
+    --input-checkbox-border-radius: 4px;
     /* checkbox-panel */
     --color-checkbox-panel-checked: var(--color-set-primary-05);
     --color-checkbox-panel-focus: var(--color-set-primary-09);
@@ -180,10 +189,6 @@ $width-checkbox-circle: 20px;
         .record-list-panel {
             max-height: 60dvh;
             overflow-y: auto;
-
-            .data-record-panel {
-                padding: 4px;
-            }
         }
     }
 
@@ -268,6 +273,201 @@ $width-checkbox-circle: 20px;
 
 .field-panel {
     label {
+    }
+}
+
+.input-text {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0px var(--input-text-padding);
+    align-items: center;
+    border: 1px solid var(--input-text-border-color);
+    border-radius: var(--input-text-border-radius);
+    background-color: var(--input-text-back-color);
+    height: 40px;
+
+    input {
+        width: 100%;
+    }
+
+    &:focus-within {
+        border-color: var(--input-text-border-color-focus);
+        background-color: var(--input-text-back-color-focus);
+    }
+
+    .input-icon {
+        flex-shrink: 0;
+    }
+}
+
+.input-checkbox {
+    label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 16px;
+        user-select: none;
+        padding-right: 8px;
+    }
+
+    input {
+        display: none;
+    }
+
+    .box {
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        background-color: var(--color-form-element-bg);
+        border: 1px solid var(--color-form-element-border);
+        border-radius: var(--input-checkbox-border-radius);
+    }
+
+    input:checked ~ .text {
+        color: var(--color-text);
+    }
+
+    input:checked + .box {
+        border-color: var(--color-form-element-primary);
+        background: var(--color-form-element-primary);
+        background-size: contain;
+    }
+}
+
+.input-radio {
+    label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 16px;
+        user-select: none;
+        padding-right: 8px;
+    }
+
+    input {
+        display: none;
+    }
+
+    .box {
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        border: 1px solid var(--color-form-element-border);
+        border-radius: 50%;
+        position: relative;
+
+        &::after {
+            content: "";
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            border-radius: 50%;
+        }
+    }
+
+    input:checked ~ .text {
+        color: var(--color-text);
+    }
+
+    input:checked + .box {
+        border-color: var(--color-form-element-primary);
+        background: var(--color-form-element-primary);
+
+        &::after {
+            background-color: var(--color-form-element-primary);
+        }
+    }
+}
+
+.input-year-month {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    height: 40px;
+
+    select,
+    ::picker(select) {
+        appearance: base-select;
+        border-radius: 4px;
+        border: 1px solid var(--input-text-border-color);
+    }
+}
+
+.checkbox-panel {
+    display: block;
+
+    > label {
+        display: inline-flex;
+        cursor: pointer;
+
+        .checkbox {
+            flex: 0 0 40px;
+            position: relative;
+            display: inline-block;
+            height: $width-checkbox-circle;
+            margin-right: 6px;
+
+            input {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 5;
+                opacity: 0;
+                cursor: pointer;
+
+                &:checked {
+                    + span {
+                        &:after {
+                            left: 50%;
+                            background: var(--color-checkbox-panel-checked);
+                        }
+                    }
+                }
+
+                &:focus {
+                    + span:after {
+                        border: solid 1px var(--color-checkbox-panel-focus);
+                    }
+                }
+            }
+
+            span {
+                width: 100%;
+                height: 100%;
+                border-radius: 30px;
+                background: var(--color-glay-03);
+                position: relative;
+                display: inline-block;
+                width: 40px;
+                transition: all, 0.2s;
+                box-sizing: border-box;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: $width-checkbox-circle;
+                    height: $width-checkbox-circle;
+                    border-radius: 100%;
+                    left: 0;
+                    top: 0;
+                    background: #fff;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                    transition: all, 0.2s;
+                }
+            }
+        }
+
+        .text-panel {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
 
@@ -406,7 +606,9 @@ $width-checkbox-circle: 20px;
 }
 
 
-
+/*-------------------------------------------------------
+    Color settings
+-------------------------------------------------------*/
 .data-view {
     .view-panel {
         .panel-menu-row {

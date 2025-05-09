@@ -48,7 +48,6 @@ $width-checkbox-circle: 20px;
     --color-item-hover: #f4f6f8;
     --color-item-focus: #f1f1f1;
     --color-item-current: #f0f0f0;
-    --color-data-record-panel: #ffffff;
     /* checkbox-panel */
     --color-checkbox-panel-checked: var(--color-set-primary-05);
     --color-checkbox-panel-focus: var(--color-set-primary-09);
@@ -770,10 +769,6 @@ dialog {
         .record-list-panel {
             max-height: 60dvh;
             overflow-y: auto;
-
-            .data-record-panel {
-                padding: 4px;
-            }
         }
     }
 
@@ -1081,8 +1076,6 @@ a.large-button {
 
 .item,
 .record-list-panel .data-record-panel {
-    background-color: var(--color-data-record-panel);
-
     &:hover:not([hig-property-type='Object']) {
         background-color: var(--color-item-hover);
     }
@@ -1101,7 +1094,6 @@ a.large-button {
 }
 .input-record {
     > .data-record-panel {
-        background-color: transparent;
 
         &:hover:not([hig-property-type='Object']) {
             background-color: transparent;
