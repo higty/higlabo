@@ -1,0 +1,38 @@
+.flatpickr-calendar {
+    position: absolute;
+}
+.flatpickr-current-month {
+    padding: 4px 0 4px 0;
+}
+
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    vertical-align: middle;
+    padding: 4px 10px 0 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .flatpickr-calendar {
+        width: 200px;
+    }
+
+    .flatpickr-weekdays {
+        width: 200px;
+    }
+
+    .flatpickr-days {
+        width: 200px;
+    }
+
+    .dayContainer {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .flatpickr-day {
+        flex-basis: 27px;
+        border: none 0;
+    }
+}
+

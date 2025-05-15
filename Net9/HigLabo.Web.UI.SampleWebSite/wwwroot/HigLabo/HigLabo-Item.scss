@@ -1,0 +1,45 @@
+@import "color.scss";
+
+
+
+
+:root {
+    /* item, record */
+    --color-item-text: #4d5156;
+    --color-item-bg: #f4f4f4;
+    --color-item-bg0: #fcfcfc;
+    --color-item-bg1: #fafafa;
+    --color-item-hover: #f4f6f8;
+    --color-item-focus: #f1f1f1;
+    --color-item-current: #f0f0f0;
+}
+
+
+
+.item {
+    &:nth-child(2n) {
+        background-color: var(--color-item-bg0);
+    }
+
+    &:nth-child(2n+1) {
+        background-color: var(--color-item-bg1);
+    }
+}
+
+.item {
+    &:hover:not([hig-property-type='Object']) {
+        background-color: var(--color-item-hover);
+    }
+
+    &:focus {
+        background-color: var(--color-item-focus);
+    }
+
+    &[selected='true'] {
+        background-color: var(--color-item-current);
+    }
+
+    &.current {
+        background-color: var(--color-item-current);
+    }
+}
