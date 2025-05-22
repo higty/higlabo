@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HigLabo.OpenAI
 {
@@ -28,10 +30,15 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
-        /// Specify additional output data to include in the model response. Currently supported values are:
+        /// Whether to run the model response in the background.
+        /// </summary>
+        public bool? Background { get; set; }
+        /// <summary>
+        /// Specify additional output data to include in the model response.Currently supported values are:
         /// file_search_call.results: Include the search results of the file search tool call.
         /// message.input_image.image_url: Include image urls from the input message.
         /// computer_call_output.output.image_url: Include image urls from the computer call output.
+        /// reasoning.encrypted_content: Includes an encrypted version of reasoning tokens in reasoning item outputs.This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly(like when the store parameter is set to false, or when an organization is enrolled in the zero data retention program).        /// Specify additional output data to include in the model response. Currently supported values are:
         /// </summary>
         public List<string>? Include { get; set; }
         /// <summary>
@@ -61,6 +68,16 @@ namespace HigLabo.OpenAI
         /// Configuration options for reasoning models.
         /// </summary>
         public Reasoning? Reasoning { get; set; }
+        /// <summary>
+        /// Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:
+        /// If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.
+        /// If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
+        /// If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
+        /// If set to 'flex', the request will be processed with the Flex Processing service tier.
+        /// When not set, the default behavior is 'auto'.
+        /// When this parameter is set, the response body will include the service_tier utilized.
+        /// </summary>
+        public string? Service_Tier { get; set; }
         /// <summary>
         /// Whether to store the generated model response for later retrieval via API.
         /// </summary>
@@ -115,14 +132,16 @@ namespace HigLabo.OpenAI
             return new {
             	input = this.Input,
             	model = this.Model,
+                background = this.Background,
             	include = this.Include,
             	instructions = this.Instructions,
             	max_output_tokens = this.Max_Output_Tokens,
             	metadata = this.Metadata,
             	parallel_tool_calls = this.Parallel_Tool_Calls,
             	previous_response_id = this.Previous_Response_Id,
-            	reasoning = this.Reasoning,
-            	store = this.Store,
+            	reasoning = this.Reasoning?.GetRequestBody(),
+                service_tier = this.Service_Tier,
+                store = this.Store,
             	stream = this.Stream,
             	temperature = this.Temperature,
             	text = this.Text,

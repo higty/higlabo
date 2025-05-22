@@ -26,6 +26,10 @@ public class ToolObject
     public List<string>? Vector_Store_Ids { get; set; }
     public int? Max_Num_Results { get; set; }
 
+    public string? Server_Label { get; set; }
+    public string? Server_Url { get; set; }
+    public string? Require_Approval {  get; set; }
+
     public ToolObject() { }
     public ToolObject(string type)
     {
