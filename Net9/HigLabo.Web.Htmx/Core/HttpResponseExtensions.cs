@@ -25,6 +25,10 @@ public static class HttpResponseExtensions
     {
         response.Headers.TryAdd("HX-Replace-Url", "true");
     }
+    public static void HX_Replace_Url(this HttpResponse response, string url)
+    {
+        response.Headers.TryAdd("HX-Replace-Url", url);
+    }
     public static void HX_Reswap(this HttpResponse response, string value)
     {
         response.Headers.TryAdd("HX-Reswap", value);

@@ -11,6 +11,7 @@ public class InputTextTagHelper : TagHelper
     public string Name { get; set; } = "";
     public string Value { get; set; } = "";
     public string Placeholder { get; set; } = "";
+    public string AutoComplete { get; set; } = "off";
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -26,6 +27,10 @@ public class InputTextTagHelper : TagHelper
             if (this.Value.HasValue())
             {
                 tx.Attributes.Add("value", this.Value);
+            }
+            if (this.AutoComplete.HasValue())
+            {
+                tx.Attributes.Add("autocomplete", this.AutoComplete);
             }
             if (this.Placeholder.HasValue())
             {

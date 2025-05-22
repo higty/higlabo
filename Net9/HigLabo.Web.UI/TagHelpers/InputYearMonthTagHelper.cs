@@ -12,8 +12,8 @@ public class InputYearMonthTagHelper : TagHelper
     public string Name { get; set; } = "";
     public bool AllowYearNull { get; set; } = true;
     public bool AllowMonthNull { get; set; } = true;
-    public int StartYear { get; set; } = DateTimeOffset.Now.Year - 100;
-    public int EndYear { get; set; } = DateTimeOffset.Now.Year + 100;
+    public int MinYear { get; set; } = DateTimeOffset.Now.Year - 100;
+    public int MaxYear { get; set; } = DateTimeOffset.Now.Year + 100;
     public int? Year { get; set; }
     public int? Month { get; set; }
     public string MonthFormat { get; set; } = "MM";
@@ -37,7 +37,7 @@ public class InputYearMonthTagHelper : TagHelper
                 op.InnerHtml.Append("");
                 dl.InnerHtml.AppendHtml(op);
             }
-            for (int i = this.StartYear; i <= this.EndYear; i++)
+            for (int i = this.MinYear; i <= this.MaxYear; i++)
             {
                 var op = new TagBuilder("option");
                 op.Attributes.Add("value", i.ToString());

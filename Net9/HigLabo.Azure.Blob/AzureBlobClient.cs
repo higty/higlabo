@@ -191,17 +191,31 @@ public class AzureBlobClient
             throw new InvalidOperationException("You can't create BlobContainerClient.");
         }
     }
-    public async Task<Int64> GetCloudBlobDirectorySize(String containerName, String prefix)
+    public async Task<Int64> GetDirectorySize(String containerName, string prefix)
     {
         Int64 size = 0;
         var container = this.GetBlobContainer(containerName);
-        await foreach (BlobItem item in container.GetBlobsAsync(BlobTraits.Metadata))
+        await foreach (BlobItem item in container.GetBlobsAsync(BlobTraits.Metadata, BlobStates.None, prefix))
         {
             if (item.Deleted) { continue; }
             size += item.Properties.ContentLength ?? 0;
         }
         return size;
     }
+    public async Task<Int64> GetDocumentCount(string containerName, string prefix)
+    {
+        Int64 count = 0;
+        var blobContainer = GetBlobContainer(containerName);
+        await foreach (BlobItem item in blobContainer.GetBlobsAsync(BlobTraits.None, BlobStates.None, prefix))
+        {
+            if (!item.Deleted)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
 
     public async Task<Response> DownloadBlobToStreamAsync(String containerName, String filePath, Stream stream)
     {

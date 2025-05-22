@@ -250,6 +250,24 @@ export class HtmlElementQuery {
         }
         return null;
     }
+    insertAdjacentHTML(position, text) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentHTML(position, text);
+        }
+        return this;
+    }
+    insertAdjacentElement(position, element) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentElement(position, element);
+        }
+        return this;
+    }
+    insertAdjacentText(position, data) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].insertAdjacentText(position, data);
+        }
+        return this;
+    }
     getInnerWidth() {
         if (this._elementList.length > 0) {
             const element = this._elementList[0];
@@ -472,12 +490,6 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    insertAdjacentHTML(position, text) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this._elementList[i].insertAdjacentHTML(position, text);
-        }
-        return this;
-    }
     getInnerText() {
         if (this._elementList.length > 0) {
             return this._elementList[0].textContent;
@@ -696,7 +708,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e) {
-                if (e.key === null || e.key === key) {
+                if (key === null || e.key === key) {
                     callback(e);
                 }
             });

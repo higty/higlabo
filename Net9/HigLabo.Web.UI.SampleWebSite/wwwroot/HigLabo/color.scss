@@ -1,4 +1,13 @@
 :root {
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-body-bg: #f0eeec;
+    --color-scrollbar-track: var(--color-set-glay-05);
+    --color-scrollbar-thumb: var(--color-set-glay-03);
+    --color-text: var(--color-set-glay-09);
+    --color-input-error-text: #ff4400;
+    --color-border: var(--color-glay-03);
+    --color-border-focus: var(--color-glay-05);
     /* Glay */
     --color-set-glay-01: #F4F5F6;
     --color-set-glay-02: #E9ECEF;

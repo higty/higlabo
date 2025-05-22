@@ -1,0 +1,355 @@
+﻿.border-radius-4 {
+  border-radius: 4px;
+}
+
+.border-radius-8 {
+  border-radius: 8px;
+}
+
+.border-radius-16 {
+  border-radius: 16px;
+}
+
+.border-radius-100vmax {
+  border-radius: 100vmax;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.container-type-inline-size {
+  container-type: inline-size;
+  resize: horizontal;
+  overflow: auto;
+}
+
+.grid-place-item-center {
+  display: grid;
+  place-items: center;
+}
+
+.container-type-inline-size {
+  container-type: inline-size;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.flex-wrap-wrap {
+  flex-wrap: wrap;
+}
+
+.margin-left-auto {
+  margin-left: auto;
+}
+
+.margin-right-auto {
+  margin-right: auto;
+}
+
+.font-weight {
+  font-weight: bold;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.object-fit-contain {
+  object-fit: contain;
+}
+
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
+  display: -webkit-box !important;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+  display: -webkit-box !important;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-3 {
+  -webkit-line-clamp: 3;
+  display: -webkit-box !important;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-4 {
+  -webkit-line-clamp: 4;
+  display: -webkit-box !important;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-5 {
+  -webkit-line-clamp: 5;
+  display: -webkit-box !important;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.height-100-percent {
+  height: 100%;
+}
+
+.width-fit-content {
+  width: fit-content;
+}
+
+.width-100-percent {
+  width: 100%;
+}
+
+.max-width-600 {
+  max-width: 600px;
+}
+
+.max-width-720 {
+  max-width: 720px;
+}
+
+.max-width-960 {
+  max-width: 960px;
+}
+
+.max-width-1080 {
+  max-width: 1080px;
+}
+
+.max-width-1280 {
+  max-width: 1280px;
+}
+
+.max-width-1600 {
+  max-width: 1600px;
+}
+
+.min-height-120 {
+  min-height: 120px;
+}
+
+.min-height-240 {
+  min-height: 240px;
+}
+
+.min-height-360 {
+  min-height: 360px;
+}
+
+.min-height-480 {
+  min-height: 480px;
+}
+
+.min-height-640 {
+  min-height: 640px;
+}
+
+.max-height-240 {
+  max-height: 240px;
+}
+
+.max-height-360 {
+  max-height: 360px;
+}
+
+.max-height-480 {
+  max-height: 480px;
+}
+
+.max-height-640 {
+  max-height: 640px;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.padding-panel-4 {
+  padding: 4px;
+}
+
+.padding-panel-8 {
+  padding: 8px;
+}
+
+.padding-panel-12 {
+  padding: 12px;
+}
+
+.padding-panel-16 {
+  padding: 16px;
+}
+
+.padding-panel-20 {
+  padding: 20px;
+}
+
+.padding-panel-32 {
+  padding: 32px;
+}
+
+.padding-panel-40 {
+  padding: 40px;
+}
+
+.margin-4 {
+  margin: 4px;
+}
+
+.margin-8 {
+  margin: 8px;
+}
+
+.margin-12 {
+  margin: 12px;
+}
+
+.margin-16 {
+  margin: 16px;
+}
+
+.margin-20 {
+  margin: 20px;
+}
+
+.margin-left-4 {
+  margin-left: 4px;
+}
+
+.margin-left-8 {
+  margin-left: 8px;
+}
+
+.margin-left-12 {
+  margin-left: 12px;
+}
+
+.margin-left-16 {
+  margin-left: 16px;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.margin-right-4 {
+  margin-right: 4px;
+}
+
+.margin-right-8 {
+  margin-right: 8px;
+}
+
+.margin-right-12 {
+  margin-right: 12px;
+}
+
+.margin-right-16 {
+  margin-right: 16px;
+}
+
+.margin-right-20 {
+  margin-right: 20px;
+}
+
+.margin-top-4 {
+  margin-top: 4px;
+}
+
+.margin-top-8 {
+  margin-top: 8px;
+}
+
+.margin-top-12 {
+  margin-top: 12px;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-top-32 {
+  margin-top: 32px;
+}
+
+.margin-top-40 {
+  margin-top: 40px;
+}
+
+.margin-bottom-4 {
+  margin-bottom: 4px;
+}
+
+.margin-bottom-8 {
+  margin-bottom: 8px;
+}
+
+.margin-bottom-12 {
+  margin-bottom: 12px;
+}
+
+.margin-bottom-16 {
+  margin-bottom: 16px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-32 {
+  margin-bottom: 32px;
+}
+
+.margin-bottom-40 {
+  margin-bottom: 40px;
+}
+
+.margin-center {
+  margin: 0 auto;
+}
+
+.multiline {
+  white-space: pre-wrap;
+  word-break: break-all;
+}

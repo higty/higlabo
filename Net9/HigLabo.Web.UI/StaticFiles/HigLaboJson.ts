@@ -1,8 +1,11 @@
 export class HigLaboJson {
-    public processParameter(parameter, node: Node) {
+    public static processParameter(parameter, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
-                const childElement = <Element>childNode;
+                const childElement = <HTMLElement>childNode;
+                if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                    return;
+                }
                 const name = childElement.getAttribute("name");
 
                 if (parameter instanceof Array) {
@@ -28,13 +31,24 @@ export class HigLaboJson {
                                         parameter.push(inputElement.value);
                                     }
                                 }
+                                else if (childElement.getAttribute("type") == "radio") {
+                                    if (inputElement.checked == true) {
+                                        parameter.push(inputElement.value);
+                                    }
+                                }
                                 else {
                                     parameter.push(inputElement.value);
                                 }
                             }
                         }
                         else {
-                            if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
+                            if (childElement.tagName.toLowerCase() == "select") {
+                                let selectElement = childElement as HTMLSelectElement;
+                                if (selectElement.selectedIndex > -1) {
+                                    parameter[name] = selectElement.options[selectElement.selectedIndex].value;
+                                }
+                            }
+                            if (childElement.tagName == "INPUT" || childElement.tagName == "TEXTAREA") {
                                 let inputElement = childElement as HTMLInputElement;
                                 //Push object to array
                                 if (childElement.getAttribute("type") == "checkbox") {
@@ -44,6 +58,13 @@ export class HigLaboJson {
                                         checked: inputElement.checked
                                     });
                                 }
+                                else if (childElement.getAttribute("type") == "radio") {
+                                    if (inputElement.checked == true) {
+                                        let r = {};
+                                        r[name] = inputElement.value;
+                                        parameter.push(r);
+                                    }
+                                }
                                 else {
                                     let r = {};
                                     r[name] = inputElement.value;
@@ -52,7 +73,12 @@ export class HigLaboJson {
                             }
                             else {
                                 let r = {};
-                                r[name] = childElement.textContent;
+                                if (childElement.getAttribute("contenteditable") == "true") {
+                                    r[name] = childElement.innerHTML;
+                                }
+                                else {
+                                    r[name] = childElement.innerText;
+                                }
                                 parameter.push(r);
                             }
                         }
@@ -73,17 +99,33 @@ export class HigLaboJson {
                             return;
                         }
                         else {
-                            if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
+                            if (childElement.tagName.toLowerCase() == "select") {
+                                let selectElement = childElement as HTMLSelectElement;
+                                if (selectElement.selectedIndex > -1) {
+                                    parameter[name] = selectElement.options[selectElement.selectedIndex].value;
+                                }
+                            }
+                            else if (childElement.tagName.toLowerCase() == "input" || childElement.tagName.toLowerCase() == "textarea") {
                                 let inputElement = childElement as HTMLInputElement;
                                 if (childElement.getAttribute("type") == "checkbox") {
                                     parameter[name] = inputElement.checked;
+                                }
+                                else if (childElement.getAttribute("type") == "radio") {
+                                    if (inputElement.checked == true) {
+                                        parameter[name] = inputElement.value;
+                                    }
                                 }
                                 else {
                                     parameter[name] = inputElement.value;
                                 }
                             }
                             else {
-                                parameter[name] = childElement.textContent;
+                                if (childElement.getAttribute("contenteditable") == "true") {
+                                    parameter[name] = childElement.innerHTML;
+                                }
+                                else {
+                                    parameter[name] = childElement.innerText;
+                                }
                             }
                         }
                     }
@@ -92,10 +134,14 @@ export class HigLaboJson {
             }
         });
     }
-    public processArrayParameter(arrayParameter: Array<any>, node: Node) {
+    public static processArrayParameter(arrayParameter: Array<any>, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
-                const childElement = <Element>childNode;
+                const childElement = <HTMLElement>childNode;
+                if (childElement.getAttribute("hig-property-type") == "Ignore") {
+                    return;
+                }
+
                 const name = childElement.getAttribute("name");
                 if (name != null) {
                     if (childElement.getAttribute("hig-property-type") == "Object") {
@@ -109,9 +155,20 @@ export class HigLaboJson {
                         this.processArrayParameter(rr, childNode);
                     }
                     else {
-                        if (childElement.tagName == "INPUT") {
+                        if (childElement.tagName.toLowerCase() == "select") {
+                            let selectElement = childElement as HTMLSelectElement;
+                            if (selectElement.selectedIndex > -1) {
+                                arrayParameter.push({ name: selectElement.options[selectElement.selectedIndex].value });
+                            }
+                        }
+                        else if (childElement.tagName == "INPUT") {
                             let inputElement = childElement as HTMLInputElement;
                             if (childElement.getAttribute("type") == "checkbox") {
+                                if (inputElement.checked == true) {
+                                    arrayParameter.push({ name: inputElement.value });
+                                }
+                            }
+                            else if (childElement.getAttribute("type") == "radio") {
                                 if (inputElement.checked == true) {
                                     arrayParameter.push({ name: inputElement.value });
                                 }
@@ -121,7 +178,7 @@ export class HigLaboJson {
                             }
                         }
                         else {
-                            arrayParameter.push({ name: childElement.textContent });
+                            arrayParameter.push({ name: childElement.innerText });
                         }
                         this.processParameter(arrayParameter, childNode);
                     }

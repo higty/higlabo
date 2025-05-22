@@ -1,0 +1,769 @@
+﻿:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-body-bg: #f0eeec;
+  --color-scrollbar-track: var(--color-set-glay-05);
+  --color-scrollbar-thumb: var(--color-set-glay-03);
+  --color-text: var(--color-set-glay-09);
+  --color-input-error-text: #ff4400;
+  --color-border: var(--color-glay-03);
+  --color-border-focus: var(--color-glay-05);
+  /* Glay */
+  --color-set-glay-01: #F4F5F6;
+  --color-set-glay-02: #E9ECEF;
+  --color-set-glay-03: #DEE2E6;
+  --color-set-glay-04: #CED4DA;
+  --color-set-glay-05: #ADB5BD;
+  --color-set-glay-06: #6C757D;
+  --color-set-glay-07: #495057;
+  --color-set-glay-08: #343A40;
+  --color-set-glay-09: #212529;
+  --color-set-glay-10: #121216;
+  /* Light Glay */
+  --color-set-light-glay-01: #F2F2F2;
+  --color-set-light-glay-02: #DFDFDF;
+  --color-set-light-glay-03: #CCCCCC;
+  --color-set-light-glay-04: #B9B9B9;
+  --color-set-light-glay-05: #A5A5A5;
+  --color-set-light-glay-06: #9C9C9C;
+  --color-set-light-glay-07: #929292;
+  --color-set-light-glay-08: #7F7F7F;
+  --color-set-light-glay-09: #6C6C6C;
+  --color-set-light-glay-10: #595959;
+  /* Gold */
+  --color-set-gold-01: #EDEA54;
+  --color-set-gold-02: #EBDD4E;
+  --color-set-gold-03: #E9D048;
+  --color-set-gold-04: #E7C343;
+  --color-set-gold-05: #E5B63D;
+  --color-set-gold-06: #E2A837;
+  --color-set-gold-07: #E09B31;
+  --color-set-gold-08: #DE8E2C;
+  --color-set-gold-09: #DC8126;
+  --color-set-gold-10: #DA7420;
+  /* Caramel */
+  --color-set-caramel-01: #FFDCC2;
+  --color-set-caramel-02: #FFD1AD;
+  --color-set-caramel-03: #FFC599;
+  --color-set-caramel-04: #EDA268;
+  --color-set-caramel-05: #DA7E37;
+  --color-set-caramel-06: #C06722;
+  --color-set-caramel-07: #A85311;
+  --color-set-caramel-08: #8F3E00;
+  --color-set-caramel-09: #713200;
+  --color-set-caramel-10: #522500;
+  /* Sand */
+  --color-set-sand-01: #EBCFBC;
+  --color-set-sand-02: #E4C3AF;
+  --color-set-sand-03: #DCB9A1;
+  --color-set-sand-04: #D4AF96;
+  --color-set-sand-05: #CBA48B;
+  --color-set-sand-06: #AE8F7A;
+  --color-set-sand-07: #A48470;
+  --color-set-sand-08: #997A66;
+  --color-set-sand-09: #8F705B;
+  --color-set-sand-10: #846552;
+  /* Coffee */
+  --color-set-coffee-01: #F9F5F3;
+  --color-set-coffee-02: #F0E5E1;
+  --color-set-coffee-03: #E6D5CE;
+  --color-set-coffee-04: #D3B6AB;
+  --color-set-coffee-05: #AA8B7E;
+  --color-set-coffee-06: #815F51;
+  --color-set-coffee-07: #644234;
+  --color-set-coffee-08: #4D3328;
+  --color-set-coffee-09: #422C22;
+  --color-set-coffee-10: #36241C;
+  /* Brown */
+  --color-set-brown-01: #FFEDD8;
+  --color-set-brown-02: #F3D5B5;
+  --color-set-brown-03: #E7BC91;
+  --color-set-brown-04: #D4A276;
+  --color-set-brown-05: #BC8A5F;
+  --color-set-brown-06: #A47148;
+  --color-set-brown-07: #8B5E34;
+  --color-set-brown-08: #6F4518;
+  --color-set-brown-09: #603808;
+  --color-set-brown-10: #583101;
+  /* Red Brown */
+  --color-set-red-brown-01: #FFB950;
+  --color-set-red-brown-02: #FFAD33;
+  --color-set-red-brown-03: #FF7E33;
+  --color-set-red-brown-04: #FF7E33;
+  --color-set-red-brown-05: #FA5E1F;
+  --color-set-red-brown-06: #EC3F13;
+  --color-set-red-brown-07: #B81702;
+  --color-set-red-brown-08: #A50104;
+  --color-set-red-brown-09: #8E0103;
+  --color-set-red-brown-10: #7A0103;
+  /* Orange */
+  --color-set-orange-01: #ffea00;
+  --color-set-orange-02: #ffdd00;
+  --color-set-orange-03: #ffd000;
+  --color-set-orange-04: #ffc300;
+  --color-set-orange-05: #FFB700;
+  --color-set-orange-06: #FFAA00;
+  --color-set-orange-07: #FFA200;
+  --color-set-orange-08: #FF9500;
+  --color-set-orange-09: #FF8800;
+  --color-set-orange-10: #FF7B00;
+  /* Yellow Green */
+  --color-set-yellow-green-01: #FFFF3F;
+  --color-set-yellow-green-02: #EEEF20;
+  --color-set-yellow-green-03: #DDDF00;
+  --color-set-yellow-green-04: #D4D700;
+  --color-set-yellow-green-05: #BFD200;
+  --color-set-yellow-green-06: #AACC00;
+  --color-set-yellow-green-07: #80B918;
+  --color-set-yellow-green-08: #55A630;
+  --color-set-yellow-green-09: #2B9348;
+  --color-set-yellow-green-10: #007F5F;
+  /* Green */
+  --color-set-green-01: #B7EFC5;
+  --color-set-green-02: #92E6A7;
+  --color-set-green-03: #6EDE8A;
+  --color-set-green-04: #4AD66D;
+  --color-set-green-05: #2DC653;
+  --color-set-green-06: #25A244;
+  --color-set-green-07: #208B3A;
+  --color-set-green-08: #1A7431;
+  --color-set-green-09: #155D27;
+  --color-set-green-10: #10451D;
+  /* Mint */
+  --color-set-mint-01: #99E2B4;
+  --color-set-mint-02: #88D4AB;
+  --color-set-mint-03: #78C6A3;
+  --color-set-mint-04: #67B99A;
+  --color-set-mint-05: #56AB91;
+  --color-set-mint-06: #469D89;
+  --color-set-mint-07: #358F80;
+  --color-set-mint-08: #248277;
+  --color-set-mint-09: #14746F;
+  --color-set-mint-10: #036666;
+  /* Emerald */
+  --color-set-emerald-01: #C4FFF9;
+  --color-set-emerald-02: #B0F5F4;
+  --color-set-emerald-03: #9CEAEF;
+  --color-set-emerald-04: #3DCCC7;
+  --color-set-emerald-05: #07BEB8;
+  --color-set-emerald-06: #07B6B0;
+  --color-set-emerald-07: #06ADA7;
+  --color-set-emerald-08: #059D98;
+  --color-set-emerald-09: #058F8A;
+  --color-set-emerald-10: #05827D;
+  /* Emerald Indigo */
+  --color-set-emerald-indigo-01: #D9ED92;
+  --color-set-emerald-indigo-02: #B5E48C;
+  --color-set-emerald-indigo-03: #99D98C;
+  --color-set-emerald-indigo-04: #76C893;
+  --color-set-emerald-indigo-05: #52B69A;
+  --color-set-emerald-indigo-06: #34A0A4;
+  --color-set-emerald-indigo-07: #168AAD;
+  --color-set-emerald-indigo-08: #1A759F;
+  --color-set-emerald-indigo-09: #1E6091;
+  --color-set-emerald-indigo-10: #184E77;
+  /* Indigo */
+  --color-set-indigo-01: #A9D6E5;
+  --color-set-indigo-02: #89C2D9;
+  --color-set-indigo-03: #61A5C2;
+  --color-set-indigo-04: #468FAF;
+  --color-set-indigo-05: #2C7DA0;
+  --color-set-indigo-06: #2A6F97;
+  --color-set-indigo-07: #014F86;
+  --color-set-indigo-08: #01497C;
+  --color-set-indigo-09: #013A63;
+  --color-set-indigo-10: #012A4A;
+  /* Aqua */
+  --color-set-aqua-01: #DAF0F8;
+  --color-set-aqua-02: #CAF0F8;
+  --color-set-aqua-03: #ADE8F4;
+  --color-set-aqua-04: #90E0EF;
+  --color-set-aqua-05: #48CAE4;
+  --color-set-aqua-06: #00B4D8;
+  --color-set-aqua-07: #0096C7;
+  --color-set-aqua-08: #0077B6;
+  --color-set-aqua-09: #023E8A;
+  --color-set-aqua-10: #03045E;
+  /* Alice Blue */
+  --color-set-alice-blue-01: #EDF2FB;
+  --color-set-alice-blue-02: #E2EAFC;
+  --color-set-alice-blue-03: #CCDBFD;
+  --color-set-alice-blue-04: #B6CCFE;
+  --color-set-alice-blue-05: #A0BBFF;
+  --color-set-alice-blue-06: #88AAFF;
+  --color-set-alice-blue-07: #7099FF;
+  --color-set-alice-blue-08: #5E8CFF;
+  --color-set-alice-blue-09: #4C7FFF;
+  --color-set-alice-blue-10: #4877ED;
+  /* Lavender */
+  --color-set-lavender-01: #E0C3FC;
+  --color-set-lavender-02: #DDBDFC;
+  --color-set-lavender-03: #DAB6FC;
+  --color-set-lavender-04: #CBB2FE;
+  --color-set-lavender-05: #BBADFF;
+  --color-set-lavender-06: #ADA7FF;
+  --color-set-lavender-07: #9FA0FF;
+  --color-set-lavender-08: #8E94F2;
+  --color-set-lavender-09: #8187DC;
+  --color-set-lavender-10: #757BC8;
+  /* Rose */
+  --color-set-rose-01: #FFF0F3;
+  --color-set-rose-02: #FFCCD5;
+  --color-set-rose-03: #FFB3C1;
+  --color-set-rose-04: #FF8FA3;
+  --color-set-rose-05: #FF758F;
+  --color-set-rose-06: #FF4D6D;
+  --color-set-rose-07: #C9184A;
+  --color-set-rose-08: #A4133C;
+  --color-set-rose-09: #800F2F;
+  --color-set-rose-10: #590D22;
+  /* Violet */
+  --color-set-violet-01: #E0AAFF;
+  --color-set-violet-02: #C77DFF;
+  --color-set-violet-03: #9D4EDD;
+  --color-set-violet-04: #8833cc;
+  --color-set-violet-05: #7B2CBF;
+  --color-set-violet-06: #5A189A;
+  --color-set-violet-07: #4A1277;
+  --color-set-violet-08: #3C096C;
+  --color-set-violet-09: #240046;
+  --color-set-violet-10: #10002B;
+  /* HigLabo */
+  --color-set-higlabo-01: #F8F9FA;
+  --color-set-higlabo-02: #E9ECEF;
+  --color-set-higlabo-03: #DEE2E6;
+  --color-set-higlabo-04: #CED4DA;
+  --color-set-higlabo-05: #ADB5BD;
+  --color-set-higlabo-06: #6C757D;
+  --color-set-higlabo-07: #495057;
+  --color-set-higlabo-08: #6F4518;
+  --color-set-higlabo-09: #343A40;
+  --color-set-higlabo-10: #212529;
+  /* Blue */
+  --color-set-blue-01: #DBF3FF;
+  --color-set-blue-02: #BDE5FF;
+  --color-set-blue-03: #94CEFF;
+  --color-set-blue-04: #6CB5FF;
+  --color-set-blue-05: #248EFF;
+  --color-set-blue-06: #0066DF;
+  --color-set-blue-07: #0050AF;
+  --color-set-blue-08: #003D8C;
+  --color-set-blue-09: #00306D;
+  --color-set-blue-10: #002155;
+}
+
+:root {
+  /* panel */
+  --color-panel-menu-bg: #e0e0e0;
+  --color-panel-menu-hover: #d8d8d8;
+  --color-panel-bg: #ffffff;
+  --color-popup-panel-bg: #ffffff;
+  --color-footer-bg: #eaeaea;
+  /* form element */
+  --color-form-element-primary: var(--color-set-primary-03);
+  --color-form-element-bg: var(--color-set-glay-01);
+  --color-form-element-text: var(--color-text);
+  --color-form-element-border: var(--color-border);
+  --color-form-element-focus: var(--color-form-element-primary);
+  --color-form-element-hover: var(--color-set-glay-03);
+  /* input-text */
+  --input-text-text-color: var(--color-text);
+  --input-text-back-color: var(--color-form-element-bg);
+  --input-text-back-color-focus: var(--color-form-element-primary);
+  --input-text-border-color: var(--color-set-glay-03);
+  --input-text-border-color-focus: var(--color-form-element-primary);
+  --input-text-border-radius: 8px;
+  --input-text-height: 40px;
+  --input-text-padding: 8px;
+  /* input-checkbox */
+  --input-checkbox-border-radius: 4px;
+  /* checkbox-panel */
+  --color-checkbox-panel-checked: var(--color-set-primary-05);
+  --color-checkbox-panel-focus: var(--color-set-primary-09);
+}
+
+.loading-panel {
+  display: flex;
+  align-items: center;
+}
+.loading-panel .text {
+  margin-top: 3px;
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+.loading-image {
+  /* Spinner size and color */
+  width: 24px;
+  height: 24px;
+  border-top-color: var(--color-text);
+  border-left-color: var(--color-text);
+  /* Additional spinner styles */
+  animation: spinner 400ms linear infinite;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+}
+.loading-image.large {
+  width: 64px;
+  height: 64px;
+  border-width: 6px;
+}
+.loading-image.slow {
+  animation: spinner 1s linear infinite;
+}
+
+.file-upload input[type=file] {
+  display: none;
+}
+
+.dialog-popup-panel[open] {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+}
+.dialog-popup-panel[open] > .content-panel {
+  max-width: calc(100dvw - 20px);
+  width: 400px;
+  padding: 12px;
+}
+.dialog-popup-panel[open] > .content-panel .text {
+  min-height: 200px;
+}
+.dialog-popup-panel[open] > .content-panel .button-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.dialog-popup-panel[open] > .content-panel .button-panel button {
+  font-size: 18px;
+  padding: 4px 20px;
+}
+
+.dialog-popup-panel::backdrop {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.full-window-popup-panel {
+  padding: 0;
+  width: 100dvw;
+  height: 100dvh;
+}
+.full-window-popup-panel > .content-panel {
+  height: calc(100% - 60px);
+  overflow-y: auto;
+}
+.full-window-popup-panel > .footer-panel {
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-panel-menu-bg);
+}
+
+.full-window-popup-panel[open] {
+  border: none;
+}
+
+.full-window-popup-panel::backdrop {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.message-popup-panel {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: calc(100% - 24px);
+  min-height: 80px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 200;
+  padding: 8px;
+  background-color: var(--color-panel-bg);
+  border: solid 1px var(--color-border);
+  white-space: pre-wrap;
+  word-break: break-all;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.data-record-popup-panel {
+  position: absolute;
+  width: 300px;
+  max-width: 600px;
+  z-index: 150;
+  background-color: var(--color-panel-bg);
+  border: solid 1px var(--color-border);
+}
+.data-record-popup-panel > .header-panel {
+  box-sizing: border-box;
+  width: 100%;
+}
+.data-record-popup-panel > .header-panel input[type=text] {
+  width: 100%;
+}
+.data-record-popup-panel > .header-panel .flex-right-panel {
+  display: flex;
+  align-items: center;
+  flex: 0 0 64px;
+}
+.data-record-popup-panel > .header-panel .flex-right-panel button {
+  width: 64px;
+  height: 32px;
+}
+.data-record-popup-panel > .content-panel {
+  width: 100%;
+  padding: 4px;
+}
+.data-record-popup-panel > .content-panel .record-list-panel {
+  max-height: 60dvh;
+  overflow-y: auto;
+}
+.data-record-popup-panel > .footer-panel {
+  display: grid;
+  place-items: center;
+  padding: 4px;
+}
+.data-record-popup-panel[selection-mode=Signle] > .header-panel [close-button] {
+  display: none;
+}
+.data-record-popup-panel[selection-mode=Multiple] > .footer-panel [close-button] {
+  display: none;
+}
+.data-record-popup-panel [delete-record] {
+  display: none;
+}
+
+.accordion-panel[toggle-state=Visible] > .header-panel [toggle-state=Hidden] {
+  display: none;
+}
+.accordion-panel[toggle-state=Hidden] > .header-panel [toggle-state=Visible] {
+  display: none;
+}
+.accordion-panel[toggle-state=Hidden] > .content-panel {
+  display: none;
+}
+
+.paging-panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  margin-left: 4px;
+}
+.paging-panel .icon-panel {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+.paging-panel .page-number-panel {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+}
+.paging-panel .page-number-panel .page-number {
+  margin: 0 4px;
+  width: 40px;
+  text-align: right;
+  background-color: transparent;
+  border: none 0 transparent;
+}
+
+.input-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0px var(--input-text-padding);
+  align-items: center;
+  border: 1px solid var(--input-text-border-color);
+  border-radius: var(--input-text-border-radius);
+  background-color: var(--input-text-back-color);
+  height: 40px;
+}
+.input-text input {
+  width: 100%;
+}
+.input-text:focus-within {
+  border-color: var(--input-text-border-color-focus);
+  background-color: var(--input-text-back-color-focus);
+}
+.input-text .input-icon {
+  flex-shrink: 0;
+}
+
+.input-checkbox label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+  padding-right: 8px;
+}
+.input-checkbox input {
+  display: none;
+}
+.input-checkbox .box {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  background-color: var(--color-form-element-bg);
+  border: 1px solid var(--color-form-element-border);
+  border-radius: var(--input-checkbox-border-radius);
+}
+.input-checkbox input:checked ~ .text {
+  color: var(--color-text);
+}
+.input-checkbox input:checked + .box {
+  border-color: var(--color-form-element-primary);
+  background: var(--color-form-element-primary);
+  background-size: contain;
+}
+
+.input-radio label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+  padding-right: 8px;
+}
+.input-radio input {
+  display: none;
+}
+.input-radio .box {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  border: 1px solid var(--color-form-element-border);
+  border-radius: 50%;
+  position: relative;
+}
+.input-radio .box::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+}
+.input-radio input:checked ~ .text {
+  color: var(--color-text);
+}
+.input-radio input:checked + .box {
+  border-color: var(--color-form-element-primary);
+  background: var(--color-form-element-primary);
+}
+.input-radio input:checked + .box::after {
+  background-color: var(--color-form-element-primary);
+}
+
+.input-year-month {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+}
+.input-year-month select,
+.input-year-month ::picker(select) {
+  appearance: base-select;
+  border-radius: 4px;
+  border: 1px solid var(--input-text-border-color);
+}
+
+.checkbox-panel {
+  display: block;
+}
+.checkbox-panel > label {
+  display: inline-flex;
+  cursor: pointer;
+}
+.checkbox-panel > label .checkbox {
+  flex: 0 0 40px;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  margin-right: 6px;
+}
+.checkbox-panel > label .checkbox input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkbox-panel > label .checkbox input:checked + span:after {
+  left: 50%;
+  background: var(--color-checkbox-panel-checked);
+}
+.checkbox-panel > label .checkbox input:focus + span:after {
+  border: solid 1px var(--color-checkbox-panel-focus);
+}
+.checkbox-panel > label .checkbox span {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: var(--color-glay-03);
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  transition: all, 0.2s;
+  box-sizing: border-box;
+}
+.checkbox-panel > label .checkbox span:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  left: 0;
+  top: 0;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all, 0.2s;
+}
+.checkbox-panel > label .text-panel:hover {
+  text-decoration: underline;
+}
+
+.input-record {
+  min-height: 32px;
+}
+.input-record .add-panel {
+  padding: 4px 8px;
+  cursor: pointer;
+  background-color: var(--color-record-menu-link-bg);
+}
+.input-record .add-panel:hover {
+  background-color: var(--color-record-menu-link-hover);
+  text-decoration: underline;
+}
+.input-record .add-panel:focus {
+  text-decoration: underline;
+}
+.input-record[hig-property-type=Array] {
+  background-color: transparent;
+}
+.input-record:not([hig-property-type=Array]):hover {
+  background-color: var(--color-form-element-hover);
+}
+.input-record[selection-mode=Single] {
+  cursor: pointer;
+  border-radius: 8px;
+}
+.input-record[selection-mode=Single] [delete-record] {
+  display: none;
+}
+.input-record[selection-mode=Multiple] .record-list-panel {
+  max-height: 60dvh;
+  overflow-y: auto;
+}
+
+.input-error {
+  display: none;
+  font-size: 12px;
+  color: var(--color-input-error-text);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.data-view {
+  position: relative;
+  height: 100%;
+}
+.data-view > * {
+  height: 100%;
+}
+.data-view .view-panel {
+  display: grid;
+  grid-template-rows: min-content 1fr 40px;
+  height: 100%;
+}
+.data-view .view-panel > .panel-menu > .panel-menu-row {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.data-view .view-panel > .panel-menu > .panel-menu-row .panel-menu-item {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.data-view .view-panel > .panel-menu > .panel-menu-row .panel-menu-item:hover {
+  background-color: var(--color-menu-link-hover);
+}
+.data-view .view-panel > .panel-menu > .panel-menu-row input[name=SearchText] {
+  width: 200px;
+}
+.data-view .view-panel > .record-list-panel {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+.data-view .view-panel > .footer-panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.data-view .detail-panel {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  overflow-y: auto;
+}
+.data-view .detail-panel .edit-record-panel {
+  width: calc(100% - 24px);
+  margin: 12px auto;
+}
+.data-view .right-panel {
+  position: absolute;
+  width: 400px;
+  max-width: 100vw;
+  height: 100%;
+  overflow-y: auto;
+  top: 0;
+  right: 0;
+}
+@media (max-width: 500px) {
+  .data-view .right-panel {
+    width: calc(100vw - 100px);
+  }
+}
+
+/*-------------------------------------------------------
+    Color settings
+-------------------------------------------------------*/
+.data-view .view-panel .panel-menu-row {
+  background-color: var(--color-panel-menu-bg);
+}
+.data-view .view-panel > .footer-panel {
+  background-color: var(--color-panel-menu-bg);
+}
+.data-view .right-panel {
+  background-color: var(--color-panel-bg);
+  border: solid 1px var(--color-border);
+}
+
+.paging-panel .page-number-panel .page-number:hover {
+  background-color: var(--color-panel-menu-hover);
+}
+.paging-panel .icon-panel:hover {
+  background-color: var(--color-panel-menu-hover);
+}

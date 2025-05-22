@@ -1,0 +1,72 @@
+@import "color.scss";
+
+:root {
+    /* button */
+    --color-button-bg: var(--color-set-primary-05);
+    --color-button-text: var(--color-white);
+    --color-button-hover: var(--color-set-primary-07);
+    --color-button-focus: var(--color-set-primary-07);
+}
+
+.button {
+    display: inline-block;
+    border-radius: 24px;
+    cursor: pointer;
+    padding: 4px 16px;
+    text-align: center;
+}
+
+.button-radius-4 {
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    text-align: center;
+}
+
+.button-radius-8 {
+    display: inline-block;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 4px 8px;
+    text-align: center;
+}
+
+a.button,
+a.button-radius-4,
+a.button-radius-8 {
+    text-decoration: none;
+}
+
+.large-button {
+    display: inline-block;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 24px;
+    text-align: center;
+}
+
+
+
+.menu-button,
+a.menu-button,
+.button,
+a.button,
+.button-radius-4,
+a.button-radius-4,
+.button-radius-8,
+a.button-radius-8,
+.large-button,
+a.large-button {
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+
+    &:focus {
+        background-color: var(--color-button-focus);
+    }
+
+    &:hover {
+        background-color: var(--color-button-hover);
+    }
+}

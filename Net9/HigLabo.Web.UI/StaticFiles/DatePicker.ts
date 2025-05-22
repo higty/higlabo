@@ -3,8 +3,8 @@ import { $ } from "./HtmlElementQuery.js";
 
 export class DatePicker {
     public initialize() {
-        $("body").on("focusin", "input[date-picker]", this.dateTimeTextBox_Focusin.bind(this));
-        $("body").on("keydown", "input[date-picker]", this.dateTextBox_Keydown.bind(this));
+        $("body").on("focusin", "input[date-picker],[input-date][date-picker]>input", this.dateTimeTextBox_Focusin.bind(this));
+        $("body").on("keydown", "input[date-picker],[input-date][date-picker]>input", this.dateTextBox_Keydown.bind(this));
         $("body").on("click", "[date-picker]", this.dateTextBox_Click.bind(this));
     }
     public initializeFlatpickr(language) {
@@ -24,7 +24,12 @@ export class DatePicker {
                     const element = $(instance._input).getFirstElement();
                     if (element == null) { return; }
                     if (element.tagName == "INPUT") { return; }
-                    $(element).setInnerText(dateStr);
+                    if ($(element).getAttribute("input-date") == "true") {
+                        $(element).find("input[type='text']").setValue(dateStr);
+                    }
+                    else {
+                        $(element).setInnerText(dateStr);
+                    }
                 }
             });
             flatpickr("[inline-date-picker]", {
