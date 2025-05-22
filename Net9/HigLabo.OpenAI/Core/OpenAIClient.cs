@@ -32,6 +32,8 @@ public class HttpRequestMessageEventArgs : EventArgs
 }
 public partial class OpenAIClient
 {
+    public static IJsonConverter JsonConverter { get; set; } = new OpenAIJsonConverter();
+
     public event EventHandler<HttpRequestMessageEventArgs>? PreSendRequest;
 
     public ServiceProvider ServiceProvider { get; init; } = ServiceProvider.OpenAI;
@@ -50,7 +52,6 @@ public partial class OpenAIClient
         }
     }
     public HttpClient HttpClient { get; set; } = new();
-    public IJsonConverter JsonConverter { get; set; } = new OpenAIJsonConverter();
 
     public OpenAISettings OpenAISettings { get; init; } = new();
     public AzureSettings AzureSettings { get; init; } = new();
@@ -210,14 +211,14 @@ public partial class OpenAIClient
 				}
             else
             {
-                var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
+                var o = OpenAIClient.JsonConverter.DeserializeObject<TResponse>(bodyText);
 					o.SetProperty(parameter, requestBodyText, request, res, bodyText);
 					return o;
 				}
         }
         else
         {
-            var errorResponse = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(bodyText);
+            var errorResponse = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(bodyText);
             throw new OpenAIServerException(parameter, request, requestBodyText, response, bodyText, errorResponse.Error);
         }
     }
@@ -237,7 +238,7 @@ public partial class OpenAIClient
         var requestBodyText = "";
         if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false)
         {
-            requestBodyText = this.JsonConverter.SerializeObject(parameter.GetRequestBody());
+            requestBodyText = OpenAIClient.JsonConverter.SerializeObject(parameter.GetRequestBody());
             req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
         }
         Debug.WriteLine(requestBodyText);
@@ -280,7 +281,7 @@ public partial class OpenAIClient
         var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
 
         var bodyText = await res.Content.ReadAsStringAsync();
-        var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
+        var o = OpenAIClient.JsonConverter.DeserializeObject<TResponse>(bodyText);
         o.SetProperty(parameter, requestBodyText, req, res, bodyText);
 
         return o;
@@ -305,7 +306,7 @@ public partial class OpenAIClient
         if (res.IsSuccessStatusCode == false)
         {
             var responseBodyText = await res.Content.ReadAsStringAsync();
-            var errorRes = this.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
+            var errorRes = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
             throw new OpenAIServerException(parameter, req, requestBodyText, res, responseBodyText, errorRes.Error);
         }
 
@@ -334,7 +335,7 @@ public partial class OpenAIClient
                 var text = line.GetText();
                 if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
 
-                var chunk = this.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
+                var chunk = OpenAIClient.JsonConverter.DeserializeObject<ChatCompletionChunk>(text);
                 if (result != null)
                 {
                     result.Process(chunk);
@@ -384,7 +385,7 @@ public partial class OpenAIClient
 
                 if (string.Equals(eventName, "thread.message.delta", StringComparison.OrdinalIgnoreCase))
                 {
-                    var delta = this.JsonConverter.DeserializeObject<AssistantDeltaObject>(text);
+                    var delta = OpenAIClient.JsonConverter.DeserializeObject<AssistantDeltaObject>(text);
                     if (result != null)
                     {
                         result.DeltaList.Add(delta);
@@ -401,19 +402,19 @@ public partial class OpenAIClient
                         if (string.Equals(eventName, "thread.created", StringComparison.OrdinalIgnoreCase) ||
                             string.Equals(eventName, "thread.message.completed", StringComparison.OrdinalIgnoreCase))
                         {
-                            result.Thread = this.JsonConverter.DeserializeObject<ThreadObject>(text);
+                            result.Thread = OpenAIClient.JsonConverter.DeserializeObject<ThreadObject>(text);
                         }
                         else if (eventName.StartsWith("thread.run.step.", StringComparison.OrdinalIgnoreCase))
                         {
-                            result.RunStep = this.JsonConverter.DeserializeObject<RunStepObject>(text);
+                            result.RunStep = OpenAIClient.JsonConverter.DeserializeObject<RunStepObject>(text);
                         }
                         else if (eventName.StartsWith("thread.run.", StringComparison.OrdinalIgnoreCase))
                         {
-                            result.Run = this.JsonConverter.DeserializeObject<RunObject>(text);
+                            result.Run = OpenAIClient.JsonConverter.DeserializeObject<RunObject>(text);
                         }
                         else if (eventName.StartsWith("thread.message.", StringComparison.OrdinalIgnoreCase))
                         {
-                            result.Message = this.JsonConverter.DeserializeObject<MessageObject>(text);
+                            result.Message = OpenAIClient.JsonConverter.DeserializeObject<MessageObject>(text);
                         }
                     }
                 }
@@ -436,16 +437,21 @@ public partial class OpenAIClient
                 var text = line.GetText();
                 if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
 
+                if (result != null)
+                {
+                    result.EventList.Add(new ResponseStreamEvent(eventName, text));
+                }
                 if (string.Equals(eventName, "response.output_text.delta", StringComparison.OrdinalIgnoreCase) ||
                     string.Equals(eventName, "response.refusal.delta", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(eventName, "response.function_call_arguments.delta", StringComparison.OrdinalIgnoreCase))
+                    string.Equals(eventName, "response.function_call_arguments.delta", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(eventName, "response.reasoning_summary_text.delta", StringComparison.OrdinalIgnoreCase))
                 {
-                    var delta = this.JsonConverter.DeserializeObject<ResponseDeltaObject>(text);
+                    var delta = OpenAIClient.JsonConverter.DeserializeObject<ResponseDeltaObject>(text);
                     if (delta != null)
                     {
                         if (result != null)
                         {
-                            result.DeltaList.Add(delta);
+                            result.Text += delta.Delta;
                         }
                         if (delta.Delta != null)
                         {
@@ -453,55 +459,10 @@ public partial class OpenAIClient
                         }
                     }
                 }
-                else
+                else if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (result != null)
-                    {
-                        if (string.Equals(eventName, "response.output_text.done", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var content = this.JsonConverter.DeserializeObject<ResponseOutputContent>(text);
-                            if (content != null)
-                            {
-                                result.Text = content.Text;
-                            }
-                        }
-                        else if (string.Equals(eventName, "response.content_part.added", StringComparison.OrdinalIgnoreCase) ||
-                            string.Equals(eventName, "response.content_part.done", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var jo = this.JsonConverter.DeserializeObject<JObject>(text);
-                            if (jo["part"] != null)
-                            {
-                                var content = this.JsonConverter.DeserializeObject<ResponseOutputContent>(jo["part"]!.ToString());
-                                result.ContentList.Add(content);
-                            }
-                        }
-                        else if (string.Equals(eventName, "response.output_item.added", StringComparison.OrdinalIgnoreCase) ||
-                            string.Equals(eventName, "response.output_item.done", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var jo = this.JsonConverter.DeserializeObject<JObject>(text);
-                            if (jo["item"] != null)
-                            {
-                                var content = this.JsonConverter.DeserializeObject<ResponseOutputContent>(jo["item"]!.ToString());
-                                result.ContentList.Add(content);
-                            }
-                        }
-                        else if (string.Equals(eventName, "response.created", StringComparison.OrdinalIgnoreCase) ||
-                            string.Equals(eventName, "response.in_progress", StringComparison.OrdinalIgnoreCase) ||
-                            string.Equals(eventName, "response.completed", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var jo = this.JsonConverter.DeserializeObject<JObject>(text);
-                            if (jo["response"] != null)
-                            {
-                                result.Response = this.JsonConverter.DeserializeObject<ResponseObject>(jo["response"]!.ToString());
-                            }
-                        }
-                        else if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var error = this.JsonConverter.DeserializeObject<OpenAIServerError>(text);
-                            throw new OpenAIServerSentEventException(error);
-                        }
-
-                    }
+                    var error = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerError>(text);
+                    throw new OpenAIServerSentEventException(error);
                 }
             }
 

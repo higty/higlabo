@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ImageGeneration();
+        await ResponseCreateMcpStream();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -425,7 +425,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("web_search_preview"));
+        p.Tools.Add(new ToolObject("web_search"));
         var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
         foreach (var output in res.Output)
         {
@@ -451,7 +451,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("web_search_preview"));
+        p.Tools.Add(new ToolObject("web_search"));
         var result = new ResponseStreamResult();
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
         {
@@ -460,19 +460,20 @@ public class OpenAIPlayground
         Console.WriteLine();
         Console.WriteLine();
 
-        foreach (var item in result.ContentList)
+        var ee = result.GetEventList();
+        foreach (var item in ee)
         {
-            if (item.Annotations != null)
+            if (item is ResponseStreamContentPart o)
             {
-                foreach (var annotation in item.Annotations)
+                foreach (var annotation in o.Part.Annotations)
                 {
-                    Console.WriteLine(annotation.Title);
-                    Console.WriteLine(annotation.Url);
+                    Console.WriteLine(annotation.ToString());
                 }
             }
         }
         Console.WriteLine("■DONE");
     }
+
     private async ValueTask ResponseCreateFileSearchStream()
     {
         var cl = OpenAIClient;
@@ -496,15 +497,11 @@ public class OpenAIPlayground
         Console.WriteLine();
         Console.WriteLine();
 
-        foreach (var item in result.ContentList)
+        foreach (var item in result.EventList)
         {
-            if (item.Annotations != null)
+            if (item.EventName == "response.web_search_call.completed")
             {
-                foreach (var annotation in item.Annotations)
-                {
-                    Console.WriteLine(annotation.Title);
-                    Console.WriteLine(annotation.Url);
-                }
+                Console.WriteLine(item.Data);
             }
         }
 
@@ -527,15 +524,11 @@ public class OpenAIPlayground
         Console.WriteLine();
         Console.WriteLine();
 
-        foreach (var item in result.ContentList)
+        foreach (var item in result.EventList)
         {
-            if (item.Annotations != null)
+            if (item.EventName == "response.web_search_call.completed")
             {
-                foreach (var annotation in item.Annotations)
-                {
-                    Console.WriteLine(annotation.Title);
-                    Console.WriteLine(annotation.Url);
-                }
+                Console.WriteLine(item.Data);
             }
         }
         Console.WriteLine("■DONE");
@@ -568,21 +561,68 @@ public class OpenAIPlayground
             Console.WriteLine();
             Console.WriteLine();
 
-            foreach (var item in result.ContentList)
+            foreach (var item in result.EventList)
             {
-                if (item.Annotations != null)
+                if (item.EventName == "response.web_search_call.completed")
                 {
-                    foreach (var annotation in item.Annotations)
-                    {
-                        Console.WriteLine(annotation.Title);
-                        Console.WriteLine(annotation.Url);
-                    }
+                    Console.WriteLine(item.Data);
                 }
             }
         }
         Console.WriteLine("■DONE");
     }
+    private async ValueTask ResponseCreateReasoningStream()
+    {
+        var cl = OpenAIClient;
 
+        var p = new ResponseCreateParameter();
+        p.Model = "o4-mini";
+        //p.Instructions = "You are a personal math tutor. When asked a math question, run code to answer the question.";
+        p.Input.AddUserMessage($"How much wood would a woodchuck chuck?");
+        p.Reasoning = new();
+        p.Reasoning.Effort = "high";
+        p.Reasoning.Summary = "detailed";
+        var result = new ResponseStreamResult();
+        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        var ee = result.GetEventList();
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateMcpStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
+        p.Tools = [];
+        p.Tools.Add(new ToolObject("mcp")
+        {
+            Server_Label = "deepwiki",
+            Server_Url = "https://mcp.deepwiki.com/mcp",
+            Require_Approval = "never",
+        });
+        var result = new ResponseStreamResult();
+        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        foreach (var item in result.EventList)
+        {
+            Console.WriteLine(item.Data);
+        }
+
+        var ee = result.GetEventList();
+        Console.WriteLine("■DONE");
+    }
 
     private ToolObject CreateGetWheatherTool()
     {
