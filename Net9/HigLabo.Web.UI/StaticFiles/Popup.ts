@@ -17,6 +17,8 @@ export class PopuPanel {
         const pp = $("[popup-panel]").getElementList();
 
         pp.forEach(popupPanel => {
+            if ($(popupPanel).getAttribute("prevent-hide") == "true") { return; }
+
             if ($(popupPanel).hasClass("display-none") == false &&
                 $(popupPanel).hasAttribute("processing") == false) {
                 const rect = popupPanel.getBoundingClientRect();

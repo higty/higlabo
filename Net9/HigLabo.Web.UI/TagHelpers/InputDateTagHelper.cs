@@ -5,18 +5,27 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace HigLabo.Web.UI.TagHelpers;
 
-[HtmlTargetElement("input-text")]
-public class InputTextTagHelper : TagHelper
+[HtmlTargetElement("input-date")]
+public class InputDateTagHelper : TagHelper
 {
+    public class Settings
+    {
+        public string CalendarImageUrl { get; set; } = "";
+    }
+    public static readonly Settings Default = new();
+
     public string Name { get; set; } = "";
     public string Value { get; set; } = "";
     public string Placeholder { get; set; } = "";
     public string AutoComplete { get; set; } = "off";
+    public string CalendarImageUrl { get; set; } = Default.CalendarImageUrl;
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
         output.AddClass("input-text", HtmlEncoder.Default);
+        output.Attributes.Add("input-date", "true");
+        output.Attributes.Add("date-picker", "true");
         {
             var tx = new TagBuilder("input");
             tx.Attributes.Add("type", "text");
@@ -37,6 +46,13 @@ public class InputTextTagHelper : TagHelper
                 tx.Attributes.Add("placeholder", this.Placeholder);
             }
             output.Content.AppendHtml(tx);
+        }
+        if (this.CalendarImageUrl.HasValue())
+        {
+            var img = new TagBuilder("img");
+            img.AddCssClass("input-date-icon");
+            img.Attributes.Add("src", this.CalendarImageUrl);
+            output.Content.AppendHtml(img);
         }
         await base.ProcessAsync(context, output);
     }

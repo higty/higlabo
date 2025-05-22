@@ -260,23 +260,24 @@
   --color-popup-panel-bg: #ffffff;
   --color-footer-bg: #eaeaea;
   /* form element */
-  --color-form-element-primary: var(--color-set-primary-03);
   --color-form-element-bg: var(--color-set-glay-01);
   --color-form-element-text: var(--color-text);
   --color-form-element-border: var(--color-border);
-  --color-form-element-focus: var(--color-form-element-primary);
+  --color-form-element-focus: var(--color-set-primary-03);
   --color-form-element-hover: var(--color-set-glay-03);
   /* input-text */
   --input-text-text-color: var(--color-text);
   --input-text-back-color: var(--color-form-element-bg);
-  --input-text-back-color-focus: var(--color-form-element-primary);
+  --input-text-back-color-focus: var(--color-form-element-focus);
   --input-text-border-color: var(--color-set-glay-03);
-  --input-text-border-color-focus: var(--color-form-element-primary);
+  --input-text-border-color-focus: var(--color-form-element-focus);
   --input-text-border-radius: 8px;
   --input-text-height: 40px;
   --input-text-padding: 8px;
   /* input-checkbox */
   --input-checkbox-border-radius: 4px;
+  /* input-radio */
+  --input-radio-checked-color: var(--color-set-primary-05);
   /* checkbox-panel */
   --color-checkbox-panel-checked: var(--color-set-primary-05);
   --color-checkbox-panel-focus: var(--color-set-primary-09);
@@ -421,9 +422,24 @@
   width: 100%;
   padding: 4px;
 }
-.data-record-popup-panel > .content-panel .record-list-panel {
+.data-record-popup-panel > .content-panel > .record-list-panel {
   max-height: 60dvh;
   overflow-y: auto;
+}
+.data-record-popup-panel > .content-panel > .record-list-panel > .data-record-panel {
+  cursor: pointer;
+}
+.data-record-popup-panel > .content-panel > .record-list-panel > .data-record-panel:hover:not([hig-property-type=Object]) {
+  background-color: var(--color-item-hover);
+}
+.data-record-popup-panel > .content-panel > .record-list-panel > .data-record-panel:focus {
+  background-color: var(--color-item-focus);
+}
+.data-record-popup-panel > .content-panel > .record-list-panel > .data-record-panel[selected=true] {
+  background-color: var(--color-item-current);
+}
+.data-record-popup-panel > .content-panel > .record-list-panel > .data-record-panel.current {
+  background-color: var(--color-item-current);
 }
 .data-record-popup-panel > .footer-panel {
   display: grid;
@@ -498,7 +514,20 @@
 .input-text .input-icon {
   flex-shrink: 0;
 }
+.input-text .toggle-input-type {
+  cursor: pointer;
+}
+.input-text[input-date] input {
+  width: 80px;
+}
+.input-text[input-date] .input-date-icon {
+  width: 24px;
+  height: 24px;
+}
 
+.input-checkbox {
+  line-height: 1;
+}
 .input-checkbox label {
   display: inline-flex;
   align-items: center;
@@ -506,11 +535,16 @@
   font-size: 16px;
   user-select: none;
   padding-right: 8px;
+  height: 24px;
 }
 .input-checkbox input {
   display: none;
+  width: 0;
+  height: 0;
 }
 .input-checkbox .box {
+  display: grid;
+  place-items: center;
   width: 24px;
   height: 24px;
   margin-right: 4px;
@@ -518,13 +552,19 @@
   border: 1px solid var(--color-form-element-border);
   border-radius: var(--input-checkbox-border-radius);
 }
+.input-checkbox .box .checked {
+  visibility: hidden;
+}
 .input-checkbox input:checked ~ .text {
   color: var(--color-text);
 }
 .input-checkbox input:checked + .box {
-  border-color: var(--color-form-element-primary);
-  background: var(--color-form-element-primary);
+  border-color: var(--color-form-element-focus);
+  background: var(--color-form-element-focus);
   background-size: contain;
+}
+.input-checkbox input:checked + .box .checked {
+  visibility: visible;
 }
 
 .input-radio label {
@@ -559,11 +599,11 @@
   color: var(--color-text);
 }
 .input-radio input:checked + .box {
-  border-color: var(--color-form-element-primary);
-  background: var(--color-form-element-primary);
+  border-color: var(--color-form-element-focus);
+  background: var(--color-form-element-focus);
 }
 .input-radio input:checked + .box::after {
-  background-color: var(--color-form-element-primary);
+  background-color: var(--input-radio-checked-color);
 }
 
 .input-year-month {
@@ -571,7 +611,20 @@
   justify-content: flex-start;
   align-items: center;
   gap: 4px;
+}
+.input-year-month select {
+  padding: 0px var(--input-text-padding);
+  align-items: center;
+  border: 1px solid var(--input-text-border-color);
+  border-radius: var(--input-text-border-radius);
+  background-color: var(--input-text-back-color);
   height: 40px;
+}
+.input-year-month select[name=Year] {
+  min-width: 80px;
+}
+.input-year-month select[name=Month] {
+  min-width: 70px;
 }
 .input-year-month select,
 .input-year-month ::picker(select) {
@@ -655,6 +708,7 @@
 }
 .input-record[hig-property-type=Array] {
   background-color: transparent;
+  height: auto;
 }
 .input-record:not([hig-property-type=Array]):hover {
   background-color: var(--color-form-element-hover);

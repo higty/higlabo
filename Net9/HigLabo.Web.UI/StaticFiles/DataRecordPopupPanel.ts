@@ -12,8 +12,8 @@ export class DataRecordPopupPanel {
         $("body").on("click", "[show-data-record-popup-panel]", this.panel_Click.bind(this));
         $("body").on("keydown", "[show-data-record-popup-panel]", this.panel_Keydown.bind(this));
 
-        $("body").on("click", "[selection-mode='Template'] > [add-template]", this.addTemplate_Click.bind(this));
-        $("body").on("keydown", "[selection-mode='Template'] > [add-template]", this.addTemplate_Keydown.bind(this));
+        $("body").on("click", "[selection-mode='Template'][add-type='Template'] > [add-template]", this.addTemplate_Click.bind(this));
+        $("body").on("keydown", "[selection-mode='Template'][add-type='Template'] > [add-template]", this.addTemplate_Keydown.bind(this));
 
         $("body").on("click", "#data-record-popup-panel [search-button]", this.searchButton_Click.bind(this));
         $("body").on("keydown", "#data-record-popup-panel [search-textbox]", this.searchTextbox_Keydown.bind(this));
@@ -139,10 +139,8 @@ export class DataRecordPopupPanel {
         setTimeout(function () {
             $(dpl).removeAttribute("processing");
             const tx = $(dpl).find("[search-textbox]").getFirstElement();
-            if (isSetFocusToTextbox == true) {
-                if (allowSearch == true || tx != null) {
-                    $(tx).setFocus();
-                }
+            if (isSetFocusToTextbox == true && allowSearch) {
+                $(tx).setFocus();
             }
             else {
                 $(dpl).find("[tabindex]").setFocus();
@@ -213,6 +211,7 @@ export class DataRecordPopupPanel {
         templatePanel.innerHTML = html;
         rpl.insertAdjacentElement("beforeend", templatePanel.children[0]);
         const div = rpl.children[rpl.children.length - 1];
+        this.htmx.process(div);
         div.scrollIntoView();
         $(div).find("input[type='text']").setFocus();
     }
@@ -263,6 +262,7 @@ export class DataRecordPopupPanel {
             }
             else {
                 $(pl).setFocus();
+                e.preventDefault();
             }
         }
         else if (e.key == "ArrowDown") {
@@ -272,6 +272,7 @@ export class DataRecordPopupPanel {
             }
             else {
                 $(pl).setFocus();
+                e.preventDefault();
             }
         }
     }
@@ -287,6 +288,8 @@ export class DataRecordPopupPanel {
             if (this.targetPanel != null) {
                 $(this.targetPanel).setInnerHtml("");
                 $(this.targetPanel).setInnerHtml($(pl).getOuterHtml());
+                const cc = $(this.targetPanel).getChildElementList();
+                $(cc).removeAttribute("tabindex");
                 $(this.targetPanel).setFocus();
             }
             $(dpl).addClass("display-none");
@@ -294,6 +297,8 @@ export class DataRecordPopupPanel {
         }
         if ($(dpl).getAttribute("selection-mode") == "Multiple") {
             $(this.targetPanel).appendInnerHtml($(pl).getOuterHtml());
+            const cc = $(this.targetPanel).getChildElementList();
+            $(cc).removeAttribute("tabindex");
             $(this.targetPanel).setScrollTop(100000);
 
             const recordListPanel = $(pl).getFirstParent("[record-list-panel]").getFirstElement();

@@ -13,6 +13,9 @@ public class InputCheckboxTagHelper : TagHelper
     public string Text { get; set; } = "";
     public bool Checked { get; set; } = false;
 
+    public string CheckedText { get; set; } = "✓";
+    public string CheckedImageUrl { get; set; } = "";
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
@@ -41,6 +44,20 @@ public class InputCheckboxTagHelper : TagHelper
                 var span = new TagBuilder("span");
                 span.AddCssClass("box");
                 label.InnerHtml.AppendHtml(span);
+                if (this.CheckedImageUrl.HasValue())
+                {
+                    var img = new TagBuilder("img");
+                    img.Attributes.Add("src", this.CheckedImageUrl);
+                    img.AddCssClass("checked");
+                    span.InnerHtml.AppendHtml(img);
+                }
+                else
+                {
+                    var text = new TagBuilder("span");
+                    text.InnerHtml.AppendHtml(this.CheckedText);
+                    text.AddCssClass("checked");
+                    span.InnerHtml.AppendHtml(text);
+                }
             }
             {
                 var span = new TagBuilder("span");
