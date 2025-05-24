@@ -35,7 +35,7 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
-    public partial class ResponseInputItemRetrieveResponse : RestApiResponse
+    public partial class ResponseInputItemRetrieveResponse : RestApiDataResponse<List<ResponseInputItem>>
     {
         public string First_Id { get; set; } = "";
         public string Last_Id { get; set; } = "";

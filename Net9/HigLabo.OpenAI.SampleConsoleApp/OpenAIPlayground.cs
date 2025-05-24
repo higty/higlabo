@@ -20,7 +20,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateMcpStream();
+        await ResponseCreateReasoningStream();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -484,7 +484,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage("I want to know about 1-bit transformers.");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("file_search")
+        p.Tools.Add(new FileSearchTool()
         {
             Vector_Store_Ids = [storeId],
             Max_Num_Results = 20,
@@ -578,19 +578,71 @@ public class OpenAIPlayground
         var p = new ResponseCreateParameter();
         p.Model = "o4-mini";
         //p.Instructions = "You are a personal math tutor. When asked a math question, run code to answer the question.";
-        p.Input.AddUserMessage($"How much wood would a woodchuck chuck?");
+        p.Input.AddUserMessage($"Write a bash script that takes a matrix represented as a string with \r\nformat '[1,2],[3,4],[5,6]' and prints the transpose in the same format.");
         p.Reasoning = new();
         p.Reasoning.Effort = "high";
         p.Reasoning.Summary = "detailed";
         var result = new ResponseStreamResult();
-        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+
+        var mode = "";
+        Console.WriteLine(p.Input[0].Content[0].Text);
+        await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
         {
-            Console.Write(text);
+            switch (item.EventName)
+            {
+                case ResponseStreamEventName.Reasoning_Summary_Text.Delta:
+                    {
+                        var o = item.CreateTypedData() as IResponseStreamEventDelta;
+                        if (mode != "Thinking")
+                        {
+                            mode = "Thinking";
+                            Console.WriteLine("■Thinking...");
+                        }
+                        Console.Write(o?.Delta);
+                    }
+                    break;
+                case ResponseStreamEventName.Reasoning_Summary_Part.Done:
+                    mode = "";
+                    Console.WriteLine();
+                    Console.WriteLine("----------------------------------------");
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    break;
+                case ResponseStreamEventName.Output_Text.Delta:
+                    {
+                        var o = item.CreateTypedData() as IResponseStreamEventDelta;
+                        if (mode != "Output")
+                        {
+                            mode = "Output";
+                            Console.WriteLine("■Output");
+                        }
+                        Console.Write(o?.Delta);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         Console.WriteLine();
         Console.WriteLine();
 
         var ee = result.GetEventList();
+   
+        if (result.Response != null)
+        {
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("■Response Item List");
+            var res = await cl.ResponseInputItemRetrieveAsync(result.Response.Response.Id);
+            foreach (var item in res.Data)
+            {
+                foreach (var content in item.Content)
+                {
+                    Console.WriteLine(content.Text);
+                }
+            }
+        }
+
         Console.WriteLine("■DONE");
     }
     private async ValueTask ResponseCreateMcpStream()
@@ -601,7 +653,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("mcp")
+        p.Tools.Add(new McpCallTool()
         {
             Server_Label = "deepwiki",
             Server_Url = "https://mcp.deepwiki.com/mcp",
@@ -626,7 +678,7 @@ public class OpenAIPlayground
 
     private ToolObject CreateGetWheatherTool()
     {
-        var tool = new ToolObject("function");
+        var tool = new FunctionTool();
         tool.Function = new FunctionObject();
         tool.Function.Name = "getWhether";
         tool.Function.Description = "This service can get whether of specified location.";
@@ -653,7 +705,7 @@ public class OpenAIPlayground
     }
     private ToolObject CreateGetTouristSpotTool()
     {
-        var tool = new ToolObject("function");
+        var tool = new FunctionTool();
         tool.Function = new FunctionObject();
         tool.Function.Name = "getTouristSpot";
         tool.Function.Description = "This service can get tourist spot of specified region.";
@@ -677,7 +729,7 @@ public class OpenAIPlayground
     }
     private ToolObject CreateGetLatLongTool()
     {
-        var tool = new ToolObject("function");
+        var tool = new FunctionTool();
         tool.Function = new FunctionObject();
         tool.Function.Name = "getLatLong";
         tool.Function.Description = "This service can get latitude and longitude of specified location.";
@@ -711,7 +763,7 @@ public class OpenAIPlayground
     }
     private ToolObject CreateDocumentFileColumnExtractTool()
     {
-        var tool = new ToolObject("function");
+        var tool = new FunctionTool();
         tool.Function = new FunctionObject();
         tool.Function.Name = "DataExtract";
         tool.Function.Description = "Extract item data from file.";

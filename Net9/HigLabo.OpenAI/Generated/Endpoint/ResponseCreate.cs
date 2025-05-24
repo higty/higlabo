@@ -227,5 +227,52 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
         }
+
+        public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseInput input, string model)
+        {
+            var p = new ResponseCreateParameter();
+            p.Input = input;
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetEventStreamAsync(p, null, System.Threading.CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseInput input, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            var p = new ResponseCreateParameter();
+            p.Input = input;
+            p.Model = model;
+            p.Stream = true;
+            await foreach (var item in this.GetEventStreamAsync(p, null, cancellationToken))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseCreateParameter parameter)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetEventStreamAsync(parameter, null, System.Threading.CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseCreateParameter parameter, ResponseStreamResult result)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetEventStreamAsync(parameter, result, System.Threading.CancellationToken.None))
+            {
+                yield return item;
+            }
+        }
+        public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseCreateParameter parameter, ResponseStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            parameter.Stream = true;
+            await foreach (var item in this.GetEventStreamAsync(parameter, result, cancellationToken))
+            {
+                yield return item;
+            }
+        }
     }
 }

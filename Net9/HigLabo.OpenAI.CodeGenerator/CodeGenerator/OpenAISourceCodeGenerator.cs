@@ -1034,6 +1034,10 @@ public class OpenAISourceCodeGenerator
         {
             return "ResponseObjectResponse";
         }
+        else if (cName == "ResponseInputItemRetrieve")
+        {
+            return "RestApiDataResponse<List<ResponseInputItem>>";
+        }
         else
         {
             return "RestApiResponse";
