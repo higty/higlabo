@@ -67,7 +67,7 @@ public class RunObject
     }
     public string Model { get; set; } = "";
     public string Instructions { get; set; } = "";
-    public List<ToolObject> Tools { get; set; } = new();
+    public List<Tool> Tools { get; set; } = new();
     public List<string>? File_Ids { get; set; }
     public object? MetaData { get; set; }
     public RunUsageObject Usage { get; set; } = new();
@@ -132,7 +132,7 @@ public class RunObjectResponse: RestApiResponse
     }
     public string Model { get; set; } = "";
     public string Instructions { get; set; } = "";
-    public List<ToolObject> Tools { get; set; } = new();
+    public List<Tool> Tools { get; set; } = new();
     public List<string>? File_Ids { get; set; }
     public object? MetaData { get; set; }
     public RunUsageObject Usage { get; set; } = new();

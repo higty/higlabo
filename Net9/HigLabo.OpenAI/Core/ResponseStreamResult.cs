@@ -1,4 +1,6 @@
 ﻿using HigLabo.Core;
+using HigLabo.OpenAI.Entitiy;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace HigLabo.OpenAI;
 
 public class ResponseStreamResult
 {
+    public ResponseStreamResponse? Response { get; set; }
     public string? Text { get; set; } 
     public List<ResponseStreamEvent> EventList { get; init; } = new();
 
@@ -20,12 +23,127 @@ public class ResponseStreamResult
         {
             var o = item.CreateTypedData();
             if (o == null) { continue; }
+            if (o is ResponseStreamResponse)
+            {
+                this.Response = (ResponseStreamResponse)o;
+            }
             l.Add(o);
         }
         return l;
     }
+    public IEnumerable<ResponseStreamOutputItem.OutputItem> GetFunctionCallList()
+    {
+        foreach (var item in this.EventList)
+        {
+            var o = item.CreateTypedData();
+            if (o == null) { continue; }
+            if (o is ResponseStreamOutputItem f)
+            {
+                yield return f.Item;
+            }
+        }
+    }
 }
+public class ResponseStreamEventName
+{
+    public const string Created = "response.created";
+    public const string In_Progress = "response.in_progress";
+    public const string Completed = "response.completed";
+    public const string Failed = "response.failed";
+    public const string Incomplete = "response.incomplete";
+    public const string Queued = "response.queued";
+    public const string Error = "response.error";
 
+    public class Output_Item
+    {
+        public const string Added = "response.output_item.added";
+        public const string Done = "response.output_item.done";
+    }
+    public class Content_Part
+    {
+        public const string Added = "response.content_part.added";
+        public const string Done = "response.content_part.done";
+    }
+    public class Output_Text
+    {
+        public const string Delta = "response.output_text.delta";
+        public class Annotation
+        {
+            public const string Added = "response.output_text.annotation.added";
+        }
+        public const string Done = "response.output_text.done";
+    }
+    public class Refusal
+    {
+        public const string Delta = "response.refusal.delta";
+        public const string Done = "response.refusal.done";
+    }
+    public class Function_Call_Arguments
+    {
+        public const string Delta = "response.function_call_arguments.delta";
+        public const string Done = "response.function_call_arguments.done";
+    }
+    public class File_Search_Call
+    {
+        public const string In_Progress = "response.file_search_call.in_progress";
+        public const string Searching = "response.file_search_call.searching";
+        public const string Completed = "response.file_search_call.completed";
+    }
+    public class Web_Search_Call
+    {
+        public const string In_Progress = "response.web_search_call.in_progress";
+        public const string Searching = "response.web_search_call.searching";
+        public const string Completed = "response.web_search_call.completed";
+    }
+    public class Reasoning_Summary_Part
+    {
+        public const string Added = "response.reasoning_summary_part.added";
+        public const string Done = "response.reasoning_summary_part.done";
+    }
+    public class Reasoning_Summary_Text
+    {
+        public const string Delta = "response.reasoning_summary_text.delta";
+        public const string Done = "response.reasoning_summary_text.done";
+    }
+    public class Image_Generation_Call
+    {
+        public const string Generating = "response.image_generation_call.generating";
+        public const string In_Progress = "response.image_generation_call.in_progress";
+        public const string Completed = "response.image_generation_call.completed";
+        public const string Partial_Image = "response.image_generation_call.partial_image";
+    }
+    public class Mcp_Call
+    {
+        public class Arguments
+        {
+            public const string Delta = "response.mcp_call.arguments.delta";
+            public const string Done = "response.mcp_call.arguments.done";
+        }
+        public const string In_Progress = "response.mcp_call.in_progress";
+        public const string Completed = "response.mcp_call.completed";
+        public const string Failed = "response.mcp_call.failed";
+    }
+    public class Mcp_List_Tools
+    {
+        public const string In_Progress = "response.mcp_list_tools.in_progress";
+        public const string Completed = "response.mcp_list_tools.completed";
+        public const string Failed = "response.mcp_list_tools.failed";
+    }
+    public class Output_Text_Annotation
+    {
+        public const string Added = "response.output_text_annotation.added";
+    }
+    public class Reasoning
+    {
+        public const string Delta = "response.reasoning.delta";
+        public const string Done = "response.reasoning.done";
+    }
+    public class Reasoning_Summary
+    {
+        public const string Delta = "response.reasoning_summary.delta";
+        public const string Done = "response.reasoning_summary.done";
+    }
+}
 public class ResponseStreamEvent
 {
     public string EventName { get; set; } = "";
@@ -40,51 +158,51 @@ public class ResponseStreamEvent
     {
         switch (this.EventName)
         {
-            case "response.created": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
-            case "response.in_progress": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
-            case "response.completed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
-            case "response.failed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
-            case "response.incomplete": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
-            case "response.output_item.added": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputItem>(this.Data)!;
-            case "response.output_item.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputItem>(this.Data)!;
-            case "response.content_part.added": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamContentPart>(this.Data)!;
-            case "response.content_part.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamContentPart>(this.Data)!;
-            case "response.output_text.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextDelta>(this.Data)!;
-            case "response.output_text.annotation.added": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextAnnotationAdded>(this.Data)!;
-            case "response.output_text.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextDone>(this.Data)!;
-            case "response.refusal.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamRefusal>(this.Data)!;
-            case "response.refusal.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamRefusalDone>(this.Data)!;
-            case "response.function_call_arguments.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFunctionCallArguments>(this.Data)!;
-            case "response.function_call_arguments.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFunctionCallArgumentsDone>(this.Data)!;
-            case "response.file_search_call.in_progress": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFileSearchCall>(this.Data)!;
-            case "response.file_search_call.searching": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFileSearchCall>(this.Data)!;
-            case "response.file_search_call.completed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFileSearchCall>(this.Data)!;
-            case "response.web_search_call.in_progress": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamWebSearchCall>(this.Data)!;
-            case "response.web_search_call.searching": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamWebSearchCall>(this.Data)!;
-            case "response.web_search_call.completed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamWebSearchCall>(this.Data)!;
-            case "response.reasoning_summary_part.added": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryPart>(this.Data)!;
-            case "response.reasoning_summary_part.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryPart>(this.Data)!;
-            case "response.reasoning_summary_text.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryTextDelta>(this.Data)!;
-            case "response.reasoning_summary_text.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryTextDone>(this.Data)!;
-            case "response.image_generation_call.generating": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCall>(this.Data)!;
-            case "response.image_generation_call.in_progress": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCall>(this.Data)!;
-            case "response.image_generation_call.completed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCall>(this.Data)!;
-            case "response.image_generation_call.partial_image": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCallPartialImage>(this.Data)!;
-            case "response.mcp_call.arguments.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArgumentsDelta>(this.Data)!;
-            case "response.mcp_call.arguments.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArgumentsDone>(this.Data)!;
-            case "response.mcp_call.in_progress": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArgumentsInProgress>(this.Data)!;
-            case "response.mcp_call.completed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArguments>(this.Data)!;
-            case "response.mcp_call.failed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArguments>(this.Data)!;
-            case "response.mcp_list_tools.in_progress": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpListTools>(this.Data)!;
-            case "response.mcp_list_tools.completed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpListTools>(this.Data)!;
-            case "response.mcp_list_tools.failed": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpListTools>(this.Data)!;
-            case "response.output_text_annotation.added": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextAnnotationAdded>(this.Data)!;
-            case "response.queued": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamQueued>(this.Data)!;
-            case "response.reasoning.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningDelta>(this.Data)!;
-            case "response.reasoning.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningDone>(this.Data)!;
-            case "response.reasoning_summary.delta": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDelta>(this.Data)!;
-            case "response.reasoning_summary.done": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDone>(this.Data)!;
-            case "error": return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(this.Data)!;
+            case ResponseStreamEventName.Created: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
+            case ResponseStreamEventName.In_Progress: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
+            case ResponseStreamEventName.Completed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
+            case ResponseStreamEventName.Failed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
+            case ResponseStreamEventName.Incomplete: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamResponse>(this.Data)!;
+            case ResponseStreamEventName.Queued: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamQueued>(this.Data)!;
+            case ResponseStreamEventName.Output_Item.Added: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputItem>(this.Data)!;
+            case ResponseStreamEventName.Output_Item.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputItem>(this.Data)!;
+            case ResponseStreamEventName.Content_Part.Added: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamContentPart>(this.Data)!;
+            case ResponseStreamEventName.Content_Part.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamContentPart>(this.Data)!;
+            case ResponseStreamEventName.Output_Text.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextDelta>(this.Data)!;
+            case ResponseStreamEventName.Output_Text.Annotation.Added: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextAnnotationAdded>(this.Data)!;
+            case ResponseStreamEventName.Output_Text.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextDone>(this.Data)!;
+            case ResponseStreamEventName.Refusal.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamRefusal>(this.Data)!;
+            case ResponseStreamEventName.Refusal.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamRefusalDone>(this.Data)!;
+            case ResponseStreamEventName.Function_Call_Arguments.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFunctionCallArguments>(this.Data)!;
+            case ResponseStreamEventName.Function_Call_Arguments.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFunctionCallArgumentsDone>(this.Data)!;
+            case ResponseStreamEventName.File_Search_Call.In_Progress: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFileSearchCall>(this.Data)!;
+            case ResponseStreamEventName.File_Search_Call.Searching: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFileSearchCall>(this.Data)!;
+            case ResponseStreamEventName.File_Search_Call.Completed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamFileSearchCall>(this.Data)!;
+            case ResponseStreamEventName.Web_Search_Call.In_Progress: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamWebSearchCall>(this.Data)!;
+            case ResponseStreamEventName.Web_Search_Call.Searching: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamWebSearchCall>(this.Data)!;
+            case ResponseStreamEventName.Web_Search_Call.Completed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamWebSearchCall>(this.Data)!;
+            case ResponseStreamEventName.Reasoning_Summary_Part.Added: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryPart>(this.Data)!;
+            case ResponseStreamEventName.Reasoning_Summary_Part.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryPart>(this.Data)!;
+            case ResponseStreamEventName.Reasoning_Summary_Text.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryTextDelta>(this.Data)!;
+            case ResponseStreamEventName.Reasoning_Summary_Text.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryTextDone>(this.Data)!;
+            case ResponseStreamEventName.Image_Generation_Call.Generating: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCall>(this.Data)!;
+            case ResponseStreamEventName.Image_Generation_Call.In_Progress: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCall>(this.Data)!;
+            case ResponseStreamEventName.Image_Generation_Call.Completed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCall>(this.Data)!;
+            case ResponseStreamEventName.Image_Generation_Call.Partial_Image: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamImageGenerationCallPartialImage>(this.Data)!;
+            case ResponseStreamEventName.Mcp_Call.Arguments.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArgumentsDelta>(this.Data)!;
+            case ResponseStreamEventName.Mcp_Call.Arguments.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArgumentsDone>(this.Data)!;
+            case ResponseStreamEventName.Mcp_Call.In_Progress: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArgumentsInProgress>(this.Data)!;
+            case ResponseStreamEventName.Mcp_Call.Completed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArguments>(this.Data)!;
+            case ResponseStreamEventName.Mcp_Call.Failed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpCallArguments>(this.Data)!;
+            case ResponseStreamEventName.Mcp_List_Tools.In_Progress: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpListTools>(this.Data)!;
+            case ResponseStreamEventName.Mcp_List_Tools.Completed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpListTools>(this.Data)!;
+            case ResponseStreamEventName.Mcp_List_Tools.Failed: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamMcpListTools>(this.Data)!;
+            case ResponseStreamEventName.Output_Text_Annotation.Added: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamOutputTextAnnotationAdded>(this.Data)!;
+            case ResponseStreamEventName.Reasoning.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningDelta>(this.Data)!;
+            case ResponseStreamEventName.Reasoning.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningDone>(this.Data)!;
+            case ResponseStreamEventName.Reasoning_Summary.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDelta>(this.Data)!;
+            case ResponseStreamEventName.Reasoning_Summary.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDone>(this.Data)!;
+            case ResponseStreamEventName.Error: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(this.Data)!;
             default: return null;
         }
     }
@@ -98,21 +216,118 @@ public interface IResponseStreamEvent
 {
     string Type { get; }
 }
+public interface IResponseStreamEventDelta
+{
+    string Delta { get; }
+}
 public class ResponseStreamResponse : IResponseStreamEvent
 {
     public string Type { get; set; } = "";
     public ResponseObject Response { get; set; } = new();
 }
-public class ResponseStreamOutputItem : ResponseStreamOutputItem<object>
+public class ResponseStreamOutputItem : IResponseStreamEvent
 {
+    public class OutputItem
+    {
+        public List<OutputContent> Content { get; set; } = new();
+        public string Id { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Status { get; set; } = "";
 
-}
-public class ResponseStreamOutputItem<T> : IResponseStreamEvent
-    where T: new()
-{
+        public string? Role { get; set; } = "";
+
+        public List<string> Queries { get; set; } = new();
+        public List<OutputResult>? Results { get; set; }
+
+        public string? Name { get; set; }
+        public string? Arguments { get; set; }
+        public string? Call_Id { get; set; }
+
+        public OutputAction? Action { get; set; }
+        public PendingSafetyCheck? Pending_Safety_Checks { get; set; }
+        public List<OutputSummary>? Summary { get; set; }
+        public string? Encrypted_Content { get; set; }
+        /// <summary>
+        /// The generated image encoded in base64.
+        /// </summary>
+        public string? Result { get; set; }
+        public string? Code { get; set; }
+        public string? Container_Id { get; set; }
+
+        public string? Server_Label { get; set; }
+        public string? Error { get; set; }
+
+        public List<OutputTool>? Tools { get; set; }
+    }
+    public class OutputContent
+    {
+        public string Text { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Refusal { get; set; } = "";
+        public List<Annotation> Annotations { get; set; } = new();
+    }
+    public class OutputResult
+    {
+        //OutputResult
+        public object? Attributes { get; set; }
+        public string File_Id { get; set; } = "";
+        public string FileName { get; set; } = "";
+        public double Score { get; set; }
+        public string Text { get; set; } = "";
+        //CodeInterpreter
+        public string Logs { get; set; } = "";
+        public string Type { get; set; } = "";
+        public List<OutputCodeInterpreterResultFile>? Files { get; set; }
+    }
+    public class OutputCodeInterpreterResultFile
+    {
+        public string File_Id { get; set; } = "";
+        public string Mime_Type { get; set; } = "";
+    }
+    public class OutputAction
+    {
+        public string? Button { get; set; }
+        public string Type { get; set; } = "";
+        public int? X { get; set; }
+        public int? Y { get; set; }
+        public List<OutputCoordinate>? Path { get; set; }
+        public List<string>? Keys { get; set; }
+        public int? Scroll_X { get; set; }
+        public int? Scroll_Y { get; set; }
+        public string? Text { get; set; } 
+        //Shell action
+        public List<string> Command { get; set; } = new();
+        public string Env { get; set; } = "";
+        public int? Timeout_ms { get; set; }
+        public string? User { get; set; }
+        public string? Working_Directory { get; set; }
+    }
+    public class OutputCoordinate
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+    public class PendingSafetyCheck
+    {
+        public string Code { get; set; } = "";
+        public string Id { get; set; } = "";
+        public string Message { get; set; } = "";
+    }
+    public class OutputSummary
+    {
+        public string Text { get; set; } = "";
+        public string Type { get; set; } = "";
+    }
+    public class OutputTool
+    {
+        public string Name { get; set; } = "";
+        public object Input_Schema { get; set; } = new();
+        public object? Annotations { get; set; }
+        public string? Description { get; set; }
+    }
     public string Type { get; set; } = "";
     public int Output_Index { get; set; }
-    public T Item { get; set; } = new T();
+    public OutputItem Item { get; set; } = new ();
     public int Sequence_Number { get; set; }
 }
 public class ResponseStreamContentPart : IResponseStreamEvent
@@ -154,7 +369,7 @@ public class ResponseStreamContentPart : IResponseStreamEvent
     public ContentPart Part { get; set; } = new();
     public int Sequence_Number { get; set; }
 }
-public class ResponseStreamOutputTextDelta : IResponseStreamEvent
+public class ResponseStreamOutputTextDelta : IResponseStreamEvent, IResponseStreamEventDelta
 {
     public string Type { get; set; } = "";
     public string Item_Id { get; set; } = "";
@@ -192,7 +407,7 @@ public class ResponseStreamOutputTextDone : IResponseStreamEvent
     public string Text { get; set; } = "";
     public int Sequence_Number { get; set; }
 }
-public class ResponseStreamRefusal : IResponseStreamEvent
+public class ResponseStreamRefusal : IResponseStreamEvent, IResponseStreamEventDelta
 {
     public string Type { get; set; } = "";
     public string Item_Id { get; set; } = "";
@@ -211,7 +426,7 @@ public class ResponseStreamRefusalDone : IResponseStreamEvent
     public int Sequence_Number { get; set; }
 }
 
-public class ResponseStreamFunctionCallArguments : IResponseStreamEvent
+public class ResponseStreamFunctionCallArguments : IResponseStreamEvent, IResponseStreamEventDelta
 {
     public string Type { get; set; } = "";
     public string Item_Id { get; set; } = "";
@@ -255,7 +470,7 @@ public class ResponseStreamReasoningSummaryPart : IResponseStreamEvent
     public ResponseStreamReasoningSummaryPartText Part { get; set; } = new();
     public int Sequence_Number { get; set; }
 }
-public class ResponseStreamReasoningSummaryTextDelta : IResponseStreamEvent
+public class ResponseStreamReasoningSummaryTextDelta : IResponseStreamEvent, IResponseStreamEventDelta
 {
     public string Type { get; set; } = "";
     public string Item_Id { get; set; } = "";
@@ -367,13 +582,17 @@ public class ReasoningDelta
 {
     public string Text { get; set; } = "";
 }
-public class ResponseStreamReasoningDelta : IResponseStreamEvent
+public class ResponseStreamReasoningDelta : IResponseStreamEvent, IResponseStreamEventDelta
 {
     public string Type { get; set; } = "";
     public string Item_Id { get; set; } = "";
     public int Output_Index { get; set; }
     public int Content_Index { get; set; }
     public ReasoningDelta Delta { get; set; } = new();
+    string IResponseStreamEventDelta.Delta
+    {
+        get { return this.Delta.Text; }
+    }
     public int Sequence_Number { get; set; }
 }
 public class ResponseStreamReasoningDone : IResponseStreamEvent
@@ -385,13 +604,17 @@ public class ResponseStreamReasoningDone : IResponseStreamEvent
     public string Text { get; set; } = "";
     public int Sequence_Number { get; set; }
 }
-public class ResponseStreamReasoningSummaryDelta : IResponseStreamEvent
+public class ResponseStreamReasoningSummaryDelta : IResponseStreamEvent, IResponseStreamEventDelta
 {
     public string Type { get; set; } = "";
     public string Item_Id { get; set; } = "";
     public int Output_Index { get; set; }
     public int Summary_Index { get; set; }
     public ReasoningDelta Delta { get; set; } = new();
+    string IResponseStreamEventDelta.Delta
+    {
+        get { return this.Delta.Text; }
+    }
     public int Sequence_Number { get; set; }
 }
 public class ResponseStreamReasoningSummaryDone : IResponseStreamEvent

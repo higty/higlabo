@@ -18,19 +18,23 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Input { get; set; } = "";
         /// <summary>
-        /// One of the available TTS models: tts-1 or tts-1-hd
+        /// One of the available TTS models: tts-1, tts-1-hd or gpt-4o-mini-tts.
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
-        /// The voice to use when generating the audio. Supported voices are alloy, ash, coral, echo, fable, onyx, nova, sage and shimmer. Previews of the voices are available in the Text to speech guide.
+        /// The voice to use when generating the audio. Supported voices are alloy, ash, ballad, coral, echo, fable, onyx, nova, sage, shimmer, and verse. Previews of the voices are available in the Text to speech guide.
         /// </summary>
         public string Voice { get; set; } = "";
+        /// <summary>
+        /// Control the voice of your generated audio with additional instructions. Does not work with tts-1 or tts-1-hd.
+        /// </summary>
+        public string? Instructions { get; set; }
         /// <summary>
         /// The format to audio in. Supported formats are mp3, opus, aac, flac, wav, and pcm.
         /// </summary>
         public string? Response_Format { get; set; }
         /// <summary>
-        /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
+        /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default. Does not work with gpt-4o-mini-tts.
         /// </summary>
         public double? Speed { get; set; }
 
@@ -44,6 +48,7 @@ namespace HigLabo.OpenAI
             	input = this.Input,
             	model = this.Model,
             	voice = this.Voice,
+            	instructions = this.Instructions,
             	response_format = this.Response_Format,
             	speed = this.Speed,
             };

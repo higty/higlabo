@@ -468,6 +468,37 @@ public partial class OpenAIClient
 
         }
     }
+    public async IAsyncEnumerable<ResponseStreamEvent> GetResponseStreamEventAsync<TParameter>(TParameter parameter, ResponseStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
+    where TParameter : RestApiParameter, IRestApiParameter, IResponseCreateParameter
+    {
+        var eventName = "";
+        await foreach (var line in this.GetStreamAsync(parameter, cancellationToken))
+        {
+            if (line.IsEvent())
+            {
+                eventName = line.GetText();
+            }
+            if (line.IsData())
+            {
+                var text = line.GetText();
+                if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
+
+                var rEvent = new ResponseStreamEvent(eventName, text);
+                if (result != null)
+                {
+                    result.EventList.Add(rEvent);
+                }
+                yield return rEvent;
+                
+                if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
+                {
+                    var error = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerError>(text);
+                    throw new OpenAIServerSentEventException(error);
+                }
+            }
+
+        }
+    }
 
     public async IAsyncEnumerable<string> ChatCompletionCreateStreamAsync(string message, string model)
     {

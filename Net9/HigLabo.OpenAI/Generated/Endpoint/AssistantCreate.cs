@@ -57,7 +57,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types code_interpreter, file_search, or function.
         /// </summary>
-        public List<ToolObject>? Tools { get; set; }
+        public List<ChatCompletionFunctionTool>? Tools { get; set; }
         /// <summary>
         /// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
         /// We generally recommend altering this or temperature but not both.

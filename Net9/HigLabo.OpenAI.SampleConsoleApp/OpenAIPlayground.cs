@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using static HigLabo.OpenAI.ChatCompletionFunctionTool;
 
 namespace HigLabo.OpenAI;
 
@@ -20,7 +21,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateMcpStream();
+        await ResponseCreateFunctionCalling();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -205,9 +206,9 @@ public class OpenAIPlayground
             _ => "gpt-4o",
         };
 
-        p.Tools = new List<ToolObject>();
-        p.Tools.Add(this.CreateGetWheatherTool());
-        p.Tools.Add(this.CreateGetLatLongTool());
+        p.Tools = new List<ChatCompletionFunctionTool>();
+        p.Tools.Add(this.CreateGetWheatherChatCompletionTool());
+        p.Tools.Add(this.CreateGetLatLongChatCompletionTool());
 
         var result = new ChatCompletionStreamResult();
         await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
@@ -377,7 +378,7 @@ public class OpenAIPlayground
         {
             include_usage = true
         };
-        p.Tools = [CreateDocumentFileColumnExtractTool()];
+        p.Tools = [CreateDocumentFileColumnExtractChatCompletionTool()];
 
         var result = new ChatCompletionStreamResult();
         await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
@@ -417,6 +418,36 @@ public class OpenAIPlayground
 
         Console.WriteLine("■DONE");
     }
+    private async ValueTask ResponseCreateFunctionCalling()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude.");
+
+        p.Parallel_Tool_Calls = true;
+        p.Tools = new List<Tool>();
+        p.Tools.Add(this.CreateGetWheatherTool());
+        p.Tools.Add(this.CreateGetLatLongTool());
+
+        var result = new ResponseStreamResult();
+        await foreach (var text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+
+        var ee = result.GetEventList();
+        foreach (var f in result.GetFunctionCallList())
+        {
+            Console.WriteLine("■Function name is " + f.Name);
+            Console.WriteLine("■Arguments is " + f.Arguments);
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("DONE");
+    }
     private async ValueTask ResponseCreateWebSearch()
     {
         var cl = OpenAIClient;
@@ -425,7 +456,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("web_search"));
+        p.Tools.Add(new Tool("web_search"));
         var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
         foreach (var output in res.Output)
         {
@@ -451,7 +482,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("web_search"));
+        p.Tools.Add(new Tool("web_search"));
         var result = new ResponseStreamResult();
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
         {
@@ -484,7 +515,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage("I want to know about 1-bit transformers.");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("file_search")
+        p.Tools.Add(new FileSearchTool()
         {
             Vector_Store_Ids = [storeId],
             Max_Num_Results = 20,
@@ -578,19 +609,71 @@ public class OpenAIPlayground
         var p = new ResponseCreateParameter();
         p.Model = "o4-mini";
         //p.Instructions = "You are a personal math tutor. When asked a math question, run code to answer the question.";
-        p.Input.AddUserMessage($"How much wood would a woodchuck chuck?");
+        p.Input.AddUserMessage($"Write a bash script that takes a matrix represented as a string with \r\nformat '[1,2],[3,4],[5,6]' and prints the transpose in the same format.");
         p.Reasoning = new();
         p.Reasoning.Effort = "high";
         p.Reasoning.Summary = "detailed";
         var result = new ResponseStreamResult();
-        await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+
+        var mode = "";
+        Console.WriteLine(p.Input[0].Content[0].Text);
+        await foreach (var item in cl.GetResponseStreamEventAsync(p, result, CancellationToken.None))
         {
-            Console.Write(text);
+            switch (item.EventName)
+            {
+                case ResponseStreamEventName.Reasoning_Summary_Text.Delta:
+                    {
+                        var o = item.CreateTypedData() as IResponseStreamEventDelta;
+                        if (mode != "Thinking")
+                        {
+                            mode = "Thinking";
+                            Console.WriteLine("■Thinking...");
+                        }
+                        Console.Write(o?.Delta);
+                    }
+                    break;
+                case ResponseStreamEventName.Reasoning_Summary_Part.Done:
+                    mode = "";
+                    Console.WriteLine();
+                    Console.WriteLine("----------------------------------------");
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    break;
+                case ResponseStreamEventName.Output_Text.Delta:
+                    {
+                        var o = item.CreateTypedData() as IResponseStreamEventDelta;
+                        if (mode != "Output")
+                        {
+                            mode = "Output";
+                            Console.WriteLine("■Output");
+                        }
+                        Console.Write(o?.Delta);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         Console.WriteLine();
         Console.WriteLine();
 
         var ee = result.GetEventList();
+   
+        if (result.Response != null)
+        {
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("■Response Item List");
+            var res = await cl.ResponseInputItemRetrieveAsync(result.Response.Response.Id);
+            foreach (var item in res.Data)
+            {
+                foreach (var content in item.Content)
+                {
+                    Console.WriteLine(content.Text);
+                }
+            }
+        }
+
         Console.WriteLine("■DONE");
     }
     private async ValueTask ResponseCreateMcpStream()
@@ -601,7 +684,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4o";
         p.Input.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
         p.Tools = [];
-        p.Tools.Add(new ToolObject("mcp")
+        p.Tools.Add(new McpCallTool()
         {
             Server_Label = "deepwiki",
             Server_Url = "https://mcp.deepwiki.com/mcp",
@@ -624,10 +707,9 @@ public class OpenAIPlayground
         Console.WriteLine("■DONE");
     }
 
-    private ToolObject CreateGetWheatherTool()
+    private ChatCompletionFunctionTool CreateGetWheatherChatCompletionTool()
     {
-        var tool = new ToolObject("function");
-        tool.Function = new FunctionObject();
+        var tool = new ChatCompletionFunctionTool();
         tool.Function.Name = "getWhether";
         tool.Function.Description = "This service can get whether of specified location.";
         //Use anonymous object to define json schema.
@@ -651,10 +733,9 @@ public class OpenAIPlayground
         tool.Function.Parameters = o;
         return tool;
     }
-    private ToolObject CreateGetTouristSpotTool()
+    private ChatCompletionFunctionTool CreateGetTouristSpotChatCompletionTool()
     {
-        var tool = new ToolObject("function");
-        tool.Function = new FunctionObject();
+        var tool = new ChatCompletionFunctionTool();
         tool.Function.Name = "getTouristSpot";
         tool.Function.Description = "This service can get tourist spot of specified region.";
         tool.Function.Parameters = new
@@ -675,10 +756,9 @@ public class OpenAIPlayground
         };
         return tool;
     }
-    private ToolObject CreateGetLatLongTool()
+    private ChatCompletionFunctionTool CreateGetLatLongChatCompletionTool()
     {
-        var tool = new ToolObject("function");
-        tool.Function = new FunctionObject();
+        var tool = new ChatCompletionFunctionTool();
         tool.Function.Name = "getLatLong";
         tool.Function.Description = "This service can get latitude and longitude of specified location.";
         //Use anonymous object to define json schema.
@@ -709,10 +789,9 @@ public class OpenAIPlayground
         tool.Function.Parameters = o;
         return tool;
     }
-    private ToolObject CreateDocumentFileColumnExtractTool()
+    private ChatCompletionFunctionTool CreateDocumentFileColumnExtractChatCompletionTool()
     {
-        var tool = new ToolObject("function");
-        tool.Function = new FunctionObject();
+        var tool = new ChatCompletionFunctionTool();
         tool.Function.Name = "DataExtract";
         tool.Function.Description = "Extract item data from file.";
         var o = new JsonSchema();
@@ -721,6 +800,66 @@ public class OpenAIPlayground
         o.Properties.Add("Address", new JsonSchemaProperty("string", "Address.."));
         o.Properties.Add("MailAddress", new JsonSchemaProperty("string", "Email address."));
         tool.Function.Parameters = o;
+        return tool;
+    }
+
+    private Tool CreateGetWheatherTool()
+    {
+        var tool = new FunctionTool();
+        tool.Name = "getWhether";
+        tool.Description = "This service can get whether of specified location.";
+        var o = new JsonSchema();
+        o.Properties.Add("location", new JsonSchemaProperty("string", "Location list that you want to know."));
+        tool.Parameters = o;
+        return tool;
+    }
+    private Tool CreateGetTouristSpotTool()
+    {
+        var tool = new FunctionTool();
+        tool.Name = "getTouristSpot";
+        tool.Description = "This service can get tourist spot of specified region.";
+        tool.Parameters = new
+        {
+            type = "object",
+            properties = new
+            {
+                locationList = new
+                {
+                    type = "array",
+                    description = "Location list that you want to know.",
+                    items = new
+                    {
+                        type = "string",
+                    }
+                }
+            }
+        };
+        return tool;
+    }
+    private Tool CreateGetLatLongTool()
+    {
+        var tool = new FunctionTool();
+        tool.Name = "getLatLong";
+        tool.Description = "This service can get latitude and longitude of specified location.";
+        var o = new JsonSchema();
+        o.Properties.Add("locationList", new JsonSchemaProperty("array", "Location list that you want to know.")
+        {
+            Items = new JsonSchema("string") { },
+        });
+        tool.Parameters = o;
+        return tool;
+    }
+    private Tool CreateDocumentFileColumnExtractTool()
+    {
+        var tool = new FunctionTool();
+        tool.Name = "DataExtract";
+        tool.Description = "Extract item data from file.";
+        var o = new JsonSchema();
+        o.Properties.Add("PersonName", new JsonSchemaProperty("string", "Person name."));
+        o.Properties.Add("CompanyName", new JsonSchemaProperty("string", "Company name."));
+        o.Properties.Add("Address", new JsonSchemaProperty("string", "Address.."));
+        o.Properties.Add("MailAddress", new JsonSchemaProperty("string", "Email address."));
+        tool.Parameters = o;
         return tool;
     }
 
@@ -930,8 +1069,8 @@ public class OpenAIPlayground
             var p = new RunCreateParameter();
             p.Assistant_Id = assistantId;
             p.Thread_Id = threadId;
-            p.Tools = new List<ToolObject>();
-            p.Tools.Add(CreateGetWheatherTool());
+            p.Tools = new List<ChatCompletionFunctionTool>();
+            p.Tools.Add(CreateGetWheatherChatCompletionTool());
 
             var result = new AssistantMessageStreamResult();
             await foreach (string text in cl.RunCreateStreamAsync(p, result, CancellationToken.None))
@@ -988,11 +1127,11 @@ public class OpenAIPlayground
             p.Model = "gpt-4-turbo";
         }
 
-        p.Tools = new List<ToolObject>();
-        p.Tools.Add(new ToolObject("code_interpreter"));
+        p.Tools = new List<ChatCompletionFunctionTool>();
+        p.Tools.Add(new ChatCompletionFunctionTool("code_interpreter"));
         if (cl.ServiceProvider == ServiceProvider.OpenAI)
         {
-            p.Tools.Add(new ToolObject("file_search"));
+            p.Tools.Add(new ChatCompletionFunctionTool("file_search"));
         }
 
         //var res0 = await cl.FilesAsync();

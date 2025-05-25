@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Creates a variation of a given image.
+    /// Creates a variation of a given image. This endpoint only supports dall-e-2.
     /// <seealso href="https://api.openai.com/v1/images/variations">https://api.openai.com/v1/images/variations</seealso>
     /// </summary>
     public partial class ImagesVariationsParameter : RestApiParameter, IRestApiParameter, IFileParameter, IFormDataParameter
@@ -22,7 +22,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Model { get; set; }
         /// <summary>
-        /// The number of images to generate. Must be between 1 and 10. For dall-e-3, only n=1 is supported.
+        /// The number of images to generate. Must be between 1 and 10.
         /// </summary>
         public int? N { get; set; }
         /// <summary>

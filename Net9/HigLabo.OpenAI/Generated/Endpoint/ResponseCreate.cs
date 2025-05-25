@@ -1,10 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HigLabo.OpenAI
 {
@@ -26,24 +24,24 @@ namespace HigLabo.OpenAI
         /// </summary>
         public ResponseInput Input { get; set; } = new ();
         /// <summary>
-        /// Model ID used to generate the response, like gpt-4o or o1. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the model guide to browse and compare available models.
+        /// Model ID used to generate the response, like gpt-4o or o3. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the model guide to browse and compare available models.
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
-        /// Whether to run the model response in the background.
+        /// Whether to run the model response in the background. Learn more.
         /// </summary>
         public bool? Background { get; set; }
         /// <summary>
-        /// Specify additional output data to include in the model response.Currently supported values are:
+        /// Specify additional output data to include in the model response. Currently supported values are:
         /// file_search_call.results: Include the search results of the file search tool call.
         /// message.input_image.image_url: Include image urls from the input message.
         /// computer_call_output.output.image_url: Include image urls from the computer call output.
-        /// reasoning.encrypted_content: Includes an encrypted version of reasoning tokens in reasoning item outputs.This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly(like when the store parameter is set to false, or when an organization is enrolled in the zero data retention program).        /// Specify additional output data to include in the model response. Currently supported values are:
+        /// reasoning.encrypted_content: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the store parameter is set to false, or when an organization is enrolled in the zero data retention program).
         /// </summary>
         public List<string>? Include { get; set; }
         /// <summary>
         /// Inserts a system (or developer) message as the first item in the model's context.
-        /// When using along with previous_response_id, the instructions from a previous response will be not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses.
+        /// When using along with previous_response_id, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses.
         /// </summary>
         public string? Instructions { get; set; }
         /// <summary>
@@ -73,7 +71,7 @@ namespace HigLabo.OpenAI
         /// If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.
         /// If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
         /// If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
-        /// If set to 'flex', the request will be processed with the Flex Processing service tier.
+        /// If set to 'flex', the request will be processed with the Flex Processing service tier. Learn more.
         /// When not set, the default behavior is 'auto'.
         /// When this parameter is set, the response body will include the service_tier utilized.
         /// </summary>
@@ -106,7 +104,7 @@ namespace HigLabo.OpenAI
         /// Built-in tools: Tools that are provided by OpenAI that extend the model's capabilities, like web search or file search. Learn more about built-in tools.
         /// Function calls (custom tools): Functions that are defined by you, enabling the model to call your own code. Learn more about function calling.
         /// </summary>
-        public List<ToolObject>? Tools { get; set; }
+        public List<Tool>? Tools { get; set; }
         /// <summary>
         /// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
         /// We generally recommend altering this or temperature but not both.
@@ -119,7 +117,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Truncation { get; set; }
         /// <summary>
-        /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
+        /// A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. Learn more.
         /// </summary>
         public string? User { get; set; }
 
@@ -132,16 +130,16 @@ namespace HigLabo.OpenAI
             return new {
             	input = this.Input,
             	model = this.Model,
-                background = this.Background,
+            	background = this.Background,
             	include = this.Include,
             	instructions = this.Instructions,
             	max_output_tokens = this.Max_Output_Tokens,
             	metadata = this.Metadata,
             	parallel_tool_calls = this.Parallel_Tool_Calls,
             	previous_response_id = this.Previous_Response_Id,
-            	reasoning = this.Reasoning?.GetRequestBody(),
-                service_tier = this.Service_Tier,
-                store = this.Store,
+            	reasoning = this.Reasoning,
+            	service_tier = this.Service_Tier,
+            	store = this.Store,
             	stream = this.Stream,
             	temperature = this.Temperature,
             	text = this.Text,
