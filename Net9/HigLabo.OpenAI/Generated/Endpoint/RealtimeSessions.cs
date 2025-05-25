@@ -19,7 +19,11 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Input_Audio_Format { get; set; }
         /// <summary>
-        /// Configuration for input audio transcription, defaults to off and can be set to null to turn off once on. Input audio transcription is not native to the model, since the model consumes audio directly. Transcription runs asynchronously through OpenAI Whisper transcription and should be treated as rough guidance rather than the representation understood by the model. The client can optionally set the language and prompt for transcription, these fields will be passed to the Whisper API.
+        /// Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
+        /// </summary>
+        public object? Input_Audio_Noise_Reduction { get; set; }
+        /// <summary>
+        /// Configuration for input audio transcription, defaults to off and can be set to null to turn off once on. Input audio transcription is not native to the model, since the model consumes audio directly. Transcription runs asynchronously through the /audio/transcriptions endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. The client can optionally set the language and prompt for transcription, these offer additional guidance to the transcription service.
         /// </summary>
         public object? Input_Audio_Transcription { get; set; }
         /// <summary>
@@ -44,7 +48,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Output_Audio_Format { get; set; }
         /// <summary>
-        /// Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
+        /// Sampling temperature for the model, limited to [0.6, 1.2]. For audio models a temperature of 0.8 is highly recommended for best performance.
         /// </summary>
         public double? Temperature { get; set; }
         /// <summary>
@@ -54,13 +58,13 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// Tools (functions) available to the model.
         /// </summary>
-        public List<ToolObject>? Tools { get; set; }
+        public List<Tool>? Tools { get; set; }
         /// <summary>
-        /// Configuration for turn detection. Can be set to null to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
+        /// Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to null to turn off, in which case the client must manually trigger model response. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech. Semantic VAD is more advanced and uses a turn detection model (in conjuction with VAD) to semantically estimate whether the user has finished speaking, then dynamically sets a timeout based on this probability. For example, if user audio trails off with "uhhm", the model will score a low probability of turn end and wait longer for the user to continue speaking. This can be useful for more natural conversations, but may have a higher latency.
         /// </summary>
         public object? Turn_Detection { get; set; }
         /// <summary>
-        /// The voice the model uses to respond. Voice cannot be changed during the session once the model has responded with audio at least once. Current voice options are alloy, ash, ballad, coral, echo sage, shimmer and verse.
+        /// The voice the model uses to respond. Voice cannot be changed during the session once the model has responded with audio at least once. Current voice options are alloy, ash, ballad, coral, echo, fable, onyx, nova, sage, shimmer, and verse.
         /// </summary>
         public string? Voice { get; set; }
 
@@ -72,6 +76,7 @@ namespace HigLabo.OpenAI
         {
             return new {
             	input_audio_format = this.Input_Audio_Format,
+            	input_audio_noise_reduction = this.Input_Audio_Noise_Reduction,
             	input_audio_transcription = this.Input_Audio_Transcription,
             	instructions = this.Instructions,
             	max_response_output_tokens = this.Max_Response_Output_Tokens,

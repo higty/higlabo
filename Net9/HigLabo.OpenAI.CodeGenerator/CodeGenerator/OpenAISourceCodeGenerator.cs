@@ -29,6 +29,7 @@ public class OpenAISourceCodeGenerator
         var ee = driver.FindElements(By.CssSelector("div[class='section']"));
         //CreateSourceCode(ee[71]);
         //return;
+        Console.WriteLine($"Code generation started");
 
         for (int i = 0; i < ee.Count; i++)
         {
@@ -159,8 +160,8 @@ public class OpenAISourceCodeGenerator
         var propertyList = new List<Property>();
         foreach (var paramSection in endpointPanel.FindElements(By.CssSelector("div[class='param-section']")))
         {
-            var h3 = paramSection.FindElement(By.CssSelector("h3")).Text;
-            if (h3 == "Query parameters")
+            var h4 = paramSection.FindElement(By.CssSelector("h4")).Text;
+            if (h4 == "Query parameters")
             {
                 cParameter.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
 
@@ -195,9 +196,9 @@ public class OpenAISourceCodeGenerator
                     cParameter.Properties.Add(q);
                 }
             }
-            if (h3 == "Request body" || h3 == "Path parameters")
+            if (h4 == "Request body" || h4 == "Path parameters")
             {
-                var isPathParameter = h3 == "Path parameters";
+                var isPathParameter = h4 == "Path parameters";
                 var paramTableId = paramSection.FindElement(By.CssSelector(".param-table")).GetDomAttribute("id");
                 foreach (var paramRow in paramSection.FindElements(By.CssSelector($"#{paramTableId} > div.param-row")))
                 {
@@ -592,6 +593,7 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Get a model response") { return "ResponseRetrieve"; }
         if (endpointAnchor == "Delete a model response") { return "ResponseDelete"; }
         if (endpointAnchor == "List input items") { return "ResponseInputItemRetrieve"; }
+        if (endpointAnchor == "Cancel a response") { return "ResponseCcancel"; }
 
         if (endpointAnchor == "Create vector store") { return "VectorStoreCreate"; }
         if (endpointAnchor == "List vector stores") { return "VectorStores"; }
@@ -612,7 +614,21 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Cancel vector store file batch") { return "VectorStoreFileBatchCancel"; }
         if (endpointAnchor == "List vector store files in a batch") { return "VectorStoreFileBatches"; }
 
-        if (endpointAnchor == "List admin API keys") { return "OrganizationAdminApiKeys"; }
+        if (endpointAnchor == "Create container") { return "ContainerCreate"; }
+        if (endpointAnchor == "List containers") { return "Containers"; }
+        if (endpointAnchor == "Retrieve container") { return "ContainerRetrieve"; }
+        if (endpointAnchor == "Delete a container") { return "ContainerDelete"; }
+        if (endpointAnchor == "Create container file") { return "ContainerFileCreate"; }
+        if (endpointAnchor == "List container files") { return "ContainerFiles"; }
+        if (endpointAnchor == "Retrieve container file") { return "ContainerFileRetrieve"; }
+        if (endpointAnchor == "Retrieve container file content") { return "ContainerFileContent"; }
+
+        if (endpointAnchor == "Create eval") { return "EvalCreate"; }
+        if (endpointAnchor == "Get an eval") { return "Eval"; }
+        if (endpointAnchor == "Update an eval") { return "EvalUpdate"; }
+        if (endpointAnchor == "Delete an eval") { return "EvalDelete"; }
+
+        if (endpointAnchor == "List all organization and project API keys.") { return "OrganizationAdminApiKeys"; }
         if (endpointAnchor == "Create admin API key") { return "OrganizationAdminApiKeyCreate"; }
         if (endpointAnchor == "Retrieve admin API key") { return "OrganizationAdminApiKeyRetrieve"; }
         if (endpointAnchor == "Delete admin API key") { return "OrganizationAdminApiKeyDelete"; }
@@ -670,10 +686,22 @@ public class OpenAISourceCodeGenerator
         if (className == "ResponseCreate" && propertyName == "Input") { return "ResponseInput"; }
         if (className == "ResponseCreate" && propertyName == "Reasoning") { return "Reasoning"; }
         if (className == "Responses" && propertyName == "Reasoning") { return "Reasoning"; }
+        if (propertyName == "Tools")
+        {
+            if (className == "ChatCompletionCreate" ||
+                className == "AssistantCreate")
+            {
+                return "List<ChatCompletionFunctionTool>";
+            }
+            else
+            {
+                return "List<Tool>";
+            }
+        }
 
+            if (propertyName == "include[]") { return "Include"; }
         if (propertyName == "Modalities") { return "object?"; }
         if (propertyName == "Chunking_Strategy") { return "ChunkingStrategy?"; }
-        if (propertyName == "Tools") { return "List<ToolObject>"; }
         if (propertyName == "Tool_choice") { return "object?"; }
         if (propertyName == "Timestamp_Granularities") { return "double[]"; }
         if (propertyName == "Additional_Messages") { return "List<ThreadAdditionalMessageObject>?"; }

@@ -18,7 +18,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Completion_Window { get; set; } = "";
         /// <summary>
-        /// The endpoint to be used for all requests in the batch. Currently /v1/chat/completions, /v1/embeddings, and /v1/completions are supported. Note that /v1/embeddings batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
+        /// The endpoint to be used for all requests in the batch. Currently /v1/responses, /v1/chat/completions, /v1/embeddings, and /v1/completions are supported. Note that /v1/embeddings batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
         /// </summary>
         public string Endpoint { get; set; } = "";
         /// <summary>

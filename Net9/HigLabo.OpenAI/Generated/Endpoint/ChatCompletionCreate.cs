@@ -20,7 +20,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public List<IChatMessage> Messages { get; set; } = new ();
         /// <summary>
-        /// Model ID used to generate the response, like gpt-4o or o1. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the model guide to browse and compare available models.
+        /// Model ID used to generate the response, like gpt-4o or o3. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the model guide to browse and compare available models.
         /// </summary>
         public string Model { get; set; } = "";
         /// <summary>
@@ -92,11 +92,13 @@ namespace HigLabo.OpenAI
         /// If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.
         /// If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
         /// If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
+        /// If set to 'flex', the request will be processed with the Flex Processing service tier. Learn more.
         /// When not set, the default behavior is 'auto'.
         /// When this parameter is set, the response body will include the service_tier utilized.
         /// </summary>
         public string? Service_Tier { get; set; }
         /// <summary>
+        /// Not supported with latest reasoning models o3 and o4-mini.
         /// Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.
         /// </summary>
         public List<string>? Stop { get; set; }
@@ -124,7 +126,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
         /// </summary>
-        public List<ToolObject>? Tools { get; set; }
+        public List<ChatCompletionFunctionTool>? Tools { get; set; }
         /// <summary>
         /// An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
         /// </summary>
@@ -135,7 +137,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Top_P { get; set; }
         /// <summary>
-        /// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.
+        /// A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. Learn more.
         /// </summary>
         public string? User { get; set; }
         /// <summary>
@@ -186,20 +188,18 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<ChatCompletionCreateResponse> ChatCompletionCreateAsync(List<IChatMessage> messages, string model, WebSearchOption? web_Search_Options)
+        public async ValueTask<ChatCompletionCreateResponse> ChatCompletionCreateAsync(List<IChatMessage> messages, string model)
         {
             var p = new ChatCompletionCreateParameter();
             p.Messages = messages;
             p.Model = model;
-            p.Web_Search_Options = web_Search_Options;
             return await this.SendJsonAsync<ChatCompletionCreateParameter, ChatCompletionCreateResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<ChatCompletionCreateResponse> ChatCompletionCreateAsync(List<IChatMessage> messages, string model, WebSearchOption? web_Search_Options, CancellationToken cancellationToken)
+        public async ValueTask<ChatCompletionCreateResponse> ChatCompletionCreateAsync(List<IChatMessage> messages, string model, CancellationToken cancellationToken)
         {
             var p = new ChatCompletionCreateParameter();
             p.Messages = messages;
             p.Model = model;
-            p.Web_Search_Options = web_Search_Options;
             p.Stream = null;
             return await this.SendJsonAsync<ChatCompletionCreateParameter, ChatCompletionCreateResponse>(p, cancellationToken);
         }
@@ -211,24 +211,22 @@ namespace HigLabo.OpenAI
         {
             return await this.SendJsonAsync<ChatCompletionCreateParameter, ChatCompletionCreateResponse>(parameter, cancellationToken);
         }
-        public async IAsyncEnumerable<string> ChatCompletionCreateStreamAsync(List<IChatMessage> messages, string model, WebSearchOption? web_Search_Options)
+        public async IAsyncEnumerable<string> ChatCompletionCreateStreamAsync(List<IChatMessage> messages, string model)
         {
             var p = new ChatCompletionCreateParameter();
             p.Messages = messages;
             p.Model = model;
-            p.Web_Search_Options = web_Search_Options;
             p.Stream = true;
             await foreach (var item in this.GetStreamAsync(p, null, System.Threading.CancellationToken.None))
             {
                 yield return item;
             }
         }
-        public async IAsyncEnumerable<string> ChatCompletionCreateStreamAsync(List<IChatMessage> messages, string model, WebSearchOption? web_Search_Options, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<string> ChatCompletionCreateStreamAsync(List<IChatMessage> messages, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var p = new ChatCompletionCreateParameter();
             p.Messages = messages;
             p.Model = model;
-            p.Web_Search_Options = web_Search_Options;
             p.Stream = true;
             await foreach (var item in this.GetStreamAsync(p, null, cancellationToken))
             {

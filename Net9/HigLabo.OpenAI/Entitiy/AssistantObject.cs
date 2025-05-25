@@ -22,7 +22,7 @@ public class AssistantObject
     public string Description { get; set; } = "";
     public string Model { get; set; } = "";
     public string Instructions { get; set; } = "";
-    public List<ToolObject> Tools { get; set; } = new();
+    public List<Tool> Tools { get; set; } = new();
     public List<string>? File_Ids { get; set; }
     public object? MetaData { get; set; }
 
@@ -46,7 +46,7 @@ public class AssistantObjectResponse: RestApiResponse
     public string Description { get; set; } = "";
     public string Model { get; set; } = "";
     public string Instructions { get; set; } = "";
-    public List<ToolObject> Tools { get; set; } = new();
+    public List<Tool> Tools { get; set; } = new();
     public List<string>? File_Ids { get; set; }
     public object? MetaData { get; set; }
 

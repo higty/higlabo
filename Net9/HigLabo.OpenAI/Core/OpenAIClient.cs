@@ -468,7 +468,7 @@ public partial class OpenAIClient
 
         }
     }
-    public async IAsyncEnumerable<ResponseStreamEvent> GetEventStreamAsync<TParameter>(TParameter parameter, ResponseStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
+    public async IAsyncEnumerable<ResponseStreamEvent> GetResponseStreamEventAsync<TParameter>(TParameter parameter, ResponseStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
     where TParameter : RestApiParameter, IRestApiParameter, IResponseCreateParameter
     {
         var eventName = "";

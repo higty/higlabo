@@ -1,5 +1,5 @@
 ﻿namespace HigLabo.OpenAI;
-public class McpCallTool : ToolObject
+public class McpCallTool : Tool
 {
     public string? Server_Label { get; set; }
     public string? Server_Url { get; set; }

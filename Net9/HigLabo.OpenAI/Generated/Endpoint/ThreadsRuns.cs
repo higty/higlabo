@@ -72,7 +72,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
         /// </summary>
-        public List<ToolObject>? Tools { get; set; }
+        public List<Tool>? Tools { get; set; }
         /// <summary>
         /// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
         /// We generally recommend altering this or temperature but not both.

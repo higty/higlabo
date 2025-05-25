@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace HigLabo.OpenAI;
 
-public class ToolObject
+public class Tool
 {
     public string Type { get; set; } = "";
 
-    public string? Search_Context_Size { get; set; }
-
-
-    public ToolObject() { }
-    public ToolObject(string type)
+    public Tool() { }
+    public Tool(string type)
     {
         this.Type = type;
     }

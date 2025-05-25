@@ -1,9 +1,8 @@
 ﻿Release note
-2024-03-17 Assistant stream api supported.
+2025-05-26 Response api and tools supported.
 
 You can see sample code with latest library at
 https://github.com/higty/higlabo/blob/master/Net9/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
-
 
 See article. Sometimes, it will be out of date.
 https://www.codeproject.com/Articles/5372480/Csharp-OpenAI-library-that-support-Assistants-API

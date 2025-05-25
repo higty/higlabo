@@ -1,4 +1,6 @@
 ﻿using HigLabo.Core;
+using HigLabo.OpenAI.Entitiy;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,18 @@ public class ResponseStreamResult
             l.Add(o);
         }
         return l;
+    }
+    public IEnumerable<ResponseStreamOutputItem.OutputItem> GetFunctionCallList()
+    {
+        foreach (var item in this.EventList)
+        {
+            var o = item.CreateTypedData();
+            if (o == null) { continue; }
+            if (o is ResponseStreamOutputItem f)
+            {
+                yield return f.Item;
+            }
+        }
     }
 }
 public class ResponseStreamEventName
@@ -211,16 +225,109 @@ public class ResponseStreamResponse : IResponseStreamEvent
     public string Type { get; set; } = "";
     public ResponseObject Response { get; set; } = new();
 }
-public class ResponseStreamOutputItem : ResponseStreamOutputItem<object>
+public class ResponseStreamOutputItem : IResponseStreamEvent
 {
+    public class OutputItem
+    {
+        public List<OutputContent> Content { get; set; } = new();
+        public string Id { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Status { get; set; } = "";
 
-}
-public class ResponseStreamOutputItem<T> : IResponseStreamEvent
-    where T: new()
-{
+        public string? Role { get; set; } = "";
+
+        public List<string> Queries { get; set; } = new();
+        public List<OutputResult>? Results { get; set; }
+
+        public string? Name { get; set; }
+        public string? Arguments { get; set; }
+        public string? Call_Id { get; set; }
+
+        public OutputAction? Action { get; set; }
+        public PendingSafetyCheck? Pending_Safety_Checks { get; set; }
+        public List<OutputSummary>? Summary { get; set; }
+        public string? Encrypted_Content { get; set; }
+        /// <summary>
+        /// The generated image encoded in base64.
+        /// </summary>
+        public string? Result { get; set; }
+        public string? Code { get; set; }
+        public string? Container_Id { get; set; }
+
+        public string? Server_Label { get; set; }
+        public string? Error { get; set; }
+
+        public List<OutputTool>? Tools { get; set; }
+    }
+    public class OutputContent
+    {
+        public string Text { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Refusal { get; set; } = "";
+        public List<Annotation> Annotations { get; set; } = new();
+    }
+    public class OutputResult
+    {
+        //OutputResult
+        public object? Attributes { get; set; }
+        public string File_Id { get; set; } = "";
+        public string FileName { get; set; } = "";
+        public double Score { get; set; }
+        public string Text { get; set; } = "";
+        //CodeInterpreter
+        public string Logs { get; set; } = "";
+        public string Type { get; set; } = "";
+        public List<OutputCodeInterpreterResultFile>? Files { get; set; }
+    }
+    public class OutputCodeInterpreterResultFile
+    {
+        public string File_Id { get; set; } = "";
+        public string Mime_Type { get; set; } = "";
+    }
+    public class OutputAction
+    {
+        public string? Button { get; set; }
+        public string Type { get; set; } = "";
+        public int? X { get; set; }
+        public int? Y { get; set; }
+        public List<OutputCoordinate>? Path { get; set; }
+        public List<string>? Keys { get; set; }
+        public int? Scroll_X { get; set; }
+        public int? Scroll_Y { get; set; }
+        public string? Text { get; set; } 
+        //Shell action
+        public List<string> Command { get; set; } = new();
+        public string Env { get; set; } = "";
+        public int? Timeout_ms { get; set; }
+        public string? User { get; set; }
+        public string? Working_Directory { get; set; }
+    }
+    public class OutputCoordinate
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+    public class PendingSafetyCheck
+    {
+        public string Code { get; set; } = "";
+        public string Id { get; set; } = "";
+        public string Message { get; set; } = "";
+    }
+    public class OutputSummary
+    {
+        public string Text { get; set; } = "";
+        public string Type { get; set; } = "";
+    }
+    public class OutputTool
+    {
+        public string Name { get; set; } = "";
+        public object Input_Schema { get; set; } = new();
+        public object? Annotations { get; set; }
+        public string? Description { get; set; }
+    }
     public string Type { get; set; } = "";
     public int Output_Index { get; set; }
-    public T Item { get; set; } = new T();
+    public OutputItem Item { get; set; } = new ();
     public int Sequence_Number { get; set; }
 }
 public class ResponseStreamContentPart : IResponseStreamEvent
