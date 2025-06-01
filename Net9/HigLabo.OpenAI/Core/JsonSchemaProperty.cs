@@ -3,7 +3,7 @@
 public class JsonSchemaProperty
 {
     public string Type { get; set; } = "object";
-    public string Name { get; set; } = "";
+    public string? Name { get; set; } 
     public string Description { get; set; } = "";
     public string[]? Enum { get; set; } 
     public JsonSchema? Items { get; set; }

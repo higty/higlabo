@@ -205,16 +205,16 @@ public partial class OpenAIClient
             if (parameter is FileContentGetParameter ||
                 parameter is AudioSpeechParameter)
             {
-					var o = new TResponse();
+                var o = new TResponse();
                 await o.SetProperty(parameter, requestBodyText, request, response);
                 return o;
-				}
+            }
             else
             {
                 var o = OpenAIClient.JsonConverter.DeserializeObject<TResponse>(bodyText);
-					o.SetProperty(parameter, requestBodyText, request, res, bodyText);
-					return o;
-				}
+                o.SetProperty(parameter, requestBodyText, request, res, bodyText);
+                return o;
+            }
         }
         else
         {
@@ -439,7 +439,14 @@ public partial class OpenAIClient
 
                 if (result != null)
                 {
-                    result.EventList.Add(new ResponseStreamEvent(eventName, text));
+                    var streamEvent = new ResponseStreamEvent(eventName, text);
+                    var oEvent = streamEvent.CreateTypedData();
+                    if (oEvent == null) { continue; }
+                    if (oEvent is ResponseStreamResponse)
+                    {
+                        result.Response = (ResponseStreamResponse)oEvent;
+                    }
+                    result.EventList.Add(streamEvent);
                 }
                 if (string.Equals(eventName, "response.output_text.delta", StringComparison.OrdinalIgnoreCase) ||
                     string.Equals(eventName, "response.refusal.delta", StringComparison.OrdinalIgnoreCase) ||
@@ -459,11 +466,11 @@ public partial class OpenAIClient
                         }
                     }
                 }
-                else if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
-                {
-                    var error = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerError>(text);
-                    throw new OpenAIServerSentEventException(error);
-                }
+                //else if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    var error = OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(text);
+                //    throw new OpenAIServerSentEventException(error) { Result = result };
+                //}
             }
 
         }
@@ -483,18 +490,24 @@ public partial class OpenAIClient
                 var text = line.GetText();
                 if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
 
-                var rEvent = new ResponseStreamEvent(eventName, text);
+                var streamEvent = new ResponseStreamEvent(eventName, text);
                 if (result != null)
                 {
-                    result.EventList.Add(rEvent);
+                    var oEvent = streamEvent.CreateTypedData();
+                    if (oEvent == null) { continue; }
+                    if (oEvent is ResponseStreamResponse)
+                    {
+                        result.Response = (ResponseStreamResponse)oEvent;
+                    }
+                    result.EventList.Add(streamEvent);
                 }
-                yield return rEvent;
+                yield return streamEvent;
                 
-                if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
-                {
-                    var error = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerError>(text);
-                    throw new OpenAIServerSentEventException(error);
-                }
+                //if (string.Equals(eventName, "error", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    var error = OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(text);
+                //    throw new OpenAIServerSentEventException(error) { Result = result };
+                //}
             }
 
         }
@@ -596,6 +609,53 @@ public partial class OpenAIClient
         p.Model = model;
         p.Stream = true;
         await foreach (var item in this.GetStreamAsync(p, result, cancellationToken))
+        {
+            yield return item;
+        }
+    }
+
+    public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseInput input, string model)
+    {
+        var p = new ResponseCreateParameter();
+        p.Input = input;
+        p.Model = model;
+        p.Stream = true;
+        await foreach (var item in this.GetResponseStreamEventAsync(p, null, System.Threading.CancellationToken.None))
+        {
+            yield return item;
+        }
+    }
+    public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseInput input, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        var p = new ResponseCreateParameter();
+        p.Input = input;
+        p.Model = model;
+        p.Stream = true;
+        await foreach (var item in this.GetResponseStreamEventAsync(p, null, cancellationToken))
+        {
+            yield return item;
+        }
+    }
+    public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseCreateParameter parameter)
+    {
+        parameter.Stream = true;
+        await foreach (var item in this.GetResponseStreamEventAsync(parameter, null, System.Threading.CancellationToken.None))
+        {
+            yield return item;
+        }
+    }
+    public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseCreateParameter parameter, ResponseStreamResult result)
+    {
+        parameter.Stream = true;
+        await foreach (var item in this.GetResponseStreamEventAsync(parameter, result, System.Threading.CancellationToken.None))
+        {
+            yield return item;
+        }
+    }
+    public async IAsyncEnumerable<ResponseStreamEvent> ResponseCreateEventStreamAsync(ResponseCreateParameter parameter, ResponseStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        parameter.Stream = true;
+        await foreach (var item in this.GetResponseStreamEventAsync(parameter, result, cancellationToken))
         {
             yield return item;
         }

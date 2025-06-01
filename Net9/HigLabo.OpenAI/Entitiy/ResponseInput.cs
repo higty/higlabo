@@ -24,10 +24,28 @@ public class ResponseInput : List<ResponseInputMessage>
         input.Content.Add(content);
         this.Add(input);
     }
+    public void AddToolCallMessage(ResponseStreamOutputItem.OutputItem toolCall, string output)
+    {
+        {
+            var input = new ResponseToolOutputMessage();
+            input.Type = "function_call";
+            input.Call_Id = toolCall.Call_Id;
+            input.Name = toolCall.Name;
+            input.Arguments = toolCall.Arguments;
+            this.Add(input);
+        }
+        {
+            var input = new ResponseToolOutputMessage();
+            input.Type = "function_call_output";
+            input.Call_Id = toolCall.Call_Id;
+            input.Output = output;
+            this.Add(input);
+        }
+    }
 }
-public class ResponseInputMessage
+public class ResponseInputMessage 
 {
-    public List<ResponseInputContent> Content { get; init; } = new();
+    public List<ResponseInputContent> Content { get; internal set; } = new();
     public string Role { get; set; } = "";
     public string? Type { get; set; }
 
@@ -61,6 +79,15 @@ public class ResponseInputMessage
     {
         this.AddFile(fileName, $"data:text/plain;base64," + Convert.ToBase64String(data));
     }
+}
+public class ResponseToolOutputMessage : ResponseInputMessage
+{
+    public new string? Role { get; private set; } 
+    public new object? Content { get; private set; }
+    public string? Call_Id { get; set; }
+    public string? Name { get; set; }
+    public string? Arguments { get; set; }
+    public string? Output { get; set; }
 }
 public class ResponseInputContent
 {

@@ -432,11 +432,19 @@ public class OpenAISourceCodeGenerator
             md2.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
             md2.ReturnTypeName.Name = "async ValueTask";
             md2.ReturnTypeName.GenericTypes.Add(new TypeName(cName + "Response"));
+            if (hasStreamMethod)
+            {
+                md2.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = null;");
+            }
             md2.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(parameter, cancellationToken);");
 
             var md1 = md2.Copy();
             md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
             md1.Body.Clear();
+            if (hasStreamMethod)
+            {
+                md1.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = null;");
+            }
             md1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(parameter, System.Threading.CancellationToken.None);");
      
             cClient.Methods.Add(md1);

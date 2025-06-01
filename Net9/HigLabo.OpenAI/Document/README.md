@@ -1,4 +1,5 @@
 ﻿Release note
+2025-05-30 Add tool sample code.
 2025-05-26 Response api and tools supported.
 
 You can see sample code with latest library at

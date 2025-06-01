@@ -11,7 +11,7 @@ public class WebSearchTool : Tool
     public UserLocation? User_Location { get; set; }
 
     public WebSearchTool()
-        : base("web_search_preview")
+        : base("web_search")
     {
     }
 }

@@ -161,6 +161,7 @@ namespace HigLabo.OpenAI
             var p = new ResponseCreateParameter();
             p.Input = input;
             p.Model = model;
+            p.Stream = null;
             return await this.SendJsonAsync<ResponseCreateParameter, ResponseCreateResponse>(p, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ResponseCreateResponse> ResponseCreateAsync(ResponseInput input, string model, CancellationToken cancellationToken)
@@ -173,10 +174,12 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ResponseCreateResponse> ResponseCreateAsync(ResponseCreateParameter parameter)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<ResponseCreateParameter, ResponseCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ResponseCreateResponse> ResponseCreateAsync(ResponseCreateParameter parameter, CancellationToken cancellationToken)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<ResponseCreateParameter, ResponseCreateResponse>(parameter, cancellationToken);
         }
         public async IAsyncEnumerable<string> ResponseCreateStreamAsync(ResponseInput input, string model)

@@ -3,6 +3,7 @@ using HigLabo.OpenAI.Entitiy;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -22,11 +23,6 @@ public class ResponseStreamResult
         foreach (var item in this.EventList)
         {
             var o = item.CreateTypedData();
-            if (o == null) { continue; }
-            if (o is ResponseStreamResponse)
-            {
-                this.Response = (ResponseStreamResponse)o;
-            }
             l.Add(o);
         }
         return l;
@@ -39,7 +35,10 @@ public class ResponseStreamResult
             if (o == null) { continue; }
             if (o is ResponseStreamOutputItem f)
             {
-                yield return f.Item;
+                if (f.Item.Type == "function_call" && f.Item.Status == "completed")
+                {
+                    yield return f.Item;
+                }
             }
         }
     }
@@ -154,7 +153,7 @@ public class ResponseStreamEvent
         this.EventName = eventName;
         this.Data = data;
     }
-    public IResponseStreamEvent? CreateTypedData()
+    public IResponseStreamEvent CreateTypedData()
     {
         switch (this.EventName)
         {
@@ -203,7 +202,7 @@ public class ResponseStreamEvent
             case ResponseStreamEventName.Reasoning_Summary.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDelta>(this.Data)!;
             case ResponseStreamEventName.Reasoning_Summary.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDone>(this.Data)!;
             case ResponseStreamEventName.Error: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(this.Data)!;
-            default: return null;
+            default: return new ResponseStreamEventUnknown(this.EventName, this.Data);
         }
     }
     public override string ToString()
@@ -216,11 +215,25 @@ public interface IResponseStreamEvent
 {
     string Type { get; }
 }
+public interface IResponseStreamEventResponse
+{
+    ResponseObject Response { get; } 
+}
 public interface IResponseStreamEventDelta
 {
     string Delta { get; }
 }
-public class ResponseStreamResponse : IResponseStreamEvent
+public class ResponseStreamEventUnknown : IResponseStreamEvent
+{
+    public string Type { get; set; } = "";
+    public string Data { get; set; } = "";
+    public ResponseStreamEventUnknown(string type, string data)
+    {
+        this.Type = type;
+        this.Data = data;
+    }
+}
+public class ResponseStreamResponse : IResponseStreamEvent, IResponseStreamEventResponse
 {
     public string Type { get; set; } = "";
     public ResponseObject Response { get; set; } = new();
@@ -572,7 +585,7 @@ public class ResponseStreamOutputTextAnnotationAdded : IResponseStreamEvent
     public int Sequence_Number { get; set; }
 }
 
-public class ResponseStreamQueued : IResponseStreamEvent
+public class ResponseStreamQueued : IResponseStreamEvent, IResponseStreamEventResponse
 {
     public string Type { get; set; } = "";
     public ResponseObject Response { get; set; } = new();
@@ -629,8 +642,6 @@ public class ResponseStreamReasoningSummaryDone : IResponseStreamEvent
 public class ResponseStreamError : IResponseStreamEvent
 {
     public string Type { get; set; } = "";
-    public string Code { get; set; } = "";
-    public string Message { get; set; } = "";
-    public object? Params { get; set; }
+    public OpenAIServerError Error { get; set; } = new();
     public int Sequence_Number { get; set; }
 }

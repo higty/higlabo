@@ -11,6 +11,7 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using static HigLabo.OpenAI.ChatCompletionFunctionTool;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HigLabo.OpenAI;
 
@@ -423,7 +424,7 @@ public class OpenAIPlayground
         var cl = OpenAIClient;
 
         var p = new ResponseCreateParameter();
-        p.Model = "gpt-4o";
+        p.Model = "gpt-4.1-mini";
         p.Input.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude.");
 
         p.Parallel_Tool_Calls = true;
@@ -443,17 +444,85 @@ public class OpenAIPlayground
         {
             Console.WriteLine("■Function name is " + f.Name);
             Console.WriteLine("■Arguments is " + f.Arguments);
+            var functionCallResultText = f.Name switch
+            {
+                "getWhether" => "Cloudy days. Temperature is 21℃",
+                "getLatLong" => "N35°41.4′/ E139°45.6",
+                _ => throw SwitchStatementNotImplementException.Create(f.Name),
+            };
+            p.Input.AddToolCallMessage(f, functionCallResultText);
+            p.Previous_Response_Id = result.Response!.Response!.Id;
+        }
+        var fResult = await cl.ResponseCreateAsync(p);
+        foreach (var output in fResult.Output)
+        {
+            foreach (var content in output.Content)
+            {
+                Console.WriteLine(content.Text);
+            }
+        }
+        Console.WriteLine();
+    }
+    private async ValueTask ResponseCreateFunctionCallingStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4.1-mini";
+        p.Input.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude. And I want to know the good spot to visit in Japan.");
+
+        p.Parallel_Tool_Calls = true;
+        p.Tools = new List<Tool>();
+        p.Tools.Add(this.CreateGetTouristSpotTool());
+        p.Tools.Add(this.CreateGetLatLongTool());
+
+        var result = new ResponseStreamResult();
+        using (var tokenSource = new CancellationTokenSource())
+        {
+            tokenSource.CancelAfter(TimeSpan.FromMinutes(3));
+
+            await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, tokenSource.Token))
+            {
+                var oEvent = item.CreateTypedData();
+                if (oEvent is IResponseStreamEventDelta oDelta)
+                {
+                    Console.Write(oDelta.Delta);
+                }
+            }
+        }
+
+        var ee = result.GetEventList();
+        foreach (var f in result.GetFunctionCallList())
+        {
+            Console.WriteLine("■Function name is " + f.Name);
+            Console.WriteLine("■Arguments is " + f.Arguments);
+            var functionCallResultText = f.Name switch
+            {
+                "getWhether" => "Cloudy days. Temperature is 21℃",
+                "getTouristSpot" => "[\"locationList\" : [\"Asakusa\"]",
+                "getLatLong" => "N35°41.4′/ E139°45.6",
+                _ => throw SwitchStatementNotImplementException.Create(f.Name),
+            };
+            p.Input.AddToolCallMessage(f, functionCallResultText);
+            p.Previous_Response_Id = result.Response!.Response!.Id;
+        }
+        var fResult = await cl.ResponseCreateAsync(p);
+        foreach (var output in fResult.Output)
+        {
+            foreach (var content in output.Content)
+            {
+                Console.WriteLine(content.Text);
+            }
         }
 
         Console.WriteLine();
-        Console.WriteLine("DONE");
     }
     private async ValueTask ResponseCreateWebSearch()
     {
         var cl = OpenAIClient;
 
         var p = new ResponseCreateParameter();
-        p.Model = "gpt-4o";
+        p.Model = "gpt-4.1-mini";
         p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
         p.Tools = [];
         p.Tools.Add(new Tool("web_search"));
@@ -479,7 +548,7 @@ public class OpenAIPlayground
         var location = "Newyork";
 
         var p = new ResponseCreateParameter();
-        p.Model = "gpt-4o";
+        p.Model = "gpt-4.1-mini";
         p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
         p.Tools.Add(new Tool("web_search"));
@@ -487,6 +556,46 @@ public class OpenAIPlayground
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
         {
             Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        var ee = result.GetEventList();
+        foreach (var item in ee)
+        {
+            if (item is ResponseStreamContentPart o)
+            {
+                foreach (var annotation in o.Part.Annotations)
+                {
+                    Console.WriteLine(annotation.ToString());
+                }
+            }
+        }
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateWebSearchEventStream()
+    {
+        var cl = OpenAIClient;
+        var location = "Newyork";
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
+        p.Tools = [];
+        p.Tools.Add(new Tool("web_search"));
+        var result = new ResponseStreamResult();
+        await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
+        {
+            var oEvent = item.CreateTypedData();
+            var oDelta = oEvent as IResponseStreamEventDelta;
+            if (oDelta == null)
+            {
+                Console.WriteLine(oEvent.Type);
+            }
+            else
+            {
+                Console.Write(oDelta.Delta);
+            }
         }
         Console.WriteLine();
         Console.WriteLine();
@@ -602,7 +711,7 @@ public class OpenAIPlayground
         }
         Console.WriteLine("■DONE");
     }
-    private async ValueTask ResponseCreateReasoningStream()
+    private async ValueTask ResponseCreateReasoningEventStream()
     {
         var cl = OpenAIClient;
 
@@ -617,7 +726,7 @@ public class OpenAIPlayground
 
         var mode = "";
         Console.WriteLine(p.Input[0].Content[0].Text);
-        await foreach (var item in cl.GetResponseStreamEventAsync(p, result, CancellationToken.None))
+        await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
         {
             switch (item.EventName)
             {
@@ -694,6 +803,45 @@ public class OpenAIPlayground
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
         {
             Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        foreach (var item in result.EventList)
+        {
+            Console.WriteLine(item.Data);
+        }
+
+        var ee = result.GetEventList();
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateMcpEventStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-4o";
+        p.Input.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
+        p.Tools = [];
+        p.Tools.Add(new McpCallTool()
+        {
+            Server_Label = "deepwiki",
+            Server_Url = "https://mcp.deepwiki.com/mcp",
+            Require_Approval = "never",
+        });
+        var result = new ResponseStreamResult();
+        await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
+        {
+            var oEvent = item.CreateTypedData();
+            var oDelta = oEvent as IResponseStreamEventDelta;
+            if (oDelta == null)
+            {
+                Console.WriteLine(oEvent.Type);
+            }
+            else
+            {
+                Console.Write(oDelta.Delta);
+            }
         }
         Console.WriteLine();
         Console.WriteLine();

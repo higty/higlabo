@@ -20,9 +20,11 @@ public class OpenAIServerErrorResponse
 }
 public class OpenAIServerSentEventException : Exception
 {
-    public OpenAIServerError Error { get; set; }
+    public ResponseStreamError Error { get; set; }
+    public ResponseStreamResult? Result { get; set; }
 
-    public OpenAIServerSentEventException(OpenAIServerError error)
+    public OpenAIServerSentEventException(ResponseStreamError error)
+        : base(error.Error.Message)
     {
         Error = error;
     }
