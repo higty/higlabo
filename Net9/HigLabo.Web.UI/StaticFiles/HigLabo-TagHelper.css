@@ -502,7 +502,7 @@
   border: 1px solid var(--input-text-border-color);
   border-radius: var(--input-text-border-radius);
   background-color: var(--input-text-back-color);
-  height: 40px;
+  height: var(--input-text-height);
 }
 .input-text input {
   width: 100%;
@@ -613,12 +613,11 @@
   gap: 4px;
 }
 .input-year-month select {
-  padding: 0px var(--input-text-padding);
   align-items: center;
   border: 1px solid var(--input-text-border-color);
   border-radius: var(--input-text-border-radius);
   background-color: var(--input-text-back-color);
-  height: 40px;
+  height: var(--input-text-height);
 }
 .input-year-month select[name=Year] {
   min-width: 80px;
@@ -715,7 +714,7 @@
 }
 .input-record[selection-mode=Single] {
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: var(--input-text-border-radius);
 }
 .input-record[selection-mode=Single] [delete-record] {
   display: none;
@@ -801,6 +800,60 @@
   }
 }
 
+.data-view-paging-panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  margin-left: 4px;
+}
+.data-view-paging-panel .icon-panel {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+.data-view-paging-panel .page-number-panel {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+}
+.data-view-paging-panel .page-number-panel .page-number {
+  margin: 0 4px;
+  width: 40px;
+  text-align: right;
+  background-color: transparent;
+  border: none 0 transparent;
+}
+
+.paging-panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+  margin-left: 4px;
+}
+.paging-panel .icon-panel {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+.paging-panel .page-index-panel {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+}
+.paging-panel .page-index-panel .page-number {
+  margin: 0 4px;
+  width: 40px;
+  text-align: right;
+  background-color: transparent;
+  border: none 0 transparent;
+}
+
 /*-------------------------------------------------------
     Color settings
 -------------------------------------------------------*/
@@ -815,7 +868,14 @@
   border: solid 1px var(--color-border);
 }
 
-.paging-panel .page-number-panel .page-number:hover {
+.data-view-paging-panel .page-number-panel .page-number:hover {
+  background-color: var(--color-panel-menu-hover);
+}
+.data-view-paging-panel .icon-panel:hover {
+  background-color: var(--color-panel-menu-hover);
+}
+
+.paging-panel .page-index-panel .page-number:hover {
   background-color: var(--color-panel-menu-hover);
 }
 .paging-panel .icon-panel:hover {

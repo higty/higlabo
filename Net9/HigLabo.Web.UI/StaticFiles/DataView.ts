@@ -3,8 +3,8 @@ import { $ } from "./HtmlElementQuery.js";
 export class DataView {
     public initialize() {
         $("body").on("click", "[data-view-load]", this.load_Click.bind(this));
-        $("body").on("click", "[data-view] [page-number-increment]", this.pageNumberIncrement_Click.bind(this));
-        $("body").on("focusout", "[data-view] [name='PageNumber']", this.pageNumber_Blur.bind(this));
+        $("body").on("click", "[data-view-paging-panel] [page-number-increment]", this.pageNumberIncrement_Click.bind(this));
+        $("body").on("focusout", "[data-view-paging-panel] [name='PageNumber']", this.pageNumber_Blur.bind(this));
 
         $("body").on("click", "[show-data-view-view-panel]", this.showViewPanel_Click.bind(this));
         $("body").on("click", "[show-data-view-detail-panel]", this.showDetailPanel_Click.bind(this));

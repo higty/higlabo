@@ -8,6 +8,17 @@ namespace HigLabo.Html;
 
 public class LineToPTagConverter : IHtmlConverter
 {
+    private Func<string, bool> _IsProcess = line => true;
+    public Func<string, bool> IsProcess
+    {
+        get { return this._IsProcess; }
+        set
+        {
+            if (value == null) { return; }
+            _IsProcess = value;
+        }
+    }
+
     public async ValueTask<string> ConvertAsync(string html)
     {
         var sb = new StringBuilder();
@@ -22,7 +33,14 @@ public class LineToPTagConverter : IHtmlConverter
                 var line = sr.ReadLine();
                 if (line == null) { continue; }
 
-                sb.Append("<p>").Append(line).Append("</p>");
+                if (this.IsProcess(line) == true)
+                {
+                    sb.Append("<p>").Append(line).Append("</p>");
+                }
+                else
+                {
+                    sb.Append(line).Append("\n");
+                }
             }
         }
         return await ValueTask.FromResult(sb.ToString());

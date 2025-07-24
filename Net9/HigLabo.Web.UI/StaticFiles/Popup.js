@@ -19,6 +19,9 @@ export class PopuPanel {
         if (document.activeElement.tagName == "TEXTAREA") {
             return;
         }
+        if ($(e.target).getAttribute("prevent-hide") == "true") {
+            return;
+        }
         const pp = $("[popup-panel]").getElementList();
         pp.forEach(popupPanel => {
             if ($(popupPanel).getAttribute("prevent-hide") == "true") {
