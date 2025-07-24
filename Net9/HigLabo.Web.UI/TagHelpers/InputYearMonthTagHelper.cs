@@ -16,7 +16,8 @@ public class InputYearMonthTagHelper : TagHelper
     public int MaxYear { get; set; } = DateTimeOffset.Now.Year + 100;
     public int? Year { get; set; }
     public int? Month { get; set; }
-    public string MonthFormat { get; set; } = "MM";
+    public Func<int?, string> CreateYearText { get; set; } = (year) => year.HasValue ? year.Value.ToString("0000") : "";
+    public Func<int?, string> CreateMonthText { get; set; } = (month) => month.HasValue ? new DateTime(2000, month.Value, 1).ToString("MM") : "";
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -41,7 +42,7 @@ public class InputYearMonthTagHelper : TagHelper
             {
                 var op = new TagBuilder("option");
                 op.Attributes.Add("value", i.ToString());
-                op.InnerHtml.Append(i.ToString("0000"));
+                op.InnerHtml.Append(CreateYearText(i));
                 if (i == this.Year)
                 {
                     op.Attributes.Add("selected", "selected");
@@ -65,7 +66,7 @@ public class InputYearMonthTagHelper : TagHelper
                 var dtime = new DateTime(2000, i, 1);
                 var op = new TagBuilder("option");
                 op.Attributes.Add("value", i.ToString());
-                op.InnerHtml.Append(dtime.ToString(this.MonthFormat));
+                op.InnerHtml.Append(CreateMonthText(i));
                 if (i == this.Month)
                 {
                     op.Attributes.Add("selected", "selected");

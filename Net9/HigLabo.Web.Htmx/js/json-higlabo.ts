@@ -32,7 +32,8 @@
 
         let p: any = {};
         for (var eIndex = 0; eIndex < ee.length; eIndex++) {
-            const el = ee[eIndex]
+            const el = ee[eIndex];
+            if (el == null) { continue; }
             const name = el.getAttribute("name");
 
             if (name != "" && el.getAttribute("hig-property-type") == "Array") {

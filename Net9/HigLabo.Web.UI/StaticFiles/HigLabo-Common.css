@@ -41,6 +41,10 @@
   align-items: center;
 }
 
+.align-items-flex-start {
+  align-items: flex-start;
+}
+
 .justify-content-center {
   justify-content: center;
 }

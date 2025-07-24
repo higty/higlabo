@@ -47,6 +47,18 @@ public class InputPasswordTagHelper : TagHelper
             }
             output.Content.AppendHtml(tx);
         }
+
+        if (this.ToggleInputTypeImageUrl.HasValue())
+        {
+            var span = new TagBuilder("span");
+            span.AddCssClass("toggle-input-type");
+            span.Attributes.Add("toggle-input-type", "true");
+            var img = new TagBuilder("img");
+            img.Attributes.Add("src", this.ToggleInputTypeImageUrl);
+            span.InnerHtml.AppendHtml(img);
+            output.Content.AppendHtml(span);
+        }
+        else
         {
             var span = new TagBuilder("span");
             span.AddCssClass("toggle-input-type");

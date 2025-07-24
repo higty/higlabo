@@ -306,7 +306,7 @@ $width-checkbox-circle: 20px;
     border: 1px solid var(--input-text-border-color);
     border-radius: var(--input-text-border-radius);
     background-color: var(--input-text-back-color);
-    height: 40px;
+    height: var(--input-text-height);
 
     input {
         width: 100%;
@@ -440,12 +440,11 @@ $width-checkbox-circle: 20px;
     gap: 4px;
 
     select {
-        padding: 0px var(--input-text-padding);
         align-items: center;
         border: 1px solid var(--input-text-border-color);
         border-radius: var(--input-text-border-radius);
         background-color: var(--input-text-back-color);
-        height: 40px;
+        height: var(--input-text-height);
 
         &[name='Year'] {
             min-width: 80px;
@@ -569,7 +568,7 @@ $width-checkbox-circle: 20px;
 
     &[selection-mode='Single'] {
         cursor: pointer;
-        border-radius: 8px;
+        border-radius: var(--input-text-border-radius);
 
         [delete-record] {
             display: none;
@@ -591,6 +590,7 @@ $width-checkbox-circle: 20px;
     white-space: pre-wrap;
     word-break: break-all;
 }
+
 
 .data-view {
     position: relative;
@@ -672,6 +672,67 @@ $width-checkbox-circle: 20px;
     }
 }
 
+.data-view-paging-panel {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 16px;
+    margin-left: 4px;
+
+    .icon-panel {
+        display: grid;
+        place-items: center;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+    }
+
+    .page-number-panel {
+        display: flex;
+        align-items: center;
+        padding-right: 8px;
+
+        .page-number {
+            margin: 0 4px;
+            width: 40px;
+            text-align: right;
+            background-color: transparent;
+            border: none 0 transparent;
+        }
+    }
+}
+
+.paging-panel {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 16px;
+    margin-left: 4px;
+
+    .icon-panel {
+        display: grid;
+        place-items: center;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+    }
+
+    .page-index-panel {
+        display: flex;
+        align-items: center;
+        padding-right: 8px;
+
+        .page-number {
+            margin: 0 4px;
+            width: 40px;
+            text-align: right;
+            background-color: transparent;
+            border: none 0 transparent;
+        }
+    }
+}
+
+
 
 /*-------------------------------------------------------
     Color settings
@@ -693,8 +754,25 @@ $width-checkbox-circle: 20px;
     }
 }
 
-.paging-panel {
+.data-view-paging-panel {
     .page-number-panel {
+        .page-number {
+            &:hover {
+                background-color: var(--color-panel-menu-hover);
+            }
+        }
+    }
+
+    .icon-panel {
+
+        &:hover {
+            background-color: var(--color-panel-menu-hover);
+        }
+    }
+}
+
+.paging-panel {
+    .page-index-panel {
         .page-number {
             &:hover {
                 background-color: var(--color-panel-menu-hover);
