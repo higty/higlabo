@@ -40,6 +40,12 @@ public partial class MainWindow2025 : Window
 
         this.EditPanel.Visibility = Visibility.Hidden;
 
+        this.LanguageListComboBox.SelectionChanged += LanguageListComboBox_SelectionChanged;
+        this.ConnectionStringListView.SelectionChanged += ConnectionStringListView_SelectionChanged;
+        this.ConnectionStringListComboBox.SelectionChanged += ConnectionStringListComboBox_SelectionChanged;
+        this.DatabaseObjectListView.MouseDoubleClick += DatabaseObjectListView_MouseDoubleClick;
+        this.FilterObjectTextBox.TextChanged += FilterObjectTextBox_TextChanged;
+
         this.SetBinding();
         this.SetText();
 
@@ -60,11 +66,9 @@ public partial class MainWindow2025 : Window
 
         this.LanguageListComboBox.ItemsSource = this.ViewModel.LanguageList;
         this.LanguageListComboBox.SelectedItem = this.ViewModel.LanguageList.FirstOrDefault(el => el.Name == CultureInfo.CurrentCulture.Name);
-        this.LanguageListComboBox.SelectionChanged += LanguageListComboBox_SelectionChanged;
 
         this.ConnectionStringListView.ItemsSource = null;
         this.ConnectionStringListView.ItemsSource = ConfigData.Current.ConnectionStringList;
-        this.ConnectionStringListView.SelectionChanged += ConnectionStringListView_SelectionChanged;
         this.GenerateSettingListView.ItemsSource = SchemeData.Current.GenerateSettingList;
 
         this.DatabaseServerComboBox.ItemsSource = null;
@@ -76,15 +80,12 @@ public partial class MainWindow2025 : Window
 
         this.ConnectionStringListComboBox.ItemsSource = null;
         this.ConnectionStringListComboBox.ItemsSource = ConfigData.Current.ConnectionStringList;
-        this.ConnectionStringListComboBox.SelectionChanged += ConnectionStringListComboBox_SelectionChanged;
 
         this.GeneratePanel.Visibility = Visibility.Hidden;
 
         this.DatabaseObjectListView.ItemsSource = this.ViewModel.DatabaseObjectList;
-        this.DatabaseObjectListView.MouseDoubleClick += DatabaseObjectListView_MouseDoubleClick;
         var cView = CollectionViewSource.GetDefaultView(this.ViewModel.DatabaseObjectList);
         cView.Filter = this.FilterDatabaseObject;
-        this.FilterObjectTextBox.TextChanged += FilterObjectTextBox_TextChanged;
     }
     private void SetRecentFilesBinding()
     {

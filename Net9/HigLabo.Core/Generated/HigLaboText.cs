@@ -207,6 +207,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string Agent
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "エージェント";
+                    case "en-US": return "Agent";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string AuthenticateExpired
         {
             get
@@ -3976,6 +3989,32 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string Format_MinMaxValue
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "入力可能な範囲は{0}-{1}です。";
+                    case "en-US": return "The acceptable range is from {0} to {1}.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Format_ThisFieldIsRequiredAndMinMaxValue
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "このフィールドは必須です。入力可能な範囲は{0}-{1}です。";
+                    case "en-US": return "This field is required. The acceptable range is from {0} to {1}.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string MailIsSent
         {
             get
@@ -4008,6 +4047,7 @@ namespace HigLabo.Core
                 case "AnnualPayment": return this.AnnualPayment;
                 case "ApiNotFound": return this.ApiNotFound;
                 case "Archive": return this.Archive;
+                case "Agent": return this.Agent;
                 case "AuthenticateExpired": return this.AuthenticateExpired;
                 case "AuthenticateRequired": return this.AuthenticateRequired;
                 case "AuthenticationFailure": return this.AuthenticationFailure;
@@ -4298,6 +4338,8 @@ namespace HigLabo.Core
                 case "Format_MaxLength": return this.Format_MaxLength;
                 case "Format_Minutes": return this.Format_Minutes;
                 case "Format_ThisFieldIsRequiredAndMaxLength": return this.Format_ThisFieldIsRequiredAndMaxLength;
+                case "Format_MinMaxValue": return this.Format_MinMaxValue;
+                case "Format_ThisFieldIsRequiredAndMinMaxValue": return this.Format_ThisFieldIsRequiredAndMinMaxValue;
                 case "MailIsSent": return this.MailIsSent;
                 default: return "";
             }

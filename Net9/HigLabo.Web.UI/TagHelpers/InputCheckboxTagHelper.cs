@@ -16,6 +16,8 @@ public class InputCheckboxTagHelper : TagHelper
     public string CheckedText { get; set; } = "✓";
     public string CheckedImageUrl { get; set; } = "";
 
+    public IDictionary<string, string?>? CheckboxAttributes { get; set; }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
@@ -25,6 +27,10 @@ public class InputCheckboxTagHelper : TagHelper
             {
                 var chx = new TagBuilder("input");
                 chx.AddCssClass("checkbox");
+                if (this.CheckboxAttributes != null)
+                {
+                    chx.MergeAttributes(this.CheckboxAttributes);
+                }
                 chx.Attributes.Add("type", "checkbox");
                 if (this.Name.HasValue())
                 {

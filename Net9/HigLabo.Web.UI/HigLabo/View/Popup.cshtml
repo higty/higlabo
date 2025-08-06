@@ -1,5 +1,5 @@
-﻿@{ 
-    var text = HigLabo.Core.LanguageText<HigLabo.Core.HigLaboText>.Text;
+﻿@model HigLabo.Web.UI.Popup
+@{ 
 }
 
 <div id="message-popup-panel" class="message-popup-panel display-none" popup-panel="true"></div>
@@ -7,15 +7,15 @@
     <div class="content-panel">
         <div class="text" text="true"></div>
         <div class="button-panel">
-            <button class="button" confirm-yes="true">@text.Confirm_Yes</button>
-            <button class="button" confirm-no="true">@text.Confirm_No</button>
+            <button class="button" confirm-yes="true" default-text="@Model.ConfirmYes">@Model.ConfirmYes</button>
+            <button class="button" confirm-no="true" default-text="@Model.ConfirmNo">@Model.ConfirmNo</button>
         </div>
     </div>
 </dialog>
 <dialog id="full-window-popup-panel" class="full-window-popup-panel">
     <div id="full-window-popup-panel-content-panel" class="content-panel"></div>
     <div class="footer-panel">
-        <button class="large-button" close="true">@text.Close</button>
+        <button class="large-button" close="true">@Model.Close</button>
     </div>
 </dialog>
 <div id="data-record-popup-panel" class="data-record-popup-panel display-none"
@@ -26,8 +26,8 @@
         <div class="display-flex align-items-center padding-panel-4" search-panel="true">
             <input type="text" name="SearchText" class="search-textbox" search-textbox="true" autocomplete="off" />
             <div class="flex-right-panel margin-left-4">
-                <button class="button-radius-4 margin-right-4" search-button="true">@text.Search</button>
-                <button class="button-radius-4" close-button="true">@text.Close</button>
+                <button class="button-radius-4 margin-right-4" search-button="true">@Model.Search</button>
+                <button class="button-radius-4" close-button="true">@Model.Close</button>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="record-list-panel" record-list-panel="true"></div>
     </div>
     <div class="footer-panel" footer-panel="true">
-        <button class="button-radius-4" close-button="true">@text.Close</button>
+        <button class="button-radius-4" close-button="true">@Model.Close</button>
     </div>
 </div>
 

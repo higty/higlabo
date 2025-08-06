@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using HigLabo.Core.Core;
 using HigLabo.Web.TagHelpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
@@ -14,11 +15,15 @@ public class InputYearMonthTagHelper : TagHelper
     public bool AllowMonthNull { get; set; } = true;
     public int MinYear { get; set; } = DateTimeOffset.Now.Year - 100;
     public int MaxYear { get; set; } = DateTimeOffset.Now.Year + 100;
+    public SortDirection YearSortDirection { get; set; } = SortDirection.Ascending;
     public int? Year { get; set; }
     public int? Month { get; set; }
     public Func<int?, string> CreateYearText { get; set; } = (year) => year.HasValue ? year.Value.ToString("0000") : "";
     public Func<int?, string> CreateMonthText { get; set; } = (month) => month.HasValue ? new DateTime(2000, month.Value, 1).ToString("MM") : "";
 
+    public IDictionary<string, string?>? SelectYearAttributes { get; set; }
+    public IDictionary<string, string?>? SelectMonthAttributes { get; set; }
+        
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
@@ -30,6 +35,10 @@ public class InputYearMonthTagHelper : TagHelper
         output.Attributes.Add("hig-property-type", "Object");
         {
             var dl = new TagBuilder("select");
+            if (this.SelectYearAttributes != null)
+            {
+                dl.MergeAttributes(this.SelectYearAttributes);
+            }
             dl.Attributes.Add("name", "Year");
             if (this.AllowYearNull == true)
             {
@@ -38,12 +47,12 @@ public class InputYearMonthTagHelper : TagHelper
                 op.InnerHtml.Append("");
                 dl.InnerHtml.AppendHtml(op);
             }
-            for (int i = this.MinYear; i <= this.MaxYear; i++)
+            foreach (var year in this.GetYearList())
             {
                 var op = new TagBuilder("option");
-                op.Attributes.Add("value", i.ToString());
-                op.InnerHtml.Append(CreateYearText(i));
-                if (i == this.Year)
+                op.Attributes.Add("value", year.ToString());
+                op.InnerHtml.Append(CreateYearText(year));
+                if (year == this.Year)
                 {
                     op.Attributes.Add("selected", "selected");
                 }
@@ -53,6 +62,10 @@ public class InputYearMonthTagHelper : TagHelper
         }
         {
             var dl = new TagBuilder("select");
+            if (this.SelectMonthAttributes != null)
+            {
+                dl.MergeAttributes(this.SelectMonthAttributes);
+            }
             dl.Attributes.Add("name", "Month");
             if (this.AllowMonthNull == true)
             {
@@ -76,5 +89,24 @@ public class InputYearMonthTagHelper : TagHelper
             output.Content.AppendHtml(dl);
         }
         await base.ProcessAsync(context, output);
+    }
+    private IEnumerable<int> GetYearList()
+    {
+        switch (this.YearSortDirection)
+        {
+            case SortDirection.Ascending:
+                for (int i = this.MinYear; i <= this.MaxYear; i++)
+                {
+                    yield return i;
+                }
+                yield break;
+            case SortDirection.Descending:
+                for (int i = this.MaxYear; i >= this.MinYear; i--)
+                {
+                    yield return i;
+                }
+                yield break;
+            default: throw SwitchStatementNotImplementException.Create(this.YearSortDirection);
+        }
     }
 }
