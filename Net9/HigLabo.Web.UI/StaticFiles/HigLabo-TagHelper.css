@@ -323,10 +323,12 @@
   display: none;
 }
 
+dialog {
+  padding: 0;
+}
+
 .dialog-popup-panel[open] {
   border: none;
-  display: flex;
-  flex-direction: column;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
 }
 .dialog-popup-panel[open] > .content-panel {

@@ -14,6 +14,12 @@ export class DialogPopupPanel {
         this.currentElement = element;
         const text = element.getAttribute("hx-confirm");
         $(this.dialog).find("[text]").setInnerText(text);
+        if ($(element).getAttribute("confirm-yes-text") != "") {
+            $(this.dialog).find("[confirm-yes]").setInnerText($(element).getAttribute("confirm-yes-text"));
+        }
+        if ($(element).getAttribute("confirm-no-text") != "") {
+            $(this.dialog).find("[confirm-no]").setInnerText($(element).getAttribute("confirm-no-text"));
+        }
         this.dialog.showModal();
     }
     private confirm(e: any) {

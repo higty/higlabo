@@ -15,6 +15,7 @@ public class InputRecordListTemplatePanelTagHelper : TagHelper
     }
     public bool PreventDefault { get; set; } = false;
     public string AddRecordText { get; set; } = T.Text.Add;
+    public bool AllowAdd { get; set; } = true;
     public AddTemplateType AddType { get; set; } = AddTemplateType.Template;
     public string TemplateId { get; set; } = "";
     public string HxPost { get; set; } = "";
@@ -34,6 +35,7 @@ public class InputRecordListTemplatePanelTagHelper : TagHelper
             div.InnerHtml.AppendHtml(await output.GetChildContentAsync());
             output.Content.AppendHtml(div);
         }
+        if (this.AllowAdd)
         {
             var div = new TagBuilder("div");
             div.AddCssClass("add-panel");
