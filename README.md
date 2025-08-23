@@ -17,6 +17,8 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 ※Breaking change. The endpoint of ChatCompletions are all changed to ChatCompletionCreate. Please see latest sample code.
 https://github.com/higty/higlabo/blob/master/Net9/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
 
+2025-08-24 updated. Support conversation, eval, certificate endpoints.
+
 2025-01-22 updated. Support .NET9.
 
 2024-08-23 updated. Support administration api endpoint.
@@ -97,6 +99,48 @@ Console.WriteLine(JsonConvert.SerializeObject(result.Run));
 Console.WriteLine(JsonConvert.SerializeObject(result.RunStep));
 Console.WriteLine(JsonConvert.SerializeObject(result.Message));
 
+```
+
+Generate new image from other uploaded image and save generated image to local folder.
+```
+var p = new ResponseCreateParameter();
+p.Model = "gpt-5";
+p.Input.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
+p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Tsurugi.jpg")));
+p.Tools = [];
+p.Tools.Add(new Tool("image_generation"));
+
+Console.WriteLine("Generateing...");
+var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+foreach (var output in res.Output)
+{
+    switch (output.Type)
+    {
+        case "message":
+            foreach (var content in output.Content)
+            {
+                if (content.Type == "output_text")
+                {
+                    Console.WriteLine(content.Text);
+                }
+            }
+            break;
+        case "image_generation_call":
+            Console.WriteLine(output.Revised_Prompt);
+            var imageData = Convert.FromBase64String(output.Result);
+            var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+            if (Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+            File.WriteAllBytes(filePath, imageData);
+            Console.WriteLine("File is saved to");
+            Console.WriteLine(filePath);
+            break;
+        default: break;
+    }
+}
 ```
 
 ## HigLabo.GoogleAI
