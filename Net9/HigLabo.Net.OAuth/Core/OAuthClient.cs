@@ -66,13 +66,26 @@ public abstract class OAuthClient
         where T : RestApiResponse
     {
         var req = request;
-        var o = this.DeserializeObject<T>(bodyText);
-        o.SetProperty(parameter, requestBodyText, req, response, bodyText);
-        if (this.IsThrowException == true && o.IsThrowException())
+        if (bodyText.IsNullOrEmpty())
         {
-            throw new RestApiException(o);
+            var o = this.DeserializeObject<T>("{}");
+            o.SetProperty(parameter, requestBodyText, req, response, "");
+            if (this.IsThrowException == true && o.IsThrowException())
+            {
+                throw new RestApiException(o);
+            }
+            return o;
         }
-        return o;
+        else
+        {
+            var o = this.DeserializeObject<T>(bodyText);
+            o.SetProperty(parameter, requestBodyText, req, response, bodyText);
+            if (this.IsThrowException == true && o.IsThrowException())
+            {
+                throw new RestApiException(o);
+            }
+            return o;
+        }
     }
 
     protected async ValueTask<TResponse> SendAsync<TResponse>(HttpRequestMessage request, CancellationToken cancellationToken)

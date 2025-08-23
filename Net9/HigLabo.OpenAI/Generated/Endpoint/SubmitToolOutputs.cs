@@ -66,10 +66,12 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(SubmitToolOutputsParameter parameter)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<SubmitToolOutputsParameter, SubmitToolOutputsResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<SubmitToolOutputsResponse> SubmitToolOutputsAsync(SubmitToolOutputsParameter parameter, CancellationToken cancellationToken)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<SubmitToolOutputsParameter, SubmitToolOutputsResponse>(parameter, cancellationToken);
         }
         public async IAsyncEnumerable<string> SubmitToolOutputsStreamAsync(string run_Id, string thread_Id, List<ToolOutput>? tool_Outputs)

@@ -210,6 +210,10 @@ public class OpenAISourceCodeGenerator
                     {
                         pName = "Timestamp_Granularities";
                     }
+                    if (pName == "Include[]")
+                    {
+                        pName = "Include";
+                    }
                     var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.Text == "Required";
                     var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).Text, cName, pName, pRequired);
                     if (pType == "string")
@@ -229,6 +233,10 @@ public class OpenAISourceCodeGenerator
                     if (pType == "FileParameter?")
                     {
                         pType = "FileParameter";
+                    }
+                    if (cName == "ConversationUpdate" && pName == "Metadata")
+                    {
+                        pType = "object?";
                     }
 
                     var p = new Property(pType, pName, true);
@@ -265,6 +273,10 @@ public class OpenAISourceCodeGenerator
                     if (cName == "Embeddings" && p.Name == "Encoding_format")
                     {
                         p.Initializer = "\"float\"";
+                    }
+                    if (pType == "FineTuningGrader" || pType == "DataSourceConfig")
+                    {
+                        p.Initializer = "new()";
                     }
                     if (pType == "FileParameter")
                     {
@@ -341,12 +353,27 @@ public class OpenAISourceCodeGenerator
                     mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = $\"[{{string.Format(\",\", this.Timestamp_Granularities)}}]\";");
                     continue;
                 }
+                if (cName == "AudioTranscriptions")
+                {
+                    if (pName == "Chunking_Strategy" || pName == "Include")
+                    {
+                        //TODO: Need to implement
+                        continue;
+                    }
+                }
                 var pType = item.TypeName.Name;
                 if (hasFileProperty)
                 {
                     if (pType.EndsWith("?"))
                     {
-                        if (pType == "string?")
+                        if (pType.StartsWith("ExpirationPolicy?"))
+                        {
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"expires_after[anchor]\"] = this.Expires_After.Anchor;");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Seconds != null) d[\"expires_after[seconds]\"] = this.Expires_After.Seconds.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Minutes != null) d[\"expires_after[seconds]\"] = this.Expires_After.Minutes.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Days != null) d[\"expires_after[seconds]\"] = this.Expires_After.Days.Value.ToString();");
+                        }
+                        else if (pType == "string?")
                         {
                             mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"{pName.ToLower()}\"] = this.{pName};");
                         }
@@ -361,7 +388,14 @@ public class OpenAISourceCodeGenerator
                     }
                     else
                     {
-                        if (pType == "string")
+                        if (pType.StartsWith("ExpirationPolicy"))
+                        {
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"expires_after[anchor]\"] = this.Expires_After.Anchor;");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Seconds != null) d[\"expires_after[seconds]\"] = this.Expires_After.Seconds.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Minutes != null) d[\"expires_after[seconds]\"] = this.Expires_After.Minutes.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Days != null) d[\"expires_after[seconds]\"] = this.Expires_After.Days.Value.ToString();");
+                        }
+                        else if (pType == "string")
                         {
                             mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"{pName.ToLower()}\"] = this.{pName};");
                         }
@@ -381,6 +415,13 @@ public class OpenAISourceCodeGenerator
             cParameter.ImplementInterfaces.Add(new TypeName("IFormDataParameter"));
         }
 
+        if (cName == "OrganizationCertificateModify" || cName == "OrganizationCertificateDelete")
+        {
+            //Document is invalid at 2025-08-23. Path parameter is missing. So, I manually add property.
+            var p = new Property("string", "Certificate_Id", true);
+            p.Initializer = "\"\"";
+            cParameter.Properties.Add(p);
+        }
         if (propertyList.Count == 0)
         {
             var f = new Field($"{cName}Parameter", "Empty", $"new {cName}Parameter()");
@@ -533,19 +574,19 @@ public class OpenAISourceCodeGenerator
     {
         var cName = "";
 
-        if (endpointAnchor == "Create chat completion") { return "ChatCompletionCreate"; }
-        if (endpointAnchor == "Get chat completion") { return "ChatCompletionRetrieve"; }
-        if (endpointAnchor == "Get chat messages") { return "ChatCompletionMessageRetrieve"; }
-        if (endpointAnchor == "List Chat Completions") { return "ChatCompletions"; }
-        if (endpointAnchor == "Update chat completion") { return "ChatCompletionUpdate"; }
-        if (endpointAnchor == "Delete chat completion") { return "ChatCompletionDelete"; }
-
         if (endpointAnchor == "Create fine-tuning job") { return "FineTuningJobCreate"; }
         if (endpointAnchor == "List fine-tuning jobs") { return "FineTuningJobs"; }
+        if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
+        if (endpointAnchor == "List fine-tuning checkpoints") { return "FineTuningCheckpoints"; }
+        if (endpointAnchor == "List checkpoint permissions") { return "FineTuningCheckpointsPermissions"; }
+        if (endpointAnchor == "Create checkpoint permissions") { return "FineTuningCheckpointsPermissionsCreate"; }
+        if (endpointAnchor == "Delete checkpoint permission") { return "FineTuningCheckpointsPermissionDelete"; }
         if (endpointAnchor == "Retrieve fine-tuning job") { return "FineTuningJobRetrieve"; }
         if (endpointAnchor == "Cancel fine-tuning") { return "FineTuningJobCancel"; }
-        if (endpointAnchor == "List fine-tuning events") { return "FineTuningJobEvents"; }
-        if (endpointAnchor == "List fine-tuning checkpoints") { return "FineTuningJobsCheckpoints"; }
+        if (endpointAnchor == "Resume fine-tuning") { return "FineTuningJobResume"; }
+        if (endpointAnchor == "Pause fine-tuning") { return "FineTuningJobPause"; }
+        if (endpointAnchor == "Run grader") { return "FineTuningAlphaGradersRun"; }
+        if (endpointAnchor == "Validate grader") { return "FineTuningAlphaGradersValidate"; }
 
         if (endpointAnchor == "Create batch") { return "BatchCreate"; }
         if (endpointAnchor == "Retrieve batch") { return "BatchRetrieve"; }
@@ -564,6 +605,16 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Complete upload") { return "UploadComplete"; }
         if (endpointAnchor == "Cancel upload") { return "UploadCancel"; }
 
+        if (endpointAnchor == "Create session") { return "RealtimeSessionCreate"; }
+        if (endpointAnchor == "Create transcription session") { return "RealtimeTranscriptionSessionCreate"; }
+
+        if (endpointAnchor == "Create chat completion") { return "ChatCompletionCreate"; }
+        if (endpointAnchor == "Get chat completion") { return "ChatCompletionRetrieve"; }
+        if (endpointAnchor == "Get chat messages") { return "ChatCompletionMessageRetrieve"; }
+        if (endpointAnchor == "List Chat Completions") { return "ChatCompletions"; }
+        if (endpointAnchor == "Update chat completion") { return "ChatCompletionUpdate"; }
+        if (endpointAnchor == "Delete chat completion") { return "ChatCompletionDelete"; }
+
         if (endpointAnchor == "Create assistant") { return "AssistantCreate"; }
         if (endpointAnchor == "Retrieve assistant") { return "AssistantRetrieve"; }
         if (endpointAnchor == "Modify assistant") { return "AssistantModify"; }
@@ -577,6 +628,7 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Retrieve thread") { return "ThreadRetrieve"; }
         if (endpointAnchor == "Modify thread") { return "ThreadModify"; }
         if (endpointAnchor == "Delete thread") { return "ThreadDelete"; }
+      
         if (endpointAnchor == "Create message") { return "MessageCreate"; }
         if (endpointAnchor == "Retrieve message") { return "MessageRetrieve"; }
         if (endpointAnchor == "Modify message") { return "MessageModify"; }
@@ -602,6 +654,16 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Delete a model response") { return "ResponseDelete"; }
         if (endpointAnchor == "List input items") { return "ResponseInputItemRetrieve"; }
         if (endpointAnchor == "Cancel a response") { return "ResponseCcancel"; }
+
+        if (endpointAnchor == "Create conversation") { return "ConversationCreate"; }
+        if (endpointAnchor == "List conversations") { return "Conversations"; }
+        if (endpointAnchor == "Retrieve a conversation") { return "ConversationRetrieve"; }
+        if (endpointAnchor == "Update a conversation") { return "ConversationUpdate"; }
+        if (endpointAnchor == "Delete a conversation") { return "ConversationDelete"; }
+        if (endpointAnchor == "List items") { return "ConversationItems"; }
+        if (endpointAnchor == "Create items") { return "ConversationItemsCreate"; }
+        if (endpointAnchor == "Retrieve an item") { return "ConversationItemRetrieve"; }
+        if (endpointAnchor == "Delete an item") { return "ConversationItemDelete"; }
 
         if (endpointAnchor == "Create vector store") { return "VectorStoreCreate"; }
         if (endpointAnchor == "List vector stores") { return "VectorStores"; }
@@ -630,11 +692,20 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "List container files") { return "ContainerFiles"; }
         if (endpointAnchor == "Retrieve container file") { return "ContainerFileRetrieve"; }
         if (endpointAnchor == "Retrieve container file content") { return "ContainerFileContent"; }
+        if (endpointAnchor == "Delete a container file") { return "ContainerFileDelete"; }
 
         if (endpointAnchor == "Create eval") { return "EvalCreate"; }
         if (endpointAnchor == "Get an eval") { return "Eval"; }
         if (endpointAnchor == "Update an eval") { return "EvalUpdate"; }
         if (endpointAnchor == "Delete an eval") { return "EvalDelete"; }
+        if (endpointAnchor == "List evals") { return "Evals"; }
+        if (endpointAnchor == "Get eval runs") { return "EvalRuns"; }
+        if (endpointAnchor == "Get an eval run") { return "EvalRunRetrieve"; }
+        if (endpointAnchor == "Create eval run") { return "EvalRunCreate"; }
+        if (endpointAnchor == "Cancel eval run") { return "EvalRunCancel"; }
+        if (endpointAnchor == "Delete eval run") { return "EvalRunDelete"; }
+        if (endpointAnchor == "Get an output item of an eval run") { return "EvalRunOutputItemRetrieve"; }
+        if (endpointAnchor == "Get eval run output items") { return "EvalRunOutputItems"; }
 
         if (endpointAnchor == "List all organization and project API keys.") { return "OrganizationAdminApiKeys"; }
         if (endpointAnchor == "Create admin API key") { return "OrganizationAdminApiKeyCreate"; }
@@ -674,6 +745,17 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Modify project rate limit") { return "OrganizationProjectRateLimitModify"; }
         if (endpointAnchor == "List audit logs") { return "OrganizationAuditLog"; }
 
+        if (endpointAnchor == "Upload certificate") { return "OrganizationCertificateUpload"; }
+        if (endpointAnchor == "Get certificate") { return "OrganizationCertificateGet"; }
+        if (endpointAnchor == "Modify certificate") { return "OrganizationCertificateModify"; }
+        if (endpointAnchor == "Delete certificate") { return "OrganizationCertificateDelete"; }
+        if (endpointAnchor == "List organization certificates") { return "OrganizationCertificates"; }
+        if (endpointAnchor == "List project certificates") { return "OrganizationProjectCertificates"; }
+        if (endpointAnchor == "Activate certificates for organization") { return "OrganizationCertificateActivate"; }
+        if (endpointAnchor == "Deactivate certificates for organization") { return "OrganizationCertificateDeactivate"; }
+        if (endpointAnchor == "Activate certificates for project") { return "OrganizationProjectCertificateActivate"; }
+        if (endpointAnchor == "Deactivate certificates for project") { return "OrganizationProjectCertificateDeactivate"; }
+
         if (endpointAnchor == "Audio speeches") { return "OrganizationUsageAudioSpeeches"; }
         if (endpointAnchor == "Audio transcriptions") { return "OrganizationUsageAudioTranscriptions"; }
         if (endpointAnchor == "Vector stores") { return "OrganizationUsageVectorStores"; }
@@ -686,6 +768,7 @@ public class OpenAISourceCodeGenerator
         if (className == "ChatCompletionCreate" && propertyName == "Messages") { return "List<IChatMessage>"; }
         if (className == "Embeddings" && typeName == "string or array") { return "string"; }
         if (className == "FileUpload" && propertyName == "File") { return "FileParameter"; }
+        if (className == "FileUpload" && propertyName == "Expires_After") { return "ExpirationPolicy"; }
         if (className == "ImagesVariations" && propertyName == "Image") { return "FileParameter"; }
         if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
         if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
@@ -694,6 +777,8 @@ public class OpenAISourceCodeGenerator
         if (className == "ResponseCreate" && propertyName == "Input") { return "ResponseInput"; }
         if (className == "ResponseCreate" && propertyName == "Reasoning") { return "Reasoning"; }
         if (className == "Responses" && propertyName == "Reasoning") { return "Reasoning"; }
+        if (className == "AudioTranscriptions" && string.Equals(propertyName, "include[]", StringComparison.OrdinalIgnoreCase)) { return "List<object>?"; }
+
         if (propertyName == "Tools")
         {
             if (className == "ChatCompletionCreate" ||
@@ -707,14 +792,17 @@ public class OpenAISourceCodeGenerator
             }
         }
 
-            if (propertyName == "include[]") { return "Include"; }
+        if (propertyName == "include[]") { return "Include"; }
         if (propertyName == "Modalities") { return "object?"; }
-        if (propertyName == "Chunking_Strategy") { return "ChunkingStrategy?"; }
+        if (propertyName == "Chunking_Strategy") { return "object?"; }
+        if (propertyName == "Expires_After" || propertyName == "Output_Expires_After") { return "ExpirationPolicy?"; }
         if (propertyName == "Tool_choice") { return "object?"; }
         if (propertyName == "Timestamp_Granularities") { return "double[]"; }
         if (propertyName == "Additional_Messages") { return "List<ThreadAdditionalMessageObject>?"; }
         if (propertyName == "Integrations") { return "List<FineTuningIntegrationObject>?"; }
         if (propertyName == "Web_Search_Options") { return "WebSearchOption?"; }
+        if (propertyName == "Grader") { return "FineTuningGrader"; }
+        if (propertyName == "Data_Source_Config") { return "DataSourceConfig"; }
 
         if (typeName == "string") { return "string"; }
         if (typeName == "string or null") { return "string?"; }
@@ -748,6 +836,13 @@ public class OpenAISourceCodeGenerator
     private string GetResponseClassName(string className)
     {
         var cName = className;
+
+
+        if (cName.EndsWith("Delete"))
+        {
+            return "DeleteObjectResponse";
+        }
+
         if (cName == "ChatCompletionCreate")
         {
             return "ChatCompletionObjectResponse";
@@ -755,6 +850,34 @@ public class OpenAISourceCodeGenerator
         else if (cName == "Embeddings")
         {
             return "RestApiDataResponse<List<EmbeddingObject>>";
+        }
+        else if (cName == "EvalCreate" ||
+            cName == "EvalUGet" ||
+            cName == "EvalUpdate")
+        {
+            return "EvalObjectResponse";
+        }
+        else if (cName == "Evals")
+        {
+            return "RestApiDataResponse<List<EvalObject>>";
+        }
+        else if (cName == "EvalRunCreate" ||
+            cName == "EvalRunUGet" ||
+            cName == "EvalRunCancel")
+        {
+            return "EvalRunObjectResponse";
+        }
+        else if (cName == "EvalRuns")
+        {
+            return "RestApiDataResponse<List<EvalRunObject>>";
+        }
+        else if (cName == "EvalRunOutputItemRetrieve")
+        {
+            return "EvalRunOutputItemObjectResponse";
+        }
+        else if (cName == "EvalRunOutputItems")
+        {
+            return "RestApiDataResponse<List<EvalRunOutputItemObject>>";
         }
         else if (cName == "FineTuningJobCreate" |
             cName == "FineTuningJobRetrieve" ||
@@ -782,10 +905,6 @@ public class OpenAISourceCodeGenerator
         {
             return "FileObjectResponse";
         }
-        else if (cName == "FileDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "UploadCreate" ||
             cName == "UploadComplete" ||
             cName == "UploadCancel")
@@ -810,10 +929,6 @@ public class OpenAISourceCodeGenerator
         {
             return "ModelObjectResponse";
         }
-        else if (cName == "ModelDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "ModerationCreate")
         {
             return "ModerationObjectResponse";
@@ -824,10 +939,6 @@ public class OpenAISourceCodeGenerator
         {
             return "AssistantObjectResponse";
         }
-        else if (cName == "AssistantDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "Assistants")
         {
             return "RestApiDataResponse<List<AssistantObject>>";
@@ -836,10 +947,6 @@ public class OpenAISourceCodeGenerator
             cName == "AssistantFileRetrieve")
         {
             return "AssistantFileObjectResponse";
-        }
-        else if (cName == "AssistantFileDelete")
-        {
-            return "DeleteObjectResponse";
         }
         else if (cName == "AssistantFiles")
         {
@@ -851,10 +958,6 @@ public class OpenAISourceCodeGenerator
         {
             return "ThreadObjectResponse";
         }
-        else if (cName == "ThreadDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "MessageCreate" ||
             cName == "MessageRetrieve" ||
             cName == "MessageModify")
@@ -864,10 +967,6 @@ public class OpenAISourceCodeGenerator
         else if (cName == "Messages")
         {
             return "RestApiDataResponse<List<MessageObject>>";
-        }
-        else if (cName == "MessageDelete")
-        {
-            return "DeleteObjectResponse";
         }
         else if (cName == "RunCreate" ||
             cName == "RunRetrieve" ||
@@ -879,10 +978,6 @@ public class OpenAISourceCodeGenerator
         else if (cName == "Runs")
         {
             return "RestApiDataResponse<List<RunObject>>";
-        }
-        else if (cName == "RunDelete")
-        {
-            return "DeleteObjectResponse";
         }
         else if (cName == "MessageFileCreate")
         {
@@ -949,10 +1044,6 @@ public class OpenAISourceCodeGenerator
         {
             return "AdminApiKeyObjectResponse";
         }
-        else if (cName == "OrganizationAdminApiKeyDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "OrganizationInvites")
         {
             return "RestApiDataResponse<List<InviteObject>>";
@@ -962,10 +1053,6 @@ public class OpenAISourceCodeGenerator
         {
             return "InviteObjectResponse";
         }
-        else if (cName == "OrganizationInviteDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "OrganizationUsers")
         {
             return "RestApiDataResponse<List<UserObject>>";
@@ -974,10 +1061,6 @@ public class OpenAISourceCodeGenerator
             cName == "OrganizationUserRetrieve")
         {
             return "UserObjectResponse";
-        }
-        else if (cName == "OrganizationUserDelete")
-        {
-            return "DeleteObjectResponse";
         }
         else if (cName == "OrganizationProjects")
         {
@@ -1000,10 +1083,6 @@ public class OpenAISourceCodeGenerator
         {
             return "ProjectUserObjectResponse";
         }
-        else if (cName == "OrganizationProjectUserDelete")
-        {
-            return "DeleteObjectResponse";
-        }
         else if (cName == "OrganizationProjectServiceAccounts")
         {
             return "RestApiDataResponse<List<ProjectServiceAccountObject>>";
@@ -1012,10 +1091,6 @@ public class OpenAISourceCodeGenerator
             cName == "OrganizationProjectServiceAccountRetrieve")
         {
             return "ProjectServiceAccountObjectResponse";
-        }
-        else if (cName == "OrganizationProjectServiceAccountDelete")
-        {
-            return "DeleteObjectResponse";
         }
         else if (cName == "OrganizationProjectApiKeys")
         {
@@ -1061,7 +1136,22 @@ public class OpenAISourceCodeGenerator
         {
             return "RestApiDataResponse<List<OrganizationUsageVectorStoreObject>>";
         }
-        else if (cName == "RealtimeSessions")
+        else if (cName == "OrganizationCertificateUpload" ||
+            cName == "OrganizationCertificateGet" ||
+            cName == "OrganizationCertificateModify" ||
+            cName == "OrganizationCertificateActivate" ||
+            cName == "OrganizationCertificateDisactivate" ||
+            cName == "OrganizationProjectCertificateActivate" ||
+            cName == "OrganizationProjectCertificateDisactivate")
+        {
+            return "CertificateObjectResponse";
+        }
+        else if (cName == "OrganizationCertificates" ||
+            cName == "OrganizationProjectCertificates")
+        {
+            return "RestApiDataResponse<List<CertificateObject>>";
+        }
+        else if (cName == "RealtimeSessionCreate")
         {
             return "RealtimeSessionObjectResponse";
         }
@@ -1073,6 +1163,16 @@ public class OpenAISourceCodeGenerator
         else if (cName == "ResponseInputItemRetrieve")
         {
             return "RestApiDataResponse<List<ResponseInputItem>>";
+        }
+        else if (cName == "ConversationCreate" ||
+            cName == "ConversationUpdate" ||
+            cName == "ConversationRetrieve")
+        {
+            return "ConversationObjectResponse";
+        }
+        else if (cName == "ConversationItems")
+        {
+            return "RestApiDataResponse<List<ConversationItemObject>>";
         }
         else
         {

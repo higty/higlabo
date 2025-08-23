@@ -43,6 +43,11 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Output_Format { get; set; }
         /// <summary>
+        /// The number of partial images to generate. This parameter is used for streaming responses that return partial images. Value must be between 0 and 3. When set to 0, the response will be a single image sent in one streaming event.
+        /// Note that the final image may be sent before the full number of partial images are generated if the full image is generated more quickly.
+        /// </summary>
+        public int? Partial_Images { get; set; }
+        /// <summary>
         /// The quality of the image that will be generated.
         /// auto (default value) will automatically select the best quality for the given model.
         /// high, medium and low are supported for gpt-image-1.
@@ -58,6 +63,10 @@ namespace HigLabo.OpenAI
         /// The size of the generated images. Must be one of 1024x1024, 1536x1024 (landscape), 1024x1536 (portrait), or auto (default value) for gpt-image-1, one of 256x256, 512x512, or 1024x1024 for dall-e-2, and one of 1024x1024, 1792x1024, or 1024x1792 for dall-e-3.
         /// </summary>
         public string? Size { get; set; }
+        /// <summary>
+        /// Generate the image in streaming mode. Defaults to false. See the Image generation guide for more information. This parameter is only supported for gpt-image-1.
+        /// </summary>
+        public bool? Stream { get; set; }
         /// <summary>
         /// The style of the generated images. This parameter is only supported for dall-e-3. Must be one of vivid or natural. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.
         /// </summary>
@@ -81,9 +90,11 @@ namespace HigLabo.OpenAI
             	n = this.N,
             	output_compression = this.Output_Compression,
             	output_format = this.Output_Format,
+            	partial_images = this.Partial_Images,
             	quality = this.Quality,
             	response_format = this.Response_Format,
             	size = this.Size,
+            	stream = this.Stream,
             	style = this.Style,
             	user = this.User,
             };

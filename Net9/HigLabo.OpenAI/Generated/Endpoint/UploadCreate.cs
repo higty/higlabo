@@ -34,6 +34,10 @@ namespace HigLabo.OpenAI
         /// See the documentation on File purposes.
         /// </summary>
         public string Purpose { get; set; } = "";
+        /// <summary>
+        /// The expiration policy for a file. By default, files with purpose=batch expire after 30 days and all other files are persisted until they are manually deleted.
+        /// </summary>
+        public ExpirationPolicy? Expires_After { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -46,6 +50,7 @@ namespace HigLabo.OpenAI
             	filename = this.Filename,
             	mime_type = this.Mime_Type,
             	purpose = this.Purpose,
+            	expires_after = this.Expires_After,
             };
         }
     }

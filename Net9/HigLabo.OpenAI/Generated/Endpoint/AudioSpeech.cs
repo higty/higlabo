@@ -34,9 +34,13 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Response_Format { get; set; }
         /// <summary>
-        /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default. Does not work with gpt-4o-mini-tts.
+        /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
         /// </summary>
         public double? Speed { get; set; }
+        /// <summary>
+        /// The format to stream the audio in. Supported formats are sse and audio. sse is not supported for tts-1 or tts-1-hd.
+        /// </summary>
+        public string? Stream_Format { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -51,6 +55,7 @@ namespace HigLabo.OpenAI
             	instructions = this.Instructions,
             	response_format = this.Response_Format,
             	speed = this.Speed,
+            	stream_format = this.Stream_Format,
             };
         }
     }

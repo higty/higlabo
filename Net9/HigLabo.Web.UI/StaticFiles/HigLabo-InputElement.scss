@@ -33,9 +33,6 @@ textarea {
     }
 }
 
-input[type=text].date {
-    width: 100px;
-}
 
 
 
@@ -65,4 +62,8 @@ textarea {
 
 input[type=text].date {
     width: 100px;
+}
+
+input[type=text].time {
+    width: 80px;
 }

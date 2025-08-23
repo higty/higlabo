@@ -285,10 +285,6 @@ textarea:hover {
   background-color: var(--color-form-element-hover);
 }
 
-input[type=text].date {
-  width: 100px;
-}
-
 input[type=text],
 input[type=password],
 .input-record,
@@ -312,4 +308,8 @@ textarea:hover {
 
 input[type=text].date {
   width: 100px;
+}
+
+input[type=text].time {
+  width: 80px;
 }

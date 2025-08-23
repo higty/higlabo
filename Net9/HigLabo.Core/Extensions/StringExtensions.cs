@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -287,6 +288,10 @@ public static partial class StringExtensions
     public static DateTime? ToDateTime(this String value)
     {
         return TypeConverter.Current.ToDateTime(value);
+    }
+    public static DateTime? ToDateTime(this String value, DateTimeStyles dateTimeStyle, IFormatProvider? formatProvider)
+    {
+        return TypeConverter.Current.ToDateTime(value, dateTimeStyle, formatProvider);
     }
     public static DateTimeOffset? ToDateTimeOffset(this String value)
     {

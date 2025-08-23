@@ -12,4 +12,15 @@ public static class TimeSpanExtensions
     {
         return TimeOnly.FromTimeSpan(value);
     }
+    public static string ToTimeZoneText(this TimeSpan value)
+    {
+        if (value >= TimeSpan.Zero)
+        {
+            return $"+{value.Hours:D2}:{value.Minutes:D2}";
+        }
+        else
+        {
+            return $"-{value.Hours:D2}:{value.Minutes:D2}";
+        }
+    }
 }

@@ -6,4 +6,5 @@ public enum ServiceProvider
     Azure,
     Groq,
     DeepSeek,
+    Localhost,
 }

@@ -27,7 +27,7 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
-    public partial class ResponseDeleteResponse : RestApiResponse
+    public partial class ResponseDeleteResponse : DeleteObjectResponse
     {
     }
     public partial class OpenAIClient

@@ -31,7 +31,7 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
-    public partial class OrganizationProjectApiKeyDeleteResponse : RestApiResponse
+    public partial class OrganizationProjectApiKeyDeleteResponse : DeleteObjectResponse
     {
     }
     public partial class OpenAIClient

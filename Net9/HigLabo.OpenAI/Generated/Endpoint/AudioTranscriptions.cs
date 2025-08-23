@@ -18,9 +18,17 @@ namespace HigLabo.OpenAI
         /// </summary>
         public FileParameter File { get; private set; } = new FileParameter("file");
         /// <summary>
-        /// ID of the model to use. Only whisper-1 (which is powered by our open source Whisper V2 model) is currently available.
+        /// ID of the model to use. The options are gpt-4o-transcribe, gpt-4o-mini-transcribe, and whisper-1 (which is powered by our open source Whisper V2 model).
         /// </summary>
         public string Model { get; set; } = "";
+        /// <summary>
+        /// Controls how the audio is cut into chunks. When set to "auto", the server first normalizes loudness and then uses voice activity detection (VAD) to choose boundaries. server_vad object can be provided to tweak VAD detection parameters manually. If unset, the audio is transcribed as a single block.
+        /// </summary>
+        public object? Chunking_Strategy { get; set; }
+        /// <summary>
+        /// Additional information to include in the transcription response. logprobs will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. logprobs only works with response_format set to json and only with the models gpt-4o-transcribe and gpt-4o-mini-transcribe.
+        /// </summary>
+        public List<string>? Include { get; set; }
         /// <summary>
         /// The language of the input audio. Supplying the input language in ISO-639-1 (e.g. en) format will improve accuracy and latency.
         /// </summary>
@@ -30,9 +38,14 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Prompt { get; set; }
         /// <summary>
-        /// The format of the output, in one of these options: json, text, srt, verbose_json, or vtt.
+        /// The format of the output, in one of these options: json, text, srt, verbose_json, or vtt. For gpt-4o-transcribe and gpt-4o-mini-transcribe, the only supported format is json.
         /// </summary>
         public string? Response_Format { get; set; }
+        /// <summary>
+        /// If set to true, the model response data will be streamed to the client as it is generated using server-sent events. See the Streaming section of the Speech-to-Text guide for more information.
+        /// Note: Streaming is not supported for the whisper-1 model and will be ignored.
+        /// </summary>
+        public bool? Stream { get; set; }
         /// <summary>
         /// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
         /// </summary>
@@ -51,9 +64,12 @@ namespace HigLabo.OpenAI
             return new {
             	file = this.File,
             	model = this.Model,
+            	chunking_strategy = this.Chunking_Strategy,
+            	include = this.Include,
             	language = this.Language,
             	prompt = this.Prompt,
             	response_format = this.Response_Format,
+            	stream = this.Stream,
             	temperature = this.Temperature,
             	timestamp_granularities = this.Timestamp_Granularities,
             };
@@ -69,6 +85,7 @@ namespace HigLabo.OpenAI
             if (this.Language != null) d["language"] = this.Language;
             if (this.Prompt != null) d["prompt"] = this.Prompt;
             if (this.Response_Format != null) d["response_format"] = this.Response_Format;
+            if (this.Stream != null) d["stream"] = this.Stream.Value.ToString();
             if (this.Temperature != null) d["temperature"] = this.Temperature.Value.ToString();
             if (this.Timestamp_Granularities != null) d["timestamp_granularities"] = $"[{string.Format(",", this.Timestamp_Granularities)}]";
             return d;

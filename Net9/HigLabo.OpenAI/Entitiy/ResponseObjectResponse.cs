@@ -83,6 +83,14 @@ public class ResponseOutput
     public string Role { get; set; } = "";
     public List<string>? Queries { get; set; }
     public List<ResponseOutputContent> Content { get; set; } = new();
+    //Image generation
+    public string Background { get; set; } = "";
+    public string Output_Format { get; set; } = "";
+    public string Quality { get; set; } = "";
+    public string Result { get; set; } = "";
+    public string Revised_Prompt { get; set; } = "";
+    public string Size { get; set; } = "";
+
 
     public override string ToString()
     {

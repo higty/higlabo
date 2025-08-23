@@ -16,11 +16,11 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. Only applicable if file_ids is non-empty.
         /// </summary>
-        public ChunkingStrategy? Chunking_Strategy { get; set; }
+        public object? Chunking_Strategy { get; set; }
         /// <summary>
         /// The expiration policy for a vector store.
         /// </summary>
-        public object? Expires_After { get; set; }
+        public ExpirationPolicy? Expires_After { get; set; }
         /// <summary>
         /// A list of File IDs that the vector store should use. Useful for tools like file_search that can access files.
         /// </summary>

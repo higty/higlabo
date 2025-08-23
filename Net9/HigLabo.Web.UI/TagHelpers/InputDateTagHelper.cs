@@ -19,6 +19,7 @@ public class InputDateTagHelper : TagHelper
     public string Placeholder { get; set; } = "";
     public string AutoComplete { get; set; } = "off";
     public string CalendarImageUrl { get; set; } = Default.CalendarImageUrl;
+    public IDictionary<string, string?>? TextboxAttributes { get; set; }
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -44,6 +45,10 @@ public class InputDateTagHelper : TagHelper
             if (this.Placeholder.HasValue())
             {
                 tx.Attributes.Add("placeholder", this.Placeholder);
+            }
+            if (this.TextboxAttributes != null)
+            {
+                tx.MergeAttributes(this.TextboxAttributes);
             }
             output.Content.AppendHtml(tx);
         }
