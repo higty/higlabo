@@ -17,6 +17,8 @@ export class PagingPanel {
 
         let newPageIndex = pageIndex + increment;
         this.setPageIndex(pl, newPageIndex, maxPageIndex);
+
+        this.htmx.trigger($(pl).find("[page-index-panel]").getFirstElement(), "page-index-change");
     }
     private pageNumber_Change(target: Element, e: Event) {
         const pl = $(target).getFirstParent("[paging-panel]").getFirstElement();
@@ -43,5 +45,13 @@ export class PagingPanel {
         $(tx).setValue((pageIndex + 1).toString());
         $(pl).find("[increment='-1']").setValue(Math.max(pageIndex - 1, 0).toString());
         $(pl).find("[increment='1']").setValue((pageIndex + 1).toString());
+    }
+    public setMaxPageIndex(pagingPanel: Element, pageIndex: number, maxPageIndex: number) {
+        const pl = pagingPanel;
+        const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
+
+        $(pl).find("[max-page-number]").setInnerText(maxPageIndex.toString());
+        $(tx).setValue(pageIndex.toString());
+        this.setPageIndex(pl, pageIndex, maxPageIndex);
     }
 }

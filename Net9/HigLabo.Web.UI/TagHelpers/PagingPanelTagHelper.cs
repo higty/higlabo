@@ -41,15 +41,16 @@ public class PagingPanelTagHelper : TagHelper
         {
             var span = new TagBuilder("span");
             span.AddCssClass("icon-panel");
-            AddHtmxAttribute(span.Attributes, "click", "this", -1);
-            {
-                var hidden = new TagBuilder("input");
-                hidden.Attributes.Add("type", "hidden");
-                hidden.Attributes.Add("increment", "-1");
-                hidden.Attributes.Add("name", nameof(PageIndex));
-                hidden.Attributes.Add("value", Math.Max(this.PageIndex - 1, 0).ToString());
-                span.InnerHtml.AppendHtml(hidden);
-            }
+            span.Attributes.Add("page-index-increment", "-1");
+            //AddHtmxAttribute(span.Attributes, "click", "this", -1);
+            //{
+            //    var hidden = new TagBuilder("input");
+            //    hidden.Attributes.Add("type", "hidden");
+            //    hidden.Attributes.Add("increment", "-1");
+            //    hidden.Attributes.Add("name", nameof(PageIndex));
+            //    hidden.Attributes.Add("value", Math.Max(this.PageIndex - 1, 0).ToString());
+            //    span.InnerHtml.AppendHtml(hidden);
+            //}
 
             if (this.PreviousPageIconUrl.HasValue())
             {
@@ -105,15 +106,16 @@ public class PagingPanelTagHelper : TagHelper
         {
             var span = new TagBuilder("span");
             span.AddCssClass("icon-panel");
-            AddHtmxAttribute(span.Attributes, "click", "this", 1);
-            {
-                var hidden = new TagBuilder("input");
-                hidden.Attributes.Add("type", "hidden");
-                hidden.Attributes.Add("increment", "1");
-                hidden.Attributes.Add("name", nameof(PageIndex));
-                hidden.Attributes.Add("value", (this.PageIndex + 1).ToString());
-                span.InnerHtml.AppendHtml(hidden);
-            }
+            span.Attributes.Add("page-index-increment", "1");
+            //AddHtmxAttribute(span.Attributes, "click", "this", 1);
+            //{
+            //    var hidden = new TagBuilder("input");
+            //    hidden.Attributes.Add("type", "hidden");
+            //    hidden.Attributes.Add("increment", "1");
+            //    hidden.Attributes.Add("name", nameof(PageIndex));
+            //    hidden.Attributes.Add("value", (this.PageIndex + 1).ToString());
+            //    span.InnerHtml.AppendHtml(hidden);
+            //}
 
             if (this.NextPageIconUrl.HasValue())
             {

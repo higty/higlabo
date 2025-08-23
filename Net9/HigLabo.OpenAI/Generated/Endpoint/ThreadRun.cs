@@ -79,7 +79,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Top_P { get; set; }
         /// <summary>
-        /// Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+        /// Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run.
         /// </summary>
         public object? Truncation_Strategy { get; set; }
 
@@ -129,10 +129,12 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ThreadRunResponse> ThreadRunAsync(ThreadRunParameter parameter)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ThreadRunResponse> ThreadRunAsync(ThreadRunParameter parameter, CancellationToken cancellationToken)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<ThreadRunParameter, ThreadRunResponse>(parameter, cancellationToken);
         }
         public async IAsyncEnumerable<string> ThreadRunStreamAsync(string assistant_Id)

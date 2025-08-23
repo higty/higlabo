@@ -63,8 +63,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public bool? Parallel_Tool_Calls { get; set; }
         /// <summary>
-        /// o-series models only
-        /// Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+        /// Constrains effort on reasoning for reasoning models. Currently supported values are minimal, low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
         /// </summary>
         public string? Reasoning_Effort { get; set; }
         /// <summary>
@@ -89,14 +88,14 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
         /// </summary>
-        public List<ChatCompletionFunctionTool>? Tools { get; set; }
+        public List<Tool>? Tools { get; set; }
         /// <summary>
         /// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
         /// We generally recommend altering this or temperature but not both.
         /// </summary>
         public double? Top_P { get; set; }
         /// <summary>
-        /// Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+        /// Controls for how a thread will be truncated prior to the run. Use this to control the initial context window of the run.
         /// </summary>
         public object? Truncation_Strategy { get; set; }
 
@@ -152,10 +151,12 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<RunCreateResponse> RunCreateAsync(RunCreateParameter parameter)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<RunCreateParameter, RunCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<RunCreateResponse> RunCreateAsync(RunCreateParameter parameter, CancellationToken cancellationToken)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<RunCreateParameter, RunCreateResponse>(parameter, cancellationToken);
         }
         public async IAsyncEnumerable<string> RunCreateStreamAsync(string thread_Id, string assistant_Id)

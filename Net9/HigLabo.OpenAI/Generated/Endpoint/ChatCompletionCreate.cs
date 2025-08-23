@@ -73,8 +73,11 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Presence_Penalty { get; set; }
         /// <summary>
-        /// o-series models only
-        /// Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+        /// Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the user field. Learn more.
+        /// </summary>
+        public string? Prompt_Cache_Key { get; set; }
+        /// <summary>
+        /// Constrains effort on reasoning for reasoning models. Currently supported values are minimal, low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
         /// </summary>
         public string? Reasoning_Effort { get; set; }
         /// <summary>
@@ -84,17 +87,16 @@ namespace HigLabo.OpenAI
         /// </summary>
         public object? Response_Format { get; set; }
         /// <summary>
-        /// This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed, and you should refer to the system_fingerprint response parameter to monitor changes in the backend.
+        /// A stable identifier used to help detect users of your application that may be violating OpenAI's usage policies. The IDs should be a string that uniquely identifies each user. We recommend hashing their username or email address, in order to avoid sending us any identifying information. Learn more.
         /// </summary>
-        public int? Seed { get; set; }
+        public string? Safety_Identifier { get; set; }
         /// <summary>
-        /// Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:
-        /// If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.
-        /// If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
-        /// If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.
-        /// If set to 'flex', the request will be processed with the Flex Processing service tier. Learn more.
+        /// Specifies the processing type used for serving the request.
+        /// If set to 'auto', then the request will be processed with the service tier configured in the Project settings. Unless otherwise configured, the Project will use 'default'.
+        /// If set to 'default', then the request will be processed with the standard pricing and performance for the selected model.
+        /// If set to 'flex' or 'priority', then the request will be processed with the corresponding service tier.
         /// When not set, the default behavior is 'auto'.
-        /// When this parameter is set, the response body will include the service_tier utilized.
+        /// When the service_tier parameter is set, the response body will include the service_tier value based on the processing mode actually used to serve the request. This response value may be different from the value set in the parameter.
         /// </summary>
         public string? Service_Tier { get; set; }
         /// <summary>
@@ -104,6 +106,7 @@ namespace HigLabo.OpenAI
         public List<string>? Stop { get; set; }
         /// <summary>
         /// Whether or not to store the output of this chat completion request for use in our model distillation or evals products.
+        /// Supports text and image inputs. Note: image inputs over 8MB will be dropped.
         /// </summary>
         public bool? Store { get; set; }
         /// <summary>
@@ -124,7 +127,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Tool_Choice { get; set; }
         /// <summary>
-        /// A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
+        /// A list of tools the model may call. You can provide either custom tools or function tools.
         /// </summary>
         public List<ChatCompletionFunctionTool>? Tools { get; set; }
         /// <summary>
@@ -137,9 +140,9 @@ namespace HigLabo.OpenAI
         /// </summary>
         public double? Top_P { get; set; }
         /// <summary>
-        /// A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. Learn more.
+        /// Constrains the verbosity of the model's response. Lower values will result in more concise responses, while higher values will result in more verbose responses. Currently supported values are low, medium, and high.
         /// </summary>
-        public string? User { get; set; }
+        public string? Verbosity { get; set; }
         /// <summary>
         /// This tool searches the web for relevant results to use in a response. Learn more about the web search tool.
         /// </summary>
@@ -165,9 +168,10 @@ namespace HigLabo.OpenAI
             	parallel_tool_calls = this.Parallel_Tool_Calls,
             	prediction = this.Prediction,
             	presence_penalty = this.Presence_Penalty,
+            	prompt_cache_key = this.Prompt_Cache_Key,
             	reasoning_effort = this.Reasoning_Effort,
             	response_format = this.Response_Format,
-            	seed = this.Seed,
+            	safety_identifier = this.Safety_Identifier,
             	service_tier = this.Service_Tier,
             	stop = this.Stop,
             	store = this.Store,
@@ -178,7 +182,7 @@ namespace HigLabo.OpenAI
             	tools = this.Tools,
             	top_logprobs = this.Top_Logprobs,
             	top_p = this.Top_P,
-            	user = this.User,
+            	verbosity = this.Verbosity,
             	web_search_options = this.Web_Search_Options,
             };
         }
@@ -205,10 +209,12 @@ namespace HigLabo.OpenAI
         }
         public async ValueTask<ChatCompletionCreateResponse> ChatCompletionCreateAsync(ChatCompletionCreateParameter parameter)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<ChatCompletionCreateParameter, ChatCompletionCreateResponse>(parameter, System.Threading.CancellationToken.None);
         }
         public async ValueTask<ChatCompletionCreateResponse> ChatCompletionCreateAsync(ChatCompletionCreateParameter parameter, CancellationToken cancellationToken)
         {
+            parameter.Stream = null;
             return await this.SendJsonAsync<ChatCompletionCreateParameter, ChatCompletionCreateResponse>(parameter, cancellationToken);
         }
         public async IAsyncEnumerable<string> ChatCompletionCreateStreamAsync(List<IChatMessage> messages, string model)

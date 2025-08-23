@@ -13,6 +13,8 @@ public class InputTextTagHelper : TagHelper
     public string Placeholder { get; set; } = "";
     public string AutoComplete { get; set; } = "off";
 
+    public IDictionary<string, string?>? TextboxAttributes { get; set; }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "span";
@@ -35,6 +37,10 @@ public class InputTextTagHelper : TagHelper
             if (this.Placeholder.HasValue())
             {
                 tx.Attributes.Add("placeholder", this.Placeholder);
+            }
+            if (this.TextboxAttributes != null)
+            {
+                tx.MergeAttributes(this.TextboxAttributes);
             }
             output.Content.AppendHtml(tx);
         }

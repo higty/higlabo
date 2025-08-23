@@ -32,6 +32,10 @@ namespace HigLabo.OpenAI
         /// Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
         /// </summary>
         public object? Metadata { get; set; }
+        /// <summary>
+        /// The expiration policy for the output and/or error file that are generated for a batch.
+        /// </summary>
+        public ExpirationPolicy? Output_Expires_After { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -44,6 +48,7 @@ namespace HigLabo.OpenAI
             	endpoint = this.Endpoint,
             	input_file_id = this.Input_File_Id,
             	metadata = this.Metadata,
+            	output_expires_after = this.Output_Expires_After,
             };
         }
     }

@@ -17,6 +17,8 @@ public class FieldPanelTextboxTagHelper : TagHelper
     public string Placeholder { get; set; } = "";
     public string AutoComplete { get; set; } = "off";
 
+    public IDictionary<string, string?>? TextboxAttributes { get; set; }
+
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -29,24 +31,28 @@ public class FieldPanelTextboxTagHelper : TagHelper
 
             var div = new TagBuilder("div");
             {
-                var input = new TagBuilder("input");
-                input.Attributes.Add("type", "text");
-                input.Attributes.Add("name", this.Name);
-                input.Attributes.Add("value", this.Value);
+                var tx = new TagBuilder("input");
+                tx.Attributes.Add("type", "text");
+                tx.Attributes.Add("name", this.Name);
+                tx.Attributes.Add("value", this.Value);
                 if (this.DatePicker == true)
                 {
-                    input.Attributes.Add("date-picker", "true");
-                    input.AddCssClass("date");
+                    tx.Attributes.Add("date-picker", "true");
+                    tx.AddCssClass("date");
                 }
                 if (this.Placeholder.HasValue())
                 {
-                    input.Attributes.Add("placeholder", this.Placeholder);
+                    tx.Attributes.Add("placeholder", this.Placeholder);
                 }
                 if (this.AutoComplete.HasValue())
                 {
-                    input.Attributes.Add("autocomplete", this.AutoComplete);
+                    tx.Attributes.Add("autocomplete", this.AutoComplete);
                 }
-                div.InnerHtml.AppendHtml(input);
+                if (this.TextboxAttributes != null)
+                {
+                    tx.MergeAttributes(this.TextboxAttributes);
+                }
+                div.InnerHtml.AppendHtml(tx);
             }
             output.Content.AppendHtml(div);
         }

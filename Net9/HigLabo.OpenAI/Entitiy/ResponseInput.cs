@@ -24,6 +24,20 @@ public class ResponseInput : List<ResponseInputMessage>
         input.Content.Add(content);
         this.Add(input);
     }
+    public void AddFile(string fileName, string contentType, Stream stream)
+    {
+        var input = new ResponseInputMessage();
+        input.Role = "user";
+        input.AddFile(fileName, contentType, stream);
+        this.Add(input);
+    }
+    public void AddImage(string contentType, byte[] data)
+    {
+        var input = new ResponseInputMessage();
+        input.Role = "user";
+        input.AddImage(contentType, data);
+        this.Add(input);
+    }
     public void AddToolCallMessage(ResponseStreamOutputItem.OutputItem toolCall, string output)
     {
         {
@@ -63,6 +77,32 @@ public class ResponseInputMessage
         content.File_Id = fileId;
         this.Content.Add(content);
     }
+
+    public void AddPngImage(byte[] data)
+    {
+        this.AddImage("image/png", data);
+    }
+    public void AddJpegImage(byte[] data)
+    {
+        this.AddImage("image/jpeg", data);
+    }
+    public void AddImage(string contentType, byte[] data)
+    {
+        var content = new ResponseInputContent();
+        content.Type = "input_image";
+        content.FileName = null;
+        content.Image_Url = data.CreateBase64FileData(contentType);
+        this.Content.Add(content);
+    }
+
+    public void AddFile(string fileName, string contentType, Stream stream)
+    {
+        this.AddFile(fileName, contentType, stream.ToByteArray());
+    }
+    public void AddFile(string fileName, string contentType, byte[] data)
+    {
+        this.AddFile(fileName, data.CreateBase64FileData(contentType));
+    }
     public void AddFile(string fileName, string base64EncodedData)
     {
         var content = new ResponseInputContent();
@@ -70,14 +110,6 @@ public class ResponseInputMessage
         content.FileName = fileName;
         content.File_Data = base64EncodedData;
         this.Content.Add(content);
-    }
-    public void AddFile(string fileName, Stream stream)
-    {
-        this.AddFile(fileName, stream.ToByteArray());
-    }
-    public void AddFile(string fileName, byte[] data)
-    {
-        this.AddFile(fileName, $"data:text/plain;base64," + Convert.ToBase64String(data));
     }
 }
 public class ResponseToolOutputMessage : ResponseInputMessage

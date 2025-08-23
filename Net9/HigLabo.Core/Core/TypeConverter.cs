@@ -47,24 +47,6 @@ public partial class TypeConverter
         }
         return null;
     }
-#if _Net_3_5
-    public virtual Guid? ToGuid(Object value)
-    {
-        if (value == null) return null;
-
-        var tp = value.GetType();
-        if (tp == typeof(Guid)) return (Guid)value;
-        if (tp == typeof(String))
-        {
-            try
-            {
-                return new Guid((String)value);
-            }
-            catch { }
-        }
-        return null;
-    }
-#else
     public virtual Guid? ToGuid(Object value)
     {
         if (value == null) return null;
@@ -76,7 +58,7 @@ public partial class TypeConverter
         {
             return g;
         }
-        if (tp == typeof (String))
+        if (tp == typeof(String))
         {
             var s = (String)value;
             if (s != null)
@@ -92,7 +74,6 @@ public partial class TypeConverter
         }
         return null;
     }
-#endif
     public virtual SByte? ToSByte(Object value)
     {
         return ToSByte(value, this.IntergerNumberStyle, null);

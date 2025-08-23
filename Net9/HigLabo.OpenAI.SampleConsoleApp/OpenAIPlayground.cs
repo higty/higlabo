@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateFunctionCalling();
+        await ResponseCreateImageGenaration();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -88,6 +88,7 @@ public class OpenAIPlayground
         var res = await cl.AudioTranscriptionsAsync(p);
         Console.WriteLine(res.GetResponseBodyText());
     }
+
     private async ValueTask Embeddings()
     {
         var cl = OpenAIClient;
@@ -99,6 +100,7 @@ public class OpenAIPlayground
         }
         Console.WriteLine(res);
     }
+
     private async ValueTask ChatCompletion()
     {
         var cl = OpenAIClient;
@@ -193,39 +195,6 @@ public class OpenAIPlayground
             Console.WriteLine("Total tokne: " + usage.Total_Tokens);
         }
         Console.WriteLine("------------------------");
-    }
-    private async ValueTask ChatCompletionStreamWithFunctionCalling()
-    {
-        var cl = OpenAIClient;
-
-        var p = new ChatCompletionCreateParameter();
-        //ChatGPT can correct Newyork,Sanflansisco to New york and San Flancisco.
-        p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"I want to know the whether of Tokyo."));
-        p.Model = cl.ServiceProvider switch
-        {
-            ServiceProvider.Groq => "llama3-70b-8192",
-            _ => "gpt-4o",
-        };
-
-        p.Tools = new List<ChatCompletionFunctionTool>();
-        p.Tools.Add(this.CreateGetWheatherChatCompletionTool());
-        p.Tools.Add(this.CreateGetLatLongChatCompletionTool());
-
-        var result = new ChatCompletionStreamResult();
-        await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
-        {
-            Console.Write(text);
-        }
-        Console.WriteLine();
-
-        foreach (var f in result.GetFunctionCallList())
-        {
-            Console.WriteLine("■Function name is " + f.Name);
-            Console.WriteLine("■Arguments is " + f.Arguments);
-        }
-
-        Console.WriteLine();
-        Console.WriteLine("DONE");
     }
     private async ValueTask ChatCompletionVision()
     {
@@ -360,40 +329,6 @@ public class OpenAIPlayground
         Console.WriteLine(iRes.RequestBodyText);
         Console.WriteLine();
         Console.WriteLine(iRes.ResponseBodyText);
-    }
-    private async ValueTask ChatCompletionVisionWithFunctionCalling()
-    {
-        var cl = OpenAIClient;
-
-        var p = new ChatCompletionCreateParameter();
-
-        var vMessage = new ChatImageMessage(ChatMessageRole.User);
-        vMessage.AddTextContent("Please extract item data from this image as function calling invoking.");
-        //URL of business card.
-        //vMessage.AddImageContent("https://yourdomain.com/my-business-card.jpg");
-        vMessage.AddImageFile("C:\\Data\\Image\\BusinessCard2.jpg");
-        p.Messages.Add(vMessage);
-        p.Model = "gpt-4o";
-        p.Stream = true;
-        p.Stream_Options = new
-        {
-            include_usage = true
-        };
-        p.Tools = [CreateDocumentFileColumnExtractChatCompletionTool()];
-
-        var result = new ChatCompletionStreamResult();
-        await foreach (var text in cl.ChatCompletionCreateStreamAsync(p, result, CancellationToken.None))
-        {
-            Console.Write(text);
-        }
-        Console.WriteLine("");
-        Console.WriteLine("***********************");
-        foreach (var f in result.GetFunctionCallList())
-        {
-            Console.WriteLine(f.Arguments);
-        }
-        Console.WriteLine("");
-        Console.WriteLine("■DONE");
     }
 
     private async ValueTask ResponseCreate()
@@ -613,6 +548,54 @@ public class OpenAIPlayground
         }
         Console.WriteLine("■DONE");
     }
+    private async ValueTask ResponseCreateImageGenaration()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-5";
+        p.Input.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
+        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Hakuun.png")));
+        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "DragonEye.jpg")));
+        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")));
+        p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Tsurugi.jpg")));
+        p.Tools = [];
+        p.Tools.Add(new Tool("image_generation"));
+
+        Console.WriteLine("Generateing...");
+        var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+        foreach (var output in res.Output)
+        {
+            switch (output.Type)
+            {
+                case "message":
+                    foreach (var content in output.Content)
+                    {
+                        if (content.Type == "output_text")
+                        {
+                            Console.WriteLine(content.Text);
+                        }
+                    }
+                    break;
+                case "image_generation_call":
+                    Console.WriteLine(output.Revised_Prompt);
+                    var imageData = Convert.FromBase64String(output.Result);
+                    var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+                    if (Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                    File.WriteAllBytes(filePath, imageData);
+                    Console.WriteLine("File is saved to");
+                    Console.WriteLine(filePath);
+                    break;
+                default: break;
+            }
+        }
+
+        Console.WriteLine("■DONE");
+    }
 
     private async ValueTask ResponseCreateFileSearchStream()
     {
@@ -654,7 +637,7 @@ public class OpenAIPlayground
         var p = new ResponseCreateParameter();
         p.Model = "gpt-4o";
         p.Input.AddUserMessage("Please explain about this pdf file.");
-        p.Input[0].AddFile("Pond.jpg", File.OpenRead(Path.Combine(Environment.CurrentDirectory, "File", "AI_Forecast.pdf")));
+        p.Input[0].AddImage("image/jpeg", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "File", "AI_Forecast.pdf")));
 
         var result = new ResponseStreamResult();
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
@@ -855,11 +838,11 @@ public class OpenAIPlayground
         Console.WriteLine("■DONE");
     }
 
-    private ChatCompletionFunctionTool CreateGetWheatherChatCompletionTool()
+    private FunctionTool CreateGetWheatherChatCompletionTool()
     {
-        var tool = new ChatCompletionFunctionTool();
-        tool.Function.Name = "getWhether";
-        tool.Function.Description = "This service can get whether of specified location.";
+        var tool = new FunctionTool();
+        tool.Name = "getWhether";
+        tool.Description = "This service can get whether of specified location.";
         //Use anonymous object to define json schema.
         #region
         //tool.Function.Parameters = new
@@ -878,15 +861,15 @@ public class OpenAIPlayground
         //Use JsonSchema class to define json schema.
         var o = new JsonSchema();
         o.Properties.Add("location", new JsonSchemaProperty("string", "Location list that you want to know."));
-        tool.Function.Parameters = o;
+        tool.Parameters = o;
         return tool;
     }
-    private ChatCompletionFunctionTool CreateGetTouristSpotChatCompletionTool()
+    private FunctionTool CreateGetTouristSpotChatCompletionTool()
     {
-        var tool = new ChatCompletionFunctionTool();
-        tool.Function.Name = "getTouristSpot";
-        tool.Function.Description = "This service can get tourist spot of specified region.";
-        tool.Function.Parameters = new
+        var tool = new FunctionTool();
+        tool.Name = "getTouristSpot";
+        tool.Description = "This service can get tourist spot of specified region.";
+        tool.Parameters = new
         {
             type = "object",
             properties = new
@@ -904,11 +887,11 @@ public class OpenAIPlayground
         };
         return tool;
     }
-    private ChatCompletionFunctionTool CreateGetLatLongChatCompletionTool()
+    private FunctionTool CreateGetLatLongChatCompletionTool()
     {
-        var tool = new ChatCompletionFunctionTool();
-        tool.Function.Name = "getLatLong";
-        tool.Function.Description = "This service can get latitude and longitude of specified location.";
+        var tool = new FunctionTool();
+        tool.Name = "getLatLong";
+        tool.Description = "This service can get latitude and longitude of specified location.";
         //Use anonymous object to define json schema.
         #region
         //tool.Function.Parameters = new
@@ -934,20 +917,20 @@ public class OpenAIPlayground
         {
             Items = new JsonSchema("string") { },
         });
-        tool.Function.Parameters = o;
+        tool.Parameters = o;
         return tool;
     }
-    private ChatCompletionFunctionTool CreateDocumentFileColumnExtractChatCompletionTool()
+    private FunctionTool CreateDocumentFileColumnExtractChatCompletionTool()
     {
-        var tool = new ChatCompletionFunctionTool();
-        tool.Function.Name = "DataExtract";
-        tool.Function.Description = "Extract item data from file.";
+        var tool = new FunctionTool();
+        tool.Name = "DataExtract";
+        tool.Description = "Extract item data from file.";
         var o = new JsonSchema();
         o.Properties.Add("PersonName", new JsonSchemaProperty("string", "Person name."));
         o.Properties.Add("CompanyName", new JsonSchemaProperty("string", "Company name."));
         o.Properties.Add("Address", new JsonSchemaProperty("string", "Address.."));
         o.Properties.Add("MailAddress", new JsonSchemaProperty("string", "Email address."));
-        tool.Function.Parameters = o;
+        tool.Parameters = o;
         return tool;
     }
 
@@ -1217,7 +1200,7 @@ public class OpenAIPlayground
             var p = new RunCreateParameter();
             p.Assistant_Id = assistantId;
             p.Thread_Id = threadId;
-            p.Tools = new List<ChatCompletionFunctionTool>();
+            p.Tools = new ();
             p.Tools.Add(CreateGetWheatherChatCompletionTool());
 
             var result = new AssistantMessageStreamResult();
@@ -1580,9 +1563,9 @@ public class OpenAIPlayground
     private async ValueTask RealtimeSession()
     {
         var cl = OpenAIClient;
-        var p = new RealtimeSessionsParameter();
+        var p = new RealtimeSessionCreateParameter();
         p.Model = "gpt-4o";
-        var res = await cl.RealtimeSessionsAsync(p, CancellationToken.None);
+        var res = await cl.RealtimeSessionCreateAsync(p, CancellationToken.None);
         Console.WriteLine("key: " + res.Client_Secret.Value);
         Console.WriteLine("expire at:" + res.Client_Secret.ExpireTime);
     }

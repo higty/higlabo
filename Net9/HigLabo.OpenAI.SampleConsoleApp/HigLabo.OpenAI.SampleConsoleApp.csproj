@@ -5,7 +5,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>9.4.0.0</Version>
+		<Version>9.6.0.0</Version>
 		<Company>HigLabo</Company>
 		<Authors>Higty</Authors>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
@@ -29,6 +29,18 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="File\AI_Forecast.pdf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\DragonEye.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Mt_Hakuun.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Mt_Tsurugi.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Image\Mt_Yari.jpg">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Image\Pond.jpg">

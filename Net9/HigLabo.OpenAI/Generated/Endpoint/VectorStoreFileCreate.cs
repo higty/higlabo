@@ -28,7 +28,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// The chunking strategy used to chunk the file(s). If not set, will use the auto strategy.
         /// </summary>
-        public ChunkingStrategy? Chunking_Strategy { get; set; }
+        public object? Chunking_Strategy { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
