@@ -591,9 +591,13 @@ public class ResponseStreamQueued : IResponseStreamEvent, IResponseStreamEventRe
     public ResponseObject Response { get; set; } = new();
     public int Sequence_Number { get; set; }
 }
-public class ReasoningDelta 
+public class ReasoningDelta : IResponseStreamEventDelta
 {
     public string Text { get; set; } = "";
+    string IResponseStreamEventDelta.Delta
+    {
+        get { return this.Text; }
+    }
 }
 public class ResponseStreamReasoningDelta : IResponseStreamEvent, IResponseStreamEventDelta
 {

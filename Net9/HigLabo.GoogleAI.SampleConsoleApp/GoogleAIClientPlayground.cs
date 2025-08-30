@@ -1,8 +1,10 @@
-﻿using HigLabo.Core;
+﻿using HigLabo.Converter;
+using HigLabo.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
@@ -29,7 +31,7 @@ public class GoogleAIClientPlayground
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
 
-        await GenerateImage();
+        await GenerateImageByFlashImagePreview1();
         //await GenerateSensitiveImage();
         //await ExplainImage();
         //await GenerateImageByGeminiFlash();
@@ -281,21 +283,114 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsPredictParameter();
-        p.Model = ModelNames.ImaGen_3_0_Generate_002;
-        p.Instances.Add(new PredictInstance() { Prompt = "Create Focaccia on the table.　ふわふわの湯気が出てるフォカッチャで" });
+        p.Model = ModelNames.ImaGen_4_0_Generate_001;
+        p.Instances.Add(new PredictInstance() { Prompt = "Using the provided image of a living room, change only the blue sofa to be a vintage, brown leather chesterfield sofa..." });
         p.Parameters = new();
         p.Parameters.SampleCount = 1;
 
         var res = await cl.PredictAsync(p);
         foreach (var image in res.Predictions)
         {
-            using (var stream = image.GetStream())
+            var imageData = image.GetBytes();
+            var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+            Directory.CreateDirectory(folderPath);
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+            File.WriteAllBytes(filePath, imageData);
+            Console.WriteLine("File is saved to");
+            Console.WriteLine(filePath);
+            //using (var stream = image.GetStream())
+            //{
+            //    using (var bitmap = new Bitmap(stream))
+            //    {
+            //        string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss_fff")}.jpg");
+            //        bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //        Console.WriteLine($"Image is saved at {outputPath}");
+            //    }
+            //}
+        }
+    }
+    private async ValueTask GenerateImageByFlashImagePreview()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_5_Flash_Image_Preview;
+        p.Contents.Add(new Content(ChatMessageRole.User, "Create a picture of a nano banana dish in a fancy restaurant with a Gemini theme."));
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GetCandidateStreamAsync(p, result, CancellationToken.None))
+        {
+            foreach (var part in item.Content.Parts)
             {
-                using (var bitmap = new Bitmap(stream))
+                Console.Write(part.Text);
+
+                if (part.InlineData != null)
                 {
-                    string outputPath = Path.Combine(Environment.CurrentDirectory, "Image", $"GeneratedImage_{DateTimeOffset.Now.ToString("yyyyMMdd_HHmmss_fff")}.jpg");
-                    bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    Console.WriteLine($"Image is saved at {outputPath}");
+                    var imageData = part.InlineData.GetBytes();
+                    var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+                    Directory.CreateDirectory(folderPath);
+                    var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                    File.WriteAllBytes(filePath, imageData);
+                    Console.WriteLine("File is saved to");
+                    Console.WriteLine(filePath);
+                }
+            }
+        }
+    }
+    private async ValueTask GenerateImageByFlashImagePreview1()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_5_Flash_Image_Preview;
+        var path = Path.Combine(Environment.CurrentDirectory, "Image", "KamuiCape.jpg");
+        p.AddMessage("この画像をピカソ風にしてください。", "image/jpeg", File.ReadAllBytes(path));
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GetCandidateStreamAsync(p, result, CancellationToken.None))
+        {
+            foreach (var part in item.Content.Parts)
+            {
+                Console.Write(part.Text);
+
+                if (part.InlineData != null)
+                {
+                    var imageData = part.InlineData.GetBytes();
+                    var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+                    Directory.CreateDirectory(folderPath);
+                    var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                    File.WriteAllBytes(filePath, imageData);
+                    Console.WriteLine("File is saved to");
+                    Console.WriteLine(filePath);
+                }
+            }
+        }
+    }
+    private async ValueTask GenerateContentTTS()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_5_Flash_Preview_Tts;
+        p.Contents.Add(new Content(ChatMessageRole.User, "Focaccia is absolutely delicious."));
+        p.GenerationConfig = new();
+        p.GenerationConfig.ResponseModalities = ["AUDIO"];
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GetCandidateStreamAsync(p, result, CancellationToken.None))
+        {
+            foreach (var part in item.Content.Parts)
+            {
+                Console.Write(part.Text);
+
+                if (part.InlineData != null)
+                {
+                    var pcmData = part.InlineData.GetBytes();
+                    var cv = new PcmToWavConverter(24000, 1, 16);
+                    var audioData = cv.Convert(pcmData);
+                    var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+                    Directory.CreateDirectory(folderPath);
+                    var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"TTS_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.wav");
+                    File.WriteAllBytes(filePath, audioData);
+                    Console.WriteLine("File is saved to");
+                    Console.WriteLine(filePath);
                 }
             }
         }

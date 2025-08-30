@@ -14,7 +14,7 @@ public static class ByteArrayExtensions
         var bom = new byte[] { 0xEF, 0xBB, 0xBF };
         return data[0] == bom[0] && data[1] == bom[1] && data[2] == bom[2];
     }
-    public static string CreateBase64FileData(this byte[] data, string contentType)
+    public static string CreateBase64FileString(this byte[] data, string contentType)
     {
         return $"data:{contentType};base64," + Convert.ToBase64String(data);
     }

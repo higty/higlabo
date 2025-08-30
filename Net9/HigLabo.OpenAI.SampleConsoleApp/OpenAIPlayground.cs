@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateImageGenaration();
+        await ResponseCreateImageGenarationStream();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -557,8 +557,8 @@ public class OpenAIPlayground
         p.Input.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
         //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Hakuun.png")));
         //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "DragonEye.jpg")));
-        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")));
-        p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Tsurugi.jpg")));
+        p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")));
+        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Tsurugi.jpg")));
         p.Tools = [];
         p.Tools.Add(new Tool("image_generation"));
 
@@ -593,6 +593,46 @@ public class OpenAIPlayground
                 default: break;
             }
         }
+        Console.WriteLine("Total tokens: " + res.Usage.Total_Tokens);
+
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateImageGenarationStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-5";
+        p.Input.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
+        p.Input[0].AddImage("https://static.tinybetter.com/public-data/drone-image/PXL_20231018_073935194.jpg");
+        p.Tools = [];
+        p.Tools.Add(new Tool("image_generation"));
+
+        Console.WriteLine("Generateing...");
+        var result = new ResponseStreamResult();
+        await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
+        {
+            var oEvent = item.CreateTypedData();
+            if (oEvent is IResponseStreamEventDelta oDelta)
+            {
+                Console.Write(oDelta.Delta);
+            }
+            if (oEvent is ResponseStreamImageGenerationCallPartialImage oImage)
+            {
+                var imageData = oImage.GetBytes();
+                var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+                Directory.CreateDirectory(folderPath);
+                var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                File.WriteAllBytes(filePath, imageData);
+                Console.WriteLine("File is saved to");
+                Console.WriteLine(filePath);
+            }
+            else
+            {
+                Console.WriteLine(item.Data);
+            }
+        }
+        Console.WriteLine("Total tokens: " + result.Response?.Response?.Usage.Total_Tokens);
 
         Console.WriteLine("■DONE");
     }
@@ -694,6 +734,42 @@ public class OpenAIPlayground
         }
         Console.WriteLine("■DONE");
     }
+
+    private async ValueTask ResponseCreateDeepSearch()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "o3-deep-research";
+        p.Input.AddUserMessage($"まずはWEBを検索しAIに関するニュースを集めてください。その後、それらのニュースをニュースキャスターが読むような原稿を作成してください。原稿は読み上げ時間が3分くらいのモノにしてください。");
+        p.Stream = true;
+        p.Tools = [];
+        p.Tools.Add(new Tool("web_search_preview"));
+        var result = new ResponseStreamResult();
+        await foreach (var item in cl.GetResponseStreamEventAsync(p, result, CancellationToken.None))
+        {
+            var o = item.CreateTypedData();
+            if (o is IResponseStreamEventDelta oDelta)
+            {
+                Console.Write(oDelta.Delta);
+            }
+            if (o is ResponseStreamWebSearchCall oWebSearch)
+            {
+                Console.WriteLine(item.Data);
+            }
+        }
+        var usage = result.Response?.Response?.Usage;
+        if (usage != null)
+        {
+            Console.WriteLine("Input tokens: " + usage.Input_Tokens);
+            Console.WriteLine("Output tokens: " + usage.Output_Tokens);
+            Console.WriteLine("Reasoning tokens: " + usage.Output_Tokens_Details.Reasoning_Tokens);
+            Console.WriteLine("Total tokens: " + usage.Total_Tokens);
+        }
+
+        Console.WriteLine("■DONE");
+    }
+
     private async ValueTask ResponseCreateReasoningEventStream()
     {
         var cl = OpenAIClient;
