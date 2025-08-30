@@ -91,7 +91,7 @@ public class ResponseInputMessage
         var content = new ResponseInputContent();
         content.Type = "input_image";
         content.FileName = null;
-        content.Image_Url = data.CreateBase64FileData(contentType);
+        content.Image_Url = data.CreateBase64FileString(contentType);
         this.Content.Add(content);
     }
 
@@ -101,7 +101,7 @@ public class ResponseInputMessage
     }
     public void AddFile(string fileName, string contentType, byte[] data)
     {
-        this.AddFile(fileName, data.CreateBase64FileData(contentType));
+        this.AddFile(fileName, data.CreateBase64FileString(contentType));
     }
     public void AddFile(string fileName, string base64EncodedData)
     {
