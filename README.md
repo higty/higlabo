@@ -17,6 +17,8 @@ It was moved from https://github.com/higty/higlabo.netstandard repository.
 ※Breaking change. The endpoint of ChatCompletions are all changed to ChatCompletionCreate. Please see latest sample code.
 https://github.com/higty/higlabo/blob/master/Net9/HigLabo.OpenAI.SampleConsoleApp/OpenAIPlayground.cs
 
+2025-10-08 updated. Support video generation by Sora2.
+
 2025-08-24 updated. Support conversation, eval, certificate endpoints.
 
 2025-01-22 updated. Support .NET9.
@@ -139,6 +141,39 @@ foreach (var output in res.Output)
             Console.WriteLine(filePath);
             break;
         default: break;
+    }
+}
+```
+
+```
+var cl = OpenAIClient;
+
+var p = new VideoCreateParameter();
+p.Prompt = "A baby and a fluffy kitten playing together on a soft carpet in a sunlit living room, morning light streaming through curtains, natural colors, heartwarming and gentle atmosphere, cinematic depth of field, ultra-realistic style.";
+p.Model = "sora-2";
+var job = await cl.VideoCreateAsync(p);
+Console.WriteLine("Job started.");
+while (true)
+{
+    //10 seconds interval
+    Thread.Sleep(10 * 1000);
+
+    var res = await cl.VideoRetrieveAsync(job.Id);
+    if (res.Status == "completed")
+    {
+        var stream = await cl.VideoContentGetAsync(job.Id);
+        var filePath = Path.Combine(Environment.CurrentDirectory, $"video_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.mp4");
+        File.WriteAllBytes(filePath, stream.ToByteArray());
+        break;
+    }
+    else if (res.Status == "failed")
+    {
+        Console.WriteLine("Job failed.");
+        break;
+    }
+    else
+    {
+        Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToIso8601String()} Job status is " + res.Status + ". Waiting...");
     }
 }
 ```
