@@ -31,7 +31,7 @@ public class GoogleAIClientPlayground
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
 
-        await GenerateImageByFlashImagePreview1();
+        await GenerateMangaImage();
         //await GenerateSensitiveImage();
         //await ExplainImage();
         //await GenerateImageByGeminiFlash();
@@ -361,6 +361,60 @@ public class GoogleAIClientPlayground
                     Console.WriteLine("File is saved to");
                     Console.WriteLine(filePath);
                 }
+            }
+        }
+    }
+    private async ValueTask GenerateMangaImage()
+    {
+        var cl = GoogleAIClient;
+
+        var p = new ModelsGenerateContentParameter();
+        p.Model = ModelNames.Gemini_2_5_Flash_Image_Preview;
+
+        var content = new Content();
+        content.Parts.Add(new ContentPart("Please generate an image of the person from the second image seated at the table shown in the first image. " +
+            "Change the camera angle to a side view showing the person's profile and seated posture."));
+        {
+            var part = new ContentPart();
+            part.InlineData = new InlineData("image/jpeg", Convert.ToBase64String(File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "CafeTable2.jpg"))));
+            content.Parts.Add(part);
+            p.Contents.Add(content);
+        }
+        {
+            var part = new ContentPart();
+            part.InlineData = new InlineData("image/jpeg", Convert.ToBase64String(File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Person1.jpg"))));
+            content.Parts.Add(part);
+            p.Contents.Add(content);
+        }
+
+        var imageGenerated = false;
+        var retryCount = 0;
+        while (imageGenerated == false)
+        {
+            var result = new GenerateContentStreamResult();
+            await foreach (var item in cl.GetCandidateStreamAsync(p, result, CancellationToken.None))
+            {
+                foreach (var part in item.Content.Parts)
+                {
+                    Console.Write(part.Text);
+
+                    if (part.InlineData != null)
+                    {
+                        var imageData = part.InlineData.GetBytes();
+                        var folderPath = Path.Combine(Environment.CurrentDirectory, "Generated");
+                        Directory.CreateDirectory(folderPath);
+                        var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                        File.WriteAllBytes(filePath, imageData);
+                        Console.WriteLine("File is saved to");
+                        Console.WriteLine(filePath);
+                        imageGenerated = true;
+                    }
+                }
+            }
+            retryCount++;
+            if (retryCount >= 5)
+            {
+                throw new InvalidOperationException("Image generation failed.");
             }
         }
     }

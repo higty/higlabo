@@ -422,7 +422,6 @@ dialog {
 }
 .data-record-popup-panel > .content-panel {
   width: 100%;
-  padding: 4px;
 }
 .data-record-popup-panel > .content-panel > .record-list-panel {
   max-height: 60dvh;

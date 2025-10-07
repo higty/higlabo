@@ -93,7 +93,9 @@
                             if (childElement.tagName.toLowerCase() == "select") {
                                 let selectElement = childElement as HTMLSelectElement;
                                 if (selectElement.selectedIndex > -1) {
-                                    parameter[name] = selectElement.options[selectElement.selectedIndex].value;
+                                    let r = {};
+                                    r[name] = selectElement.options[selectElement.selectedIndex].value;
+                                    parameter.push(r);
                                 }
                             }
                             if (childElement.tagName == "INPUT" || childElement.tagName == "TEXTAREA") {
@@ -118,6 +120,11 @@
                                     r[name] = inputElement.value;
                                     parameter.push(r);
                                 }
+                            }
+                            else if (childElement.tagName.toLowerCase() == "img") {
+                                let r = {};
+                                r[name] = childElement.getAttribute("src");
+                                parameter.push(r);
                             }
                             else {
                                 let r = {};
@@ -166,6 +173,9 @@
                                 else {
                                     parameter[name] = inputElement.value;
                                 }
+                            }
+                            else if (childElement.tagName.toLowerCase() == "img") {
+                                parameter[name] = childElement.getAttribute("src");
                             }
                             else {
                                 if (childElement.getAttribute("contenteditable") == "true") {
