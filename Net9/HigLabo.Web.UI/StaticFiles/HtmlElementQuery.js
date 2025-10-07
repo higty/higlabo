@@ -202,7 +202,7 @@ export class HtmlElementQuery {
         if (this._elementList.length > 0) {
             const element = this._elementList[0];
             if (element === null) {
-                return;
+                return this;
             }
             element.focus(options);
         }
@@ -248,7 +248,7 @@ export class HtmlElementQuery {
                 return rb.checked;
             }
         }
-        return null;
+        return false;
     }
     insertAdjacentHTML(position, text) {
         for (var i = 0; i < this._elementList.length; i++) {
@@ -447,7 +447,8 @@ export class HtmlElementQuery {
                         end = preCaretRange.toString().length;
                     }
                 }
-                element.innerHTML.substring(start, end);
+                const text = element.innerHTML.substring(start, end);
+                return text;
             }
         }
         return null;
@@ -708,7 +709,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e) {
-                if (key === null || e.key === key) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });

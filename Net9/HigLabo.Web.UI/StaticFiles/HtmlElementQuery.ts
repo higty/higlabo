@@ -199,7 +199,7 @@ export class HtmlElementQuery {
     public setFocus(options?: FocusOptions): HtmlElementQuery {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
-            if (element === null) { return; }
+            if (element === null) { return this; }
             element.focus(options);
         }
         return this;
@@ -241,7 +241,7 @@ export class HtmlElementQuery {
             }
 
         }
-        return null;
+        return false;
     }
 
     public insertAdjacentHTML(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", text: string) {
@@ -262,7 +262,7 @@ export class HtmlElementQuery {
         }
         return this;
     }
-    public getInnerWidth(): number {
+    public getInnerWidth(): number | null {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -272,7 +272,7 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    public getInnerHeight(): number {
+    public getInnerHeight(): number | null {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -282,7 +282,7 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    public getOuterWidth(): number {
+    public getOuterWidth(): number | null{
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -292,7 +292,7 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    public getOuterHeight(): number {
+    public getOuterHeight(): number | null{
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -446,7 +446,8 @@ export class HtmlElementQuery {
                         end = preCaretRange.toString().length;
                     }
                 }
-                element.innerHTML.substring(start, end);
+                const text = element.innerHTML.substring(start, end);
+                return text;
             }
         }
         return null;
@@ -713,7 +714,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e: KeyboardEvent) {
-                if (key === null || e.key === key) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });
