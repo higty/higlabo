@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +30,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public EvalRunOutputItemsQueryParameter QueryParameter { get; set; } = new EvalRunOutputItemsQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -39,11 +41,49 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class EvalRunOutputItemsQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last output item from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of output items to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// Sort order for output items by timestamp. Use asc for ascending order or desc for descending order. Defaults to asc.
+        /// </summary>
+        public string? Order { get; set; }
+        /// <summary>
+        /// Filter output items by status. Use failed to filter by failed output items or pass to filter by passed output items.
+        /// </summary>
+        public string? Status { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Order != null)
+            {
+                sb.Append($"order={WebUtility.UrlEncode(this.Order)}&");
+            }
+            if (this.Status != null)
+            {
+                sb.Append($"status={WebUtility.UrlEncode(this.Status)}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class EvalRunOutputItemsResponse : RestApiDataResponse<List<EvalRunOutputItemObject>>
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

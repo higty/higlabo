@@ -253,15 +253,51 @@ public partial class OpenAIClient
         var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
         return await this.CreateResponse<TResponse>(parameter, req, requestBodyText, res);
     }
+    public async ValueTask<Stream> SendJsonAndGetStreamAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
+        where TParameter : RestApiParameter, IRestApiParameter
+        where TResponse : Stream
+    {
+        var p = parameter as IRestApiParameter;
+        var req = this.CreateRequestMessage(parameter);
+        var requestBodyText = "";
+        if (string.Equals(p.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase) == false)
+        {
+            requestBodyText = OpenAIClient.JsonConverter.SerializeObject(parameter.GetRequestBody());
+            req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
+        }
+        Debug.WriteLine(requestBodyText);
+        var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
+        return await res.Content.ReadAsStreamAsync(cancellationToken);
+    }
+
     public async ValueTask<TResponse> SendFormDataAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         where TParameter : RestApiParameter, IRestApiParameter, IFormDataParameter
         where TResponse : RestApiResponse
     {
         var p = parameter as IRestApiParameter;
+        var requestBodyText = "";
         var req = this.CreateRequestMessage(parameter);
 
+        req.Content = this.CreateFormDataContent(parameter, out requestBodyText);
+
+        var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
+        if (res.IsSuccessStatusCode == false)
+        {
+            var responseBodyText = await res.Content.ReadAsStringAsync();
+            var errorRes = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
+            throw new OpenAIServerException(parameter, req, requestBodyText, res, responseBodyText, errorRes.Error);
+        }
+
+        var bodyText = await res.Content.ReadAsStringAsync();
+        var o = OpenAIClient.JsonConverter.DeserializeObject<TResponse>(bodyText);
+        o.SetProperty(parameter, requestBodyText, req, res, bodyText);
+
+        return o;
+    }
+    private MultipartFormDataContent CreateFormDataContent(IFormDataParameter parameter, out string requestBodyText)
+    {
         var requestContent = new MultipartFormDataContent();
-        var fileParameter = p as IFileParameter;
+        var fileParameter = parameter as IFileParameter;
         if (fileParameter != null)
         {
             foreach (var item in fileParameter.GetFileParameters())
@@ -281,18 +317,11 @@ public partial class OpenAIClient
         {
             requestContent.Add(new StringContent(d[key]), key);
         }
-        req.Content = requestContent;
 
-        var requestBodyText = JsonConverter.SerializeObject(d);
-
+        requestBodyText = JsonConverter.SerializeObject(d);
         Debug.WriteLine(requestBodyText);
-        var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
 
-        var bodyText = await res.Content.ReadAsStringAsync();
-        var o = OpenAIClient.JsonConverter.DeserializeObject<TResponse>(bodyText);
-        o.SetProperty(parameter, requestBodyText, req, res, bodyText);
-
-        return o;
+        return requestContent;
     }
 
     public async IAsyncEnumerable<ServerSentEventLine> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
@@ -304,9 +333,16 @@ public partial class OpenAIClient
         var requestBodyText = "";
         if (string.Equals(p.HttpMethod, "POST", StringComparison.OrdinalIgnoreCase))
         {
-            requestBodyText = JsonConverter.SerializeObject(parameter.GetRequestBody());
+            if (p is IFormDataParameter formDataParameter)
+            {
+                req.Content = this.CreateFormDataContent(formDataParameter, out requestBodyText);
+            }
+            else
+            {
+                requestBodyText = JsonConverter.SerializeObject(parameter.GetRequestBody());
+                req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
+            }
         }
-        req.Content = new StringContent(requestBodyText, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
 
         Debug.WriteLine(requestBodyText);
         var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
@@ -483,6 +519,8 @@ public partial class OpenAIClient
 
         }
     }
+ 
+
     public async IAsyncEnumerable<ResponseStreamEvent> GetResponseStreamEventAsync<TParameter>(TParameter parameter, ResponseStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
     where TParameter : RestApiParameter, IRestApiParameter, IResponseCreateParameter
     {
@@ -516,6 +554,32 @@ public partial class OpenAIClient
                 //    var error = OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(text);
                 //    throw new OpenAIServerSentEventException(error) { Result = result };
                 //}
+            }
+
+        }
+    }
+    public async IAsyncEnumerable<ImageGenerationStreamEvent> GetImageGenerateStreamEventAsync<TParameter>(TParameter parameter, ImageGenerationStreamResult? result, [EnumeratorCancellation] CancellationToken cancellationToken)
+        where TParameter : RestApiParameter, IRestApiParameter, IImageGenerateParameter
+    {
+        var eventName = "";
+        await foreach (var line in this.GetStreamAsync(parameter, cancellationToken))
+        {
+            if (line.IsEvent())
+            {
+                eventName = line.GetText();
+            }
+            if (line.IsData())
+            {
+                var text = line.GetText();
+                if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
+
+                var streamEvent = new ImageGenerationStreamEvent(eventName, text);
+                if (result != null)
+                {
+                    var oEvent = streamEvent.CreateTypedData();
+                    result.EventList.Add(streamEvent);
+                }
+                yield return streamEvent;
             }
 
         }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public ChatCompletionMessageRetrieveQueryParameter QueryParameter { get; set; } = new ChatCompletionMessageRetrieveQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -35,11 +37,41 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class ChatCompletionMessageRetrieveQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last message from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of messages to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// Sort order for messages by timestamp. Use asc for ascending order or desc for descending order. Defaults to asc.
+        /// </summary>
+        public string? Order { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Order != null)
+            {
+                sb.Append($"order={WebUtility.UrlEncode(this.Order)}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class ChatCompletionMessageRetrieveResponse : RestApiResponse
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

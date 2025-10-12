@@ -48,6 +48,8 @@ public class OpenAISourceCodeGenerator
         var sc = new SourceCode();
         sc.UsingNamespaces.Add("System.Collections.Generic");
         sc.UsingNamespaces.Add("System.IO");
+        sc.UsingNamespaces.Add("System.Text");
+        sc.UsingNamespaces.Add("System.Net");
         sc.UsingNamespaces.Add("System.Runtime.CompilerServices");
         sc.UsingNamespaces.Add("System.Threading");
         sc.UsingNamespaces.Add("System.Threading.Tasks");
@@ -68,6 +70,8 @@ public class OpenAISourceCodeGenerator
         var endpointPath = endpointUrl.Replace("https://api.openai.com/v1/", "");
 
         var cName = this.GetClassName(endpointAnchor.Replace("\r\nBeta", ""));
+        if (cName == null) { return; }
+
         if (cName.IsNullOrEmpty())
         {
             var beforeIsSlash = false;
@@ -132,10 +136,22 @@ public class OpenAISourceCodeGenerator
         cParameter.Properties.Add(this.CreateHttpMethodProperty(httpMethod));
         cParameter.Methods.Add(this.CreateGetApiPathMethod(endpointUrl));
 
+        var responseClassName = this.GetResponseClassName(cName);
+        var sendAsyncMethodName = "SendJsonAsync";
+        var tResponseName = $"{cName}Response";
+        if (responseClassName == "Stream")
+        {
+            sendAsyncMethodName = "SendJsonAndGetStreamAsync";
+            tResponseName = "Stream";
+        }
+
         var cResponse = new Class(AccessModifier.Public, cName + "Response");
-        sc.Namespaces[0].Classes.Add(cResponse);
+        if (responseClassName != "Stream")
+        {
+            sc.Namespaces[0].Classes.Add(cResponse);
+        }
         cResponse.Modifier.Partial = true;
-        cResponse.ImplementInterfaces.Add(new TypeName(this.GetResponseClassName(cName)));
+        cResponse.ImplementInterfaces.Add(new TypeName(responseClassName));
 
         var cClient = new Class(AccessModifier.Public, "OpenAIClient");
         sc.Namespaces[0].Classes.Add(cClient);
@@ -143,7 +159,7 @@ public class OpenAISourceCodeGenerator
 
         var mdAsync = new Method(MethodAccessModifier.Public, cName + "Async");
         mdAsync.ReturnTypeName.Name = "async ValueTask";
-        mdAsync.ReturnTypeName.GenericTypes.Add(new TypeName(cName + "Response"));
+        mdAsync.ReturnTypeName.GenericTypes.Add(new TypeName(tResponseName));
         mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"var p = new {cName}Parameter();");
 
         var mdStreamAsync = new Method(MethodAccessModifier.Public, cName + "StreamAsync");
@@ -158,30 +174,21 @@ public class OpenAISourceCodeGenerator
         var hasFileProperty = false;
         var requestBodyPropertyNameList = new List<string>();
         var propertyList = new List<Property>();
+        var queryParameterSection = false;
+        var cQueryParameter = new Class(AccessModifier.Public, cName + "QueryParameter");
+        cQueryParameter.ImplementInterfaces.Add(new TypeName("IQueryParameter"));
+        var mdGetQueryString = new Method(MethodAccessModifier.None, "IQueryParameter.GetQueryString");
+        cQueryParameter.Methods.Add(mdGetQueryString);
+        mdGetQueryString.ReturnTypeName = new TypeName("string");
+        mdGetQueryString.Body.Add(SourceCodeLanguage.CSharp, "var sb = new StringBuilder();");
         foreach (var paramSection in endpointPanel.FindElements(By.CssSelector("div[class='param-section']")))
         {
             var h4 = paramSection.FindElement(By.CssSelector("h4")).Text;
             if (h4 == "Query parameters")
             {
+                sc.Namespaces[0].Classes.Insert(1, cQueryParameter);
                 cParameter.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
 
-                string? qName = null;
-                if (cName == "Files")
-                {
-                    qName = "FileList";
-                }
-                else if (cName == "FineTuningJobs" || cName == "FineTuningJobsEvents")
-                {
-                    qName = "FineTuning";
-                    cResponse.Properties.Add(new Property("bool", "Has_More", true));
-                }
-                else
-                {
-                    qName = "";
-                    cResponse.Properties.Add(new Property("string", "First_Id", true) { Initializer = "\"\"" });
-                    cResponse.Properties.Add(new Property("string", "Last_Id", true) { Initializer = "\"\"" });
-                    cResponse.Properties.Add(new Property("bool", "Has_More", true));
-                }
                 {
                     var q = new Property("IQueryParameter", "IQueryParameterProperty.QueryParameter");
                     q.Modifier.AccessModifier = MethodAccessModifier.None;
@@ -191,13 +198,15 @@ public class OpenAISourceCodeGenerator
                     cParameter.Properties.Add(q);
                 }
                 {
-                    var q = new Property($"{qName}QueryParameter", "QueryParameter", true);
-                    q.Initializer = $"new {qName}QueryParameter()";
+                    var q = new Property($"{cName}QueryParameter", "QueryParameter", true);
+                    q.Initializer = $"new {cName}QueryParameter()";
                     cParameter.Properties.Add(q);
                 }
             }
-            if (h4 == "Request body" || h4 == "Path parameters")
+            if (h4 == "Request body" || h4 == "Path parameters" || h4 == "Query parameters")
             {
+                queryParameterSection = h4 == "Query parameters";
+
                 var isPathParameter = h4 == "Path parameters";
                 var paramTableId = paramSection.FindElement(By.CssSelector(".param-table")).GetDomAttribute("id");
                 foreach (var paramRow in paramSection.FindElements(By.CssSelector($"#{paramTableId} > div.param-row")))
@@ -210,9 +219,9 @@ public class OpenAISourceCodeGenerator
                     {
                         pName = "Timestamp_Granularities";
                     }
-                    if (pName == "Include[]")
+                    if (pName.EndsWith("[]"))
                     {
-                        pName = "Include";
+                        pName = pName.Substring(0, pName.Length - 2);
                     }
                     var pRequired = paramRow.FindElements(By.CssSelector("[class='param-reqd']")).FirstOrDefault()?.Text == "Required";
                     var pType = this.GetTypeName(paramRow.FindElement(By.CssSelector("[class='param-type']")).Text, cName, pName, pRequired);
@@ -270,9 +279,13 @@ public class OpenAISourceCodeGenerator
                         p.TypeName.Name = "List<MessageCreateContent>";
                         p.Initializer = "new()";
                     }
-                    if (cName == "Embeddings" && p.Name == "Encoding_format")
+                    if (cName == "ThreadCreate" && p.Name == "Messages")
                     {
-                        p.Initializer = "\"float\"";
+                        p.TypeName.Name = "List<Message>?";
+                    }
+                    if (cName == "ChatKitSessionCreate" && p.Name == "Workflow")
+                    {
+                        p.Initializer = "new()";
                     }
                     if (pType == "FineTuningGrader" || pType == "DataSourceConfig")
                     {
@@ -284,11 +297,45 @@ public class OpenAISourceCodeGenerator
                         p.Set!.Modifier = AccessModifier.Private;
                         p.Initializer = $"new FileParameter(\"{p.Name.ToLower()}\")";
                     }
+                    if (pType == "FileListParameter")
+                    {
+                        hasFileProperty = true;
+                        p.Initializer = $"new FileListParameter()";
+                    }
                     p.Comment = paramRow.FindElements(By.CssSelector("[class='param-desc']")).FirstOrDefault()?.Text ?? "";
-                    cParameter.Properties.Add(p);
-                    propertyList.Add(p);
+                    if (queryParameterSection == true)
+                    {
+                        cQueryParameter.Properties.Add(p);
+                        var cb = new CodeBlock(SourceCodeLanguage.CSharp, $"if (this.{pName} != null)");
+                        cb.CurlyBracket = true;
+                        {
+                            if (pType.StartsWith("string") == true)
+                            {
+                                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"sb.Append($\"{pName.ToLower()}={{WebUtility.UrlEncode(this.{pName})}}&\");"));
+                            }
+                            else if (pType.StartsWith("List<") == true)
+                            {
+                                var cbForEach = new CodeBlock(SourceCodeLanguage.CSharp, $"foreach (var item in this.{pName})");
+                                cbForEach.CurlyBracket = true;
+                                {
+                                    cbForEach.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"sb.Append($\"{pName.ToLower()}[]={{item}}&\");"));
+                                }
+                                cb.CodeBlocks.Add(cbForEach);
+                            }
+                            else
+                            {
+                                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"sb.Append($\"{pName.ToLower()}={{this.{pName}}}&\");"));
+                            }
+                        }
+                        mdGetQueryString.Body.Add(cb);
+                    }
+                    else
+                    {
+                        cParameter.Properties.Add(p);
+                        propertyList.Add(p);
+                    }
 
-                    if (isPathParameter == false)
+                    if (isPathParameter == false && queryParameterSection == false)
                     {
                         requestBodyPropertyNameList.Add(p.Name);
                     }
@@ -313,6 +360,7 @@ public class OpenAISourceCodeGenerator
                 }
             }
         }
+        mdGetQueryString.Body.Add(SourceCodeLanguage.CSharp, "return sb.ToString().TrimEnd('&');");
 
         {
             var md = new Method(MethodAccessModifier.Public, "GetRequestBody");
@@ -335,7 +383,6 @@ public class OpenAISourceCodeGenerator
         }
 
 
-        var sendAsyncMethodName = "SendJsonAsync";
         if (hasFileProperty)
         {
             cParameter.ImplementInterfaces.Add(new TypeName("IFileParameter"));
@@ -370,8 +417,8 @@ public class OpenAISourceCodeGenerator
                         {
                             mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null) d[\"expires_after[anchor]\"] = this.Expires_After.Anchor;");
                             mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Seconds != null) d[\"expires_after[seconds]\"] = this.Expires_After.Seconds.Value.ToString();");
-                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Minutes != null) d[\"expires_after[seconds]\"] = this.Expires_After.Minutes.Value.ToString();");
-                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Days != null) d[\"expires_after[seconds]\"] = this.Expires_After.Days.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Minutes != null) d[\"expires_after[minutes]\"] = this.Expires_After.Minutes.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName} != null && this.{pName}.Days != null) d[\"expires_after[days]\"] = this.Expires_After.Days.Value.ToString();");
                         }
                         else if (pType == "string?")
                         {
@@ -392,8 +439,8 @@ public class OpenAISourceCodeGenerator
                         {
                             mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"d[\"expires_after[anchor]\"] = this.Expires_After.Anchor;");
                             mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Seconds != null) d[\"expires_after[seconds]\"] = this.Expires_After.Seconds.Value.ToString();");
-                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Minutes != null) d[\"expires_after[seconds]\"] = this.Expires_After.Minutes.Value.ToString();");
-                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Days != null) d[\"expires_after[seconds]\"] = this.Expires_After.Days.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Minutes != null) d[\"expires_after[minutes]\"] = this.Expires_After.Minutes.Value.ToString();");
+                            mdCreateFormDataParameter.Body.Add(SourceCodeLanguage.CSharp, $"if (this.{pName}.Days != null) d[\"expires_after[days]\"] = this.Expires_After.Days.Value.ToString();");
                         }
                         else if (pType == "string")
                         {
@@ -402,6 +449,15 @@ public class OpenAISourceCodeGenerator
                         else if (pType == "FileParameter")
                         {
                             mdGetFileParameters.Body.Add(SourceCodeLanguage.CSharp, $"yield return this.{pName};");
+                        }
+                        else if (pType == "FileListParameter")
+                        {
+                            var cb1 = new CodeBlock(SourceCodeLanguage.CSharp, $"foreach (var item in this.{pName}.Files)");
+                            cb1.CurlyBracket = true;
+                            {
+                                cb1.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "yield return item;"));
+                            }
+                            mdGetFileParameters.Body.Add(cb1);
                         }
                         else
                         {
@@ -435,11 +491,11 @@ public class OpenAISourceCodeGenerator
             if (propertyList.Count == 0)
             {
                 mdAsync0.Body.Clear();
-                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>({cName}Parameter.Empty, System.Threading.CancellationToken.None);");
+                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {tResponseName}>({cName}Parameter.Empty, System.Threading.CancellationToken.None);");
             }
             else
             {
-                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, System.Threading.CancellationToken.None);");
+                mdAsync0.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {tResponseName}>(p, System.Threading.CancellationToken.None);");
             }
             cClient.Methods.Add(mdAsync0);
         }
@@ -455,7 +511,7 @@ public class OpenAISourceCodeGenerator
                 {
                     mdAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = null;");
                 }
-                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>({cName}Parameter.Empty, cancellationToken);");
+                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {tResponseName}>({cName}Parameter.Empty, cancellationToken);");
             }
             else
             {
@@ -463,7 +519,7 @@ public class OpenAISourceCodeGenerator
                 {
                     mdAsync.Body.Add(SourceCodeLanguage.CSharp, "p.Stream = null;");
                 }
-                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(p, cancellationToken);");
+                mdAsync.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {tResponseName}>(p, cancellationToken);");
             }
             cClient.Methods.Add(mdAsync);
         }
@@ -472,12 +528,12 @@ public class OpenAISourceCodeGenerator
             md2.Parameters.Add(new MethodParameter(cName + "Parameter", "parameter"));
             md2.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
             md2.ReturnTypeName.Name = "async ValueTask";
-            md2.ReturnTypeName.GenericTypes.Add(new TypeName(cName + "Response"));
+            md2.ReturnTypeName.GenericTypes.Add(new TypeName(tResponseName));
             if (hasStreamMethod)
             {
                 md2.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = null;");
             }
-            md2.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(parameter, cancellationToken);");
+            md2.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {tResponseName}>(parameter, cancellationToken);");
 
             var md1 = md2.Copy();
             md1.Parameters.RemoveAt(md1.Parameters.Count - 1);
@@ -486,7 +542,7 @@ public class OpenAISourceCodeGenerator
             {
                 md1.Body.Add(SourceCodeLanguage.CSharp, "parameter.Stream = null;");
             }
-            md1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {cName}Response>(parameter, System.Threading.CancellationToken.None);");
+            md1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.{sendAsyncMethodName}<{cName}Parameter, {tResponseName}>(parameter, System.Threading.CancellationToken.None);");
      
             cClient.Methods.Add(md1);
             cClient.Methods.Add(md2);
@@ -570,7 +626,7 @@ public class OpenAISourceCodeGenerator
         this.WriteFile(filePath, sc);
         Console.WriteLine($"{filePath}");
     }
-    private string GetClassName(string endpointAnchor)
+    private string? GetClassName(string endpointAnchor)
     {
         var cName = "";
 
@@ -665,6 +721,13 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Retrieve an item") { return "ConversationItemRetrieve"; }
         if (endpointAnchor == "Delete an item") { return "ConversationItemDelete"; }
 
+        if (endpointAnchor == "Create video") { return "VideoCreate"; }
+        if (endpointAnchor == "Remix video") { return "VideoRemix"; }
+        if (endpointAnchor == "List videos") { return "Videos"; }
+        if (endpointAnchor == "Retrieve video") { return "VideoRetrieve"; }
+        if (endpointAnchor == "Delete video") { return "VideoDelete"; }
+        if (endpointAnchor == "Retrieve video content") { return "VideoContentGet"; }
+
         if (endpointAnchor == "Create vector store") { return "VectorStoreCreate"; }
         if (endpointAnchor == "List vector stores") { return "VectorStores"; }
         if (endpointAnchor == "Retrieve vector store") { return "VectorStoreRetrieve"; }
@@ -684,6 +747,14 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Cancel vector store file batch") { return "VectorStoreFileBatchCancel"; }
         if (endpointAnchor == "List vector store files in a batch") { return "VectorStoreFileBatches"; }
 
+        if (endpointAnchor == "Create ChatKit session") { return "ChatKitSessionCreate"; }
+        if (endpointAnchor == "Cancel chat session") { return "ChatKitSessionCancel"; }
+        if (endpointAnchor == "Upload file to ChatKit") { return "ChatKitFileUpload"; }
+        if (endpointAnchor == "List ChatKit threads") { return "ChatKitThreads"; }
+        if (endpointAnchor == "Retrieve ChatKit thread") { return "ChatKitThreadRetrieve"; }
+        if (endpointAnchor == "Delete ChatKit thread") { return "ChatKitThreadDelete"; }
+        if (endpointAnchor == "List ChatKit thread items") { return "ChatKitThreadItems"; }
+
         if (endpointAnchor == "Create container") { return "ContainerCreate"; }
         if (endpointAnchor == "List containers") { return "Containers"; }
         if (endpointAnchor == "Retrieve container") { return "ContainerRetrieve"; }
@@ -693,6 +764,15 @@ public class OpenAISourceCodeGenerator
         if (endpointAnchor == "Retrieve container file") { return "ContainerFileRetrieve"; }
         if (endpointAnchor == "Retrieve container file content") { return "ContainerFileContent"; }
         if (endpointAnchor == "Delete a container file") { return "ContainerFileDelete"; }
+
+        //Realtime call may used on browser and build by javascript or typescript. So, C# code is not generated.
+        if (endpointAnchor == "Create call") { return null; }
+        if (endpointAnchor == "Create client secret") { return null; }
+        if (endpointAnchor == "Accept call") { return null; }
+        if (endpointAnchor == "Reject call") { return null; }
+        if (endpointAnchor == "Refer call") { return null; }
+        if (endpointAnchor == "Hang up call") { return null; }
+
 
         if (endpointAnchor == "Create eval") { return "EvalCreate"; }
         if (endpointAnchor == "Get an eval") { return "Eval"; }
@@ -767,9 +847,12 @@ public class OpenAISourceCodeGenerator
     {
         if (className == "ChatCompletionCreate" && propertyName == "Messages") { return "List<IChatMessage>"; }
         if (className == "Embeddings" && typeName == "string or array") { return "string"; }
+        
         if (className == "FileUpload" && propertyName == "File") { return "FileParameter"; }
         if (className == "FileUpload" && propertyName == "Expires_After") { return "ExpirationPolicy"; }
         if (className == "ImagesVariations" && propertyName == "Image") { return "FileParameter"; }
+        if (className == "ImagesEdits" && propertyName == "Image") { return "FileListParameter"; }
+
         if (className == "AssistantCreate" && propertyName == "Model") { return "string"; }
         if (className == "AssistantModify" && propertyName == "Model") { return "string"; }
         if (className == "SubmitToolOutputs" && propertyName == "Tool_Outputs") { return "List<ToolOutput>?"; }
@@ -778,6 +861,9 @@ public class OpenAISourceCodeGenerator
         if (className == "ResponseCreate" && propertyName == "Reasoning") { return "Reasoning"; }
         if (className == "Responses" && propertyName == "Reasoning") { return "Reasoning"; }
         if (className == "AudioTranscriptions" && string.Equals(propertyName, "include[]", StringComparison.OrdinalIgnoreCase)) { return "List<object>?"; }
+        if (className == "ChatKitSessionCreate" && propertyName == "Workflow") { return "ChatKitWorkflow"; }
+        if (className == "ChatKitSessionCreate" && propertyName == "Rate_Limits") { return "ChatKitRateLimits"; }
+        if (className == "RealtimeSessionCreate" && propertyName == "Client_Secret") { return "object?"; }
 
         if (propertyName == "Tools")
         {
@@ -794,6 +880,7 @@ public class OpenAISourceCodeGenerator
 
         if (propertyName == "include[]") { return "Include"; }
         if (propertyName == "Modalities") { return "object?"; }
+        if (propertyName == "Data_Source") { return "object?"; }
         if (propertyName == "Chunking_Strategy") { return "object?"; }
         if (propertyName == "Expires_After" || propertyName == "Output_Expires_After") { return "ExpirationPolicy?"; }
         if (propertyName == "Tool_choice") { return "object?"; }
@@ -916,8 +1003,11 @@ public class OpenAISourceCodeGenerator
             return "UploadPartObjectResponse";
         }
         else if (cName == "ImagesGenerations" ||
-            cName == "ImagesEdits" ||
-            cName == "ImagesVariations")
+            cName == "ImagesEdits")
+        {
+            return "ImagesGenerationObjectRespons";
+        }
+        else if (cName == "ImagesVariations")
         {
             return "RestApiDataResponse<List<ImageObject>>";
         }
@@ -1174,11 +1264,43 @@ public class OpenAISourceCodeGenerator
         {
             return "RestApiDataResponse<List<ConversationItemObject>>";
         }
+        else if (cName == "VideoCreate" ||
+          cName == "VideoRetrieve" ||
+          cName == "VideoRemix")
+        {
+            return "VideoJobObjectResponse";
+        }
+        else if (cName == "VideoItems")
+        {
+            return "RestApiDataResponse<List<VideoJobObject>>";
+        }
+        else if (cName == "VideoContentGet")
+        {
+            return "Stream";
+        }
+        else if (cName == "ChatKitSessionCreate" ||
+          cName == "ChatKitSessionCancel")
+        {
+            return "ChatKitSessionResponse";
+        }
+        else if (cName == "ChatKitThreads")
+        {
+            return "RestApiDataResponse<List<ChatKitThreadObject>>";
+        }
+        else if (cName == "ChatKitThreadRetrieve")
+        {
+            return "ChatKitThreadObjectResponse";
+        }
+        else if (cName == "ChatKitThreadItems")
+        {
+            return "RestApiDataResponse<List<ChatKitThreadItemsObject>>";
+        }
         else
         {
             return "RestApiResponse";
         }
     }
+    
     private Property CreateHttpMethodProperty(string httpMethod)
     {
         var p = new Property("string", "IRestApiParameter.HttpMethod", true);

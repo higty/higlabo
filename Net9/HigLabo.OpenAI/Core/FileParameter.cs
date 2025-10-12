@@ -25,6 +25,12 @@ public class FileParameter
     {
         this.Name = name;
     }
+    public FileParameter(string name, string fileName, Stream stream)
+    {
+        this.Name = name;
+        this.FileName = fileName;
+        this._Stream = stream;
+    }
 
     public Stream? GetFileStream()
     {
@@ -40,4 +46,8 @@ public class FileParameter
         _Stream = stream;
     }
 
+}
+public class FileListParameter
+{
+    public List<FileParameter> Files { get; init; } = new List<FileParameter>();
 }

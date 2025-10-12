@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +27,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public OrganizationCertificateGetQueryParameter QueryParameter { get; set; } = new OrganizationCertificateGetQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,11 +38,28 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class OrganizationCertificateGetQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// A list of additional fields to include in the response. Currently the only supported value is content to fetch the PEM content of the certificate.
+        /// </summary>
+        public List<string>? Include { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.Include != null)
+            {
+                foreach (var item in this.Include)
+                {
+                    sb.Append($"include[]={item}&");
+                }
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class OrganizationCertificateGetResponse : CertificateObjectResponse
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

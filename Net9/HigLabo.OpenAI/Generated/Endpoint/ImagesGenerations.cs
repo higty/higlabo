@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -100,7 +102,7 @@ namespace HigLabo.OpenAI
             };
         }
     }
-    public partial class ImagesGenerationsResponse : RestApiDataResponse<List<ImageObject>>
+    public partial class ImagesGenerationsResponse : ImagesGenerationObjectRespons
     {
     }
     public partial class OpenAIClient

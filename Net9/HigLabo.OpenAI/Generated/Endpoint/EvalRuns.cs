@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public EvalRunsQueryParameter QueryParameter { get; set; } = new EvalRunsQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -35,11 +37,49 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class EvalRunsQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last run from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of runs to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// Sort order for runs by timestamp. Use asc for ascending order or desc for descending order. Defaults to asc.
+        /// </summary>
+        public string? Order { get; set; }
+        /// <summary>
+        /// Filter runs by status. One of queued | in_progress | failed | completed | canceled.
+        /// </summary>
+        public string? Status { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Order != null)
+            {
+                sb.Append($"order={WebUtility.UrlEncode(this.Order)}&");
+            }
+            if (this.Status != null)
+            {
+                sb.Append($"status={WebUtility.UrlEncode(this.Status)}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class EvalRunsResponse : RestApiDataResponse<List<EvalRunObject>>
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,7 +24,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public EvalsQueryParameter QueryParameter { get; set; } = new EvalsQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -33,11 +35,49 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class EvalsQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last eval from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of evals to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// Sort order for evals by timestamp. Use asc for ascending order or desc for descending order.
+        /// </summary>
+        public string? Order { get; set; }
+        /// <summary>
+        /// Evals can be ordered by creation time or last updated time. Use created_at for creation time or updated_at for last updated time.
+        /// </summary>
+        public string? Order_By { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Order != null)
+            {
+                sb.Append($"order={WebUtility.UrlEncode(this.Order)}&");
+            }
+            if (this.Order_By != null)
+            {
+                sb.Append($"order_by={WebUtility.UrlEncode(this.Order_By)}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class EvalsResponse : RestApiDataResponse<List<EvalObject>>
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Update a conversation's metadata with the given ID.
+    /// Update a conversation
     /// <seealso href="https://api.openai.com/v1/conversations/{conversation_id}">https://api.openai.com/v1/conversations/{conversation_id}</seealso>
     /// </summary>
     public partial class ConversationUpdateParameter : RestApiParameter, IRestApiParameter
@@ -18,7 +20,8 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string Conversation_Id { get; set; } = "";
         /// <summary>
-        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
+        /// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.
+        /// Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
         /// </summary>
         public object? Metadata { get; set; }
 

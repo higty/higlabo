@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace HigLabo.OpenAI
         public string? Conversation { get; set; }
         /// <summary>
         /// Specify additional output data to include in the model response. Currently supported values are:
+        /// web_search_call.action.sources: Include the sources of the web search tool call.
         /// code_interpreter_call.outputs: Includes the outputs of python code execution in code interpreter tool call items.
         /// computer_call_output.output.image_url: Include image urls from the computer call output.
         /// file_search_call.results: Include the search results of the file search tool call.
@@ -40,7 +43,7 @@ namespace HigLabo.OpenAI
         /// Conversation state
         /// Function calling
         /// </summary>
-        public ResponseInput Input { get; set; } = new ();
+        public ResponseInput? Input { get; set; } = new ();
         /// <summary>
         /// A system (or developer) message inserted into the model's context.
         /// When using along with previous_response_id, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses.
@@ -125,8 +128,9 @@ namespace HigLabo.OpenAI
         public string? Tool_Choice { get; set; }
         /// <summary>
         /// An array of tools the model may call while generating a response. You can specify which tool to use by setting the tool_choice parameter.
-        /// The two categories of tools you can provide the model are:
+        /// We support the following categories of tools:
         /// Built-in tools: Tools that are provided by OpenAI that extend the model's capabilities, like web search or file search. Learn more about built-in tools.
+        /// MCP Tools: Integrations with third-party systems via custom MCP servers or predefined connectors such as Google Drive and SharePoint. Learn more about MCP Tools.
         /// Function calls (custom tools): Functions that are defined by you, enabling the model to call your own code with strongly typed arguments and outputs. Learn more about function calling. You can also use custom tools to call your own code.
         /// </summary>
         public List<Tool>? Tools { get; set; }
@@ -141,8 +145,8 @@ namespace HigLabo.OpenAI
         public double? Top_P { get; set; }
         /// <summary>
         /// The truncation strategy to use for the model response.
-        /// auto: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation.
-        /// disabled (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.
+        /// auto: If the input to this Response exceeds the model's context window size, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation.
+        /// disabled (default): If the input size will exceed the context window size for a model, the request will fail with a 400 error.
         /// </summary>
         public string? Truncation { get; set; }
 

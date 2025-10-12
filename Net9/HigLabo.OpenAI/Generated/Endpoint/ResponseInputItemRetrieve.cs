@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public ResponseInputItemRetrieveQueryParameter QueryParameter { get; set; } = new ResponseInputItemRetrieveQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -35,11 +37,54 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class ResponseInputItemRetrieveQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// An item ID to list items after, used in pagination.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Additional fields to include in the response. See the include parameter for Response creation above for more information.
+        /// </summary>
+        public List<string>? Include { get; set; }
+        /// <summary>
+        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// The order to return the input items in. Default is desc.
+        /// asc: Return the input items in ascending order.
+        /// desc: Return the input items in descending order.
+        /// </summary>
+        public string? Order { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Include != null)
+            {
+                foreach (var item in this.Include)
+                {
+                    sb.Append($"include[]={item}&");
+                }
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Order != null)
+            {
+                sb.Append($"order={WebUtility.UrlEncode(this.Order)}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class ResponseInputItemRetrieveResponse : RestApiDataResponse<List<ResponseInputItem>>
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

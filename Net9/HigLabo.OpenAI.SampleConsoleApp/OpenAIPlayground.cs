@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateImageGenarationStream();
+        await ImageEdit();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -1140,7 +1140,7 @@ public class OpenAIPlayground
         p.Model = "gpt-image-1";
         p.Quality = "medium";
 
-        Console.WriteLine("Image generate start");
+        Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} Image generation started");
         var res = await cl.ImagesGenerationsAsync(p);
         foreach (var item in res.Data)
         {
@@ -1148,6 +1148,68 @@ public class OpenAIPlayground
             var filePath = Path.Combine(Environment.CurrentDirectory, $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
             File.WriteAllBytes(filePath, bb);
             Console.WriteLine("File is created to " + filePath);
+        }
+    }
+    private async ValueTask ImageEdit()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ImagesEditsParameter();
+        p.Image.Files.Add(new FileParameter("image[]", "Mt_Yari.jpg", new MemoryStream(File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")))));
+        p.Prompt = "A cinematic storyboard key frame depicting a group of people standing on the summit of a towering rocky mountain as the sun rises behind them. Vast clouds surround the mountain, bathed in warm orange and purple light. The scene should evoke feelings of awe, tranquility, and achievement. Drawn in a detailed, anime-inspired art style with emphasis on light, atmosphere, and emotional storytelling.";
+        //p.Prompt = "A cinematic storyboard key frame of a mountain-top scene, using one of the following camera compositions only: Bird’s-eye view from above, Low-angle shot looking up at the climbers, Silhouette shot against the rising sun, Wide zoom-out shot showing the vast landscape, or Side lighting composition with warm sunlight rays. Each image should depict only one composition per frame and look like a cinematic anime storyboard with dramatic lighting and strong mood.";
+        //p.Prompt = "A cinematic storyboard key frame capturing the moment of reaching the mountain peak, expressing one single emotion per image: Serenity and accomplishment, Joy and celebration, Solitude and reflection, Prayer and hope, or Bittersweet farewell. Use light direction, camera framing, and color tone to visually convey the emotion in anime keyframe style.";
+        //p.Prompt = "A cinematic storyboard key frame showing the same mountain summit at a specific time of day — choose one per image: Before dawn (deep blue calm), Sunrise (golden light breaking through clouds), Afternoon (clear, bright atmosphere), Sunset (warm, glowing horizon), or Night (starry sky and tranquil mood). Each image should represent a single scene and resemble an anime movie keyframe with cinematic lighting transitions.";
+        p.Model = "gpt-image-1";
+        p.Quality = "medium";
+        p.N = 4;
+
+        Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} Image generation started");
+        var res = await cl.ImagesEditsAsync(p);
+        for (int i = 0; i < res.Data.Count; i++)
+        {
+            var bb = res.Data[i].GetBytes();
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}_{i}.png");
+            File.WriteAllBytes(filePath, bb);
+            Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} File is created to " + filePath);
+        }
+        Console.WriteLine("Total tokens: " + res.Usage.Total_Tokens);
+    }
+    private async ValueTask ImageEditStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ImagesEditsParameter();
+        p.Image.Files.Add(new FileParameter("image[]", "Mt_Yari.jpg", new MemoryStream(File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")))));
+        p.Prompt = "A cinematic storyboard key frame depicting a group of people standing on the summit of a towering rocky mountain as the sun rises behind them. Vast clouds surround the mountain, bathed in warm orange and purple light. The scene should evoke feelings of awe, tranquility, and achievement. Drawn in a detailed, anime-inspired art style with emphasis on light, atmosphere, and emotional storytelling.";
+        //p.Prompt = "A cinematic storyboard key frame of a mountain-top scene, using one of the following camera compositions only: Bird’s-eye view from above, Low-angle shot looking up at the climbers, Silhouette shot against the rising sun, Wide zoom-out shot showing the vast landscape, or Side lighting composition with warm sunlight rays. Each image should depict only one composition per frame and look like a cinematic anime storyboard with dramatic lighting and strong mood.";
+        //p.Prompt = "A cinematic storyboard key frame capturing the moment of reaching the mountain peak, expressing one single emotion per image: Serenity and accomplishment, Joy and celebration, Solitude and reflection, Prayer and hope, or Bittersweet farewell. Use light direction, camera framing, and color tone to visually convey the emotion in anime keyframe style.";
+        //p.Prompt = "A cinematic storyboard key frame showing the same mountain summit at a specific time of day — choose one per image: Before dawn (deep blue calm), Sunrise (golden light breaking through clouds), Afternoon (clear, bright atmosphere), Sunset (warm, glowing horizon), or Night (starry sky and tranquil mood). Each image should represent a single scene and resemble an anime movie keyframe with cinematic lighting transitions.";
+        p.Model = "gpt-image-1";
+        p.Quality = "medium";
+        p.N = 1; // Streaming only supported N=1
+        p.Partial_Images = 3;
+        p.Stream = true;
+
+        Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} Image generation started");
+        var result = new ImageGenerationStreamResult();
+        await foreach (var item in cl.GetImageGenerateStreamEventAsync(p, result, CancellationToken.None))
+        {
+            var rEvent = item.CreateTypedData();
+            if (rEvent is ImageGenerationStreamPartialImage partialImage)
+            {
+                var bb = partialImage.GetBytes();
+                var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                File.WriteAllBytes(filePath, bb);
+                Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} File is created to " + filePath);
+            }
+            if (rEvent is ImageGenerationStreamCompleted completed)
+            {
+                var bb = completed.GetBytes();
+                var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Image_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.png");
+                File.WriteAllBytes(filePath, bb);
+                Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} File is created to " + filePath);
+            }
         }
     }
     private async ValueTask ImageGenerationByGpt4o()
@@ -1177,7 +1239,41 @@ public class OpenAIPlayground
             Console.WriteLine(item.Url);
         }
     }
-  
+
+    private async ValueTask VideoGeneration()
+    {
+        var cl = OpenAIClient;
+
+        var p = new VideoCreateParameter();
+        p.Prompt = "A baby and a fluffy kitten playing together on a soft carpet in a sunlit living room, morning light streaming through curtains, natural colors, heartwarming and gentle atmosphere, cinematic depth of field, ultra-realistic style.";
+        p.Model = "sora-2";
+        var job = await cl.VideoCreateAsync(p);
+        Console.WriteLine("Job started.");
+        while (true)
+        {
+            //10 seconds interval
+            Thread.Sleep(10 * 1000);
+
+            var res = await cl.VideoRetrieveAsync(job.Id);
+            if (res.Status == "completed")
+            {
+                var stream = await cl.VideoContentGetAsync(job.Id);
+                var filePath = Path.Combine(Environment.CurrentDirectory, $"video_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.mp4");
+                File.WriteAllBytes(filePath, stream.ToByteArray());
+                break;
+            }
+            else if (res.Status == "failed")
+            {
+                Console.WriteLine("Job failed.");
+                break;
+            }
+            else
+            {
+                Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToIso8601String()} Job status is " + res.Status + ". Waiting...");
+            }
+        }
+    }
+
     private async ValueTask Model()
     {
         var cl = OpenAIClient;
@@ -1636,15 +1732,6 @@ public class OpenAIPlayground
         }
     }
 
-    private async ValueTask RealtimeSession()
-    {
-        var cl = OpenAIClient;
-        var p = new RealtimeSessionCreateParameter();
-        p.Model = "gpt-4o";
-        var res = await cl.RealtimeSessionCreateAsync(p, CancellationToken.None);
-        Console.WriteLine("key: " + res.Client_Secret.Value);
-        Console.WriteLine("expire at:" + res.Client_Secret.ExpireTime);
-    }
 
     private async ValueTask<string> GetVectorStoreId()
     {

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public FineTuningCheckpointsQueryParameter QueryParameter { get; set; } = new FineTuningCheckpointsQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -35,11 +37,33 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class FineTuningCheckpointsQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last checkpoint ID from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of checkpoints to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class FineTuningCheckpointsResponse : RestApiResponse
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

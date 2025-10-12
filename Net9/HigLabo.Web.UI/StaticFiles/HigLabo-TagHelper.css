@@ -766,6 +766,11 @@ dialog {
 .data-view .view-panel > .panel-menu > .panel-menu-row input[name=SearchText] {
   width: 200px;
 }
+@media screen and (max-width: 600px) {
+  .data-view .view-panel > .panel-menu > .panel-menu-row input[name=SearchText] {
+    width: 100px;
+  }
+}
 .data-view .view-panel > .record-list-panel {
   width: 100%;
   height: 100%;

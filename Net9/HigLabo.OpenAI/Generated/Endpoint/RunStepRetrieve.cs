@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +34,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public RunStepRetrieveQueryParameter QueryParameter { get; set; } = new RunStepRetrieveQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -43,11 +45,29 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class RunStepRetrieveQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// A list of additional fields to include in the response. Currently the only supported value is step_details.tool_calls[*].file_search.results[*].content to fetch the file search result content.
+        /// See the file search tool documentation for more information.
+        /// </summary>
+        public List<string>? Include { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.Include != null)
+            {
+                foreach (var item in this.Include)
+                {
+                    sb.Append($"include[]={item}&");
+                }
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class RunStepRetrieveResponse : RunStepObjectResponse
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {
