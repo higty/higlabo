@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,12 +17,7 @@ namespace HigLabo.OpenAI
     {
         string IRestApiParameter.HttpMethod { get; } = "POST";
         /// <summary>
-        /// Configuration options for the generated client secret.
-        /// </summary>
-        public object? Client_Secret { get; set; }
-        /// <summary>
-        /// The set of items to include in the transcription. Current available items are:
-        /// null.
+        /// The set of items to include in the transcription. Current available items are: item.input_audio_transcription.logprobs
         /// </summary>
         public List<string>? Include { get; set; }
         /// <summary>
@@ -36,11 +33,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public object? Input_Audio_Transcription { get; set; }
         /// <summary>
-        /// The set of modalities the model can respond with. To disable audio, set this to ["text"].
-        /// </summary>
-        public object? Modalities { get; set; }
-        /// <summary>
-        /// Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to null to turn off, in which case the client must manually trigger model response. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech. Semantic VAD is more advanced and uses a turn detection model (in conjunction with VAD) to semantically estimate whether the user has finished speaking, then dynamically sets a timeout based on this probability. For example, if user audio trails off with "uhhm", the model will score a low probability of turn end and wait longer for the user to continue speaking. This can be useful for more natural conversations, but may have a higher latency.
+        /// Configuration for turn detection. Can be set to null to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
         /// </summary>
         public object? Turn_Detection { get; set; }
 
@@ -51,12 +44,10 @@ namespace HigLabo.OpenAI
         public override object GetRequestBody()
         {
             return new {
-            	client_secret = this.Client_Secret,
             	include = this.Include,
             	input_audio_format = this.Input_Audio_Format,
             	input_audio_noise_reduction = this.Input_Audio_Noise_Reduction,
             	input_audio_transcription = this.Input_Audio_Transcription,
-            	modalities = this.Modalities,
             	turn_detection = this.Turn_Detection,
             };
         }

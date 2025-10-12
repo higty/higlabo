@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,8 +54,8 @@ namespace HigLabo.OpenAI
             d["purpose"] = this.Purpose;
             if (this.Expires_After != null) d["expires_after[anchor]"] = this.Expires_After.Anchor;
             if (this.Expires_After != null && this.Expires_After.Seconds != null) d["expires_after[seconds]"] = this.Expires_After.Seconds.Value.ToString();
-            if (this.Expires_After != null && this.Expires_After.Minutes != null) d["expires_after[seconds]"] = this.Expires_After.Minutes.Value.ToString();
-            if (this.Expires_After != null && this.Expires_After.Days != null) d["expires_after[seconds]"] = this.Expires_After.Days.Value.ToString();
+            if (this.Expires_After != null && this.Expires_After.Minutes != null) d["expires_after[minutes]"] = this.Expires_After.Minutes.Value.ToString();
+            if (this.Expires_After != null && this.Expires_After.Days != null) d["expires_after[days]"] = this.Expires_After.Days.Value.ToString();
             return d;
         }
     }

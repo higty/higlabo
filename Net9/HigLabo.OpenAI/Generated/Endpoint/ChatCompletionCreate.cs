@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -78,6 +80,7 @@ namespace HigLabo.OpenAI
         public string? Prompt_Cache_Key { get; set; }
         /// <summary>
         /// Constrains effort on reasoning for reasoning models. Currently supported values are minimal, low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+        /// Note: The gpt-5-pro model defaults to (and only supports) high reasoning effort.
         /// </summary>
         public string? Reasoning_Effort { get; set; }
         /// <summary>
@@ -131,7 +134,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public List<ChatCompletionFunctionTool>? Tools { get; set; }
         /// <summary>
-        /// An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. logprobs must be set to true if this parameter is used.
+        /// An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability.
         /// </summary>
         public int? Top_Logprobs { get; set; }
         /// <summary>

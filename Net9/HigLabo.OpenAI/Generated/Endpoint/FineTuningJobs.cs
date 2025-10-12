@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,7 +24,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public FineTuningQueryParameter QueryParameter { get; set; } = new FineTuningQueryParameter();
+        public FineTuningJobsQueryParameter QueryParameter { get; set; } = new FineTuningJobsQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -33,9 +35,41 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class FineTuningJobsQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last job from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of fine-tuning jobs to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// Optional metadata filter. To filter, use the syntax metadata[k]=v. Alternatively, set metadata=null to indicate no metadata.
+        /// </summary>
+        public object? Metadata { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Metadata != null)
+            {
+                sb.Append($"metadata={this.Metadata}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class FineTuningJobsResponse : RestApiDataResponse<List<FineTuningJob>>
     {
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {

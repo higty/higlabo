@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,14 +51,14 @@ namespace HigLabo.OpenAI
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<EvalRunCreateResponse> EvalRunCreateAsync(string eval_Id, object data_Source)
+        public async ValueTask<EvalRunCreateResponse> EvalRunCreateAsync(string eval_Id, object? data_Source)
         {
             var p = new EvalRunCreateParameter();
             p.Eval_Id = eval_Id;
             p.Data_Source = data_Source;
             return await this.SendJsonAsync<EvalRunCreateParameter, EvalRunCreateResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<EvalRunCreateResponse> EvalRunCreateAsync(string eval_Id, object data_Source, CancellationToken cancellationToken)
+        public async ValueTask<EvalRunCreateResponse> EvalRunCreateAsync(string eval_Id, object? data_Source, CancellationToken cancellationToken)
         {
             var p = new EvalRunCreateParameter();
             p.Eval_Id = eval_Id;

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +20,7 @@ namespace HigLabo.OpenAI
         /// For gpt-image-1, each image should be a png, webp, or jpg file less than 50MB. You can provide up to 16 images.
         /// For dall-e-2, you can only provide one image, and it should be a square png file less than 4MB.
         /// </summary>
-        public string Image { get; set; } = "";
+        public FileListParameter Image { get; set; } = new FileListParameter();
         /// <summary>
         /// A text description of the desired image(s). The maximum length is 1000 characters for dall-e-2, and 32000 characters for gpt-image-1.
         /// </summary>
@@ -29,7 +31,7 @@ namespace HigLabo.OpenAI
         /// </summary>
         public string? Background { get; set; }
         /// <summary>
-        /// Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for gpt-image-1. Supports high and low. Defaults to low.
+        /// Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for gpt-image-1. Unsupported for gpt-image-1-mini. Supports high and low. Defaults to low.
         /// </summary>
         public string? Input_Fidelity { get; set; }
         /// <summary>
@@ -104,12 +106,15 @@ namespace HigLabo.OpenAI
         }
         IEnumerable<FileParameter> IFileParameter.GetFileParameters()
         {
+            foreach (var item in this.Image.Files)
+            {
+                yield return item;
+            }
             yield return this.Mask;
         }
         Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
         {
             var d = new Dictionary<string, string>();
-            d["image"] = this.Image;
             d["prompt"] = this.Prompt;
             if (this.Background != null) d["background"] = this.Background;
             if (this.Input_Fidelity != null) d["input_fidelity"] = this.Input_Fidelity;
@@ -126,19 +131,19 @@ namespace HigLabo.OpenAI
             return d;
         }
     }
-    public partial class ImagesEditsResponse : RestApiDataResponse<List<ImageObject>>
+    public partial class ImagesEditsResponse : ImagesGenerationObjectRespons
     {
     }
     public partial class OpenAIClient
     {
-        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string image, string prompt)
+        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(FileListParameter image, string prompt)
         {
             var p = new ImagesEditsParameter();
             p.Image = image;
             p.Prompt = prompt;
             return await this.SendFormDataAsync<ImagesEditsParameter, ImagesEditsResponse>(p, System.Threading.CancellationToken.None);
         }
-        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(string image, string prompt, CancellationToken cancellationToken)
+        public async ValueTask<ImagesEditsResponse> ImagesEditsAsync(FileListParameter image, string prompt, CancellationToken cancellationToken)
         {
             var p = new ImagesEditsParameter();
             p.Image = image;

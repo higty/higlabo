@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +19,10 @@ namespace HigLabo.OpenAI
         /// The friendly name of the project, this name appears in reports.
         /// </summary>
         public string Name { get; set; } = "";
+        /// <summary>
+        /// Create the project with the specified data residency region. Your organization must have access to Data residency functionality in order to use. See data residency controls to review the functionality and limitations of setting this field.
+        /// </summary>
+        public string? Geography { get; set; }
 
         string IRestApiParameter.GetApiPath()
         {
@@ -26,6 +32,7 @@ namespace HigLabo.OpenAI
         {
             return new {
             	name = this.Name,
+            	geography = this.Geography,
             };
         }
     }

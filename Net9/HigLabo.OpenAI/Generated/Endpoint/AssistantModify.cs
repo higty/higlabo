@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,6 +42,7 @@ namespace HigLabo.OpenAI
         public string? Name { get; set; }
         /// <summary>
         /// Constrains effort on reasoning for reasoning models. Currently supported values are minimal, low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+        /// Note: The gpt-5-pro model defaults to (and only supports) high reasoning effort.
         /// </summary>
         public string? Reasoning_Effort { get; set; }
         /// <summary>

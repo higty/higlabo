@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 namespace HigLabo.OpenAI
 {
     /// <summary>
-    /// Get a conversation with the given ID.
+    /// Get a conversation
     /// <seealso href="https://api.openai.com/v1/conversations/{conversation_id}">https://api.openai.com/v1/conversations/{conversation_id}</seealso>
     /// </summary>
     public partial class ConversationRetrieveParameter : RestApiParameter, IRestApiParameter

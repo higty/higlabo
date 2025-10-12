@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +27,7 @@ namespace HigLabo.OpenAI
                 return this.QueryParameter;
             }
         }
-        public QueryParameter QueryParameter { get; set; } = new QueryParameter();
+        public FineTuningCheckpointsPermissionsQueryParameter QueryParameter { get; set; } = new FineTuningCheckpointsPermissionsQueryParameter();
 
         string IRestApiParameter.GetApiPath()
         {
@@ -36,11 +38,49 @@ namespace HigLabo.OpenAI
             return EmptyParameter;
         }
     }
+    public class FineTuningCheckpointsPermissionsQueryParameter : IQueryParameter
+    {
+        /// <summary>
+        /// Identifier for the last permission ID from the previous pagination request.
+        /// </summary>
+        public string? After { get; set; }
+        /// <summary>
+        /// Number of permissions to retrieve.
+        /// </summary>
+        public int? Limit { get; set; }
+        /// <summary>
+        /// The order in which to retrieve permissions.
+        /// </summary>
+        public string? Order { get; set; }
+        /// <summary>
+        /// The ID of the project to get permissions for.
+        /// </summary>
+        public string? Project_Id { get; set; }
+
+        string IQueryParameter.GetQueryString()
+        {
+            var sb = new StringBuilder();
+            if (this.After != null)
+            {
+                sb.Append($"after={WebUtility.UrlEncode(this.After)}&");
+            }
+            if (this.Limit != null)
+            {
+                sb.Append($"limit={this.Limit}&");
+            }
+            if (this.Order != null)
+            {
+                sb.Append($"order={WebUtility.UrlEncode(this.Order)}&");
+            }
+            if (this.Project_Id != null)
+            {
+                sb.Append($"project_id={WebUtility.UrlEncode(this.Project_Id)}&");
+            }
+            return sb.ToString().TrimEnd('&');
+        }
+    }
     public partial class FineTuningCheckpointsPermissionsResponse : RestApiResponse
     {
-        public string First_Id { get; set; } = "";
-        public string Last_Id { get; set; } = "";
-        public bool Has_More { get; set; }
     }
     public partial class OpenAIClient
     {
