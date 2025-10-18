@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http.Features;
 using System.Diagnostics;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace HigLabo.Web;
@@ -63,11 +64,30 @@ public static class WebAccessLogTableExtensions
         }
         else
         {
-            var bodyData = await req.GetRequestBodyTextAsync();
-            r.RequestBodyData = RegexList.Password_Value.Replace(bodyData, m =>
+            if (req.ContentType == "application/x-www-form-urlencoded")
             {
-                return "Password\":\"password is deleted\"";
-            });
+                var sb = new StringBuilder(256);
+                foreach (var item in req.Form)
+                {
+                    sb.Append(item.Key).Append("=").Append(item.Value).Append("&");
+                }
+                if (sb.Length > 0)
+                {
+                    sb.Length--;
+                }
+                r.RequestBodyData = RegexList.Password_Value.Replace(sb.ToString(), m =>
+                {
+                    return "Password\":\"password is deleted\"";
+                });
+            }
+            else
+            {
+                var bodyData = await req.GetRequestBodyTextAsync();
+                r.RequestBodyData = RegexList.Password_Value.Replace(bodyData, m =>
+                {
+                    return "Password\":\"password is deleted\"";
+                });
+            }
         }
         r.ResponseStatusCode = httpContext.Response.StatusCode;
         r.RequestLength = r.RequestHeaderData.Length + r.RequestBodyData.Length;
