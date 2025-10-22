@@ -12,6 +12,7 @@ public class InputTextareaTagHelper : TagHelper
     public string Name { get; set; } = "";
     public string Value { get; set; } = "";
     public string Placeholder { get; set; } = "";
+    public bool AutoHeightResize { get; set; } = false;
 
     public IDictionary<string, string?>? TextboxAttributes { get; set; }
 
@@ -32,6 +33,10 @@ public class InputTextareaTagHelper : TagHelper
             if (this.Placeholder.HasValue())
             {
                 tx.Attributes.Add("placeholder", this.Placeholder);
+            }
+            if (this.AutoHeightResize == true)
+            {
+                tx.Attributes.Add("auto-height-resize", "true");
             }
             if (this.TextboxAttributes != null)
             {
