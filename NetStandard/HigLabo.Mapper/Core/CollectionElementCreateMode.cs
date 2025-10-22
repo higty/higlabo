@@ -20,4 +20,6 @@ namespace HigLabo.Core
         /// </summary>
         Assign,
     }
+
 }
+

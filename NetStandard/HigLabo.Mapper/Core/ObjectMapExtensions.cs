@@ -8,12 +8,12 @@ namespace HigLabo.Core
         {
             return ObjectMapper.Default.Map(source, target);
         }
-        public static TTarget MapOrNull<TSource, TTarget>(this TSource source, Func<TTarget> targetConstructor)
+        public static TTarget? MapOrNull<TSource, TTarget>(this TSource source, Func<TTarget> targetConstructor)
             where TTarget : class
         {
             return ObjectMapper.Default.MapOrNull(source, targetConstructor);
         }
-        public static TTarget MapOrNull<TSource, TTarget>(this TSource source, TTarget target)
+        public static TTarget? MapOrNull<TSource, TTarget>(this TSource source, TTarget target)
             where TTarget : class
         {
             return ObjectMapper.Default.MapOrNull(source, target);

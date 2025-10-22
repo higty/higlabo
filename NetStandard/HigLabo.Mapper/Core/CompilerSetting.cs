@@ -8,6 +8,7 @@ namespace HigLabo.Core
     public class CompilerSetting
     {
         private Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> _PropertyMatchRule = (c1, p1, c2, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
+        private Func<String, String> _DictionaryKeyConvertRule = s => s;
 
         public Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> PropertyMatchRule
         {
@@ -16,6 +17,15 @@ namespace HigLabo.Core
             {
                 if (value == null) { return; }
                 _PropertyMatchRule = value;
+            }
+        }
+        public Func<String, String> DictionaryKeyConvertRule
+        {
+            get { return _DictionaryKeyConvertRule; }
+            set
+            {
+                if (value == null) { return; }
+                _DictionaryKeyConvertRule = value;
             }
         }
         public ClassPropertyCreateMode ClassPropertyCreateMode { get; set; } = ClassPropertyCreateMode.NewObject;

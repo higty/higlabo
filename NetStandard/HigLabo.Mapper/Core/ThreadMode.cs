@@ -10,3 +10,4 @@ namespace HigLabo.Core
         ThreadSafe,
     }
 }
+
