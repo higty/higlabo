@@ -45,6 +45,7 @@ public class FieldPanelDateTimeTextboxTagHelper : TagHelper
                 input.Attributes.Add("type", "text");
                 input.Attributes.Add("name", this.Name + "_Time");
                 input.Attributes.Add("value", this.Value.ToString("hh:mm"));
+                input.Attributes.Add("auto-format", "time");
                 input.AddCssClass("time");
                 if (this.AutoComplete.HasValue())
                 {

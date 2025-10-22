@@ -187,7 +187,7 @@ export class DataRecordPopupPanel {
                 }
             }
             else {
-                $(dpl).setStyle("top", (rect.y + rect.height) + "px");
+                $(dpl).setStyle("top", ($(window).getScrollTop() + rect.y + rect.height) + "px");
             }
         }
     }

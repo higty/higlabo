@@ -139,6 +139,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.UI", "HigLabo.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Web.UI.SampleWebSite", "HigLabo.Web.UI.SampleWebSite\HigLabo.Web.UI.SampleWebSite.csproj", "{23722EA6-AD3B-4815-884D-45D837FCBFA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.JapanPost", "HigLabo.JapanPost\HigLabo.JapanPost.csproj", "{A6513C4C-3818-4949-8707-27C7730F4AA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -417,6 +419,10 @@ Global
 		{23722EA6-AD3B-4815-884D-45D837FCBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23722EA6-AD3B-4815-884D-45D837FCBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23722EA6-AD3B-4815-884D-45D837FCBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6513C4C-3818-4949-8707-27C7730F4AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6513C4C-3818-4949-8707-27C7730F4AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6513C4C-3818-4949-8707-27C7730F4AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6513C4C-3818-4949-8707-27C7730F4AA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
