@@ -9,3 +9,4 @@ namespace HigLabo.Core
         Assign,
     }
 }
+

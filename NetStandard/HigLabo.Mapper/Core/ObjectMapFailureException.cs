@@ -11,7 +11,6 @@ namespace HigLabo.Core
         public Object SourceObject { get; private set; }
         public Object TargetObject { get; private set; }
 
-        public ObjectMapFailureException() { }
         public ObjectMapFailureException(String message, Object sourceObject, Object targetObject, Exception exception)
             : base(message, exception)
         {
