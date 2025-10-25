@@ -1259,7 +1259,7 @@ namespace HigLabo.Core
 
                         var loopBlock = new List<Expression>();
                         var endLoop = Expression.Label("endLoop");
-                        if (sourceProperty.PropertyType.IsICollectionT())
+                        if (sourceProperty.PropertyType.IsIListT())
                         {
                             var index = Expression.Variable(typeof(Int32), "i");
                             if (sourceProperty.PropertyType.IsArray)
@@ -1372,7 +1372,7 @@ namespace HigLabo.Core
 
                             ee.Add(body);
                         }
-                        else
+                        else if (sourceProperty.PropertyType.IsICollectionT())
                         {
                             var moveNext = typeof(IEnumerator).GetMethod("MoveNext")!;
                             var enumerableType = sourceProperty.PropertyType;
@@ -1387,7 +1387,14 @@ namespace HigLabo.Core
                                     Expression.IsFalse(Expression.Call(enumerator, moveNext)),
                                     Expression.Break(endLoop)
                                     ));
-                            loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
+                            if (sourceElementType.IsValueType)
+                            {
+                                loopBlock.Add(Expression.Assign(sourceElement, Expression.Convert(Expression.Property(enumerator, "Current"), sourceElementType)));
+                            }
+                            else
+                            {
+                                loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
+                            }
                             loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
 
                             loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
@@ -1395,14 +1402,47 @@ namespace HigLabo.Core
 
                             var endLabel = Expression.Label("end");
 
-                            var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
-                            , Expression.Assign(enumerator, Expression.Call(sourceMember, "GetEnumerator", Type.EmptyTypes))
-                            , Expression.IfThen(Expression.Equal(enumerator, Expression.Constant(null, typeof(Object)))
-                            , Expression.Return(endLabel))
-                            , Expression.Loop(Expression.Block(loopBlock), endLoop)
-                            , Expression.Label(endLabel));
+                            if (sourceElementType.IsValueType)
+                            {
+                                // if (sourceMember == null) goto endLabel;
+                                var nullSourceCheck =
+                                    Expression.IfThen(
+                                        Expression.Equal(sourceMember, Expression.Constant(null, sourceMember.Type)),
+                                        Expression.Return(endLabel)
+                                    );
 
-                            ee.Add(body);
+                                // enumerator = sourceMember.GetEnumerator();
+                                var assignEnum = Expression.Assign(enumerator, Expression.Call(sourceMember, getEnumerator));
+                                // while (enumerator.MoveNext()) { sourceElement = enumerator.Current; <loopBlock> }
+                                var loopBody = Expression.IfThenElse(
+                                    Expression.Call(enumerator, moveNext),
+                                    Expression.Block(
+                                        new[] { sourceElement },
+                                        Expression.Assign(sourceElement, Expression.Property(enumerator, "Current")),
+                                        Expression.Call(targetMember, "Add", Type.EmptyTypes, sourceElement) // ← 修正ポイント
+                                    ),
+                                    Expression.Break(endLoop)
+                                );
+                                var body = Expression.Block(
+                                    new[] { sourceElement, targetElement, enumerator },
+                                    nullSourceCheck,
+                                    assignEnum,
+                                    Expression.Loop(loopBody, endLoop),
+                                    Expression.Label(endLabel)
+                                );
+                                ee.Add(body);
+                            }
+                            else
+                            {
+                                var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
+                                , Expression.Assign(enumerator, Expression.Call(sourceMember, "GetEnumerator", Type.EmptyTypes))
+                                , Expression.IfThen(Expression.Equal(enumerator, Expression.Constant(null, typeof(Object)))
+                                , Expression.Return(endLabel))
+                                , Expression.Loop(Expression.Block(loopBlock), endLoop)
+                                , Expression.Label(endLabel));
+
+                                ee.Add(body);
+                            }
                         }
                     }
                 }
