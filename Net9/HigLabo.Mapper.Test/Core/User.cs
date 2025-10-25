@@ -48,6 +48,7 @@ public class User : IUser
     public String[] Tags { get; set; }
     public Dictionary<String, String> Dictionary { get; set; }
     public IDictionary<String, ColorDefinition> ColorList { get; set; }
+    public HashSet<int> HashSet { get; set; } = new HashSet<int>();
     public Byte[] Timestamp { get; set; }
 
     public String ReadOnlyProperty

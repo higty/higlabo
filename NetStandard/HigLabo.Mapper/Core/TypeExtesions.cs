@@ -10,6 +10,7 @@ namespace HigLabo.Core
     {
         private static readonly String System_Collections_Generic_Dictionary = "System.Collections.Generic.Dictionary";
         private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
+        private static readonly String System_Collections_Generic_IList_1 = "System.Collections.Generic.IList`1";
         private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
 
         public static Type[] GetBaseClasses(this Type type)
@@ -45,6 +46,11 @@ namespace HigLabo.Core
         {
             return type.FullName!.StartsWith(System_Collections_Generic_ICollection_1) ||
                 type.GetInterfaces().Any(tp => tp.FullName!.StartsWith(System_Collections_Generic_ICollection_1));
+        }
+        public static Boolean IsIListT(this Type type)
+        {
+            return type.FullName!.StartsWith(System_Collections_Generic_IList_1) ||
+                type.GetInterfaces().Any(tp => tp.FullName!.StartsWith(System_Collections_Generic_IList_1));
         }
         public static Boolean IsNullable(this Type type)
         {

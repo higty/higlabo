@@ -788,22 +788,40 @@ public class ObjectMapperTest
 
         Assert.AreEqual(1, s2.UserList.Count);
     }
-		[TestMethod]
-		public void ObjectMapper_ArrayProperty_ListProperty()
+	[TestMethod]
+	public void ObjectMapper_ArrayProperty_ListProperty()
+	{
+		var mapper = new ObjectMapper();
+        var g = Guid.NewGuid();
+		var src = new
 		{
-			var mapper = new ObjectMapper();
-			var src = new
-			{
-				Ids = new TC0_Members[] { new TC0_Members() }
-			};
-			var dst = new
-			{
-				Ids = new List<TC0_Members>()
-			};
-			dst = mapper.Map(src, dst);
-			Assert.AreEqual(src.Ids.Length, dst.Ids.Count);
-		}
-		[TestMethod]
+			Ids = new TC0_Members[] { new TC0_Members() { GuidMember = g } }
+		};
+		var dst = new
+		{
+			Ids = new List<TC0_Members>()
+		};
+		dst = mapper.Map(src, dst);
+		Assert.AreEqual(src.Ids.Length, dst.Ids.Count);
+        var vv = dst.Ids.ToArray();
+        Assert.AreEqual(src.Ids[0].GuidMember, vv[0].GuidMember);
+    }
+    [TestMethod]
+    public void ObjectMapper_Map_HashSet()
+    {
+        var mapper = new ObjectMapper();
+
+        var u1 = new User();
+        u1.HashSet = new HashSet<int>() { 1, 2, 3 };
+        var u2 = mapper.Map(u1, new User());
+        Assert.AreEqual(u1.HashSet.Count, u2.HashSet.Count);
+
+        var vv = u2.HashSet.ToArray();
+        Assert.AreEqual(1, vv[0]);
+        Assert.AreEqual(2, vv[1]);
+        Assert.AreEqual(3, vv[2]);
+    }
+    [TestMethod]
     public void ObjectMapper_AddPostAction_IUser()
     {
         var mapper = new ObjectMapper();
@@ -1141,7 +1159,6 @@ public class ObjectMapperTest
         Assert.AreEqual(new TimeOnly(12, 0, 0), dt1.Time);
 
     }
-
 
     private MapPoint MapPointConverter(Object obj)
     {
