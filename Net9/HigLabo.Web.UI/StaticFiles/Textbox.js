@@ -125,15 +125,20 @@ export class Textbox {
         });
     }
     setAllTextareaHeight() {
-        $("textarea[auto-resize]").forEach(element => {
+        $("textarea[auto-height-resize]").forEach(element => {
             this.setTextareaHeight(element);
         });
     }
     setTextareaHeight(textbox) {
         const tx = textbox;
-        $(tx).setStyle("overflow-y", "hidden");
         $(tx).setStyle("height", "0");
         $(tx).setStyle("height", tx.scrollHeight + "px");
+        if ($(tx).getOuterHeight() >= tx.scrollHeight) {
+            $(tx).setStyle("overflow-y", "hidden");
+        }
+        else {
+            $(tx).removeStyle("overflow-y");
+        }
     }
 }
 //# sourceMappingURL=Textbox.js.map
