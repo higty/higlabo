@@ -379,6 +379,20 @@ export class HtmlElementQuery {
             element.scrollTop = value;
         }
     }
+    scrollToTop() {
+        this.setScrollTop(0);
+    }
+    scrollToBottom() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            if (element instanceof Window) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+            else {
+                element.scrollTo(0, element.scrollHeight);
+            }
+        }
+    }
     getCaretPosition() {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];

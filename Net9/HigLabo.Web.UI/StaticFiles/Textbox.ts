@@ -118,14 +118,19 @@ export class Textbox {
 
     // ==== 既存：テキストエリア自動高さ ====
     public setAllTextareaHeight() {
-        $("textarea[auto-resize]").forEach(element => {
+        $("textarea[auto-height-resize]").forEach(element => {
             this.setTextareaHeight(element);
         });
     }
     public setTextareaHeight(textbox: Element) {
         const tx = textbox;
-        $(tx).setStyle("overflow-y", "hidden");
         $(tx).setStyle("height", "0");
         $(tx).setStyle("height", tx.scrollHeight + "px");
+        if ($(tx).getOuterHeight() >= tx.scrollHeight) {
+            $(tx).setStyle("overflow-y", "hidden");
+        }
+        else {
+            $(tx).removeStyle("overflow-y");
+        }
     }
 }

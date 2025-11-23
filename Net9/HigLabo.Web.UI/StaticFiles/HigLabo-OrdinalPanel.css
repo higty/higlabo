@@ -253,76 +253,36 @@
 }
 
 :root {
-  /* form element */
-  --color-form-element-bg: var(--color-set-glay-01);
-  --color-form-element-text: var(--color-text);
-  --color-form-element-border: var(--color-border);
-  --color-form-element-focus: var(--color-set-primary-03);
-  --color-form-element-hover: var(--color-set-glay-03);
-  --color-table-header-bg: #37474f;
-  --color-table-header-text: #ffffff;
-  --color-block-information-panel-bg: var(--color-set-glay-01);
+  --color-drop-target-bg: var(--color-set-glay-03);
 }
 
-input[type=text],
-input[type=password],
-.input-record,
-textarea {
-  background-color: var(--color-form-element-bg);
-  color: var(--color-form-element-text);
-  border: solid 1px var(--color-form-element-border);
+[drag=true] {
+  cursor: move;
 }
-input[type=text]:focus,
-input[type=password]:focus,
-.input-record:focus,
-textarea:focus {
-  border-color: var(--color-form-element-focus);
+[drag=true][draging=true] {
+  position: absolute;
+  z-index: 200;
 }
 
-input[type=text]:hover,
-input[type=password]:hover,
-textarea:hover {
-  background-color: var(--color-form-element-hover);
+[drop-zone-panel=true][draging=true] {
+  background-color: var(--color-drop-target-bg);
 }
 
-select {
-  height: 28px;
-  font-size: 14px;
-  background-color: var(--color-form-element-bg);
-  color: var(--color-form-element-text);
-  border: solid 1px var(--color-form-element-border);
-  border: none 0;
-  border-radius: 4px;
+[ordinal-panel] {
+  cursor: move;
 }
-select:hover {
-  background-color: var(--color-form-element-hover);
+[ordinal-panel] [ordinal-panel-drop-zone-panel] {
+  background-color: var(--color-drop-target-bg);
+  height: 0;
 }
-
-input[type=text],
-input[type=password],
-.input-record,
-textarea {
-  background-color: var(--color-form-element-bg);
-  color: var(--color-form-element-text);
-  border: solid 1px var(--color-form-element-border);
+[ordinal-panel][drop-mouse-over] [ordinal-panel-drop-zone-panel] {
+  display: block;
+  height: 24px;
 }
-input[type=text]:focus,
-input[type=password]:focus,
-.input-record:focus,
-textarea:focus {
-  border-color: var(--color-form-element-focus);
+[ordinal-panel][draging=true] {
+  position: absolute;
+  z-index: 200;
 }
-
-input[type=text]:hover,
-input[type=password]:hover,
-textarea:hover {
-  background-color: var(--color-form-element-hover);
-}
-
-input[type=text].date {
-  width: 100px;
-}
-
-input[type=text].time {
-  width: 80px;
+[ordinal-panel][draging=true] [ordinal-panel-drop-zone-panel] {
+  display: none;
 }

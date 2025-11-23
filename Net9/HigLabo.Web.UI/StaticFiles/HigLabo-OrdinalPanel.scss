@@ -1,0 +1,45 @@
+﻿@import "color.scss";
+
+:root {
+    --color-drop-target-bg: var(--color-set-glay-03);
+}
+
+[drag='true'] {
+    cursor: move;
+
+    &[draging='true'] {
+        position: absolute;
+        z-index: 200;
+    }
+}
+
+[drop-zone-panel='true'] {
+    &[draging='true'] {
+        background-color: var(--color-drop-target-bg);
+    }
+}
+
+[ordinal-panel] {
+    cursor: move;
+
+    [ordinal-panel-drop-zone-panel] {
+        background-color: var(--color-drop-target-bg);
+        height: 0;
+    }
+
+    &[drop-mouse-over] {
+        [ordinal-panel-drop-zone-panel] {
+            display: block;
+            height: 24px;
+        }
+    }
+
+    &[draging='true'] {
+        position: absolute;
+        z-index: 200;
+
+        [ordinal-panel-drop-zone-panel] {
+            display: none;
+        }
+    }
+}

@@ -22,6 +22,11 @@ public class HttpRequestMessageEventArgs : EventArgs
 }
 public partial class GoogleAIClient
 {
+    public static HttpClient DefaultHttpClient { get; } = new HttpClient()
+    {
+        Timeout = TimeSpan.FromMinutes(10),
+    };
+    
     public event EventHandler<HttpRequestMessageEventArgs>? PreSendRequest;
 
     public string ApiUrl
@@ -31,14 +36,17 @@ public partial class GoogleAIClient
             return $"https://generativelanguage.googleapis.com/v1beta/";
         }
     }
-    public HttpClient HttpClient { get; set; } = new();
+    public HttpClient HttpClient { get; set; } = DefaultHttpClient;
     public IJsonConverter JsonConverter { get; set; } = new GoogleAIJsonConverter();
     public GoogleAISettings Settings { get; init; } = new();
 
-    public GoogleAIClient() { }
     public GoogleAIClient(string apiKey)
     {
         this.Settings.ApiKey = apiKey;
+    }
+    public GoogleAIClient(GoogleAISettings settings)
+    {
+        this.Settings = settings;
     }
     public GoogleAIClient(GoogleAISettings settings, HttpClient httpClient)
     {

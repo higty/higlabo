@@ -1,6 +1,13 @@
 export class HttpClient {
+    _httpClientHandler;
+    constructor(httpClientHandler) {
+        this._httpClientHandler = httpClientHandler;
+    }
     send(request) {
         const req = request;
+        if (this._httpClientHandler != null) {
+            this._httpClientHandler.handle(req);
+        }
         const xReq = new XMLHttpRequest();
         xReq.open(req.httpMethod, req.url, true);
         req.headers.forEach(header => {
@@ -74,6 +81,11 @@ export class HttpClient {
             }
             req.errorCallback[i](response);
         }
+    }
+}
+export class HttpClientHandler {
+    handle(request) {
+        return request;
     }
 }
 export class HttpRequest {
