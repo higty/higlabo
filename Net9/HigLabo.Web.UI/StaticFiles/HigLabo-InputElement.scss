@@ -33,6 +33,19 @@ textarea {
     }
 }
 
+select {
+    height: 28px;
+    font-size: 14px;
+    background-color: var(--color-form-element-bg);
+    color: var(--color-form-element-text);
+    border: solid 1px var(--color-form-element-border);
+    border: none 0;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: var(--color-form-element-hover);
+    }
+}
 
 
 

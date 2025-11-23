@@ -55,7 +55,7 @@ public static class HttpRequestExtensions
         return cx.Items[ItemsKey.BodyText]?.ToString() ?? "";
     }
 
-    public static Dictionary<String, String> CreateDictionaryFromRequestFormAsync(this HttpRequest request)
+    public static Dictionary<String, String> CreateDictionaryFromRequestForm(this HttpRequest request)
     {
         var d = new Dictionary<String, String>();
         foreach (var item in request.Form)

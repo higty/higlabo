@@ -17,7 +17,7 @@ namespace HigLabo.GoogleAI.SampleConsoleApp;
 
 public class GoogleAIClientPlayground
 {
-    public GoogleAIClient GoogleAIClient { get; set; } = new();
+    public GoogleAIClient GoogleAIClient { get; set; } = new("");
 
     public async ValueTask ExecuteAsync()
     {
@@ -31,7 +31,8 @@ public class GoogleAIClientPlayground
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
 
-        await GenerateMangaImage();
+        //await GenerateMangaImage();
+        await GenerateContentTTS();
         //await GenerateSensitiveImage();
         //await ExplainImage();
         //await GenerateImageByGeminiFlash();
@@ -423,7 +424,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_5_Flash_Preview_Tts;
+        p.Model = ModelNames.Gemini_2_5_Pro_Preview_Tts;
         p.Contents.Add(new Content(ChatMessageRole.User, "Focaccia is absolutely delicious."));
         p.GenerationConfig = new();
         p.GenerationConfig.ResponseModalities = ["AUDIO"];

@@ -36,6 +36,8 @@ public class HtmlElementQueryFunctionName
     public const string GetScrollTop = "getScrollTop";
     public const string SetScrollLeft = "setScrollLeft";
     public const string SetScrollTop = "setScrollTop";
+    public const string ScrollToTop = "scrollToTop";
+    public const string ScrollToBottom = "scrollToBottom";
     public const string GetCaretPosition = "getCaretPosition";
     public const string GetSelectionText = "getSelectionText";
     public const string GetSelectionRange = "getSelectionRange";

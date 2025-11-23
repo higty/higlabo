@@ -17,12 +17,12 @@ namespace HigLabo.OpenAI;
 
 public class OpenAIPlayground
 {
-    public OpenAIClient OpenAIClient { get; set; } = new();
+    public OpenAIClient OpenAIClient { get; set; } = new("");
 
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ImageEdit();
+        await ResponseCreateDeepResearch();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -50,8 +50,10 @@ public class OpenAIPlayground
     {
         var cl = OpenAIClient;
 
-        var res = await cl.AudioSpeechAsync("tts-1", "Stay Hungry. Stay Foolish. Thank you all very much.", "alloy");
-        File.WriteAllBytes("C:\\Data\\Dev\\GPT_Audio.mp3", res.Stream!.ToByteArray());
+        var res = await cl.AudioSpeechAsync("Stay Hungry. Stay Foolish. Thank you all very much.", "tts-1", "alloy");
+        var filePath = Path.Combine(Environment.CurrentDirectory, "Generated", $"Audio_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.mp3");
+        File.WriteAllBytes(filePath, res.Stream!.ToByteArray());
+        Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} File is created to " + filePath);
     }
     private async ValueTask AudioTranslations()
     {
@@ -483,7 +485,7 @@ public class OpenAIPlayground
         var location = "Newyork";
 
         var p = new ResponseCreateParameter();
-        p.Model = "gpt-4.1-mini";
+        p.Model = "gpt-5";
         p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
         p.Tools.Add(new Tool("web_search"));
@@ -735,7 +737,7 @@ public class OpenAIPlayground
         Console.WriteLine("■DONE");
     }
 
-    private async ValueTask ResponseCreateDeepSearch()
+    private async ValueTask ResponseCreateDeepResearch()
     {
         var cl = OpenAIClient;
 

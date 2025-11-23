@@ -30,5 +30,9 @@
   {
     "outputFile": "StaticFiles/HigLabo-Icon.css",
     "inputFile": "StaticFiles/HigLabo-Icon.scss"
+  },
+  {
+    "outputFile": "StaticFiles/HigLabo-OrdinalPanel.css",
+    "inputFile": "StaticFiles/HigLabo-OrdinalPanel.scss"
   }
 ]

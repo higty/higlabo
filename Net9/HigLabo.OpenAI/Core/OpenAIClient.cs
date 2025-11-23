@@ -33,6 +33,10 @@ public class HttpRequestMessageEventArgs : EventArgs
 public partial class OpenAIClient
 {
     public static IJsonConverter JsonConverter { get; set; } = new OpenAIJsonConverter();
+    public static HttpClient DefaultHttpClient { get; } = new HttpClient()
+    {
+        Timeout = TimeSpan.FromMinutes(10),
+    };
 
     public event EventHandler<HttpRequestMessageEventArgs>? PreSendRequest;
 
@@ -52,7 +56,7 @@ public partial class OpenAIClient
             }
         }
     }
-    public HttpClient HttpClient { get; set; } = new();
+    public HttpClient HttpClient { get; set; } = DefaultHttpClient;
 
     public OpenAISettings OpenAISettings { get; init; } = new();
     public AzureSettings AzureSettings { get; init; } = new();
@@ -60,20 +64,22 @@ public partial class OpenAIClient
     public DeepSeekSettings DeepSeekSettings { get; init; } = new();
     public LocalhostSettings LocalhostSettings { get; init; } = new("https://localhost:11434");
 
-    public OpenAIClient()
-    {
-    }
     public OpenAIClient(string apiKey)
     {
         this.ServiceProvider = ServiceProvider.OpenAI;
         this.OpenAISettings.ApiKey = apiKey;
+    }
+    public OpenAIClient(string apiKey, HttpClient httpClient)
+    {
+        this.ServiceProvider = ServiceProvider.OpenAI;
+        this.OpenAISettings.ApiKey = apiKey;
+        this.HttpClient = httpClient;
         this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
     }
     public OpenAIClient(OpenAISettings settings)
     {
         this.ServiceProvider = ServiceProvider.OpenAI;
         this.OpenAISettings = settings;
-        this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
     }
     public OpenAIClient(OpenAISettings settings, HttpClient httpClient)
     {
@@ -85,7 +91,6 @@ public partial class OpenAIClient
     {
         this.ServiceProvider = ServiceProvider.Azure;
         this.AzureSettings = setting;
-        this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
     }
     public OpenAIClient(AzureSettings setting, HttpClient httpClient)
     {
@@ -97,19 +102,34 @@ public partial class OpenAIClient
     {
         this.ServiceProvider = ServiceProvider.Groq;
         this.GroqSettings = settings;
-        this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
+    }
+    public OpenAIClient(GroqSettings settings, HttpClient httpClient)
+    {
+        this.ServiceProvider = ServiceProvider.Groq;
+        this.GroqSettings = settings;
+        this.HttpClient = httpClient;
     }
     public OpenAIClient(DeepSeekSettings settings)
     {
         this.ServiceProvider = ServiceProvider.DeepSeek;
         this.DeepSeekSettings = settings;
-        this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
+    }
+    public OpenAIClient(DeepSeekSettings settings, HttpClient httpClient)
+    {
+        this.ServiceProvider = ServiceProvider.DeepSeek;
+        this.DeepSeekSettings = settings;
+        this.HttpClient = httpClient;
     }
     public OpenAIClient(LocalhostSettings settings)
     {
         this.ServiceProvider = ServiceProvider.Localhost;
         this.LocalhostSettings = settings;
-        this.HttpClient.Timeout = TimeSpan.FromMinutes(5);
+    }
+    public OpenAIClient(LocalhostSettings settings, HttpClient httpClient)
+    {
+        this.ServiceProvider = ServiceProvider.Localhost;
+        this.LocalhostSettings = settings;
+        this.HttpClient = httpClient;
     }
 
     private HttpRequestMessage CreateRequestMessage<TParameter>(TParameter parameter)

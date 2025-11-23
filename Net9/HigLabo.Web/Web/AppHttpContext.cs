@@ -47,7 +47,7 @@ public class AppHttpContext
         }
         else if (String.Equals(this.Request.ContentType, "application/x-www-form-urlencoded", StringComparison.OrdinalIgnoreCase))
         {
-            return this.Request.CreateDictionaryFromRequestFormAsync();
+            return this.Request.CreateDictionaryFromRequestForm();
         }
         else
         {
