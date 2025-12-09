@@ -31,6 +31,7 @@ export class HtmlElementQuery {
     static _emptyElementList = new Array();
     static _emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
     static _onEventHandlerList = new Array();
+    static _htmlChanged = new Array();
     _elementList = new Array();
     constructor(element) {
         element.forEach(el => {
@@ -254,18 +255,21 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentHTML(position, text);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     insertAdjacentElement(position, element) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentElement(position, element);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     insertAdjacentText(position, data) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentText(position, data);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     getInnerWidth() {
@@ -533,6 +537,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = html;
         }
+        this.invokeHtmlChanged();
         return this;
     }
     appendInnerText(value) {
@@ -545,6 +550,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
         }
+        this.invokeHtmlChanged();
         return this;
     }
     getStyle(name) {
@@ -889,6 +895,14 @@ export class HtmlElementQuery {
     }
     forEach(callback) {
         this._elementList.forEach(callback);
+    }
+    invokeHtmlChanged() {
+        for (var i = 0; i < HtmlElementQuery._htmlChanged.length; i++) {
+            HtmlElementQuery._htmlChanged[i](this._elementList);
+        }
+    }
+    static subscribeHtmlChanged(func) {
+        HtmlElementQuery._htmlChanged.push(func);
     }
     static domContentLoaded(callback) {
         document.addEventListener("DOMContentLoaded", callback);
