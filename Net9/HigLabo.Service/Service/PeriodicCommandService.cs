@@ -85,7 +85,11 @@ public class PeriodicCommandService
                     }
                     catch (Exception ex)
                     {
-                        this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
+                        try
+                        {
+                            this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
+                        }
+                        catch { }
                         this.WriteLog(ex.ToString());
                     }
                 }
