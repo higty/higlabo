@@ -30,13 +30,13 @@ internal class DataSendContext : DataTransferContext
 
         if (this.Stream.Position + bb.Length < this.Stream.Length)
         {
-            this.Stream.Read(bb, 0, bb.Length);
+            this.Stream.ReadExactly(bb, 0, bb.Length);
             _SendBufferSize = bb.Length;
         }
         else
         {
             Int32 count = (Int32)(this.Stream.Length - this.Stream.Position);
-            this.Stream.Read(bb, 0, count);
+            this.Stream.ReadExactly(bb, 0, count);
             _SendBufferSize = count;
         }
     }

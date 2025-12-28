@@ -17,13 +17,13 @@ internal class Program
     }
     private static async ValueTask Execute()
     {
-        if (false)
-        {
-            var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Slack\\Generated\\");
-            //await g.CreateEntitySourceCodeFile("", new CreateEntityClassContext());
-            await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/reminders.add");
-            //await g.Execute();
-        }
+        //if (false)
+        //{
+        //    var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Slack\\Generated\\");
+        //    //await g.CreateEntitySourceCodeFile("", new CreateEntityClassContext());
+        //    await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/reminders.add");
+        //    //await g.Execute();
+        //}
         if (true)
         {
             var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net9\\HigLabo.Net.Microsoft\\Generated\\");

@@ -1,24 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>9.2.1.0</Version>
-		<Authors>Higty</Authors>
+
+		<Version>10.0.0</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
+		<Authors>Higty</Authors>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
 		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>1591;NETSDK1138</NoWarn>
+
 		<Description>
 			How to use? See sample code
 			https://github.com/higty/higlabo/blob/master/Net9/HigLabo.Anthropic.SampleConsoleApp/AnthropicClientPlayground.cs
 		</Description>
 		<PackageTags>Gemini;</PackageTags>
-		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>1591</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,10 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Document\README.md">
-			<PackagePath>\</PackagePath>
-			<Pack>true</Pack>
-		</None>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 		<None Update="Image\Castle.jpg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
@@ -50,6 +49,4 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
-
 </Project>

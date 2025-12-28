@@ -339,7 +339,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage("How to enjoy coffee?");
+        p.AddUserMessage("How to enjoy coffee?");
         var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
         foreach (var output in res.Output)
         {
@@ -362,7 +362,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-4.1-mini";
-        p.Input.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude.");
+        p.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude.");
 
         p.Parallel_Tool_Calls = true;
         p.Tools = new List<Tool>();
@@ -387,7 +387,7 @@ public class OpenAIPlayground
                 "getLatLong" => "N35°41.4′/ E139°45.6",
                 _ => throw SwitchStatementNotImplementException.Create(f.Name),
             };
-            p.Input.AddToolCallMessage(f, functionCallResultText);
+            p.AddToolCallMessage(f, functionCallResultText);
             p.Previous_Response_Id = result.Response!.Response!.Id;
         }
         var fResult = await cl.ResponseCreateAsync(p);
@@ -406,7 +406,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-4.1-mini";
-        p.Input.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude. And I want to know the good spot to visit in Japan.");
+        p.AddUserMessage("I want to know the whether of Tokyo and longitude and latitude. And I want to know the good spot to visit in Japan.");
 
         p.Parallel_Tool_Calls = true;
         p.Tools = new List<Tool>();
@@ -440,7 +440,7 @@ public class OpenAIPlayground
                 "getLatLong" => "N35°41.4′/ E139°45.6",
                 _ => throw SwitchStatementNotImplementException.Create(f.Name),
             };
-            p.Input.AddToolCallMessage(f, functionCallResultText);
+            p.AddToolCallMessage(f, functionCallResultText);
             p.Previous_Response_Id = result.Response!.Response!.Id;
         }
         var fResult = await cl.ResponseCreateAsync(p);
@@ -460,7 +460,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-4.1-mini";
-        p.Input.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
+        p.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
         p.Tools = [];
         p.Tools.Add(new Tool("web_search"));
         var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
@@ -486,7 +486,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
+        p.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
         p.Tools.Add(new Tool("web_search"));
         var result = new ResponseStreamResult();
@@ -517,7 +517,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
+        p.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
         p.Tools.Add(new Tool("web_search"));
         var result = new ResponseStreamResult();
@@ -556,11 +556,11 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
-        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Hakuun.png")));
-        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "DragonEye.jpg")));
-        p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")));
-        //p.Input[0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Tsurugi.jpg")));
+        p.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
+        //p.Input![0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Hakuun.png")));
+        //p.Input![0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "DragonEye.jpg")));
+        p.Input![0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Yari.jpg")));
+        //p.Input![0].AddImage("image/png", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "Image", "Mt_Tsurugi.jpg")));
         p.Tools = [];
         p.Tools.Add(new Tool("image_generation"));
 
@@ -605,8 +605,8 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
-        p.Input[0].AddImage("https://static.tinybetter.com/public-data/drone-image/PXL_20231018_073935194.jpg");
+        p.AddUserMessage("Please change this image to anime-inspired look style and generate new image.");
+        p.Input![0].AddImage("https://static.tinybetter.com/public-data/drone-image/PXL_20231018_073935194.jpg");
         p.Tools = [];
         p.Tools.Add(new Tool("image_generation"));
 
@@ -647,7 +647,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage("I want to know about 1-bit transformers.");
+        p.AddUserMessage("I want to know about 1-bit transformers.");
         p.Tools = [];
         p.Tools.Add(new FileSearchTool()
         {
@@ -678,8 +678,8 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage("Please explain about this pdf file.");
-        p.Input[0].AddImage("image/jpeg", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "File", "AI_Forecast.pdf")));
+        p.AddUserMessage("Please explain about this pdf file.");
+        p.Input![0].AddImage("image/jpeg", File.ReadAllBytes(Path.Combine(Environment.CurrentDirectory, "File", "AI_Forecast.pdf")));
 
         var result = new ResponseStreamResult();
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
@@ -715,8 +715,8 @@ public class OpenAIPlayground
         {
             var p = new ResponseCreateParameter();
             p.Model = "gpt-5";
-            p.Input.AddUserMessage("Please explain about this pdf file.");
-            p.Input[0].AddFile(fileId);
+            p.AddUserMessage("Please explain about this pdf file.");
+            p.Input![0].AddFile(fileId);
 
             var result = new ResponseStreamResult();
             await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
@@ -743,7 +743,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "o3-deep-research";
-        p.Input.AddUserMessage($"まずはWEBを検索しAIに関するニュースを集めてください。その後、それらのニュースをニュースキャスターが読むような原稿を作成してください。原稿は読み上げ時間が3分くらいのモノにしてください。");
+        p.AddUserMessage($"まずはWEBを検索しAIに関するニュースを集めてください。その後、それらのニュースをニュースキャスターが読むような原稿を作成してください。原稿は読み上げ時間が3分くらいのモノにしてください。");
         p.Stream = true;
         p.Tools = [];
         p.Tools.Add(new Tool("web_search_preview"));
@@ -779,14 +779,14 @@ public class OpenAIPlayground
         var p = new ResponseCreateParameter();
         p.Model = "o4-mini";
         //p.Instructions = "You are a personal math tutor. When asked a math question, run code to answer the question.";
-        p.Input.AddUserMessage($"Write a bash script that takes a matrix represented as a string with \r\nformat '[1,2],[3,4],[5,6]' and prints the transpose in the same format.");
+        p.AddUserMessage($"Write a bash script that takes a matrix represented as a string with \r\nformat '[1,2],[3,4],[5,6]' and prints the transpose in the same format.");
         p.Reasoning = new();
         p.Reasoning.Effort = "high";
         p.Reasoning.Summary = "detailed";
         var result = new ResponseStreamResult();
 
         var mode = "";
-        Console.WriteLine(p.Input[0].Content[0].Text);
+        Console.WriteLine(p.Input![0].Content[0].Text);
         await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
         {
             switch (item.EventName)
@@ -852,7 +852,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
+        p.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
         p.Tools = [];
         p.Tools.Add(new McpCallTool()
         {
@@ -882,7 +882,7 @@ public class OpenAIPlayground
 
         var p = new ResponseCreateParameter();
         p.Model = "gpt-5";
-        p.Input.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
+        p.AddUserMessage($"Please tell me about the architecture of this repository. https://github.com/openai/codex");
         p.Tools = [];
         p.Tools.Add(new McpCallTool()
         {
@@ -1014,7 +1014,7 @@ public class OpenAIPlayground
 
     private async ValueTask ResponsePlaygroundPromptIdCreate()
     {
-        https://platform.openai.com/chat/edit?prompt=...
+        // https://platform.openai.com/chat/edit?prompt=...
         var cl = OpenAIClient;
 
         var p = new ResponseCreateParameter();
@@ -1045,7 +1045,7 @@ public class OpenAIPlayground
         var p1 = new ResponseCreateParameter();
         p1.Model = "gpt-5";
         p1.Previous_Response_Id = res.Id;
-        p1.Input.AddUserMessage("2025-12-15、Higty、オンライン、1件");
+        p1.AddUserMessage("2025-12-15、Higty、オンライン、1件");
         var result = new ResponseStreamResult();
         await foreach (string text in cl.ResponseCreateStreamAsync(p1, result, CancellationToken.None))
         {

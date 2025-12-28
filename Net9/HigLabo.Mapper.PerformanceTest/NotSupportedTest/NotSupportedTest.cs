@@ -54,11 +54,11 @@ public class NotSupportedTest
         return;
 
         //StackOverflowException thrown
-        TinyMapper.Bind<TreeNode, TreeNode>();
-        TinyMapper.Bind<TreeNode, TreeNodeTarget>();
+        //TinyMapper.Bind<TreeNode, TreeNode>();
+        //TinyMapper.Bind<TreeNode, TreeNodeTarget>();
 
-        var tn = TreeNode.Create();
-        var tn2 = TinyMapper.Map<TreeNode>(tn);
+        //var tn = TreeNode.Create();
+        //var tn2 = TinyMapper.Map<TreeNode>(tn);
     }
     public static void MapsterTest()
     {
@@ -72,8 +72,8 @@ public class NotSupportedTest
         return;
 
         //StackOverflowException thrown
-        var tn = TreeNode.Create();
-        var tn2 = Mapster.TypeAdapter.Adapt<TreeNode>(tn);
+        //var tn = TreeNode.Create();
+        //var tn2 = Mapster.TypeAdapter.Adapt<TreeNode>(tn);
     }
     public static void ExpressMapperTest()
     {
@@ -89,8 +89,8 @@ public class NotSupportedTest
 
         return;
 
-        var tn = TreeNode.Create();
-        var tn2 = ExpressMapper.Mapper.Map<TreeNode, TreeNode>(tn);//tn2.Nodes.Count = 0.
+        //var tn = TreeNode.Create();
+        //var tn2 = ExpressMapper.Mapper.Map<TreeNode, TreeNode>(tn);//tn2.Nodes.Count = 0.
     }
     public static void FastMapperTest()
     {
@@ -119,8 +119,8 @@ public class NotSupportedTest
 
         return;
         //StackOverflowException thrown
-        var tn = TreeNode.Create();
-        var tn2 = AgileObjects.AgileMapper.Mapper.Map<TreeNode>(tn).ToANew<TreeNode>();//Does not map...
+        //var tn = TreeNode.Create();
+        //var tn2 = AgileObjects.AgileMapper.Mapper.Map<TreeNode>(tn).ToANew<TreeNode>();//Does not map...
     }
 }
 

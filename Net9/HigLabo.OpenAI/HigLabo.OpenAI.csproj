@@ -1,22 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>9.8.1.1</Version>
-		<Authors>Higty</Authors>
+
+		<Version>10.0.0</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
+		<Authors>Higty</Authors>
 		<Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
 		<RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>1591;NETSDK1138</NoWarn>
+
 		<Description>How to use? See repository. https://github.com/higty/higlabo
 		</Description>
 		<PackageTags>OpenAI;ChatGPT;</PackageTags>
-		<PackageReadmeFile>\Document\README.md</PackageReadmeFile>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>1591</NoWarn>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,23 +35,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\Resources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Resources.resx</DependentUpon>
-	  </Compile>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="Document\README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-
 </Project>

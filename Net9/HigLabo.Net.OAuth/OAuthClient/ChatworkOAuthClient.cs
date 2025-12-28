@@ -16,12 +16,6 @@ public class ChatworkOAuthClient : OAuthAuthenticationClient
 
     }
 
-    /// <summary>
-    /// https://developer.chatwork.com/docs/oauth
-    /// </summary>
-    /// <param name="redirectUrl"></param>
-    /// <param name="scopes"></param>
-    /// <returns></returns>
     public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
     {
         return CreateAuthorizeUrl(redirectUrl, scopes, state, "");
