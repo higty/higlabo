@@ -1,3 +1,4 @@
+import { ItemGroup } from "./ItemGroup.js";
 export function $(value) {
     if (value === undefined || value === null) {
         return new HtmlElementQuery([]);
@@ -33,6 +34,7 @@ export class HtmlElementQuery {
     static _onEventHandlerList = new Array();
     static _htmlChanged = new Array();
     _elementList = new Array();
+    itemGroup = new ItemGroup();
     constructor(element) {
         element.forEach(el => {
             this._elementList.push(el);
@@ -663,47 +665,17 @@ export class HtmlElementQuery {
         return this;
     }
     on(eventType, selector, callback) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this.addEventListener(this._elementList[i], eventType, selector, callback);
-        }
-    }
-    addEventListener(element, eventType, selector, callback) {
-        let f = new OnEventHandler();
-        f.element = element;
-        f.eventType = eventType;
-        f.handler = function (event) {
-            const l = element.querySelectorAll(selector);
-            for (var i = 0; i < l.length; i++) {
-                if (event.target == l[i]) {
-                    callback(l[i], event);
+        for (let i = 0; i < this._elementList.length; i++) {
+            const root = this._elementList[i];
+            root.addEventListener(eventType, (event) => {
+                const t = event.target;
+                if (!t)
                     return;
+                const hit = (t instanceof Element) ? t.closest(selector) : null;
+                if (hit && root.contains(hit)) {
+                    callback(hit, event);
                 }
-                var pp = $(event.target).getParentElementList();
-                for (var pIndex = 0; pIndex < pp.length; pIndex++) {
-                    if (pp[pIndex] == l[i]) {
-                        callback(l[i], event);
-                        return;
-                    }
-                }
-            }
-        }.bind(this);
-        if (HtmlElementQuery._onEventHandlerList.find(el => el.element == element && el.eventType == eventType) == null) {
-            element.addEventListener(eventType, function (event) {
-                this.triggerOnEventHandler(element, eventType, event);
-            }.bind(this));
-        }
-        HtmlElementQuery._onEventHandlerList.push(f);
-    }
-    triggerOnEventHandler(element, eventType, e) {
-        for (var i = 0; i < HtmlElementQuery._onEventHandlerList.length; i++) {
-            let f = HtmlElementQuery._onEventHandlerList[i];
-            if (f.element != element || f.eventType != eventType) {
-                continue;
-            }
-            f.handler(e);
-            if (e.defaultPrevented === true) {
-                break;
-            }
+            });
         }
     }
     addEventListenerToAllElement(eventType, callback) {
@@ -892,6 +864,11 @@ export class HtmlElementQuery {
             }
         }
         return new HtmlElementQuery(elementList);
+    }
+    setCurrentItem() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this.itemGroup.setCurrentItem(this._elementList[i]);
+        }
     }
     forEach(callback) {
         this._elementList.forEach(callback);

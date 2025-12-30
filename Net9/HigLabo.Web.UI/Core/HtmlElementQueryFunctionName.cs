@@ -87,6 +87,7 @@ public class HtmlElementQueryFunctionName
     public const string GetNearest = "getNearest";
     public const string GetNearestElement = "getNearestElement";
     public const string Find = "find";
+    public const string SetCurrentItem = "setCurrentItem";
     public const string ForEach = "forEach";
     public const string DomContentLoaded = "domContentLoaded";
 }

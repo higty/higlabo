@@ -260,7 +260,7 @@
   --color-item-bg1: #fafafa;
   --color-item-hover: #f4f6f8;
   --color-item-focus: #f1f1f1;
-  --color-item-current: #f0f0f0;
+  --color-item-current: #eaeaea;
 }
 
 .item:nth-child(2n) {
@@ -281,4 +281,8 @@
 }
 .item.current {
   background-color: var(--color-item-current);
+}
+
+.item-group-current-only-visible[item-group-id]:not([current=true]) {
+  display: none !important;
 }
