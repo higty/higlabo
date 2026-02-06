@@ -97,11 +97,6 @@ public class MimeContent
         if (this.RawData == null) { return ""; }
         return encoding.GetString(this.RawData);
     }
-    /// <summary>
-    /// Decode binary data and output as file to specify file path.
-    /// バイナリデータをデコードして指定した物理パスにファイルとして保存します。
-    /// </summary>
-    /// <param name="filePath"></param>
     public void SaveTo(String filePath)
     {
         using (var stm = new FileStream(filePath, FileMode.Create))
@@ -110,11 +105,6 @@ public class MimeContent
             this.WriteTo(stm, bb, true);
         }
     }
-    /// <summary>
-    /// Decode binary data and output as file to specify file path.
-    /// バイナリデータをデコードして指定したディレクトリにファイルとして保存します。
-    /// </summary>
-    /// <param name="directoryPath"></param>
     public void SaveToDirectory(String directoryPath)
     {
         using (var stm = new FileStream(Path.Combine(directoryPath, this.FileName), FileMode.Create))
@@ -123,11 +113,6 @@ public class MimeContent
             this.WriteTo(stm, bb, true);
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="directoryPath"></param>
-    /// <param name="fileName"></param>
     public void SaveToDirectory(String directoryPath, String fileNameWithoutExtension)
     {
         var fileName = fileNameWithoutExtension + Path.GetExtension(this.FileName);
@@ -137,11 +122,6 @@ public class MimeContent
             this.WriteTo(stm, bb, true);
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="filePath"></param>
-    /// <param name="encoding"></param>
     public void SaveAsTextFile(String filePath, Encoding encoding)
     {
         using (var stm = new FileStream(filePath, FileMode.Create))
@@ -150,10 +130,6 @@ public class MimeContent
             this.WriteTo(stm, bb, true);
         }
     }
-    /// <summary>
-    /// Get decoded BodyData by ContentTransferEncoding
-    /// </summary>
-    /// <returns></returns>
     public Byte[] GetDecodedData()
     {
         if (this.BodyData == null) throw new InvalidOperationException("BodyData is not loaded.Please ensure to set MimeParser.Filter.LoadContentBodyData = true when you download mail.");
@@ -171,11 +147,6 @@ public class MimeContent
         }
         return bb;
     }
-    /// <summary>
-    /// Output data to specified stream
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="encoding"></param>
     public void WriteTo(Stream stream, Encoding encoding)
     {
         if (this.ContentType.IsText == true)
@@ -189,12 +160,6 @@ public class MimeContent
             this.WriteTo(stream, bb, false);
         }
     }
-    /// <summary>
-    /// Output data to specified stream and close stream
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="data"></param>
-    /// <param name="isClose"></param>
     private void WriteTo(Stream stream, Byte[] data, Boolean isClose)
     {
         if (data == null)

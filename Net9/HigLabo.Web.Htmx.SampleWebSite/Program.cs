@@ -15,7 +15,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-app.MapGet("/", async (HttpContext context, RazorRenderer renderer) => await renderer.WriteHtmlAsync(context, "/Pages/Root.cshtml"));
+app.MapGet("/", async (RazorRenderer renderer) => await renderer.WriteHtmlAsync("/Pages/Root.cshtml"));
 app.MapPost("/post-data", async (HttpContext context, HtmxPostData setting) => {
     var json = System.Text.Json.JsonSerializer.Serialize(setting, new JsonSerializerOptions
     {

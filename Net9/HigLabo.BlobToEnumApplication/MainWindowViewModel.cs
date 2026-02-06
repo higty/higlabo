@@ -16,8 +16,8 @@ public enum MainWindowDisplayMode
     Edit,
     Generating,
 }
-[ObservableObject]
-public partial class MainWindowViewModel
+
+public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
     public MainWindowDisplayMode displayMode = MainWindowDisplayMode.List;

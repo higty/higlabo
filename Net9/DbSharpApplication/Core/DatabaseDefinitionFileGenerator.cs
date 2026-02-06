@@ -215,7 +215,6 @@ public class DatabaseDefinitionFileGenerator
                 obj.ObjectType == DatabaseObjectType.StoredFunction)
             {
                 sb.AppendLine("");
-                sb.AppendLine("");
             }
         }
         else

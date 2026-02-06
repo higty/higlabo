@@ -57,6 +57,34 @@ public class ResponseInput : List<ResponseInputMessage>
         }
     }
 }
+public partial class ResponseCreateParameter
+{
+    public void AddUserMessage(string text)
+    {
+        if (this.Input == null) { this.Input = new(); }
+        this.Input.AddMessage(ResponseInputRole.User, text);
+    }
+    public void AddMessage(ResponseInputRole role, string text)
+    {
+        if (this.Input == null) { this.Input = new(); }
+        this.Input.AddMessage(role, text);
+    }
+    public void AddFile(string fileName, string contentType, Stream stream)
+    {
+        if (this.Input == null) { this.Input = new(); }
+        this.Input.AddFile(fileName, contentType, stream);
+    }
+    public void AddImage(string contentType, byte[] data)
+    {
+        if (this.Input == null) { this.Input = new(); }
+        this.Input.AddImage(contentType, data);
+    }
+    public void AddToolCallMessage(ResponseStreamOutputItem.OutputItem toolCall, string output)
+    {
+        if (this.Input == null) { this.Input = new(); }
+        this.Input.AddToolCallMessage(toolCall, output);
+    }
+}
 public class ResponseInputMessage 
 {
     public List<ResponseInputContent> Content { get; internal set; } = new();

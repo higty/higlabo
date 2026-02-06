@@ -63,7 +63,7 @@ public partial class WorksheetListNamesResponse : RestApiResponse
 public partial class MicrosoftClient
 {
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0&tabs=http
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0
     /// </summary>
     public async ValueTask<WorksheetListNamesResponse> WorksheetListNamesAsync()
     {
@@ -71,7 +71,7 @@ public partial class MicrosoftClient
         return await this.SendAsync<WorksheetListNamesParameter, WorksheetListNamesResponse>(p, CancellationToken.None);
     }
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0&tabs=http
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0
     /// </summary>
     public async ValueTask<WorksheetListNamesResponse> WorksheetListNamesAsync(CancellationToken cancellationToken)
     {
@@ -79,14 +79,14 @@ public partial class MicrosoftClient
         return await this.SendAsync<WorksheetListNamesParameter, WorksheetListNamesResponse>(p, cancellationToken);
     }
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0&tabs=http
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0
     /// </summary>
     public async ValueTask<WorksheetListNamesResponse> WorksheetListNamesAsync(WorksheetListNamesParameter parameter)
     {
         return await this.SendAsync<WorksheetListNamesParameter, WorksheetListNamesResponse>(parameter, CancellationToken.None);
     }
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0&tabs=http
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-list-names?view=graph-rest-1.0
     /// </summary>
     public async ValueTask<WorksheetListNamesResponse> WorksheetListNamesAsync(WorksheetListNamesParameter parameter, CancellationToken cancellationToken)
     {

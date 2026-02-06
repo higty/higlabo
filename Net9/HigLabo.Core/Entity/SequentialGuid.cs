@@ -31,7 +31,7 @@ public static class SequentialGuid
         byte[] randomBytes = new byte[10];
         _rng.GetBytes(randomBytes);
 
-        long timestamp = DateTime.Now.Ticks / 10000L;
+        long timestamp = DateTime.UtcNow.Ticks / 10000L;
         byte[] timestampBytes = BitConverter.GetBytes(timestamp);
 
         if (BitConverter.IsLittleEndian)

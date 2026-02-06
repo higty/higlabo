@@ -5,6 +5,7 @@ export class AccordionPanel {
         $("body").on("click", "[accordion-panel] [toggle]", this.toggle_Click.bind(this));
     }
     private toggle_Click(target: Element, e: Event) {
+        if ($(e.target).getTagName() == "A" && $(e.target).getAttribute("href") != "") { return; }
         const pl = $(target).getFirstParent("[accordion-panel]").getFirstElement();
         $(pl).toggleAttributeValue("toggle-state", "Visible", "Hidden");
     }

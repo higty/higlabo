@@ -664,6 +664,7 @@ public partial class OpenAIClient
     public async IAsyncEnumerable<string> ResponseCreateStreamAsync(string message, string model)
     {
         var p = new ResponseCreateParameter();
+        if (p.Input == null) { p.Input = new(); }
         p.Input.AddUserMessage(message);
         p.Model = model;
         p.Stream = true;
@@ -675,6 +676,7 @@ public partial class OpenAIClient
     public async IAsyncEnumerable<string> ResponseCreateStreamAsync(string message, string model, ResponseStreamResult result)
     {
         var p = new ResponseCreateParameter();
+        if (p.Input == null) { p.Input = new(); }
         p.Input.AddUserMessage(message);
         p.Model = model;
         p.Stream = true;
@@ -686,6 +688,7 @@ public partial class OpenAIClient
     public async IAsyncEnumerable<string> ResponseCreateStreamAsync(string message, string model, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         var p = new ResponseCreateParameter();
+        if (p.Input == null) { p.Input = new(); }
         p.Input.AddUserMessage(message);
         p.Model = model;
         p.Stream = true;
@@ -697,6 +700,7 @@ public partial class OpenAIClient
     public async IAsyncEnumerable<string> ResponseCreateStreamAsync(string message, string model, ResponseStreamResult result, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         var p = new ResponseCreateParameter();
+        if (p.Input == null) { p.Input = new(); }
         p.Input.AddUserMessage(message);
         p.Model = model;
         p.Stream = true;

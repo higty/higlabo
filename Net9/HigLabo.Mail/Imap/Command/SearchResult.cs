@@ -8,26 +8,12 @@ using HigLabo.Net.Mail;
 
 namespace HigLabo.Net.Imap;
 
-/// <summary>
-/// 
-/// </summary>
 public class SearchResult 
 {
     private static readonly List<String> _EmptyValueList = new List<String>();
     private static readonly List<Int64> _EmptyMailIndexList = new List<Int64>();
-    /// <summary>
-    /// 
-    /// </summary>
     public ReadOnlyCollection<String> Values { get; private set; }
-    /// <summary>
-    /// 
-    /// </summary>
     public ReadOnlyCollection<Int64> MailIndexList { get; private set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="tag"></param>
-    /// <param name="text"></param>
     public SearchResult(String text)
     {
         String startText = "* Search";

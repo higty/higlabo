@@ -5,7 +5,7 @@ namespace HigLabo.NugetUploadCommandFileGenerator;
 internal class Program
 {
     private static String ApiKey = "";
-    private static readonly String NugetPackageFolderPath = "C:\\GitHub\\higty\\NugetPackage_Net9\\";
+    private static readonly String NugetPackageFolderPath = "C:\\GitHub\\higty\\NugetPackage_Net\\";
 
     static void Main(string[] args)
     {
@@ -32,10 +32,10 @@ internal class Program
                 var fi = new FileInfo(path);
                 ff.Add(fi);
             }
-            var f = ff.OrderByDescending(el => el.CreationTime).FirstOrDefault();
+            var f = ff.OrderByDescending(el => el.LastWriteTime).FirstOrDefault();
             if (f != null)
             {
-                createTime = f.CreationTime;
+                createTime = f.LastWriteTime;
             }
 
             foreach (var path in Directory.EnumerateFiles(folderPath, "*.nupkg", SearchOption.AllDirectories).OrderBy(el => el))

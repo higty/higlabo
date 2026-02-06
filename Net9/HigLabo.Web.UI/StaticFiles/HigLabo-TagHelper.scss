@@ -19,6 +19,7 @@ $width-checkbox-circle: 20px;
     --input-text-text-color: var(--color-text);
     --input-text-back-color: var(--color-form-element-bg);
     --input-text-back-color-focus: var(--color-form-element-focus);
+    --input-text-back-color-hover: var(--color-form-element-hover);
     --input-text-border-color: var(--color-set-glay-03);
     --input-text-border-color-focus: var(--color-form-element-focus);
     --input-text-border-radius: 8px;
@@ -311,11 +312,19 @@ dialog {
 
     input {
         width: 100%;
+        border: none 0;
+    }
+
+    &:hover {
+        background-color: var(--input-text-back-color-hover);
+
+        input {
+            background-color: var(--input-text-back-color-hover);
+        }
     }
 
     &:focus-within {
         border-color: var(--input-text-border-color-focus);
-        background-color: var(--input-text-back-color-focus);
     }
 
     .input-icon {
@@ -327,9 +336,7 @@ dialog {
     }
 
     &[input-date] {
-        input {
-            width: 80px;
-        }
+        width: 104px;
 
         .input-date-icon {
             width: 24px;

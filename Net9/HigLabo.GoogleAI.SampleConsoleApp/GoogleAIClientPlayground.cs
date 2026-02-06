@@ -450,7 +450,7 @@ public class GoogleAIClientPlayground
             }
         }
     }
-
+#pragma warning disable CA1416
     private async ValueTask ExplainImage()
     {
         var cl = GoogleAIClient;
@@ -593,10 +593,7 @@ public class GoogleAIClientPlayground
                     }
                 }
             }
-            if (candidate.FinishReason != null)
-            {
-                Console.WriteLine("Finish reason: " + candidate.FinishReason.ToStringFromEnum());
-            }
+            Console.WriteLine("Finish reason: " + candidate.FinishReason.ToStringFromEnum());
         }
     }
 
@@ -737,4 +734,6 @@ public class GoogleAIClientPlayground
         //This does not work as we expected. Wrong mind map generated. But it may help to improve your imagination.
 
     }
+#pragma warning restore CA1416
+
 }

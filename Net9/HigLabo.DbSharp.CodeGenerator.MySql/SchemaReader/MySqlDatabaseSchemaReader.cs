@@ -216,7 +216,181 @@ public class MySqlDatabaseSchemaReader : DatabaseSchemaReader
 
     public override string GetDefinitionText(Table table)
     {
-        throw new NotImplementedException();
+        var t = table;
+        var sb = new StringBuilder();
+
+        sb.AppendFormat("CREATE TABLE `{0}`", t.Name).AppendLine();
+        sb.AppendLine("(");
+
+        for (int i = 0; i < t.Columns.Count; i++)
+        {
+            var c = t.Columns[i];
+            if (i > 0)
+            {
+                sb.AppendLine(",");
+            }
+            sb.Append("  ");
+            sb.Append(GetMySqlColumnDefinition(c));
+        }
+        sb.AppendLine();
+
+        // Primary Key
+        var pkColumns = t.GetPrimaryKeyColumns().ToList();
+        if (pkColumns.Count > 0)
+        {
+            sb.Append(", PRIMARY KEY (");
+            sb.Append(String.Join(", ", pkColumns.Select(el => "`" + el.Name + "`")));
+            sb.AppendLine(")");
+        }
+
+        // Foreign Keys
+        foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
+        {
+            sb.AppendFormat(", CONSTRAINT `{0}_FK_{1}` FOREIGN KEY (`{1}`) REFERENCES `{2}`(`{3}`)"
+                , t.Name, c.Name, c.ForeignKey!.ParentTableName, c.ForeignKey.ParentColumnName);
+            if (c.ForeignKey.OnUpdate != "NO_ACTION" && c.ForeignKey.OnUpdate != "RESTRICT")
+            {
+                sb.AppendFormat(" ON UPDATE {0}", c.ForeignKey.OnUpdate.Replace("_", " "));
+            }
+            if (c.ForeignKey.OnDelete != "NO_ACTION" && c.ForeignKey.OnDelete != "RESTRICT")
+            {
+                sb.AppendFormat(" ON DELETE {0}", c.ForeignKey.OnDelete.Replace("_", " "));
+            }
+            sb.AppendLine();
+        }
+
+        // Indexes (non-primary key, non-unique)
+        foreach (var ix in t.IndexList.Where(el => !el.IsUnique))
+        {
+            sb.AppendFormat(", INDEX `{0}` ({1})"
+                , ix.Name
+                , String.Join(", ", ix.Columns.Select(el => "`" + el.Name + "`")));
+            sb.AppendLine();
+        }
+
+        sb.AppendLine(") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+        sb.AppendLine();
+
+        // Check Constraints (MySQL 8.0.16+)
+        foreach (var cc in t.CheckConstraintList)
+        {
+            sb.AppendFormat("ALTER TABLE `{0}` ADD CONSTRAINT `{1}` CHECK ({2});",
+                t.Name, cc.Name, cc.Definition);
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+    private string GetMySqlColumnDefinition(Column c)
+    {
+        var sb = new StringBuilder();
+        sb.AppendFormat("`{0}` ", c.Name);
+        sb.Append(GetMySqlTypeName(c));
+
+        if (c.AllowNull == false)
+        {
+            sb.Append(" NOT NULL");
+        }
+
+        if (c.IsIdentity == true)
+        {
+            sb.Append(" AUTO_INCREMENT");
+        }
+
+        if (c.DefaultCostraint != null)
+        {
+            sb.AppendFormat(" DEFAULT {0}", c.DefaultCostraint.Definition);
+        }
+
+        return sb.ToString();
+    }
+    private string GetMySqlTypeName(Column c)
+    {
+        var dbType = c.DbType!.MySqlServerDbType!.Value;
+        switch (dbType)
+        {
+            case MySqlDbType.String:
+                return c.Length.HasValue ? $"CHAR({c.Length})" : "CHAR(255)";
+            case MySqlDbType.VarChar:
+            case MySqlDbType.VarString:
+                return c.Length.HasValue ? $"VARCHAR({c.Length})" : "VARCHAR(255)";
+            case MySqlDbType.Text:
+                return "TEXT";
+            case MySqlDbType.TinyText:
+                return "TINYTEXT";
+            case MySqlDbType.MediumText:
+                return "MEDIUMTEXT";
+            case MySqlDbType.LongText:
+                return "LONGTEXT";
+            case MySqlDbType.Byte:
+                return "TINYINT";
+            case MySqlDbType.UByte:
+                return "TINYINT UNSIGNED";
+            case MySqlDbType.Int16:
+                return "SMALLINT";
+            case MySqlDbType.UInt16:
+                return "SMALLINT UNSIGNED";
+            case MySqlDbType.Int24:
+                return "MEDIUMINT";
+            case MySqlDbType.UInt24:
+                return "MEDIUMINT UNSIGNED";
+            case MySqlDbType.Int32:
+                return "INT";
+            case MySqlDbType.UInt32:
+                return "INT UNSIGNED";
+            case MySqlDbType.Int64:
+                return "BIGINT";
+            case MySqlDbType.UInt64:
+                return "BIGINT UNSIGNED";
+            case MySqlDbType.Float:
+                return "FLOAT";
+            case MySqlDbType.Double:
+                return "DOUBLE";
+            case MySqlDbType.Decimal:
+            case MySqlDbType.NewDecimal:
+                if (c.Precision.HasValue && c.Scale.HasValue)
+                    return $"DECIMAL({c.Precision},{c.Scale})";
+                else if (c.Precision.HasValue)
+                    return $"DECIMAL({c.Precision})";
+                return "DECIMAL";
+            case MySqlDbType.Date:
+            case MySqlDbType.Newdate:
+                return "DATE";
+            case MySqlDbType.DateTime:
+                return c.Scale.HasValue && c.Scale > 0 ? $"DATETIME({c.Scale})" : "DATETIME";
+            case MySqlDbType.Timestamp:
+                return c.Scale.HasValue && c.Scale > 0 ? $"TIMESTAMP({c.Scale})" : "TIMESTAMP";
+            case MySqlDbType.Time:
+                return c.Scale.HasValue && c.Scale > 0 ? $"TIME({c.Scale})" : "TIME";
+            case MySqlDbType.Year:
+                return "YEAR";
+            case MySqlDbType.Bit:
+                return c.Length.HasValue ? $"BIT({c.Length})" : "BIT(1)";
+            case MySqlDbType.Binary:
+                return c.Length.HasValue ? $"BINARY({c.Length})" : "BINARY(255)";
+            case MySqlDbType.VarBinary:
+                return c.Length.HasValue ? $"VARBINARY({c.Length})" : "VARBINARY(255)";
+            case MySqlDbType.Blob:
+                return "BLOB";
+            case MySqlDbType.TinyBlob:
+                return "TINYBLOB";
+            case MySqlDbType.MediumBlob:
+                return "MEDIUMBLOB";
+            case MySqlDbType.LongBlob:
+                return "LONGBLOB";
+            case MySqlDbType.Enum:
+                return !String.IsNullOrEmpty(c.EnumValues) ? c.EnumValues : "ENUM('value1')";
+            case MySqlDbType.Set:
+                return !String.IsNullOrEmpty(c.EnumValues) ? c.EnumValues : "SET('value1')";
+            case MySqlDbType.JSON:
+                return "JSON";
+            case MySqlDbType.Geometry:
+                return "GEOMETRY";
+            case MySqlDbType.Guid:
+                return "CHAR(36)";
+            default:
+                return "VARCHAR(255)";
+        }
     }
 
     private class MySqlDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
@@ -353,10 +527,16 @@ and CONSTRAINT_TYPE = N'CHECK';";
         public override String GetViews()
         {
             return @"
-SELECT TABLE_NAME AS VIEW_NAME
-FROM INFORMATION_SCHEMA.VIEWS
-where table_schema = (SELECT DATABASE() FROM DUAL)
-ORDER BY VIEW_NAME ASC
+SELECT T1.TABLE_NAME AS VIEW_NAME
+, T1.CREATE_TIME AS CREATE_TIME
+, IFNULL(T1.UPDATE_TIME, T1.CREATE_TIME) AS MODIFY_TIME
+, T2.VIEW_DEFINITION AS DEFINITION
+FROM INFORMATION_SCHEMA.TABLES T1
+JOIN INFORMATION_SCHEMA.VIEWS T2 ON T1.TABLE_NAME = T2.TABLE_NAME
+    AND T1.TABLE_SCHEMA = T2.TABLE_SCHEMA
+WHERE T1.TABLE_SCHEMA = (SELECT DATABASE() FROM DUAL)
+AND T1.TABLE_TYPE = 'VIEW'
+ORDER BY T1.TABLE_NAME ASC
 ";
         }
         public override String GetUserDefinedTypes()
@@ -422,7 +602,13 @@ Order by Ordinal_Position
         }
         public override string GetStoredFunctions()
         {
-            throw new NotImplementedException();
+            return @"
+SELECT SPECIFIC_NAME, ROUTINE_DEFINITION, CREATED, LAST_ALTERED
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_SCHEMA = (SELECT DATABASE() FROM DUAL)
+AND ROUTINE_TYPE = 'FUNCTION'
+ORDER BY SPECIFIC_NAME
+";
         }
     }
 }

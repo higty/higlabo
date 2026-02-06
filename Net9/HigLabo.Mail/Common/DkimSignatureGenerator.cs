@@ -1,467 +1,411 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography;
-using HigLabo.Net;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace HigLabo.Net.Smtp;
 
-/// <summary>
-/// 
-/// </summary>
 public enum DkimCanonicalization
 {
-    /// <summary>
-    /// 
-    /// </summary>
     Simple,
-    /// <summary>
-    /// 
-    /// </summary>
     Relaxed
 }
-/// <summary>
-/// 
-/// </summary>
 public enum SigninAlgorithm
 {
-    /// <summary>
-    /// 
-    /// </summary>
     RSASha1,
-    /// <summary>
-    /// 
-    /// </summary>
     RSASha256
 }
 
-/// <summary>
-/// 
-/// </summary>
 public class DkimSignatureGenerator
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static readonly String SignatureKey = "DKIM-Signature";
-    /// <summary>
-    /// 
-    /// </summary>
-    private readonly String _Domain;
-    /// <summary>
-    /// 
-    /// </summary>
-    private readonly String _Selector;
-    /// <summary>
-    /// 
-    /// </summary>
-    public DkimCanonicalization HeaderCanonicalization { get; set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    public DkimCanonicalization BodyCanonicalization { get; set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    public List<String> HeaderKeys { get; private set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    public SigninAlgorithm SigninAlgorithm { get; set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    public Encoding Encoding { get; set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    public X509Certificate2 Certificate { get; private set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="pfxFilePath"></param>
-    /// <param name="pwd"></param>
-    /// <param name="domain"></param>
-    /// <param name="selector"></param>
-    /// <param name="signHeaders"></param>
-    public DkimSignatureGenerator(String pfxFilePath, String password, String domain, String selector, String[] headerKeys)
-    {
-        if (String.IsNullOrEmpty(domain) == true) throw new ArgumentException("Domain must not be null or empty.");
-        if (String.IsNullOrEmpty(selector) == true) throw new ArgumentException("Selector must not be null or empty.");
-        if (String.IsNullOrEmpty(pfxFilePath) == true) throw new ArgumentNullException("pfxFilePath must not be null.");
+    public static readonly string SignatureKey = "DKIM-Signature";
+    private const string CrLf = "\r\n";
 
+    private readonly string _Domain;
+    private readonly string _Selector;
+
+    public DkimCanonicalization HeaderCanonicalization { get; set; } = DkimCanonicalization.Relaxed;
+    public DkimCanonicalization BodyCanonicalization { get; set; } = DkimCanonicalization.Relaxed;
+
+    public List<string> HeaderKeys { get; private set; }
+    public SigninAlgorithm SigninAlgorithm { get; set; } = SigninAlgorithm.RSASha256;
+    public Encoding Encoding { get; set; } = Encoding.UTF8;
+
+    public X509Certificate2 Certificate { get; private set; }
+
+    public DkimSignatureGenerator(string pfxFilePath, string? password, string domain, string selector, IEnumerable<string>? headerKeys)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(domain);
+        ArgumentException.ThrowIfNullOrWhiteSpace(selector);
+        ArgumentException.ThrowIfNullOrWhiteSpace(pfxFilePath);
+
+        if (!File.Exists(pfxFilePath))
+            throw new FileNotFoundException("PFX file not found.", pfxFilePath);
+
+        // Exportable が本当に必要なら残す。不要なら外した方が安全。
         Certificate = new X509Certificate2(pfxFilePath, password, X509KeyStorageFlags.Exportable);
 
-        if (Certificate.HasPrivateKey == false)
+        using (var rsa = Certificate.GetRSAPrivateKey())
         {
-            throw new InvalidOperationException("This file does not has PrivateKey.FilePath is " + pfxFilePath);
+            if (rsa is null)
+                throw new InvalidOperationException($"PFX does not contain an RSA private key. File: {pfxFilePath}");
         }
+
         _Domain = domain;
         _Selector = selector;
-        this.HeaderKeys = new List<string>(headerKeys);
-        if (this.HeaderKeys.Count == 0)
-        {
-            this.HeaderKeys.Add("From");
-        }
-        this.Encoding = Encoding.UTF8;
+
+        HeaderKeys = (headerKeys ?? Array.Empty<string>())
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Select(x => x.Trim())
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (HeaderKeys.Count == 0)
+            HeaderKeys.Add("From");
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    public String GenerateDkimHeaderValue(String body)
+
+    public string GenerateDkimHeaderValue(string body)
     {
-        TimeSpan t = DateTime.Now.ToUniversalTime() - DateTime.SpecifyKind(DateTime.Parse("2000/01/01 00:00:00"), DateTimeKind.Utc);
+        body ??= string.Empty;
 
-        StringBuilder signatureValue = new StringBuilder();
+        long unixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
-        // 
+        var signatureValue = new StringBuilder(512);
+
         signatureValue.Append("v=1;");
-
-        // algorithm 
-        signatureValue.Append(" a=");
-        signatureValue.Append(this.GetAlgorithmName());
-        signatureValue.Append(";");
-
-        // Canonicalization
-        signatureValue.Append(" c=");
-        signatureValue.Append(this.HeaderCanonicalization.ToString().ToLower());
-        signatureValue.Append("/");
-        signatureValue.Append(this.BodyCanonicalization.ToString().ToLower());
-        signatureValue.Append(";");
-
-        // signin domain
-        signatureValue.Append(" d=");
-        signatureValue.Append(this._Domain);
-        signatureValue.Append(";");
-
-        // public key location
+        signatureValue.Append(" a=").Append(GetAlgorithmName()).Append(';');
+        signatureValue.Append(" c=").Append(HeaderCanonicalization.ToString().ToLowerInvariant())
+                      .Append('/').Append(BodyCanonicalization.ToString().ToLowerInvariant()).Append(';');
+        signatureValue.Append(" d=").Append(_Domain).Append(';');
         signatureValue.Append(" q=dns;");
+        signatureValue.Append(" s=").Append(_Selector).Append(';');
+        signatureValue.Append(" t=").Append(unixTime).Append(';');
 
-        // selector
-        signatureValue.Append(" s=");
-        signatureValue.Append(this._Selector);
-        signatureValue.Append(";");
-
-        // time sent
-        signatureValue.Append(" t=");
-        signatureValue.Append((int)t.TotalSeconds);
-        signatureValue.Append(";");
-
-        // headers to signed
+        // headers to sign
         signatureValue.Append(" h=");
-        foreach (var key in this.HeaderKeys)
+        for (int i = 0; i < HeaderKeys.Count; i++)
         {
-            signatureValue.Append(key);
-            signatureValue.Append(":");
+            if (string.IsNullOrWhiteSpace(HeaderKeys[i])) continue;
+            signatureValue.Append(HeaderKeys[i]).Append(':');
         }
-        signatureValue.Length--;
-        signatureValue.Append(";");
-        // hash of body
-        signatureValue.Append(" bh=");
-        signatureValue.Append(this.SignBody(body));
-        signatureValue.Append(";");
+        if (signatureValue[^1] == ':') signatureValue.Length--;
+        signatureValue.Append(';');
 
+        // body hash
+        signatureValue.Append(" bh=").Append(SignBody(body)).Append(';');
+
+        // signature (b=) is appended later
         signatureValue.Append(" b=");
-
-        // i=identity
-        // not supported
-
-        // l=body length
-        // not supported
-
-        // x=copied header fields
-        // not supported
 
         return signatureValue.ToString();
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="header"></param>
-    /// <returns></returns>
+
     public string GenerateSignature(List<SmtpMailHeader> headers)
     {
-        if (headers == null) throw new ArgumentNullException("header must not be null.");
+        if (headers is null) throw new ArgumentNullException(nameof(headers));
 
-        var headersText = this.CanonicalizeHeaders(headers);
-        return Convert.ToBase64String(this.Sign(this.Encoding.GetBytes(headersText), this.SigninAlgorithm));
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="body"></param>
-    /// <returns></returns>
-    public String SignBody(String body)
-    {
-        var cb = this.CanonicalizeBody(body);
-
-        return Convert.ToBase64String(DkimSignatureGenerator.Hash(Encoding.GetBytes(cb), this.SigninAlgorithm));
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="data"></param>
-    /// <param name="algorithm"></param>
-    /// <returns></returns>
-    public Byte[] Sign(Byte[] data, SigninAlgorithm algorithm)
-    {
-        if (data == null)
-        {
-            throw new ArgumentNullException("Sign data.");
-        }
-        using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
-        {
-#pragma warning disable SYSLIB0028 // 型またはメンバーが旧型式です
-#pragma warning disable CS8602 // null 参照の可能性があるものの逆参照です。
-            rsa.FromXmlString(this.Certificate.PrivateKey.ToXmlString(true));
-#pragma warning restore CS8602 // null 参照の可能性があるものの逆参照です。
-#pragma warning restore SYSLIB0028 // 型またはメンバーが旧型式です
-            byte[] signature = rsa.SignData(data, GetHashName(this.SigninAlgorithm));
-            return signature;
-        }
+        // DKIM-Signature 自身も署名対象に含める前提（呼び出し側が空の b= を含むヘッダーを追加してから呼ぶ）
+        var headersText = CanonicalizeHeaders(headers);
+        var sig = Sign(Encoding.GetBytes(headersText), SigninAlgorithm);
+        return Convert.ToBase64String(sig);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="algorithm"></param>
-    /// <returns></returns>
-    private String GetHashName(SigninAlgorithm algorithm)
+    public string SignBody(string body)
     {
-        switch (algorithm)
-        {
-            case SigninAlgorithm.RSASha1:
-                {
-                    return "SHA1";
-                }
-            case SigninAlgorithm.RSASha256:
-                {
-                    return "SHA256";
-                }
-            default:
-                {
-                    throw new ArgumentException("Invalid SigningAlgorithm value", "algorithm");
-                }
-        }
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    private String GetAlgorithmName()
-    {
-        switch (this.SigninAlgorithm)
-        {
-            case SigninAlgorithm.RSASha1:
-                return "rsa-sha1";
-            case SigninAlgorithm.RSASha256:
-                return "rsa-sha256";
-            default:
-                throw new InvalidOperationException("Invalid SigninAlgorithm.");
-        }
+        body ??= string.Empty;
+        var cb = CanonicalizeBody(body);
+        var hash = Hash(Encoding.GetBytes(cb), SigninAlgorithm);
+        return Convert.ToBase64String(hash);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="headers"></param>
-    /// <param name="type"></param>
-    /// <param name="headersToSign"></param>
-    /// <returns></returns>
-    public String CanonicalizeHeaders(List<SmtpMailHeader> headers)
+    public byte[] Sign(byte[] data, SigninAlgorithm algorithm)
     {
-        if (headers == null) throw new ArgumentNullException("headers");
+        ArgumentNullException.ThrowIfNull(data);
 
-        var d = new Dictionary<String, SmtpMailHeader>();
-        for (int i = 0; i < headers.Count; i++)
+        using RSA? rsa = Certificate.GetRSAPrivateKey();
+        if (rsa is null)
+            throw new InvalidOperationException("Certificate does not have an RSA private key.");
+
+        var hashAlg = algorithm switch
         {
-            d[headers[i].Key] = headers[i];
-        }
-        if (this.HeaderKeys.Contains(DkimSignatureGenerator.SignatureKey) == false)
+            SigninAlgorithm.RSASha1 => HashAlgorithmName.SHA1,
+            SigninAlgorithm.RSASha256 => HashAlgorithmName.SHA256,
+            _ => throw new ArgumentOutOfRangeException(nameof(algorithm))
+        };
+
+        return rsa.SignData(data, hashAlg, RSASignaturePadding.Pkcs1);
+    }
+
+    private string GetAlgorithmName()
+    {
+        return SigninAlgorithm switch
         {
-            this.HeaderKeys.Add(DkimSignatureGenerator.SignatureKey);
-        }
+            SigninAlgorithm.RSASha1 => "rsa-sha1",
+            SigninAlgorithm.RSASha256 => "rsa-sha256",
+            _ => throw new InvalidOperationException("Invalid SigninAlgorithm.")
+        };
+    }
+
+    // ---- Canonicalization ----
+
+    public string CanonicalizeHeaders(List<SmtpMailHeader> headers)
+    {
+        if (headers is null) throw new ArgumentNullException(nameof(headers));
+
+        // DKIM-Signature が署名対象に入っていないなら追加（HeaderKeys のみ）
+        if (!HeaderKeys.Contains(SignatureKey, StringComparer.OrdinalIgnoreCase))
+            HeaderKeys.Add(SignatureKey);
 
         ValidateHeaders(headers);
 
-        var sb = new StringBuilder();
+        // 同名ヘッダー複数対応：Key -> list (出現順)
+        var map = BuildHeaderMap(headers);
 
-        switch (this.HeaderCanonicalization)
+        // DKIM spec 的には “下から” 取る（同名ヘッダーは最後のものが優先される）
+        var remainingIndexFromBottom = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var kv in map)
+            remainingIndexFromBottom[kv.Key] = kv.Value.Count - 1;
+
+        var sb = new StringBuilder(1024);
+
+        foreach (var keyRaw in HeaderKeys)
         {
-            case DkimCanonicalization.Simple:
-                {
-                    foreach (var key in this.HeaderKeys)
-                    {
-                        if (key == null)
-                        {
-                            continue;
-                        }
-                        var header = d[key];
-                        sb.Append(key);
-                        sb.Append(':');
-                        sb.Append(' ');
-                        sb.Append(header.Value);
-                        sb.Append(MimeWriter.NewLine);
-                    }
-                    sb.Length -= MimeWriter.NewLine.Length;
-                    break;
-                }
-            case DkimCanonicalization.Relaxed:
-                {
-                    foreach (var key in this.HeaderKeys)
-                    {
-                        if (key == null)
-                        {
-                            continue;
-                        }
+            if (string.IsNullOrWhiteSpace(keyRaw)) continue;
+            var key = keyRaw.Trim();
 
-                        var header = d[key];
-                        sb.Append(key.Trim());
-                        sb.Append(':');
-                        sb.Append(header.Value.Trim());
+            var header = TakeHeaderFromBottom(map, remainingIndexFromBottom, key);
 
-                        sb.Append(MimeWriter.NewLine);
-                    }
-                    sb.Length -= MimeWriter.NewLine.Length;
+            // ※ key は HeaderKeys 側の表記を尊重（Simple での互換性）
+            // Relaxed では lowercase にする
+            switch (HeaderCanonicalization)
+            {
+                case DkimCanonicalization.Simple:
+                    sb.Append(key);
+                    sb.Append(':').Append(' ');
+                    sb.Append(header.Value);
+                    sb.Append(CrLf);
                     break;
-                }
-            default:
-                {
+
+                case DkimCanonicalization.Relaxed:
+                    sb.Append(RelaxHeaderName(key));
+                    sb.Append(':');
+                    sb.Append(RelaxHeaderValue(header.Value));
+                    sb.Append(CrLf);
+                    break;
+
+                default:
                     throw new ArgumentException("Invalid canonicalization type.");
-                }
+            }
         }
+
+        if (sb.Length >= CrLf.Length)
+            sb.Length -= CrLf.Length;
 
         return sb.ToString();
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="headers"></param>
-    /// <param name="headersToSign"></param>
-    private void ValidateHeaders(List<SmtpMailHeader> headers)
+
+    private static Dictionary<string, List<SmtpMailHeader>> BuildHeaderMap(List<SmtpMailHeader> headers)
     {
-        var d = new Dictionary<String, SmtpMailHeader>();
+        var map = new Dictionary<string, List<SmtpMailHeader>>(StringComparer.OrdinalIgnoreCase);
         for (int i = 0; i < headers.Count; i++)
         {
-            d[headers[i].Key] = headers[i];
+            var h = headers[i];
+            if (!map.TryGetValue(h.Key, out var list))
+            {
+                list = new List<SmtpMailHeader>();
+                map[h.Key] = list;
+            }
+            list.Add(h);
         }
-        if (d.ContainsKey("From") == false) throw new InvalidOperationException("The From header must not be null.Please set From property of SmtpMessage object.");
-        var invalidHeaders = this.HeaderKeys.Where(key => d.ContainsKey(key) == false).ToList();
-        if (invalidHeaders.Count > 0) throw new ArgumentException("The following headers do not exist. " + String.Join(", ", invalidHeaders.ToArray()));
+        return map;
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="body"></param>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    public String CanonicalizeBody(String body)
+
+    private static SmtpMailHeader TakeHeaderFromBottom(
+        Dictionary<string, List<SmtpMailHeader>> map,
+        Dictionary<string, int> remainingIndexFromBottom,
+        string key)
     {
-        if (body == null)
+        if (!map.TryGetValue(key, out var list) || list.Count == 0)
+            throw new InvalidOperationException($"Header not found: {key}");
+
+        if (!remainingIndexFromBottom.TryGetValue(key, out int idx))
+            idx = list.Count - 1;
+
+        if (idx < 0)
+            throw new InvalidOperationException($"Header exhausted (too many occurrences requested): {key}");
+
+        remainingIndexFromBottom[key] = idx - 1;
+        return list[idx];
+    }
+
+    private void ValidateHeaders(List<SmtpMailHeader> headers)
+    {
+        var existing = new HashSet<string>(headers.Select(x => x.Key), StringComparer.OrdinalIgnoreCase);
+
+        if (!existing.Contains("From"))
+            throw new InvalidOperationException("The From header must not be null. Please set From property of SmtpMessage object.");
+
+        var invalid = HeaderKeys
+            .Where(k => !string.IsNullOrWhiteSpace(k))
+            .Select(k => k.Trim())
+            .Where(k => !existing.Contains(k))
+            .ToList();
+
+        // DKIM-Signature は GenerateSignature 呼び出し前に “空の b=” を含むヘッダーとして追加する運用が多い
+        // ここで弾くと分かりやすい。
+        if (invalid.Count > 0)
+            throw new ArgumentException("The following headers do not exist. " + string.Join(", ", invalid));
+    }
+
+    public string CanonicalizeBody(string body)
+    {
+        body ??= string.Empty;
+
+        // 行単位に正規化（入力が \r\n / \n / \r 混在でも対応）
+        var lines = SplitLines(body);
+
+        switch (BodyCanonicalization)
         {
-            body = string.Empty;
-        }
-
-        var sb = new StringBuilder(body.Length + MimeWriter.NewLine.Length);
-
-        switch (this.BodyCanonicalization)
-        {
-            case DkimCanonicalization.Relaxed:
-                {
-                    using (var reader = new StringReader(body))
-                    {
-                        string line;
-                        int emptyLineCount = 0;
-
-                        while ((line = reader.ReadLine()!) != null)
-                        {
-                            if (line == string.Empty)
-                            {
-                                emptyLineCount++;
-                                continue;
-                            }
-
-                            while (emptyLineCount > 0)
-                            {
-                                sb.AppendLine();
-                                emptyLineCount--;
-                            }
-                            sb.AppendLine(line.TrimEnd());
-                        }
-                    }
-
-                    break;
-                }
             case DkimCanonicalization.Simple:
-                {
-                    using (var reader = new StringReader(body))
-                    {
-                        string line;
-                        int emptyLineCount = 0;
+                return CanonicalizeBodySimple(lines);
 
-                        while ((line = reader.ReadLine()!) != null)
-                        {
-                            if (line == string.Empty)
-                            {
-                                emptyLineCount++;
-                                continue;
-                            }
-                            while (emptyLineCount > 0)
-                            {
-                                sb.AppendLine();
-                                emptyLineCount--;
-                            }
-                            sb.AppendLine(line);
-                        }
-                    }
-                    if (sb.Length == 0)
-                    {
-                        sb.AppendLine();
-                    }
-                    break;
-                }
+            case DkimCanonicalization.Relaxed:
+                return CanonicalizeBodyRelaxed(lines);
+
             default:
-                {
-                    throw new ArgumentException("Invalid canonicalization type.");
-                }
+                throw new ArgumentException("Invalid canonicalization type.");
+        }
+    }
+
+    private static string CanonicalizeBodySimple(List<string> lines)
+    {
+        // Simple:
+        // - 行末は CRLF
+        // - 末尾の空行は “すべて削除” して、最後に CRLF を 1つだけ残す
+        int lastNonEmpty = lines.Count - 1;
+        while (lastNonEmpty >= 0 && lines[lastNonEmpty].Length == 0)
+            lastNonEmpty--;
+
+        var sb = new StringBuilder();
+        if (lastNonEmpty < 0)
+        {
+            // empty body -> CRLF
+            sb.Append(CrLf);
+            return sb.ToString();
         }
 
+        for (int i = 0; i <= lastNonEmpty; i++)
+        {
+            sb.Append(lines[i]);
+            sb.Append(CrLf);
+        }
         return sb.ToString();
+    }
 
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="data"></param>
-    /// <param name="algorithm"></param>
-    /// <returns></returns>
-    public static Byte[] Hash(Byte[] data, SigninAlgorithm algorithm)
+    private static string CanonicalizeBodyRelaxed(List<string> lines)
     {
-        if (data == null)
+        // Relaxed:
+        // - 行末の WSP を削除
+        // - 行中の連続 WSP を 1 つの SP に縮約
+        // - 末尾の空行は削除
+        // - 最後に CRLF を 1つ付ける（空ボディでも CRLF）
+        var processed = new List<string>(lines.Count);
+        foreach (var line in lines)
         {
-            throw new ArgumentNullException("Hash data.");
+            var trimmedEnd = TrimEndWsp(line);
+            var compressed = CompressWspToSingleSpace(trimmedEnd);
+            processed.Add(compressed);
         }
-        using (var hash = GetHash(algorithm))
+
+        int lastNonEmpty = processed.Count - 1;
+        while (lastNonEmpty >= 0 && processed[lastNonEmpty].Length == 0)
+            lastNonEmpty--;
+
+        var sb = new StringBuilder();
+        if (lastNonEmpty < 0)
         {
-            return hash.ComputeHash(data);
+            sb.Append(CrLf);
+            return sb.ToString();
         }
+
+        for (int i = 0; i <= lastNonEmpty; i++)
+        {
+            sb.Append(processed[i]);
+            sb.Append(CrLf);
+        }
+        return sb.ToString();
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="algorithm"></param>
-    /// <returns></returns>
-    private static HashAlgorithm GetHash(SigninAlgorithm algorithm)
+
+    private static List<string> SplitLines(string text)
     {
-        switch (algorithm)
+        var lines = new List<string>();
+        using var reader = new StringReader(text);
+
+        string? line;
+        while ((line = reader.ReadLine()) is not null)
+            lines.Add(line);
+
+        return lines;
+    }
+
+    private static string RelaxHeaderName(string name)
+        => name.Trim().ToLowerInvariant();
+
+    private static string RelaxHeaderValue(string value)
+    {
+        // DKIM relaxed:
+        // - unfold はここでは扱わない（SmtpMailHeader.Value が unfold 済み前提）
+        // - 前後WSP削除
+        // - 連続WSPは1つのSPへ
+        value ??= string.Empty;
+        value = value.Trim();
+        return CompressWspToSingleSpace(value);
+    }
+
+    private static string TrimEndWsp(string s)
+    {
+        int end = s.Length - 1;
+        while (end >= 0 && (s[end] == ' ' || s[end] == '\t'))
+            end--;
+        return end < 0 ? string.Empty : s.Substring(0, end + 1);
+    }
+
+    private static string CompressWspToSingleSpace(string s)
+    {
+        if (s.Length == 0) return s;
+
+        var sb = new StringBuilder(s.Length);
+        bool inWsp = false;
+
+        foreach (char c in s)
         {
-            case SigninAlgorithm.RSASha1: return SHA1.Create();
-            case SigninAlgorithm.RSASha256: return SHA256.Create();
-            default: throw new ArgumentException("Invalid SigningAlgorithm value", "algorithm");
+            bool wsp = (c == ' ' || c == '\t');
+            if (wsp)
+            {
+                if (!inWsp) sb.Append(' ');
+                inWsp = true;
+            }
+            else
+            {
+                sb.Append(c);
+                inWsp = false;
+            }
         }
+        return sb.ToString();
+    }
+
+    public static byte[] Hash(byte[] data, SigninAlgorithm algorithm)
+    {
+        ArgumentNullException.ThrowIfNull(data);
+
+        return algorithm switch
+        {
+            SigninAlgorithm.RSASha1 => SHA1.HashData(data),
+            SigninAlgorithm.RSASha256 => SHA256.HashData(data),
+            _ => throw new ArgumentOutOfRangeException(nameof(algorithm))
+        };
     }
 }

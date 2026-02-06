@@ -11,6 +11,7 @@ public class InputTextTagHelper : TagHelper
     public string Name { get; set; } = "";
     public string Value { get; set; } = "";
     public string Placeholder { get; set; } = "";
+    public bool DatePicker { get; set; } = false;
     public string AutoComplete { get; set; } = "off";
 
     public IDictionary<string, string?>? TextboxAttributes { get; set; }
@@ -33,6 +34,11 @@ public class InputTextTagHelper : TagHelper
             if (this.AutoComplete.HasValue())
             {
                 tx.Attributes.Add("autocomplete", this.AutoComplete);
+            }
+            if (this.DatePicker == true)
+            {
+                tx.Attributes.Add("date-picker", "true");
+                tx.AddCssClass("date");
             }
             if (this.Placeholder.HasValue())
             {

@@ -170,6 +170,31 @@ public class DataType : INotifyPropertyChanged
                     return String.Format("{0} {1}", name, this.GetDeclareTypeName());
                 }
             case DatabaseServer.Oracle:
+                {
+                    name = "\"" + name + "\"";
+                    var tp = this.DbType;
+                    if (tp.CanDeclareLength() == true && this.Length.HasValue == true)
+                    {
+                        return String.Format("{0} {1}({2})", name, this.GetDeclareTypeName(), this.Length);
+                    }
+                    else if (tp.CanDeclarePrecisionScale() == true)
+                    {
+                        if (this.Precision.HasValue == true && this.Scale.HasValue == true)
+                        {
+                            return String.Format("{0} NUMBER({1},{2})", name, this.Precision, this.Scale);
+                        }
+                        else if (this.Precision.HasValue == true)
+                        {
+                            return String.Format("{0} NUMBER({1})", name, this.Precision);
+                        }
+                        return String.Format("{0} NUMBER", name);
+                    }
+                    else if (tp.CanDeclareScale() == true && this.Scale.HasValue == true)
+                    {
+                        return String.Format("{0} {1}({2})", name, this.GetDeclareTypeName(), this.Scale);
+                    }
+                    return String.Format("{0} {1}", name, this.GetDeclareTypeName());
+                }
             case DatabaseServer.PostgreSql:
             default: throw new InvalidOperationException();
         }
@@ -335,75 +360,70 @@ public class DataType : INotifyPropertyChanged
     }
     private static ClassNameType GetClassNameType(OracleDbType sqlType)
     {
-        throw new NotImplementedException();
+        switch (sqlType)
+        {
+            case OracleDbType.BFile:
+            case OracleDbType.Blob:
+            case OracleDbType.Raw:
+            case OracleDbType.LongRaw:
+                return ClassNameType.ByteArray;
 
-        //switch (sqlType)
-        //{
-        //    case Oracle.DataAccess.Client.OracleDbType.Array:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.BFile:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.BinaryDouble:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.BinaryFloat:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Blob:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Byte:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Char:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Clob:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Date:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Decimal:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Double:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Int16:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Int32:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Int64:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.IntervalDS:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.IntervalYM:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Long:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.LongRaw:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.NChar:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.NClob:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.NVarchar2:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Object:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Raw:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Ref:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.RefCursor:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Single:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.TimeStamp:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.TimeStampLTZ:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.TimeStampTZ:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.Varchar2:
-        //        break;
-        //    case Oracle.DataAccess.Client.OracleDbType.XmlType:
-        //        break;
-        //    default:
-        //        break;
-        //}
+            case OracleDbType.Byte:
+                return ClassNameType.Byte;
+
+            case OracleDbType.Char:
+            case OracleDbType.Clob:
+            case OracleDbType.Long:
+            case OracleDbType.NChar:
+            case OracleDbType.NClob:
+            case OracleDbType.NVarchar2:
+            case OracleDbType.Varchar2:
+            case OracleDbType.XmlType:
+                return ClassNameType.String;
+
+            case OracleDbType.Date:
+            case OracleDbType.TimeStamp:
+            case OracleDbType.TimeStampLTZ:
+                return ClassNameType.DateTime;
+
+            case OracleDbType.TimeStampTZ:
+                return ClassNameType.DateTimeOffset;
+
+            case OracleDbType.Decimal:
+                return ClassNameType.Decimal;
+
+            case OracleDbType.Double:
+            case OracleDbType.BinaryDouble:
+                return ClassNameType.Double;
+
+            case OracleDbType.Single:
+            case OracleDbType.BinaryFloat:
+                return ClassNameType.Single;
+
+            case OracleDbType.Int16:
+                return ClassNameType.Int16;
+
+            case OracleDbType.Int32:
+                return ClassNameType.Int32;
+
+            case OracleDbType.Int64:
+                return ClassNameType.Int64;
+
+            case OracleDbType.IntervalDS:
+                return ClassNameType.TimeSpan;
+
+            case OracleDbType.IntervalYM:
+                return ClassNameType.Int64;
+
+            case OracleDbType.Boolean:
+                return ClassNameType.Boolean;
+
+            case OracleDbType.RefCursor:
+                return ClassNameType.Object;
+
+            default:
+                return ClassNameType.Object;
+        }
     }
     private static ClassNameType GetClassNameType(MySqlDbType sqlType)
     {

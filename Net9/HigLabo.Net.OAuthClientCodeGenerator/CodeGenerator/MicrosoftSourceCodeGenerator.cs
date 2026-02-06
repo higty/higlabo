@@ -280,7 +280,7 @@ public class MicrosoftSourceCodeGenerator : OAuthClientCodeGenerator
             var hasElement = false;
             foreach (var li in _Driver.FindElements(By.CssSelector("[id='affixed-left-container'] > ul li.tree-item")).Reverse())
             {
-                if (li.GetAttribute("class").Contains("is-expanded")) { continue; }
+                if (li.GetDomAttribute("class").Contains("is-expanded")) { continue; }
 
                 var span = li.FindElement(By.CssSelector("span.tree-expander-indicator[aria-hidden='true']"));
                 _Driver.ExecuteScript("arguments[0].scrollIntoView(false);", span);
@@ -378,7 +378,7 @@ public class MicrosoftSourceCodeGenerator : OAuthClientCodeGenerator
             foreach (var li in _Driver.FindElements(By.CssSelector("[id='affixed-left-container'] > ul li.tree-item"))
                 .Reverse())
             {
-                if (li.GetAttribute("class").Contains("is-expanded")) { continue; }
+                if (li.GetDomAttribute("class").Contains("is-expanded")) { continue; }
 
                 var span = li.FindElement(By.CssSelector("span.tree-expander-indicator[aria-hidden='true']"));
                 _Driver.ExecuteScript("arguments[0].scrollIntoView(false);", span);

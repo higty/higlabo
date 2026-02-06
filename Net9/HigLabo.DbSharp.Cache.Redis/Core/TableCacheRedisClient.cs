@@ -54,7 +54,7 @@ public class TableCacheRedisClient
     }
     private void OnUpdate(RedisChannel channel, RedisValue value)
     {
-        var e = JsonSerializer.Deserialize<TableCacheUpdatedEventArgs>(value!);
+        var e = JsonSerializer.Deserialize<TableCacheUpdatedEventArgs>(value!.ToString());
         this.CacheUpdated?.Invoke(this, e!);
     }
 }
