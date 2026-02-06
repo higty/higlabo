@@ -220,6 +220,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string Amount
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "金額";
+                    case "en-US": return "Amount";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string AuthenticateExpired
         {
             get
@@ -1273,6 +1286,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string EndMustBeLargerThanStart
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "終了は開始より後である必要があります。";
+                    case "en-US": return "End must be larger than start.";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string EndTime
         {
             get
@@ -1945,6 +1971,32 @@ namespace HigLabo.Core
                 {
                     case "ja-JP": return "ログアウト";
                     case "en-US": return "Logout";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Mail
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メール";
+                    case "en-US": return "Mail";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string MailList
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "メール一覧";
+                    case "en-US": return "Mail list";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -2832,6 +2884,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string ResultsPerPage
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ページあたりの件数";
+                    case "en-US": return "Results per page";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Review
         {
             get
@@ -2854,6 +2919,19 @@ namespace HigLabo.Core
                 {
                     case "ja-JP": return "保存";
                     case "en-US": return "Save";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Score
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "スコア";
+                    case "en-US": return "Score";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -3131,6 +3209,19 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string Stage
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "ステージ";
+                    case "en-US": return "Stage";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
         public string Start
         {
             get
@@ -3283,6 +3374,19 @@ namespace HigLabo.Core
                 {
                     case "ja-JP": return "タスク";
                     case "en-US": return "Task";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Team
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "ja-JP": return "チーム";
+                    case "en-US": return "Team";
                     default:throw SwitchStatementNotImplementException.Create(language);
                 }
             }
@@ -4048,6 +4152,7 @@ namespace HigLabo.Core
                 case "ApiNotFound": return this.ApiNotFound;
                 case "Archive": return this.Archive;
                 case "Agent": return this.Agent;
+                case "Amount": return this.Amount;
                 case "AuthenticateExpired": return this.AuthenticateExpired;
                 case "AuthenticateRequired": return this.AuthenticateRequired;
                 case "AuthenticationFailure": return this.AuthenticationFailure;
@@ -4129,6 +4234,7 @@ namespace HigLabo.Core
                 case "Enable": return this.Enable;
                 case "Encoding": return this.Encoding;
                 case "EndDate": return this.EndDate;
+                case "EndMustBeLargerThanStart": return this.EndMustBeLargerThanStart;
                 case "EndTime": return this.EndTime;
                 case "Execute": return this.Execute;
                 case "Executing___": return this.Executing___;
@@ -4181,6 +4287,8 @@ namespace HigLabo.Core
                 case "Location": return this.Location;
                 case "Login": return this.Login;
                 case "Logout": return this.Logout;
+                case "Mail": return this.Mail;
+                case "MailList": return this.MailList;
                 case "MailAddress": return this.MailAddress;
                 case "MailSent": return this.MailSent;
                 case "MainImage": return this.MainImage;
@@ -4249,8 +4357,10 @@ namespace HigLabo.Core
                 case "Resolved": return this.Resolved;
                 case "Result": return this.Result;
                 case "Results": return this.Results;
+                case "ResultsPerPage": return this.ResultsPerPage;
                 case "Review": return this.Review;
                 case "Save": return this.Save;
+                case "Score": return this.Score;
                 case "Search": return this.Search;
                 case "SearchResult": return this.SearchResult;
                 case "Select": return this.Select;
@@ -4272,6 +4382,7 @@ namespace HigLabo.Core
                 case "SignupMailSendFailure": return this.SignupMailSendFailure;
                 case "SortBy": return this.SortBy;
                 case "SorryInconvenience": return this.SorryInconvenience;
+                case "Stage": return this.Stage;
                 case "Start": return this.Start;
                 case "Stop": return this.Stop;
                 case "StartDate": return this.StartDate;
@@ -4284,6 +4395,7 @@ namespace HigLabo.Core
                 case "Tablet": return this.Tablet;
                 case "Tag": return this.Tag;
                 case "Task": return this.Task;
+                case "Team": return this.Team;
                 case "TechnicalCollege": return this.TechnicalCollege;
                 case "TermsOfUse": return this.TermsOfUse;
                 case "Text": return this.Text;

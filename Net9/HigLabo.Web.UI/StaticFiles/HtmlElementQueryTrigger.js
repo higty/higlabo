@@ -7,23 +7,31 @@ export class HtmlElementQueryTrigger {
     hig_Click(target, e) {
         const selectorList = $(target).getAttribute("hig-target");
         const ss = selectorList.split(',');
-        for (var i = 0; i < ss.length; i++) {
-            let selector = ss[i].trim();
-            let q = $(selector);
+        for (let i = 0; i < ss.length; i++) {
+            const raw = ss[i];
+            let selector = raw.trim();
+            if (selector.length === 0)
+                continue;
+            let q;
             if (selector.startsWith("parent ")) {
+                selector = selector.substring("parent ".length).trim();
                 q = $(target).getFirstParent(selector);
             }
             else if (selector.startsWith("nearest ")) {
+                selector = selector.substring("nearest ".length).trim();
                 q = $(target).getNearest(selector);
             }
             else if (selector.startsWith("find ")) {
+                selector = selector.substring("find ".length).trim();
                 q = $(target).find(selector);
+            }
+            else {
+                q = $(selector);
             }
             const functionName = $(target).getAttribute("hig-function");
             const f = q[functionName];
-            if (f == null) {
+            if (f == null)
                 return;
-            }
             try {
                 const a = JSON.parse($(target).getAttribute("hig-args"));
                 f.apply(q, Array.isArray(a) ? a : [a]);

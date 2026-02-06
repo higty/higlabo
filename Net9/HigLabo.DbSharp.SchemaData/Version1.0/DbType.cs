@@ -96,7 +96,22 @@ public class DbType
                         type == MySqlDbType.VarBinary;
                 }
             case DatabaseServer.Oracle:
-            case DatabaseServer.PostgreSql: throw new NotImplementedException();
+                {
+                    var type = this.OracleServerDbType!.Value;
+                    return type == OracleDbType.Varchar2 ||
+                        type == OracleDbType.NVarchar2 ||
+                        type == OracleDbType.Char ||
+                        type == OracleDbType.NChar ||
+                        type == OracleDbType.Raw;
+                }
+            case DatabaseServer.PostgreSql:
+                {
+                    var type = this.PostgreSqlServerDbType!.Value;
+                    return type == NpgsqlDbType.Varchar ||
+                        type == NpgsqlDbType.Char ||
+                        type == NpgsqlDbType.Bit ||
+                        type == NpgsqlDbType.Varbit;
+                }
             default: throw new InvalidOperationException();
         }
     }
@@ -119,7 +134,18 @@ public class DbType
                         type == MySqlDbType.Float;
                 }
             case DatabaseServer.Oracle:
-            case DatabaseServer.PostgreSql: throw new NotImplementedException();
+                {
+                    var type = this.OracleServerDbType!.Value;
+                    return type == OracleDbType.Decimal ||
+                        type == OracleDbType.Int16 ||
+                        type == OracleDbType.Int32 ||
+                        type == OracleDbType.Int64;
+                }
+            case DatabaseServer.PostgreSql:
+                {
+                    var type = this.PostgreSqlServerDbType!.Value;
+                    return type == NpgsqlDbType.Numeric;
+                }
             default: throw new InvalidOperationException();
         }
     }
@@ -144,6 +170,13 @@ public class DbType
                         type == MySqlDbType.Year;
                 }
             case DatabaseServer.Oracle:
+                {
+                    var type = this.OracleServerDbType!.Value;
+                    return type == OracleDbType.TimeStamp ||
+                        type == OracleDbType.TimeStampLTZ ||
+                        type == OracleDbType.TimeStampTZ ||
+                        type == OracleDbType.IntervalDS;
+                }
             case DatabaseServer.PostgreSql: throw new NotImplementedException();
             default: throw new InvalidOperationException();
         }
@@ -163,6 +196,7 @@ public class DbType
                         type == MySqlDbType.UInt64;
                 }
             case DatabaseServer.Oracle:
+                return false;  // Oracle does not support unsigned types
             case DatabaseServer.PostgreSql: throw new NotImplementedException();
             default: throw new InvalidOperationException();
         }

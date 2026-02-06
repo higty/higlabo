@@ -22,9 +22,16 @@ export class DialogPopupPanel {
     }
     confirm(e) {
         e.preventDefault();
-        e.stopPropagation();
         const bt = e.target;
-        if (bt.hasAttribute("hx-confirm") == false) {
+        if (bt.getAttribute("stop-propagation") == "true") {
+            const tev = e.detail?.triggeringEvent;
+            if (tev?.stopImmediatePropagation)
+                tev.stopImmediatePropagation();
+            if (tev?.stopPropagation)
+                tev.stopPropagation();
+        }
+        const elt = e.detail.elt;
+        if (elt.hasAttribute("hx-confirm") == false) {
             e.detail.issueRequest(true);
             return;
         }

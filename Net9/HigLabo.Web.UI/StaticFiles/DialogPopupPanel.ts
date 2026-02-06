@@ -24,10 +24,16 @@ export class DialogPopupPanel {
     }
     private confirm(e: any) {
         e.preventDefault();
-        e.stopPropagation();
 
         const bt = e.target as HTMLElement;
-        if (bt.hasAttribute("hx-confirm") == false) {
+        if (bt.getAttribute("stop-propagation") == "true") {
+            const tev: any = e.detail?.triggeringEvent;
+            if (tev?.stopImmediatePropagation) tev.stopImmediatePropagation();
+            if (tev?.stopPropagation) tev.stopPropagation();
+        }
+
+        const elt = e.detail.elt as HTMLElement;
+        if (elt.hasAttribute("hx-confirm") == false) {
             e.detail.issueRequest(true);
             return;
         }

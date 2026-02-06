@@ -8,22 +8,33 @@ export class HtmlElementQueryTrigger {
     private hig_Click(target: Element, e: MouseEvent) {
         const selectorList = $(target).getAttribute("hig-target");
         const ss = selectorList.split(',');
-        for (var i = 0; i < ss.length; i++) {
-            let selector = ss[i].trim();
-            let q = $(selector);
+
+        for (let i = 0; i < ss.length; i++) {
+            const raw = ss[i];
+            let selector = raw.trim();
+            if (selector.length === 0) continue;
+
+            let q: any;
+
             if (selector.startsWith("parent ")) {
+                selector = selector.substring("parent ".length).trim();
                 q = $(target).getFirstParent(selector);
             }
             else if (selector.startsWith("nearest ")) {
+                selector = selector.substring("nearest ".length).trim();
                 q = $(target).getNearest(selector);
             }
             else if (selector.startsWith("find ")) {
+                selector = selector.substring("find ".length).trim();
                 q = $(target).find(selector);
+            }
+            else {
+                q = $(selector);
             }
 
             const functionName = $(target).getAttribute("hig-function");
             const f = (q as any)[functionName] as Function;
-            if (f == null) { return; }
+            if (f == null) return;
 
             try {
                 const a = JSON.parse($(target).getAttribute("hig-args"));
