@@ -7,6 +7,9 @@ export class AccordionPanel {
         if ($(e.target).getTagName() == "A" && $(e.target).getAttribute("href") != "") {
             return;
         }
+        if ($(e.target).getAttribute("accordion-panel-ignore") == "true") {
+            return;
+        }
         const pl = $(target).getFirstParent("[accordion-panel]").getFirstElement();
         $(pl).toggleAttributeValue("toggle-state", "Visible", "Hidden");
     }

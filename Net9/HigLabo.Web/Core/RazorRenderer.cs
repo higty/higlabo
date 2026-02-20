@@ -76,4 +76,14 @@ public class RazorRenderer(IHttpContextAccessor contextAccessor, IRazorViewEngin
 			, new[] { $"Unable to find partial '{viewName}'. The following locations were searched:" }.Concat(searchedLocations)); ;
 		throw new InvalidOperationException(errorMessage);
 	}
+
+    public static Func<RazorRenderer, ValueTask> View(string viewName)
+    {
+        return (razorRenderer) =>
+        {
+            var context = razorRenderer._contextAccessor.HttpContext!;
+            context.Response.ContentType = "text/html; charset=utf-8";
+            return razorRenderer.WriteHtmlAsync(viewName);
+        };
+    }
 }

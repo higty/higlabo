@@ -1,10 +1,12 @@
 import { $ } from "./HtmlElementQuery.js";
 import { Htmx } from "./Htmx.js";
+import { ItemGroup } from "./ItemGroup.js";
 
 export class DataRecordPopupPanel {
     private currentPanel: Element;
     private targetPanel: Element;
     private htmx = new Htmx();
+    private itemGroup = new ItemGroup();
 
     public selected = new Array<DataRecordSelectedEvent>();
 
@@ -32,6 +34,7 @@ export class DataRecordPopupPanel {
             }
         });
         $("body").click(this.body_Click.bind(this));
+        this.AddSelectedEventHandler(this.dataRecordPopupPanel_Selected.bind(this));
 
     }
     private getDataRecordPopupPanel() {
@@ -316,7 +319,16 @@ export class DataRecordPopupPanel {
                 $(dpl).find("[search-textbox]").setFocus();
             }
         }
+        this.itemGroup.setCurrentItem(pl);
         this.OnSelected(e);
+    }
+    private dataRecordPopupPanel_Selected(e: DataRecordSelectedEventArgs) {
+        if (e.currentPanel.hasAttribute("record-selected-nearest-target")) {
+            const pl = $(e.currentPanel).getNearest(e.currentPanel.getAttribute("record-selected-nearest-target")).getFirstElement();
+            if (pl != null) {
+                this.htmx.trigger(pl, "record-selected");
+            }
+        }
     }
 
     private dataRecordIcon_Click(element: Element, e: Event) {

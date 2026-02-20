@@ -1,9 +1,11 @@
 import { $ } from "./HtmlElementQuery.js";
 import { Htmx } from "./Htmx.js";
+import { ItemGroup } from "./ItemGroup.js";
 export class DataRecordPopupPanel {
     currentPanel;
     targetPanel;
     htmx = new Htmx();
+    itemGroup = new ItemGroup();
     selected = new Array();
     initialize() {
         $("body").on("click", "[show-data-record-popup-panel]", this.panel_Click.bind(this));
@@ -24,6 +26,7 @@ export class DataRecordPopupPanel {
             }
         });
         $("body").click(this.body_Click.bind(this));
+        this.AddSelectedEventHandler(this.dataRecordPopupPanel_Selected.bind(this));
     }
     getDataRecordPopupPanel() {
         return document.getElementById("data-record-popup-panel");
@@ -294,7 +297,16 @@ export class DataRecordPopupPanel {
                 $(dpl).find("[search-textbox]").setFocus();
             }
         }
+        this.itemGroup.setCurrentItem(pl);
         this.OnSelected(e);
+    }
+    dataRecordPopupPanel_Selected(e) {
+        if (e.currentPanel.hasAttribute("record-selected-nearest-target")) {
+            const pl = $(e.currentPanel).getNearest(e.currentPanel.getAttribute("record-selected-nearest-target")).getFirstElement();
+            if (pl != null) {
+                this.htmx.trigger(pl, "record-selected");
+            }
+        }
     }
     dataRecordIcon_Click(element, e) {
         $(element).getFirstParent("[data-record-panel]").remove();

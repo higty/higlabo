@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace HigLabo.Web.TagHelpers;
 
 [HtmlTargetElement("checkbox-panel")]
-public class CheckboxTagHelper : TagHelper
+public class CheckboxPanelTagHelper : TagHelper
 {
     public string Name { get; set; } = "";
     public string Value { get; set; } = "";
     public bool Checked { get; set; } = false;
+
+    public IDictionary<string, string?>? CheckboxAttributes { get; set; }
 
     public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -24,6 +26,10 @@ public class CheckboxTagHelper : TagHelper
                 {
                     var input = new TagBuilder("input");
                     input.Attributes.Add("type", "checkbox");
+                    if (this.CheckboxAttributes != null)
+                    {
+                        input.MergeAttributes(this.CheckboxAttributes);
+                    }
                     input.Attributes.Add("value", this.Value);
                     if (this.Checked)
                     {

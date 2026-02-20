@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -45,7 +46,7 @@ public partial class StoredProcedureWindow : Window
         this.ViewModel = viewModel;
         this.DataContext = viewModel;
 
-			this.ResultSetListBox.SelectionChanged += ResultSetListBox_SelectionChanged;
+        this.ResultSetListBox.SelectionChanged += ResultSetListBox_SelectionChanged;
         this.TableListBox.ItemsSource = this.TableList;
 
         this.SetParameterProperty();
@@ -161,10 +162,10 @@ public partial class StoredProcedureWindow : Window
         this.LoadButtonPanel.Visibility = Visibility.Hidden;
         this.ResultSetPanel.Visibility = Visibility.Visible;
 
-			this.SelectTable();
-		}
+        this.SelectTable();
+    }
 
-		private void ResultSetNameTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+    private void ResultSetNameTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
     {
         var rs = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
         if (rs == null) { return; }
@@ -185,36 +186,36 @@ public partial class StoredProcedureWindow : Window
         this.ResultSetListBox.SelectedIndex = index;
     }
 
-		private void ResultSetListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
+    private void ResultSetListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
         this.SelectTable();
-		}
+    }
     private void SelectTable()
     {
-			var resultSet = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
-			if (resultSet == null) { return; }
-			var t = this.TableList.Find(el => el.Name == resultSet.Name);
-			if (t == null) { return; }
-			this.TableListBox.SelectedItem = t;
-		}
+        var resultSet = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
+        if (resultSet == null) { return; }
+        var t = this.TableList.Find(el => el.Name == resultSet.Name);
+        if (t == null) { return; }
+        this.TableListBox.SelectedItem = t;
+    }
 
-		private async void SetTableColumnButton_Click(object sender, RoutedEventArgs e)
+    private async void SetTableColumnButton_Click(object sender, RoutedEventArgs e)
     {
         var t = this.TableListBox.SelectedItem as DatabaseObject;
         if (t == null) { return; }
-			var resultSet = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
+        var resultSet = this.ResultSetListBox.SelectedItem as StoredProcedureResultSetColumn;
         if (resultSet == null) { return; }
 
-			var tableName = t.Name;
-			var reader = this.ViewModel.GenerateSetting.CreateDatabaseSchemaReader(this.ViewModel.ConnectionString);
+        var tableName = t.Name;
+        var reader = this.ViewModel.GenerateSetting.CreateDatabaseSchemaReader(this.ViewModel.ConnectionString);
         foreach (var c in await reader.GetColumnListAsync(tableName))
         {
             var rColumn = resultSet.Columns.Find(el => el.Name == c.Name);
             if (rColumn == null) { continue; }
             rColumn.AllowNull = c.AllowNull;
         }
-		}
-		private void SetAllowNullButton_Click(object sender, RoutedEventArgs e)
+    }
+    private void SetAllowNullButton_Click(object sender, RoutedEventArgs e)
     {
         this.SetStoredProcedureColumnAllowNullValue(true);
     }
@@ -286,4 +287,5 @@ public partial class StoredProcedureWindow : Window
     {
         this.Close();
     }
+
 }
