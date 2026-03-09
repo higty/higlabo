@@ -8,8 +8,10 @@ public partial class ListByIdParameter : RestApiParameter, IRestApiParameter, IQ
     string IRestApiParameter.HttpMethod { get; } = "GET";
 
     public string Id { get; set; } = "";
+    public List<ListField> ListFieldList { get; init; } = new();
     public string List_Fields { get; set; } = "";
     public string Expansions { get; set; } = "";
+    public List<UserField> UserFieldList { get; init; } = new();
     public string User_Fields { get; set; } = "";
 
     string IRestApiParameter.GetApiPath()
@@ -19,9 +21,9 @@ public partial class ListByIdParameter : RestApiParameter, IRestApiParameter, IQ
     Dictionary<string, string> IQueryParameterProperty.CreateQueryParameter()
     {
         var d = new Dictionary<string, string>();
-        QueryParameterBuilder.Add(d, "list.fields", this.List_Fields);
+        QueryParameterBuilder.AddField(d, "list.fields", this.ListFieldList, this.List_Fields);
         QueryParameterBuilder.Add(d, "expansions", this.Expansions);
-        QueryParameterBuilder.Add(d, "user.fields", this.User_Fields);
+        QueryParameterBuilder.AddField(d, "user.fields", this.UserFieldList, this.User_Fields);
         return d;
     }
     public override object GetRequestBody()

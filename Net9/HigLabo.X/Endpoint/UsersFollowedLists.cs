@@ -10,6 +10,7 @@ public partial class UsersFollowedListsParameter : RestApiParameter, IRestApiPar
     public string Id { get; set; } = "";
     public int? Max_Results { get; set; }
     public string Pagination_Token { get; set; } = "";
+    public List<ListField> ListFieldList { get; init; } = new();
     public string List_Fields { get; set; } = "";
 
     string IRestApiParameter.GetApiPath()
@@ -21,7 +22,7 @@ public partial class UsersFollowedListsParameter : RestApiParameter, IRestApiPar
         var d = new Dictionary<string, string>();
         QueryParameterBuilder.AddValue(d, "max_results", this.Max_Results);
         QueryParameterBuilder.Add(d, "pagination_token", this.Pagination_Token);
-        QueryParameterBuilder.Add(d, "list.fields", this.List_Fields);
+        QueryParameterBuilder.AddField(d, "list.fields", this.ListFieldList, this.List_Fields);
         return d;
     }
     public override object GetRequestBody()

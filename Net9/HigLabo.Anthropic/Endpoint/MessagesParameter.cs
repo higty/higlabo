@@ -19,7 +19,7 @@ public partial class MessagesParameter : RestApiParameter, IRestApiParameter
     public double? Temperature { get; set; }
     public double? Top_P { get; set; }
     public int? Top_K { get; set; }
-    public List<ToolObject>? Tools { get; set; }
+    public List<AnthropicTool>? Tools { get; set; }
     public object? Tool_Choice { get; set; }
     public object? Thinking { get; set; }
 
@@ -42,6 +42,8 @@ public partial class MessagesParameter : RestApiParameter, IRestApiParameter
             top_p = this.Top_P,
             top_k = this.Top_K,
             tools = this.Tools,
+            tool_choice = this.Tool_Choice,
+            thinking = this.Thinking,
         };
     }
 
@@ -59,22 +61,27 @@ public partial class MessagesParameter : RestApiParameter, IRestApiParameter
     }
     public void SetTools(AnthropicTools tools)
     {
-        this.System = $@"In this environment you have access to a set of tools you can use to answer the user's question.
-
-You may call them like this:
-<function_calls>
-<invoke>
-<tool_name>$TOOL_NAME</tool_name>
-<parameters>
-<$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>
-...
-</parameters>
-</invoke>
-</function_calls>
-
-Here are the tools available:
-{tools}
-";
+        this.Tools = tools.ToList();
+    }
+    public void SetMaxTokens()
+    {
+        switch (this.Model)
+        {
+            case ModelNames.ClaudeOpus4_1:
+            case ModelNames.ClaudeOpus4:
+                this.Max_Tokens = 32000;
+                break;
+            case ModelNames.ClaudeSonnet4:
+            case ModelNames.Claude3_7Sonnet:
+                this.Max_Tokens = 64000;
+                break;
+            case ModelNames.Claude3_5Haiku:
+                this.Max_Tokens = 8192;
+                break;
+            case ModelNames.Claude3Haiku:
+                this.Max_Tokens = 4096;
+                break;
+        }
     }
 
 }

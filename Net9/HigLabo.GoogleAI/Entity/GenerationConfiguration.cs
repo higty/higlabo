@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+using HigLabo.Newtonsoft;
+using Newtonsoft.Json;
 
 namespace HigLabo.GoogleAI;
 
@@ -14,6 +15,7 @@ public class GenerationConfiguration
     public float? FrequencyPenalty { get; set; }
     public List<string>? StopSequences { get; set; }
     public string? ResponseMimeType { get; set; }
+    [JsonConverter(typeof(PreserveCaseJsonConverter))]
     public object? ResponseSchema { get; set; }
     public int? Seed { get; set; }
     public bool? ResponseLogprobs { get; set; }

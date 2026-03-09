@@ -14,7 +14,9 @@ public partial class TweetsSearchAllParameter : RestApiParameter, IRestApiParame
     public string End_Time { get; set; } = "";
     public string Sort_Order { get; set; } = "";
     public string Expansions { get; set; } = "";
+    public List<TweetField> TweetFieldList { get; init; } = new();
     public string Tweet_Fields { get; set; } = "";
+    public List<UserField> UserFieldList { get; init; } = new();
     public string User_Fields { get; set; } = "";
 
     string IRestApiParameter.GetApiPath()
@@ -31,8 +33,8 @@ public partial class TweetsSearchAllParameter : RestApiParameter, IRestApiParame
         QueryParameterBuilder.Add(d, "end_time", this.End_Time);
         QueryParameterBuilder.Add(d, "sort_order", this.Sort_Order);
         QueryParameterBuilder.Add(d, "expansions", this.Expansions);
-        QueryParameterBuilder.Add(d, "tweet.fields", this.Tweet_Fields);
-        QueryParameterBuilder.Add(d, "user.fields", this.User_Fields);
+        QueryParameterBuilder.AddField(d, "tweet.fields", this.TweetFieldList, this.Tweet_Fields);
+        QueryParameterBuilder.AddField(d, "user.fields", this.UserFieldList, this.User_Fields);
         return d;
     }
     public override object GetRequestBody()

@@ -18,4 +18,16 @@ internal static class QueryParameterBuilder
             values[key] = value.Value.ToString()!;
         }
     }
+    public static void AddField<TEnum>(Dictionary<string, string> values, string key, List<TEnum> fieldList, string fieldText)
+        where TEnum : struct, Enum
+    {
+        if (fieldList.Count > 0)
+        {
+            Add(values, key, FieldParameter.Create(fieldList));
+        }
+        else
+        {
+            Add(values, key, fieldText);
+        }
+    }
 }

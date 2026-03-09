@@ -9,8 +9,10 @@ public partial class UsersLookupParameter : RestApiParameter, IRestApiParameter,
 
     public string Ids { get; set; } = "";
     public string Usernames { get; set; } = "";
+    public List<UserField> UserFieldList { get; init; } = new();
     public string User_Fields { get; set; } = "";
     public string Expansions { get; set; } = "";
+    public List<TweetField> TweetFieldList { get; init; } = new();
     public string Tweet_Fields { get; set; } = "";
 
     string IRestApiParameter.GetApiPath()
@@ -22,9 +24,9 @@ public partial class UsersLookupParameter : RestApiParameter, IRestApiParameter,
         var d = new Dictionary<string, string>();
         QueryParameterBuilder.Add(d, "ids", this.Ids);
         QueryParameterBuilder.Add(d, "usernames", this.Usernames);
-        QueryParameterBuilder.Add(d, "user.fields", this.User_Fields);
+        QueryParameterBuilder.AddField(d, "user.fields", this.UserFieldList, this.User_Fields);
         QueryParameterBuilder.Add(d, "expansions", this.Expansions);
-        QueryParameterBuilder.Add(d, "tweet.fields", this.Tweet_Fields);
+        QueryParameterBuilder.AddField(d, "tweet.fields", this.TweetFieldList, this.Tweet_Fields);
         return d;
     }
     public override object GetRequestBody()

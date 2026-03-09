@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponsePlaygroundPromptIdCreate();
+        await ResponseCreateFunctionCalling();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()

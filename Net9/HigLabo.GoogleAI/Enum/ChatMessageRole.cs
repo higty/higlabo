@@ -4,4 +4,5 @@ public enum ChatMessageRole
 {
     User,
     Model,
+    Tool,
 }

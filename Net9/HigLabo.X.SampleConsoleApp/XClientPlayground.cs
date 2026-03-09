@@ -17,7 +17,7 @@ public class XClientPlayground
     }
     private void SetSetting()
     {
-        var bearerToken = File.ReadAllText("C:\\Dev\\XApiBearerToken.txt").Trim();
+        var bearerToken = File.ReadAllText("C:\\Dev\\HigLabo_X_ApiKey.txt").Trim();
         XClient = new XClient(new XSettings(bearerToken)
         {
             UserAgent = "HigLabo.X.SampleConsoleApp",
@@ -28,7 +28,11 @@ public class XClientPlayground
     {
         var cl = XClient;
         var p = new UsersMeParameter();
-        p.User_Fields = "id,name,username,created_at,public_metrics";
+        p.UserFieldList.Add(UserField.Id);
+        p.UserFieldList.Add(UserField.Name);
+        p.UserFieldList.Add(UserField.Username);
+        p.UserFieldList.Add(UserField.CreatedAt);
+        p.UserFieldList.Add(UserField.PublicMetrics);
         var res = await cl.UsersMeAsync(p);
         Console.WriteLine("■UsersMe");
         Console.WriteLine(JsonSerializer.Serialize(res.Data));
@@ -39,7 +43,11 @@ public class XClientPlayground
         var cl = XClient;
         var p = new UserByUsernameParameter();
         p.Username = "XDevelopers";
-        p.User_Fields = "id,name,username,description,public_metrics";
+        p.UserFieldList.Add(UserField.Id);
+        p.UserFieldList.Add(UserField.Name);
+        p.UserFieldList.Add(UserField.Username);
+        p.UserFieldList.Add(UserField.Description);
+        p.UserFieldList.Add(UserField.PublicMetrics);
         var res = await cl.UserByUsernameAsync(p);
         Console.WriteLine("■UserByUsername");
         Console.WriteLine(JsonSerializer.Serialize(res.Data));
@@ -51,9 +59,15 @@ public class XClientPlayground
         var p = new TweetsSearchRecentParameter();
         p.Query = "(dotnet OR csharp) lang:en -is:retweet";
         p.Max_Results = 10;
-        p.Tweet_Fields = "id,text,created_at,author_id,public_metrics";
+        p.TweetFieldList.Add(TweetField.Id);
+        p.TweetFieldList.Add(TweetField.Text);
+        p.TweetFieldList.Add(TweetField.CreatedAt);
+        p.TweetFieldList.Add(TweetField.AuthorId);
+        p.TweetFieldList.Add(TweetField.PublicMetrics);
         p.Expansions = "author_id";
-        p.User_Fields = "id,name,username";
+        p.UserFieldList.Add(UserField.Id);
+        p.UserFieldList.Add(UserField.Name);
+        p.UserFieldList.Add(UserField.Username);
 
         var res = await cl.TweetsSearchRecentAsync(p);
         Console.WriteLine("■TweetsSearchRecent");

@@ -20,6 +20,24 @@ public static class IContentsPropertyExtensions
     {
         obj.Contents.Add(new Content(ChatMessageRole.Model, text));
     }
+    public static void AddToolFunctionResponse(this IContentsProperty obj, string functionName, object? response)
+    {
+        var content = new Content();
+        content.Role = ChatMessageRole.Tool;
+        content.Parts.Add(new ContentPart(new FunctionResponse
+        {
+            Name = functionName,
+            Response = response,
+        }));
+        obj.Contents.Add(content);
+    }
+    public static void AddToolFunctionResponse(this IContentsProperty obj, FunctionResponse functionResponse)
+    {
+        var content = new Content();
+        content.Role = ChatMessageRole.Tool;
+        content.Parts.Add(new ContentPart(functionResponse));
+        obj.Contents.Add(content);
+    }
 
     public static void AddMessage(this IContentsProperty obj, string text, string mimeType, Stream stream)
     {
