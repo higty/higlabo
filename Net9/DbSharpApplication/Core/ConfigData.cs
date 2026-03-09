@@ -85,6 +85,9 @@ public class ConfigData
             ConfigData.Current.SchemeFilePathList.Add(ConfigData.Current.SchemeFilePath);
         }
         ConfigData.Current.LoadSchemeFile(ConfigData.Current.GetSchemeFilePath());
+        var ff = ConfigData.Current.SchemeFilePathList.Distinct().ToList();
+        ConfigData.Current.SchemeFilePathList.Clear();
+        ConfigData.Current.SchemeFilePathList.AddRange(ff);
     }
 
     public string GetSchemeFilePath()

@@ -10,7 +10,31 @@ using System.Threading.Tasks;
 
 namespace HigLabo.DbSharp;
 
-public abstract class StoredProcedureWithResultSetsList<T, TResultSetList> : StoredProcedureWithResultSet<T>
+public interface IStoredProcedureWithResultSetsList<TResultSetList>
+{
+    TResultSetList GetResultSetsList();
+    TResultSetList GetResultSetsList(CommandBehavior commandBehavior);
+    TResultSetList GetResultSetsList(Database database);
+    TResultSetList GetResultSetsList(Database database, CommandBehavior commandBehavior);
+    TResultSetList GetResultSetsList(IEnumerable<Database> databases);
+    TResultSetList GetResultSetsList(IEnumerable<Database> databases, CommandBehavior commandBehavior);
+    TResultSetList GetResultSetsList(IEnumerable<Database> databases, CancellationToken cancellation);
+    TResultSetList GetResultSetsList(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellation);
+
+    ValueTask<TResultSetList> GetResultSetsListAsync();
+    ValueTask<TResultSetList> GetResultSetsListAsync(CommandBehavior commandBehavior);
+    ValueTask<TResultSetList> GetResultSetsListAsync(CancellationToken cancellation);
+    ValueTask<TResultSetList> GetResultSetsListAsync(CommandBehavior commandBehavior, CancellationToken cancellation);
+    ValueTask<TResultSetList> GetResultSetsListAsync(Database database);
+    ValueTask<TResultSetList> GetResultSetsListAsync(Database database, CommandBehavior commandBehavior);
+    ValueTask<TResultSetList> GetResultSetsListAsync(Database database, CancellationToken cancellation);
+    ValueTask<TResultSetList> GetResultSetsListAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellation);
+    Task<TResultSetList> GetResultSetsListAsync(IEnumerable<Database> databases);
+    Task<TResultSetList> GetResultSetsListAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior);
+    Task<TResultSetList> GetResultSetsListAsync(IEnumerable<Database> databases, CancellationToken cancellation);
+    Task<TResultSetList> GetResultSetsListAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellation);
+}
+public abstract class StoredProcedureWithResultSetsList<T, TResultSetList> : StoredProcedureWithResultSet<T>, IStoredProcedureWithResultSetsList<TResultSetList>
     where T: StoredProcedureResultSet, new()
     where TResultSetList: new()
 {
@@ -95,6 +119,10 @@ public abstract class StoredProcedureWithResultSetsList<T, TResultSetList> : Sto
     public async ValueTask<TResultSetList> GetResultSetsListAsync(CancellationToken cancellation)
     {
         return await this.GetResultSetsListAsync(this.GetDatabase(), CommandBehavior.Default, cancellation).ConfigureAwait(false);
+    }
+    public async ValueTask<TResultSetList> GetResultSetsListAsync(CommandBehavior commandBehavior, CancellationToken cancellation)
+    {
+        return await this.GetResultSetsListAsync(this.GetDatabase(), commandBehavior, cancellation).ConfigureAwait(false);
     }
     public async ValueTask<TResultSetList> GetResultSetsListAsync(Database database)
     {

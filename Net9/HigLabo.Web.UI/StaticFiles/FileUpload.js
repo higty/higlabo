@@ -1,6 +1,7 @@
 import { $ } from "./HtmlElementQuery.js";
 import { HttpClient } from "./HttpClient.js";
 export class FileUpload {
+    createHttpClient = () => new HttpClient();
     successCallback = (response) => { };
     errorCallback = (response) => { };
     progressCallback = (response) => { };
@@ -23,7 +24,7 @@ export class FileUpload {
         for (var i = 0; i < f.files.length; i++) {
             formData.append(f.name, f.files[i]);
         }
-        const cl = new HttpClient();
+        const cl = this.createHttpClient();
         cl.postForm(apiPath, formData, this.successCallback.bind(this), this.errorCallback.bind(this), this.progressCallback.bind(this), {
             target: target,
             event: e,

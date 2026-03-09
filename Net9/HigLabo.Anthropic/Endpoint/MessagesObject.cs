@@ -16,6 +16,19 @@ public class MessagesObject
     public string Stop_Reason { get; set; } = "";
     public string? Stop_Sequence { get; set; } 
     public MessageUsage Usage { get; set; } = new();
+
+    public string GetStopReason()
+    {
+        return this.Stop_Reason;
+    }
+    public FunctionCallResult? GetFunctionCall()
+    {
+        return this.GetFunctionCallList().FirstOrDefault();
+    }
+    public List<FunctionCallResult> GetFunctionCallList()
+    {
+        return MessageText.GetFunctionCallList(this.Content);
+    }
 }
 public class MessagesObjectResponse: RestApiResponse
 {
@@ -27,6 +40,19 @@ public class MessagesObjectResponse: RestApiResponse
     public string Stop_Reason { get; set; } = "";
     public string? Stop_Sequence { get; set; }
     public MessageUsage Usage { get; set; } = new();
+
+    public FunctionCallResult? GetFunctionCall()
+    {
+        return this.GetFunctionCallList().FirstOrDefault();
+    }
+    public string GetStopReason()
+    {
+        return this.Stop_Reason;
+    }
+    public List<FunctionCallResult> GetFunctionCallList()
+    {
+        return MessageText.GetFunctionCallList(this.Content);
+    }
 }
 public class MessageText
 {
@@ -35,6 +61,21 @@ public class MessageText
     public string? Id { get; set; }
     public string? Name { get; set; }
     public object? Input { get; set; }
+
+    public static List<FunctionCallResult> GetFunctionCallList(IEnumerable<MessageText> content)
+    {
+        var l = new List<FunctionCallResult>();
+        foreach (var item in content)
+        {
+            if (string.Equals(item.Type, "tool_use", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+            l.Add(new FunctionCallResult
+            {
+                Name = item.Name ?? "",
+                Arguments = item.Input == null ? "" : global::Newtonsoft.Json.JsonConvert.SerializeObject(item.Input),
+            });
+        }
+        return l;
+    }
 }
 public class MessageUsage
 {

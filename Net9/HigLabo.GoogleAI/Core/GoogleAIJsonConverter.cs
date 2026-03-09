@@ -1,14 +1,9 @@
-﻿using HigLabo.Core;
+using HigLabo.Core;
 using HigLabo.Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HigLabo.GoogleAI;
 
@@ -36,7 +31,7 @@ public class GoogleAIJsonConverter : IJsonConverter
         {
             return JsonConvert.DeserializeObject<T>(json, DeserializeSetting)!;
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
 #if DEBUG
             Debugger.Break();

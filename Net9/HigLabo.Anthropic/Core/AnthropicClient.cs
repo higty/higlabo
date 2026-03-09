@@ -235,6 +235,14 @@ public partial class AnthropicClient
             {
                 var text = line.GetText();
                 if (string.Equals(text, "[DONE]", StringComparison.OrdinalIgnoreCase)) { continue; }
+                if (result != null)
+                {
+                    result.EventList.Add(new MessagesStreamEvent
+                    {
+                        EventName = eventName,
+                        Data = text,
+                    });
+                }
 
                 if (string.Equals(eventName, "content_block_delta", StringComparison.OrdinalIgnoreCase))
                 {
@@ -264,6 +272,11 @@ public partial class AnthropicClient
                         {
                             var o = this.JsonConverter.DeserializeObject<MessageStart>(text);
                             result.Message = o.Message;
+                        }
+                        else if (string.Equals(eventName, "content_block_start", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var o = this.JsonConverter.DeserializeObject<MessageContentBlockStart>(text);
+                            result.ContentBlockStartList.Add(o);
                         }
                         else if (eventName.StartsWith("message_delta", StringComparison.OrdinalIgnoreCase))
                         {

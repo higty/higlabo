@@ -741,19 +741,44 @@ export class HtmlElementQuery {
         this.addEventListenerToAllElement("scroll", callback);
     }
     triggerEvent(event) {
-        if (event instanceof Event) {
-            for (var i = 0; i < this._elementList.length; i++) {
-                var element = this._elementList[i];
+        for (const element of this._elementList) {
+            if (typeof event !== "string") {
                 element.dispatchEvent(event);
+                continue;
             }
-        }
-        else if (typeof event === "string") {
-            if (document.createEvent) {
-                var e = new Event(event, { bubbles: true, cancelable: true });
-                for (var i = 0; i < this._elementList.length; i++) {
-                    var element = this._elementList[i];
-                    element.dispatchEvent(e);
-                }
+            switch (event) {
+                case "click":
+                    if (element instanceof HTMLElement) {
+                        element.click();
+                    }
+                    break;
+                case "focus":
+                    if (element instanceof HTMLElement) {
+                        element.focus();
+                    }
+                    break;
+                case "blur":
+                    if (element instanceof HTMLElement) {
+                        element.blur();
+                    }
+                    break;
+                case "submit":
+                    if (element instanceof HTMLFormElement) {
+                        element.submit();
+                    }
+                    else {
+                        element.dispatchEvent(new Event("submit", {
+                            bubbles: true,
+                            cancelable: true
+                        }));
+                    }
+                    break;
+                default:
+                    element.dispatchEvent(new Event(event, {
+                        bubbles: true,
+                        cancelable: true
+                    }));
+                    break;
             }
         }
     }

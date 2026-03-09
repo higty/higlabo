@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="DbSharpApplication/DbSharpApplication.csproj" />
+  <Project Path="HigLabo.BlobToEnumApplication/HigLabo.BlobToEnumApplication.csproj" />
+  <Project Path="HigLabo.LanguageTextApplication/HigLabo.LanguageTextApplication.csproj" />
+</Solution>

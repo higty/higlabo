@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 
 public sealed class ContentDispositionParseResult
@@ -395,5 +396,34 @@ public sealed class ContentDispositionParser
         {
             return UnknownCharsetFallbackEncoding;
         }
+    }
+
+    public string Create(string fileName)
+    {
+        if (string.IsNullOrWhiteSpace(fileName))
+            throw new ArgumentException("fileName is required", nameof(fileName));
+
+        // ASCII fallback（RFC用）
+        var asciiFileName = RemoveNonAscii(fileName);
+
+        var disposition = new ContentDisposition
+        {
+            DispositionType = DispositionTypeNames.Attachment,
+            FileName = asciiFileName
+        };
+
+        // RFC 5987 (UTF-8)
+        var utf8FileName = Uri.EscapeDataString(fileName);
+
+        return $"{disposition}; filename*=UTF-8''{utf8FileName}";
+    }
+    private string RemoveNonAscii(string input)
+    {
+        var sb = new StringBuilder(input.Length);
+        foreach (var c in input)
+        {
+            sb.Append(c <= 0x7F ? c : '_');
+        }
+        return sb.ToString();
     }
 }

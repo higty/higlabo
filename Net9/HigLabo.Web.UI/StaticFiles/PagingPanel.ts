@@ -18,6 +18,12 @@ export class PagingPanel {
         let newPageIndex = pageIndex + increment;
         this.setPageIndex(pl, newPageIndex, maxPageIndex);
 
+        if (increment < 0) {
+            $(pl).find("[page-index-panel]").setAttribute("hx-swap", "innerHTML scroll:bottom");
+        }
+        else {
+            $(pl).find("[page-index-panel]").setAttribute("hx-swap", "innerHTML scroll:top");
+        }
         this.htmx.trigger($(pl).find("[page-index-panel]").getFirstElement(), "page-index-change");
     }
     private pageNumber_Change(target: Element, e: Event) {

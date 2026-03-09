@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-		<Version>10.1.0.1</Version>
+		<Version>10.1.0.2</Version>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Company>HigLabo</Company>
 		<Authors>Higty</Authors>

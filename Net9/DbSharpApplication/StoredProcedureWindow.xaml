@@ -59,7 +59,14 @@
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <ComboBox Name="ResultSetListBox" ItemsSource="{Binding Path=ResultSets}"
-                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="200">
+                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" local:ComboboxHeight.Enable="True">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="Padding" Value="4"/>
+                                        <Setter Property="MinHeight" Value="28"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -75,7 +82,14 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <ComboBox Name="TableListBox" ItemsSource="{Binding Path=TableList}" 
-                                      MaxDropDownHeight="800" Width="200">
+                                      MaxDropDownHeight="800" Width="200" local:ComboboxHeight.Enable="True">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="Padding" Value="4"/>
+                                        <Setter Property="MinHeight" Value="28"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>

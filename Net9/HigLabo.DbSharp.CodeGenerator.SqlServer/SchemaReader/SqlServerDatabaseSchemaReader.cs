@@ -314,7 +314,7 @@ public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
         var t = table;
         var sb = new StringBuilder();
 
-        sb.AppendFormat("CREATE TABLE {0}", t.Name).AppendLine();
+        sb.AppendFormat("CREATE TABLE [{0}]", t.Name).AppendLine();
         for (int i = 0; i < t.Columns.Count; i++)
         {
             var c = t.Columns[i];
@@ -387,9 +387,9 @@ public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
         var checkDefinition = new StringBuilder(256);
         foreach (var cc in t.CheckConstraintList)
         {
-            sb.AppendLine($"ALTER TABLE {t.Name} DROP CONSTRAINT IF EXISTS {cc.Name}");
+            sb.AppendLine($"ALTER TABLE [{t.Name}] DROP CONSTRAINT IF EXISTS {cc.Name}");
             sb.AppendLine("GO");
-            sb.AppendLine($"ALTER TABLE {t.Name} ADD CONSTRAINT {cc.Name} CHECK(");
+            sb.AppendLine($"ALTER TABLE [{t.Name}] ADD CONSTRAINT {cc.Name} CHECK(");
             sb.AppendLine(FormatCheckDefinition(cc.Definition));
             sb.AppendLine(")");
             sb.AppendLine("GO").AppendLine();

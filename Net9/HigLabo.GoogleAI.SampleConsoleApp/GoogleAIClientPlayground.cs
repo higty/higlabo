@@ -30,9 +30,10 @@ public class GoogleAIClientPlayground
         //await GenerateContentThinkingAsStream1();
         //await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
+        await GenerateContentFunctionCallingAsStream();
 
         //await GenerateMangaImage();
-        await GenerateContentTTS();
+        //await GenerateContentTTS();
         //await GenerateSensitiveImage();
         //await ExplainImage();
         //await GenerateImageByGeminiFlash();
@@ -73,7 +74,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsEmbedContentParameter();
-        p.Model = ModelNames.TextEmbedding_004;
+        p.Model = ModelNames.Gemini_Embedding_001;
         p.SetText("How to enjoy Japan?");
 
         var res = await cl.EmbedContentAsync(p);
@@ -88,7 +89,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_1_5_Pro_Latest;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         p.AddMessage(ChatMessageRole.User, "How to enjoy Japan?");
         p.Stream = false;
 
@@ -109,7 +110,7 @@ public class GoogleAIClientPlayground
     private async ValueTask GenerateContentAsStream()
     {
         var cl = GoogleAIClient;
-        await foreach (var item in cl.GenerateContentStreamAsync("How to enjoy Japan?", ModelNames.Gemini_2_0_Flash_Exp))
+        await foreach (var item in cl.GenerateContentStreamAsync("How to enjoy Japan?", ModelNames.Gemini_2_5_Flash))
         {
             Console.Write(item);
         }
@@ -120,7 +121,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_1_5_Pro_Latest;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         p.AddMessage(ChatMessageRole.User, "How to enjoy Japan?");
         p.GenerationConfig = new();
         p.GenerationConfig.Temperature = 0.8;
@@ -137,7 +138,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Thinking_Exp_01_21;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         var path = Path.Combine(Environment.CurrentDirectory, "Image", "CircleAndTriangle.png");
         p.AddMessage("What’s the area of the overlapping region?", "image/png", File.ReadAllBytes(path));
 
@@ -153,7 +154,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Thinking_Exp_01_21;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         //https://happylilac.net/jhs-math3_01-02-01.pdf
         //より引用
         var language = "Japanese";
@@ -172,7 +173,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         p.AddMessage(ChatMessageRole.User, "Please tell me how to go to Aomori from Tokyo.");
         p.Tools = new();
         var tool = new GoogleSearchTool();
@@ -204,13 +205,56 @@ public class GoogleAIClientPlayground
     }
     private async ValueTask GenerateContentFunctionCallingAsStream()
     {
+        Console.WriteLine("GenerateContentFunctionCallingAsStream");
+        await GenerateContentFunctionCallingAsStream(CreateBodyTextCandidateFunctionDeclaration());
+    }
+    private async ValueTask GenerateContentFunctionCallingAsStreamWithJsonScheme()
+    {
+        Console.WriteLine("GenerateContentFunctionCallingAsStreamWithJsonScheme");
+        await GenerateContentFunctionCallingAsStream(CreateBodyTextCandidateFunctionDeclarationWithJsonSchema());
+    }
+    private async ValueTask GenerateContentFunctionCallingAsStream(FunctionDeclaration functionDeclaration)
+    {
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_1_5_Pro_Latest;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         p.AddMessage(ChatMessageRole.User, "Please list up 10 vegetable.");
 
         var function = new Function();
+        function.FunctionDeclarations.Add(functionDeclaration);
+        p.Tools = new List<Tool>();
+        p.Tools.Add(function);
+        p.ToolConfig = new ToolConfig
+        {
+            FunctionCallingConfig = new FunctionCallingConfig
+            {
+                Mode = FunctionCallingMode.Any,
+                AllowedFunctionNames = ["BodyTextCandidate"],
+            }
+        };
+
+        Console.WriteLine("■Request");
+        Console.WriteLine(cl.JsonConverter.SerializeObject(p.GetRequestBody()));
+        Console.WriteLine();
+
+        var result = new GenerateContentStreamResult();
+        await foreach (var item in cl.GenerateContentStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(item);
+        }
+        var functionCall = result.GetFunctionCall();
+        if (functionCall != null)
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("FunctionName: " + functionCall.Name);
+            Console.WriteLine("Arguments: " + functionCall.Args);
+        }
+        Console.WriteLine("***********************");
+    }
+    private static FunctionDeclaration CreateBodyTextCandidateFunctionDeclaration()
+    {
         var f = new FunctionDeclaration();
         f.Name = "BodyTextCandidate";
         f.Description = "Get description of given item list.";
@@ -228,24 +272,28 @@ public class GoogleAIClientPlayground
             },
             required = new[] { "TextList" },
         };
-        function.FunctionDeclarations.Add(f);
-        p.Tools = new List<Tool>();
-        p.Tools.Add(function);
 
-        var result = new GenerateContentStreamResult();
-        await foreach (var item in cl.GenerateContentStreamAsync(p, result, CancellationToken.None))
+        return f;
+    }
+    private static FunctionDeclaration CreateBodyTextCandidateFunctionDeclarationWithJsonSchema()
+    {
+        var f = new FunctionDeclaration();
+        f.Name = "BodyTextCandidate";
+        f.Description = "Get description of given item list.";
+        var schema = new JsonSchema
         {
-            Console.Write(item);
-        }
-        var functionCall = result.GetFunctionCall();
-        if (functionCall != null)
+            Type = "object",
+            Required = ["TextList"],
+        };
+        schema.Properties.Add(new JsonSchema("array")
         {
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("FunctionName: " + functionCall.Name);
-            Console.WriteLine("Arguments: " + functionCall.Args);
-        }
-        Console.WriteLine("***********************");
+            Name = "TextList",
+            Description = "Item name list as string array.",
+            Items = new JsonSchema("string"),
+        });
+        f.Parameters = schema;
+
+        return f;
     }
 
     /// <summary>
@@ -257,7 +305,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateAnswerParameter();
-        p.Model = ModelNames.Gemini_1_5_Pro_Latest;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         p.AddMessage(ChatMessageRole.User, "How to enjoy Japan?");
         p.AnswerStyle = AnswerStyle.Abstractive;
         p.InlinePassages = new GroundingPassages();
@@ -284,7 +332,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsPredictParameter();
-        p.Model = ModelNames.ImaGen_4_0_Generate_001;
+        p.Model = ModelNames.Imagen_4_Generate;
         p.Instances.Add(new PredictInstance() { Prompt = "Using the provided image of a living room, change only the blue sofa to be a vintage, brown leather chesterfield sofa..." });
         p.Parameters = new();
         p.Parameters.SampleCount = 1;
@@ -315,7 +363,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_5_Flash_Image_Preview;
+        p.Model = ModelNames.Imagen_4_Generate;
         p.Contents.Add(new Content(ChatMessageRole.User, "Create a picture of a nano banana dish in a fancy restaurant with a Gemini theme."));
         var result = new GenerateContentStreamResult();
         await foreach (var item in cl.GetCandidateStreamAsync(p, result, CancellationToken.None))
@@ -342,7 +390,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_5_Flash_Image_Preview;
+        p.Model = ModelNames.Gemini_3_1_Flash_Image_Preview;
         var path = Path.Combine(Environment.CurrentDirectory, "Image", "KamuiCape.jpg");
         p.AddMessage("この画像をピカソ風にしてください。", "image/jpeg", File.ReadAllBytes(path));
         var result = new GenerateContentStreamResult();
@@ -370,7 +418,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_5_Flash_Image_Preview;
+        p.Model = ModelNames.Gemini_3_1_Flash_Image_Preview;
 
         var content = new Content();
         content.Parts.Add(new ContentPart("Please generate an image of the person from the second image seated at the table shown in the first image. " +
@@ -456,7 +504,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Pro_Exp_02_05;
+        p.Model = ModelNames.Gemini_3_1_Pro_Preview;
         var path = Path.Combine(Environment.CurrentDirectory, "Image", "KamuiCape.jpg");
         p.AddMessage("What is this picture?", "image/jpeg", File.ReadAllBytes(path));
         p.Stream = false;
@@ -479,7 +527,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         p.AddUserMessage("Hi, can you create a 3d rendered image of a cat with wings and a top hat flying over a happy futuristic scificity with lots of greenery?");
         p.GenerationConfig = new();
         p.GenerationConfig.ResponseModalities = ["Text", "Image"];
@@ -517,7 +565,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         p.AddUserMessage("人参パンの作り方の各ステップを画像とテキストで教えてください。");
         p.GenerationConfig = new();
         p.GenerationConfig.ResponseModalities = ["Text", "Image"];
@@ -556,7 +604,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         p.AddUserMessage("A beautiful young woman with large, expressive brown eyes and long, dark hair with blue highlights, wearing ornate jewelry and a colorful dress with floral patterns, soft lighting, vibrant colors, detailed illustration.");
         p.SafetySettings = new();
         //If comment out this line, you sometimes fail to generate image due to image safety.
@@ -602,7 +650,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         var path = Path.Combine(Environment.CurrentDirectory, "Image", "Table.jpg");
         p.AddMessage("Remove plant behind the table and remove coffee cup on table.", "image/jpeg", File.ReadAllBytes(path));
         p.GenerationConfig = new();
@@ -642,7 +690,7 @@ public class GoogleAIClientPlayground
         var cl = GoogleAIClient;
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         var content = new Content();
         var prompt = "Remove plant behind table in first image. After that, put second image's plant on the table.";
         content.Parts.Add(new ContentPart(prompt));
@@ -692,14 +740,14 @@ public class GoogleAIClientPlayground
 
         var cl = GoogleAIClient;
         var sb = new StringBuilder();
-        await foreach (var item in cl.GenerateContentStreamAsync("Generate 5 branch mind map of saas service for PR strategy. Please output mind map data only.", ModelNames.Gemini_2_0_Flash_Exp))
+        await foreach (var item in cl.GenerateContentStreamAsync("Generate 5 branch mind map of saas service for PR strategy. Please output mind map data only.", ModelNames.Gemini_2_5_Flash))
         {
             Console.Write(item);
             sb.Append(item);
         }
 
         var p = new ModelsGenerateContentParameter();
-        p.Model = ModelNames.Gemini_2_0_Flash_Exp;
+        p.Model = ModelNames.Gemini_2_5_Flash;
         p.AddUserMessage("Generate mind map image from below text in English.\n\n" + sb.ToString());
         p.GenerationConfig = new();
         p.GenerationConfig.ResponseModalities = ["Text", "Image"];

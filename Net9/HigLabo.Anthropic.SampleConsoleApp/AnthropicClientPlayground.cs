@@ -1,23 +1,26 @@
-﻿using HigLabo.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
+using HigLabo.Core;
+using Newtonsoft.Json;
 
 namespace HigLabo.Anthropic.SampleConsoleApp;
 
 public class AnthropicClientPlayground
 {
+    private sealed class GetTickerSymbolToolCallResult
+    {
+        public string Company_Name { get; set; } = "";
+    }
+    private sealed class GetPlaceListToolCallResult
+    {
+        public string[] City_List { get; set; } = [];
+    }
+
     public AnthropicClient AnthropicClient { get; set; } = new();
 
     public async ValueTask ExecuteAsync()
     {
         SetSetting();
-        await SendMessageStreamWithTool();
+        await CallToolStream();
         Console.WriteLine("■Completed");
-
     }
     private void SetSetting()
     {
@@ -30,7 +33,7 @@ public class AnthropicClientPlayground
 
         var p = new MessagesParameter();
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"How to enjoy coffee?"));
-        p.Model = ModelNames.Claude3Opus;
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
         var res = await cl.MessagesAsync(p);
 
@@ -49,7 +52,7 @@ public class AnthropicClientPlayground
 
         var p = new MessagesParameter();
         p.AddUserMessage("How to enjoy coffee?");
-        p.Model = ModelNames.Claude3Opus;
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
         var result = new MessagesStreamResult();
         await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
@@ -57,7 +60,7 @@ public class AnthropicClientPlayground
             Console.Write(item);
         }
         Console.WriteLine("***********************");
-        if(result.MessageDelta != null)
+        if (result.MessageDelta != null)
         {
             Console.WriteLine("StopReason: " + result.MessageDelta.Delta.Stop_Reason);
             Console.WriteLine("Usage: " + result.MessageDelta.Usage.Output_Tokens);
@@ -68,7 +71,7 @@ public class AnthropicClientPlayground
         var cl = AnthropicClient;
 
         var result = new MessagesStreamResult();
-        await foreach (var item in cl.MessagesStreamAsync("How to enjoy coffee?", ModelNames.Claude3Opus, result, CancellationToken.None))
+        await foreach (var item in cl.MessagesStreamAsync("How to enjoy coffee?", ModelNames.ClaudeSonnet4, result, CancellationToken.None))
         {
             Console.Write(item);
         }
@@ -84,12 +87,10 @@ public class AnthropicClientPlayground
 
         var p = new MessagesParameter();
         p.AddUserMessage("What is the weather like in Tokyo?");
-        p.Model = ModelNames.Claude3Opus;
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
         p.Tools = new();
-        var tool = new ToolObject();
-        tool.Name = "get_weather";
-        tool.Description = "Get the current weather in a given location.";
+        var tool = new AnthropicTool("get_weather", "Get the current weather in a given location.");
         tool.Input_Schema = new
         {
             type = "object",
@@ -138,12 +139,10 @@ public class AnthropicClientPlayground
 
         var p = new MessagesParameter();
         p.AddUserMessage("What is the weather like in Tokyo?");
-        p.Model = ModelNames.Claude3Opus;
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
         p.Tools = new();
-        var tool = new ToolObject();
-        tool.Name = "get_weather";
-        tool.Description = "Get the current weather in a given location.";
+        var tool = new AnthropicTool("get_weather", "Get the current weather in a given location.");
         tool.Input_Schema = new
         {
             type = "object",
@@ -169,71 +168,49 @@ public class AnthropicClientPlayground
         {
             Console.Write(item);
         }
-        var json = result.GetInputJson();
         Console.WriteLine(result.GetInputJson());
-
     }
     private async ValueTask CallTool()
     {
         var cl = AnthropicClient;
 
-        var tool = new AnthropicTool("GetTickerSymbol", "Gets the stock ticker symbol for a company searched by name. Returns str: The ticker symbol for the company stock. Raises TickerNotFound: if no matching ticker symbol is found.");
-        tool.Parameters.Add(new AnthropicToolParameter("company_name", "string", "The name of company"));
-        var toolXml = tool.ToString();
+        var tools = new AnthropicTools();
+        tools.Add(CreateGetTickerSymbolTool());
 
         var p = new MessagesParameter();
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"What is the current stock price of Microsoft?"));
-        p.System = $@"In this environment you have access to a set of tools you can use to answer the user's question.
-
-You may call them like this:
-<function_calls>
-<invoke>
-<tool_name>$TOOL_NAME</tool_name>
-<parameters>
-<$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>
-...
-</parameters>
-</invoke>
-</function_calls>
-
-Here are the tools available:
-{toolXml}
-";
-        p.Model = ModelNames.Claude3Opus;
+        p.SetTools(tools);
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
-        var res = await cl.SendJsonAsync<MessagesParameter, MessagesObjectResponse>(p);
+        var res = await cl.MessagesAsync(p);
 
         foreach (var item in res.Content)
         {
-            Console.WriteLine(item.Text);
-
-            var calls = await AnthropicFunctionCalls.ParseAsync(item.Text);
-            if (calls.InvokeList.Count > 0)
+            if (item.Type == "text")
             {
-                Console.WriteLine();
-                Console.WriteLine("■Function call list");
-                Console.WriteLine(calls.ToString());
+                Console.WriteLine(item.Text);
             }
         }
+        var functionCalls = res.GetFunctionCallList();
+        WriteFunctionCalls(functionCalls);
     }
     private async ValueTask CallToolStream()
     {
         var cl = AnthropicClient;
 
-        var tools = new AnthropicTools();
-        var tool = new AnthropicTool("GetTickerSymbol", "Gets the stock ticker symbol for a company searched by name. Returns str: The ticker symbol for the company stock. Raises TickerNotFound: if no matching ticker symbol is found.");
-        tool.Parameters.Add(new AnthropicToolParameter("company_name", "string", "The name of company"));
-        tools.Add(tool);
-        var toolXml = tool.ToString();
 
         var p = new MessagesParameter();
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"What is the current stock price of Microsoft?"));
+
+        var tools = new AnthropicTools();
+        tools.Add(CreateGetTickerSymbolTool());
         p.SetTools(tools);
-        p.Tool_Choice = new 
+
+        p.Tool_Choice = new
         {
             type = "any",
         };
-        p.Model = ModelNames.Claude3_7Sonnet;
         p.Max_Tokens = 1024;
         p.Stream = true;
 
@@ -243,27 +220,21 @@ Here are the tools available:
             Console.Write(item);
         }
 
-        var json = result.GetInputJson();
         Console.WriteLine(result.GetInputJson());
 
-        var calls = await AnthropicFunctionCalls.ParseAsync(result.GetText());
-        if (calls.InvokeList.Count > 0)
+        var functionCalls = result.GetFunctionCallList();
+        WriteFunctionCalls(functionCalls);
+        var functionCall = functionCalls.Find(el => el.Name == "GetTickerSymbol");
+        if (functionCall != null)
         {
-            Console.WriteLine();
-            Console.WriteLine("■Function call list");
-            Console.WriteLine(calls.ToString());
-
-            var invoke = calls.InvokeList.Find(el => el.ToolName == "GetTickerSymbol");
-            if (invoke != null)
-            {
-                var companyName = invoke.GetParameterValue("company_name") ?? "";
-                var tickerSymbol = GetTickerSymbol(companyName);
-            }
+            Console.WriteLine(functionCall.ToString());
+            var toolCallResult = JsonConvert.DeserializeObject<GetTickerSymbolToolCallResult>(functionCall.Arguments);
+            var companyName = toolCallResult?.Company_Name ?? "";
+            var tickerSymbol = GetTickerSymbol(companyName);
         }
     }
     private string GetTickerSymbol(string companyName)
     {
-        //Dummy value
         return "1234";
     }
 
@@ -272,15 +243,12 @@ Here are the tools available:
         var cl = AnthropicClient;
 
         var tools = new AnthropicTools();
-        var tool = new AnthropicTool("GetPlaceList", "Gets place list of specified city.");
-        tool.Parameters.Add(new AnthropicToolParameter("city_list", "array", "The name of city. The value must be separated by comma."));
-        tools.Add(tool);
-        var toolXml = tool.ToString();
+        tools.Add(CreateGetPlaceListTool());
 
         var p = new MessagesParameter();
         p.Messages.Add(new ChatMessage(ChatMessageRole.User, $"Please list up city names in Japan at least 10."));
         p.SetTools(tools);
-        p.Model = ModelNames.Claude3Opus;
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
 
         var result = new MessagesStreamResult();
@@ -289,25 +257,40 @@ Here are the tools available:
             Console.Write(item);
         }
 
-        var text = result.GetText();
-        var calls = await AnthropicFunctionCalls.ParseAsync(text);
-        if (calls.InvokeList.Count > 0)
+        var functionCalls = result.GetFunctionCallList();
+        WriteFunctionCalls(functionCalls);
+        var functionCall = functionCalls.Find(el => el.Name == "GetPlaceList");
+        if (functionCall != null)
         {
-            Console.WriteLine();
-            Console.WriteLine("■Function call list");
-            Console.WriteLine(calls.ToString());
-
-            var invoke = calls.InvokeList.Find(el => el.ToolName == "GetPlaceList");
-            if (invoke != null)
-            {
-                var cityList = invoke.GetParameterValue("city_list") ?? "";
-                var placeList = GetPlaceList(cityList.Split(','));
-            }
+            var toolCallResult = JsonConvert.DeserializeObject<GetPlaceListToolCallResult>(functionCall.Arguments);
+            var cityList = toolCallResult?.City_List ?? [];
+            var placeList = GetPlaceList(cityList);
         }
     }
     private string[] GetPlaceList(string[] cityList)
     {
         return ["Sky tree", "Dooutonbori", "Kokugikan", "Koukyo"];
+    }
+    private static AnthropicTool CreateGetTickerSymbolTool()
+    {
+        var tool = new AnthropicTool("GetTickerSymbol", "Gets the stock ticker symbol for a company searched by name. Returns str: The ticker symbol for the company stock. Raises TickerNotFound: if no matching ticker symbol is found.");
+        var schema = new JsonSchema();
+        schema.Properties.Add("company_name", new JsonSchemaProperty("string", "The name of company"));
+        schema.Required = ["company_name"];
+        tool.Input_Schema = schema;
+        return tool;
+    }
+    private static AnthropicTool CreateGetPlaceListTool()
+    {
+        var tool = new AnthropicTool("GetPlaceList", "Gets place list of specified city.");
+        var schema = new JsonSchema();
+        schema.Properties.Add("city_list", new JsonSchemaProperty("array", "The name of city.")
+        {
+            Items = new JsonSchema("string"),
+        });
+        schema.Required = ["city_list"];
+        tool.Input_Schema = schema;
+        return tool;
     }
 
     private async ValueTask SendImage()
@@ -315,7 +298,7 @@ Here are the tools available:
         var cl = AnthropicClient;
 
         var p = new MessagesParameter();
-        p.Model = "claude-3-opus-20240229";
+        p.Model = ModelNames.ClaudeSonnet4;
         p.Max_Tokens = 1024;
 
         var msg = new ChatImageMessage(ChatMessageRole.User);
@@ -328,6 +311,17 @@ Here are the tools available:
         await foreach (var item in cl.MessagesStreamAsync(p, result, CancellationToken.None))
         {
             Console.Write(item);
+        }
+    }
+    private static void WriteFunctionCalls(List<FunctionCallResult> functionCalls)
+    {
+        if (functionCalls.Count == 0) { return; }
+
+        Console.WriteLine();
+        Console.WriteLine("■Function call list");
+        foreach (var item in functionCalls)
+        {
+            Console.WriteLine($"{item.Name} {item.Arguments}");
         }
     }
 }

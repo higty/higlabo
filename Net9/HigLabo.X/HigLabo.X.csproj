@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+
+	  <Version>10.0.0</Version>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Company>HigLabo</Company>
+	  <Authors>Higty</Authors>
+	  <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+	  <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>1591;NETSDK1138</NoWarn>
+
+	  <Description>X API v2 client library (excluding Ads API).</Description>
+	  <PackageTags>X;Twitter;X API;</PackageTags>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+		<ProjectReference Include="..\HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj" />
+	</ItemGroup>
+
+</Project>

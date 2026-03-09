@@ -13,6 +13,8 @@ public partial class ModelsGenerateContentParameter : RestApiParameter, IRestApi
     public string Model { get; set; } = "";
     public List<Content> Contents { get; init; } = new();
     public List<Tool>? Tools { get; set; } 
+    public ToolConfig? ToolConfig { get; set; }
+    public string? CachedContent { get; set; }
     public List<SafetySetting>? SafetySettings { get; set; }
     public Content? SystemInstruction { get; set; }
     public GenerationConfiguration? GenerationConfig { get; set; }
@@ -32,6 +34,8 @@ public partial class ModelsGenerateContentParameter : RestApiParameter, IRestApi
         {
             contents = this.Contents,
             tools = this.Tools,
+            toolConfig = this.ToolConfig,
+            cachedContent = this.CachedContent,
             systemInstruction = this.SystemInstruction,
             safetySettings = this.SafetySettings,
             generationConfig = this.GenerationConfig,
