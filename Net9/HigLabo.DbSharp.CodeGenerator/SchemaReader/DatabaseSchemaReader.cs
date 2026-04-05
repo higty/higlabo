@@ -1,4 +1,4 @@
-﻿using HigLabo.Core;
+using HigLabo.Core;
 using HigLabo.Data;
 using System;
 using System.Collections.Generic;
@@ -129,10 +129,10 @@ public abstract class DatabaseSchemaReader
                     ix.IndexType = reader.GetString(3);
                     ix.IsUnique = reader.GetBoolean(4);
                     ix.ObjectType = reader.GetString(5);
+                    l.Add(ix);
                 }
-                var columnName = reader.GetString(2); 
+                var columnName = reader.GetString(2);
                 ix.Columns.Add(new Column() { Name = columnName });
-                l.Add(ix);
             }
             db.Close();
         }

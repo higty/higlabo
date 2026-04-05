@@ -45,6 +45,10 @@ select {
     &:hover {
         background-color: var(--color-form-element-hover);
     }
+
+    &:focus {
+        border-color: var(--color-form-element-focus);
+    }
 }
 
 

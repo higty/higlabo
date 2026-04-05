@@ -14,7 +14,10 @@ export class Htmx {
         }
     }
     trigger(selector, event) {
-        this.htmx.trigger(selector, event);
+        try {
+            this.htmx.trigger(selector, event);
+        }
+        catch { }
     }
 }
 //# sourceMappingURL=Htmx.js.map

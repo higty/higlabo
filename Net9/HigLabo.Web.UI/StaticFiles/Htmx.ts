@@ -16,6 +16,9 @@ export class Htmx {
     }
 
     public trigger(selector, event: string) {
-        this.htmx.trigger(selector, event);
+        try {
+            this.htmx.trigger(selector, event);
+        }
+        catch { }
     }
 }

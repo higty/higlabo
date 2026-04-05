@@ -128,7 +128,12 @@
                             }
                             else {
                                 let r = {};
-                                if (childElement.getAttribute("contenteditable") == "true") {
+                                if (childElement.hasAttribute("item-group") == true) {
+                                    if (childElement.getAttribute("current") == "true") {
+                                        parameter[name] = childElement.getAttribute("value");
+                                    }
+                                }
+                                else if (childElement.getAttribute("contenteditable") == "true") {
                                     r[name] = childElement.innerHTML;
                                 }
                                 else {
@@ -178,7 +183,12 @@
                                 parameter[name] = childElement.getAttribute("src");
                             }
                             else {
-                                if (childElement.getAttribute("contenteditable") == "true") {
+                                if (childElement.hasAttribute("item-group") == true) {
+                                    if (childElement.getAttribute("current") == "true") {
+                                        parameter[name] = childElement.getAttribute("value");
+                                    }
+                                }
+                                else if (childElement.getAttribute("contenteditable") == "true") {
                                     parameter[name] = childElement.innerHTML;
                                 }
                                 else {

@@ -22,8 +22,19 @@ export class FileUpload {
         if (f.files.length == 0) { return; }
 
         const formData = new FormData();
-        for (var i = 0; i < f.files.length; i++) {
-            formData.append(f.name, f.files[i]);
+
+        const ppl = $(pl).getFirstParent("[file-parameter-panel]").getFirstElement();
+        if (ppl != null) {
+            ppl.querySelectorAll("input,textarea,select").forEach(childNode => {
+                if (childNode.nodeType == Node.ELEMENT_NODE) {
+                    this.appendFormValue(formData, childNode as HTMLElement);
+                }
+            });
+        }
+
+        const files = Array.from(f.files ?? []);
+        for (const file of files) {
+            formData.append(f.name, file);
         }
 
         const cl = this.createHttpClient();
@@ -32,5 +43,35 @@ export class FileUpload {
                 target: target,
                 event: e,
             });
+        f.value = "";
+    }
+    private appendFormValue(formData: FormData, element: HTMLElement) {
+        const name = element.getAttribute("name");
+        if (name == null || name == "" || element.hasAttribute("disabled")) { return; }
+
+        if (element.tagName.toLowerCase() == "select") {
+            const selectElement = element as HTMLSelectElement;
+            if (selectElement.multiple) {
+                Array.from(selectElement.selectedOptions).forEach(option => {
+                    formData.append(name, option.value);
+                });
+            }
+            else if (selectElement.selectedIndex > -1) {
+                formData.append(name, selectElement.options[selectElement.selectedIndex].value);
+            }
+            return;
+        }
+        if (element.tagName.toLowerCase() != "input" && element.tagName.toLowerCase() != "textarea") { return; }
+
+        const inputElement = element as HTMLInputElement;
+        const type = (inputElement.getAttribute("type") || "").toLowerCase();
+        if (type == "file") { return; }
+        if (type == "checkbox" || type == "radio") {
+            if (inputElement.checked) {
+                formData.append(name, inputElement.value);
+            }
+            return;
+        }
+        formData.append(name, inputElement.value);
     }
 }

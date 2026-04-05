@@ -1,4 +1,46 @@
 export class HigLaboJson {
+    public static Parse(element: Element) {
+        const ee = new Array<Element>();
+
+        let hxInclude = element.getAttribute("hx-include");
+
+        if (hxInclude == null) {
+            hxInclude = "this";
+        }
+        const ss = hxInclude.split(",");
+        for (var i = 0; i < ss.length; i++) {
+            let selector = ss[i];
+            if (selector.startsWith("closest ")) {
+                selector = selector.substring(8);
+                ee.push(element.closest(selector));
+            }
+            else if (selector == "this") {
+                ee.push(element);
+            }
+            else {
+                document.querySelectorAll(selector).forEach((e) => {
+                    ee.push(e);
+                });
+            }
+        }
+
+        let p: any = {};
+        for (var eIndex = 0; eIndex < ee.length; eIndex++) {
+            const el = ee[eIndex];
+            if (el == null) { continue; }
+            const name = el.getAttribute("name");
+
+            if (name != "" && el.getAttribute("hig-property-type") == "Array") {
+                let rr = [];
+                p[name] = rr;
+                this.processArrayParameter(rr, ee[eIndex]);
+            }
+            else {
+                this.processParameter(p, ee[eIndex]);
+            }
+        }
+        return p;
+    }
     public static processParameter(parameter, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
@@ -80,7 +122,12 @@ export class HigLaboJson {
                             }
                             else {
                                 let r = {};
-                                if (childElement.getAttribute("contenteditable") == "true") {
+                                if (childElement.hasAttribute("item-group") == true) {
+                                    if (childElement.getAttribute("current") == "true") {
+                                        parameter[name] = childElement.getAttribute("value");
+                                    }
+                                }
+                                else if (childElement.getAttribute("contenteditable") == "true") {
                                     r[name] = childElement.innerHTML;
                                 }
                                 else {
@@ -130,7 +177,12 @@ export class HigLaboJson {
                                 parameter[name] = childElement.getAttribute("src");
                             }
                             else {
-                                if (childElement.getAttribute("contenteditable") == "true") {
+                                if (childElement.hasAttribute("item-group") == true) {
+                                    if (childElement.getAttribute("current") == "true") {
+                                        parameter[name] = childElement.getAttribute("value");
+                                    }
+                                }
+                                else if (childElement.getAttribute("contenteditable") == "true") {
                                     parameter[name] = childElement.innerHTML;
                                 }
                                 else {
