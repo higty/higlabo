@@ -1,24 +1,45 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace HigLabo.Core;
 
 public static class StreamExtensions
 {
-    public static Byte[] ToByteArray(this Stream stream)
+    public static byte[] ToByteArray(this Stream stream)
     {
-        var mm = new MemoryStream();
-        stream.CopyTo(mm);
-        return mm.ToArray();
+        using var ms = new MemoryStream();
+        stream.CopyTo(ms);
+        return ms.ToArray();
     }
-    public static void Write(this Stream stream, Byte[] data)
+
+    public static void Write(this Stream stream, byte[] data)
     {
         stream.Write(data, 0, data.Length);
     }
-    public static void CopyTo(this Stream source, Stream target)
+
+    public static async ValueTask<Stream> ConvertEncodingStreamAsync(this Stream sourceStream, Encoding sourceEncoding, Encoding targetEncoding)
     {
-        var bb = new Byte[source.Length];
-        source.ReadExactly(bb);
-        target.Write(bb, 0, bb.Length);
+        if (sourceStream == null) throw new ArgumentNullException(nameof(sourceStream));
+        if (sourceEncoding == null) throw new ArgumentNullException(nameof(sourceEncoding));
+        if (targetEncoding == null) throw new ArgumentNullException(nameof(targetEncoding));
+
+        if (sourceStream.CanSeek)
+        {
+            sourceStream.Position = 0;
+        }
+
+        using var reader = new StreamReader(
+            sourceStream,
+            sourceEncoding,
+            detectEncodingFromByteOrderMarks: true,
+            leaveOpen: true);
+
+        var text = await reader.ReadToEndAsync();
+
+        var targetBytes = targetEncoding.GetBytes(text);
+        var targetStream = new MemoryStream(targetBytes, writable: false);
+        targetStream.Position = 0;
+        return targetStream;
     }
 }

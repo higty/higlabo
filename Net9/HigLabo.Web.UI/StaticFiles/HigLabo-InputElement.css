@@ -297,6 +297,9 @@ select {
 select:hover {
   background-color: var(--color-form-element-hover);
 }
+select:focus {
+  border-color: var(--color-form-element-focus);
+}
 
 input[type=text],
 input[type=password],

@@ -63,6 +63,7 @@ public partial class OpenAIClient
     public GroqSettings GroqSettings { get; init; } = new();
     public DeepSeekSettings DeepSeekSettings { get; init; } = new();
     public LocalhostSettings LocalhostSettings { get; init; } = new("https://localhost:11434");
+    public Func<string, bool> ResponseTextStreamEventNameFilter = DefaultTextResponseStreamEventNameFilter;
 
     public OpenAIClient(string apiKey)
     {
@@ -344,6 +345,14 @@ public partial class OpenAIClient
         return requestContent;
     }
 
+    private static bool DefaultTextResponseStreamEventNameFilter(string eventName)
+    {
+        return string.Equals(eventName, "response.output_text.delta", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(eventName, "response.refusal.delta", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(eventName, "response.reasoning_text.delta", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(eventName, "response.function_call_arguments.delta", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(eventName, "response.reasoning_summary_text.delta", StringComparison.OrdinalIgnoreCase);
+    }
     public async IAsyncEnumerable<ServerSentEventLine> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
         where TParameter : RestApiParameter, IRestApiParameter
     {
@@ -512,10 +521,7 @@ public partial class OpenAIClient
                     }
                     result.EventList.Add(streamEvent);
                 }
-                if (string.Equals(eventName, "response.output_text.delta", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(eventName, "response.refusal.delta", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(eventName, "response.function_call_arguments.delta", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(eventName, "response.reasoning_summary_text.delta", StringComparison.OrdinalIgnoreCase))
+                if (this.ResponseTextStreamEventNameFilter(eventName))
                 {
                     var delta = OpenAIClient.JsonConverter.DeserializeObject<ResponseDeltaObject>(text);
                     if (delta != null)

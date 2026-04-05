@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 
 namespace HigLabo.OpenAI;
 
@@ -33,6 +34,29 @@ public class ResponseObject
     public string? Truncation { get; set; }
     public ResponseUsageResult Usage { get; set; } = new();
     public string User { get; set; } = "";
+
+    public string GetOutputText()
+    {
+        var sb = new StringBuilder(256);
+        foreach (var output in this.Output)
+        {
+            switch (output.Type)
+            {
+                case "message":
+                    foreach (var content in output.Content)
+                    {
+                        switch (content.Type)
+                        {
+                            case "output_text": sb.Append(content.Text); break;
+                            default: break;
+                        }
+                    }
+                    break;
+                default: break;
+            }
+        }
+        return sb.ToString();
+    }
 }
 public class ResponseObjectResponse : RestApiResponse
 {
@@ -65,6 +89,29 @@ public class ResponseObjectResponse : RestApiResponse
     public string? Truncation { get; set; }
     public ResponseUsageResult Usage { get; set; } = new();
     public string User { get; set; } = "";
+
+    public string GetOutputText()
+    {
+        var sb = new StringBuilder(256);
+        foreach (var output in this.Output)
+        {
+            switch (output.Type)
+            {
+                case "message":
+                    foreach (var content in output.Content)
+                    {
+                        switch (content.Type)
+                        {
+                            case "output_text": sb.Append(content.Text); break;
+                            default: break;
+                        }
+                    }
+                    break;
+                default: break;
+            }
+        }
+        return sb.ToString();
+    }
 }
 public class IncompleteDetails
 {

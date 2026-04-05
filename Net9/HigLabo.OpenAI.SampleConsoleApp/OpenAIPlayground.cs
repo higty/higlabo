@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateFunctionCalling();
+        await ResponseCreateLMStudio();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -637,6 +637,31 @@ public class OpenAIPlayground
         Console.WriteLine("Total tokens: " + result.Response?.Response?.Usage.Total_Tokens);
 
         Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateLMStudio()
+    {
+        var cl = new OpenAIClient(new LocalhostSettings("http://127.0.0.1:1234/v1"));
+        var message = "マーケティングの概念について1つ選び、詳細に解説してください。";
+
+        try
+        {
+            var p = new ResponseCreateParameter();
+            p.Model = "qwen_qwen3.5-9b";
+            //p.Model = "qwen2.5-7b-instruct";
+            p.Model = "llm-jp-4-32b-a3b-thinking";
+            p.AddUserMessage(message);
+
+            var result = new ResponseStreamResult();
+            await foreach (var text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+            {
+                Console.Write(text);
+            }
+            var res = result.Response;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
     }
 
     private async ValueTask ResponseCreateFileSearchStream()

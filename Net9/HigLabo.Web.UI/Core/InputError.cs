@@ -30,21 +30,24 @@ public class InputError
 
 public class InputErrorData
 {
-    public Dictionary<string, InputValidateResult> ResultList { get; } = new();
+    public List<InputError> ResultList { get; } = new();
 
     public void Add(string key, string message)
     {
-        ResultList.Add(key, new InputValidateResult(false, message));
+        ResultList.Add(new InputError(key, message));
     }
     public void Add(string key, InputValidateResult result)
     {
-        ResultList.Add(key, result);
+        if (result.Valid == false)
+        {
+            ResultList.Add(new InputError(key, result.Message));
+        }
     }
     public void Add(bool condition, string key, string message)
     {
         if (condition)
         {
-            ResultList.Add(key, new InputValidateResult(false, message));
+            ResultList.Add(new InputError(key, message));
         }
     }
 
@@ -55,27 +58,27 @@ public class InputErrorData
     public List<InputError> GetInputErrorList(string errorPopupMessage)
     {
         var l = new List<InputError>();
-        foreach (var kv in this.ResultList)
+        foreach (var item in this.ResultList)
         {
-            if (kv.Value.Valid == false)
+            var error = l.Find(x => x.Key == item.Key);
+            if (error == null)
             {
-                var error = l.Find(el => el.Key == kv.Key);
-                if (error == null)
-                {
-                    error = new InputError();
-                    error.Key = kv.Key; 
-                    error.Message = kv.Value.Message;
-                    l.Add(error);
-                }
-                else
-                {
-                    error.Message = Environment.NewLine + kv.Value.Message;
-                }
+                error = new InputError();
+                error.Key = item.Key;
+                error.Message = item.Message;
+                l.Add(error);
+            }
+            else
+            {
+                error.Message = Environment.NewLine + item.Message;
             }
         }
         if (l.Count > 0 && errorPopupMessage.HasValue())
         {
-            l.Add(InputError.CreateErrorPopup(errorPopupMessage));
+            if (l.Exists(x => x.Key == "ErrorPopup") == false)
+            {
+                l.Add(InputError.CreateErrorPopup(errorPopupMessage));
+            }
         }
         return l;
     }
@@ -88,6 +91,6 @@ public class InputErrorData
     }
     public void AddErrorPopup(string message)
     {
-        this.ResultList.Add("ErrorPopup", new InputValidateResult(false, message));
+        this.ResultList.Add(new InputError("ErrorPopup", message));
     }
 }
