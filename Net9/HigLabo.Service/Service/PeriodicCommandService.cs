@@ -1,133 +1,149 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
+using System;
+using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace HigLabo.Service;
 
-public class PeriodicCommandService
+public class PeriodicCommandService : IDisposable, IAsyncDisposable
 {
-    private Thread? _Thread = null;
+    private readonly ConcurrentDictionary<PeriodicCommand, Byte> _CommandMap = new();
+    private readonly CancellationTokenSource _CancellationTokenSource = new();
+    private Task _ProcessingTask;
 
-    private Object _LockObject = new Object();
-    private DateTime _LatestExecuteTime = DateTime.MinValue;
-    private List<PeriodicCommand> _CommandList = new List<PeriodicCommand>();
+    private Int64 _IsDisposed = 0;
+    private PeriodicTimer? _Timer = null;
 
     public event EventHandler<ServiceCommandEventArgs>? Error;
     public String Name { get; set; } = "";
-    public Boolean IsStarted { get; set; } = false;
+    public Boolean IsStarted { get; private set; } = false;
     public Boolean Available { get; set; } = true;
     public Int32 IntervalSeconds { get; set; } = 60;
 
     public PeriodicCommandService(String name)
     {
         this.Name = name;
+        _ProcessingTask = Task.Run(this.ProcessLoopAsync);
     }
-    public void StartThread()
+    private async Task ProcessLoopAsync()
     {
-        this.StartThread(thd => { });
-    }
-    public void StartThread(ThreadPriority priority)
-    {
-        this.StartThread(thd => thd.Priority = priority);
-    }
-    public void StartThread(Action<Thread> setPropertyFunc)
-    {
-        _Thread = new Thread(() => this.Start());
-        _Thread.Name = String.Format("{0}({1})", nameof(PeriodicCommandService), this.Name);
-        _Thread.Priority = ThreadPriority.BelowNormal;
-        _Thread.IsBackground = true;
-        if (setPropertyFunc != null)
-        {
-            setPropertyFunc(_Thread);
-        }
-        _Thread.Start();
-        this.IsStarted = true;
-    }
-    private void Start()
-    {
+        var cancellationToken = _CancellationTokenSource.Token;
 
-        while (true)
+        try
         {
-            try
+            while (cancellationToken.IsCancellationRequested == false)
             {
-                var now = DateTime.UtcNow;
-                _LatestExecuteTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
-                if (this.Available == false)
-                {
-                    Thread.Sleep(this.GetNextExecuteTimeSpan());
-                    continue;
-                }
-                this.WriteLog("started.");
+                this.ResetTimer();
+                this.IsStarted = true;
 
-                var l = new List<PeriodicCommand>();
-                lock (this._LockObject)
+                try
                 {
-                    foreach (var item in _CommandList)
+                    while (await _Timer!.WaitForNextTickAsync(cancellationToken).ConfigureAwait(false))
                     {
-                        l.Add(item);
-                    }
-                }
-                foreach (var cm in l)
-                {
-                    try
-                    {
-                        if (cm.IsExecute(_LatestExecuteTime))
+                        if (this.Available == false) { continue; }
+
+                        var utcNow = DateTime.UtcNow;
+                        foreach (var item in _CommandMap.Keys)
                         {
-                            if (cm.Service != null)
+                            try
                             {
-                                cm.Service.AddCommand(cm);
+                                if (item.IsExecute(utcNow))
+                                {
+                                    item.Service.AddCommand(item);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                try
+                                {
+                                    this.Error?.Invoke(this, new ServiceCommandEventArgs(item, ex));
+                                }
+                                catch { }
+                                this.WriteLog(ex.ToString());
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        try
-                        {
-                            this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
-                        }
-                        catch { }
-                        this.WriteLog(ex.ToString());
-                    }
                 }
-                Thread.Sleep(this.GetNextExecuteTimeSpan());
+                catch (OperationCanceledException)
+                {
+                    throw;
+                }
+                catch (ObjectDisposedException) when (cancellationToken.IsCancellationRequested == false)
+                {
+                }
             }
-            catch (Exception ex)
-            {
-                this.WriteLog(ex.ToString());
-                Thread.Sleep(this.GetNextExecuteTimeSpan());
-            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        finally
+        {
+            this.IsStarted = false;
+            _Timer?.Dispose();
+        }
+    }
+    private void ResetTimer()
+    {
+        var intervalSeconds = this.IntervalSeconds;
+        if (intervalSeconds <= 0)
+        {
+            intervalSeconds = 1;
+        }
+
+        var nextInterval = TimeSpan.FromSeconds(intervalSeconds);
+        if (_Timer == null)
+        {
+            _Timer = new PeriodicTimer(nextInterval);
+            return;
+        }
+
+        if (_Timer.Period != nextInterval)
+        {
+            _Timer.Dispose();
+            _Timer = new PeriodicTimer(nextInterval);
         }
     }
     private void WriteLog(string text)
     {
         System.Diagnostics.Trace.WriteLine($"{DateTime.UtcNow.ToString("yyyy/MM/dd HH:mm:ss.fff")} {this.Name} {text}");
     }
-    private TimeSpan GetNextExecuteTimeSpan()
-    {
-        var now = DateTime.UtcNow;
-        var scheduleTime = _LatestExecuteTime.AddSeconds(this.IntervalSeconds);
-        return scheduleTime - now;
-    }
-
     public void AddCommand(PeriodicCommand command)
     {
-        lock (this._LockObject)
-        {
-            _CommandList.Add(command);
-        }
+        ThrowIfDisposed();
+        _CommandMap.TryAdd(command, 0);
     }
     public void AddCommand(IEnumerable<PeriodicCommand> commandList)
     {
-        lock (this._LockObject)
+        ThrowIfDisposed();
+        foreach (var command in commandList)
         {
-            foreach (var command in commandList)
-            {
-                _CommandList.Add(command);
-            }
+            _CommandMap.TryAdd(command, 0);
+        }
+    }
+    public async ValueTask StopAsync()
+    {
+        if (Interlocked.Exchange(ref _IsDisposed, 1) == 1) { return; }
+
+        _CancellationTokenSource.Cancel();
+        _Timer?.Dispose();
+        await _ProcessingTask.ConfigureAwait(false);
+
+        _CancellationTokenSource.Dispose();
+        _CommandMap.Clear();
+    }
+    public void Dispose()
+    {
+        this.StopAsync().AsTask().GetAwaiter().GetResult();
+    }
+    public ValueTask DisposeAsync()
+    {
+        return this.StopAsync();
+    }
+    private void ThrowIfDisposed()
+    {
+        if (Volatile.Read(ref _IsDisposed) == 1)
+        {
+            throw new ObjectDisposedException(nameof(PeriodicCommandService));
         }
     }
 }

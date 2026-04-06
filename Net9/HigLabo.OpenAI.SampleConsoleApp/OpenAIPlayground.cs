@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ResponseCreateLMStudio();
+        await ImageGeneration();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -1206,8 +1206,7 @@ public class OpenAIPlayground
 
         var p = new ImagesGenerationsParameter();
         p.Prompt = "A photorealistic image of a beautiful landscape under a blue sky. The scene features a wide, lush green field, with the sun shining brightly and casting soft shadows. The sky is a clear, deep blue with a few fluffy white clouds scattered around. The field is vibrant and green, giving a sense of calm and tranquility. The image should have a high-resolution, 4K-like quality, capturing the details of the grass, the texture of the clouds, and the vividness of the blue sky.";
-        //p.Model = "dall-e-3";
-        p.Model = "gpt-image-1";
+        p.Model = "gpt-image-1.5";
         p.Quality = "medium";
 
         Console.WriteLine($"{DateTimeOffset.Now.ChangeTimeZone(9).ToString()} Image generation started");

@@ -1,7 +1,10 @@
-﻿using System;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Channels;
+using System.Threading.Tasks;
 
 namespace HigLabo.Service;
 
@@ -11,8 +14,14 @@ public enum BackgroundCommandServiceState
     Executing,
     Suspend,
 }
-public class BackgroundService
+public class BackgroundService : IDisposable, IAsyncDisposable
 {
+    private sealed class QueuedCommand
+    {
+        public required Int64 Id { get; init; }
+        public required ServiceCommand Command { get; init; }
+    }
+
     public class BackgroundServiceLog
     {
         private Object _LockObject = new Object();
@@ -63,40 +72,40 @@ public class BackgroundService
     public event EventHandler<ServiceCommandEventArgs>? Executed;
     public event EventHandler<ServiceCommandEventArgs>? Error;
 
-    private Thread? _Thread = null;
-    private AutoResetEvent _AutoResetEvent = new AutoResetEvent(true);
-    private Object _LockObject = new Object();
-    private Queue<ServiceCommand> _CommandList = new ();
+    private readonly Channel<QueuedCommand> _Channel = Channel.CreateUnbounded<QueuedCommand>(new UnboundedChannelOptions()
+    {
+        SingleReader = true,
+        AllowSynchronousContinuations = false,
+    });
+    private readonly ConcurrentDictionary<Int64, ServiceCommand> _PendingCommandMap = new();
+    private readonly SemaphoreSlim _ResumeSignal = new SemaphoreSlim(0, 1);
+    private readonly CancellationTokenSource _CancellationTokenSource = new CancellationTokenSource();
+
+    private readonly Task _ProcessingTask;
     private ServiceCommand? _CurrentCommand = null;
     private Int64 _ExecutingCommandCount = 0;
-    private Boolean _IsStarted = false;
+    private Int64 _NextCommandId = 0;
     private Int64 _IsSuspend = 0;
+    private Int64 _IsDisposed = 0;
 
     public String Name { get; private set; }
     public BackgroundCommandServiceState State
     {
         get
         {
-            if (_IsStarted)
-            {
-                if (_IsSuspend == 1) { return BackgroundCommandServiceState.Suspend; }
-                else { return BackgroundCommandServiceState.Executing; }
-            }
-            else
-            {
-                return BackgroundCommandServiceState.Ready;
-            }
+            if (Volatile.Read(ref _IsDisposed) == 1) { return BackgroundCommandServiceState.Ready; }
+            if (_CurrentCommand != null) { return BackgroundCommandServiceState.Executing; }
+            if (_PendingCommandMap.IsEmpty == false) { return BackgroundCommandServiceState.Executing; }
+            if (_IsSuspend == 1) { return BackgroundCommandServiceState.Suspend; }
+            return BackgroundCommandServiceState.Ready;
         }
     }
-    public Int32 ThreadSleepSecondsPerCommand { get; set; }
+    public Int32 DelaySecondsPerCommand { get; set; }
     public Int32 CommandCount
     {
         get
         {
-            lock (_LockObject)
-            {
-                return _CommandList.Count + (Int32)_ExecutingCommandCount;
-            }
+            return _PendingCommandMap.Count + (Int32)Interlocked.Read(ref _ExecutingCommandCount);
         }
     }
     public BackgroundServiceLog Log { get; set; } = new BackgroundServiceLog();
@@ -104,85 +113,32 @@ public class BackgroundService
     public BackgroundService(String name, Int32 threadSleepSecondsPerCommand)
     {
         this.Name = name;
-        this.ThreadSleepSecondsPerCommand = threadSleepSecondsPerCommand;
+        this.DelaySecondsPerCommand = threadSleepSecondsPerCommand;
+        _ProcessingTask = Task.Run(this.ProcessLoopAsync);
     }
-    public void StartThread()
+    private async Task ProcessLoopAsync()
     {
-        this.StartThread(thd => { });
-    }
-    public void StartThread(ThreadPriority priority)
-    {
-        this.StartThread(thd => thd.Priority = priority);
-    }
-    public void StartThread(Action<Thread> setPropertyFunc)
-    {
-        if (_Thread != null) { throw new InvalidOperationException("You can't call StartThread method twice."); }
+        var cancellationToken = _CancellationTokenSource.Token;
+        var scheduledCommandQueue = new PriorityQueue<QueuedCommand, DateTimeOffset>();
 
-        _Thread = new Thread(async () => await this.Start());
-        _Thread.Name = String.Format("{0}({1})", nameof(BackgroundService), this.Name);
-        _Thread.IsBackground = true;
-        _Thread.Priority = ThreadPriority.BelowNormal;
-
-        if (setPropertyFunc != null)
+        try
         {
-            setPropertyFunc(_Thread);
-        }
-        _Thread.Start();
-        _IsStarted = true;
-    }
-    private async ValueTask Start()
-    {
-        var l = new List<ServiceCommand>();
-        var skipCommandList = new List<ServiceCommand>();
-
-        while (true)
-        {
-            if (_IsSuspend == 1)
+            while (cancellationToken.IsCancellationRequested == false)
             {
-                _AutoResetEvent.WaitOne();
-                continue;
-            }
+                await this.WaitWhileSuspendedAsync(cancellationToken).ConfigureAwait(false);
+                var queuedCommand = await this.DequeueNextCommandAsync(scheduledCommandQueue, cancellationToken).ConfigureAwait(false);
+                if (queuedCommand == null) { continue; }
 
-            var now = DateTimeOffset.Now;
-            DateTimeOffset? minNextStartTime = null;
+                _PendingCommandMap.TryRemove(queuedCommand.Id, out _);
+                var cm = queuedCommand.Command;
 
-            l.Clear();
-            skipCommandList.Clear();
-            lock (_LockObject)
-            {
-                while (_CommandList.TryDequeue(out var cm))
-                {
-                    if (cm == null) { continue; }
-                    //Not execute command until schedule time will come.
-                    if (cm.ScheduleTime > now)
-                    {
-                        skipCommandList.Add(cm);
-                        if (minNextStartTime == null || minNextStartTime > cm.ScheduleTime)
-                        {
-                            minNextStartTime = cm.ScheduleTime;
-                        }
-                        continue;
-                    }
-                    else
-                    {
-                        Interlocked.Exchange(ref _ExecutingCommandCount, l.Count);
-                        l.Add(cm);
-                    }
-                }
-                foreach (var cm in skipCommandList)
-                {
-                    _CommandList.Enqueue(cm);
-                }
-            }
-
-            foreach (var cm in l)
-            {
                 try
                 {
                     var sw = Stopwatch.StartNew();
                     cm.StartTime = DateTimeOffset.Now;
                     _CurrentCommand = cm;
-                    await cm.ExecuteAsync();
+                    Interlocked.Exchange(ref _ExecutingCommandCount, 1);
+                    await cm.ExecuteAsync().ConfigureAwait(false);
                     cm.EndTime = DateTimeOffset.Now;
                     sw.Stop();
 
@@ -202,30 +158,77 @@ public class BackgroundService
                 finally
                 {
                     _CurrentCommand = null;
+                    Interlocked.Exchange(ref _ExecutingCommandCount, 0);
                 }
-                if (this.ThreadSleepSecondsPerCommand > 0)
+
+                if (this.DelaySecondsPerCommand > 0)
                 {
-                    Thread.Sleep(this.ThreadSleepSecondsPerCommand);
+                    await Task.Delay(TimeSpan.FromSeconds(this.DelaySecondsPerCommand), cancellationToken).ConfigureAwait(false);
                 }
             }
-
-            if (minNextStartTime.HasValue)
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        finally
+        {
+            _CurrentCommand = null;
+            Interlocked.Exchange(ref _ExecutingCommandCount, 0);
+        }
+    }
+    private async ValueTask WaitWhileSuspendedAsync(CancellationToken cancellationToken)
+    {
+        while (Volatile.Read(ref _IsSuspend) == 1)
+        {
+            await _ResumeSignal.WaitAsync(cancellationToken).ConfigureAwait(false);
+        }
+    }
+    private async ValueTask<QueuedCommand?> DequeueNextCommandAsync(PriorityQueue<QueuedCommand, DateTimeOffset> scheduledCommandQueue, CancellationToken cancellationToken)
+    {
+        while (cancellationToken.IsCancellationRequested == false)
+        {
+            if (scheduledCommandQueue.TryPeek(out _, out var nextScheduleTime))
             {
-                var ts = minNextStartTime.Value - DateTimeOffset.Now;
-                if (ts.TotalMilliseconds > 0)
+                var delay = nextScheduleTime - DateTimeOffset.Now;
+                if (delay <= TimeSpan.Zero)
                 {
-                    _AutoResetEvent.WaitOne((Int32)ts.TotalMilliseconds);
+                    return scheduledCommandQueue.Dequeue();
                 }
-                else
+
+                var waitToReadTask = _Channel.Reader.WaitToReadAsync(cancellationToken).AsTask();
+                var delayTask = Task.Delay(delay, cancellationToken);
+                var completedTask = await Task.WhenAny(waitToReadTask, delayTask).ConfigureAwait(false);
+                if (completedTask == delayTask)
                 {
                     continue;
                 }
+
+                if (await waitToReadTask.ConfigureAwait(false))
+                {
+                    while (_Channel.Reader.TryRead(out var queuedCommand))
+                    {
+                        this.BufferCommand(scheduledCommandQueue, queuedCommand);
+                    }
+                }
+                continue;
             }
-            else
+
+            var queued = await _Channel.Reader.ReadAsync(cancellationToken).ConfigureAwait(false);
+            this.BufferCommand(scheduledCommandQueue, queued);
+            if (scheduledCommandQueue.TryPeek(out _, out nextScheduleTime) == false || nextScheduleTime <= DateTimeOffset.Now)
             {
-                _AutoResetEvent.WaitOne();
+                if (scheduledCommandQueue.Count > 0)
+                {
+                    return scheduledCommandQueue.Dequeue();
+                }
             }
         }
+        return null;
+    }
+    private void BufferCommand(PriorityQueue<QueuedCommand, DateTimeOffset> scheduledCommandQueue, QueuedCommand queuedCommand)
+    {
+        var scheduleTime = queuedCommand.Command.ScheduleTime ?? DateTimeOffset.MinValue;
+        scheduledCommandQueue.Enqueue(queuedCommand, scheduleTime);
     }
     public void Suspend()
     {
@@ -233,28 +236,41 @@ public class BackgroundService
     }
     public void Resume()
     {
-        Interlocked.Exchange(ref _IsSuspend, 0);
-        _AutoResetEvent.Set();
+        if (Interlocked.Exchange(ref _IsSuspend, 0) == 1)
+        {
+            if (_ResumeSignal.CurrentCount == 0)
+            {
+                _ResumeSignal.Release();
+            }
+        }
     }
     public void AddCommand(ServiceCommand command)
     {
-        lock (_LockObject)
+        ThrowIfDisposed();
+
+        var queuedCommand = new QueuedCommand()
         {
-            _CommandList.Enqueue(command);
-        }
-        _AutoResetEvent.Set();
+            Id = Interlocked.Increment(ref _NextCommandId),
+            Command = command,
+        };
+        _PendingCommandMap[queuedCommand.Id] = command;
+        _Channel.Writer.TryWrite(queuedCommand);
     }
     public void AddCommand(IEnumerable<ServiceCommand> commandList)
     {
-        lock (_LockObject)
+        ThrowIfDisposed();
+
+        foreach (var command in commandList)
         {
-            foreach (var command in commandList)
+            if (command == null) { continue; }
+            var queuedCommand = new QueuedCommand()
             {
-                if (command == null) { continue; }
-                _CommandList.Enqueue(command);
-            }
+                Id = Interlocked.Increment(ref _NextCommandId),
+                Command = command,
+            };
+            _PendingCommandMap[queuedCommand.Id] = command;
+            _Channel.Writer.TryWrite(queuedCommand);
         }
-        _AutoResetEvent.Set();
     }
 
     public ServiceCommand? GetCurrentCommand()
@@ -263,15 +279,42 @@ public class BackgroundService
     }
     public List<ServiceCommand> GetCommandList()
     {
-        var l = new List<ServiceCommand>();
-        lock (_LockObject)
-        {
-            foreach (var item in _CommandList)
-            {
-                l.Add(item);
-            }
-        }
-        return l;
-    }
+        var l = new List<KeyValuePair<Int64, ServiceCommand>>(_PendingCommandMap);
+        l.Sort((x, y) => x.Key.CompareTo(y.Key));
 
+        var result = new List<ServiceCommand>(l.Count);
+        foreach (var item in l)
+        {
+            result.Add(item.Value);
+        }
+        return result;
+    }
+    public async ValueTask StopAsync()
+    {
+        if (Interlocked.Exchange(ref _IsDisposed, 1) == 1) { return; }
+
+        _CancellationTokenSource.Cancel();
+        _Channel.Writer.TryComplete();
+        this.Resume();
+        await _ProcessingTask.ConfigureAwait(false);
+
+        _ResumeSignal.Dispose();
+        _CancellationTokenSource.Dispose();
+        _PendingCommandMap.Clear();
+    }
+    public void Dispose()
+    {
+        this.StopAsync().AsTask().GetAwaiter().GetResult();
+    }
+    public ValueTask DisposeAsync()
+    {
+        return this.StopAsync();
+    }
+    private void ThrowIfDisposed()
+    {
+        if (Volatile.Read(ref _IsDisposed) == 1)
+        {
+            throw new ObjectDisposedException(nameof(BackgroundService));
+        }
+    }
 }
