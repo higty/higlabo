@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using AgileObjects;
 using BenchmarkDotNet.Attributes;
 using HigLabo.Mapper.PerformanceTest;
+using Microsoft.Extensions.Logging;
 
 namespace HigLabo.Mapper.TestNotSupported;
 
@@ -23,7 +24,7 @@ public class NotSupportedTest
         _AutoMapperConfiguration = new AutoMapper.MapperConfiguration(config => {
             config.CreateMap<Building, Building>();
             config.CreateMap<TreeNode, TreeNode>();
-        });
+        }, new LoggerFactory());
         var mapper = _AutoMapperConfiguration.CreateMapper();
         var b1 = new Building();
         var b2 = mapper.Map<Building>(b1);
