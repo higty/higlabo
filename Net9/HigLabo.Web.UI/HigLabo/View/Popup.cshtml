@@ -19,7 +19,7 @@
     </div>
 </dialog>
 <div id="data-record-popup-panel" class="data-record-popup-panel display-none"
-     hx-trigger="search from:body" hx-include="#data-record-popup-panel [parameter-panel]"
+     hx-trigger="data-record-popup-panel-search from:body" hx-include="#data-record-popup-panel [parameter-panel]"
      hx-post="" hx-ext="json-higlabo"
      hx-target="#data-record-popup-panel [record-list-panel]" hx-swap="innerHTML">
     <div class="header-panel" parameter-panel="true">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="content-panel">
+    <div class="content-panel" parameter-panel="true">
         <div class="record-list-panel" record-list-panel="true"></div>
     </div>
     <div class="footer-panel" footer-panel="true">

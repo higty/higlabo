@@ -170,7 +170,7 @@ export class DataRecordPopupPanel {
             }
         }.bind(this), 100);
         if ($(dpl).getAttribute("search-default-list") == "true") {
-            this.htmx.trigger("#data-record-popup-panel", "search");
+            this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
         }
     }
     getPositionPanel(element) {
@@ -270,11 +270,11 @@ export class DataRecordPopupPanel {
         $(div).find("input[type='text']").setFocus();
     }
     searchButton_Click(element, e) {
-        this.htmx.trigger("#data-record-popup-panel", "search");
+        this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
     }
     searchTextbox_Keydown(element, e) {
         if (e.key == "Enter") {
-            this.htmx.trigger("#data-record-popup-panel", "search");
+            this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
         }
         if (e.key == "Escape") {
             this.hide();

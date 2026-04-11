@@ -14,6 +14,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Jobs;
+using Microsoft.Extensions.Logging;
 
 namespace HigLabo.Mapper.PerformanceTest;
 
@@ -46,7 +47,7 @@ public class MapperPerformanceTest
             config.CreateMap<Customer, Customer>();
             config.CreateMap<Customer, CustomerDTO>();
             config.CreateMap<Address, AddressDTO>();
-        });
+        }, new LoggerFactory());
         this.AutoMapper = _AutoMapperConfiguration.CreateMapper();
 
         TinyMapper.Bind<Address, Address>();

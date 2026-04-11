@@ -180,7 +180,7 @@ export class DataRecordPopupPanel {
         }.bind(this), 100);
 
         if ($(dpl).getAttribute("search-default-list") == "true") {
-            this.htmx.trigger("#data-record-popup-panel", "search");
+            this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
         }
     }
 
@@ -281,11 +281,11 @@ export class DataRecordPopupPanel {
     }
 
     private searchButton_Click(element: Element, e: Event) {
-        this.htmx.trigger("#data-record-popup-panel", "search");
+        this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
     }
     private searchTextbox_Keydown(element: Element, e: KeyboardEvent) {
         if (e.key == "Enter") {
-            this.htmx.trigger("#data-record-popup-panel", "search");
+            this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
         }
         if (e.key == "Escape") {
             this.hide();
