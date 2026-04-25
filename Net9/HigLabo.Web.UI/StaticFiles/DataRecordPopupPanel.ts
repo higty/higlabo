@@ -206,6 +206,7 @@ export class DataRecordPopupPanel {
     private setPanelPosition(rect: DOMRect) {
         const dpl = this.getDataRecordPopupPanel();
         if (dpl == null) { return; }
+        if (rect.width == 0 && rect.height == 0) { return; }
 
         const scrollBarAdjustWidth = 20;
         const popupWidth = $(dpl).getOuterWidth();

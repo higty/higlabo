@@ -23,11 +23,38 @@
                 <ColumnDefinition Name="ResultSetGridRow" Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <TextBlock Text="{Binding Path=Name}" FontSize="16px" FontWeight="Bold"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+                    <TextBlock Text="{Binding Path=Name}" FontSize="16px" FontWeight="Bold"
                                            Padding="2" Height="25" VerticalAlignment="Top"/>
-                <DataGrid Name="ParameterListBox" 
+                    <Grid>
+                        <ComboBox Name="StoredProcedureListBox" ItemsSource="{Binding Path=StoredProcedureList}" 
+                                      MaxDropDownHeight="800" local:ComboboxHeight.Enable="True" Margin="0,0,60,0">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="FontSize" Value="18"/>
+                                    <Setter Property="Padding" Value="4"/>
+                                    <Setter Property="MinHeight" Value="28"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Name="CopyResultSetButton" Click="CopyResultSetButton_Click" Width="60"
+                            Content="Copy" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Right"></Button>
+                    </Grid>
+                </StackPanel>
+                <DataGrid Grid.Row="1" Name="ParameterListBox" 
                                           ItemsSource="{Binding Path=Parameters}"
-                                          AutoGenerateColumns="False" FrozenColumnCount="2" Margin="0,26,0,0">
+                                          AutoGenerateColumns="False" FrozenColumnCount="2" Margin="0">
                     <DataGrid.Columns>
                         <StaticResource ResourceKey="DataTypeOrdinal"/>
                         <StaticResource ResourceKey="DataTypeColumnName"/>

@@ -36,6 +36,7 @@ public partial class StoredProcedureWindow : Window
         get { return this.ViewModel.StoredProcedure; }
     }
     public List<DatabaseObject> TableList { get; init; } = new();
+    public List<DatabaseObject> StoredProcedureList { get; init; } = new();
 
     public StoredProcedureWindow(StoredProcedureWindowViewModel viewModel)
     {
@@ -48,6 +49,13 @@ public partial class StoredProcedureWindow : Window
 
         this.ResultSetListBox.SelectionChanged += ResultSetListBox_SelectionChanged;
         this.TableListBox.ItemsSource = this.TableList;
+
+        this.StoredProcedureList.Clear();
+        foreach (var item in this.ViewModel.GenerateSetting.StoredProcedureList.OrderBy(x => x.Name))
+        {
+            this.StoredProcedureList.Add(item);
+        }
+        this.StoredProcedureListBox.ItemsSource = this.StoredProcedureList;
 
         this.SetParameterProperty();
         ConfigData.Current.StoredProcedureWindow.Initialize(this);
@@ -223,7 +231,6 @@ public partial class StoredProcedureWindow : Window
     {
         this.SetStoredProcedureColumnAllowNullValue(false);
     }
-
     private void SetStoredProcedureColumnAllowNullValue(Boolean allowNull)
     {
         var sp = this.StoredProcedure;
@@ -236,6 +243,35 @@ public partial class StoredProcedureWindow : Window
         }
 
     }
+    private void CopyResultSetButton_Click(object sender, RoutedEventArgs e)
+    {
+        var sp = this.StoredProcedureListBox.SelectedItem as StoredProcedure;
+        if (sp == null) { return; }
+
+        foreach (var item in sp.Parameters)
+        {
+            var p = this.StoredProcedure.Parameters.Find(x => x.Name == item.Name);
+            if (p != null)
+            {
+                p.EnumName = item.EnumName;
+            }
+        }
+        for (int i = 0; i < sp.ResultSets.Count && i < this.StoredProcedure.ResultSets.Count; i++)
+        {
+            var resultSet = this.StoredProcedure.ResultSets[i];
+            resultSet.Name = sp.ResultSets[i].Name;
+            foreach (var item in sp.ResultSets[i].Columns)
+            {
+                var c = resultSet.Columns.Find(x => x.Name == item.Name);
+                if (c != null)
+                {
+                    c.AllowNull = item.AllowNull;
+                    c.EnumName = item.EnumName;
+                }
+            }
+        }
+    }
+
     private void GenerateButton_Click(object sender, RoutedEventArgs e)
     {
         var setting = this.ViewModel.GenerateSetting;

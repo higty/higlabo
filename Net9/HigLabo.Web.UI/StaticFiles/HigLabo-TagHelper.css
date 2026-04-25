@@ -288,6 +288,9 @@
   display: flex;
   align-items: center;
 }
+.loading-panel .loading-image {
+  flex-shrink: 0;
+}
 .loading-panel .text {
   margin-top: 3px;
   font-size: 18px;

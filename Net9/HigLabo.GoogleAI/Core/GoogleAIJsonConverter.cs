@@ -37,7 +37,7 @@ public class GoogleAIJsonConverter : IJsonConverter
             Debugger.Break();
             Debug.Write(ex.ToString());
 #else
-            throw;
+            throw new JsonDeserializeException(ex, json);
 #endif
         }
         return default(T)!;

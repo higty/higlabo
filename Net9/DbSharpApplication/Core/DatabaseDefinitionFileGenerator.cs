@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 
 namespace DbSharpApplication;
 
@@ -169,25 +170,19 @@ public class DatabaseDefinitionFileGenerator
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine("/*-------------------------------------");
-        sb.AppendLine(obj.Name);
-        foreach (var item in obj.DependencyList)
+        if (obj.DependencyList.Count == 0)
         {
-            sb.Append(item.ObjectType).Append(":").AppendLine(item.Name);
+            sb.AppendLine("/**************************************************************************/");
         }
-        sb.AppendLine("-------------------------------------*/");
-        switch (obj.ObjectType)
+        else
         {
-            case DatabaseObjectType.View:
-                sb.AppendFormat("DROP VIEW IF EXISTS dbo.[{0}]", obj.Name).AppendLine().AppendLine("GO");
-                break;
-            case DatabaseObjectType.StoredProcedure:
-                sb.AppendFormat("DROP PROCEDURE IF EXISTS dbo.[{0}]", obj.Name).AppendLine().AppendLine("GO");
-                break;
-            case DatabaseObjectType.StoredFunction:
-                sb.AppendFormat("DROP FUNCTION IF EXISTS dbo.[{0}]", obj.Name).AppendLine().AppendLine("GO");
-                break;
-            default:break;
+            sb.AppendLine("/***************************************************************************");
+            sb.AppendLine($"{obj.Name} has Dependency to");
+            foreach (var item in obj.DependencyList)
+            {
+                sb.AppendLine(item.Name);
+            }
+            sb.AppendLine("***************************************************************************/");
         }
         var sr = new StringReader(obj.BodyText);
         var commentPassed = false;
@@ -219,15 +214,32 @@ public class DatabaseDefinitionFileGenerator
         }
         else
         {
-            sb.AppendLine(obj.BodyText);
+            if (obj.BodyText.StartsWith("CREATE PROCEDURE ", StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine(obj.BodyText.Replace("CREATE PROCEDURE ", "CREATE OR ALTER PROCEDURE "));
+            }
+            else if (obj.BodyText.StartsWith("CREATE VIEW ", StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine(obj.BodyText.Replace("CREATE VIEW ", "CREATE OR ALTER VIEW "));
+            }
+            else if (obj.BodyText.StartsWith("CREATE FUNCTION ", StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine(obj.BodyText.Replace("CREATE FUNCTION ", "CREATE OR ALTER FUNCTION "));
+            }
+            else
+            {
+                sb.AppendLine(obj.BodyText);
+            }
         }
+        var body = sb.ToString().TrimEnd();
         if (obj.ObjectType != DatabaseObjectType.Table)
         {
-            sb.AppendLine("GO");
+            return $"{body}{Environment.NewLine}GO{Environment.NewLine}";
         }
-        sb.AppendLine("");
-
-        return sb.ToString();
+        else
+        {
+            return $"{body}{Environment.NewLine}";
+        }
     }
 
     public async Task<String> CreateTableSchemeJsonText()

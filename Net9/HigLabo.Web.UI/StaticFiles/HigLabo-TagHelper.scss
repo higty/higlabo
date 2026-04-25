@@ -38,6 +38,10 @@ $width-checkbox-circle: 20px;
     display: flex;
     align-items: center;
 
+    .loading-image {
+        flex-shrink: 0;
+    }
+
     .text {
         margin-top: 3px;
         font-size: 18px;
