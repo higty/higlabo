@@ -29,4 +29,9 @@ public class DatabaseObjectDefinition
     public List<String> InsertTableList { get; init; } = new List<string>();
     public List<String> UpdateTableList { get; init; } = new List<string>();
     public List<String> DeleteTableList { get; init; } = new List<string>();
+
+    public override string ToString()
+    {
+        return this.Name;
+    }
 }
