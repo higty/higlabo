@@ -29,7 +29,7 @@
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeScale" Header="Scale" Binding="{Binding Path=Scale}" IsReadOnly="True"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeUserTableTypeName" Header="UserTable" Binding="{Binding Path=UserTableTypeName}" IsReadOnly="True" Width="120"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeUdtTypeName" Header="UdtType" Binding="{Binding Path=UdtTypeName}" IsReadOnly="True" Width="120"></ctrl:DataGridTextColumn>
-            <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeEnumName" Header="EnumName" Binding="{Binding Path=EnumName}" Width="120"></ctrl:DataGridTextColumn>
+            <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeEnumName" Header="EnumName" Binding="{Binding Path=EnumName}" Width="200"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeEnumValues" Header="EnumValues" Binding="{Binding Path=EnumValues}" IsReadOnly="True" Width="120"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeValueForTest" Header="Value" Binding="{Binding Path=ValueForTest}" Width="120">
                 <DataGridTextColumn.HeaderTemplate>

@@ -10,7 +10,7 @@ public class FieldPanelDateTimeTextboxTagHelper : TagHelper
 {
     public string Text { get; set; } = "";
     public string Name { get; set; } = "";
-    public DateTime Value { get; set; } = DateTime.Now;
+    public DateTime? Value { get; set; } = DateTime.Now;
     public DateTimeFormat Format { get; set; } = DateTimeFormat.yyyyMMdd;
     public string MessageText { get; set; } = "";
     public string InputErrorKey { get; set; } = "";
@@ -31,7 +31,7 @@ public class FieldPanelDateTimeTextboxTagHelper : TagHelper
                 var input = new TagBuilder("input");
                 input.Attributes.Add("type", "text");
                 input.Attributes.Add("name", this.Name + "_Date");
-                input.Attributes.Add("value", this.Value.ToString(this.Format));
+                input.Attributes.Add("value", this.Value?.ToString(this.Format));
                 input.Attributes.Add("date-picker", "true");
                 input.AddCssClass("date");
                 if (this.AutoComplete.HasValue())
@@ -44,7 +44,7 @@ public class FieldPanelDateTimeTextboxTagHelper : TagHelper
                 var input = new TagBuilder("input");
                 input.Attributes.Add("type", "text");
                 input.Attributes.Add("name", this.Name + "_Time");
-                input.Attributes.Add("value", this.Value.ToString("hh:mm"));
+                input.Attributes.Add("value", this.Value?.ToString("HH:mm"));
                 input.Attributes.Add("auto-format", "time");
                 input.AddCssClass("time");
                 if (this.AutoComplete.HasValue())

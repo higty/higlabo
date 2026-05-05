@@ -256,8 +256,6 @@
   /* button */
   --color-button-bg: var(--color-set-primary-05);
   --color-button-text: var(--color-white);
-  --color-button-hover: var(--color-set-primary-07);
-  --color-button-focus: var(--color-set-primary-07);
 }
 
 .button {
@@ -312,18 +310,6 @@ a.large-button {
   background-color: var(--color-button-bg);
   color: var(--color-button-text);
 }
-.menu-button:focus,
-a.menu-button:focus,
-.button:focus,
-a.button:focus,
-.button-radius-4:focus,
-a.button-radius-4:focus,
-.button-radius-8:focus,
-a.button-radius-8:focus,
-.large-button:focus,
-a.large-button:focus {
-  background-color: var(--color-button-focus);
-}
 .menu-button:hover,
 a.menu-button:hover,
 .button:hover,
@@ -334,5 +320,17 @@ a.button-radius-4:hover,
 a.button-radius-8:hover,
 .large-button:hover,
 a.large-button:hover {
-  background-color: var(--color-button-hover);
+  background-color: color-mix(in srgb, var(--color-button-bg), white 30%);
+}
+.menu-button:focus,
+a.menu-button:focus,
+.button:focus,
+a.button:focus,
+.button-radius-4:focus,
+a.button-radius-4:focus,
+.button-radius-8:focus,
+a.button-radius-8:focus,
+.large-button:focus,
+a.large-button:focus {
+  background-color: color-mix(in srgb, var(--color-button-bg), white 50%);
 }

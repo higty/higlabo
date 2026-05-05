@@ -214,31 +214,18 @@ public class DatabaseDefinitionFileGenerator
         }
         else
         {
-            if (obj.BodyText.StartsWith("CREATE PROCEDURE ", StringComparison.OrdinalIgnoreCase))
-            {
-                sb.AppendLine(obj.BodyText.Replace("CREATE PROCEDURE ", "CREATE OR ALTER PROCEDURE "));
-            }
-            else if (obj.BodyText.StartsWith("CREATE VIEW ", StringComparison.OrdinalIgnoreCase))
-            {
-                sb.AppendLine(obj.BodyText.Replace("CREATE VIEW ", "CREATE OR ALTER VIEW "));
-            }
-            else if (obj.BodyText.StartsWith("CREATE FUNCTION ", StringComparison.OrdinalIgnoreCase))
-            {
-                sb.AppendLine(obj.BodyText.Replace("CREATE FUNCTION ", "CREATE OR ALTER FUNCTION "));
-            }
-            else
-            {
-                sb.AppendLine(obj.BodyText);
-            }
+            sb.AppendLine(obj.BodyText);
         }
-        var body = sb.ToString().TrimEnd();
-        if (obj.ObjectType != DatabaseObjectType.Table)
+        var body = Regex.Replace(sb.ToString().TrimEnd(), @"^\s*CREATE\s+(PROCEDURE|VIEW|FUNCTION)\s", "CREATE OR ALTER $1 "
+            , RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+        if (obj.ObjectType == DatabaseObjectType.Table)
         {
-            return $"{body}{Environment.NewLine}GO{Environment.NewLine}";
+            return $"{body}{Environment.NewLine}";
         }
         else
         {
-            return $"{body}{Environment.NewLine}";
+            return $"{body}{Environment.NewLine}GO{Environment.NewLine}";
         }
     }
 
