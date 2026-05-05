@@ -4,8 +4,6 @@
     /* button */
     --color-button-bg: var(--color-set-primary-05);
     --color-button-text: var(--color-white);
-    --color-button-hover: var(--color-set-primary-07);
-    --color-button-focus: var(--color-set-primary-07);
 }
 
 .button {
@@ -62,11 +60,11 @@ a.large-button {
     background-color: var(--color-button-bg);
     color: var(--color-button-text);
 
-    &:focus {
-        background-color: var(--color-button-focus);
+    &:hover {
+        background-color: color-mix(in srgb, var(--color-button-bg), white 30%);
     }
 
-    &:hover {
-        background-color: var(--color-button-hover);
+    &:focus {
+        background-color: color-mix(in srgb, var(--color-button-bg), white 50%);
     }
 }

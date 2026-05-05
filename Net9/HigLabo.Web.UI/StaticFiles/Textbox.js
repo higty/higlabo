@@ -33,6 +33,7 @@ export class Textbox {
         const formatted = formatter(raw, target);
         if (formatted !== null) {
             $(target).setValue(formatted);
+            target.dispatchEvent(new CustomEvent("value-normalized", { bubbles: true }));
         }
     }
     toHHmm(input) {
