@@ -1,5 +1,69 @@
 export class HigLaboJson {
-    public static processParameter(parameter, node: Node) {
+    public initialize() {
+        const j = this;
+
+        window["htmx"].defineExtension("higlabo-json", {
+            onEvent: function (name, evt) {
+                if (name === "htmx:configRequest") {
+                    evt.detail.headers["Content-Type"] = "application/json";
+                }
+            },
+            encodeParameters: function (xhr, parameters, element: Element) {
+                xhr.overrideMimeType("text/json");
+                const p = j.Parse(element);
+                return JSON.stringify(p);
+            },
+            processParameter: function (parameter, node: Node) {
+                j.processParameter(parameter, node);
+            },
+            processArrayParameter: function (arrayParameter: Array<any>, node: Node) {
+                j.processArrayParameter(arrayParameter, node);
+            },
+        });
+    }
+    public Parse(element: Element) {
+        const ee = new Array<Element>();
+
+        let hxInclude = element.getAttribute("hx-include");
+
+        if (hxInclude == null) {
+            hxInclude = "this";
+        }
+        const ss = hxInclude.split(",");
+        for (var i = 0; i < ss.length; i++) {
+            let selector = ss[i];
+            if (selector.startsWith("closest ")) {
+                selector = selector.substring(8);
+                ee.push(element.closest(selector));
+            }
+            else if (selector == "this") {
+                ee.push(element);
+            }
+            else {
+                document.querySelectorAll(selector).forEach((e) => {
+                    ee.push(e);
+                });
+            }
+        }
+
+        let p: any = {};
+        for (var eIndex = 0; eIndex < ee.length; eIndex++) {
+            const el = ee[eIndex];
+            if (el == null) { continue; }
+            const name = el.getAttribute("name");
+
+            if (name != "" && el.getAttribute("hig-property-type") == "Array") {
+                let rr = [];
+                p[name] = rr;
+                this.processArrayParameter(rr, ee[eIndex]);
+            }
+            else {
+                this.processParameter(p, ee[eIndex]);
+            }
+        }
+        return p;
+    }
+    public processParameter(parameter, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
                 const childElement = <HTMLElement>childNode;
@@ -45,7 +109,9 @@ export class HigLaboJson {
                             if (childElement.tagName.toLowerCase() == "select") {
                                 let selectElement = childElement as HTMLSelectElement;
                                 if (selectElement.selectedIndex > -1) {
-                                    parameter[name] = selectElement.options[selectElement.selectedIndex].value;
+                                    let r = {};
+                                    r[name] = selectElement.options[selectElement.selectedIndex].value;
+                                    parameter.push(r);
                                 }
                             }
                             if (childElement.tagName == "INPUT" || childElement.tagName == "TEXTAREA") {
@@ -71,9 +137,19 @@ export class HigLaboJson {
                                     parameter.push(r);
                                 }
                             }
+                            else if (childElement.tagName.toLowerCase() == "img") {
+                                let r = {};
+                                r[name] = childElement.getAttribute("src");
+                                parameter.push(r);
+                            }
                             else {
                                 let r = {};
-                                if (childElement.getAttribute("contenteditable") == "true") {
+                                if (childElement.hasAttribute("item-group") == true) {
+                                    if (childElement.getAttribute("current") == "true") {
+                                        parameter[name] = childElement.getAttribute("value");
+                                    }
+                                }
+                                else if (childElement.getAttribute("contenteditable") == "true") {
                                     r[name] = childElement.innerHTML;
                                 }
                                 else {
@@ -119,8 +195,16 @@ export class HigLaboJson {
                                     parameter[name] = inputElement.value;
                                 }
                             }
+                            else if (childElement.tagName.toLowerCase() == "img") {
+                                parameter[name] = childElement.getAttribute("src");
+                            }
                             else {
-                                if (childElement.getAttribute("contenteditable") == "true") {
+                                if (childElement.hasAttribute("item-group") == true) {
+                                    if (childElement.getAttribute("current") == "true") {
+                                        parameter[name] = childElement.getAttribute("value");
+                                    }
+                                }
+                                else if (childElement.getAttribute("contenteditable") == "true") {
                                     parameter[name] = childElement.innerHTML;
                                 }
                                 else {
@@ -134,7 +218,7 @@ export class HigLaboJson {
             }
         });
     }
-    public static processArrayParameter(arrayParameter: Array<any>, node: Node) {
+    public processArrayParameter(arrayParameter: Array<any>, node: Node) {
         node.childNodes.forEach((childNode) => {
             if (childNode.nodeType == Node.ELEMENT_NODE) {
                 const childElement = <HTMLElement>childNode;

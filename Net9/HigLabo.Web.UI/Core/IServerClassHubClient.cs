@@ -2,18 +2,18 @@
 
 namespace HigLabo.Web;
 
-public interface IServerClassHubClient
+public interface IClassInvokerHubClient
 {
-    Task ServerClassInvoke(string json);
+    Task Invoke(string json);
 }
 
-public static class IServerClassHubClientExtensions
+public static class IClassInvokerHubClientExtensions
 {
-    public static async Task ServerClassInvoke(this IServerClassHubClient client, string className, string functionName, string arguments)
+    public static async Task ClassInvoke(this IClassInvokerHubClient client, string className, string functionName, string arguments)
     {
-        await ServerClassInvoke(client, className, functionName, [arguments]);
+        await Invoke(client, className, functionName, [arguments]);
     }
-    public static async Task ServerClassInvoke(this IServerClassHubClient client, string className, string functionName, IEnumerable<string> arguments)
+    public static async Task Invoke(this IClassInvokerHubClient client, string className, string functionName, IEnumerable<string> arguments)
     {
         var r = new
         {
@@ -22,21 +22,21 @@ public static class IServerClassHubClientExtensions
             Args = arguments,
         };
         var json = JsonConvert.SerializeObject(r);
-        await client.ServerClassInvoke(json);
+        await client.Invoke(json);
     }
-    public static async Task HtmlElementQueryInvoke(this IServerClassHubClient client, string selector, string functionName)
+    public static async Task HtmlElementQueryInvoke(this IClassInvokerHubClient client, string selector, string functionName)
     {
         await HtmlElementQueryInvoke(client, selector, functionName, []);
     }
-    public static async Task HtmlElementQueryInvoke(this IServerClassHubClient client, string selector, string functionName, string arguments)
+    public static async Task HtmlElementQueryInvoke(this IClassInvokerHubClient client, string selector, string functionName, string arguments)
     {
         await HtmlElementQueryInvoke(client, selector, functionName, [arguments]);
     }
-    public static async Task HtmlElementQueryInvoke(this IServerClassHubClient client, string selector, string functionName, int arguments)
+    public static async Task HtmlElementQueryInvoke(this IClassInvokerHubClient client, string selector, string functionName, int arguments)
     {
         await HtmlElementQueryInvoke(client, selector, functionName, [arguments.ToString()]);
     }
-    public static async Task HtmlElementQueryInvoke(this IServerClassHubClient client, string selector, string functionName, IEnumerable<string> arguments)
+    public static async Task HtmlElementQueryInvoke(this IClassInvokerHubClient client, string selector, string functionName, IEnumerable<string> arguments)
     {
         var r = new
         {
@@ -46,6 +46,6 @@ public static class IServerClassHubClientExtensions
             Args = arguments,
         };
         var json = JsonConvert.SerializeObject(r);
-        await client.ServerClassInvoke(json);
+        await client.Invoke(json);
     }
 }
