@@ -1,4 +1,6 @@
-﻿export function $(selector: string): HtmlElementQuery;
+﻿import { ItemGroup } from "./ItemGroup.js";
+
+export function $(selector: string): HtmlElementQuery;
 export function $(element: Element): HtmlElementQuery;
 export function $(elementList: Element[]): HtmlElementQuery;
 export function $(eventTarget: EventTarget): HtmlElementQuery;
@@ -36,8 +38,10 @@ export class HtmlElementQuery {
     private static _emptyElementList = new Array<Element>();
     private static _emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
     private static _onEventHandlerList: Array<OnEventHandler> = new Array<OnEventHandler>();
+    private static _htmlChanged: Array<(elementList: Array<Element>) => void> = new Array<(elementList: Array<Element>) => void>();
 
     private _elementList: Array<Element> = new Array<Element>();
+    private itemGroup = new ItemGroup();
 
     constructor(element: Array<Element>) {
         element.forEach(el => {
@@ -96,22 +100,19 @@ export class HtmlElementQuery {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
-        return this.getParent("[" + name + "]").getAttribute(name);
+        return this.findAncestors("[" + name + "]").getAttribute(name);
     }
     public setParentAttribute(name: string, value: string) {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
-        this.getParent("[" + name + "]").setAttribute(name, value);
+        this.findAncestors("[" + name + "]").setAttribute(name, value);
     }
     public hasParentAttribute(name: string): boolean {
         if (this.hasAttribute(name)) {
             return true;
         }
-        return this.getParent("[" + name + "]").hasAttribute(name);
-    }
-    public getNearestAttribute(name: string): string {
-        return this.getNearest("[" + name + "]").getAttribute(name);
+        return this.findAncestors("[" + name + "]").hasAttribute(name);
     }
 
     public getValue(): string {
@@ -199,7 +200,7 @@ export class HtmlElementQuery {
     public setFocus(options?: FocusOptions): HtmlElementQuery {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
-            if (element === null) { return; }
+            if (element === null) { return this; }
             element.focus(options);
         }
         return this;
@@ -241,28 +242,31 @@ export class HtmlElementQuery {
             }
 
         }
-        return null;
+        return false;
     }
 
     public insertAdjacentHTML(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", text: string) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentHTML(position, text);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     public insertAdjacentElement(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", element: Element) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentElement(position, element);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     public insertAdjacentText(position: "beforebegin" | "afterbegin" | "beforeend" | "afterend", data: string) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentText(position, data);
         }
+        this.invokeHtmlChanged();
         return this;
     }
-    public getInnerWidth(): number {
+    public getInnerWidth(): number | null {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -272,7 +276,7 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    public getInnerHeight(): number {
+    public getInnerHeight(): number | null {
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -282,7 +286,7 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    public getOuterWidth(): number {
+    public getOuterWidth(): number | null{
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -292,7 +296,7 @@ export class HtmlElementQuery {
         }
         return null;
     }
-    public getOuterHeight(): number {
+    public getOuterHeight(): number | null{
         if (this._elementList.length > 0) {
             const element = this._elementList[0] as HTMLElement;
             if (element instanceof Window) {
@@ -375,6 +379,136 @@ export class HtmlElementQuery {
             element.scrollTop = value;
         }
     }
+    public scrollToTop() {
+        this.setScrollTop(0);
+    }
+    public scrollToBottom() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            if (element instanceof Window) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+            else {
+                element.scrollTo(0, element.scrollHeight);
+            }
+        }
+    }
+    public getCaretPosition() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+
+            if (element.tagName == "TEXTAREA") {
+                const tx = element as HTMLTextAreaElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.selectionEnd;
+                }
+                return tx.selectionStart;
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element as HTMLInputElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.selectionEnd;
+                }
+                return tx.selectionStart;
+            }
+            else {
+                let caretPos = 0;
+                let range;
+                let sel;
+
+                if (window.getSelection) {
+                    sel = window.getSelection();
+                    if (sel.rangeCount) {
+                        range = sel.getRangeAt(0);
+                        if (range.commonAncestorContainer.parentNode == element) {
+                            caretPos = range.endOffset;
+                        }
+                    }
+                }
+                return caretPos;
+            }
+        }
+        return null;
+    }
+    public getSelectionText() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+
+            if (element.tagName == "TEXTAREA") {
+                const tx = element as HTMLTextAreaElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.value.substring(tx.selectionStart, tx.selectionEnd);
+                }
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element as HTMLInputElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return tx.value.substring(tx.selectionStart, tx.selectionEnd);
+                }
+            }
+            else {
+                var start = 0;
+                var end = 0;
+                var doc = element.ownerDocument;
+                var win = doc.defaultView;
+                var sel;
+                if (typeof win.getSelection != "undefined") {
+                    sel = win.getSelection();
+                    if (sel.rangeCount > 0) {
+                        var range = win.getSelection().getRangeAt(0);
+                        var preCaretRange = range.cloneRange();
+                        preCaretRange.selectNodeContents(element);
+                        preCaretRange.setEnd(range.startContainer, range.startOffset);
+                        start = preCaretRange.toString().length;
+                        preCaretRange.setEnd(range.endContainer, range.endOffset);
+                        end = preCaretRange.toString().length;
+                    }
+                }
+                const text = element.innerHTML.substring(start, end);
+                return text;
+            }
+        }
+        return null;
+    }
+    public getSelectionRange() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+
+            if (element.tagName == "TEXTAREA") {
+                const tx = element as HTMLTextAreaElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return { start: tx.selectionStart, end: tx.selectionEnd };
+                }
+            }
+            else if (element.tagName == "INPUT") {
+                const tx = element as HTMLInputElement;
+                if (tx.selectionStart != tx.selectionEnd) {
+                    return { start: tx.selectionStart, end: tx.selectionEnd };
+                }
+            }
+            else {
+                var start = 0;
+                var end = 0;
+                var doc = element.ownerDocument;
+                var win = doc.defaultView;
+                var sel;
+                if (typeof win.getSelection != "undefined") {
+                    sel = win.getSelection();
+                    if (sel.rangeCount > 0) {
+                        var range = win.getSelection().getRangeAt(0);
+                        var preCaretRange = range.cloneRange();
+                        preCaretRange.selectNodeContents(element);
+                        preCaretRange.setEnd(range.startContainer, range.startOffset);
+                        start = preCaretRange.toString().length;
+                        preCaretRange.setEnd(range.endContainer, range.endOffset);
+                        end = preCaretRange.toString().length;
+                    }
+                }
+                return { start: start, end: end };
+            }
+        }
+        return null;
+    }
 
     public getInnerText(): string {
         if (this._elementList.length > 0) {
@@ -404,6 +538,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = html;
         }
+        this.invokeHtmlChanged();
         return this;
     }
     public appendInnerText(value: string): HtmlElementQuery {
@@ -416,6 +551,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
         }
+        this.invokeHtmlChanged();
         return this;
     }
 
@@ -497,34 +633,6 @@ export class HtmlElementQuery {
         }
         return HtmlElementQuery._emptyElementList;
     }
-    public getFirstParent(selector: string): HtmlElementQuery {
-        return $(this.getParent(selector).getFirstElement());
-    }
-    public getParent(selector: string): HtmlElementQuery {
-        const parentList = new Array<Element>();
-
-        for (var i = 0; i < this._elementList.length; i++) {
-            let element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                parentList.push(p);
-                p = p.parentElement;
-            }
-        }
-        const filterList = $(selector).getElementList();
-        const l = new Array<Element>();
-        for (var pIndex = 0; pIndex < parentList.length; pIndex++) {
-            for (var i = 0; i < filterList.length; i++) {
-                if (filterList[i] == parentList[pIndex]) {
-                    $(filterList[i]).forEach(element => {
-                        l.push(element);
-                    });
-                }
-            }
-        }
-        return $(l);
-    }
-
     public remove(): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].remove();
@@ -533,45 +641,17 @@ export class HtmlElementQuery {
     }
 
     public on(eventType: string, selector: string, callback: (target: Element, e: Event) => void) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this.addEventListener(this._elementList[i], eventType, selector, callback);
-        }
-    }
-    private addEventListener(element: Element, eventType: string, selector: string, callback: (target: Element, e: Event) => void) {
-        let f = new OnEventHandler();
-        f.element = element;
-        f.eventType = eventType;
-        f.handler = function (event: Event) {
-            const l = element.querySelectorAll(selector);
-            for (var i = 0; i < l.length; i++) {
-                if (event.target == l[i]) {
-                    callback(l[i], event);
-                    return;
-                }
+        for (let i = 0; i < this._elementList.length; i++) {
+            const root = this._elementList[i];
+            root.addEventListener(eventType, (event: Event) => {
+                const t = event.target as Element | null;
+                if (!t) return;
 
-                var pp = $(event.target).getParentElementList();
-                for (var pIndex = 0; pIndex < pp.length; pIndex++) {
-                    if (pp[pIndex] == l[i]) {
-                        callback(l[i], event);
-                        return;
-                    }
+                const hit = (t instanceof Element) ? t.closest(selector) : null;
+                if (hit && root.contains(hit)) {
+                    callback(hit, event);
                 }
-            }
-        }.bind(this);
-
-        if (HtmlElementQuery._onEventHandlerList.find(el => el.element == element && el.eventType == eventType) == null) {
-            element.addEventListener(eventType, function (event: Event) {
-                this.triggerOnEventHandler(element, eventType, event);
-            }.bind(this));
-        }
-        HtmlElementQuery._onEventHandlerList.push(f);
-    }
-    private triggerOnEventHandler(element: Element, eventType: string, e: Event) {
-        for (var i = 0; i < HtmlElementQuery._onEventHandlerList.length; i++) {
-            let f = HtmlElementQuery._onEventHandlerList[i];
-            if (f.element != element || f.eventType != eventType) { continue; }
-            f.handler(e);
-            if (e.defaultPrevented === true) { break; }
+            });
         }
     }
 
@@ -598,7 +678,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e: KeyboardEvent) {
-                if (key === null || e.key === key) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });
@@ -638,24 +718,52 @@ export class HtmlElementQuery {
         this.addEventListenerToAllElement("scroll", callback);
     }
 
-    public triggerEvent(event: string | Event) {
-        if (event instanceof Event) {
-            for (var i = 0; i < this._elementList.length; i++) {
-                var element = this._elementList[i];
+    public triggerEvent(event: string | Event): void {
+        for (const element of this._elementList) {
+            if (typeof event !== "string") {
                 element.dispatchEvent(event);
+                continue;
             }
-        }
-        else if (typeof event === "string") {
-            if (document.createEvent) {
-                var e = new Event(event, { bubbles: true, cancelable: true });
-                for (var i = 0; i < this._elementList.length; i++) {
-                    var element = this._elementList[i];
-                    element.dispatchEvent(e);
-                }
+
+            switch (event) {
+                case "click":
+                    if (element instanceof HTMLElement) {
+                        element.click();
+                    }
+                    break;
+
+                case "focus":
+                    if (element instanceof HTMLElement) {
+                        element.focus();
+                    }
+                    break;
+
+                case "blur":
+                    if (element instanceof HTMLElement) {
+                        element.blur();
+                    }
+                    break;
+
+                case "submit":
+                    if (element instanceof HTMLFormElement) {
+                        element.submit();
+                    } else {
+                        element.dispatchEvent(new Event("submit", {
+                            bubbles: true,
+                            cancelable: true
+                        }));
+                    }
+                    break;
+
+                default:
+                    element.dispatchEvent(new Event(event, {
+                        bubbles: true,
+                        cancelable: true
+                    }));
+                    break;
             }
         }
     }
-
     public hide(): HtmlElementQuery {
         this.setStyle("display", "none");
         return this;
@@ -665,7 +773,7 @@ export class HtmlElementQuery {
         if (this._elementList == null) { return 0; }
         return this._elementList.length;
     }
-    public getElementList(): Array<Element> {
+    public getElements(): Array<Element> {
         return this._elementList;
     }
     public getFirstElement(): Element {
@@ -676,7 +784,7 @@ export class HtmlElementQuery {
         if (this._elementList.length === 0) { return null; }
         return this._elementList[this._elementList.length - 1];
     }
-    public getChildElementList(): Array<Element> {
+    public getChildElements(): Array<Element> {
         const elementList = new Array<Element>();
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
@@ -718,35 +826,7 @@ export class HtmlElementQuery {
         }
         return new HtmlElementQuery(elementList);
     }
-    public getNearest(selector: string): HtmlElementQuery {
-        for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                var child = $(p).find(selector).getFirstElement();
-                if (child !== null) {
-                    return $(child);
-                }
-                p = p.parentElement;
-            }
-        }
-        return HtmlElementQuery._emptyHtmlElementQuery;
-    }
-    public getNearestElement(selector: string): Element {
-        for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                var childList = $(p).find(selector).getElementList();
-                for (var cIndex = 0; cIndex < childList.length; cIndex++) {
-                    if (childList[cIndex] !== element) {
-                        return childList[cIndex];
-                    }
-                }
-                p = p.parentElement;
-            }
-        }
-    }
+
     public find(selector: string): HtmlElementQuery {
         const elementList = new Array<Element>();
         for (var i = 0; i < this._elementList.length; i++) {
@@ -757,11 +837,154 @@ export class HtmlElementQuery {
         }
         return new HtmlElementQuery(elementList);
     }
+    public findChildren(selector?: string): HtmlElementQuery {
+        const elementList = new Array<Element>();
+        const elementSet = new Set<Element>();
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            for (var cIndex = 0; cIndex < element.children.length; cIndex++) {
+                let child = element.children[cIndex] as Element;
+                if (selector != null && child.matches(selector) == false) { continue; }
+                if (elementSet.has(child) == true) { continue; }
+                elementSet.add(child);
+                elementList.push(child);
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    public findAncestors(selector?: string): HtmlElementQuery {
+        const elementList = new Array<Element>();
+        const elementSet = new Set<Element>();
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            let p = element.parentElement;
+            while (p != null) {
+                if ((selector == null || p.matches(selector) == true) &&
+                    elementSet.has(p) == false) {
+                    elementSet.add(p);
+                    elementList.push(p);
+                }
+                p = p.parentElement;
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    public findSiblings(selector?: string, direction?: "Previous" | "Next" | "Both"): HtmlElementQuery {
+        const elementList = new Array<Element>();
+        const elementSet = new Set<Element>();
+        const siblingDirection = direction == null ? "Both" : direction;
+        for (var i = 0; i < this._elementList.length; i++) {
+            let element = this._elementList[i];
+            if (element.parentElement == null) { continue; }
+            let nodeList = element.parentElement.children;
+            let elementIndex = Array.prototype.indexOf.call(nodeList, element);
+            for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                let sibling = nodeList[nIndex] as Element;
+                if (sibling == element) { continue; }
+                if (siblingDirection == "Previous" && nIndex >= elementIndex) { continue; }
+                if (siblingDirection == "Next" && nIndex <= elementIndex) { continue; }
+                if (selector != null && sibling.matches(selector) == false) { continue; }
+                if (elementSet.has(sibling) == true) { continue; }
+                elementSet.add(sibling);
+                elementList.push(sibling);
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    public findOuter(selector: string, ancestorLevel?: number | null, descendantType?: "Children" | "Descendants"): HtmlElementQuery {
+        const elementList = new Array<Element>();
+        const elementSet = new Set<Element>();
+        descendantType = descendantType == null ? "Descendants" : descendantType;
+        if (ancestorLevel != null && ancestorLevel <= 0) { return new HtmlElementQuery(elementList); }
+
+        for (var i = 0; i < this._elementList.length; i++) {
+            let sourceElement = this._elementList[i];
+            let p = sourceElement.parentElement;
+            let currentAncestorLevel = 1;
+            while (p != null) {
+                if (ancestorLevel != null && currentAncestorLevel > ancestorLevel) { break; }
+                if (descendantType == "Children") {
+                    for (var cIndex = 0; cIndex < p.children.length; cIndex++) {
+                        let child = p.children[cIndex] as Element;
+                        if (this.containsElement(child) == true) { continue; }
+                        if (child.matches(selector) == false) { continue; }
+                        if (elementSet.has(child) == true) { continue; }
+                        elementSet.add(child);
+                        elementList.push(child);
+                    }
+                }
+                else {
+                    let nodeList = p.querySelectorAll(selector);
+                    for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                        let child = nodeList[nIndex] as Element;
+                        if (this.containsElement(child) == true) { continue; }
+                        if (elementSet.has(child) == true) { continue; }
+                        elementSet.add(child);
+                        elementList.push(child);
+                    }
+                }
+                p = p.parentElement;
+                currentAncestorLevel++;
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    public findOuterFirst(selector: string, ancestorLevel?: number | null, descendantType?: "Children" | "Descendants"): HtmlElementQuery {
+        descendantType = descendantType == null ? "Descendants" : descendantType;
+        if (ancestorLevel != null && ancestorLevel <= 0) { return HtmlElementQuery._emptyHtmlElementQuery; }
+
+        for (var i = 0; i < this._elementList.length; i++) {
+            let sourceElement = this._elementList[i];
+            let p = sourceElement.parentElement;
+            let currentAncestorLevel = 1;
+            while (p != null) {
+                if (ancestorLevel != null && currentAncestorLevel > ancestorLevel) { break; }
+                if (descendantType == "Children") {
+                    for (var cIndex = 0; cIndex < p.children.length; cIndex++) {
+                        let child = p.children[cIndex] as Element;
+                        if (this.containsElement(child) == true) { continue; }
+                        if (child.matches(selector) == true) { return $(child); }
+                    }
+                }
+                else {
+                    let nodeList = p.querySelectorAll(selector);
+                    for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                        let child = nodeList[nIndex] as Element;
+                        if (this.containsElement(child) == true) { continue; }
+                        return $(child);
+                    }
+                }
+                p = p.parentElement;
+                currentAncestorLevel++;
+            }
+        }
+        return HtmlElementQuery._emptyHtmlElementQuery;
+    }
+
+    public setCurrentItem() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this.itemGroup.setCurrentItem(this._elementList[i]);
+        }
+    }
 
     public forEach(callback: (element: Element, index: number, array: Element[]) => void) {
         this._elementList.forEach(callback);
     }
 
+    private invokeHtmlChanged() {
+        for (var i = 0; i < HtmlElementQuery._htmlChanged.length; i++) {
+            HtmlElementQuery._htmlChanged[i](this._elementList);
+        }
+    }
+    private containsElement(element: Element): boolean {
+        for (var i = 0; i < this._elementList.length; i++) {
+            if (this._elementList[i].contains(element) == true) { return true; }
+        }
+        return false;
+    }
+    public static subscribeHtmlChanged(func: (elementList: Array<Element>) => void) {
+        HtmlElementQuery._htmlChanged.push(func);
+    }
     public static domContentLoaded(callback: EventListenerOrEventListenerObject) {
         document.addEventListener("DOMContentLoaded", callback);
     }

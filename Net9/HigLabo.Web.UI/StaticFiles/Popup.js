@@ -7,7 +7,7 @@ export class PopuPanel {
         this.hidePopupPanel(e);
     }
     hidePopupPanel(e) {
-        if ($(e.target).getParent("dialog").getElementCount() > 0) {
+        if ($(e.target).findAncestors("dialog").getElementCount() > 0) {
             return;
         }
         if (e.detail == 0) {
@@ -22,7 +22,7 @@ export class PopuPanel {
         if ($(e.target).getParentAttribute("prevent-hide") == "true") {
             return;
         }
-        const pp = $("[popup-panel]").getElementList();
+        const pp = $("[popup-panel]").getElements();
         pp.forEach(popupPanel => {
             if ($(popupPanel).getAttribute("prevent-hide") == "true") {
                 return;

@@ -15,7 +15,7 @@ export class FileUpload {
         f.click();
     }
     private file_Change(target: Element, e: Event) {
-        const pl = $(target).getFirstParent("[file-upload]").getFirstElement();
+        const pl = $(target).findAncestors("[file-upload]").getFirstElement();
         const apiPath = $(pl).getAttribute("api-path");
         const f = target as HTMLInputElement;
         if (f.files.length == 0) { return; }

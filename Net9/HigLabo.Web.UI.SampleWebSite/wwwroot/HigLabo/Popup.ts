@@ -9,12 +9,12 @@ export class PopuPanel {
         this.hidePopupPanel(e);
     }
     private hidePopupPanel(e: MouseEvent) {
-        if ($(e.target).getParent("dialog").getElementCount() > 0) { return; }
+        if ($(e.target).findAncestors("dialog").getElementCount() > 0) { return; }
         if (e.detail == 0) { return; }
         if (document.activeElement.tagName == "INPUT") { return; }
         if (document.activeElement.tagName == "TEXTAREA") { return; }
 
-        const pp = $("[popup-panel]").getElementList();
+        const pp = $("[popup-panel]").getElements();
 
         pp.forEach(popupPanel => {
             if ($(popupPanel).hasClass("display-none") == false &&

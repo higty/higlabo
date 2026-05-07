@@ -1,3 +1,4 @@
+import { $ } from "./HtmlElementQuery.js";
 export class HigLaboJson {
     initialize() {
         const j = this;
@@ -28,10 +29,38 @@ export class HigLaboJson {
         }
         const ss = hxInclude.split(",");
         for (var i = 0; i < ss.length; i++) {
-            let selector = ss[i];
+            let selector = ss[i].trim();
             if (selector.startsWith("closest ")) {
                 selector = selector.substring(8);
                 ee.push(element.closest(selector));
+            }
+            else if (selector.startsWith("outerFirst ")) {
+                selector = selector.substring(11);
+                ee.push($(element).findOuterFirst(selector).getFirstElement());
+            }
+            else if (selector.startsWith("outer ")) {
+                selector = selector.substring(6);
+                $(element).findOuter(selector).getElements().forEach((e) => {
+                    ee.push(e);
+                });
+            }
+            else if (selector.startsWith("sibling ")) {
+                selector = selector.substring(8);
+                $(element).findSiblings(selector).getElements().forEach((e) => {
+                    ee.push(e);
+                });
+            }
+            else if (selector.startsWith("find ")) {
+                selector = selector.substring(5);
+                $(element).find(selector).getElements().forEach((e) => {
+                    ee.push(e);
+                });
+            }
+            else if (selector.startsWith("children ")) {
+                selector = selector.substring(9);
+                $(element).findChildren(selector).getElements().forEach((e) => {
+                    ee.push(e);
+                });
             }
             else if (selector == "this") {
                 ee.push(element);

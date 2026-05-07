@@ -13,7 +13,7 @@ export class FileUpload {
         f.click();
     }
     file_Change(target, e) {
-        const pl = $(target).getFirstParent("[file-upload]").getFirstElement();
+        const pl = $(target).findAncestors("[file-upload]").getFirstElement();
         const apiPath = $(pl).getAttribute("api-path");
         const f = target;
         if (f.files.length == 0) {

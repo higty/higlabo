@@ -174,7 +174,7 @@ export class DataRecordPopupPanel {
         }
     }
     getPositionPanel(element) {
-        const anchor = $(element).getFirstParent("[popup-position-panel]").getFirstElement();
+        const anchor = $(element).findAncestors("[popup-position-panel]").getFirstElement();
         if (anchor != null) {
             return anchor;
         }
@@ -250,13 +250,13 @@ export class DataRecordPopupPanel {
         $(dpl).setStyle("top", top + "px");
     }
     addTemplate_Click(target, e) {
-        const rpl = $(target).getFirstParent("[selection-mode='Template']").find("[record-list-panel]").getFirstElement();
+        const rpl = $($(target).findAncestors("[selection-mode='Template']").getFirstElement()).find("[record-list-panel]").getFirstElement();
         const templateId = "#" + $(target).getAttribute("template-id");
         this.addTemplate(rpl, templateId);
     }
     addTemplate_Keydown(target, e) {
         if (e.key == "Enter") {
-            const rpl = $(target).getFirstParent("[selection-mode='Template']").find("[record-list-panel]").getFirstElement();
+            const rpl = $($(target).findAncestors("[selection-mode='Template']").getFirstElement()).find("[record-list-panel]").getFirstElement();
             const templateId = "#" + $(target).getAttribute("template-id");
             this.addTemplate(rpl, templateId);
         }
@@ -300,12 +300,12 @@ export class DataRecordPopupPanel {
         }
         let pl = $(e.target).getFirstElement();
         if ($(pl).hasAttribute("data-record-panel") == false) {
-            pl = $(pl).getParent("[data-record-panel]").getFirstElement();
+            pl = $(pl).findAncestors("[data-record-panel]").getFirstElement();
         }
         this.recordSelected(pl);
     }
     dataRecordPanel_Keydown(element, e) {
-        const recordListPanel = $(e.target).getFirstParent("[record-list-panel]").getFirstElement();
+        const recordListPanel = $(e.target).findAncestors("[record-list-panel]").getFirstElement();
         if (e.key == "Escape") {
             $(this.getDataRecordPopupPanel()).find("[search-textbox]").setFocus();
         }
@@ -347,7 +347,7 @@ export class DataRecordPopupPanel {
             if (this.targetPanel != null) {
                 $(this.targetPanel).setInnerHtml("");
                 $(this.targetPanel).setInnerHtml($(pl).getOuterHtml());
-                const cc = $(this.targetPanel).getChildElementList();
+                const cc = $(this.targetPanel).getChildElements();
                 $(cc).removeAttribute("tabindex");
                 $(this.targetPanel).setFocus();
             }
@@ -360,10 +360,10 @@ export class DataRecordPopupPanel {
                 return;
             }
             $(this.targetPanel).appendInnerHtml($(pl).getOuterHtml());
-            const cc = $(this.targetPanel).getChildElementList();
+            const cc = $(this.targetPanel).getChildElements();
             $(cc).removeAttribute("tabindex");
             $(this.targetPanel).setScrollTop(100000);
-            const recordListPanel = $(pl).getFirstParent("[record-list-panel]").getFirstElement();
+            const recordListPanel = $(pl).findAncestors("[record-list-panel]").getFirstElement();
             const plNext = $(pl).getSibling("Next").getFirstElement();
             if (plNext == null) {
                 $(recordListPanel).find("[data-record-panel]").setFocus();
@@ -384,18 +384,18 @@ export class DataRecordPopupPanel {
             return;
         }
         if (e.currentPanel.hasAttribute("record-selected-nearest-target")) {
-            const pl = $(e.currentPanel).getNearest(e.currentPanel.getAttribute("record-selected-nearest-target")).getFirstElement();
+            const pl = $(e.currentPanel).findOuter(e.currentPanel.getAttribute("record-selected-nearest-target")).getFirstElement();
             if (pl != null) {
                 this.htmx.trigger(pl, "record-selected");
             }
         }
     }
     dataRecordIcon_Click(element, e) {
-        $(element).getFirstParent("[data-record-panel]").remove();
+        $($(element).findAncestors("[data-record-panel]").getFirstElement()).remove();
     }
     dataRecordIcon_Keydown(element, e) {
         if (e.key == "Enter") {
-            $(element).getFirstParent("[data-record-panel]").remove();
+            $($(element).findAncestors("[data-record-panel]").getFirstElement()).remove();
         }
     }
     closeButton_Click(element, e) {

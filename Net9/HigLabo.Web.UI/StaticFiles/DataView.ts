@@ -33,34 +33,34 @@ export class DataView {
     }
 
     private showViewPanel_Click(target: Element, e: Event) {
-        this.showViewPanel($(target).getFirstParent("[data-view]").getFirstElement());
+        this.showViewPanel($(target).findAncestors("[data-view]").getFirstElement());
     }
     private showDetailPanel_Click(target: Element, e: Event) {
-        this.showDetailPanel($(target).getFirstParent("[data-view]").getFirstElement());
+        this.showDetailPanel($(target).findAncestors("[data-view]").getFirstElement());
     }
     private showRightPanel_Click(target: Element, e: Event) {
-        this.showRightPanel($(target).getFirstParent("[data-view]").getFirstElement());
+        this.showRightPanel($(target).findAncestors("[data-view]").getFirstElement());
         e.preventDefault();
     }
     private rightView_Hide(target: Element, e: Event) {
-        const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
+        const dataViewPanel = $(target).findAncestors("[data-view]").getFirstElement();
         $(dataViewPanel).find("[data-view-right-panel]").addClass("display-none");
     }
     private selectAll_Click(target: Element, e: Event) {
         const checked = $(target).isChecked();
-        const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
+        const dataViewPanel = $(target).findAncestors("[data-view]").getFirstElement();
         $(dataViewPanel).find("input[type='checkbox'][name='Selected']").setChecked(checked);
     }
     private load_Click(target: Element, e: Event) {
-        const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
+        const dataViewPanel = $(target).findAncestors("[data-view]").getFirstElement();
         this.loadData(dataViewPanel);
     }
     private pageNumber_Blur(target: Element, e: Event) {
-        const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
+        const dataViewPanel = $(target).findAncestors("[data-view]").getFirstElement();
         this.loadData(dataViewPanel);
     }
     private pageNumberIncrement_Click(target: Element, e: Event) {
-        const dataViewPanel = $(target).getFirstParent("[data-view]").getFirstElement();
+        const dataViewPanel = $(target).findAncestors("[data-view]").getFirstElement();
         const pageNumberPanel = $(dataViewPanel).find("[name='PageNumber']");
         const increment = parseInt($(target).getAttribute("page-number-increment"));
         let newPageNumber = parseInt($(pageNumberPanel).getValue()) + increment;
@@ -84,7 +84,7 @@ export class DataView {
     }
 
     private afterRequest(e: any) {
-        const dataViewPanel = $(e.target).getFirstParent("[data-view]").getFirstElement();
+        const dataViewPanel = $(e.target).findAncestors("[data-view]").getFirstElement();
 
         if ($(e.target).getAttribute("data-view-save") == "true") {
             const statusCode = e.detail.xhr.status.toString();

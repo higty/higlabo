@@ -9,7 +9,7 @@ export class PagingPanel {
         $(document).on("change", "[paging-panel] input[type='text'][name='PageNumber']", this.pageNumber_Change.bind(this));
     }
     private pageIndexIncrement_Click(target: Element, e: Event) {
-        const pl = $(target).getFirstParent("[paging-panel]").getFirstElement();
+        const pl = $(target).findAncestors("[paging-panel]").getFirstElement();
         const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
         const pageIndex = parseInt($(tx).getValue()) - 1;
         const maxPageIndex = parseInt($(pl).find("[max-page-number]").getInnerText());
@@ -27,7 +27,7 @@ export class PagingPanel {
         this.htmx.trigger($(pl).find("[page-index-panel]").getFirstElement(), "page-index-change");
     }
     private pageNumber_Change(target: Element, e: Event) {
-        const pl = $(target).getFirstParent("[paging-panel]").getFirstElement();
+        const pl = $(target).findAncestors("[paging-panel]").getFirstElement();
         const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
         let newPageIndex = parseInt($(tx).getValue()) - 1;
         const maxPageIndex = parseInt($(pl).find("[max-page-number]").getInnerText());
