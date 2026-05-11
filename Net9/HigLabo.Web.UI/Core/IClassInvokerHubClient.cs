@@ -11,9 +11,9 @@ public static class IClassInvokerHubClientExtensions
 {
     public static async Task ClassInvoke(this IClassInvokerHubClient client, string className, string functionName, string arguments)
     {
-        await Invoke(client, className, functionName, [arguments]);
+        await ClassInvoke(client, className, functionName, [arguments]);
     }
-    public static async Task Invoke(this IClassInvokerHubClient client, string className, string functionName, IEnumerable<string> arguments)
+    public static async Task ClassInvoke(this IClassInvokerHubClient client, string className, string functionName, IEnumerable<string> arguments)
     {
         var r = new
         {
