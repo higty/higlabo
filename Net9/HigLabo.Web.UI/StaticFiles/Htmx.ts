@@ -1,23 +1,30 @@
 export class Htmx {
-    private htmx = window["htmx"];
+    private getHtmx() {
+        return window["htmx"];
+    }
 
     public process(selectorOrElement: Element | string) {
+        const htmx = this.getHtmx();
+        if (htmx == null) { return; }
+
         if (typeof selectorOrElement === "string") {
             document.querySelectorAll(selectorOrElement).forEach(el => {
-                this.htmx.process(el);
+                htmx.process(el);
             });
         }
         else if (selectorOrElement instanceof Element) {
-            this.htmx.process(selectorOrElement);
+            htmx.process(selectorOrElement);
         }
-       else {
-            this.htmx.process();
+        else {
+            htmx.process();
         }
     }
 
     public trigger(selector, event: string) {
         try {
-            this.htmx.trigger(selector, event);
+            const htmx = this.getHtmx();
+            if (htmx == null) { return; }
+            htmx.trigger(selector, event);
         }
         catch { }
     }

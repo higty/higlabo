@@ -1,6 +1,7 @@
 ﻿.flatpickr-calendar {
     position: absolute;
 }
+
 .flatpickr-current-month {
     padding: 4px 0 4px 0;
 }
@@ -36,3 +37,70 @@
     }
 }
 
+.flatpickr-months[higlabo-flatpickr-month-nav="true"] {
+    display: block;
+    height: auto;
+    padding: 0;
+
+    .higlabo-flatpickr-month-nav-row {
+        display: grid;
+        grid-template-columns: 34px 1fr 34px;
+        align-items: center;
+        min-height: 28px;
+    }
+
+    .higlabo-flatpickr-year-text,
+    .higlabo-flatpickr-month-text {
+        font-size: 16px;
+        text-align: center;
+        border-radius: 0;
+        background: transparent;
+        border: 0;
+        width: 100px;
+        height: 28px;
+        padding: 2px;
+        margin: 0 auto;
+
+        &:hover {
+            background-color: #e6e6e6;
+        }
+    }
+
+    .higlabo-flatpickr-month-nav-button {
+        display: inline-block;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        font-size: 20px;
+        padding: 0;
+        text-align: center;
+        vertical-align: middle;
+        width: 34px;
+        height: 32px;
+    }
+
+    @media screen and (max-width: 400px) {
+        .higlabo-flatpickr-month-nav-row {
+            grid-template-columns: 40px 1fr 40px;
+        }
+
+        .higlabo-flatpickr-year-text {
+            font-size: 24px;
+        }
+
+        .higlabo-flatpickr-month-text {
+            font-size: 20px;
+            padding: 0 2px;
+        }
+
+        .higlabo-flatpickr-month-nav-button {
+            font-size: 24px;
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    .higlabo-flatpickr-month-nav-button:hover {
+        background-color: #e6e6e6;
+    }
+}
