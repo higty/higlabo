@@ -333,40 +333,25 @@ namespace HigLabo.Net.Smtp
         /// </summary>
         public void Authenticate()
         {
-            if (this.TryAuthenticate() == false)
-            {
-                throw new SmtpAuthenticateException();
-            }
-        }
-        /// SMTPメールサーバーへログインします。
-        /// <summary>
-        /// SMTPメールサーバーへログインします。
-        /// </summary>
-        /// <returns></returns>
-        public Boolean TryAuthenticate()
-        {
-            SmtpCommandResult rs = null;
-
             if (this._Mode == SmtpAuthenticateMode.Auto)
             {
                 if (this.EnsureOpen() == SmtpConnectionState.Connected)
                 {
-                    rs = this.ExecuteEhloAndHelo();
+                    var rs = this.ExecuteEhloAndHelo();
                     String s = rs.Message.ToUpper();
                     //SMTP認証に対応している場合
                     if (s.Contains("AUTH") == true)
                     {
                         if (s.Contains("LOGIN") == true)
-                        { return this.AuthenticateByLogin(); }
+                        { this.AuthenticateByLogin(); }
                         if (s.Contains("PLAIN") == true)
-                        { return this.AuthenticateByPlain(); }
+                        { this.AuthenticateByPlain(); }
                         if (s.Contains("CRAM-MD5") == true)
-                        { return this.AuthenticateByCramMD5(); }
+                        { this.AuthenticateByCramMD5(); }
                     }
                     else
                     {
                         rs = this.ExecuteEhlo();
-                        return rs.StatusCode == SmtpCommandResultCode.ServiceReady;
                     }
                     //TLS認証
                     if (this.EncryptedCommunication == SmtpEncryptedCommunication.Tls)
@@ -375,7 +360,6 @@ namespace HigLabo.Net.Smtp
                         { throw new MailClientException("TLS is not allowed."); }
                         this.StartTls();
                         rs = this.ExecuteEhlo();
-                        return rs.StatusCode == SmtpCommandResultCode.ServiceReady;
                     }
                 }
             }
@@ -383,20 +367,19 @@ namespace HigLabo.Net.Smtp
             {
                 switch (this._Mode)
                 {
-                    case SmtpAuthenticateMode.None: return true;
-                    case SmtpAuthenticateMode.Plain: return this.AuthenticateByPlain();
-                    case SmtpAuthenticateMode.Login: return this.AuthenticateByLogin();
-                    case SmtpAuthenticateMode.Cram_MD5: return this.AuthenticateByCramMD5();
+                    case SmtpAuthenticateMode.None: break;
+                    case SmtpAuthenticateMode.Plain: this.AuthenticateByPlain(); break;
+                    case SmtpAuthenticateMode.Login: this.AuthenticateByLogin(); break;
+                    case SmtpAuthenticateMode.Cram_MD5: this.AuthenticateByCramMD5(); break;
                     case SmtpAuthenticateMode.PopBeforeSmtp:
                         {
                             Boolean bl = this._Pop3Client.TryAuthenticate();
                             this._Pop3Client.Close();
-                            return bl;
+                            break;
                         }
                 }
                 throw new InvalidOperationException();
             }
-            return false;
         }
         /// SMTPメールサーバーへPlain認証でログインします。
         /// <summary>
