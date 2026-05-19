@@ -292,6 +292,10 @@ public partial class SmtpClient : SocketClient, IDisposable
             {
                 this._State = SmtpConnectionState.Authenticated;
             }
+            else
+            {
+                throw new SmtpAuthenticateException(rs.Message);
+            }
         }
         return this._State == SmtpConnectionState.Authenticated;
     }
@@ -312,6 +316,10 @@ public partial class SmtpClient : SocketClient, IDisposable
             {
                 this._State = SmtpConnectionState.Authenticated;
             }
+            else
+            {
+                throw new SmtpAuthenticateException(rs.Message);
+            }
         }
         return this._State == SmtpConnectionState.Authenticated;
     }
@@ -328,6 +336,10 @@ public partial class SmtpClient : SocketClient, IDisposable
             if (rs.StatusCode == SmtpCommandResultCode.AuthenticationSuccessful)
             {
                 this._State = SmtpConnectionState.Authenticated;
+            }
+            else
+            {
+                throw new SmtpAuthenticateException(rs.Message);
             }
         }
         return this._State == SmtpConnectionState.Authenticated;
