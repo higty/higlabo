@@ -217,6 +217,18 @@
   min-height: 640px;
 }
 
+.min-height-720 {
+  min-height: 720px;
+}
+
+.min-height-840 {
+  min-height: 840px;
+}
+
+.min-height-960 {
+  min-height: 960px;
+}
+
 .max-height-240 {
   max-height: 240px;
 }
@@ -233,6 +245,18 @@
   max-height: 640px;
 }
 
+.max-height-720 {
+  max-height: 720px;
+}
+
+.max-height-840 {
+  max-height: 840px;
+}
+
+.max-height-960 {
+  max-height: 960px;
+}
+
 .gap-4 {
   gap: 4px;
 }
@@ -247,6 +271,14 @@
 
 .gap-16 {
   gap: 16px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-24 {
+  gap: 24px;
 }
 
 .padding-panel-4 {
