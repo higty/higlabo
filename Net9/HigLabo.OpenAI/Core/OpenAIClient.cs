@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Buffers;
@@ -247,8 +248,7 @@ public partial class OpenAIClient
         }
         else
         {
-            var errorResponse = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(bodyText);
-            throw new OpenAIServerException(parameter, request, requestBodyText, response, bodyText, errorResponse.Error);
+            throw this.CreateServerException(parameter, request, requestBodyText, response, bodyText);
         }
     }
 
@@ -288,6 +288,11 @@ public partial class OpenAIClient
         }
         Debug.WriteLine(requestBodyText);
         var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
+        if (res.IsSuccessStatusCode == false)
+        {
+            var responseBodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+            throw this.CreateServerException(parameter, req, requestBodyText, res, responseBodyText);
+        }
         return await res.Content.ReadAsStreamAsync(cancellationToken);
     }
 
@@ -304,9 +309,8 @@ public partial class OpenAIClient
         var res = await this.SendRequestAsync(req, HttpCompletionOption.ResponseContentRead, cancellationToken);
         if (res.IsSuccessStatusCode == false)
         {
-            var responseBodyText = await res.Content.ReadAsStringAsync();
-            var errorRes = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
-            throw new OpenAIServerException(parameter, req, requestBodyText, res, responseBodyText, errorRes.Error);
+            var responseBodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+            throw this.CreateServerException(parameter, req, requestBodyText, res, responseBodyText);
         }
 
         var bodyText = await res.Content.ReadAsStringAsync();
@@ -353,6 +357,53 @@ public partial class OpenAIClient
                string.Equals(eventName, "response.function_call_arguments.delta", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(eventName, "response.reasoning_summary_text.delta", StringComparison.OrdinalIgnoreCase);
     }
+    private OpenAIServerException CreateServerException(object parameter, HttpRequestMessage request, string requestBodyText, HttpResponseMessage response, string responseBodyText)
+    {
+        var error = this.CreateServerError(response, responseBodyText);
+        return new OpenAIServerException(parameter, request, requestBodyText, response, responseBodyText, error);
+    }
+    private OpenAIServerError CreateServerError(HttpResponseMessage response, string responseBodyText)
+    {
+        if (this.ShouldDeserializeJsonError(response, responseBodyText))
+        {
+            try
+            {
+                var errorResponse = JsonConvert.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
+                if (errorResponse?.Error != null)
+                {
+                    return errorResponse.Error;
+                }
+            }
+            catch (global::Newtonsoft.Json.JsonException)
+            {
+            }
+        }
+
+        return new OpenAIServerError()
+        {
+            Code = ((int)response.StatusCode).ToString(),
+            Message = responseBodyText.HasValue() ? responseBodyText : response.ReasonPhrase ?? response.StatusCode.ToString(),
+            Type = "http_error",
+        };
+    }
+    private bool ShouldDeserializeJsonError(HttpResponseMessage response, string responseBodyText)
+    {
+        var mediaType = response.Content.Headers.ContentType?.MediaType;
+        if (mediaType != null &&
+            (String.Equals(mediaType, "application/json", StringComparison.OrdinalIgnoreCase) ||
+             mediaType.EndsWith("+json", StringComparison.OrdinalIgnoreCase)))
+        {
+            return true;
+        }
+        return this.LooksLikeJson(responseBodyText);
+    }
+    private bool LooksLikeJson(string text)
+    {
+        if (text.IsNullOrWhiteSpace()) { return false; }
+
+        var c = text.TrimStart()[0];
+        return c == '{' || c == '[';
+    }
     public async IAsyncEnumerable<ServerSentEventLine> GetStreamAsync<TParameter>(TParameter parameter, [EnumeratorCancellation] CancellationToken cancellationToken)
         where TParameter : RestApiParameter, IRestApiParameter
     {
@@ -378,9 +429,8 @@ public partial class OpenAIClient
 
         if (res.IsSuccessStatusCode == false)
         {
-            var responseBodyText = await res.Content.ReadAsStringAsync();
-            var errorRes = OpenAIClient.JsonConverter.DeserializeObject<OpenAIServerErrorResponse>(responseBodyText);
-            throw new OpenAIServerException(parameter, req, requestBodyText, res, responseBodyText, errorRes.Error);
+            var responseBodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+            throw this.CreateServerException(parameter, req, requestBodyText, res, responseBodyText);
         }
 
         using (var stream = await res.Content.ReadAsStreamAsync())

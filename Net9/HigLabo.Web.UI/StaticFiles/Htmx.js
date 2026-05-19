@@ -1,21 +1,31 @@
 export class Htmx {
-    htmx = window["htmx"];
+    getHtmx() {
+        return window["htmx"];
+    }
     process(selectorOrElement) {
+        const htmx = this.getHtmx();
+        if (htmx == null) {
+            return;
+        }
         if (typeof selectorOrElement === "string") {
             document.querySelectorAll(selectorOrElement).forEach(el => {
-                this.htmx.process(el);
+                htmx.process(el);
             });
         }
         else if (selectorOrElement instanceof Element) {
-            this.htmx.process(selectorOrElement);
+            htmx.process(selectorOrElement);
         }
         else {
-            this.htmx.process();
+            htmx.process();
         }
     }
     trigger(selector, event) {
         try {
-            this.htmx.trigger(selector, event);
+            const htmx = this.getHtmx();
+            if (htmx == null) {
+                return;
+            }
+            htmx.trigger(selector, event);
         }
         catch { }
     }

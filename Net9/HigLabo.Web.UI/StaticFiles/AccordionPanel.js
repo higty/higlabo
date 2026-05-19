@@ -10,7 +10,7 @@ export class AccordionPanel {
         if ($(e.target).getAttribute("accordion-panel-ignore") == "true") {
             return;
         }
-        const pl = $(target).getFirstParent("[accordion-panel]").getFirstElement();
+        const pl = $(target).findAncestors("[accordion-panel]").getFirstElement();
         $(pl).toggleAttributeValue("toggle-state", "Visible", "Hidden");
     }
 }

@@ -4,7 +4,7 @@ export class InputPassword {
         $("body").on("click", "[input-password]>[toggle-input-type]", this.toggleInputType_Click.bind(this));
     }
     toggleInputType_Click(target, e) {
-        const span = $(target).getFirstParent("[input-password]").getFirstElement();
+        const span = $(target).findAncestors("[input-password]").getFirstElement();
         $(span).find("input").toggleAttributeValue("type", "text", "password");
     }
 }

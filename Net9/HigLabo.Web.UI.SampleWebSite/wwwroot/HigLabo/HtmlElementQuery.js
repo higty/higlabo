@@ -1,3 +1,4 @@
+import { ItemGroup } from "./ItemGroup.js";
 export function $(value) {
     if (value === undefined || value === null) {
         return new HtmlElementQuery([]);
@@ -31,7 +32,9 @@ export class HtmlElementQuery {
     static _emptyElementList = new Array();
     static _emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
     static _onEventHandlerList = new Array();
+    static _htmlChanged = new Array();
     _elementList = new Array();
+    itemGroup = new ItemGroup();
     constructor(element) {
         element.forEach(el => {
             this._elementList.push(el);
@@ -92,22 +95,19 @@ export class HtmlElementQuery {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
-        return this.getParent("[" + name + "]").getAttribute(name);
+        return this.findAncestors("[" + name + "]").getAttribute(name);
     }
     setParentAttribute(name, value) {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
-        this.getParent("[" + name + "]").setAttribute(name, value);
+        this.findAncestors("[" + name + "]").setAttribute(name, value);
     }
     hasParentAttribute(name) {
         if (this.hasAttribute(name)) {
             return true;
         }
-        return this.getParent("[" + name + "]").hasAttribute(name);
-    }
-    getNearestAttribute(name) {
-        return this.getNearest("[" + name + "]").getAttribute(name);
+        return this.findAncestors("[" + name + "]").hasAttribute(name);
     }
     getValue() {
         if (this._elementList.length > 0) {
@@ -202,7 +202,7 @@ export class HtmlElementQuery {
         if (this._elementList.length > 0) {
             const element = this._elementList[0];
             if (element === null) {
-                return;
+                return this;
             }
             element.focus(options);
         }
@@ -248,24 +248,27 @@ export class HtmlElementQuery {
                 return rb.checked;
             }
         }
-        return null;
+        return false;
     }
     insertAdjacentHTML(position, text) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentHTML(position, text);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     insertAdjacentElement(position, element) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentElement(position, element);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     insertAdjacentText(position, data) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].insertAdjacentText(position, data);
         }
+        this.invokeHtmlChanged();
         return this;
     }
     getInnerWidth() {
@@ -379,6 +382,20 @@ export class HtmlElementQuery {
             element.scrollTop = value;
         }
     }
+    scrollToTop() {
+        this.setScrollTop(0);
+    }
+    scrollToBottom() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            if (element instanceof Window) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+            else {
+                element.scrollTo(0, element.scrollHeight);
+            }
+        }
+    }
     getCaretPosition() {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
@@ -447,7 +464,8 @@ export class HtmlElementQuery {
                         end = preCaretRange.toString().length;
                     }
                 }
-                element.innerHTML.substring(start, end);
+                const text = element.innerHTML.substring(start, end);
+                return text;
             }
         }
         return null;
@@ -518,6 +536,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = html;
         }
+        this.invokeHtmlChanged();
         return this;
     }
     appendInnerText(value) {
@@ -530,6 +549,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
         }
+        this.invokeHtmlChanged();
         return this;
     }
     getStyle(name) {
@@ -609,32 +629,6 @@ export class HtmlElementQuery {
         }
         return HtmlElementQuery._emptyElementList;
     }
-    getFirstParent(selector) {
-        return $(this.getParent(selector).getFirstElement());
-    }
-    getParent(selector) {
-        const parentList = new Array();
-        for (var i = 0; i < this._elementList.length; i++) {
-            let element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                parentList.push(p);
-                p = p.parentElement;
-            }
-        }
-        const filterList = $(selector).getElementList();
-        const l = new Array();
-        for (var pIndex = 0; pIndex < parentList.length; pIndex++) {
-            for (var i = 0; i < filterList.length; i++) {
-                if (filterList[i] == parentList[pIndex]) {
-                    $(filterList[i]).forEach(element => {
-                        l.push(element);
-                    });
-                }
-            }
-        }
-        return $(l);
-    }
     remove() {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].remove();
@@ -642,47 +636,17 @@ export class HtmlElementQuery {
         return this;
     }
     on(eventType, selector, callback) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this.addEventListener(this._elementList[i], eventType, selector, callback);
-        }
-    }
-    addEventListener(element, eventType, selector, callback) {
-        let f = new OnEventHandler();
-        f.element = element;
-        f.eventType = eventType;
-        f.handler = function (event) {
-            const l = element.querySelectorAll(selector);
-            for (var i = 0; i < l.length; i++) {
-                if (event.target == l[i]) {
-                    callback(l[i], event);
+        for (let i = 0; i < this._elementList.length; i++) {
+            const root = this._elementList[i];
+            root.addEventListener(eventType, (event) => {
+                const t = event.target;
+                if (!t)
                     return;
+                const hit = (t instanceof Element) ? t.closest(selector) : null;
+                if (hit && root.contains(hit)) {
+                    callback(hit, event);
                 }
-                var pp = $(event.target).getParentElementList();
-                for (var pIndex = 0; pIndex < pp.length; pIndex++) {
-                    if (pp[pIndex] == l[i]) {
-                        callback(l[i], event);
-                        return;
-                    }
-                }
-            }
-        }.bind(this);
-        if (HtmlElementQuery._onEventHandlerList.find(el => el.element == element && el.eventType == eventType) == null) {
-            element.addEventListener(eventType, function (event) {
-                this.triggerOnEventHandler(element, eventType, event);
-            }.bind(this));
-        }
-        HtmlElementQuery._onEventHandlerList.push(f);
-    }
-    triggerOnEventHandler(element, eventType, e) {
-        for (var i = 0; i < HtmlElementQuery._onEventHandlerList.length; i++) {
-            let f = HtmlElementQuery._onEventHandlerList[i];
-            if (f.element != element || f.eventType != eventType) {
-                continue;
-            }
-            f.handler(e);
-            if (e.defaultPrevented === true) {
-                break;
-            }
+            });
         }
     }
     addEventListenerToAllElement(eventType, callback) {
@@ -708,7 +672,7 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e) {
-                if (key === null || e.key === key) {
+                if (key == null || e.key === key) {
                     callback(e);
                 }
             });
@@ -748,19 +712,44 @@ export class HtmlElementQuery {
         this.addEventListenerToAllElement("scroll", callback);
     }
     triggerEvent(event) {
-        if (event instanceof Event) {
-            for (var i = 0; i < this._elementList.length; i++) {
-                var element = this._elementList[i];
+        for (const element of this._elementList) {
+            if (typeof event !== "string") {
                 element.dispatchEvent(event);
+                continue;
             }
-        }
-        else if (typeof event === "string") {
-            if (document.createEvent) {
-                var e = new Event(event, { bubbles: true, cancelable: true });
-                for (var i = 0; i < this._elementList.length; i++) {
-                    var element = this._elementList[i];
-                    element.dispatchEvent(e);
-                }
+            switch (event) {
+                case "click":
+                    if (element instanceof HTMLElement) {
+                        element.click();
+                    }
+                    break;
+                case "focus":
+                    if (element instanceof HTMLElement) {
+                        element.focus();
+                    }
+                    break;
+                case "blur":
+                    if (element instanceof HTMLElement) {
+                        element.blur();
+                    }
+                    break;
+                case "submit":
+                    if (element instanceof HTMLFormElement) {
+                        element.submit();
+                    }
+                    else {
+                        element.dispatchEvent(new Event("submit", {
+                            bubbles: true,
+                            cancelable: true
+                        }));
+                    }
+                    break;
+                default:
+                    element.dispatchEvent(new Event(event, {
+                        bubbles: true,
+                        cancelable: true
+                    }));
+                    break;
             }
         }
     }
@@ -774,7 +763,7 @@ export class HtmlElementQuery {
         }
         return this._elementList.length;
     }
-    getElementList() {
+    getElements() {
         return this._elementList;
     }
     getFirstElement() {
@@ -789,7 +778,7 @@ export class HtmlElementQuery {
         }
         return this._elementList[this._elementList.length - 1];
     }
-    getChildElementList() {
+    getChildElements() {
         const elementList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
@@ -833,35 +822,6 @@ export class HtmlElementQuery {
         }
         return new HtmlElementQuery(elementList);
     }
-    getNearest(selector) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                var child = $(p).find(selector).getFirstElement();
-                if (child !== null) {
-                    return $(child);
-                }
-                p = p.parentElement;
-            }
-        }
-        return HtmlElementQuery._emptyHtmlElementQuery;
-    }
-    getNearestElement(selector) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                var childList = $(p).find(selector).getElementList();
-                for (var cIndex = 0; cIndex < childList.length; cIndex++) {
-                    if (childList[cIndex] !== element) {
-                        return childList[cIndex];
-                    }
-                }
-                p = p.parentElement;
-            }
-        }
-    }
     find(selector) {
         const elementList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
@@ -872,8 +832,190 @@ export class HtmlElementQuery {
         }
         return new HtmlElementQuery(elementList);
     }
+    findChildren(selector) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            for (var cIndex = 0; cIndex < element.children.length; cIndex++) {
+                let child = element.children[cIndex];
+                if (selector != null && child.matches(selector) == false) {
+                    continue;
+                }
+                if (elementSet.has(child) == true) {
+                    continue;
+                }
+                elementSet.add(child);
+                elementList.push(child);
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findAncestors(selector) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            let p = element.parentElement;
+            while (p != null) {
+                if ((selector == null || p.matches(selector) == true) &&
+                    elementSet.has(p) == false) {
+                    elementSet.add(p);
+                    elementList.push(p);
+                }
+                p = p.parentElement;
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findSiblings(selector, direction) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        const siblingDirection = direction == null ? "Both" : direction;
+        for (var i = 0; i < this._elementList.length; i++) {
+            let element = this._elementList[i];
+            if (element.parentElement == null) {
+                continue;
+            }
+            let nodeList = element.parentElement.children;
+            let elementIndex = Array.prototype.indexOf.call(nodeList, element);
+            for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                let sibling = nodeList[nIndex];
+                if (sibling == element) {
+                    continue;
+                }
+                if (siblingDirection == "Previous" && nIndex >= elementIndex) {
+                    continue;
+                }
+                if (siblingDirection == "Next" && nIndex <= elementIndex) {
+                    continue;
+                }
+                if (selector != null && sibling.matches(selector) == false) {
+                    continue;
+                }
+                if (elementSet.has(sibling) == true) {
+                    continue;
+                }
+                elementSet.add(sibling);
+                elementList.push(sibling);
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findOuter(selector, ancestorLevel, descendantType) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        descendantType = descendantType == null ? "Descendants" : descendantType;
+        if (ancestorLevel != null && ancestorLevel <= 0) {
+            return new HtmlElementQuery(elementList);
+        }
+        for (var i = 0; i < this._elementList.length; i++) {
+            let sourceElement = this._elementList[i];
+            let p = sourceElement.parentElement;
+            let currentAncestorLevel = 1;
+            while (p != null) {
+                if (ancestorLevel != null && currentAncestorLevel > ancestorLevel) {
+                    break;
+                }
+                if (descendantType == "Children") {
+                    for (var cIndex = 0; cIndex < p.children.length; cIndex++) {
+                        let child = p.children[cIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        if (child.matches(selector) == false) {
+                            continue;
+                        }
+                        if (elementSet.has(child) == true) {
+                            continue;
+                        }
+                        elementSet.add(child);
+                        elementList.push(child);
+                    }
+                }
+                else {
+                    let nodeList = p.querySelectorAll(selector);
+                    for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                        let child = nodeList[nIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        if (elementSet.has(child) == true) {
+                            continue;
+                        }
+                        elementSet.add(child);
+                        elementList.push(child);
+                    }
+                }
+                p = p.parentElement;
+                currentAncestorLevel++;
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findOuterFirst(selector, ancestorLevel, descendantType) {
+        descendantType = descendantType == null ? "Descendants" : descendantType;
+        if (ancestorLevel != null && ancestorLevel <= 0) {
+            return HtmlElementQuery._emptyHtmlElementQuery;
+        }
+        for (var i = 0; i < this._elementList.length; i++) {
+            let sourceElement = this._elementList[i];
+            let p = sourceElement.parentElement;
+            let currentAncestorLevel = 1;
+            while (p != null) {
+                if (ancestorLevel != null && currentAncestorLevel > ancestorLevel) {
+                    break;
+                }
+                if (descendantType == "Children") {
+                    for (var cIndex = 0; cIndex < p.children.length; cIndex++) {
+                        let child = p.children[cIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        if (child.matches(selector) == true) {
+                            return $(child);
+                        }
+                    }
+                }
+                else {
+                    let nodeList = p.querySelectorAll(selector);
+                    for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                        let child = nodeList[nIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        return $(child);
+                    }
+                }
+                p = p.parentElement;
+                currentAncestorLevel++;
+            }
+        }
+        return HtmlElementQuery._emptyHtmlElementQuery;
+    }
+    setCurrentItem() {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this.itemGroup.setCurrentItem(this._elementList[i]);
+        }
+    }
     forEach(callback) {
         this._elementList.forEach(callback);
+    }
+    invokeHtmlChanged() {
+        for (var i = 0; i < HtmlElementQuery._htmlChanged.length; i++) {
+            HtmlElementQuery._htmlChanged[i](this._elementList);
+        }
+    }
+    containsElement(element) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            if (this._elementList[i].contains(element) == true) {
+                return true;
+            }
+        }
+        return false;
+    }
+    static subscribeHtmlChanged(func) {
+        HtmlElementQuery._htmlChanged.push(func);
     }
     static domContentLoaded(callback) {
         document.addEventListener("DOMContentLoaded", callback);

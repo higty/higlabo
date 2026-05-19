@@ -95,22 +95,19 @@ export class HtmlElementQuery {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
-        return this.getParent("[" + name + "]").getAttribute(name);
+        return this.findAncestors("[" + name + "]").getAttribute(name);
     }
     setParentAttribute(name, value) {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
-        this.getParent("[" + name + "]").setAttribute(name, value);
+        this.findAncestors("[" + name + "]").setAttribute(name, value);
     }
     hasParentAttribute(name) {
         if (this.hasAttribute(name)) {
             return true;
         }
-        return this.getParent("[" + name + "]").hasAttribute(name);
-    }
-    getNearestAttribute(name) {
-        return this.getNearest("[" + name + "]").getAttribute(name);
+        return this.findAncestors("[" + name + "]").hasAttribute(name);
     }
     getValue() {
         if (this._elementList.length > 0) {
@@ -632,32 +629,6 @@ export class HtmlElementQuery {
         }
         return HtmlElementQuery._emptyElementList;
     }
-    getFirstParent(selector) {
-        return $(this.getParent(selector).getFirstElement());
-    }
-    getParent(selector) {
-        const parentList = new Array();
-        for (var i = 0; i < this._elementList.length; i++) {
-            let element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                parentList.push(p);
-                p = p.parentElement;
-            }
-        }
-        const filterList = $(selector).getElementList();
-        const l = new Array();
-        for (var pIndex = 0; pIndex < parentList.length; pIndex++) {
-            for (var i = 0; i < filterList.length; i++) {
-                if (filterList[i] == parentList[pIndex]) {
-                    $(filterList[i]).forEach(element => {
-                        l.push(element);
-                    });
-                }
-            }
-        }
-        return $(l);
-    }
     remove() {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].remove();
@@ -792,7 +763,7 @@ export class HtmlElementQuery {
         }
         return this._elementList.length;
     }
-    getElementList() {
+    getElements() {
         return this._elementList;
     }
     getFirstElement() {
@@ -807,7 +778,7 @@ export class HtmlElementQuery {
         }
         return this._elementList[this._elementList.length - 1];
     }
-    getChildElementList() {
+    getChildElements() {
         const elementList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
@@ -851,35 +822,6 @@ export class HtmlElementQuery {
         }
         return new HtmlElementQuery(elementList);
     }
-    getNearest(selector) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                var child = $(p).find(selector).getFirstElement();
-                if (child !== null) {
-                    return $(child);
-                }
-                p = p.parentElement;
-            }
-        }
-        return HtmlElementQuery._emptyHtmlElementQuery;
-    }
-    getNearestElement(selector) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            let p = element.parentElement;
-            while (p != null) {
-                var childList = $(p).find(selector).getElementList();
-                for (var cIndex = 0; cIndex < childList.length; cIndex++) {
-                    if (childList[cIndex] !== element) {
-                        return childList[cIndex];
-                    }
-                }
-                p = p.parentElement;
-            }
-        }
-    }
     find(selector) {
         const elementList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
@@ -889,6 +831,167 @@ export class HtmlElementQuery {
             }
         }
         return new HtmlElementQuery(elementList);
+    }
+    findChildren(selector) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            for (var cIndex = 0; cIndex < element.children.length; cIndex++) {
+                let child = element.children[cIndex];
+                if (selector != null && child.matches(selector) == false) {
+                    continue;
+                }
+                if (elementSet.has(child) == true) {
+                    continue;
+                }
+                elementSet.add(child);
+                elementList.push(child);
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findAncestors(selector) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        for (var i = 0; i < this._elementList.length; i++) {
+            var element = this._elementList[i];
+            let p = element.parentElement;
+            while (p != null) {
+                if ((selector == null || p.matches(selector) == true) &&
+                    elementSet.has(p) == false) {
+                    elementSet.add(p);
+                    elementList.push(p);
+                }
+                p = p.parentElement;
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findSiblings(selector, direction) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        const siblingDirection = direction == null ? "Both" : direction;
+        for (var i = 0; i < this._elementList.length; i++) {
+            let element = this._elementList[i];
+            if (element.parentElement == null) {
+                continue;
+            }
+            let nodeList = element.parentElement.children;
+            let elementIndex = Array.prototype.indexOf.call(nodeList, element);
+            for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                let sibling = nodeList[nIndex];
+                if (sibling == element) {
+                    continue;
+                }
+                if (siblingDirection == "Previous" && nIndex >= elementIndex) {
+                    continue;
+                }
+                if (siblingDirection == "Next" && nIndex <= elementIndex) {
+                    continue;
+                }
+                if (selector != null && sibling.matches(selector) == false) {
+                    continue;
+                }
+                if (elementSet.has(sibling) == true) {
+                    continue;
+                }
+                elementSet.add(sibling);
+                elementList.push(sibling);
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findOuter(selector, ancestorLevel, descendantType) {
+        const elementList = new Array();
+        const elementSet = new Set();
+        descendantType = descendantType == null ? "Descendants" : descendantType;
+        if (ancestorLevel != null && ancestorLevel <= 0) {
+            return new HtmlElementQuery(elementList);
+        }
+        for (var i = 0; i < this._elementList.length; i++) {
+            let sourceElement = this._elementList[i];
+            let p = sourceElement.parentElement;
+            let currentAncestorLevel = 1;
+            while (p != null) {
+                if (ancestorLevel != null && currentAncestorLevel > ancestorLevel) {
+                    break;
+                }
+                if (descendantType == "Children") {
+                    for (var cIndex = 0; cIndex < p.children.length; cIndex++) {
+                        let child = p.children[cIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        if (child.matches(selector) == false) {
+                            continue;
+                        }
+                        if (elementSet.has(child) == true) {
+                            continue;
+                        }
+                        elementSet.add(child);
+                        elementList.push(child);
+                    }
+                }
+                else {
+                    let nodeList = p.querySelectorAll(selector);
+                    for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                        let child = nodeList[nIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        if (elementSet.has(child) == true) {
+                            continue;
+                        }
+                        elementSet.add(child);
+                        elementList.push(child);
+                    }
+                }
+                p = p.parentElement;
+                currentAncestorLevel++;
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    findOuterFirst(selector, ancestorLevel, descendantType) {
+        descendantType = descendantType == null ? "Descendants" : descendantType;
+        if (ancestorLevel != null && ancestorLevel <= 0) {
+            return HtmlElementQuery._emptyHtmlElementQuery;
+        }
+        for (var i = 0; i < this._elementList.length; i++) {
+            let sourceElement = this._elementList[i];
+            let p = sourceElement.parentElement;
+            let currentAncestorLevel = 1;
+            while (p != null) {
+                if (ancestorLevel != null && currentAncestorLevel > ancestorLevel) {
+                    break;
+                }
+                if (descendantType == "Children") {
+                    for (var cIndex = 0; cIndex < p.children.length; cIndex++) {
+                        let child = p.children[cIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        if (child.matches(selector) == true) {
+                            return $(child);
+                        }
+                    }
+                }
+                else {
+                    let nodeList = p.querySelectorAll(selector);
+                    for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
+                        let child = nodeList[nIndex];
+                        if (this.containsElement(child) == true) {
+                            continue;
+                        }
+                        return $(child);
+                    }
+                }
+                p = p.parentElement;
+                currentAncestorLevel++;
+            }
+        }
+        return HtmlElementQuery._emptyHtmlElementQuery;
     }
     setCurrentItem() {
         for (var i = 0; i < this._elementList.length; i++) {
@@ -902,6 +1005,14 @@ export class HtmlElementQuery {
         for (var i = 0; i < HtmlElementQuery._htmlChanged.length; i++) {
             HtmlElementQuery._htmlChanged[i](this._elementList);
         }
+    }
+    containsElement(element) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            if (this._elementList[i].contains(element) == true) {
+                return true;
+            }
+        }
+        return false;
     }
     static subscribeHtmlChanged(func) {
         HtmlElementQuery._htmlChanged.push(func);

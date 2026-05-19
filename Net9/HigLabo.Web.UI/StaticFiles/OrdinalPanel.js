@@ -36,7 +36,7 @@ export class OrdinalPanel {
         $(pl).setAttribute("draging", "true");
         $(pl).setStyle("left", (e.clientX - 80) + "px");
         $(pl).setStyle("top", (e.clientY - this.offsetY) + "px");
-        const pp = $("[ordinal-panel]").getElementList();
+        const pp = $("[ordinal-panel]").getElements();
         pp.forEach(targetPanel => {
             const rect = targetPanel.getBoundingClientRect();
             if (rect.left > e.clientX || rect.left + rect.width < e.clientX || rect.top > e.clientY || rect.top + rect.height < e.clientY) {
@@ -56,7 +56,7 @@ export class OrdinalPanel {
         }
         if (this.dragElement != null) {
             this.dragElement = null;
-            const pp = $("[ordinal-panel]").getElementList();
+            const pp = $("[ordinal-panel]").getElements();
             pp.forEach(targetPanel => {
                 const rect = targetPanel.getBoundingClientRect();
                 if (rect.left > e.clientX || rect.left + rect.width < e.clientX || rect.top > e.clientY || rect.top + rect.height < e.clientY) {

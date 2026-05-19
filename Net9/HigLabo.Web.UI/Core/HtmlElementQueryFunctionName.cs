@@ -11,7 +11,6 @@ public class HtmlElementQueryFunctionName
     public const string GetParentAttribute = "getParentAttribute";
     public const string SetParentAttribute = "setParentAttribute";
     public const string HasParentAttribute = "hasParentAttribute";
-    public const string GetNearestAttribute = "getNearestAttribute";
     public const string GetValue = "getValue";
     public const string GetSelectedValue = "getSelectedValue";
     public const string GetSelectedText = "getSelectedText";
@@ -58,8 +57,6 @@ public class HtmlElementQueryFunctionName
     public const string ToggleClass = "toggleClass";
     public const string RemoveClass = "removeClass";
     public const string GetParentElementList = "getParentElementList";
-    public const string GetFirstParent = "getFirstParent";
-    public const string GetParent = "getParent";
     public const string Remove = "remove";
     public const string On = "on";
     public const string Resize = "resize";
@@ -84,8 +81,6 @@ public class HtmlElementQueryFunctionName
     public const string GetLastElement = "getLastElement";
     public const string GetChildElementList = "getChildElementList";
     public const string GetSibling = "getSibling";
-    public const string GetNearest = "getNearest";
-    public const string GetNearestElement = "getNearestElement";
     public const string Find = "find";
     public const string SetCurrentItem = "setCurrentItem";
     public const string ForEach = "forEach";

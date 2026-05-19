@@ -16,14 +16,14 @@ export class FileUpload {
         f.click();
     }
     private file_Change(target: Element, e: Event) {
-        const pl = $(target).getFirstParent("[file-upload]").getFirstElement();
+        const pl = $(target).findAncestors("[file-upload]").getFirstElement();
         const apiPath = $(pl).getAttribute("api-path");
         const f = target as HTMLInputElement;
         if (f.files.length == 0) { return; }
 
         const formData = new FormData();
 
-        const ppl = $(pl).getFirstParent("[file-parameter-panel]").getFirstElement();
+        const ppl = $(pl).findAncestors("[file-parameter-panel]").getFirstElement();
         if (ppl != null) {
             ppl.querySelectorAll("input,textarea,select").forEach(childNode => {
                 if (childNode.nodeType == Node.ELEMENT_NODE) {
