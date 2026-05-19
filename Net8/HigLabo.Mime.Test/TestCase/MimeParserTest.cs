@@ -29,7 +29,8 @@ public class MimeParserTest
     {
         RegisterProvider();
 
-        var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_InvalidCharset.txt");
+        var mg = GetMailMessage(
+            Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_InvalidCharset.txt"));
         String expectedText = "This is a text/plain body text.";
 
         var ct = mg.Contents[1];
@@ -37,13 +38,14 @@ public class MimeParserTest
         Assert.AreEqual(expectedText, ct.Contents[1].BodyText);
         Assert.AreEqual(expectedText, ct.Contents[2].BodyText);
         Assert.AreEqual("<div style='font-size:20px;'>This is a text/html body text.</div>", ct.Contents[3].BodyText);
+        Assert.AreEqual(expectedText, ct.Contents[4].BodyText);
     }
     [TestMethod]
     public void MimeParser_BodyText_Content()
     {
         RegisterProvider();
 
-        var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_BodyText_Content.txt");
+        var mg = GetMailMessage(Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_BodyText_Content.txt"));
 
         Assert.AreEqual(BodyText, mg.BodyText);
         Assert.AreEqual(BodyText, mg.Contents[0].BodyText);
@@ -54,7 +56,7 @@ public class MimeParserTest
     {
         RegisterProvider();
 
-        var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_Shift_jis_8bit.txt");
+        var mg = GetMailMessage(Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_Shift_jis_8bit.txt"));
         var body = @"This is a test of Shift_JIS 8bit mail.
 Is test result green?
 ";
@@ -65,7 +67,7 @@ Is test result green?
     {
         RegisterProvider();
 
-        var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_BodyText_BeforeBoundary.txt");
+        var mg = GetMailMessage(Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_BodyText_BeforeBoundary.txt"));
         Assert.AreEqual(BodyText, mg.BodyText);
     }
     [TestMethod]
@@ -73,7 +75,7 @@ Is test result green?
     {
         RegisterProvider();
 
-        var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_Rfc822.txt");
+        var mg = GetMailMessage(Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_Rfc822.txt"));
 
         Assert.AreEqual(mg.AttachmentFiles.Count(), 1);
 
@@ -81,7 +83,7 @@ Is test result green?
     [TestMethod]
     public void Mail_CodePlex_21851()
     {
-        var mailText = File.ReadAllText(Environment.CurrentDirectory + "\\TestData\\Mail_CodePlex_21851.txt");
+        var mailText = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_Codeplex_21851.txt"));
         MimeParser parser = new MimeParser();
         var mg = parser.ToMailMessage(mailText.UnifyLineFeed());
 
@@ -96,7 +98,7 @@ Is test result green?
     {
         RegisterProvider();
 
-        var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_InvalidFileName.txt");
+        var mg = GetMailMessage(Path.Combine(Environment.CurrentDirectory, "TestData", "Mail_InvalidFileName.txt"));
         Assert.AreEqual("\"Отгрузка на Мыс Астафьева в Мае 2018 ТМСШ 11% 1553 (ЕВРАЗ).xlsx\""
             , mg.Contents[1].FileName);
 

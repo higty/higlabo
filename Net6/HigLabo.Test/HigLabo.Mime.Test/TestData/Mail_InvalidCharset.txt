@@ -58,5 +58,11 @@ Content-Transfer-Encoding: Base64
 
 PGRpdiBzdHlsZT0nZm9udC1zaXplOjIwcHg7Jz5UaGlzIGlzIGEgdGV4dC9odG1sIGJvZHkg
 dGV4dC48L2Rpdj4=
+--5723918d-ddcc-4a02-865d-94a3ecd43a1a
+Content-Type: text/plain;
+	charset="WIN-1251";
+Content-Transfer-Encoding: Base64
+
+VGhpcyBpcyBhIHRleHQvcGxhaW4gYm9keSB0ZXh0Lg==
 --5723918d-ddcc-4a02-865d-94a3ecd43a1a--
 --859fc7b9-65bf-4c8c-b047-a03d1c3c3435--

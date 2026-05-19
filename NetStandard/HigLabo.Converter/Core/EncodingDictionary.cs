@@ -24,6 +24,7 @@ namespace HigLabo.Converter
             AddEncoding("UTF7", "UTF-7");
             AddEncoding("UTF32", "utf-32");
             AddEncoding("CP1252", "windows-1252");
+            AddEncoding("WIN-1251", "windows-1251");
         }
         private static void AddEncoding(String key, String codepage)
         {

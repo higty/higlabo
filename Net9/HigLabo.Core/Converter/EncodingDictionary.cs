@@ -24,6 +24,7 @@ public class EncodingDictionary
         AddEncoding("UTF7", "UTF-8");
         AddEncoding("UTF32", "utf-32");
         AddEncoding("CP1252", "UTF-8");
+        AddEncoding("WIN-1251", "windows-1251");
     }
     private static void AddEncoding(String key, String codepage)
     {
