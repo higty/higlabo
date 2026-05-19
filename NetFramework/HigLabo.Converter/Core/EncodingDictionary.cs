@@ -24,6 +24,7 @@ namespace HigLabo.Converter
             d["UTF8"] = Encoding.UTF8;
             d["UTF32"] = Encoding.GetEncoding("utf-32");
             d["CP1252"] = Encoding.GetEncoding("windows-1252");
+            d["WIN-1251"] = Encoding.GetEncoding("windows-1251");
         }
 
         public Encoding GetEncoding(String encoding)
