@@ -283,10 +283,6 @@ namespace HigLabo.Net.Smtp
                 {
                     this._State = SmtpConnectionState.Authenticated;
                 }
-                else
-                {
-                    throw new SmtpAuthenticateException(rs.Message);
-                }
             }
             return this._State == SmtpConnectionState.Authenticated;
         }
@@ -307,10 +303,6 @@ namespace HigLabo.Net.Smtp
                 {
                     this._State = SmtpConnectionState.Authenticated;
                 }
-                else
-                {
-                    throw new SmtpAuthenticateException(rs.Message);
-                }
             }
             return this._State == SmtpConnectionState.Authenticated;
         }
@@ -327,10 +319,6 @@ namespace HigLabo.Net.Smtp
                 if (rs.StatusCode == SmtpCommandResultCode.AuthenticationSuccessful)
                 {
                     this._State = SmtpConnectionState.Authenticated;
-                }
-                else
-                {
-                    throw new SmtpAuthenticateException(rs.Message);
                 }
             }
             return this._State == SmtpConnectionState.Authenticated;
