@@ -95,6 +95,35 @@ export class HigLaboFlatpickr {
         }
         this.setMonthNavText(instance);
     }
+    public setDateFromInputText(instance: any) {
+        const text = this.getInputDateText(instance);
+        if (text.length == 0) { return; }
+
+        const date = instance.parseDate(text, instance.config.dateFormat);
+        if (date == null || isNaN(date.getTime()) == true) { return; }
+
+        const selectedDate = instance.selectedDates[0];
+        if (selectedDate != null &&
+            selectedDate.getFullYear() == date.getFullYear() &&
+            selectedDate.getMonth() == date.getMonth() &&
+            selectedDate.getDate() == date.getDate()) {
+            instance.jumpToDate(date, false);
+            this.setMonthNavText(instance);
+            return;
+        }
+
+        instance.setDate(date, false);
+        this.setMonthNavText(instance);
+    }
+    private getInputDateText(instance: any) {
+        const input = instance.input as HTMLElement;
+        if (input == null) { return ""; }
+
+        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+            return input.value.trim();
+        }
+        return input.textContent == null ? "" : input.textContent.trim();
+    }
     public setMonthNavText(instance: any) {
         const monthNav = instance.monthNav as HTMLElement;
         if (monthNav == null) { return; }

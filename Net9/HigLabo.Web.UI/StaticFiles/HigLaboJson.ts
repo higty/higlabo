@@ -12,26 +12,18 @@ export class HigLaboJson {
             },
             encodeParameters: function (xhr, parameters, element: Element) {
                 xhr.overrideMimeType("text/json");
-                const p = j.Parse(element);
+                const p = j.Parse(element, element.getAttribute("hx-include"));
                 return JSON.stringify(p);
-            },
-            processParameter: function (parameter, node: Node) {
-                j.processParameter(parameter, node);
-            },
-            processArrayParameter: function (arrayParameter: Array<any>, node: Node) {
-                j.processArrayParameter(arrayParameter, node);
             },
         });
     }
-    public Parse(element: Element) {
+    public Parse(element: Element, selector: string) {
         const ee = new Array<Element>();
 
-        let hxInclude = element.getAttribute("hx-include");
-
-        if (hxInclude == null) {
-            hxInclude = "this";
+        if (selector == null) {
+            selector = "this";
         }
-        const ss = hxInclude.split(",");
+        const ss = selector.split(",");
         for (var i = 0; i < ss.length; i++) {
             let selector = ss[i].trim();
             if (selector.startsWith("closest ")) {
@@ -77,6 +69,15 @@ export class HigLaboJson {
         }
 
         let p: any = {};
+        if (element.getAttribute("hx-include-object") != null) {
+            try {
+                p = JSON.parse(element.getAttribute("hx-include-object"));
+            }
+            catch { }
+        }
+        if (p == null) {
+            p = {};
+        }
         for (var eIndex = 0; eIndex < ee.length; eIndex++) {
             const el = ee[eIndex];
             if (el == null) { continue; }

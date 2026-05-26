@@ -26,7 +26,7 @@ public class PagingPanelTagHelper : TagHelper
     public string NextPageText { get; set; } = Default.NextPageText;
     public string HxPost { get; set; } = "";
     public string HxInclude { get; set; } = "";
-    public string HxExt { get; set; } = "json-higlabo";
+    public string HxExt { get; set; } = "higlabo-json";
     public string HxSelect { get; set; } = "";
     public string HxSelectOob { get; set; } = "";
     public string HxTarget { get; set; } = "";

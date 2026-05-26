@@ -1,3 +1,4 @@
+import { HigLaboJson } from "./HigLaboJson.js";
 import { $ } from "./HtmlElementQuery.js";
 import { Htmx } from "./Htmx.js";
 import { ItemGroup } from "./ItemGroup.js";
@@ -6,6 +7,7 @@ export class DataRecordPopupPanel {
     targetPanel = null;
     positionPanel = null;
     htmx = new Htmx();
+    higLaboJson = new HigLaboJson();
     itemGroup = new ItemGroup();
     selected = new Array();
     initialize() {
@@ -100,14 +102,12 @@ export class DataRecordPopupPanel {
         if (this.currentPanel == null || this.targetPanel == null || this.positionPanel == null) {
             return;
         }
-        if ($(element).hasAttribute("hx-include")) {
-            $(dpl).setAttribute("hx-include", "#data-record-popup-panel [parameter-panel]," + $(element).getAttribute("hx-include"));
-        }
-        else {
-            $(dpl).setAttribute("hx-include", "#data-record-popup-panel [parameter-panel]");
+        $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("api-path"));
+        if ($(this.currentPanel).getAttribute("api-include") != "") {
+            const o = this.higLaboJson.Parse(this.currentPanel, $(this.currentPanel).getAttribute("api-include"));
+            $(dpl).setAttribute("hx-include-object", JSON.stringify(o));
         }
         $(dpl).setAttribute("selection-mode", $(this.currentPanel).getAttribute("selection-mode"));
-        $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("hx-post"));
         this.htmx.process(dpl);
         $(dpl).find("[search-textbox]").setValue("");
         if ($(dpl).getAttribute("search-default-list") == "true") {
@@ -169,7 +169,7 @@ export class DataRecordPopupPanel {
                 this.setPanelPosition(this.positionPanel.getBoundingClientRect());
             }
         }.bind(this), 100);
-        if ($(dpl).getAttribute("search-default-list") == "true") {
+        if ($(this.currentPanel).getAttribute("search-default-list") == "true") {
             this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
         }
     }

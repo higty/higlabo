@@ -15,7 +15,8 @@ public class InputRecordListPanelTagHelper : TagHelper
     public bool AllowSearch { get; set; } = true;
     public bool FooterVisible { get; set; } = true;
     public bool SearchDefaultList { get; set; } = false;
-    public string HxPost { get; set; } = "";
+    public string ApiPath { get; set; } = "";
+    public string ApiInclude { get; set; } = "";
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -27,13 +28,14 @@ public class InputRecordListPanelTagHelper : TagHelper
         output.Attributes.Add("footer-visible", this.FooterVisible.ToString().ToLower());
         output.Attributes.Add("search-default-list", this.SearchDefaultList.ToString().ToLower());
 
-        output.Attributes.Add("hx-trigger", "click,keyup[keyCode==13]");
-        if (this.HxPost.HasValue())
+        if (this.ApiPath.HasValue())
         {
-            output.Attributes.Add("hx-post", this.HxPost);
+            output.Attributes.Add("api-path", this.ApiPath);
         }
-        output.Attributes.Add("hx-target", "#data-record-popup-panel [record-list-panel]");
-        output.Attributes.Add("hx-swap", "innerHTML");
+        if (this.ApiInclude.HasValue())
+        {
+            output.Attributes.Add("api-include", this.ApiInclude);
+        }
         output.Attributes.Add("selection-mode", "Multiple");
 
         {

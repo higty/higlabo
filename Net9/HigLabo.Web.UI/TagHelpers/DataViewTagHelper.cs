@@ -58,7 +58,7 @@ public class RecordListComponentRecordListPanelTagHelper : TagHelper
         output.Attributes.Add("data-view-record-list-panel", "true");
         output.Attributes.Add("hx-trigger", "load once,data-view-load from:body");
         output.Attributes.Add("hx-include", this.HxInclude);
-        output.Attributes.Add("hx-ext", "json-higlabo");
+        output.Attributes.Add("hx-ext", "higlabo-json");
         output.Attributes.Add("hx-post", this.ApiPath);
         output.Attributes.Add("hx-swap", "innerHTML scroll:top");
 
