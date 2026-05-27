@@ -180,7 +180,9 @@ export class DataRecordPopupPanel {
             }
         }.bind(this), 100);
 
-        if ($(this.currentPanel).getAttribute("search-default-list") == "true") {
+        if ($(this.currentPanel).hasAttribute("template-id") == false &&
+            $(dpl).getAttribute("hx-post") != "" &&
+            $(this.currentPanel).getAttribute("search-default-list") == "true") {
             this.htmx.trigger("#data-record-popup-panel", "data-record-popup-panel-search");
         }
     }
