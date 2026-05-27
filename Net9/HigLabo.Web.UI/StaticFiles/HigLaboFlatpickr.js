@@ -110,6 +110,12 @@ export class HigLaboFlatpickr {
         if (input == null) {
             return "";
         }
+        if (input.getAttribute("input-date") == "true") {
+            const textInput = input.querySelector("input[type='text']");
+            if (textInput != null) {
+                return textInput.value.trim();
+            }
+        }
         if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
             return input.value.trim();
         }
