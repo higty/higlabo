@@ -7,5 +7,4 @@ public class Candidate
     public List<SafetyRating> SafetyRatings { get; set; } = new();
     public GroundingMetaData? GroundingMetaData { get; set; }
     public CitationMetadata? CitationMetadata { get; set; }
-    public UsageMetaData UsageMetaData { get; set; } = new();
 }

@@ -7,8 +7,11 @@ export class ItemGroup {
     }
     item_Click(target, e) {
         const groupName = $(target).getAttribute("item-group");
-        const itemId = $(target).getAttribute("item-group-id");
-        this.changeCurrentItem(groupName, itemId);
+        const itemIdList = this.getItemIdList($(target).getAttribute("item-group-id"));
+        if (itemIdList.length != 1) {
+            return;
+        }
+        this.changeCurrentItem(groupName, itemIdList[0]);
     }
     item_ValueChange(target, e) {
         const groupName = $(target).getAttribute("item-group");
@@ -42,8 +45,20 @@ export class ItemGroup {
         }
     }
     changeCurrentItem(groupName, itemId) {
-        $("[item-group='" + groupName + "'][item-group-id]").removeAttribute("current");
-        $("[item-group='" + groupName + "'][item-group-id='" + itemId + "']").setAttribute("current", "true");
+        const selectedItemIdList = this.getItemIdList(itemId);
+        $("[item-group='" + groupName + "'][item-group-id]").forEach(element => {
+            $(element).removeAttribute("current");
+            const itemGroupIdList = this.getItemIdList($(element).getAttribute("item-group-id"));
+            if (itemGroupIdList.some(id => selectedItemIdList.includes(id)) == true) {
+                $(element).setAttribute("current", "true");
+            }
+        });
+    }
+    getItemIdList(value) {
+        return value
+            .split(",")
+            .map(id => id.trim())
+            .filter(id => id.length > 0);
     }
 }
 //# sourceMappingURL=ItemGroup.js.map

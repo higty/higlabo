@@ -59,6 +59,26 @@ public class MessagesStreamResult
     {
         return this.MessageDelta?.Delta?.Stop_Reason ?? "";
     }
+    public MessageUsage? GetUsageResult()
+    {
+        if (this.Message == null && this.MessageDelta == null) { return null; }
+
+        var usage = new MessageUsage();
+        if (this.Message != null)
+        {
+            usage.Input_Tokens = this.Message.Usage.Input_Tokens;
+            usage.Cache_Creation_Input_Tokens = this.Message.Usage.Cache_Creation_Input_Tokens;
+            usage.Cache_Read_Input_Tokens = this.Message.Usage.Cache_Read_Input_Tokens;
+            usage.Cache_Creation.Ephemeral_5m_Input_Tokens = this.Message.Usage.Cache_Creation.Ephemeral_5m_Input_Tokens;
+            usage.Cache_Creation.Ephemeral_1h_Input_Tokens = this.Message.Usage.Cache_Creation.Ephemeral_1h_Input_Tokens;
+            usage.Output_Tokens = this.Message.Usage.Output_Tokens;
+        }
+        if (this.MessageDelta != null)
+        {
+            usage.Output_Tokens = this.MessageDelta.Usage.Output_Tokens;
+        }
+        return usage;
+    }
     public FunctionCallResult? GetFunctionCall()
     {
         return this.GetFunctionCallList().FirstOrDefault();

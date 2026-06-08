@@ -1,9 +1,23 @@
 import { $ } from "./HtmlElementQuery.js";
 export class HigLaboJson {
+    static HxTargetOuter = "outer ";
+    static OriginalHxTargetAttribute = "hx-target-outer";
+    static OriginalDataHxTargetAttribute = "data-hx-target-outer";
+    static HxTargetKeyAttribute = "hx-target-outer-key";
+    static HxRequestSelector = "[hx-get], [data-hx-get], [hx-post], [data-hx-post], [hx-put], [data-hx-put], [hx-delete], [data-hx-delete], [hx-patch], [data-hx-patch]";
+    static _initialized = false;
+    _hxTargetIndex = 0;
     initialize() {
+        if (HigLaboJson._initialized == true) {
+            return;
+        }
+        HigLaboJson._initialized = true;
         const j = this;
         window["htmx"].defineExtension("higlabo-json", {
             onEvent: function (name, evt) {
+                if (name === "htmx:beforeProcessNode") {
+                    j.processHxTargetNode(evt.detail.elt);
+                }
                 if (name === "htmx:configRequest") {
                     evt.detail.headers["Content-Type"] = "application/json";
                 }
@@ -14,6 +28,61 @@ export class HigLaboJson {
                 return JSON.stringify(p);
             },
         });
+    }
+    processHxTargetNode(element) {
+        if (element == null) {
+            return;
+        }
+        if (element.matches(HigLaboJson.HxRequestSelector) == false) {
+            return;
+        }
+        const hxTargetElement = this.hasOuterHxTarget(element) == true ? element :
+            $(element)
+                .findAncestors("[hx-target-outer], [data-hx-target-outer], [hx-target], [data-hx-target]")
+                .getElements()
+                .find((e) => this.hasOuterHxTarget(e) == true);
+        if (hxTargetElement == null) {
+            return;
+        }
+        const hxTarget = hxTargetElement.getAttribute(HigLaboJson.OriginalHxTargetAttribute) ??
+            hxTargetElement.getAttribute(HigLaboJson.OriginalDataHxTargetAttribute) ??
+            hxTargetElement.getAttribute("hx-target") ??
+            hxTargetElement.getAttribute("data-hx-target");
+        if (hxTarget == null || hxTarget.trim().startsWith(HigLaboJson.HxTargetOuter) == false) {
+            return;
+        }
+        const selector = hxTarget.trim().substring(HigLaboJson.HxTargetOuter.length);
+        const target = $(element).findOuterFirst(selector).getFirstElement();
+        if (target == null) {
+            return;
+        }
+        if (element.hasAttribute(HigLaboJson.OriginalHxTargetAttribute) == false &&
+            element.hasAttribute(HigLaboJson.OriginalDataHxTargetAttribute) == false) {
+            if (element.hasAttribute("data-hx-target") == true) {
+                element.setAttribute(HigLaboJson.OriginalDataHxTargetAttribute, hxTarget);
+            }
+            else {
+                element.setAttribute(HigLaboJson.OriginalHxTargetAttribute, hxTarget);
+            }
+        }
+        const key = this.getHxTargetKey(target);
+        element.setAttribute("hx-target", `[${HigLaboJson.HxTargetKeyAttribute}='${key}']`);
+    }
+    hasOuterHxTarget(element) {
+        const hxTarget = element.getAttribute(HigLaboJson.OriginalHxTargetAttribute) ??
+            element.getAttribute(HigLaboJson.OriginalDataHxTargetAttribute) ??
+            element.getAttribute("hx-target") ??
+            element.getAttribute("data-hx-target");
+        return hxTarget != null && hxTarget.trim().startsWith(HigLaboJson.HxTargetOuter) == true;
+    }
+    getHxTargetKey(element) {
+        let key = element.getAttribute(HigLaboJson.HxTargetKeyAttribute);
+        if (key == null) {
+            this._hxTargetIndex++;
+            key = this._hxTargetIndex.toString();
+            element.setAttribute(HigLaboJson.HxTargetKeyAttribute, key);
+        }
+        return key;
     }
     Parse(element, selector) {
         const ee = new Array();

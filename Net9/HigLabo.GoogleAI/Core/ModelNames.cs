@@ -13,9 +13,12 @@ public static class ModelNames
     public const string Gemini_2_5_Pro = "gemini-2.5-pro";
     public const string Gemini_2_5_Flash_Lite = "gemini-2.5-flash-lite";
 
+    public const string Gemini_3_5_Flash = "gemini-3.5-flash";
     public const string Gemini_3_Pro_Preview = "gemini-3-pro-preview";
     public const string Gemini_3_Flash_Preview = "gemini-3-flash-preview";
     public const string Gemini_3_1_Pro_Preview = "gemini-3.1-pro-preview";
+    public const string Gemini_3_1_Pro_Preview_CustomTools = "gemini-3.1-pro-preview-customtools";
+    public const string Gemini_3_1_Flash_Lite = "gemini-3.1-flash-lite";
     public const string Gemini_3_1_Flash_Lite_Preview = "gemini-3.1-flash-lite-preview";
 
     // ===== Gemini Image =====

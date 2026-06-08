@@ -1,4 +1,4 @@
-﻿import { $ } from "./HtmlElementQuery.js";
+import { $ } from "./HtmlElementQuery.js";
 
 export class ItemGroup {
     public initialize() {
@@ -8,8 +8,10 @@ export class ItemGroup {
     }
     private item_Click(target: Element, e: MouseEvent) {
         const groupName = $(target).getAttribute("item-group");
-        const itemId = $(target).getAttribute("item-group-id");
-        this.changeCurrentItem(groupName, itemId);
+        const itemIdList = this.getItemIdList($(target).getAttribute("item-group-id"));
+        if (itemIdList.length != 1) { return; }
+
+        this.changeCurrentItem(groupName, itemIdList[0]);
     }
     private item_ValueChange(target: Element, e: MouseEvent) {
         const groupName = $(target).getAttribute("item-group");
@@ -44,7 +46,22 @@ export class ItemGroup {
         }
     }
     public changeCurrentItem(groupName: string, itemId: string) {
-        $("[item-group='" + groupName + "'][item-group-id]").removeAttribute("current");
-        $("[item-group='" + groupName + "'][item-group-id='" + itemId + "']").setAttribute("current", "true");
+        const selectedItemIdList = this.getItemIdList(itemId);
+
+        $("[item-group='" + groupName + "'][item-group-id]").forEach(element => {
+            $(element).removeAttribute("current");
+
+            const itemGroupIdList = this.getItemIdList($(element).getAttribute("item-group-id"));
+
+            if (itemGroupIdList.some(id => selectedItemIdList.includes(id)) == true) {
+                $(element).setAttribute("current", "true");
+            }
+        });
+    }
+    private getItemIdList(value: string): Array<string> {
+        return value
+            .split(",")
+            .map(id => id.trim())
+            .filter(id => id.length > 0);
     }
 }

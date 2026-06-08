@@ -46,10 +46,12 @@ public partial class ModelsGenerateContentParameter : RestApiParameter, IRestApi
 public class ModelsGenerateContentObject
 {
     public List<Candidate> Candidates { get; init; } = new();
+    public UsageMetadata UsageMetadata { get; set; } = new();
 }
 public class ModelsGenerateContentResponse : RestApiResponse
 {
     public List<Candidate> Candidates { get; init; } = new();
+    public UsageMetadata UsageMetadata { get; set; } = new();
 }
 
 public partial class GoogleAIClient
@@ -189,12 +191,9 @@ public partial class GoogleAIClient
                 var o = this.JsonConverter.DeserializeObject<ModelsGenerateContentObject>(text);
                 if (o != null)
                 {
+                    result?.Process(o);
                     foreach (var candidate in o.Candidates)
                     {
-                        if (result != null)
-                        {
-                            result.Process(candidate);
-                        }
                         yield return candidate;
                     }
                 }

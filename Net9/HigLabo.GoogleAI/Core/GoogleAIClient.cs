@@ -66,10 +66,24 @@ public partial class GoogleAIClient
             _ => throw SwitchStatementNotImplementException.Create(p.HttpMethod),
         };
         var apiPath = p.GetApiPath();
-        var url = $"{this.ApiUrl}{apiPath}?key={this.Settings.ApiKey}";
+        var url = $"{this.ApiUrl}{apiPath}{(apiPath.Contains('?') ? '&' : '?')}key={this.Settings.ApiKey}";
         if (p is ModelsGenerateContentParameter p1)
         {
             if (p1.Stream)
+            {
+                url += "&alt=sse";
+            }
+        }
+        if (p is InteractionsCreateParameter p2)
+        {
+            if (p2.Stream == true)
+            {
+                url += "&alt=sse";
+            }
+        }
+        if (p is InteractionsGetParameter p3)
+        {
+            if (p3.Stream == true)
             {
                 url += "&alt=sse";
             }
@@ -90,7 +104,7 @@ public partial class GoogleAIClient
         var bodyText = await res.Content.ReadAsStringAsync();
         if (res.IsSuccessStatusCode)
         {
-            var o = this.JsonConverter.DeserializeObject<TResponse>(bodyText);
+            var o = bodyText.IsNullOrWhiteSpace() ? new TResponse() : this.JsonConverter.DeserializeObject<TResponse>(bodyText);
             o.SetProperty(parameter, requestBodyText, request, res, bodyText);
             return o;
         }

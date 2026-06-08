@@ -28,9 +28,9 @@ public class GoogleAIClientPlayground
         //await GenerateContentAsStream();
         //await GenerateContentAsStream1();
         //await GenerateContentThinkingAsStream1();
-        //await GenerateContentGroundingAsStream();
+        await GenerateContentGroundingAsStream();
         //await GenerateContentFunctionCallingAsStream();
-        await GenerateContentFunctionCallingAsStream();
+        //await GenerateContentFunctionCallingAsStream();
 
         //await GenerateMangaImage();
         //await GenerateContentTTS();
