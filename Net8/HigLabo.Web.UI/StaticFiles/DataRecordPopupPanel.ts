@@ -90,6 +90,9 @@ export class DataRecordPopupPanel {
         }
         $(dpl).setAttribute("selection-mode", $(this.currentPanel).getAttribute("selection-mode"));
         $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("hx-post"));
+        if ($(dpl).getAttribute("hx-post") == "") {
+            $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("api-path"));
+        }
         this.htmx.process(dpl);
         $(dpl).find("[search-textbox]").setValue("");
 
