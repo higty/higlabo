@@ -102,7 +102,10 @@ export class DataRecordPopupPanel {
         if (this.currentPanel == null || this.targetPanel == null || this.positionPanel == null) {
             return;
         }
-        $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("api-path"));
+        $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("hx-post"));
+        if ($(dpl).getAttribute("hx-post") == "") {
+            $(dpl).setAttribute("hx-post", $(this.currentPanel).getAttribute("api-path"));
+        }
         if ($(this.currentPanel).getAttribute("api-include") != "") {
             const o = this.higLaboJson.Parse(this.currentPanel, $(this.currentPanel).getAttribute("api-include"));
             $(dpl).setAttribute("hx-include-object", JSON.stringify(o));
