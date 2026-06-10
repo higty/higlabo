@@ -56,6 +56,7 @@ public partial class StoredProcedureWindow : Window
             this.StoredProcedureList.Add(item);
         }
         this.StoredProcedureListBox.ItemsSource = this.StoredProcedureList;
+        this.StoredProcedureListBox.SelectedItem = this.FindClosestStoredProcedure(this.StoredProcedure.Name);
 
         this.SetParameterProperty();
         ConfigData.Current.StoredProcedureWindow.Initialize(this);
@@ -85,6 +86,56 @@ public partial class StoredProcedureWindow : Window
                 }
             }
         }
+    }
+    private DatabaseObject? FindClosestStoredProcedure(String name)
+    {
+        if (this.StoredProcedureList.Count == 0) { return null; }
+
+        return this.StoredProcedureList
+            .OrderBy(el => CalculateEditDistance(name, el.Name))
+            .ThenByDescending(el => CalculateCommonPrefixLength(name, el.Name))
+            .ThenBy(el => Math.Abs(name.Length - el.Name.Length))
+            .ThenBy(el => el.Name)
+            .FirstOrDefault();
+    }
+    private static Int32 CalculateEditDistance(String source, String target)
+    {
+        source = source.ToUpperInvariant();
+        target = target.ToUpperInvariant();
+
+        if (source.Length == 0) { return target.Length; }
+        if (target.Length == 0) { return source.Length; }
+
+        var previous = new Int32[target.Length + 1];
+        var current = new Int32[target.Length + 1];
+        for (int i = 0; i <= target.Length; i++)
+        {
+            previous[i] = i;
+        }
+
+        for (int i = 1; i <= source.Length; i++)
+        {
+            current[0] = i;
+            for (int j = 1; j <= target.Length; j++)
+            {
+                var cost = source[i - 1] == target[j - 1] ? 0 : 1;
+                current[j] = Math.Min(Math.Min(current[j - 1] + 1, previous[j] + 1), previous[j - 1] + cost);
+            }
+            (previous, current) = (current, previous);
+        }
+        return previous[target.Length];
+    }
+    private static Int32 CalculateCommonPrefixLength(String source, String target)
+    {
+        var length = Math.Min(source.Length, target.Length);
+        for (int i = 0; i < length; i++)
+        {
+            if (Char.ToUpperInvariant(source[i]) != Char.ToUpperInvariant(target[i]))
+            {
+                return i;
+            }
+        }
+        return length;
     }
 
     protected override async void OnActivated(EventArgs e)
