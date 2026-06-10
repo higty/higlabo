@@ -22,7 +22,7 @@ public class OpenAIPlayground
     public async ValueTask ExecuteAsync()
     {
         SetOpenAISetting();
-        await ImageGeneration();
+        await ResponseCreateWebSearchImageStream();
         Console.WriteLine("■Completed");
     }
     private void SetOpenAISetting()
@@ -462,7 +462,7 @@ public class OpenAIPlayground
         p.Model = "gpt-4.1-mini";
         p.AddUserMessage("How to enjoy coffee near by Shibuya station? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new Tool("web_search"));
+        p.Tools.Add(new WebSearchTool());
         var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
         foreach (var output in res.Output)
         {
@@ -479,6 +479,143 @@ public class OpenAIPlayground
 
         Console.WriteLine("■DONE");
     }
+    private async ValueTask ResponseCreateWebSearchImage()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-5.4";
+        p.AddUserMessage("Search for recent images and supporting text sources about the Golden Gate Bridge at sunset.");
+        p.Tools = [];
+        p.Tools.Add(new WebSearchTool()
+        {
+            Search_Content_Types = ["image", "text"],
+            Image_Settings = new()
+            {
+                Max_Results = 3,
+                Caption = true,
+            },
+        });
+        p.Include = ["web_search_call.results"];
+        var res = await cl.ResponseCreateAsync(p, CancellationToken.None);
+        foreach (var output in res.Output)
+        {
+            if (output.Type == "web_search_call" && output.Results != null)
+            {
+                foreach (var result in output.Results)
+                {
+                    Console.WriteLine(result.Type);
+                    Console.WriteLine(result.Image_Url);
+                    Console.WriteLine(result.Thumbnail_Url);
+                    Console.WriteLine(result.Source_Website_Url);
+                    Console.WriteLine(result.Caption);
+                    Console.WriteLine();
+                }
+            }
+            foreach (var content in output.Content)
+            {
+                if (content.Type == "output_text")
+                {
+                    Console.WriteLine(content.Text);
+                }
+            }
+        }
+
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateWebSearchImageStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-5.4";
+        p.AddUserMessage("Search for recent images and supporting text sources about the Golden Gate Bridge at sunset.");
+        p.Tools = [];
+        p.Tools.Add(new WebSearchTool()
+        {
+            Search_Content_Types = ["image", "text"],
+            Image_Settings = new()
+            {
+                Max_Results = 3,
+                Caption = true,
+            },
+        });
+        p.Include = ["web_search_call.results"];
+
+        var result = new ResponseStreamResult();
+        await foreach (var text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
+        {
+            Console.Write(text);
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+
+        foreach (var output in result.Response?.Response.Output ?? [])
+        {
+            if (output.Type != "web_search_call" || output.Results == null) { continue; }
+
+            foreach (var imageResult in output.Results.Where(el => el.Type == "image_result"))
+            {
+                Console.WriteLine(imageResult.Image_Url);
+                Console.WriteLine(imageResult.Thumbnail_Url);
+                Console.WriteLine(imageResult.Source_Website_Url);
+                Console.WriteLine(imageResult.Caption);
+                Console.WriteLine();
+            }
+        }
+
+        Console.WriteLine("■DONE");
+    }
+    private async ValueTask ResponseCreateWebSearchImageEventStream()
+    {
+        var cl = OpenAIClient;
+
+        var p = new ResponseCreateParameter();
+        p.Model = "gpt-5.4";
+        p.AddUserMessage("Search for recent images and supporting text sources about the Golden Gate Bridge at sunset.");
+        p.Tools = [];
+        p.Tools.Add(new WebSearchTool()
+        {
+            Search_Content_Types = ["image", "text"],
+            Image_Settings = new()
+            {
+                Max_Results = 3,
+                Caption = true,
+            },
+        });
+        p.Include = ["web_search_call.results"];
+
+        var result = new ResponseStreamResult();
+        await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
+        {
+            var oEvent = item.CreateTypedData();
+            if (oEvent is IResponseStreamEventDelta oDelta)
+            {
+                Console.Write(oDelta.Delta);
+            }
+            if (oEvent is ResponseStreamWebSearchCall)
+            {
+                Console.WriteLine(oEvent.Type);
+            }
+            if (oEvent is ResponseStreamOutputItem outputItem &&
+                outputItem.Item.Type == "web_search_call" &&
+                outputItem.Item.Results != null)
+            {
+                Console.WriteLine();
+                foreach (var imageResult in outputItem.Item.Results.Where(el => el.Type == "image_result"))
+                {
+                    Console.WriteLine(imageResult.Image_Url);
+                    Console.WriteLine(imageResult.Thumbnail_Url);
+                    Console.WriteLine(imageResult.Source_Website_Url);
+                    Console.WriteLine(imageResult.Caption);
+                    Console.WriteLine();
+                }
+            }
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("■DONE");
+    }
     private async ValueTask ResponseCreateWebSearchStream()
     {
         var cl = OpenAIClient;
@@ -488,7 +625,7 @@ public class OpenAIPlayground
         p.Model = "gpt-5";
         p.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new Tool("web_search"));
+        p.Tools.Add(new WebSearchTool());
         var result = new ResponseStreamResult();
         await foreach (string text in cl.ResponseCreateStreamAsync(p, result, CancellationToken.None))
         {
@@ -519,7 +656,7 @@ public class OpenAIPlayground
         p.Model = "gpt-5";
         p.AddUserMessage($"How to enjoy coffee near by {location}? Please search shop list from web.");
         p.Tools = [];
-        p.Tools.Add(new Tool("web_search"));
+        p.Tools.Add(new WebSearchTool());
         var result = new ResponseStreamResult();
         await foreach (var item in cl.ResponseCreateEventStreamAsync(p, result, CancellationToken.None))
         {

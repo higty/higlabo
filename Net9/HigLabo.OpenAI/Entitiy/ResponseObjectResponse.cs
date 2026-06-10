@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text;
 
 namespace HigLabo.OpenAI;
@@ -129,6 +129,7 @@ public class ResponseOutput
     public string Status { get; set; } = "";
     public string Role { get; set; } = "";
     public List<string>? Queries { get; set; }
+    public List<ResponseWebSearchResult>? Results { get; set; }
     public List<ResponseOutputContent> Content { get; set; } = new();
     //Image generation
     public string Background { get; set; } = "";
@@ -144,6 +145,20 @@ public class ResponseOutput
         if (this.Type == "web_search_call") { return this.Type; }
         if (this.Type == "message") { return $"{this.Type} {this.Role}"; }
         return $"{this.Type} {this.Role}".Trim();
+    }
+}
+public class ResponseWebSearchResult
+{
+    public string Type { get; set; } = "";
+    public string Image_Url { get; set; } = "";
+    public string Source_Website_Url { get; set; } = "";
+    public string Thumbnail_Url { get; set; } = "";
+    public string Caption { get; set; } = "";
+
+    public override string ToString()
+    {
+        if (this.Type == "image_result") { return $"{this.Caption} {this.Image_Url}".Trim(); }
+        return this.Type;
     }
 }
 public class ResponseOutputContent

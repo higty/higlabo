@@ -291,6 +291,11 @@ public class ResponseStreamOutputItem : IResponseStreamEvent
         public string Logs { get; set; } = "";
         public string Type { get; set; } = "";
         public List<OutputCodeInterpreterResultFile>? Files { get; set; }
+        //Web search image result
+        public string Image_Url { get; set; } = "";
+        public string Source_Website_Url { get; set; } = "";
+        public string Thumbnail_Url { get; set; } = "";
+        public string Caption { get; set; } = "";
     }
     public class OutputCodeInterpreterResultFile
     {
