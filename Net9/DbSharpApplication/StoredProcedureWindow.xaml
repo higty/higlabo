@@ -49,7 +49,7 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         <Button Name="CopyResultSetButton" Click="CopyResultSetButton_Click" Width="60"
-                            Content="Copy" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Right"></Button>
+                            Content="Appl_y" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Right"></Button>
                     </Grid>
                 </StackPanel>
                 <DataGrid Grid.Row="1" Name="ParameterListBox" 

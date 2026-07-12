@@ -367,11 +367,20 @@ public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
         }
         foreach (var ix in t.IndexList)
         {
-            //Pass PrimaryKey
-            if (ix.IsUnique == true) { continue; }
-            //Index only
             if (String.Equals(ix.IndexType, "CLUSTERED", StringComparison.OrdinalIgnoreCase) == false &&
                 String.Equals(ix.IndexType, "NONCLUSTERED", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+            if (ix.IsPrimaryKey == true) { continue; }
+
+            if (ix.IsUniqueConstraint == true)
+            {
+                sb.AppendFormat(",CONSTRAINT {0} UNIQUE {1} ({2})"
+                    , ix.Name
+                    , ix.IndexType
+                    , String.Join(',', ix.Columns.Select(el => el.Name)));
+                sb.AppendLine();
+                continue;
+            }
+            if (ix.IsUnique == true) { continue; }
 
             sb.AppendFormat(",INDEX {0} {1} ({2})"
                 , ix.Name
@@ -383,6 +392,27 @@ public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
         sb.AppendLine(")");
         sb.AppendLine("GO");
         sb.AppendLine();
+
+        foreach (var ix in t.IndexList)
+        {
+            if (ix.IsPrimaryKey == true) { continue; }
+            if (ix.IsUnique == false) { continue; }
+            if (ix.IsUniqueConstraint == true) { continue; }
+            if (String.Equals(ix.IndexType, "CLUSTERED", StringComparison.OrdinalIgnoreCase) == false &&
+                String.Equals(ix.IndexType, "NONCLUSTERED", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+
+            sb.AppendFormat("DROP INDEX IF EXISTS {0} ON {1}", ix.Name, t.Name);
+            sb.AppendLine();
+            sb.AppendLine("GO");
+            sb.AppendFormat("CREATE UNIQUE {0} INDEX {1} ON {2} ({3})"
+                , ix.IndexType
+                , ix.Name
+                , t.Name
+                , String.Join(',', ix.Columns.Select(el => el.Name)));
+            sb.AppendLine();
+            sb.AppendLine("GO");
+            sb.AppendLine();
+        }
 
         var checkDefinition = new StringBuilder(256);
         foreach (var cc in t.CheckConstraintList)
@@ -517,14 +547,17 @@ end as IndexType
 ,case when T1.[type] = N'U' then N'Table'
 when T1.[type] = N'V' then N'View'
 end as [object_type]
+,T2.is_primary_key as IsPrimaryKey
+,T2.is_unique_constraint as IsUniqueConstraint
 from sys.objects as T1 with(nolock)
 inner join sys.indexes as T2 with(nolock) on T1.object_id = T2.object_id
 inner join sys.index_columns as T3 with(nolock) on T2.object_id = T3.object_id and T2.index_id = T3.index_id
 inner join sys.columns as T4 with(nolock) on T3.object_id = T4.object_id and T3.column_id = T4.column_id
 where T1.is_ms_shipped <> 1
 and T2.index_id > 0
+and T3.key_ordinal > 0
 and T1.[name] = N'{0}'
-order by T2.[name]
+order by T2.[name], T3.key_ordinal
 ";
             return String.Format(q, tableName);
         }

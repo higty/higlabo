@@ -122,7 +122,7 @@ public class DataType : INotifyPropertyChanged
                     }
                     else if (tp.CanDeclarePrecisionScale() == true && this.Precision.HasValue == true)
                     {
-                        if (tp.CanDeclareScale() == true && this.Scale.HasValue == true)
+                        if (this.Scale.HasValue == true)
                         {
                             return String.Format("{0} {1} ({2}, {3})", name, this.GetDeclareTypeName(), this.Precision, this.Scale);
                         }

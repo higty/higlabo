@@ -92,10 +92,11 @@ public partial class StoredProcedureWindow : Window
         if (this.StoredProcedureList.Count == 0) { return null; }
 
         return this.StoredProcedureList
+            .Where(el => String.Equals(name, el.Name, StringComparison.OrdinalIgnoreCase) == false)
             .OrderBy(el => CalculateEditDistance(name, el.Name))
             .ThenByDescending(el => CalculateCommonPrefixLength(name, el.Name))
             .ThenBy(el => Math.Abs(name.Length - el.Name.Length))
-            .ThenBy(el => el.Name)
+            .ThenByDescending(el => el.Name)
             .FirstOrDefault();
     }
     private static Int32 CalculateEditDistance(String source, String target)

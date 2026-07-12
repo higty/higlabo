@@ -157,9 +157,12 @@ dialog {
     padding: 8px;
     background-color: var(--color-panel-bg);
     border: solid 1px var(--color-border);
-    white-space: pre-wrap;
-    word-break: break-all;
     box-shadow: 4px 4px 16px rgba(0 0 0 / 40%);
+
+    &:not(:has(> *)) {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
 }
 
 .data-record-popup-panel {

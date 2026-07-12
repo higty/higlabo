@@ -395,9 +395,11 @@ dialog {
   padding: 8px;
   background-color: var(--color-panel-bg);
   border: solid 1px var(--color-border);
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
+}
+.message-popup-panel:not(:has(> *)) {
   white-space: pre-wrap;
   word-break: break-all;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .data-record-popup-panel {

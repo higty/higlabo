@@ -209,9 +209,9 @@ namespace HigLabo.DbSharp.MetaData
                     c.Ordinal = l.Count;
                     c.DbType = this.CreateDbType(reader["ColumnType"]);
                     c.UdtTypeName = reader.GetString(6);//UdtTypeName
-                    if (reader[4] != DBNull.Value) c.Length = reader.GetInt16(2);
-                    if (reader[5] != DBNull.Value) c.Precision = reader.GetByte(3);
-                    if (reader[6] != DBNull.Value) c.Scale = reader.GetByte(4);
+                    if (reader[2] != DBNull.Value) c.Length = reader.GetInt16(2);
+                    if (reader[3] != DBNull.Value) c.Precision = reader.GetByte(3);
+                    if (reader[4] != DBNull.Value) c.Scale = reader.GetByte(4);
                     c.AllowNull = reader.GetBoolean(5);
 
                     l.Add(c);

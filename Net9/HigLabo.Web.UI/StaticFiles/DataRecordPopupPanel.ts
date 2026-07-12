@@ -156,11 +156,12 @@ export class DataRecordPopupPanel {
 
         const positionRect = this.positionPanel.getBoundingClientRect();
 
+        const minPopupWidth = 400;
         if ($(this.currentPanel).hasAttribute("panel-width")) {
             $(dpl).setStyle("width", $(this.currentPanel).getAttribute("panel-width"));
         }
         else {
-            $(dpl).setStyle("width", positionRect.width + "px");
+            $(dpl).setStyle("width", (allowSearch ? Math.max(positionRect.width, minPopupWidth) : positionRect.width) + "px");
         }
 
         this.setPanelPosition(positionRect);
@@ -221,8 +222,7 @@ export class DataRecordPopupPanel {
         let left = 0;
         let top = 0;
 
-        if (dpl.getAttribute("selection-mode") == "Multiple" ||
-            rect.x + popupWidth > window.innerWidth) {
+        if (rect.x + popupWidth > window.innerWidth) {
             if (popupWidth > window.innerWidth) {
                 left = 0;
             }

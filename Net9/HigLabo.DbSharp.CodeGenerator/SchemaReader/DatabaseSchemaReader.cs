@@ -1,4 +1,4 @@
-using HigLabo.Core;
+﻿using HigLabo.Core;
 using HigLabo.Data;
 using System;
 using System.Collections.Generic;
@@ -129,6 +129,8 @@ public abstract class DatabaseSchemaReader
                     ix.IndexType = reader.GetString(3);
                     ix.IsUnique = reader.GetBoolean(4);
                     ix.ObjectType = reader.GetString(5);
+                    if (reader.FieldCount > 6) ix.IsPrimaryKey = reader.GetBoolean(6);
+                    if (reader.FieldCount > 7) ix.IsUniqueConstraint = reader.GetBoolean(7);
                     l.Add(ix);
                 }
                 var columnName = reader.GetString(2);

@@ -72,10 +72,7 @@ namespace HigLabo.OpenAI
         string IQueryParameter.GetQueryString()
         {
             var sb = new StringBuilder();
-            if (this.Start_Time != null)
-            {
-                sb.Append($"start_time={this.Start_Time}&");
-            }
+            sb.Append($"start_time={this.Start_Time}&");
             if (this.Bucket_Width != null)
             {
                 sb.Append($"bucket_width={WebUtility.UrlEncode(this.Bucket_Width)}&");

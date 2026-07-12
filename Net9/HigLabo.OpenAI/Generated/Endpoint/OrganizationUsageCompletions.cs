@@ -88,10 +88,7 @@ namespace HigLabo.OpenAI
         string IQueryParameter.GetQueryString()
         {
             var sb = new StringBuilder();
-            if (this.Start_Time != null)
-            {
-                sb.Append($"start_time={this.Start_Time}&");
-            }
+            sb.Append($"start_time={this.Start_Time}&");
             if (this.Api_Key_Ids != null)
             {
                 foreach (var item in this.Api_Key_Ids)

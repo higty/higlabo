@@ -13,5 +13,7 @@ public class Index
     public List<Column> Columns { get; set; } = new List<Column>();
     public String IndexType { get; set; } = "";
     public Boolean IsUnique { get; set; }
+    public Boolean IsPrimaryKey { get; set; }
+    public Boolean IsUniqueConstraint { get; set; }
     public String ObjectType { get; set; } = "";
 }

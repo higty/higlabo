@@ -20,6 +20,11 @@ public class ResponseUsageResult
     {
         switch (modelName.Trim().ToLowerInvariant())
         {
+            case "gpt-5.6":
+            case "gpt-5.6-sol":
+                return this.CalculateCost(5.00m, 0.50m, 30.00m);
+            case "gpt-5.6-terra": return this.CalculateCost(2.50m, 0.25m, 15.00m);
+            case "gpt-5.6-luna": return this.CalculateCost(1.00m, 0.10m, 6.00m);
             case "gpt-5.5": return this.CalculateCost(5.00m, 0.50m, 30.00m);
             case "gpt-5.5-pro": return this.CalculateCost(30.00m, 30.00m, 180.00m);
             case "gpt-5.4": return this.CalculateCost(2.50m, 0.25m, 15.00m);
