@@ -15,7 +15,7 @@
 		<NoWarn>1591</NoWarn>
 	</PropertyGroup>
   <ItemGroup>
-	  <PackageReference Include="AngleSharp" Version="1.1.2" />
+	  <PackageReference Include="AngleSharp" Version="1.6.0" />
 	  <PackageReference Include="Selenium.Support" Version="4.27.0" />
 	  <PackageReference Include="Selenium.WebDriver" Version="4.27.0" />
 	  <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="136.0.7103.11300" />

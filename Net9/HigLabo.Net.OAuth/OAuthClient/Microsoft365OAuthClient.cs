@@ -19,7 +19,7 @@ public class Microsoft365OAuthClient : OAuthAuthenticationClient
     public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes, string state)
     {
         return "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=code"
-            + $"&client_id={this.ClientID}&redirect_uri={redirectUrl}&scope={WebUtility.UrlEncode(String.Join(" ", scopes))}&state ={state}";
+            + $"&client_id={this.ClientID}&redirect_uri={redirectUrl}&scope={WebUtility.UrlEncode(String.Join(" ", scopes))}&state={state}";
     }
     public override async ValueTask<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
     {
