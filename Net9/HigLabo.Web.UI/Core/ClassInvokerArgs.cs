@@ -8,6 +8,12 @@ public class ClassInvokerArgs
     public object? Args { get; } = null;
 
     public ClassInvokerArgs() { }
+    public ClassInvokerArgs(string className, string functionName, object args)
+    {
+        ClassName = className;
+        FunctionName = functionName;
+        Args = args;
+    }
     public ClassInvokerArgs(string className, string selector, string functionName, object args)
     {
         ClassName = className;
