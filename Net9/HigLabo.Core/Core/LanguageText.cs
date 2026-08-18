@@ -56,7 +56,7 @@ public abstract class LanguageText
     }
 
     private IEnumerable<string> GetKeyList<T>(T key)
-        where T : Enum
+        where T : struct, Enum
     {
         var typeName = typeof(T).Name;
         yield return $"{typeName}_{key.ToStringFromEnum()}";
@@ -64,7 +64,7 @@ public abstract class LanguageText
         yield return key.ToStringFromEnum();
     }
     public string Get<T>(T key)
-        where T: Enum
+        where T : struct, Enum
     {
         foreach (var eKey in this.GetKeyList(key))
         {

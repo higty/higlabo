@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HigLabo.Core.Test;
@@ -27,6 +27,13 @@ public class EnumExtensionsTest
         V1620100 = 1620100,
         V23372036854775807 = 23372036854775807,
     }
+    public enum SignedSequentialEnum
+    {
+        NegativeTwo = -2,
+        NegativeOne = -1,
+        Zero = 0,
+        One = 1,
+    }
     [FlagsAttribute]
     enum FlagsEnum
     {
@@ -54,13 +61,11 @@ public class EnumExtensionsTest
         Assert.AreEqual("V4", BaseIsNotZeroEnum.V4.ToStringFromEnum());
     }
     [TestMethod]
-    [ExpectedException(typeof(InvalidOperationException))]
     public void EmptyValueTest()
     {
-        String s = "";
-        s = ((DayOfWeek)(-1)).ToStringFromEnum();
-        s = ((DayOfWeek)(7)).ToStringFromEnum();
-        s = ((HttpStatusCode)(3)).ToStringFromEnum();
+        Assert.ThrowsException<InvalidOperationException>(() => ((DayOfWeek)(-1)).ToStringFromEnum());
+        Assert.ThrowsException<InvalidOperationException>(() => ((DayOfWeek)(7)).ToStringFromEnum());
+        Assert.ThrowsException<InvalidOperationException>(() => ((HttpStatusCode)(3)).ToStringFromEnum());
     }
     [TestMethod]
     public void ByteEnumTest()
@@ -76,6 +81,14 @@ public class EnumExtensionsTest
         Assert.AreEqual("V2", LongEnum.V2.ToStringFromEnum());
         Assert.AreEqual("V1620100", LongEnum.V1620100.ToStringFromEnum());
         Assert.AreEqual("V23372036854775807", LongEnum.V23372036854775807.ToStringFromEnum());
+    }
+    [TestMethod]
+    public void SignedSequentialEnumTest()
+    {
+        Assert.AreEqual("NegativeTwo", SignedSequentialEnum.NegativeTwo.ToStringFromEnum());
+        Assert.AreEqual("NegativeOne", SignedSequentialEnum.NegativeOne.ToStringFromEnum());
+        Assert.AreEqual("Zero", SignedSequentialEnum.Zero.ToStringFromEnum());
+        Assert.AreEqual("One", SignedSequentialEnum.One.ToStringFromEnum());
     }
     [TestMethod]
     public void FlagEnumTest()
