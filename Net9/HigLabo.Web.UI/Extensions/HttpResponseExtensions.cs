@@ -27,11 +27,11 @@ public static class HttpResponseExtensions
         var json = JsonConvert.SerializeObject(r, JsonSerializerSettings);
         if (response.Headers["class-invoker-args"].ToString() == "")
         {
-            response.Headers["class-invoker-args"] = HttpUtility.UrlEncode(json);
+            response.Headers["class-invoker-args"] = Uri.EscapeDataString(json);
         }
         else
         {
-            response.Headers["class-invoker-args"] = $"{response.Headers["class-invoker-args"].ToString()},{HttpUtility.UrlEncode(json)}";
+            response.Headers["class-invoker-args"] = $"{response.Headers["class-invoker-args"].ToString()},{Uri.EscapeDataString(json)}";
         }
     }
     public static void HtmlElementQueryInvoke(this HttpResponse response, string selector, string functionName)
@@ -54,11 +54,11 @@ public static class HttpResponseExtensions
         var json = JsonConvert.SerializeObject(r, JsonSerializerSettings);
         if (response.Headers["class-invoker-args"].ToString() == "")
         {
-            response.Headers["class-invoker-args"] = HttpUtility.UrlEncode(json);
+            response.Headers["class-invoker-args"] = Uri.EscapeDataString(json);
         }
         else
         {
-            response.Headers["class-invoker-args"] = $"{response.Headers["class-invoker-args"].ToString()},{HttpUtility.UrlEncode(json)}";
+            response.Headers["class-invoker-args"] = $"{response.Headers["class-invoker-args"].ToString()},{Uri.EscapeDataString(json)}";
         }
     }
 }

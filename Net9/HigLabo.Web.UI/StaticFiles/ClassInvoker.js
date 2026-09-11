@@ -57,7 +57,7 @@ export class ClassInvoker {
     }
     decodeURIComponentAndJsonParse(json) {
         try {
-            return JSON.parse(decodeURIComponent(json).replace(/\+/g, " "));
+            return JSON.parse(decodeURIComponent(json));
         }
         catch { }
         return alert("JSON parse error.\n" + json);
