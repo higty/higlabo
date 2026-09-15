@@ -14,6 +14,8 @@ public static class ModelNames
     public const string Gemini_2_5_Flash_Lite = "gemini-2.5-flash-lite";
     public const string Gemini_2_5_Flash_Lite_Preview_09_2025 = "gemini-2.5-flash-lite-preview-09-2025";
 
+    public const string Gemini_3_8_Flash = "gemini-3.8-flash";
+    public const string Gemini_3_7_Flash = "gemini-3.7-flash";
     public const string Gemini_3_6_Flash = "gemini-3.6-flash";
     public const string Gemini_3_5_Flash = "gemini-3.5-flash";
     public const string Gemini_3_5_Flash_Lite = "gemini-3.5-flash-lite";
@@ -31,9 +33,14 @@ public static class ModelNames
     public const string Gemini_3_1_Flash_Lite_Image = "gemini-3.1-flash-lite-image";
     public const string Gemini_3_1_Flash_Image_Preview = "gemini-3.1-flash-image-preview";
     public const string Gemini_2_5_Flash_Image = "gemini-2.5-flash-image";
+    public const string Gemini_Omni_1_1_Flash = "gemini-omni-1.1-flash";
     public const string Gemini_Omni_Flash_Preview = "gemini-omni-flash-preview";
 
     // ===== Audio =====
+    public const string Gemini_3_8_Live = "gemini-3.8-live";
+    public const string Gemini_3_8_Live_Extended_Thinking = "gemini-3.8-live-extended-thinking";
+    public const string Gemini_3_5_Transcribe = "gemini-3.5-transcribe";
+    public const string Gemini_3_5_Transcribe_Live = "gemini-3.5-transcribe-live";
     public const string Gemini_3_5_Live_Translate_Preview = "gemini-3.5-live-translate-preview";
     public const string Gemini_3_1_Flash_Live_Preview = "gemini-3.1-flash-live-preview";
     public const string Gemini_3_1_Flash_Tts_Preview = "gemini-3.1-flash-tts-preview";
@@ -63,6 +70,7 @@ public static class ModelNames
     public const string Veo_3_Fast = "veo-3.0-fast-generate-001";
 
     // ===== Lyria (Music) =====
+    public const string Lyria_3_5 = "lyria-3.5";
     public const string Lyria_3_Clip_Preview = "lyria-3-clip-preview";
     public const string Lyria_3_Pro_Preview = "lyria-3-pro-preview";
 
@@ -70,6 +78,11 @@ public static class ModelNames
     {
         switch (modelName.Trim().ToLowerInvariant())
         {
+            case Gemini_3_8_Flash:
+            case Gemini_3_7_Flash:
+                // Introductory Standard pricing through 2026-12-31; then 1.50 / 0.15 / 7.50 USD per 1M tokens.
+                // https://ai.google.dev/gemini-api/docs/pricing
+                return CalculateCost(usage, 0.75m, 0.075m, 3.75m);
             case Gemini_3_6_Flash:
                 return CalculateCost(usage, 1.50m, 0.15m, 7.50m);
             case Gemini_3_5_Flash:

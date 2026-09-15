@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 public class FileExtensionProcessor
@@ -6,12 +6,14 @@ public class FileExtensionProcessor
     public HashSet<string> TextExtensions { get; init; } = new();
     public HashSet<string> ImageExtensions { get; init; } = new();
     public HashSet<string> VideoExtensions { get; init; } = new();
+    public HashSet<string> AudioExtensions { get; init; } = new();
 
     public FileExtensionProcessor()
     {
         this.TextExtensions = CreateTextExtensions();
         this.ImageExtensions = CreateImageExtensions();
         this.VideoExtensions = CreateVideoExtensions();
+        this.AudioExtensions = CreateAudioExtensions();
     }
     private HashSet<string> CreateTextExtensions()
     {
@@ -247,6 +249,16 @@ public class FileExtensionProcessor
         return d;
     }
 
+    private HashSet<string> CreateAudioExtensions()
+    {
+        var d = new HashSet<string>
+        {
+            ".aac", ".adts", ".aif", ".aifc", ".aiff", ".au", ".caf",
+            ".flac", ".m4a", ".mid", ".midi", ".mp3", ".oga", ".ogg",
+            ".opus", ".rmi", ".snd", ".wav", ".wave", ".weba", ".wma",
+        };
+        return d;
+    }
     public bool IsTextFile(string extension)
     {
         return IsTextFile(extension, StringComparer.OrdinalIgnoreCase);
@@ -294,5 +306,25 @@ public class FileExtensionProcessor
             extension = "." + extension;
         }
         return this.VideoExtensions.Contains(extension, comparer);
+    }
+    public bool IsAudioFile(string extension)
+    {
+        return IsAudioFile(extension, StringComparer.OrdinalIgnoreCase);
+    }
+    public bool IsAudioFile(string extension, StringComparer comparer)
+    {
+        if (string.IsNullOrWhiteSpace(extension))
+        {
+            return false;
+        }
+        if (!extension.StartsWith("."))
+        {
+            extension = "." + extension;
+        }
+        return this.AudioExtensions.Contains(extension, comparer);
+    }
+    public bool IsAudioFile(string extension, string contentType)
+    {
+        return contentType.StartsWith("audio/", StringComparison.OrdinalIgnoreCase) || IsAudioFile(extension);
     }
 }

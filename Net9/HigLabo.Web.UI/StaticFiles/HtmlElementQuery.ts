@@ -541,7 +541,14 @@ export class HtmlElementQuery {
         this.invokeHtmlChanged();
         return this;
     }
-    public appendInnerText(value: string): HtmlElementQuery {
+    public setOuterHtml(html: string): HtmlElementQuery {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].outerHTML = html;
+        }
+        this.invokeHtmlChanged();
+        return this;
+    }
+ public appendInnerText(value: string): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].textContent = this._elementList[i].textContent + value;
         }

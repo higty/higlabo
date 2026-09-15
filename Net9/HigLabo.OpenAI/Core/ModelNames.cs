@@ -2,6 +2,7 @@ namespace HigLabo.OpenAI;
 
 public static class ModelNames
 {
+    public const string Gpt_6_Astra = "gpt-6-astra";
     public const string Gpt_5_6 = "gpt-5.6";
     public const string Gpt_5_6_Sol = "gpt-5.6-sol";
     public const string Gpt_5_6_Terra = "gpt-5.6-terra";
@@ -110,6 +111,7 @@ public static class ModelNames
     {
         switch (modelName.Trim().ToLowerInvariant())
         {
+            case Gpt_6_Astra: return calculateCost(10.00m, 1.00m, 50.00m);
             case Gpt_5_6:
             case Gpt_5_6_Sol:
                 return calculateCost(5.00m, 0.50m, 30.00m);
