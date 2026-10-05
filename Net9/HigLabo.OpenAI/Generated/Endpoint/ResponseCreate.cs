@@ -83,6 +83,10 @@ namespace HigLabo.OpenAI
         /// Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the user field. Learn more.
         /// </summary>
         public string? Prompt_Cache_Key { get; set; }
+        /// <summary>Cache mode, lifetime and optional prewarming for supported models.</summary>
+        public PromptCacheOptions? Prompt_Cache_Options { get; set; }
+        /// <summary>Cache retention for models before GPT-5.6.</summary>
+        public string? Prompt_Cache_Retention { get; set; }
         /// <summary>
         /// gpt-5 and o-series models only
         /// Configuration options for reasoning models.
@@ -171,6 +175,8 @@ namespace HigLabo.OpenAI
             	previous_response_id = this.Previous_Response_Id,
             	prompt = this.Prompt,
             	prompt_cache_key = this.Prompt_Cache_Key,
+                prompt_cache_options = this.Prompt_Cache_Options,
+                prompt_cache_retention = this.Prompt_Cache_Retention,
             	reasoning = this.Reasoning,
             	safety_identifier = this.Safety_Identifier,
             	service_tier = this.Service_Tier,

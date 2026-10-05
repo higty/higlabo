@@ -3,6 +3,15 @@ namespace HigLabo.OpenAI;
 public static class ModelNames
 {
     public const string Gpt_6_Astra = "gpt-6-astra";
+    public const string Gpt_6_1_Sol = "gpt-6.1-sol";
+    public const string Gpt_6_Sol = "gpt-6-sol";
+    public const string Gpt_6_Luna = "gpt-6-luna";
+    public const string Gpt_Live_1 = "gpt-live-1";
+    public const string Gpt_Realtime_2_1 = "gpt-realtime-2.1";
+    public const string Gpt_Realtime_2_1_Mini = "gpt-realtime-2.1-mini";
+    public const string Gpt_Audio_1_5 = "gpt-audio-1.5";
+    public const string Gpt_Image_2_5_Sunburst = "gpt-image-2.5-sunburst";
+    public const string Gpt_Image_2_5_Flare = "gpt-image-2.5-flare";
     public const string Gpt_5_6 = "gpt-5.6";
     public const string Gpt_5_6_Sol = "gpt-5.6-sol";
     public const string Gpt_5_6_Terra = "gpt-5.6-terra";
@@ -91,11 +100,26 @@ public static class ModelNames
 
     public static decimal? CalculateCost(string modelName, ResponseUsageResult usage)
     {
-        return CalculateCost(modelName, (inputPrice, cachedPrice, outputPrice) => CalculateCost(usage, inputPrice, cachedPrice, outputPrice));
+        var longContext = IsGpt6Model(modelName) && usage.Input_Tokens > 272_000;
+        var cacheWriteMultiplier = HasCacheWritePricing(modelName) ? 1.25m : 1m;
+        return CalculateCost(modelName, (inputPrice, cachedPrice, outputPrice) => CalculateCost(usage,
+            inputPrice * (longContext ? 2m : 1m), cachedPrice * (longContext ? 2m : 1m),
+            outputPrice * (longContext ? 1.5m : 1m), inputPrice * (longContext ? 2m : 1m) * cacheWriteMultiplier));
     }
     public static decimal? CalculateCost(string modelName, ChatCompletionUsageResult usage)
     {
-        return CalculateCost(modelName, (inputPrice, cachedPrice, outputPrice) => CalculateCost(usage, inputPrice, cachedPrice, outputPrice));
+        var longContext = IsGpt6Model(modelName) && usage.Prompt_Tokens > 272_000;
+        return CalculateCost(modelName, (inputPrice, cachedPrice, outputPrice) => CalculateCost(usage,
+            inputPrice * (longContext ? 2m : 1m), cachedPrice * (longContext ? 2m : 1m),
+            outputPrice * (longContext ? 1.5m : 1m)));
+    }
+    private static bool IsGpt6Model(string modelName)
+    {
+        return modelName.Trim().ToLowerInvariant() is Gpt_6_Astra or Gpt_6_1_Sol or Gpt_6_Sol or Gpt_6_Luna;
+    }
+    private static bool HasCacheWritePricing(string modelName)
+    {
+        return IsGpt6Model(modelName) || modelName.Trim().ToLowerInvariant() is Gpt_5_6 or Gpt_5_6_Sol or Gpt_5_6_Terra or Gpt_5_6_Luna;
     }
     public static decimal? CalculateCost(string modelName, EmbeddingsUsageResult usage)
     {
@@ -112,9 +136,12 @@ public static class ModelNames
         switch (modelName.Trim().ToLowerInvariant())
         {
             case Gpt_6_Astra: return calculateCost(10.00m, 1.00m, 50.00m);
+            case Gpt_6_1_Sol: return calculateCost(2.00m, 0.10m, 10.00m);
+            case Gpt_6_Sol: return calculateCost(2.00m, 0.20m, 10.00m);
+            case Gpt_6_Luna: return calculateCost(0.10m, 0.01m, 0.50m);
             case Gpt_5_6:
             case Gpt_5_6_Sol:
-                return calculateCost(5.00m, 0.50m, 30.00m);
+                return calculateCost(4.00m, 0.40m, 20.00m);
             case Gpt_5_6_Terra: return calculateCost(2.50m, 0.25m, 15.00m);
             case Gpt_5_6_Luna: return calculateCost(1.00m, 0.10m, 6.00m);
             case Gpt_5_5: return calculateCost(5.00m, 0.50m, 30.00m);
@@ -151,11 +178,14 @@ public static class ModelNames
             case Gpt_4o_Mini: return calculateCost(0.15m, 0.075m, 0.60m);
             case Chat_Latest: return calculateCost(5.00m, 0.50m, 30.00m);
             case ChatGpt_4o_Latest: return calculateCost(5.00m, 5.00m, 15.00m);
+            case Gpt_Realtime_2_1:
             case Gpt_Realtime_2: return calculateCost(4.00m, 0.40m, 24.00m);
             case Gpt_Realtime: return calculateCost(4.00m, 0.40m, 16.00m);
+            case Gpt_Realtime_2_1_Mini:
             case Gpt_Realtime_Mini: return calculateCost(0.60m, 0.06m, 2.40m);
             case Gpt_4o_Realtime_Preview: return calculateCost(5.00m, 2.50m, 20.00m);
             case Gpt_4o_Mini_Realtime_Preview: return calculateCost(0.60m, 0.30m, 2.40m);
+            case Gpt_Audio_1_5:
             case Gpt_Audio: return calculateCost(2.50m, 2.50m, 10.00m);
             case Gpt_Audio_Mini: return calculateCost(0.60m, 0.60m, 2.40m);
             case Gpt_4o_Audio_Preview: return calculateCost(2.50m, 2.50m, 10.00m);
@@ -206,16 +236,26 @@ public static class ModelNames
     }
     public static decimal CalculateCost(ResponseUsageResult usage, decimal inputPrice, decimal cachedPrice, decimal outputPrice)
     {
+        return CalculateCost(usage, inputPrice, cachedPrice, outputPrice, inputPrice);
+    }
+    /// <summary>Calculate token cost using explicit USD prices per million tokens, including cache writes.</summary>
+    public static decimal CalculateCost(ResponseUsageResult usage, decimal inputPrice, decimal cachedPrice, decimal outputPrice, decimal cacheWritePrice)
+    {
+        var cachedTokens = usage.Input_Tokens_Details?.Cached_Tokens ?? 0;
+        var cacheWriteTokens = usage.Input_Tokens_Details?.Cache_Write_Tokens ?? 0;
         return (
-            ((usage.Input_Tokens - usage.Input_Tokens_Details.Cached_Tokens) * inputPrice) +
-            (usage.Input_Tokens_Details.Cached_Tokens * cachedPrice) +
+            ((usage.Input_Tokens - cachedTokens - cacheWriteTokens) * inputPrice) +
+            (cachedTokens * cachedPrice) +
+            (cacheWriteTokens * cacheWritePrice) +
             (usage.Output_Tokens * outputPrice)
         ) / 1_000_000m;
     }
     public static decimal CalculateCost(ChatCompletionUsageResult usage, decimal inputPrice, decimal cachedPrice, decimal outputPrice)
     {
+        var cachedTokens = usage.Prompt_Tokens_Details?.Cached_Tokens ?? 0;
         return (
-            (usage.Prompt_Tokens * inputPrice) +
+            ((usage.Prompt_Tokens - cachedTokens) * inputPrice) +
+            (cachedTokens * cachedPrice) +
             (usage.Completion_Tokens * outputPrice)
         ) / 1_000_000m;
     }

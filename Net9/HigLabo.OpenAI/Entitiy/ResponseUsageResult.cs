@@ -5,6 +5,7 @@ public class ResponseUsageResult
     public class InputTokensDetail
     {
         public int Cached_Tokens { get; set; }
+        public int Cache_Write_Tokens { get; set; }
     }
     public class OutputTokensDetail
     {

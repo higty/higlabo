@@ -184,7 +184,8 @@ public class DatabaseDefinitionFileGenerator
             }
             sb.AppendLine("***************************************************************************/");
         }
-        var sr = new StringReader(obj.BodyText);
+        var bodyText = Regex.Replace(obj.BodyText, @"\A(?:\s*/\*{2,}/\s*)+", "");
+        var sr = new StringReader(bodyText);
         var commentPassed = false;
         if (obj.ObjectType == DatabaseObjectType.Table ||
             obj.ObjectType == DatabaseObjectType.UserDefinedTableType)
@@ -214,7 +215,7 @@ public class DatabaseDefinitionFileGenerator
         }
         else
         {
-            sb.AppendLine(obj.BodyText);
+            sb.AppendLine(bodyText);
         }
         var body = Regex.Replace(sb.ToString().TrimEnd(), @"^\s*CREATE\s+(PROCEDURE|VIEW|FUNCTION)\s", "CREATE OR ALTER $1 "
             , RegexOptions.IgnoreCase | RegexOptions.Multiline);

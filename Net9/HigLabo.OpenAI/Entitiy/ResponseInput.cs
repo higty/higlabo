@@ -10,6 +10,10 @@ public enum ResponseInputRole
 }
 public class ResponseInput : List<ResponseInputMessage>
 {
+    public void AddConfigurationUpdate(string reasoningEffort)
+    {
+        this.Add(new ResponseConfigurationUpdateMessage(reasoningEffort));
+    }
     public void AddUserMessage(string text)
     {
         this.AddMessage(ResponseInputRole.User, text);
@@ -59,6 +63,12 @@ public class ResponseInput : List<ResponseInputMessage>
 }
 public partial class ResponseCreateParameter
 {
+    /// <summary>Add before the next user message. Supported in GPT-6 standard, single-agent mode.</summary>
+    public void AddConfigurationUpdate(string reasoningEffort)
+    {
+        this.Input ??= new();
+        this.Input.AddConfigurationUpdate(reasoningEffort);
+    }
     public void AddUserMessage(string text)
     {
         if (this.Input == null) { this.Input = new(); }
@@ -151,6 +161,7 @@ public class ResponseToolOutputMessage : ResponseInputMessage
 }
 public class ResponseInputContent
 {
+    public PromptCacheBreakpoint? Prompt_Cache_Breakpoint { get; set; }
     public string Type { get; set; } = "";
     public string? Text { get; set; }
     public string? File_Id { get; set; }
@@ -158,4 +169,22 @@ public class ResponseInputContent
     public string? File_Data { get; set; }
     public string? Image_Url { get; set; }
     public string? Detail { get; set; }
+}
+public class ResponseConfigurationUpdateMessage : ResponseInputMessage
+{
+    public new string? Role { get; private set; }
+    public new object? Content { get; private set; }
+    public ConfigurationReasoning Reasoning { get; set; }
+
+    public ResponseConfigurationUpdateMessage(string reasoningEffort)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(reasoningEffort);
+        this.Type = "configuration_update";
+        this.Reasoning = new ConfigurationReasoning { Effort = reasoningEffort };
+    }
+
+    public class ConfigurationReasoning
+    {
+        public string Effort { get; set; } = "";
+    }
 }

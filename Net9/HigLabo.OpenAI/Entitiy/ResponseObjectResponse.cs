@@ -25,6 +25,7 @@ public class ResponseObject
     public bool Parallel_Tool_Calls { get; set; }
     public string? Previous_Response_Id { get; set; }
     public Reasoning? Reasoning { get; set; }
+    public string? Service_Tier { get; set; }
     public string Status { get; set; } = "";
     public float? Temperature { get; set; }
     public object? Text { get; set; }
@@ -80,6 +81,7 @@ public class ResponseObjectResponse : RestApiResponse
     public bool Parallel_Tool_Calls { get; set; }
     public string? Previous_Response_Id { get; set; }
     public Reasoning? Reasoning { get; set; }
+    public string? Service_Tier { get; set; }
     public string Status { get; set; } = "";
     public float? Temperature { get; set; }
     public object? Text { get; set; }
