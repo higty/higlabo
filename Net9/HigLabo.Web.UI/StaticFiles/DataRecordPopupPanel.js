@@ -229,7 +229,7 @@ export class DataRecordPopupPanel {
                 top = 0;
             }
             else {
-                top = window.innerHeight - popupHeight;
+                top = $(window).getScrollTop() + window.innerHeight - popupHeight;
             }
         }
         else {

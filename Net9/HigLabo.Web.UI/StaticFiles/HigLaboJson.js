@@ -25,6 +25,7 @@ export class HigLaboJson {
             encodeParameters: function (xhr, parameters, element) {
                 xhr.overrideMimeType("text/json");
                 const p = j.Parse(element, element.getAttribute("hx-include"));
+                console.log("[higlabo-json] Request parameters:", p);
                 return JSON.stringify(p);
             },
         });
