@@ -1,140 +1,116 @@
 import { $ } from "./HtmlElementQuery.js";
 
 export class HigLaboJson {
-    private static readonly HxTargetOuter = "outer ";
-    private static readonly OriginalHxTargetAttribute = "hx-target-outer";
-    private static readonly OriginalDataHxTargetAttribute = "data-hx-target-outer";
-    private static readonly HxTargetKeyAttribute = "hx-target-outer-key";
-    private static readonly HxRequestSelector = "[hx-get], [data-hx-get], [hx-post], [data-hx-post], [hx-put], [data-hx-put], [hx-delete], [data-hx-delete], [hx-patch], [data-hx-patch]";
     private static _initialized = false;
-    private _hxTargetIndex = 0;
 
     public initialize() {
         if (HigLaboJson._initialized == true) { return; }
-        HigLaboJson._initialized = true;
+
+        const htmx = window["htmx"];
+        if (typeof htmx?.__findAllExt !== "function") {
+            throw new Error("HigLaboJson requires the unminified htmx 4.0.0 source.");
+        }
 
         const j = this;
+        let api: any;
+        const registered = htmx.registerExtension("higlabo-json", {
+            init: function (internalApi) {
+                api = internalApi;
+                // An explicit request on the source element must take precedence over ancestor verbs.
+                // With implicitInheritance enabled, htmx 4 otherwise checks an inherited GET before a local POST.
+                const determineMethodAndAction = htmx.__determineMethodAndAction;
+                htmx.__determineMethodAndAction = function (element: Element, event: Event) {
+                    if (!this.__attributeValue(element, "hx-action")) {
+                        for (const method of ["get", "post", "put", "patch", "delete", "query"]) {
+                            const action = this.__attr(element, "hx-" + method);
+                            if (action != null) { return { action: action, method: method.toUpperCase() }; }
+                        }
+                    }
+                    return determineMethodAndAction.call(this, element, event);
+                };
+                // Install before htmx processes elements or resolves request targets and includes.
+                // Keep htmx 4.0.0 native selector behavior; delegate HigLabo selectors to HtmlElementQuery.
+                htmx.__findAllExt = function (eltOrSelector, maybeSelector, thisAttr, global) {
+                    let selector = maybeSelector ?? eltOrSelector;
+                    let elt = maybeSelector ? (this.__normalizeElement(eltOrSelector) || document.body) : document;
+                    if (selector.startsWith("global ")) {
+                        return this.__findAllExt(elt, selector.slice(7), thisAttr, true);
+                    }
+                    let parts = selector ? api.HCON.split(selector) : [];
+                    let result = [];
+                    let unprocessedParts = [];
+                    for (const part of parts) {
+                        let selector = this.__stringHyperscriptStyleSelector(part);
+                        let item;
+                        if (elt instanceof Element && selector.startsWith("outerFirst ")) {
+                            result.push(...$(elt).findOuterFirst(selector.slice(11)).getElements());
+                        } else if (elt instanceof Element && selector.startsWith("outer ")) {
+                            result.push(...$(elt).findOuter(selector.slice(6)).getElements());
+                        } else if (elt instanceof Element && selector.startsWith("sibling ")) {
+                            result.push(...$(elt).findSiblings(selector.slice(8)).getElements());
+                        } else if (elt instanceof Element && selector.startsWith("find ")) {
+                            result.push(...$(elt).findDescendants(selector.slice(5)).getElements());
+                        } else if (elt instanceof Element && selector.startsWith("children ")) {
+                            result.push(...$(elt).findChildren(selector.slice(9)).getElements());
+                        } else if (selector.startsWith("closest ")) {
+                            item = elt.closest(selector.slice(8));
+                        } else if (selector.startsWith("find ")) {
+                            item = elt.querySelector(selector.slice(5));
+                        } else if (selector.startsWith("findAll ")) {
+                            result.push(...elt.querySelectorAll(selector.slice(8)));
+                        } else if (selector === "next" || selector === "nextElementSibling") {
+                            item = elt.nextElementSibling;
+                        } else if (selector.startsWith("next ")) {
+                            item = this.__scanForwardQuery(elt, selector.slice(5), !!global);
+                        } else if (selector === "previous" || selector === "previousElementSibling") {
+                            item = elt.previousElementSibling;
+                        } else if (selector.startsWith("previous ")) {
+                            item = this.__scanBackwardsQuery(elt, selector.slice(9), !!global);
+                        } else if (selector === "document") {
+                            item = document;
+                        } else if (selector === "window") {
+                            item = window;
+                        } else if (selector === "body") {
+                            item = document.body;
+                        } else if (selector === "host") {
+                            item = (elt.getRootNode()).host;
+                        } else if (selector === "this") {
+                            if (thisAttr) {
+                                result.push(...this.__findThisElements(elt, thisAttr));
+                                continue;
+                            }
+                            item = elt;
+                        } else {
+                            unprocessedParts.push(selector);
+                        }
 
-        window["htmx"].defineExtension("higlabo-json", {
-            onEvent: function (name, evt) {
-                if (name === "htmx:beforeProcessNode") {
-                    j.processHxTargetNode(evt.detail.elt);
-                }
-                if (name === "htmx:configRequest") {
-                    evt.detail.headers["Content-Type"] = "application/json";
-                }
+                        if (item) {
+                            result.push(item);
+                        }
+                    }
+
+                    if (unprocessedParts.length > 0) {
+                        let standardSelector = unprocessedParts.join(",");
+                        let rootNode = this.__getRootNode(elt, !!global);
+                        result.push(...rootNode.querySelectorAll(standardSelector));
+                    }
+
+                    return [...new Set(result)];
+                };
             },
-            encodeParameters: function (xhr, parameters, element: Element) {
-                xhr.overrideMimeType("text/json");
-                const p = j.Parse(element, element.getAttribute("hx-include"));
-                console.log("[higlabo-json] Request parameters:", p);
-                return JSON.stringify(p);
+            htmx_before_request: function (element: Element, detail) {
+                const request = detail.ctx.request;
+                if (request.method === "GET" || request.method === "DELETE" || request.body instanceof FormData) { return; }
+
+                const p = j.Parse(element, api.attributeValue(element, "hx-include"));
+                request.headers["Content-Type"] = "application/json";
+                request.body = JSON.stringify(p);
             },
         });
-    }
-    private processHxTargetNode(element: Element | null) {
-        if (element == null) { return; }
-        if (element.matches(HigLaboJson.HxRequestSelector) == false) { return; }
-
-        const hxTargetElement = this.hasOuterHxTarget(element) == true ? element :
-            $(element)
-                .findAncestors("[hx-target-outer], [data-hx-target-outer], [hx-target], [data-hx-target]")
-                .getElements()
-                .find((e) => this.hasOuterHxTarget(e) == true);
-        if (hxTargetElement == null) { return; }
-
-        const hxTarget =
-            hxTargetElement.getAttribute(HigLaboJson.OriginalHxTargetAttribute) ??
-            hxTargetElement.getAttribute(HigLaboJson.OriginalDataHxTargetAttribute) ??
-            hxTargetElement.getAttribute("hx-target") ??
-            hxTargetElement.getAttribute("data-hx-target");
-        if (hxTarget == null || hxTarget.trim().startsWith(HigLaboJson.HxTargetOuter) == false) { return; }
-
-        const selector = hxTarget.trim().substring(HigLaboJson.HxTargetOuter.length);
-        const target = $(element).findOuterFirst(selector).getFirstElement();
-        if (target == null) { return; }
-
-        if (element.hasAttribute(HigLaboJson.OriginalHxTargetAttribute) == false &&
-            element.hasAttribute(HigLaboJson.OriginalDataHxTargetAttribute) == false) {
-            if (element.hasAttribute("data-hx-target") == true) {
-                element.setAttribute(HigLaboJson.OriginalDataHxTargetAttribute, hxTarget);
-            }
-            else {
-                element.setAttribute(HigLaboJson.OriginalHxTargetAttribute, hxTarget);
-            }
-        }
-
-        const key = this.getHxTargetKey(target);
-        element.setAttribute("hx-target", `[${HigLaboJson.HxTargetKeyAttribute}='${key}']`);
-    }
-    private hasOuterHxTarget(element: Element): boolean {
-        const hxTarget =
-            element.getAttribute(HigLaboJson.OriginalHxTargetAttribute) ??
-            element.getAttribute(HigLaboJson.OriginalDataHxTargetAttribute) ??
-            element.getAttribute("hx-target") ??
-            element.getAttribute("data-hx-target");
-        return hxTarget != null && hxTarget.trim().startsWith(HigLaboJson.HxTargetOuter) == true;
-    }
-    private getHxTargetKey(element: Element) {
-        let key = element.getAttribute(HigLaboJson.HxTargetKeyAttribute);
-        if (key == null) {
-            this._hxTargetIndex++;
-            key = this._hxTargetIndex.toString();
-            element.setAttribute(HigLaboJson.HxTargetKeyAttribute, key);
-        }
-        return key;
+        if (registered !== false) { HigLaboJson._initialized = true; }
     }
     public Parse(element: Element, selector: string) {
-        const ee = new Array<Element>();
-
-        if (selector == null) {
-            selector = "this";
-        }
-        const ss = selector.split(",");
-        for (var i = 0; i < ss.length; i++) {
-            let selector = ss[i].trim();
-            if (selector.startsWith("closest ")) {
-                selector = selector.substring(8);
-                ee.push(element.closest(selector));
-            }
-            else if (selector.startsWith("outerFirst ")) {
-                selector = selector.substring(11);
-                ee.push($(element).findOuterFirst(selector).getFirstElement());
-            }
-            else if (selector.startsWith("outer ")) {
-                selector = selector.substring(6);
-                $(element).findOuter(selector).getElements().forEach((e) => {
-                    ee.push(e);
-                });
-            }
-            else if (selector.startsWith("sibling ")) {
-                selector = selector.substring(8);
-                $(element).findSiblings(selector).getElements().forEach((e) => {
-                    ee.push(e);
-                });
-            }
-            else if (selector.startsWith("find ")) {
-                selector = selector.substring(5);
-                $(element).find(selector).getElements().forEach((e) => {
-                    ee.push(e);
-                });
-            }
-            else if (selector.startsWith("children ")) {
-                selector = selector.substring(9);
-                $(element).findChildren(selector).getElements().forEach((e) => {
-                    ee.push(e);
-                });
-            }
-            else if (selector == "this") {
-                ee.push(element);
-            }
-            else {
-                document.querySelectorAll(selector).forEach((e) => {
-                    ee.push(e);
-                });
-            }
-        }
-
+        const ee = $(element).findAll(selector).getElements();
         let p: any = {};
         if (element.getAttribute("hx-include-object") != null) {
             try {

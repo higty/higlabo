@@ -1,4 +1,4 @@
-﻿import { ItemGroup } from "./ItemGroup.js";
+import { ItemGroup } from "./ItemGroup.js";
 
 export function $(selector: string): HtmlElementQuery;
 export function $(element: Element): HtmlElementQuery;
@@ -834,7 +834,47 @@ export class HtmlElementQuery {
         return new HtmlElementQuery(elementList);
     }
 
-    public find(selector: string): HtmlElementQuery {
+    // Evaluate CSS and extended selectors, preserving selector order and duplicates.
+    // Plain CSS selectors use document scope for compatibility with HigLaboJson.
+    public findAll(selector: string | null): HtmlElementQuery {
+        const elementList = new Array<Element>();
+        if (selector == null) {
+            selector = "this";
+        }
+
+        for (const part of selector.split(",")) {
+            const currentSelector = part.trim();
+            if (currentSelector.startsWith("closest ")) {
+                this._elementList.forEach(element => {
+                    const ancestor = element.closest(currentSelector.substring(8));
+                    if (ancestor != null) { elementList.push(ancestor); }
+                });
+            }
+            else if (currentSelector.startsWith("outerFirst ")) {
+                this.findOuterFirst(currentSelector.substring(11)).getElements().forEach(element => elementList.push(element));
+            }
+            else if (currentSelector.startsWith("outer ")) {
+                this.findOuter(currentSelector.substring(6)).getElements().forEach(element => elementList.push(element));
+            }
+            else if (currentSelector.startsWith("sibling ")) {
+                this.findSiblings(currentSelector.substring(8)).getElements().forEach(element => elementList.push(element));
+            }
+            else if (currentSelector.startsWith("find ")) {
+                this.findDescendants(currentSelector.substring(5)).getElements().forEach(element => elementList.push(element));
+            }
+            else if (currentSelector.startsWith("children ")) {
+                this.findChildren(currentSelector.substring(9)).getElements().forEach(element => elementList.push(element));
+            }
+            else if (currentSelector === "this") {
+                this._elementList.forEach(element => elementList.push(element));
+            }
+            else {
+                document.querySelectorAll(currentSelector).forEach(element => elementList.push(element));
+            }
+        }
+        return new HtmlElementQuery(elementList);
+    }
+    public findDescendants(selector: string): HtmlElementQuery {
         const elementList = new Array<Element>();
         for (var i = 0; i < this._elementList.length; i++) {
             let nodeList = this._elementList[i].querySelectorAll(selector);

@@ -5,7 +5,7 @@ export class InputPassword {
     }
     toggleInputType_Click(target, e) {
         const span = $(target).findAncestors("[input-password]").getFirstElement();
-        $(span).find("input").toggleAttributeValue("type", "text", "password");
+        $(span).findDescendants("input").toggleAttributeValue("type", "text", "password");
     }
 }
 //# sourceMappingURL=InputPassword.js.map

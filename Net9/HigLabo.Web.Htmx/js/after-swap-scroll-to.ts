@@ -1,9 +1,6 @@
-﻿window["htmx"].defineExtension("after-swap-scroll-to", {
-    onEvent: function (name, evt) {
-
-        if (name !== "htmx:afterSwap") return true;
-
-        const container = evt.detail.target;
+﻿window["htmx"].registerExtension("after-swap-scroll-to", {
+    htmx_after_swap: function (element: Element, detail) {
+        const container = detail.ctx.target;
         if (!(container instanceof HTMLElement)) return true;
 
         const selector = container.dataset.scrollTo;

@@ -32,14 +32,14 @@ export class DataRecordPopupPanel {
         $("body").on("click", "#data-record-popup-panel [close-button]", this.closeButton_Click.bind(this));
         $("body").on("click", "[close-data-record-popup-panel]", this.closeButton_Click.bind(this));
 
-        document.body.addEventListener("htmx:afterSwap", (e: any) => {
+        document.addEventListener("htmx:after:swap", (e: any) => {
             const dpl = this.getDataRecordPopupPanel();
             if (dpl == null) { return; }
             if ($(dpl).hasClass("display-none")) { return; }
             if (this.positionPanel == null) { return; }
 
-            const recordListPanel = $(dpl).find("[record-list-panel]").getFirstElement();
-            if (e.target == recordListPanel) {
+            const recordListPanel = $(dpl).findDescendants("[record-list-panel]").getFirstElement();
+            if (e.detail.ctx.target == recordListPanel) {
                 if (this.isVisible(this.positionPanel) == false) { return; }
                 this.setPanelPosition(this.positionPanel.getBoundingClientRect());
             }
@@ -97,7 +97,7 @@ export class DataRecordPopupPanel {
         this.positionPanel = this.getPositionPanel(element);
         if ($(element).getAttribute("target-panel-type") == "input-record-list-panel") {
             this.currentPanel = $(element.parentElement).getFirstElement();
-            this.targetPanel = $(this.currentPanel).find("[record-list-panel]").getFirstElement();
+            this.targetPanel = $(this.currentPanel).findDescendants("[record-list-panel]").getFirstElement();
         }
         else {
             this.currentPanel = $(element).getFirstElement();
@@ -117,38 +117,38 @@ export class DataRecordPopupPanel {
         }
         $(dpl).setAttribute("selection-mode", $(this.currentPanel).getAttribute("selection-mode"));
         this.htmx.process(dpl);
-        $(dpl).find("[search-textbox]").setValue("");
+        $(dpl).findDescendants("[search-textbox]").setValue("");
 
         if ($(dpl).getAttribute("search-default-list") == "true") {
             const loadingTemplateId = $(this.currentPanel).getAttribute("loading-template-id");
             if (loadingTemplateId == "") {
-                $(dpl).find("[record-list-panel]").setInnerHtml($("#loading-panel-template").getInnerHtml());
+                $(dpl).findDescendants("[record-list-panel]").setInnerHtml($("#loading-panel-template").getInnerHtml());
             }
             else {
-                $(dpl).find("[record-list-panel]").setInnerHtml($(loadingTemplateId).getInnerHtml());
+                $(dpl).findDescendants("[record-list-panel]").setInnerHtml($(loadingTemplateId).getInnerHtml());
             }
         }
         else {
-            $(dpl).find("[record-list-panel]").setInnerHtml("");
+            $(dpl).findDescendants("[record-list-panel]").setInnerHtml("");
         }
         if ($(element).hasAttribute("template-id")) {
             const html = $("#" + $(element).getAttribute("template-id")).getInnerHtml();
-            $(dpl).find("[record-list-panel]").setInnerHtml(html);
+            $(dpl).findDescendants("[record-list-panel]").setInnerHtml(html);
             this.htmx.process(dpl);
         }
 
         const allowSearch = $(this.currentPanel).getAttribute("allow-search") == "true";
         if (allowSearch) {
-            $(dpl).find("[search-panel]").removeClass("display-none");
+            $(dpl).findDescendants("[search-panel]").removeClass("display-none");
         }
         else {
-            $(dpl).find("[search-panel]").addClass("display-none");
+            $(dpl).findDescendants("[search-panel]").addClass("display-none");
         }
         if ($(this.currentPanel).getAttribute("footer-visible") == "false") {
-            $(dpl).find("[footer-panel]").addClass("display-none");
+            $(dpl).findDescendants("[footer-panel]").addClass("display-none");
         }
         else {
-            $(dpl).find("[footer-panel]").removeClass("display-none");
+            $(dpl).findDescendants("[footer-panel]").removeClass("display-none");
         }
 
         $(dpl).setAttribute("processing", "true");
@@ -171,12 +171,12 @@ export class DataRecordPopupPanel {
             if ($(dpl).hasClass("display-none")) { return; }
 
             $(dpl).removeAttribute("processing");
-            const tx = $(dpl).find("[search-textbox]").getFirstElement();
+            const tx = $(dpl).findDescendants("[search-textbox]").getFirstElement();
             if (isSetFocusToTextbox == true && allowSearch) {
                 $(tx).setFocus();
             }
             else {
-                $(dpl).find("[tabindex]").setFocus();
+                $(dpl).findDescendants("[tabindex]").setFocus();
             }
 
             if (this.isVisible(this.positionPanel)) {
@@ -264,13 +264,13 @@ export class DataRecordPopupPanel {
     }
 
     private addTemplate_Click(target: Element, e: Event) {
-        const rpl = $($(target).findAncestors("[selection-mode='Template']").getFirstElement()).find("[record-list-panel]").getFirstElement();
+        const rpl = $($(target).findAncestors("[selection-mode='Template']").getFirstElement()).findDescendants("[record-list-panel]").getFirstElement();
         const templateId = "#" + $(target).getAttribute("template-id");
         this.addTemplate(rpl, templateId);
     }
     private addTemplate_Keydown(target: Element, e: KeyboardEvent) {
         if (e.key == "Enter") {
-            const rpl = $($(target).findAncestors("[selection-mode='Template']").getFirstElement()).find("[record-list-panel]").getFirstElement();
+            const rpl = $($(target).findAncestors("[selection-mode='Template']").getFirstElement()).findDescendants("[record-list-panel]").getFirstElement();
             const templateId = "#" + $(target).getAttribute("template-id");
             this.addTemplate(rpl, templateId);
         }
@@ -284,7 +284,7 @@ export class DataRecordPopupPanel {
         const div = rpl.children[rpl.children.length - 1];
         this.htmx.process(div);
         div.scrollIntoView();
-        $(div).find("input[type='text']").setFocus();
+        $(div).findDescendants("input[type='text']").setFocus();
     }
 
     private searchButton_Click(element: Element, e: Event) {
@@ -298,10 +298,10 @@ export class DataRecordPopupPanel {
             this.hide();
         }
         if (e.key == "ArrowDown") {
-            const pl = $(this.getDataRecordPopupPanel()).find("[record-list-panel] [data-record-panel]").getFirstElement();
+            const pl = $(this.getDataRecordPopupPanel()).findDescendants("[record-list-panel] [data-record-panel]").getFirstElement();
             if (pl != null) {
                 $(pl).setFocus();
-                $(this.getDataRecordPopupPanel()).find("[record-list-panel]").setScrollTop(0);
+                $(this.getDataRecordPopupPanel()).findDescendants("[record-list-panel]").setScrollTop(0);
                 e.preventDefault();
             }
         }
@@ -321,7 +321,7 @@ export class DataRecordPopupPanel {
         const recordListPanel = $(e.target).findAncestors("[record-list-panel]").getFirstElement();
 
         if (e.key == "Escape") {
-            $(this.getDataRecordPopupPanel()).find("[search-textbox]").setFocus();
+            $(this.getDataRecordPopupPanel()).findDescendants("[search-textbox]").setFocus();
         }
         else if (e.key == "Enter") {
             this.recordSelected(element);
@@ -329,7 +329,7 @@ export class DataRecordPopupPanel {
         else if (e.key == "ArrowUp") {
             const pl = $(element).getSibling("Previous").getLastElement();
             if (pl == null) {
-                $($(recordListPanel).find("[data-record-panel]").getLastElement()).setFocus();
+                $($(recordListPanel).findDescendants("[data-record-panel]").getLastElement()).setFocus();
             }
             else {
                 $(pl).setFocus();
@@ -339,7 +339,7 @@ export class DataRecordPopupPanel {
         else if (e.key == "ArrowDown") {
             const pl = $(element).getSibling("Next").getFirstElement();
             if (pl == null) {
-                $(recordListPanel).find("[data-record-panel]").setFocus();
+                $(recordListPanel).findDescendants("[data-record-panel]").setFocus();
             }
             else {
                 $(pl).setFocus();
@@ -379,15 +379,15 @@ export class DataRecordPopupPanel {
 
             const plNext = $(pl).getSibling("Next").getFirstElement();
             if (plNext == null) {
-                $(recordListPanel).find("[data-record-panel]").setFocus();
+                $(recordListPanel).findDescendants("[data-record-panel]").setFocus();
             }
             else {
                 $(plNext).setFocus();
             }
 
             $(pl).remove();
-            if ($(recordListPanel).find("[data-record-panel]").getElementCount() == 0) {
-                $(dpl).find("[search-textbox]").setFocus();
+            if ($(recordListPanel).findDescendants("[data-record-panel]").getElementCount() == 0) {
+                $(dpl).findDescendants("[search-textbox]").setFocus();
             }
         }
         this.itemGroup.setCurrentItem(pl);

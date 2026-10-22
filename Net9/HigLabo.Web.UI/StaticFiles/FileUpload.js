@@ -10,7 +10,7 @@ export class FileUpload {
         $("body").on("change", "[file-upload] input[type='file']", this.file_Change.bind(this));
     }
     fileUpload_Click(target, e) {
-        const f = $(target).find("input[type='file']").getFirstElement();
+        const f = $(target).findDescendants("input[type='file']").getFirstElement();
         f.click();
     }
     file_Change(target, e) {

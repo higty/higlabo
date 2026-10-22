@@ -1,63 +1,76 @@
 import { $ } from "./HtmlElementQuery.js";
 export class DialogPopupPanel {
-    currentElement;
+    issueRequest = null;
+    dropRequest = null;
     dialog = document.getElementById("dialog-popup-panel");
     initialize() {
         document.addEventListener("htmx:confirm", this.confirm.bind(this));
         $("body").on("click", "#dialog-popup-panel [confirm-yes]", this.confirmYesButton_Click.bind(this));
         $("body").on("click", "#dialog-popup-panel [confirm-no]", this.confirmNoButton_Click.bind(this));
         $("body").on("click", "#dialog-popup-panel", this.panel_Click.bind(this));
+        this.dialog?.addEventListener("cancel", e => this.confirmNoButton_Click(this.dialog, e));
+        this.dialog?.addEventListener("close", () => {
+            if (this.dialog.open == false) {
+                this.dropRequest?.();
+                this.issueRequest = null;
+                this.dropRequest = null;
+            }
+        });
     }
-    showModal(element) {
-        this.currentElement = element;
-        const text = element.getAttribute("hx-confirm");
-        $(this.dialog).find("[text]").setInnerText(text);
+    showModal(element, text = element.getAttribute("hx-confirm")) {
+        $(this.dialog).findDescendants("[text]").setInnerText(text);
         if ($(element).getAttribute("confirm-yes-text") != "") {
-            $(this.dialog).find("[confirm-yes]").setInnerText($(element).getAttribute("confirm-yes-text"));
+            $(this.dialog).findDescendants("[confirm-yes]").setInnerText($(element).getAttribute("confirm-yes-text"));
         }
         if ($(element).getAttribute("confirm-no-text") != "") {
-            $(this.dialog).find("[confirm-no]").setInnerText($(element).getAttribute("confirm-no-text"));
+            $(this.dialog).findDescendants("[confirm-no]").setInnerText($(element).getAttribute("confirm-no-text"));
         }
         this.dialog.showModal();
     }
     confirm(e) {
+        if (this.dialog == null) {
+            return;
+        }
         e.preventDefault();
-        const bt = e.target;
+        const ctx = e.detail.ctx;
+        const bt = ctx.sourceElement;
         if (bt.getAttribute("stop-propagation") == "true") {
-            const tev = e.detail?.triggeringEvent;
+            const tev = ctx.sourceEvent;
             if (tev?.stopImmediatePropagation)
                 tev.stopImmediatePropagation();
             if (tev?.stopPropagation)
                 tev.stopPropagation();
         }
-        const elt = e.detail.elt;
-        if (elt.hasAttribute("hx-confirm") == false) {
-            e.detail.issueRequest(true);
+        if (ctx.sourceEvent?.type == "execute") {
+            e.detail.issueRequest();
             return;
         }
-        if (e.detail.triggeringEvent.type == "execute") {
-            e.detail.issueRequest(true);
+        if (this.dialog.open) {
+            e.detail.dropRequest();
+            return;
         }
-        else {
-            this.showModal(bt);
-        }
+        this.issueRequest = e.detail.issueRequest;
+        this.dropRequest = e.detail.dropRequest;
+        this.showModal(bt, ctx.confirm);
     }
     confirmYesButton_Click(target, e) {
-        const htmx = window["htmx"];
-        if (htmx != null && this.currentElement != null) {
-            htmx.trigger(this.currentElement, "execute");
-        }
-        const dialog = document.getElementById("dialog-popup-panel");
-        dialog.close();
+        const issueRequest = this.issueRequest;
+        this.issueRequest = null;
+        this.dropRequest = null;
+        this.dialog.close();
+        issueRequest?.();
     }
     confirmNoButton_Click(target, e) {
-        const dialog = document.getElementById("dialog-popup-panel");
-        dialog.close();
+        const dropRequest = this.dropRequest;
+        this.issueRequest = null;
+        this.dropRequest = null;
+        this.dialog.close();
+        dropRequest?.();
     }
     panel_Click(target, e) {
         const rect = this.dialog.getBoundingClientRect();
         if (rect.left > e.clientX || rect.left + rect.width < e.clientX || rect.top > e.clientY || rect.top + rect.height < e.clientY) {
-            this.dialog.close();
+            this.confirmNoButton_Click(target, e);
         }
     }
 }

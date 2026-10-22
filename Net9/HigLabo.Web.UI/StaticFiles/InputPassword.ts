@@ -6,6 +6,6 @@ export class InputPassword {
     }
     private toggleInputType_Click(target: Element, e: Event) {
         const span = $(target).findAncestors("[input-password]").getFirstElement();
-        $(span).find("input").toggleAttributeValue("type", "text", "password");
+        $(span).findDescendants("input").toggleAttributeValue("type", "text", "password");
     }
 }

@@ -25,7 +25,7 @@ export class DatePicker {
                     if (element == null) { return; }
                     if (element.tagName == "INPUT") { return; }
                     if ($(element).getAttribute("input-date") == "true") {
-                        $(element).find("input[type='text']").setValue(dateStr);
+                        $(element).findDescendants("input[type='text']").setValue(dateStr);
                     }
                     else {
                         $(element).setInnerText(dateStr);

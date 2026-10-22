@@ -81,7 +81,8 @@ public class HtmlElementQueryFunctionName
     public const string GetLastElement = "getLastElement";
     public const string GetChildElementList = "getChildElementList";
     public const string GetSibling = "getSibling";
-    public const string Find = "find";
+    public const string FindDescendants = "findDescendants";
+    public const string FindAll = "findAll";
     public const string SetCurrentItem = "setCurrentItem";
     public const string ForEach = "forEach";
     public const string DomContentLoaded = "domContentLoaded";

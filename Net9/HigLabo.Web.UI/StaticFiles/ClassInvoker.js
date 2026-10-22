@@ -4,7 +4,7 @@ export class ClassInvoker {
     initialize() {
         $("body").on("click", "[class-invoker='click']", this.classInvoker_Click.bind(this));
         $("body").on("change", "[class-invoker='change']", this.classInvoker_Change.bind(this));
-        document.body.addEventListener("htmx:afterRequest", this.htmxAfterRequest.bind(this));
+        document.addEventListener("htmx:finally:request", this.htmxFinallyRequest.bind(this));
     }
     classInvoker_Click(target, e) {
         const p = $(target).getAttribute("class-invoker-args");
@@ -14,9 +14,8 @@ export class ClassInvoker {
         const p = $(target).getAttribute("class-invoker-args");
         this.invoke(p);
     }
-    htmxAfterRequest(e) {
-        const xhr = e.detail.xhr;
-        const serverInvoke = xhr.getResponseHeader("class-invoker-args");
+    htmxFinallyRequest(e) {
+        const serverInvoke = e.detail.ctx.response?.headers.get("class-invoker-args");
         if (serverInvoke != null) {
             const ss = serverInvoke.split(',');
             for (var i = 0; i < ss.length; i++) {

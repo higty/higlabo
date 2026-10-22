@@ -10,36 +10,36 @@ export class PagingPanel {
     }
     private pageIndexIncrement_Click(target: Element, e: Event) {
         const pl = $(target).findAncestors("[paging-panel]").getFirstElement();
-        const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
+        const tx = $(pl).findDescendants("input[type='text'][name='PageNumber']").getFirstElement();
         const pageIndex = parseInt($(tx).getValue()) - 1;
-        const maxPageIndex = parseInt($(pl).find("[max-page-number]").getInnerText());
+        const maxPageIndex = parseInt($(pl).findDescendants("[max-page-number]").getInnerText());
         const increment = parseInt($(target).getAttribute("page-index-increment"));
 
         let newPageIndex = pageIndex + increment;
         this.setPageIndex(pl, newPageIndex, maxPageIndex);
 
         if (increment < 0) {
-            $(pl).find("[page-index-panel]").setAttribute("hx-swap", "innerHTML scroll:bottom");
+            $(pl).findDescendants("[page-index-panel]").setAttribute("hx-swap", "innerHTML scroll:bottom");
         }
         else {
-            $(pl).find("[page-index-panel]").setAttribute("hx-swap", "innerHTML scroll:top");
+            $(pl).findDescendants("[page-index-panel]").setAttribute("hx-swap", "innerHTML scroll:top");
         }
-        this.htmx.trigger($(pl).find("[page-index-panel]").getFirstElement(), "page-index-change");
+        this.htmx.trigger($(pl).findDescendants("[page-index-panel]").getFirstElement(), "page-index-change");
     }
     private pageNumber_Change(target: Element, e: Event) {
         const pl = $(target).findAncestors("[paging-panel]").getFirstElement();
-        const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
+        const tx = $(pl).findDescendants("input[type='text'][name='PageNumber']").getFirstElement();
         let newPageIndex = parseInt($(tx).getValue()) - 1;
-        const maxPageIndex = parseInt($(pl).find("[max-page-number]").getInnerText());
+        const maxPageIndex = parseInt($(pl).findDescendants("[max-page-number]").getInnerText());
 
         this.setPageIndex(pl, newPageIndex, maxPageIndex);
 
-        this.htmx.trigger($(pl).find("[page-index-panel]").getFirstElement(), "page-index-change");
+        this.htmx.trigger($(pl).findDescendants("[page-index-panel]").getFirstElement(), "page-index-change");
     }
     private setPageIndex(pagingPanel: Element, pageIndex: number, maxPageIndex: number) {
         const pl = pagingPanel;
-        const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
-        const hidden = $(pl).find("[page-index-panel] input[type='hidden'][name='PageIndex']").getFirstElement();
+        const tx = $(pl).findDescendants("input[type='text'][name='PageNumber']").getFirstElement();
+        const hidden = $(pl).findDescendants("[page-index-panel] input[type='hidden'][name='PageIndex']").getFirstElement();
 
         if (pageIndex >= maxPageIndex) {
             pageIndex = maxPageIndex - 1;
@@ -49,14 +49,14 @@ export class PagingPanel {
         }
         $(hidden).setValue(pageIndex.toString());
         $(tx).setValue((pageIndex + 1).toString());
-        $(pl).find("[increment='-1']").setValue(Math.max(pageIndex - 1, 0).toString());
-        $(pl).find("[increment='1']").setValue((pageIndex + 1).toString());
+        $(pl).findDescendants("[increment='-1']").setValue(Math.max(pageIndex - 1, 0).toString());
+        $(pl).findDescendants("[increment='1']").setValue((pageIndex + 1).toString());
     }
     public setMaxPageIndex(pagingPanel: Element, pageIndex: number, maxPageIndex: number) {
         const pl = pagingPanel;
-        const tx = $(pl).find("input[type='text'][name='PageNumber']").getFirstElement();
+        const tx = $(pl).findDescendants("input[type='text'][name='PageNumber']").getFirstElement();
 
-        $(pl).find("[max-page-number]").setInnerText(maxPageIndex.toString());
+        $(pl).findDescendants("[max-page-number]").setInnerText(maxPageIndex.toString());
         $(tx).setValue(pageIndex.toString());
         this.setPageIndex(pl, pageIndex, maxPageIndex);
     }
