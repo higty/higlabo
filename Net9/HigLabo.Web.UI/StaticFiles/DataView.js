@@ -81,6 +81,9 @@ export class DataView {
             return;
         }
         const sourceElement = ctx.sourceElement;
+        if (!(sourceElement instanceof Element)) {
+            return;
+        }
         const dataViewPanel = $(sourceElement).findAncestors("[data-view]").getFirstElement();
         if ($(sourceElement).getAttribute("data-view-save") == "true") {
             this.loadData(dataViewPanel);

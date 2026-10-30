@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using HigLabo.Core;
 using HigLabo.Data;
-using Azure.Core;
 
 namespace HigLabo.DbSharp;
 

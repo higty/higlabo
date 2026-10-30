@@ -1,6 +1,4 @@
-﻿using Azure;
-using Azure.Core;
-using StackExchange.Redis;
+﻿using StackExchange.Redis;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

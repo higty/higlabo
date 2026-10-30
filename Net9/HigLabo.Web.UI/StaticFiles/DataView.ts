@@ -88,6 +88,7 @@ export class DataView {
         const statusCode = ctx.response?.status;
         if (statusCode == null || statusCode < 200 || statusCode >= 300 || ctx.status !== "swapped") { return; }
         const sourceElement = ctx.sourceElement;
+        if (!(sourceElement instanceof Element)) { return; }
         const dataViewPanel = $(sourceElement).findAncestors("[data-view]").getFirstElement();
 
         if ($(sourceElement).getAttribute("data-view-save") == "true") {

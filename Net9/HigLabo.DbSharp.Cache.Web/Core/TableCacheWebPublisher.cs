@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using HigLabo.Core;
+﻿using HigLabo.Core;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

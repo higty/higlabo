@@ -247,9 +247,13 @@ public class PostgreSqlDatabaseSchemaReader : DatabaseSchemaReader
             case NpgsqlDbType.Cidr:
                 return ValueTuple.Create(new System.Net.IPAddress(new byte[] { 127, 0, 0, 1 }, 0));
             case NpgsqlDbType.TsVector:
-                return NpgsqlTypes.NpgsqlTsVector.Parse("a");
+                // Let PostgreSQL parse the sample value using its own tsvector rules.
+                using (var db = this.CreateDatabase())
+                {
+                    return db.ExecuteScalar("SELECT 'a'::tsvector");
+                }
             case NpgsqlDbType.TsQuery:
-                return NpgsqlTypes.NpgsqlTsQuery.Parse("a");
+                return new NpgsqlTsQueryLexeme("a");
             case NpgsqlDbType.Regtype:
                 return new NotSupportedException();
             case NpgsqlDbType.Geometry:

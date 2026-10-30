@@ -12,6 +12,8 @@ namespace HigLabo.Mapper.PerformanceTest;
 public partial class MapperlyMapper
 {
     public partial Address AddressToAddress(Address address);
+    [MapperIgnoreSource(nameof(Address.Street))]
+    [MapperIgnoreTarget(nameof(AddressDTO.Gps))]
     public partial AddressDTO AddressToAddressDto(Address address);
     public partial Customer CustomerToCustomer(Customer customer);
     public partial CustomerDTO CustomerToCustomerDto(Customer customer);

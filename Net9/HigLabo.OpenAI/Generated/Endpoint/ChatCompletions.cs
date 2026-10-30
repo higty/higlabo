@@ -47,7 +47,7 @@ namespace HigLabo.OpenAI
         public int? Limit { get; set; }
         /// <summary>
         /// A list of metadata keys to filter the Chat Completions by. Example:
-        /// metadata[key1]=value1&metadata[key2]=value2
+        /// metadata[key1]=value1&amp;metadata[key2]=value2
         /// </summary>
         public object? Metadata { get; set; }
         /// <summary>

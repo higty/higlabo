@@ -161,7 +161,7 @@ public partial class AnthropicClient
     }
     public async IAsyncEnumerable<string> MessagesStreamAsync(MessagesParameter parameter)
     {
-        await foreach (var item in this.GetStreamAsync(parameter, null, CancellationToken.None))
+        await foreach (var item in this.MessagesStreamAsync(parameter, CancellationToken.None))
         {
             yield return item;
         }

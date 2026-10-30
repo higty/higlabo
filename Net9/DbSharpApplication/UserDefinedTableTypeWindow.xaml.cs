@@ -1,7 +1,7 @@
 ﻿using HigLabo.CodeGenerator;
 using HigLabo.DbSharp.CodeGenerator;
 using HigLabo.DbSharp.MetaData;
-using Microsoft.IdentityModel.Tokens;
+using HigLabo.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;

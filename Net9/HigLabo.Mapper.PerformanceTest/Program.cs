@@ -1,5 +1,4 @@
-﻿using FastMapper;
-using HigLabo.Core;
+﻿using HigLabo.Core;
 using Mapster;
 using Nelibur.ObjectMapper;
 using System;
@@ -27,8 +26,6 @@ class Program
         //NotSupportedTest.AutoMapperTest();
         //NotSupportedTest.TinyMapperTest();
         //NotSupportedTest.MapsterTest();
-        //NotSupportedTest.ExpressMapperTest();
-        //NotSupportedTest.FastMapperTest();
         //NotSupportedTest.AgileMapperTest();
 
         //ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;

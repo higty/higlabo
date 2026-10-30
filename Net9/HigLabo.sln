@@ -145,6 +145,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Html.Test", "HigLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Core.PerformanceTest", "HigLabo.Core.PerformanceTest\HigLabo.Core.PerformanceTest.csproj", "{4F4C5B33-D861-448B-9039-402566D6DE03}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Anthropic.Test", "HigLabo.Anthropic.Test\HigLabo.Anthropic.Test.csproj", "{C1535ECC-A8EE-4F84-82E3-9FF94946B927}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +157,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Release|x64.Build.0 = Release|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1535ECC-A8EE-4F84-82E3-9FF94946B927}.Release|x86.Build.0 = Release|Any CPU
 		{C0073E38-BA0E-4089-95A6-5F0C3B3AE07C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0073E38-BA0E-4089-95A6-5F0C3B3AE07C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0073E38-BA0E-4089-95A6-5F0C3B3AE07C}.Debug|x64.ActiveCfg = Debug|Any CPU

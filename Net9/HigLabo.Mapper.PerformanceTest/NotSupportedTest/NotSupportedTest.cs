@@ -1,5 +1,4 @@
-﻿using FastMapper;
-using HigLabo.Core;
+﻿using HigLabo.Core;
 using Mapster;
 using Nelibur.ObjectMapper;
 using System;
@@ -75,39 +74,6 @@ public class NotSupportedTest
         //StackOverflowException thrown
         //var tn = TreeNode.Create();
         //var tn2 = Mapster.TypeAdapter.Adapt<TreeNode>(tn);
-    }
-    public static void ExpressMapperTest()
-    {
-        var p1 = Park.Create();
-        var p2 = ExpressMapper.Mapper.Map<Park, Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
-
-        var c1 = Car.Create();
-        var c2 = ExpressMapper.Mapper.Map<Car, Car>(c1);//Exception!
-
-        var d = new Dictionary<String, String>();
-        d["Name"] = "B1";
-        var b3 = ExpressMapper.Mapper.Map<Dictionary<String, String>, Building>(d);//Does not map...
-
-        return;
-
-        //var tn = TreeNode.Create();
-        //var tn2 = ExpressMapper.Mapper.Map<TreeNode, TreeNode>(tn);//tn2.Nodes.Count = 0.
-    }
-    public static void FastMapperTest()
-    {
-        var p1 = Park.Create();
-        var p2 = FastMapper.TypeAdapter.Adapt<Park, Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
-
-        //StackOverflowException thrown
-        var tn = TreeNode.Create();
-        var tn2 = FastMapper.TypeAdapter.Adapt<TreeNode>(tn);//tn2.Nodes.Count = 0.
-
-        var c1 = Car.Create();
-        var c2 = FastMapper.TypeAdapter.Adapt<Car, Car>(c1);//Exception!
-
-        var d = new Dictionary<String, String>();
-        d["Name"] = "B1";
-        var b3 = FastMapper.TypeAdapter.Adapt<Building>(d);//Does not map...
     }
     public static void AgileMapperTest()
     {

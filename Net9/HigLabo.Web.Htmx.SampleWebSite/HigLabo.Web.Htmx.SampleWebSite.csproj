@@ -2,10 +2,12 @@
 
   <PropertyGroup>
 	  <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+      <!-- Both frameworks emit TypeScript into the same wwwroot directory. -->
+      <BuildInParallel>false</BuildInParallel>
 	  <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	  <Version>10.0.0.0</Version>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	  <Company>HigLabo</Company>
 	  <Authors>Higty</Authors>
 	  <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
@@ -23,4 +25,9 @@
 		</PackageReference>
 	</ItemGroup>
 
+  <!-- Generate JavaScript before the SDK fingerprints static web assets, including after Clean. -->
+  <Target Name="CompileTypeScriptBeforeStaticWebAssets"
+          BeforeTargets="ResolveProjectStaticWebAssets"
+          Condition="'$(TargetFramework)' != '' And '$(DesignTimeBuild)' != 'true'"
+          DependsOnTargets="CheckFileSystemCaseSensitive;FindConfigFiles;TypeScriptDeleteOutputFromOtherConfigs;CompileTypeScript;CompileTypeScriptWithTSConfig;GetTypeScriptOutputForPublishing" />
 </Project>

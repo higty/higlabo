@@ -46,7 +46,7 @@ public class DkimSignatureGenerator
             throw new FileNotFoundException("PFX file not found.", pfxFilePath);
 
         // Exportable が本当に必要なら残す。不要なら外した方が安全。
-        Certificate = new X509Certificate2(pfxFilePath, password, X509KeyStorageFlags.Exportable);
+        Certificate = X509CertificateLoader.LoadPkcs12FromFile(pfxFilePath, password, X509KeyStorageFlags.Exportable);
 
         using (var rsa = Certificate.GetRSAPrivateKey())
         {

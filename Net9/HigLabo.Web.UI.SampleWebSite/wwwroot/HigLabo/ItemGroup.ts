@@ -53,7 +53,7 @@ export class ItemGroup {
 
             const itemGroupIdList = this.getItemIdList($(element).getAttribute("item-group-id"));
 
-            if (itemGroupIdList.some(id => selectedItemIdList.includes(id)) == true) {
+            if (itemGroupIdList.some(id => selectedItemIdList.indexOf(id) >= 0) == true) {
                 $(element).setAttribute("current", "true");
             }
         });

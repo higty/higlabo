@@ -16,9 +16,6 @@ public partial class MessagesParameter : RestApiParameter, IRestApiParameter
     public object? MetaData { get; set; }
     public List<string>? Stop_Sequences { get; set; }
     public bool? Stream { get; set; }
-    public double? Temperature { get; set; }
-    public double? Top_P { get; set; }
-    public int? Top_K { get; set; }
     public List<AnthropicTool>? Tools { get; set; }
     public object? Tool_Choice { get; set; }
     public object? Thinking { get; set; }
@@ -38,9 +35,6 @@ public partial class MessagesParameter : RestApiParameter, IRestApiParameter
             metadata= this.MetaData,
             stop_sequences = this.Stop_Sequences,
             stream = this.Stream,
-            temperature = this.Temperature,
-            top_p = this.Top_P,
-            top_k = this.Top_K,
             tools = this.Tools,
             tool_choice = this.Tool_Choice,
             thinking = this.Thinking,

@@ -14,18 +14,6 @@ export class HigLaboJson {
         const registered = htmx.registerExtension("higlabo-json", {
             init: function (internalApi) {
                 api = internalApi;
-                const determineMethodAndAction = htmx.__determineMethodAndAction;
-                htmx.__determineMethodAndAction = function (element, event) {
-                    if (!this.__attributeValue(element, "hx-action")) {
-                        for (const method of ["get", "post", "put", "patch", "delete", "query"]) {
-                            const action = this.__attr(element, "hx-" + method);
-                            if (action != null) {
-                                return { action: action, method: method.toUpperCase() };
-                            }
-                        }
-                    }
-                    return determineMethodAndAction.call(this, element, event);
-                };
                 htmx.__findAllExt = function (eltOrSelector, maybeSelector, thisAttr, global) {
                     let selector = maybeSelector ?? eltOrSelector;
                     let elt = maybeSelector ? (this.__normalizeElement(eltOrSelector) || document.body) : document;

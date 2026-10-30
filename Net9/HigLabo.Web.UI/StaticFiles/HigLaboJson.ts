@@ -16,18 +16,6 @@ export class HigLaboJson {
         const registered = htmx.registerExtension("higlabo-json", {
             init: function (internalApi) {
                 api = internalApi;
-                // An explicit request on the source element must take precedence over ancestor verbs.
-                // With implicitInheritance enabled, htmx 4 otherwise checks an inherited GET before a local POST.
-                const determineMethodAndAction = htmx.__determineMethodAndAction;
-                htmx.__determineMethodAndAction = function (element: Element, event: Event) {
-                    if (!this.__attributeValue(element, "hx-action")) {
-                        for (const method of ["get", "post", "put", "patch", "delete", "query"]) {
-                            const action = this.__attr(element, "hx-" + method);
-                            if (action != null) { return { action: action, method: method.toUpperCase() }; }
-                        }
-                    }
-                    return determineMethodAndAction.call(this, element, event);
-                };
                 // Install before htmx processes elements or resolves request targets and includes.
                 // Keep htmx 4.0.0 native selector behavior; delegate HigLabo selectors to HtmlElementQuery.
                 htmx.__findAllExt = function (eltOrSelector, maybeSelector, thisAttr, global) {

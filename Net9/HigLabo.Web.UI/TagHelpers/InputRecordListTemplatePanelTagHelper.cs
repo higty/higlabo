@@ -46,7 +46,7 @@ public class InputRecordListTemplatePanelTagHelper : TagHelper
                     div.Attributes.Add("template-id", this.TemplateId);
                     break;
                 case AddTemplateType.Api:
-                    div.Attributes.Add("hx-trigger", "click,keyup[keyCode==13]");
+                    div.Attributes.Add("hx-trigger", "click,keyup[typeof key!='undefined' && key=='Enter']");
                     div.Attributes.Add("hx-post", this.HxPost);
                     div.Attributes.Add("hx-target", "previous");
                     div.Attributes.Add("hx-swap", "beforeend");
