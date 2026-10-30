@@ -5,6 +5,20 @@ You can see the sample program at https://github.com/higty/higlabo/tree/master/N
 
 
 
+### Publish as a single executable
+
+The `SingleFile-win-x64` profile publishes a self-contained .NET 10 application for Windows x64. The destination computer does not need .NET installed.
+
+In Visual Studio, right-click the project, select **Publish**, choose **SingleFile-win-x64**, and publish using **Release**.
+
+From this project directory, run:
+
+```powershell
+dotnet publish DbSharpApplication.csproj -c Release -f net10.0-windows -p:PublishProfile=SingleFile-win-x64
+```
+
+The output is `bin\publish\win-x64\DbSharpApplication.exe`. Distribute this executable alone. Runtime libraries and content are bundled into the executable and extracted to a temporary cache on first launch. Application settings continue to be saved under `%USERPROFILE%\HigLabo\DbSharpApplication`.
+
 ### How to use
 The step are
 
