@@ -19,6 +19,10 @@ namespace HigLabo.OpenAI
         /// Whether to run the model response in the background. Learn more.
         /// </summary>
         public bool? Background { get; set; }
+        public ResponseAccessPrograms? Access_Programs { get; set; }
+        public List<ResponseContextManagement>? Context_Management { get; set; }
+        public ResponseImageOptions? Image { get; set; }
+        public object? Moderation { get; set; }
         /// <summary>
         /// The conversation that this response belongs to. Items from this conversation are prepended to input_items for this response request. Input items and output items from this response are automatically added to this conversation after this response completes.
         /// </summary>
@@ -130,7 +134,7 @@ namespace HigLabo.OpenAI
         /// <summary>
         /// How the model should select which tool (or tools) to use when generating a response. See the tools parameter to see how to specify which tools the model can call.
         /// </summary>
-        public string? Tool_Choice { get; set; }
+        public object? Tool_Choice { get; set; }
         /// <summary>
         /// An array of tools the model may call while generating a response. You can specify which tool to use by setting the tool_choice parameter.
         /// We support the following categories of tools:
@@ -163,6 +167,10 @@ namespace HigLabo.OpenAI
         {
             return new {
             	background = this.Background,
+                access_programs = this.Access_Programs,
+                context_management = this.Context_Management,
+                image = this.Image,
+                moderation = this.Moderation,
             	conversation = this.Conversation,
             	include = this.Include,
             	input = this.Input,

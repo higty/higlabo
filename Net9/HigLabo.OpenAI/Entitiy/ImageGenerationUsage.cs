@@ -3,6 +3,7 @@ public class ImageGenerationUsage
 {
     public int Input_Tokens { get; set; }
     public TokensDetails Input_Tokens_Details { get; set; } = new TokensDetails();
+    public TokensDetails? Output_Tokens_Details { get; set; }
     public int Output_Tokens { get; set; }
     public int Total_Tokens { get; set; }
 

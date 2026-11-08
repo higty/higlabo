@@ -78,6 +78,9 @@ namespace HigLabo.OpenAI
         /// Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the user field. Learn more.
         /// </summary>
         public string? Prompt_Cache_Key { get; set; }
+        public PromptCacheOptions? Prompt_Cache_Options { get; set; }
+        public string? Prompt_Cache_Retention { get; set; }
+        public object? Moderation { get; set; }
         /// <summary>
         /// Constrains effort on reasoning for reasoning models. Currently supported values are minimal, low, medium, and high. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
         /// Note: The gpt-5-pro model defaults to (and only supports) high reasoning effort.
@@ -128,7 +131,7 @@ namespace HigLabo.OpenAI
         /// Controls which (if any) tool is called by the model. none means the model will not call any tool and instead generates a message. auto means the model can pick between generating a message or calling one or more tools. required means the model must call one or more tools. Specifying a particular tool via {"type": "function", "function": {"name": "my_function"}} forces the model to call that tool.
         /// none is the default when no tools are present. auto is the default if tools are present.
         /// </summary>
-        public string? Tool_Choice { get; set; }
+        public object? Tool_Choice { get; set; }
         /// <summary>
         /// A list of tools the model may call. You can provide either custom tools or function tools.
         /// </summary>
@@ -172,6 +175,9 @@ namespace HigLabo.OpenAI
             	prediction = this.Prediction,
             	presence_penalty = this.Presence_Penalty,
             	prompt_cache_key = this.Prompt_Cache_Key,
+                prompt_cache_options = this.Prompt_Cache_Options,
+                prompt_cache_retention = this.Prompt_Cache_Retention,
+                moderation = this.Moderation,
             	reasoning_effort = this.Reasoning_Effort,
             	response_format = this.Response_Format,
             	safety_identifier = this.Safety_Identifier,

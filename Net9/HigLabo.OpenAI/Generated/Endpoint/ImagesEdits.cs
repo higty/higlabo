@@ -30,10 +30,17 @@ namespace HigLabo.OpenAI
         /// If transparent, the output format needs to support transparency, so it should be set to either png (default value) or webp.
         /// </summary>
         public string? Background { get; set; }
+        public string? Complexity { get; set; }
+        public int? Frame_Count { get; set; }
+        public int? Frame_Duration_Ms { get; set; }
+        public ImageSvgOptions? Svg { get; set; }
+        public string? Safety_Identifier { get; set; }
         /// <summary>
         /// Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for gpt-image-1. Unsupported for gpt-image-1-mini. Supports high and low. Defaults to low.
         /// </summary>
         public string? Input_Fidelity { get; set; }
+        public string? Moderation { get; set; }
+        public FileParameter Markup { get; private set; } = new FileParameter("markup");
         /// <summary>
         /// An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where image should be edited. If there are multiple images provided, the mask will be applied on the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as image.
         /// </summary>
@@ -90,7 +97,14 @@ namespace HigLabo.OpenAI
             	image = this.Image,
             	prompt = this.Prompt,
             	background = this.Background,
+                complexity = this.Complexity,
+                frame_count = this.Frame_Count,
+                frame_duration_ms = this.Frame_Duration_Ms,
+                svg = this.Svg,
+                safety_identifier = this.Safety_Identifier,
             	input_fidelity = this.Input_Fidelity,
+                moderation = this.Moderation,
+                markup = this.Markup,
             	mask = this.Mask,
             	model = this.Model,
             	n = this.N,
@@ -111,12 +125,19 @@ namespace HigLabo.OpenAI
                 yield return item;
             }
             yield return this.Mask;
+            yield return this.Markup;
         }
         Dictionary<string, string> IFormDataParameter.CreateFormDataParameter()
         {
             var d = new Dictionary<string, string>();
             d["prompt"] = this.Prompt;
             if (this.Background != null) d["background"] = this.Background;
+            if (this.Complexity != null) d["complexity"] = this.Complexity;
+            if (this.Frame_Count != null) d["frame_count"] = this.Frame_Count.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            if (this.Frame_Duration_Ms != null) d["frame_duration_ms"] = this.Frame_Duration_Ms.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            if (this.Svg != null) d["svg"] = OpenAIClient.JsonConverter.SerializeObject(this.Svg);
+            if (this.Safety_Identifier != null) d["safety_identifier"] = this.Safety_Identifier;
+            if (this.Moderation != null) d["moderation"] = this.Moderation;
             if (this.Input_Fidelity != null) d["input_fidelity"] = this.Input_Fidelity;
             if (this.Model != null) d["model"] = this.Model;
             if (this.N != null) d["n"] = this.N.Value.ToString();

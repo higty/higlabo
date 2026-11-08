@@ -11,6 +11,11 @@ public class FunctionTool : Tool
     [JsonConverter(typeof(PreserveCaseJsonConverter))]
     public object? Parameters { get; set; }
     public bool? Strict { get; set; }
+    public bool? Defer_Loading { get; set; }
+    public bool? Async { get; set; }
+    public List<string>? Allowed_Callers { get; set; }
+    [JsonConverter(typeof(PreserveCaseJsonConverter))]
+    public object? Output_Schema { get; set; }
 
     public FunctionTool()
         : base("function")

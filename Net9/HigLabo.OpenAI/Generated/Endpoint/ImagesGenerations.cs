@@ -24,6 +24,11 @@ namespace HigLabo.OpenAI
         /// If transparent, the output format needs to support transparency, so it should be set to either png (default value) or webp.
         /// </summary>
         public string? Background { get; set; }
+        public string? Complexity { get; set; }
+        public int? Frame_Count { get; set; }
+        public int? Frame_Duration_Ms { get; set; }
+        public ImageSvgOptions? Svg { get; set; }
+        public string? Safety_Identifier { get; set; }
         /// <summary>
         /// The model to use for image generation. One of dall-e-2, dall-e-3, or gpt-image-1. Defaults to dall-e-2 unless a parameter specific to gpt-image-1 is used.
         /// </summary>
@@ -87,6 +92,11 @@ namespace HigLabo.OpenAI
             return new {
             	prompt = this.Prompt,
             	background = this.Background,
+                complexity = this.Complexity,
+                frame_count = this.Frame_Count,
+                frame_duration_ms = this.Frame_Duration_Ms,
+                svg = this.Svg,
+                safety_identifier = this.Safety_Identifier,
             	model = this.Model,
             	moderation = this.Moderation,
             	n = this.N,

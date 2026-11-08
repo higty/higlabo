@@ -2,6 +2,8 @@
 public class ImagesGenerationObject
 {
     public string Background { get; set; } = "";
+    public long Created { get => Created_At; set => Created_At = value; }
+    public string? Safety_Identifier { get; set; }
     public Int64 Created_At { get; set; }
     public DateTimeOffset CreateTime
     {
@@ -19,6 +21,8 @@ public class ImagesGenerationObject
 public class ImagesGenerationObjectRespons: RestApiResponse
 {
     public string Background { get; set; } = "";
+    public long Created { get => Created_At; set => Created_At = value; }
+    public string? Safety_Identifier { get; set; }
     public Int64 Created_At { get; set; }
     public DateTimeOffset CreateTime
     {

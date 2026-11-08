@@ -201,6 +201,7 @@ public class ResponseStreamEvent
             case ResponseStreamEventName.Reasoning.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningDone>(this.Data)!;
             case ResponseStreamEventName.Reasoning_Summary.Delta: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDelta>(this.Data)!;
             case ResponseStreamEventName.Reasoning_Summary.Done: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamReasoningSummaryDone>(this.Data)!;
+            case "error":
             case ResponseStreamEventName.Error: return OpenAIClient.JsonConverter.DeserializeObject<ResponseStreamError>(this.Data)!;
             default: return new ResponseStreamEventUnknown(this.EventName, this.Data);
         }
@@ -253,11 +254,17 @@ public class ResponseStreamOutputItem : IResponseStreamEvent
         public List<OutputResult>? Results { get; set; }
 
         public string? Name { get; set; }
+        [global::Newtonsoft.Json.JsonConverter(typeof(ResponseArgumentsConverter))]
         public string? Arguments { get; set; }
+        public string? Namespace { get; set; }
+        public string? Execution { get; set; }
+        public object? Output { get; set; }
+        public object? Operation { get; set; }
+        public List<OutputAction>? Actions { get; set; }
         public string? Call_Id { get; set; }
 
         public OutputAction? Action { get; set; }
-        public PendingSafetyCheck? Pending_Safety_Checks { get; set; }
+        public List<PendingSafetyCheck>? Pending_Safety_Checks { get; set; }
         public List<OutputSummary>? Summary { get; set; }
         public string? Encrypted_Content { get; set; }
         /// <summary>
@@ -315,6 +322,8 @@ public class ResponseStreamOutputItem : IResponseStreamEvent
         public string? Text { get; set; } 
         //Shell action
         public List<string> Command { get; set; } = new();
+        public List<string>? Commands { get; set; }
+        public int? Max_Output_Length { get; set; }
         public string Env { get; set; } = "";
         public int? Timeout_ms { get; set; }
         public string? User { get; set; }
@@ -650,6 +659,9 @@ public class ResponseStreamReasoningSummaryDone : IResponseStreamEvent
 }
 public class ResponseStreamError : IResponseStreamEvent
 {
+    public string? Code { get; set; }
+    public string? Message { get; set; }
+    public string? Param { get; set; }
     public string Type { get; set; } = "";
     public OpenAIServerError Error { get; set; } = new();
     public int Sequence_Number { get; set; }

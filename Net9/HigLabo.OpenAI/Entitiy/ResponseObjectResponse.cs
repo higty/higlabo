@@ -5,6 +5,20 @@ namespace HigLabo.OpenAI;
 
 public class ResponseObject
 {
+    public ResponseAccessPrograms? Access_Programs { get; set; }
+    public bool? Background { get; set; }
+    public double? Completed_At { get; set; }
+    public object? Conversation { get; set; }
+    public ResponseImageOptions? Image { get; set; }
+    public int? Max_Tool_Calls { get; set; }
+    public object? Moderation { get; set; }
+    public string? Prompt_Cache_Key { get; set; }
+    public PromptCacheOptions? Prompt_Cache_Options { get; set; }
+    public object? Prompt_Cache_Diagnostics { get; set; }
+    public string? Prompt_Cache_Retention { get; set; }
+    public string? Safety_Identifier { get; set; }
+    public bool? Store { get; set; }
+    public int? Top_Logprobs { get; set; }
     public Int64 Created_At { get; set; }
     public DateTimeOffset CreateTime
     {
@@ -14,6 +28,7 @@ public class ResponseObject
         }
     }
     public OpenAIServerError? Error { get; set; }
+    public string Object { get; set; } = "response";
     public string Id { get; set; } = "";
     public IncompleteDetails? Incomplete_Details { get; set; }
     public object? Instructions { get; set; }
@@ -29,7 +44,9 @@ public class ResponseObject
     public string Status { get; set; } = "";
     public float? Temperature { get; set; }
     public object? Text { get; set; }
-    public object? ToolChoice { get; set; }
+    public object? Tool_Choice { get; set; }
+    [global::Newtonsoft.Json.JsonIgnore]
+    public object? ToolChoice { get => Tool_Choice; set => Tool_Choice = value; }
     public List<ToolCall>? Tools { get; set; }
     public float? Top_P { get; set; }
     public string? Truncation { get; set; }
@@ -61,6 +78,20 @@ public class ResponseObject
 }
 public class ResponseObjectResponse : RestApiResponse
 {
+    public ResponseAccessPrograms? Access_Programs { get; set; }
+    public bool? Background { get; set; }
+    public double? Completed_At { get; set; }
+    public object? Conversation { get; set; }
+    public ResponseImageOptions? Image { get; set; }
+    public int? Max_Tool_Calls { get; set; }
+    public object? Moderation { get; set; }
+    public string? Prompt_Cache_Key { get; set; }
+    public PromptCacheOptions? Prompt_Cache_Options { get; set; }
+    public object? Prompt_Cache_Diagnostics { get; set; }
+    public string? Prompt_Cache_Retention { get; set; }
+    public string? Safety_Identifier { get; set; }
+    public bool? Store { get; set; }
+    public int? Top_Logprobs { get; set; }
     public Int64 Created_At { get; set; }
     public DateTimeOffset CreateTime
     {
@@ -85,7 +116,9 @@ public class ResponseObjectResponse : RestApiResponse
     public string Status { get; set; } = "";
     public float? Temperature { get; set; }
     public object? Text { get; set; }
-    public object? ToolChoice { get; set; }
+    public object? Tool_Choice { get; set; }
+    [global::Newtonsoft.Json.JsonIgnore]
+    public object? ToolChoice { get => Tool_Choice; set => Tool_Choice = value; }
     public List<ToolCall>? Tools { get; set; }
     public float? Top_P { get; set; }
     public string? Truncation { get; set; }
@@ -134,6 +167,19 @@ public class ResponseOutput
     public List<ResponseWebSearchResult>? Results { get; set; }
     public List<ResponseOutputContent> Content { get; set; } = new();
     //Image generation
+    public string? Call_Id { get; set; }
+    public string? Name { get; set; }
+    public string? Namespace { get; set; }
+    public object? Arguments { get; set; }
+    public string? Encrypted_Content { get; set; }
+    public List<ResponseOutputContent.ReasoningSummary>? Summary { get; set; }
+    public object? Action { get; set; }
+    public object? Actions { get; set; }
+    public object? Output { get; set; }
+    public string? Execution { get; set; }
+    public List<Tool>? Tools { get; set; }
+    public string? Server_Label { get; set; }
+    public object? Error { get; set; }
     public string Background { get; set; } = "";
     public string Output_Format { get; set; } = "";
     public string Quality { get; set; } = "";

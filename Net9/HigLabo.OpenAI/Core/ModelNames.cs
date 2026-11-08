@@ -2,6 +2,11 @@ namespace HigLabo.OpenAI;
 
 public static class ModelNames
 {
+    public const string Gpt_6_1_Terra = "gpt-6.1-terra";
+    public const string Gpt_6_Cyber = "gpt-6-cyber";
+    public const string Gpt_6_Rosalind = "gpt-6-rosalind";
+    public const string Gpt_Image_2_6_Sunburst = "gpt-image-2.6-sunburst";
+    public const string Gpt_Image_2_6_Flare = "gpt-image-2.6-flare";
     public const string Gpt_6_Astra = "gpt-6-astra";
     public const string Gpt_6_1_Sol = "gpt-6.1-sol";
     public const string Gpt_6_Sol = "gpt-6-sol";
@@ -100,22 +105,33 @@ public static class ModelNames
 
     public static decimal? CalculateCost(string modelName, ResponseUsageResult usage)
     {
-        var longContext = IsGpt6Model(modelName) && usage.Input_Tokens > 272_000;
-        var cacheWriteMultiplier = HasCacheWritePricing(modelName) ? 1.25m : 1m;
+        return CalculateCost(modelName, usage, "30m");
+    }
+    /// <summary>Estimates standard token costs using the requested cache lifetime (30m or 12h).</summary>
+    public static decimal? CalculateCost(string modelName, ResponseUsageResult usage, string promptCacheTtl)
+    {
+        if (promptCacheTtl is not ("30m" or "12h"))
+            throw new ArgumentException("Cache lifetime must be 30m or 12h.", nameof(promptCacheTtl));
+        var longContext = HasLongContextPricing(modelName) && usage.Input_Tokens > 272_000;
+        var cacheWriteMultiplier = HasCacheWritePricing(modelName) ? (promptCacheTtl == "12h" ? 2.5m : 1.25m) : 1m;
         return CalculateCost(modelName, (inputPrice, cachedPrice, outputPrice) => CalculateCost(usage,
             inputPrice * (longContext ? 2m : 1m), cachedPrice * (longContext ? 2m : 1m),
             outputPrice * (longContext ? 1.5m : 1m), inputPrice * (longContext ? 2m : 1m) * cacheWriteMultiplier));
     }
     public static decimal? CalculateCost(string modelName, ChatCompletionUsageResult usage)
     {
-        var longContext = IsGpt6Model(modelName) && usage.Prompt_Tokens > 272_000;
+        var longContext = HasLongContextPricing(modelName) && usage.Prompt_Tokens > 272_000;
         return CalculateCost(modelName, (inputPrice, cachedPrice, outputPrice) => CalculateCost(usage,
             inputPrice * (longContext ? 2m : 1m), cachedPrice * (longContext ? 2m : 1m),
             outputPrice * (longContext ? 1.5m : 1m)));
     }
     private static bool IsGpt6Model(string modelName)
     {
-        return modelName.Trim().ToLowerInvariant() is Gpt_6_Astra or Gpt_6_1_Sol or Gpt_6_Sol or Gpt_6_Luna;
+        return modelName.Trim().ToLowerInvariant() is Gpt_6_Astra or Gpt_6_1_Sol or Gpt_6_1_Terra or Gpt_6_Sol or Gpt_6_Luna;
+    }
+    private static bool HasLongContextPricing(string modelName)
+    {
+        return HasCacheWritePricing(modelName) || modelName.Trim().ToLowerInvariant() is Gpt_5_5 or Gpt_5_5_Pro or Gpt_5_4 or Gpt_5_4_Pro;
     }
     private static bool HasCacheWritePricing(string modelName)
     {
@@ -137,13 +153,14 @@ public static class ModelNames
         {
             case Gpt_6_Astra: return calculateCost(10.00m, 1.00m, 50.00m);
             case Gpt_6_1_Sol: return calculateCost(2.00m, 0.10m, 10.00m);
+            case Gpt_6_1_Terra: return calculateCost(1.00m, 0.05m, 5.00m);
             case Gpt_6_Sol: return calculateCost(2.00m, 0.20m, 10.00m);
             case Gpt_6_Luna: return calculateCost(0.10m, 0.01m, 0.50m);
             case Gpt_5_6:
             case Gpt_5_6_Sol:
                 return calculateCost(4.00m, 0.40m, 20.00m);
-            case Gpt_5_6_Terra: return calculateCost(2.50m, 0.25m, 15.00m);
-            case Gpt_5_6_Luna: return calculateCost(1.00m, 0.10m, 6.00m);
+            case Gpt_5_6_Terra: return calculateCost(2.00m, 0.20m, 12.00m);
+            case Gpt_5_6_Luna: return calculateCost(0.20m, 0.02m, 1.20m);
             case Gpt_5_5: return calculateCost(5.00m, 0.50m, 30.00m);
             case Gpt_5_5_Pro: return calculateCost(30.00m, 30.00m, 180.00m);
             case Gpt_5_4: return calculateCost(2.50m, 0.25m, 15.00m);

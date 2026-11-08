@@ -19,6 +19,8 @@ public class WebSearchTool : Tool
         public int? Max_Results { get; set; }
         public bool? Caption { get; set; }
     }
+    public string? Search_Context_Size { get; set; }
+    public bool? External_Web_Access { get; set; }
     public UserLocation? User_Location { get; set; }
     public DomainFilters? Filters { get; set; }
     public List<string>? Search_Content_Types { get; set; }

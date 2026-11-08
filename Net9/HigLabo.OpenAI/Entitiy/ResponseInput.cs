@@ -10,6 +10,19 @@ public enum ResponseInputRole
 }
 public class ResponseInput : List<ResponseInputMessage>
 {
+    /// <summary>Preserves every item of a compacted context window, including encrypted items.</summary>
+    public static ResponseInput FromItems(IEnumerable<global::Newtonsoft.Json.Linq.JToken> items)
+    {
+        ArgumentNullException.ThrowIfNull(items);
+        var input = new ResponseInput();
+        foreach (var item in items)
+        {
+            if (item is not global::Newtonsoft.Json.Linq.JObject value)
+                throw new ArgumentException("Response input items must be JSON objects.", nameof(items));
+            input.Add(new ResponseRawInputMessage(value));
+        }
+        return input;
+    }
     public void AddConfigurationUpdate(string reasoningEffort)
     {
         this.Add(new ResponseConfigurationUpdateMessage(reasoningEffort));
