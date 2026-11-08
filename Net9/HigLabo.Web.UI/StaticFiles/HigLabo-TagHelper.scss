@@ -607,7 +607,7 @@ dialog {
 }
 
 
-.data-view {
+.data-view:not([data-view-type]) {
     position: relative;
     height: 100%;
 
@@ -756,7 +756,7 @@ dialog {
 /*-------------------------------------------------------
     Color settings
 -------------------------------------------------------*/
-.data-view {
+.data-view:not([data-view-type]) {
     .view-panel {
         .panel-menu-row {
             background-color: var(--color-panel-menu-bg);

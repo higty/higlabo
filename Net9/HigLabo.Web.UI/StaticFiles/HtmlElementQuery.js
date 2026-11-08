@@ -33,6 +33,7 @@ export class HtmlElementQuery {
     static _emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
     static _onEventHandlerList = new Array();
     static _htmlChanged = new Array();
+    static _htmlRemoving = new Array();
     _elementList = new Array();
     itemGroup = new ItemGroup();
     constructor(element) {
@@ -269,6 +270,25 @@ export class HtmlElementQuery {
             this._elementList[i].insertAdjacentText(position, data);
         }
         this.invokeHtmlChanged();
+        return this;
+    }
+    moveToIndex(index) {
+        index = Number(index);
+        if (Number.isInteger(index) == false || index < 0) {
+            return this;
+        }
+        for (const element of this._elementList) {
+            const parent = element.parentElement;
+            if (parent == null) {
+                continue;
+            }
+            const siblings = Array.from(parent.children).filter(x => x !== element);
+            const reference = siblings[index] ?? null;
+            if (element.nextElementSibling === reference) {
+                continue;
+            }
+            parent.insertBefore(element, reference);
+        }
         return this;
     }
     getInnerWidth() {
@@ -528,33 +548,45 @@ export class HtmlElementQuery {
     }
     setInnerText(value) {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving(Array.from(this._elementList[i].children));
             this._elementList[i].textContent = value;
         }
         return this;
     }
     setInnerHtml(html) {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving(Array.from(this._elementList[i].children));
             this._elementList[i].innerHTML = html;
         }
         this.invokeHtmlChanged();
         return this;
     }
     setOuterHtml(html) {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this._elementList[i].outerHTML = html;
+        const parents = new Set();
+        for (const element of this._elementList) {
+            const parent = element.parentNode;
+            if (parent == null) {
+                continue;
+            }
+            this.invokeHtmlRemoving([element]);
+            element.outerHTML = html;
+            if (parent instanceof Element || parent instanceof ShadowRoot) {
+                parents.add(parent);
+            }
         }
-        this.invokeHtmlChanged();
+        this.invokeHtmlChanged(Array.from(parents));
         return this;
     }
     appendInnerText(value) {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving(Array.from(this._elementList[i].children));
             this._elementList[i].textContent = this._elementList[i].textContent + value;
         }
         return this;
     }
     appendInnerHtml(html) {
         for (var i = 0; i < this._elementList.length; i++) {
-            this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
+            this._elementList[i].insertAdjacentHTML("beforeend", html);
         }
         this.invokeHtmlChanged();
         return this;
@@ -638,6 +670,7 @@ export class HtmlElementQuery {
     }
     remove() {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving([this._elementList[i]]);
             this._elementList[i].remove();
         }
         return this;
@@ -1047,9 +1080,14 @@ export class HtmlElementQuery {
     forEach(callback) {
         this._elementList.forEach(callback);
     }
-    invokeHtmlChanged() {
+    invokeHtmlChanged(elementList = this._elementList) {
         for (var i = 0; i < HtmlElementQuery._htmlChanged.length; i++) {
-            HtmlElementQuery._htmlChanged[i](this._elementList);
+            HtmlElementQuery._htmlChanged[i](elementList);
+        }
+    }
+    invokeHtmlRemoving(elementList) {
+        for (const handler of HtmlElementQuery._htmlRemoving) {
+            handler(elementList);
         }
     }
     containsElement(element) {
@@ -1062,6 +1100,9 @@ export class HtmlElementQuery {
     }
     static subscribeHtmlChanged(func) {
         HtmlElementQuery._htmlChanged.push(func);
+    }
+    static subscribeHtmlRemoving(func) {
+        HtmlElementQuery._htmlRemoving.push(func);
     }
     static domContentLoaded(callback) {
         document.addEventListener("DOMContentLoaded", callback);

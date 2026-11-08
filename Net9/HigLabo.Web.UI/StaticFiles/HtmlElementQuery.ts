@@ -38,7 +38,8 @@ export class HtmlElementQuery {
     private static _emptyElementList = new Array<Element>();
     private static _emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
     private static _onEventHandlerList: Array<OnEventHandler> = new Array<OnEventHandler>();
-    private static _htmlChanged: Array<(elementList: Array<Element>) => void> = new Array<(elementList: Array<Element>) => void>();
+    private static _htmlChanged: Array<(elementList: Array<Element | ShadowRoot>) => void> = new Array<(elementList: Array<Element | ShadowRoot>) => void>();
+    private static _htmlRemoving: Array<(elementList: Array<Element>) => void> = new Array<(elementList: Array<Element>) => void>();
 
     private _elementList: Array<Element> = new Array<Element>();
     private itemGroup = new ItemGroup();
@@ -264,6 +265,21 @@ export class HtmlElementQuery {
             this._elementList[i].insertAdjacentText(position, data);
         }
         this.invokeHtmlChanged();
+        return this;
+    }
+    public moveToIndex(index: number): HtmlElementQuery {
+        index = Number(index);
+        if (Number.isInteger(index) == false || index < 0) { return this; }
+
+        for (const element of this._elementList) {
+            const parent = element.parentElement;
+            if (parent == null) { continue; }
+
+            const siblings = Array.from(parent.children).filter(x => x !== element);
+            const reference = siblings[index] ?? null;
+            if (element.nextElementSibling === reference) { continue; }
+            parent.insertBefore(element, reference);
+        }
         return this;
     }
     public getInnerWidth(): number | null {
@@ -530,33 +546,43 @@ export class HtmlElementQuery {
     }
     public setInnerText(value: string): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving(Array.from(this._elementList[i].children));
             this._elementList[i].textContent = value;
         }
         return this;
     }
     public setInnerHtml(html: string): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving(Array.from(this._elementList[i].children));
             this._elementList[i].innerHTML = html;
         }
         this.invokeHtmlChanged();
         return this;
     }
     public setOuterHtml(html: string): HtmlElementQuery {
-        for (var i = 0; i < this._elementList.length; i++) {
-            this._elementList[i].outerHTML = html;
+        const parents = new Set<Element | ShadowRoot>();
+        for (const element of this._elementList) {
+            const parent = element.parentNode;
+            if (parent == null) { continue; }
+            this.invokeHtmlRemoving([element]);
+            element.outerHTML = html;
+            if (parent instanceof Element || parent instanceof ShadowRoot) {
+                parents.add(parent);
+            }
         }
-        this.invokeHtmlChanged();
+        this.invokeHtmlChanged(Array.from(parents));
         return this;
     }
- public appendInnerText(value: string): HtmlElementQuery {
+    public appendInnerText(value: string): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving(Array.from(this._elementList[i].children));
             this._elementList[i].textContent = this._elementList[i].textContent + value;
         }
         return this;
     }
     public appendInnerHtml(html: string): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
-            this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
+            this._elementList[i].insertAdjacentHTML("beforeend", html);
         }
         this.invokeHtmlChanged();
         return this;
@@ -642,6 +668,7 @@ export class HtmlElementQuery {
     }
     public remove(): HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
+            this.invokeHtmlRemoving([this._elementList[i]]);
             this._elementList[i].remove();
         }
         return this;
@@ -1018,9 +1045,14 @@ export class HtmlElementQuery {
         this._elementList.forEach(callback);
     }
 
-    private invokeHtmlChanged() {
+    private invokeHtmlChanged(elementList: Array<Element | ShadowRoot> = this._elementList) {
         for (var i = 0; i < HtmlElementQuery._htmlChanged.length; i++) {
-            HtmlElementQuery._htmlChanged[i](this._elementList);
+            HtmlElementQuery._htmlChanged[i](elementList);
+        }
+    }
+    private invokeHtmlRemoving(elementList: Array<Element>) {
+        for (const handler of HtmlElementQuery._htmlRemoving) {
+            handler(elementList);
         }
     }
     private containsElement(element: Element): boolean {
@@ -1029,8 +1061,11 @@ export class HtmlElementQuery {
         }
         return false;
     }
-    public static subscribeHtmlChanged(func: (elementList: Array<Element>) => void) {
+    public static subscribeHtmlChanged(func: (elementList: Array<Element | ShadowRoot>) => void) {
         HtmlElementQuery._htmlChanged.push(func);
+    }
+    public static subscribeHtmlRemoving(func: (elementList: Array<Element>) => void) {
+        HtmlElementQuery._htmlRemoving.push(func);
     }
     public static domContentLoaded(callback: EventListenerOrEventListenerObject) {
         document.addEventListener("DOMContentLoaded", callback);

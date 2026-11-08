@@ -26,6 +26,7 @@ public class HtmlElementQueryFunctionName
     public const string InsertAdjacentHTML = "insertAdjacentHTML";
     public const string InsertAdjacentElement = "insertAdjacentElement";
     public const string InsertAdjacentText = "insertAdjacentText";
+    public const string MoveToIndex = "moveToIndex";
     public const string GetInnerWidth = "getInnerWidth";
     public const string GetInnerHeight = "getInnerHeight";
     public const string GetOuterWidth = "getOuterWidth";
