@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 
 namespace HigLabo.NugetUploadCommandFileGenerator;
 
@@ -69,5 +70,10 @@ internal class Program
         var folderPath = Path.Combine(NugetPackageFolderPath, fileName);
         Console.WriteLine(folderPath);
         File.WriteAllText(folderPath, text);
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = NugetPackageFolderPath,
+            UseShellExecute = true,
+        });
     }
 }
